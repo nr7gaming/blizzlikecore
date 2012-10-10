@@ -1613,6 +1613,7 @@ void AddSC_npcs_special()
     newscript->Name = "mob_mojo";
     newscript->GetAI = &GetAI_mob_mojo;
     newscript->RegisterSelf();
+
     newscript = new Script; 
     newscript->Name = "npc_spiritofazuregos"; 
     newscript->pGossipHello = &GossipHello_npc_spiritofazuregos; 
