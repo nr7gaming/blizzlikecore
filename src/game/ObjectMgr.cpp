@@ -6633,11 +6633,11 @@ bool ObjectMgr::LoadblizzlikeStrings(DatabaseType& db, char const* table, int32 
     return true;
 }
 
-const char *ObjectMgr::GetblizzlikeString(int32 entry, int locale_idx) const
+const char *ObjectMgr::GetBlizzLikeString(int32 entry, int locale_idx) const
 {
     // locale_idx == -1 -> default, locale_idx >= 0 in to idx+1
     // Content[0] always exist if exist blizzlikeStringLocale
-    if (blizzlikeStringLocale const *msl = GetblizzlikeStringLocale(entry))
+    if (blizzlikeStringLocale const *msl = GetBlizzLikeStringLocale(entry))
     {
         if (msl->Content.size() > locale_idx+1 && !msl->Content[locale_idx+1].empty())
             return msl->Content[locale_idx+1].c_str();
@@ -7700,7 +7700,7 @@ void ObjectMgr::CheckScripts(ScriptsType type, std::set<int32>& ids)
             {
                 case SCRIPT_COMMAND_TALK:
                 {
-                    if (!GetblizzlikeStringLocale (itrM->second.Talk.TextID))
+                    if (!GetBlizzLikeStringLocale (itrM->second.Talk.TextID))
                         sLog.outErrorDb("Table `db_script_string` not has string id  %u used db script (ID: %u)", itrM->second.Talk.TextID, itrMM->first);
 
                     if (ids.find(itrM->second.Talk.TextID) != ids.end())
@@ -7720,7 +7720,7 @@ void ObjectMgr::LoadDbScriptStrings()
     std::set<int32> ids;
 
     for (int32 i = MIN_DB_SCRIPT_STRING_ID; i < MAX_DB_SCRIPT_STRING_ID; ++i)
-        if (GetblizzlikeStringLocale(i))
+        if (GetBlizzLikeStringLocale(i))
             ids.insert(i);
 
     for (int type = SCRIPTS_FIRST; type < SCRIPTS_LAST; ++type)

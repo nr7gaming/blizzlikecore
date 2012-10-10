@@ -481,7 +481,7 @@ void WorldSession::SendNotification(const char *format,...)
 
 void WorldSession::SendNotification(int32 string_id,...)
 {
-    char const* format = GetblizzlikeString(string_id);
+    char const* format = GetBlizzLikeString(string_id);
     if (format)
     {
         va_list ap;
@@ -497,9 +497,9 @@ void WorldSession::SendNotification(int32 string_id,...)
     }
 }
 
-const char * WorldSession::GetblizzlikeString(int32 entry) const
+const char * WorldSession::GetBlizzLikeString(int32 entry) const
 {
-    return objmgr.GetblizzlikeString(entry,GetSessionDbLocaleIndex());
+    return objmgr.GetBlizzLikeString(entry,GetSessionDbLocaleIndex());
 }
 
 void WorldSession::Handle_NULL(WorldPacket& recvPacket)

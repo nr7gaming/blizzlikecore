@@ -92,7 +92,7 @@ void BattleGroundAV::HandleKillUnit(Creature *unit, Player *killer)
             SpawnBGObject(BG_AV_OBJECT_BURN_BUILDING_ALLIANCE+i,RESPAWN_IMMEDIATELY);
         Creature* creature = GetBGCreature(AV_CPLACE_HERALD);
         if (creature)
-            YellToAll(creature,GetblizzlikeString(LANG_BG_AV_A_CAPTAIN_DEAD),LANG_UNIVERSAL);
+            YellToAll(creature,GetBlizzLikeString(LANG_BG_AV_A_CAPTAIN_DEAD),LANG_UNIVERSAL);
 
     }
     else if (entry == BG_AV_CreatureInfo[AV_NPC_H_CAPTAIN][0])
@@ -111,7 +111,7 @@ void BattleGroundAV::HandleKillUnit(Creature *unit, Player *killer)
             SpawnBGObject(BG_AV_OBJECT_BURN_BUILDING_HORDE+i,RESPAWN_IMMEDIATELY);
         Creature* creature = GetBGCreature(AV_CPLACE_HERALD);
         if (creature)
-            YellToAll(creature,GetblizzlikeString(LANG_BG_AV_H_CAPTAIN_DEAD),LANG_UNIVERSAL);
+            YellToAll(creature,GetBlizzLikeString(LANG_BG_AV_H_CAPTAIN_DEAD),LANG_UNIVERSAL);
     }
     else if (entry == BG_AV_CreatureInfo[AV_NPC_N_MINE_N_4][0] || entry == BG_AV_CreatureInfo[AV_NPC_N_MINE_A_4][0] || entry == BG_AV_CreatureInfo[AV_NPC_N_MINE_H_4][0])
         ChangeMineOwner(BG_AV_NORTH_MINE,killer->GetTeam());
@@ -570,9 +570,9 @@ void BattleGroundAV::EventPlayerDestroyedPoint(BG_AV_Nodes node)
     //send a nice message to all :)
     char buf[256];
     if (IsTower(node))
-        sprintf(buf, GetblizzlikeString(LANG_BG_AV_TOWER_TAKEN) , GetNodeName(node),(owner == ALLIANCE) ? GetblizzlikeString(LANG_BG_AV_ALLY) : GetblizzlikeString(LANG_BG_AV_HORDE));
+        sprintf(buf, GetBlizzLikeString(LANG_BG_AV_TOWER_TAKEN) , GetNodeName(node),(owner == ALLIANCE) ? GetBlizzLikeString(LANG_BG_AV_ALLY) : GetBlizzLikeString(LANG_BG_AV_HORDE));
     else
-        sprintf(buf, GetblizzlikeString(LANG_BG_AV_GRAVE_TAKEN) , GetNodeName(node),(owner == ALLIANCE) ? GetblizzlikeString(LANG_BG_AV_ALLY) :GetblizzlikeString(LANG_BG_AV_HORDE));
+        sprintf(buf, GetBlizzLikeString(LANG_BG_AV_GRAVE_TAKEN) , GetNodeName(node),(owner == ALLIANCE) ? GetBlizzLikeString(LANG_BG_AV_ALLY) :GetBlizzLikeString(LANG_BG_AV_HORDE));
 
     Creature* creature = GetBGCreature(AV_CPLACE_HERALD);
     if (creature)
@@ -653,7 +653,7 @@ void BattleGroundAV::ChangeMineOwner(uint8 mine, uint32 team, bool initial)
     {
         m_Mine_Reclaim_Timer[mine]=BG_AV_MINE_RECLAIM_TIMER;
         char buf[256];
-        sprintf(buf, GetblizzlikeString(LANG_BG_AV_MINE_TAKEN), GetblizzlikeString((mine == BG_AV_NORTH_MINE) ? LANG_BG_AV_MINE_NORTH : LANG_BG_AV_MINE_SOUTH), (team == ALLIANCE) ?  GetblizzlikeString(LANG_BG_AV_ALLY) : GetblizzlikeString(LANG_BG_AV_HORDE));
+        sprintf(buf, GetBlizzLikeString(LANG_BG_AV_MINE_TAKEN), GetBlizzLikeString((mine == BG_AV_NORTH_MINE) ? LANG_BG_AV_MINE_NORTH : LANG_BG_AV_MINE_SOUTH), (team == ALLIANCE) ?  GetBlizzLikeString(LANG_BG_AV_ALLY) : GetBlizzLikeString(LANG_BG_AV_HORDE));
         Creature* creature = GetBGCreature(AV_CPLACE_HERALD);
         if (creature)
             YellToAll(creature,buf,LANG_UNIVERSAL);
@@ -867,7 +867,7 @@ void BattleGroundAV::EventPlayerDefendsPoint(Player* player, uint32 object)
     }
     //send a nice message to all :)
     char buf[256];
-    sprintf(buf, GetblizzlikeString((IsTower(node)) ? LANG_BG_AV_TOWER_DEFENDED : LANG_BG_AV_GRAVE_DEFENDED), GetNodeName(node),(team == ALLIANCE) ?  GetblizzlikeString(LANG_BG_AV_ALLY) : GetblizzlikeString(LANG_BG_AV_HORDE));
+    sprintf(buf, GetBlizzLikeString((IsTower(node)) ? LANG_BG_AV_TOWER_DEFENDED : LANG_BG_AV_GRAVE_DEFENDED), GetNodeName(node),(team == ALLIANCE) ?  GetBlizzLikeString(LANG_BG_AV_ALLY) : GetBlizzLikeString(LANG_BG_AV_HORDE));
     Creature* creature = GetBGCreature(AV_CPLACE_HERALD);
     if (creature)
         YellToAll(creature,buf,LANG_UNIVERSAL);
@@ -976,7 +976,7 @@ void BattleGroundAV::EventPlayerAssaultsPoint(Player* player, uint32 object)
 
     //send a nice message to all :)
     char buf[256];
-    sprintf(buf, (IsTower(node)) ? GetblizzlikeString(LANG_BG_AV_TOWER_ASSAULTED) : GetblizzlikeString(LANG_BG_AV_GRAVE_ASSAULTED), GetNodeName(node),  (team == ALLIANCE) ?  GetblizzlikeString(LANG_BG_AV_ALLY) : GetblizzlikeString(LANG_BG_AV_HORDE));
+    sprintf(buf, (IsTower(node)) ? GetBlizzLikeString(LANG_BG_AV_TOWER_ASSAULTED) : GetBlizzLikeString(LANG_BG_AV_GRAVE_ASSAULTED), GetNodeName(node),  (team == ALLIANCE) ?  GetBlizzLikeString(LANG_BG_AV_ALLY) : GetBlizzLikeString(LANG_BG_AV_HORDE));
     Creature* creature = GetBGCreature(AV_CPLACE_HERALD);
     if (creature)
         YellToAll(creature,buf,LANG_UNIVERSAL);
@@ -1296,21 +1296,21 @@ const char* BattleGroundAV::GetNodeName(BG_AV_Nodes node)
 {
     switch (node)
     {
-        case BG_AV_NODES_FIRSTAID_STATION:  return GetblizzlikeString(LANG_BG_AV_NODE_GRAVE_STORM_AID);
-        case BG_AV_NODES_DUNBALDAR_SOUTH:   return GetblizzlikeString(LANG_BG_AV_NODE_TOWER_DUN_S);
-        case BG_AV_NODES_DUNBALDAR_NORTH:   return GetblizzlikeString(LANG_BG_AV_NODE_TOWER_DUN_N);
-        case BG_AV_NODES_STORMPIKE_GRAVE:   return GetblizzlikeString(LANG_BG_AV_NODE_GRAVE_STORMPIKE);
-        case BG_AV_NODES_ICEWING_BUNKER:    return GetblizzlikeString(LANG_BG_AV_NODE_TOWER_ICEWING);
-        case BG_AV_NODES_STONEHEART_GRAVE:  return GetblizzlikeString(LANG_BG_AV_NODE_GRAVE_STONE);
-        case BG_AV_NODES_STONEHEART_BUNKER: return GetblizzlikeString(LANG_BG_AV_NODE_TOWER_STONE);
-        case BG_AV_NODES_SNOWFALL_GRAVE:    return GetblizzlikeString(LANG_BG_AV_NODE_GRAVE_SNOW);
-        case BG_AV_NODES_ICEBLOOD_TOWER:    return GetblizzlikeString(LANG_BG_AV_NODE_TOWER_ICE);
-        case BG_AV_NODES_ICEBLOOD_GRAVE:    return GetblizzlikeString(LANG_BG_AV_NODE_GRAVE_ICE);
-        case BG_AV_NODES_TOWER_POINT:       return GetblizzlikeString(LANG_BG_AV_NODE_TOWER_POINT);
-        case BG_AV_NODES_FROSTWOLF_GRAVE:   return GetblizzlikeString(LANG_BG_AV_NODE_GRAVE_FROST);
-        case BG_AV_NODES_FROSTWOLF_ETOWER:  return GetblizzlikeString(LANG_BG_AV_NODE_TOWER_FROST_E);
-        case BG_AV_NODES_FROSTWOLF_WTOWER:  return GetblizzlikeString(LANG_BG_AV_NODE_TOWER_FROST_W);
-        case BG_AV_NODES_FROSTWOLF_HUT:     return GetblizzlikeString(LANG_BG_AV_NODE_GRAVE_FROST_HUT);
+        case BG_AV_NODES_FIRSTAID_STATION:  return GetBlizzLikeString(LANG_BG_AV_NODE_GRAVE_STORM_AID);
+        case BG_AV_NODES_DUNBALDAR_SOUTH:   return GetBlizzLikeString(LANG_BG_AV_NODE_TOWER_DUN_S);
+        case BG_AV_NODES_DUNBALDAR_NORTH:   return GetBlizzLikeString(LANG_BG_AV_NODE_TOWER_DUN_N);
+        case BG_AV_NODES_STORMPIKE_GRAVE:   return GetBlizzLikeString(LANG_BG_AV_NODE_GRAVE_STORMPIKE);
+        case BG_AV_NODES_ICEWING_BUNKER:    return GetBlizzLikeString(LANG_BG_AV_NODE_TOWER_ICEWING);
+        case BG_AV_NODES_STONEHEART_GRAVE:  return GetBlizzLikeString(LANG_BG_AV_NODE_GRAVE_STONE);
+        case BG_AV_NODES_STONEHEART_BUNKER: return GetBlizzLikeString(LANG_BG_AV_NODE_TOWER_STONE);
+        case BG_AV_NODES_SNOWFALL_GRAVE:    return GetBlizzLikeString(LANG_BG_AV_NODE_GRAVE_SNOW);
+        case BG_AV_NODES_ICEBLOOD_TOWER:    return GetBlizzLikeString(LANG_BG_AV_NODE_TOWER_ICE);
+        case BG_AV_NODES_ICEBLOOD_GRAVE:    return GetBlizzLikeString(LANG_BG_AV_NODE_GRAVE_ICE);
+        case BG_AV_NODES_TOWER_POINT:       return GetBlizzLikeString(LANG_BG_AV_NODE_TOWER_POINT);
+        case BG_AV_NODES_FROSTWOLF_GRAVE:   return GetBlizzLikeString(LANG_BG_AV_NODE_GRAVE_FROST);
+        case BG_AV_NODES_FROSTWOLF_ETOWER:  return GetBlizzLikeString(LANG_BG_AV_NODE_TOWER_FROST_E);
+        case BG_AV_NODES_FROSTWOLF_WTOWER:  return GetBlizzLikeString(LANG_BG_AV_NODE_TOWER_FROST_W);
+        case BG_AV_NODES_FROSTWOLF_HUT:     return GetBlizzLikeString(LANG_BG_AV_NODE_GRAVE_FROST_HUT);
         default:
             sLog.outError("tried to get name for node %u",node);
             break;

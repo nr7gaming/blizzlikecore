@@ -741,9 +741,9 @@ ChatCommand * ChatHandler::getCommandTable()
     return commandTable;
 }
 
-const char *ChatHandler::GetblizzlikeString(int32 entry) const
+const char *ChatHandler::GetBlizzLikeString(int32 entry) const
 {
-    return m_session->GetblizzlikeString(entry);
+    return m_session->GetBlizzLikeString(entry);
 }
 
 bool ChatHandler::isAvailable(ChatCommand const& cmd) const
@@ -831,12 +831,12 @@ void ChatHandler::SendGlobalGMSysMessage(const char *str)
 
 void ChatHandler::SendSysMessage(int32 entry)
 {
-    SendSysMessage(GetblizzlikeString(entry));
+    SendSysMessage(GetBlizzLikeString(entry));
 }
 
 void ChatHandler::PSendSysMessage(int32 entry, ...)
 {
-    const char *format = GetblizzlikeString(entry);
+    const char *format = GetBlizzLikeString(entry);
     va_list ap;
     char str [1024];
     va_start(ap, entry);
@@ -1861,9 +1861,9 @@ bool ChatHandler::needReportToTarget(Player* chr) const
     return pl != chr && pl->IsVisibleGloballyFor(chr);
 }
 
-const char *CliHandler::GetblizzlikeString(int32 entry) const
+const char *CliHandler::GetBlizzLikeString(int32 entry) const
 {
-    return objmgr.GetblizzlikeStringForDBCLocale(entry);
+    return objmgr.GetBlizzLikeStringForDBCLocale(entry);
 }
 
 bool CliHandler::isAvailable(ChatCommand const& cmd) const
@@ -1880,7 +1880,7 @@ void CliHandler::SendSysMessage(const char *str)
 
 const char *CliHandler::GetName() const
 {
-    return GetblizzlikeString(LANG_CONSOLE_COMMAND);
+    return GetBlizzLikeString(LANG_CONSOLE_COMMAND);
 }
 
 bool CliHandler::needReportToTarget(Player* /*chr*/) const

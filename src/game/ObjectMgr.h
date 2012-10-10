@@ -908,14 +908,14 @@ class ObjectMgr
         GameObjectData& NewGOData(uint32 guid) { return mGameObjectDataMap[guid]; }
         void DeleteGOData(uint32 guid);
 
-        blizzlikeStringLocale const* GetblizzlikeStringLocale(int32 entry) const
+        blizzlikeStringLocale const* GetBlizzLikeStringLocale(int32 entry) const
         {
             blizzlikeStringLocaleMap::const_iterator itr = mblizzlikeStringLocaleMap.find(entry);
             if (itr == mblizzlikeStringLocaleMap.end()) return NULL;
             return &itr->second;
         }
-        const char *GetblizzlikeString(int32 entry, int locale_idx) const;
-        const char *GetblizzlikeStringForDBCLocale(int32 entry) const { return GetblizzlikeString(entry,DBCLocaleIndex); }
+        const char *GetBlizzLikeString(int32 entry, int locale_idx) const;
+        const char *GetBlizzLikeStringForDBCLocale(int32 entry) const { return GetBlizzLikeString(entry,DBCLocaleIndex); }
         int32 GetDBCLocaleIndex() const { return DBCLocaleIndex; }
         void SetDBCLocaleIndex(uint32 lang) { DBCLocaleIndex = GetIndexForLocale(LocaleConstant(lang)); }
 

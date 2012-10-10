@@ -60,7 +60,7 @@ class ChatHandler
         static char* LineFromMessage(char*& pos) { char* start = strtok(pos,"\n"); pos = NULL; return start; }
 
         // function with different implementation for chat/console
-        virtual const char *GetblizzlikeString(int32 entry) const;
+        virtual const char *GetBlizzLikeString(int32 entry) const;
         virtual void SendSysMessage(const char *str);
 
         char* extractQuotedArg(char* args);
@@ -588,7 +588,7 @@ class CliHandler : public ChatHandler
         explicit CliHandler(void* callbackArg, Print* zprint) : m_callbackArg(callbackArg), m_print(zprint) {}
 
         // overwrite functions
-        const char *GetblizzlikeString(int32 entry) const;
+        const char *GetBlizzLikeString(int32 entry) const;
         bool isAvailable(ChatCommand const& cmd) const;
         void SendSysMessage(const char *str);
         char const* GetName() const;

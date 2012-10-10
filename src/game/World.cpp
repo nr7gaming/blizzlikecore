@@ -1870,7 +1870,7 @@ void World::SendWorldText(int32 string_id, ...)
 
             data_list = &data_cache[cache_idx];
 
-            char const* text = objmgr.GetblizzlikeString(string_id,loc_idx);
+            char const* text = objmgr.GetBlizzLikeString(string_id,loc_idx);
 
             char buf[1000];
 
@@ -1923,7 +1923,7 @@ void World::SendGMText(int32 string_id, ...)
 
             data_list = &data_cache[cache_idx];
 
-            char const* text = objmgr.GetblizzlikeString(string_id,loc_idx);
+            char const* text = objmgr.GetBlizzLikeString(string_id,loc_idx);
 
             char buf[1000];
 

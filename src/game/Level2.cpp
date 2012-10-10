@@ -831,7 +831,7 @@ bool ChatHandler::HandleGameObjectCommand(const char* args)
         return false;
     }
 
-    sLog.outDebug(GetblizzlikeString(LANG_GAMEOBJECT_CURRENT), gInfo->name, db_lowGUID, x, y, z, o);
+    sLog.outDebug(GetBlizzLikeString(LANG_GAMEOBJECT_CURRENT), gInfo->name, db_lowGUID, x, y, z, o);
 
     map->Add(pGameObj);
 
@@ -894,7 +894,7 @@ bool ChatHandler::HandleModifyRepCommand(const char * args)
         amount = -42000;
         for (; r < MAX_REPUTATION_RANK; ++r)
         {
-            std::string rank = GetblizzlikeString(ReputationRankStrIndex[r]);
+            std::string rank = GetBlizzLikeString(ReputationRankStrIndex[r]);
             if (rank.empty())
                 continue;
 
@@ -2025,11 +2025,11 @@ bool ChatHandler::HandlePInfoCommand(const char* args)
         Class = fields[5].GetUInt8();
     }
 
-    std::string username = GetblizzlikeString(LANG_ERROR);
-    std::string email = GetblizzlikeString(LANG_ERROR);
-    std::string last_ip = GetblizzlikeString(LANG_ERROR);
+    std::string username = GetBlizzLikeString(LANG_ERROR);
+    std::string email = GetBlizzLikeString(LANG_ERROR);
+    std::string last_ip = GetBlizzLikeString(LANG_ERROR);
     uint32 security = 0;
-    std::string last_login = GetblizzlikeString(LANG_ERROR);
+    std::string last_login = GetBlizzLikeString(LANG_ERROR);
 
     QueryResult_AutoPtr result = LoginDatabase.PQuery("SELECT a.username,aa.gmlevel,a.email,a.last_ip,a.last_login "
                                                       "FROM account a "
@@ -2058,7 +2058,7 @@ bool ChatHandler::HandlePInfoCommand(const char* args)
         }
     }
 
-    PSendSysMessage(LANG_PINFO_ACCOUNT, (target?"":GetblizzlikeString(LANG_OFFLINE)), name.c_str(), GUID_LOPART(targetGUID), username.c_str(), accId, email.c_str(), security, last_ip.c_str(), last_login.c_str(), latency);
+    PSendSysMessage(LANG_PINFO_ACCOUNT, (target?"":GetBlizzLikeString(LANG_OFFLINE)), name.c_str(), GUID_LOPART(targetGUID), username.c_str(), accId, email.c_str(), security, last_ip.c_str(), last_login.c_str(), latency);
 
     std::string race_s, Class_s;
     switch(race)
@@ -2112,22 +2112,22 @@ bool ChatHandler::HandlePInfoCommand(const char* args)
             else
                 FactionName = "#Not found#";
             ReputationRank rank = target->GetReputationRank(factionEntry);
-            std::string rankName = GetblizzlikeString(ReputationRankStrIndex[rank]);
+            std::string rankName = GetBlizzLikeString(ReputationRankStrIndex[rank]);
             std::ostringstream ss;
             ss << itr->second.ID << ": |cffffffff|Hfaction:" << itr->second.ID << "|h[" << FactionName << "]|h|r " << rankName << "|h|r (" << target->GetReputation(factionEntry) << ")";
 
             if (itr->second.Flags & FACTION_FLAG_VISIBLE)
-                ss << GetblizzlikeString(LANG_FACTION_VISIBLE);
+                ss << GetBlizzLikeString(LANG_FACTION_VISIBLE);
             if (itr->second.Flags & FACTION_FLAG_AT_WAR)
-                ss << GetblizzlikeString(LANG_FACTION_ATWAR);
+                ss << GetBlizzLikeString(LANG_FACTION_ATWAR);
             if (itr->second.Flags & FACTION_FLAG_PEACE_FORCED)
-                ss << GetblizzlikeString(LANG_FACTION_PEACE_FORCED);
+                ss << GetBlizzLikeString(LANG_FACTION_PEACE_FORCED);
             if (itr->second.Flags & FACTION_FLAG_HIDDEN)
-                ss << GetblizzlikeString(LANG_FACTION_HIDDEN);
+                ss << GetBlizzLikeString(LANG_FACTION_HIDDEN);
             if (itr->second.Flags & FACTION_FLAG_INVISIBLE_FORCED)
-                ss << GetblizzlikeString(LANG_FACTION_INVISIBLE_FORCED);
+                ss << GetBlizzLikeString(LANG_FACTION_INVISIBLE_FORCED);
             if (itr->second.Flags & FACTION_FLAG_INACTIVE)
-                ss << GetblizzlikeString(LANG_FACTION_INACTIVE);
+                ss << GetBlizzLikeString(LANG_FACTION_INACTIVE);
 
             SendSysMessage(ss.str().c_str());
         }
@@ -3155,25 +3155,25 @@ bool ChatHandler::HandleLookupFactionCommand(const char* args)
                 if (repState)                               // and then target != NULL also
                 {
                     ReputationRank rank = target->GetReputationRank(factionEntry);
-                    std::string rankName = GetblizzlikeString(ReputationRankStrIndex[rank]);
+                    std::string rankName = GetBlizzLikeString(ReputationRankStrIndex[rank]);
 
                     ss << " " << rankName << "|h|r (" << target->GetReputation(factionEntry) << ")";
 
                     if (repState->Flags & FACTION_FLAG_VISIBLE)
-                        ss << GetblizzlikeString(LANG_FACTION_VISIBLE);
+                        ss << GetBlizzLikeString(LANG_FACTION_VISIBLE);
                     if (repState->Flags & FACTION_FLAG_AT_WAR)
-                        ss << GetblizzlikeString(LANG_FACTION_ATWAR);
+                        ss << GetBlizzLikeString(LANG_FACTION_ATWAR);
                     if (repState->Flags & FACTION_FLAG_PEACE_FORCED)
-                        ss << GetblizzlikeString(LANG_FACTION_PEACE_FORCED);
+                        ss << GetBlizzLikeString(LANG_FACTION_PEACE_FORCED);
                     if (repState->Flags & FACTION_FLAG_HIDDEN)
-                        ss << GetblizzlikeString(LANG_FACTION_HIDDEN);
+                        ss << GetBlizzLikeString(LANG_FACTION_HIDDEN);
                     if (repState->Flags & FACTION_FLAG_INVISIBLE_FORCED)
-                        ss << GetblizzlikeString(LANG_FACTION_INVISIBLE_FORCED);
+                        ss << GetBlizzLikeString(LANG_FACTION_INVISIBLE_FORCED);
                     if (repState->Flags & FACTION_FLAG_INACTIVE)
-                        ss << GetblizzlikeString(LANG_FACTION_INACTIVE);
+                        ss << GetBlizzLikeString(LANG_FACTION_INACTIVE);
                 }
                 else
-                    ss << GetblizzlikeString(LANG_FACTION_NOREPUTATION);
+                    ss << GetBlizzLikeString(LANG_FACTION_NOREPUTATION);
 
                 SendSysMessage(ss.str().c_str());
                 counter++;
@@ -3284,7 +3284,7 @@ bool ChatHandler::HandleLookupEventCommand(const char* args)
 
         if (Utf8FitTo(descr, wnamepart))
         {
-            char const* active = activeEvents.find(id) != activeEvents.end() ? GetblizzlikeString(LANG_ACTIVE) : "";
+            char const* active = activeEvents.find(id) != activeEvents.end() ? GetBlizzLikeString(LANG_ACTIVE) : "";
 
             if (m_session)
                 PSendSysMessage(LANG_EVENT_ENTRY_LIST_CHAT,id,id,eventData.description.c_str(),active);
@@ -3309,7 +3309,7 @@ bool ChatHandler::HandleEventActiveListCommand(const char* /*args*/)
     GameEventMgr::GameEventDataMap const& events = gameeventmgr.GetEventMap();
     GameEventMgr::ActiveEvents const& activeEvents = gameeventmgr.GetActiveEventList();
 
-    char const* active = GetblizzlikeString(LANG_ACTIVE);
+    char const* active = GetBlizzLikeString(LANG_ACTIVE);
 
     for (GameEventMgr::ActiveEvents::const_iterator itr = activeEvents.begin(); itr != activeEvents.end(); ++itr)
     {
@@ -3361,7 +3361,7 @@ bool ChatHandler::HandleEventInfoCommand(const char* args)
 
     GameEventMgr::ActiveEvents const& activeEvents = gameeventmgr.GetActiveEventList();
     bool active = activeEvents.find(event_id) != activeEvents.end();
-    char const* activeStr = active ? GetblizzlikeString(LANG_ACTIVE) : "";
+    char const* activeStr = active ? GetBlizzLikeString(LANG_ACTIVE) : "";
 
     std::string startTimeStr = TimeToTimestampStr(eventData.start);
     std::string endTimeStr = TimeToTimestampStr(eventData.end);
@@ -4298,10 +4298,10 @@ bool ChatHandler::HandleLookupTitleCommand(const char* args)
 
             if (loc < MAX_LOCALE)
             {
-                char const* knownStr = target && target->HasTitle(titleInfo) ? GetblizzlikeString(LANG_KNOWN) : "";
+                char const* knownStr = target && target->HasTitle(titleInfo) ? GetBlizzLikeString(LANG_KNOWN) : "";
 
                 char const* activeStr = target && target->GetUInt32Value(PLAYER_CHOSEN_TITLE) == titleInfo->bit_index
-                    ? GetblizzlikeString(LANG_ACTIVE)
+                    ? GetBlizzLikeString(LANG_ACTIVE)
                     : "";
 
                 char titleNameStr[80];
@@ -4464,7 +4464,7 @@ bool ChatHandler::HandleCharacterTitlesCommand(const char* args)
 
     LocaleConstant loc = m_session->GetSessionDbcLocale();
     char const* targetName = target->GetName();
-    char const* knownStr = GetblizzlikeString(LANG_KNOWN);
+    char const* knownStr = GetBlizzLikeString(LANG_KNOWN);
 
     // Search in CharTitles.dbc
     for (uint32 id = 0; id < sCharTitlesStore.GetNumRows(); id++)
@@ -4477,7 +4477,7 @@ bool ChatHandler::HandleCharacterTitlesCommand(const char* args)
                 continue;
 
             char const* activeStr = target && target->GetUInt32Value(PLAYER_CHOSEN_TITLE) == titleInfo->bit_index
-                ? GetblizzlikeString(LANG_ACTIVE)
+                ? GetBlizzLikeString(LANG_ACTIVE)
                 : "";
 
             char titleNameStr[80];

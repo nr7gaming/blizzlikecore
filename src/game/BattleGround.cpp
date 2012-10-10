@@ -38,7 +38,7 @@ namespace blizzlike
                 : i_msgtype(msgtype), i_textId(textId), i_source(source), i_args(args) {}
             void operator()(WorldPacket& data, int32 loc_idx)
             {
-                char const* text = objmgr.GetblizzlikeString(i_textId, loc_idx);
+                char const* text = objmgr.GetBlizzLikeString(i_textId, loc_idx);
 
                 if (i_args)
                 {
@@ -83,9 +83,9 @@ namespace blizzlike
                 : i_msgtype(msgtype), i_textId(textId), i_source(source), i_arg1(arg1), i_arg2(arg2) {}
             void operator()(WorldPacket& data, int32 loc_idx)
             {
-                char const* text = objmgr.GetblizzlikeString(i_textId, loc_idx);
-                char const* arg1str = i_arg1 ? objmgr.GetblizzlikeString(i_arg1, loc_idx) : "";
-                char const* arg2str = i_arg2 ? objmgr.GetblizzlikeString(i_arg2, loc_idx) : "";
+                char const* text = objmgr.GetBlizzLikeString(i_textId, loc_idx);
+                char const* arg1str = i_arg1 ? objmgr.GetBlizzLikeString(i_arg1, loc_idx) : "";
+                char const* arg2str = i_arg2 ? objmgr.GetBlizzLikeString(i_arg2, loc_idx) : "";
 
                 char str [2048];
                 snprintf(str, 2048, text, arg1str, arg2str );
@@ -943,7 +943,7 @@ void BattleGround::SendRewardMarkByMail(Player *plr,uint32 mark, uint32 count)
                     subject = il->Name[loc_idx];
 
         // text
-        std::string textFormat = plr->GetSession()->GetblizzlikeString(LANG_BG_MARK_BY_MAIL);
+        std::string textFormat = plr->GetSession()->GetBlizzLikeString(LANG_BG_MARK_BY_MAIL);
         char textBuf[300];
         snprintf(textBuf,300,textFormat.c_str(),GetName(),GetName());
         uint32 itemTextId = objmgr.CreateItemText(textBuf);
@@ -1713,10 +1713,10 @@ void BattleGround::EndNow()
 }
 
 // Battleground messages are localized using the dbc lang, they are not client language dependent
-const char *BattleGround::GetblizzlikeString(int32 entry)
+const char *BattleGround::GetBlizzLikeString(int32 entry)
 {
     // FIXME: now we have different DBC locales and need localized message for each target client
-    return objmgr.GetblizzlikeStringForDBCLocale(entry);
+    return objmgr.GetBlizzLikeStringForDBCLocale(entry);
 }
 
 /*

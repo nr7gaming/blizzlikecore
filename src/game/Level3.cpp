@@ -1642,13 +1642,13 @@ bool ChatHandler::HandleCooldownCommand(const char *args)
 
         if (!sSpellStore.LookupEntry(spell_id))
         {
-            PSendSysMessage(LANG_UNKNOWN_SPELL, target == m_session->GetPlayer() ? GetblizzlikeString(LANG_YOU) : target->GetName());
+            PSendSysMessage(LANG_UNKNOWN_SPELL, target == m_session->GetPlayer() ? GetBlizzLikeString(LANG_YOU) : target->GetName());
             SetSentErrorMessage(true);
             return false;
         }
 
         target->RemoveSpellCooldown(spell_id,true);
-        PSendSysMessage(LANG_REMOVE_COOLDOWN, spell_id, target == m_session->GetPlayer() ? GetblizzlikeString(LANG_YOU) : target->GetName());
+        PSendSysMessage(LANG_REMOVE_COOLDOWN, spell_id, target == m_session->GetPlayer() ? GetBlizzLikeString(LANG_YOU) : target->GetName());
     }
     return true;
 }
@@ -2562,7 +2562,7 @@ bool ChatHandler::HandleAddItemCommand(const char *args)
     if (!plTarget)
         plTarget = pl;
 
-    sLog.outDetail(GetblizzlikeString(LANG_ADDITEM), itemId, count);
+    sLog.outDetail(GetBlizzLikeString(LANG_ADDITEM), itemId, count);
 
     ItemPrototype const *pProto = objmgr.GetItemPrototype(itemId);
     if (!pProto)
@@ -2641,7 +2641,7 @@ bool ChatHandler::HandleAddItemSetCommand(const char *args)
     if (!plTarget)
         plTarget = pl;
 
-    sLog.outDetail(GetblizzlikeString(LANG_ADDITEMSET), itemsetId);
+    sLog.outDetail(GetBlizzLikeString(LANG_ADDITEMSET), itemsetId);
 
     bool found = false;
     for (uint32 id = 0; id < sItemStorage.MaxEntry; id++)
@@ -3288,7 +3288,7 @@ bool ChatHandler::HandleLookupSkillCommand(const char *args)
             {
                 char const* knownStr = "";
                 if (target && target->HasSkill(id))
-                    knownStr = GetblizzlikeString(LANG_KNOWN);
+                    knownStr = GetBlizzLikeString(LANG_KNOWN);
 
                 // send skill in "id - [namedlink locale]" format
                 if (m_session)
@@ -3377,7 +3377,7 @@ bool ChatHandler::HandleLookupSpellCommand(const char *args)
 
                 // include rank in link name
                 if (rank)
-                    ss << GetblizzlikeString(LANG_SPELL_RANK) << rank;
+                    ss << GetBlizzLikeString(LANG_SPELL_RANK) << rank;
 
                 if (m_session)
                     ss << " " << localeNames[loc] << "]|h|r";
@@ -3385,15 +3385,15 @@ bool ChatHandler::HandleLookupSpellCommand(const char *args)
                     ss << " " << localeNames[loc];
 
                 if (talent)
-                    ss << GetblizzlikeString(LANG_TALENT);
+                    ss << GetBlizzLikeString(LANG_TALENT);
                 if (passive)
-                    ss << GetblizzlikeString(LANG_PASSIVE);
+                    ss << GetBlizzLikeString(LANG_PASSIVE);
                 if (learn)
-                    ss << GetblizzlikeString(LANG_LEARN);
+                    ss << GetBlizzLikeString(LANG_LEARN);
                 if (known)
-                    ss << GetblizzlikeString(LANG_KNOWN);
+                    ss << GetBlizzLikeString(LANG_KNOWN);
                 if (active)
-                    ss << GetblizzlikeString(LANG_ACTIVE);
+                    ss << GetBlizzLikeString(LANG_ACTIVE);
 
                 SendSysMessage(ss.str().c_str());
 
@@ -3452,12 +3452,12 @@ bool ChatHandler::HandleLookupQuestCommand(const char *args)
                             if (status == QUEST_STATUS_COMPLETE)
                             {
                                 if (target->GetQuestRewardStatus(qinfo->GetQuestId()))
-                                    statusStr = GetblizzlikeString(LANG_COMMAND_QUEST_REWARDED);
+                                    statusStr = GetBlizzLikeString(LANG_COMMAND_QUEST_REWARDED);
                                 else
-                                    statusStr = GetblizzlikeString(LANG_COMMAND_QUEST_COMPLETE);
+                                    statusStr = GetBlizzLikeString(LANG_COMMAND_QUEST_COMPLETE);
                             }
                             else if (status == QUEST_STATUS_INCOMPLETE)
-                                statusStr = GetblizzlikeString(LANG_COMMAND_QUEST_ACTIVE);
+                                statusStr = GetBlizzLikeString(LANG_COMMAND_QUEST_ACTIVE);
                         }
 
                         if (m_session)
@@ -3489,12 +3489,12 @@ bool ChatHandler::HandleLookupQuestCommand(const char *args)
                 if (status == QUEST_STATUS_COMPLETE)
                 {
                     if (target->GetQuestRewardStatus(qinfo->GetQuestId()))
-                        statusStr = GetblizzlikeString(LANG_COMMAND_QUEST_REWARDED);
+                        statusStr = GetBlizzLikeString(LANG_COMMAND_QUEST_REWARDED);
                     else
-                        statusStr = GetblizzlikeString(LANG_COMMAND_QUEST_COMPLETE);
+                        statusStr = GetBlizzLikeString(LANG_COMMAND_QUEST_COMPLETE);
                 }
                 else if (status == QUEST_STATUS_INCOMPLETE)
-                    statusStr = GetblizzlikeString(LANG_COMMAND_QUEST_ACTIVE);
+                    statusStr = GetBlizzLikeString(LANG_COMMAND_QUEST_ACTIVE);
             }
 
             if (m_session)
@@ -4250,14 +4250,14 @@ bool ChatHandler::HandleNearGraveCommand(const char *args)
 
         g_team = data->team;
 
-        std::string team_name = GetblizzlikeString(LANG_COMMAND_GRAVEYARD_NOTEAM);
+        std::string team_name = GetBlizzLikeString(LANG_COMMAND_GRAVEYARD_NOTEAM);
 
         if (g_team == 0)
-            team_name = GetblizzlikeString(LANG_COMMAND_GRAVEYARD_ANY);
+            team_name = GetBlizzLikeString(LANG_COMMAND_GRAVEYARD_ANY);
         else if (g_team == HORDE)
-            team_name = GetblizzlikeString(LANG_COMMAND_GRAVEYARD_HORDE);
+            team_name = GetBlizzLikeString(LANG_COMMAND_GRAVEYARD_HORDE);
         else if (g_team == ALLIANCE)
-            team_name = GetblizzlikeString(LANG_COMMAND_GRAVEYARD_ALLIANCE);
+            team_name = GetBlizzLikeString(LANG_COMMAND_GRAVEYARD_ALLIANCE);
 
         PSendSysMessage(LANG_COMMAND_GRAVEYARDNEAREST, g_id,team_name.c_str(),player->GetZoneId());
     }
@@ -4266,11 +4266,11 @@ bool ChatHandler::HandleNearGraveCommand(const char *args)
         std::string team_name;
 
         if (g_team == 0)
-            team_name = GetblizzlikeString(LANG_COMMAND_GRAVEYARD_ANY);
+            team_name = GetBlizzLikeString(LANG_COMMAND_GRAVEYARD_ANY);
         else if (g_team == HORDE)
-            team_name = GetblizzlikeString(LANG_COMMAND_GRAVEYARD_HORDE);
+            team_name = GetBlizzLikeString(LANG_COMMAND_GRAVEYARD_HORDE);
         else if (g_team == ALLIANCE)
-            team_name = GetblizzlikeString(LANG_COMMAND_GRAVEYARD_ALLIANCE);
+            team_name = GetBlizzLikeString(LANG_COMMAND_GRAVEYARD_ALLIANCE);
 
         if (g_team == ~uint32(0))
             PSendSysMessage(LANG_COMMAND_ZONENOGRAVEYARDS, player->GetZoneId());
@@ -4741,14 +4741,14 @@ bool ChatHandler::HandleSetValue(const char *args)
     if (isint32)
     {
         iValue = (uint32)atoi(py);
-        sLog.outDebug(GetblizzlikeString(LANG_SET_UINT), GUID_LOPART(guid), Opcode, iValue);
+        sLog.outDebug(GetBlizzLikeString(LANG_SET_UINT), GUID_LOPART(guid), Opcode, iValue);
         target->SetUInt32Value(Opcode , iValue);
         PSendSysMessage(LANG_SET_UINT_FIELD, GUID_LOPART(guid), Opcode,iValue);
     }
     else
     {
         fValue = (float)atof(py);
-        sLog.outDebug(GetblizzlikeString(LANG_SET_FLOAT), GUID_LOPART(guid), Opcode, fValue);
+        sLog.outDebug(GetBlizzLikeString(LANG_SET_FLOAT), GUID_LOPART(guid), Opcode, fValue);
         target->SetFloatValue(Opcode , fValue);
         PSendSysMessage(LANG_SET_FLOAT_FIELD, GUID_LOPART(guid), Opcode,fValue);
     }
@@ -4792,13 +4792,13 @@ bool ChatHandler::HandleGetValue(const char *args)
     if (isint32)
     {
         iValue = target->GetUInt32Value(Opcode);
-        sLog.outDebug(GetblizzlikeString(LANG_GET_UINT), GUID_LOPART(guid), Opcode, iValue);
+        sLog.outDebug(GetBlizzLikeString(LANG_GET_UINT), GUID_LOPART(guid), Opcode, iValue);
         PSendSysMessage(LANG_GET_UINT_FIELD, GUID_LOPART(guid), Opcode,    iValue);
     }
     else
     {
         fValue = target->GetFloatValue(Opcode);
-        sLog.outDebug(GetblizzlikeString(LANG_GET_FLOAT), GUID_LOPART(guid), Opcode, fValue);
+        sLog.outDebug(GetBlizzLikeString(LANG_GET_FLOAT), GUID_LOPART(guid), Opcode, fValue);
         PSendSysMessage(LANG_GET_FLOAT_FIELD, GUID_LOPART(guid), Opcode, fValue);
     }
 
@@ -4821,7 +4821,7 @@ bool ChatHandler::HandleSet32Bit(const char *args)
     if (Value > 32)                                         //uint32 = 32 bits
         return false;
 
-    sLog.outDebug(GetblizzlikeString(LANG_SET_32BIT), Opcode, Value);
+    sLog.outDebug(GetBlizzLikeString(LANG_SET_32BIT), Opcode, Value);
 
     m_session->GetPlayer()->SetUInt32Value(Opcode , 2^Value);
 
@@ -4849,7 +4849,7 @@ bool ChatHandler::HandleMod32Value(const char *args)
         return false;
     }
 
-    sLog.outDebug(GetblizzlikeString(LANG_CHANGE_32BIT), Opcode, Value);
+    sLog.outDebug(GetBlizzLikeString(LANG_CHANGE_32BIT), Opcode, Value);
 
     int CurrentValue = (int)m_session->GetPlayer()->GetUInt32Value(Opcode);
 
@@ -4929,8 +4929,8 @@ bool ChatHandler::HandleListAurasCommand (const char * /*args*/)
         return false;
     }
 
-    char const* talentStr = GetblizzlikeString(LANG_TALENT);
-    char const* passiveStr = GetblizzlikeString(LANG_PASSIVE);
+    char const* talentStr = GetBlizzLikeString(LANG_TALENT);
+    char const* passiveStr = GetBlizzLikeString(LANG_PASSIVE);
 
     Unit::AuraMap const& uAuras = unit->GetAuras();
     PSendSysMessage(LANG_COMMAND_TARGET_LISTAURAS, uAuras.size());
@@ -5846,9 +5846,9 @@ bool ChatHandler::HandleBanInfoHelper(uint32 accountid, char const* accountname)
         if (fields[2].GetBool() && (fields[1].GetUInt64() == (uint64)0 ||unbandate >= time(NULL)))
             active = true;
         bool permanent = (fields[1].GetUInt64() == (uint64)0);
-        std::string bantime = permanent?GetblizzlikeString(LANG_BANINFO_INFINITE):secsToTimeString(fields[1].GetUInt64(), true);
+        std::string bantime = permanent?GetBlizzLikeString(LANG_BANINFO_INFINITE):secsToTimeString(fields[1].GetUInt64(), true);
         PSendSysMessage(LANG_BANINFO_HISTORYENTRY,
-            fields[0].GetString(), bantime.c_str(), active ? GetblizzlikeString(LANG_BANINFO_YES):GetblizzlikeString(LANG_BANINFO_NO), fields[4].GetString(), fields[5].GetString());
+            fields[0].GetString(), bantime.c_str(), active ? GetBlizzLikeString(LANG_BANINFO_YES):GetBlizzLikeString(LANG_BANINFO_NO), fields[4].GetString(), fields[5].GetString());
     }while (result->NextRow());
 
     return true;
@@ -5879,8 +5879,8 @@ bool ChatHandler::HandleBanInfoIPCommand(const char *args)
     Field *fields = result->Fetch();
     bool permanent = !fields[6].GetUInt64();
     PSendSysMessage(LANG_BANINFO_IPENTRY,
-        fields[0].GetString(), fields[1].GetString(), permanent ? GetblizzlikeString(LANG_BANINFO_NEVER):fields[2].GetString(),
-        permanent ? GetblizzlikeString(LANG_BANINFO_INFINITE):secsToTimeString(fields[3].GetUInt64(), true).c_str(), fields[4].GetString(), fields[5].GetString());
+        fields[0].GetString(), fields[1].GetString(), permanent ? GetBlizzLikeString(LANG_BANINFO_NEVER):fields[2].GetString(),
+        permanent ? GetBlizzLikeString(LANG_BANINFO_INFINITE):secsToTimeString(fields[3].GetUInt64(), true).c_str(), fields[4].GetString(), fields[5].GetString());
 
     return true;
 }

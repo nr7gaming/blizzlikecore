@@ -102,7 +102,7 @@ void WorldSession::HandleTrainerListOpcode(WorldPacket& recv_data)
 
 void WorldSession::SendTrainerList(uint64 guid)
 {
-    std::string str = GetblizzlikeString(LANG_NPC_TAINER_HELLO);
+    std::string str = GetBlizzLikeString(LANG_NPC_TAINER_HELLO);
     SendTrainerList(guid, str);
 }
 

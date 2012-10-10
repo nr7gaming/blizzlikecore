@@ -506,7 +506,7 @@ void WorldSession::HandleAddFriendOpcode(WorldPacket& recv_data)
 {
     DEBUG_LOG("WORLD: Received CMSG_ADD_FRIEND");
 
-    std::string friendName = GetblizzlikeString(LANG_FRIEND_IGNORE_UNKNOWN);
+    std::string friendName = GetBlizzLikeString(LANG_FRIEND_IGNORE_UNKNOWN);
     std::string friendNote;
 
     recv_data >> friendName;
@@ -597,7 +597,7 @@ void WorldSession::HandleAddIgnoreOpcode(WorldPacket& recv_data)
 {
     DEBUG_LOG("WORLD: Received CMSG_ADD_IGNORE");
 
-    std::string IgnoreName = GetblizzlikeString(LANG_FRIEND_IGNORE_UNKNOWN);
+    std::string IgnoreName = GetBlizzLikeString(LANG_FRIEND_IGNORE_UNKNOWN);
 
     recv_data >> IgnoreName;
 

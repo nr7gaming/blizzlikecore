@@ -176,7 +176,7 @@ bool ChatHandler::HandleNotifyCommand(const char* args)
     if (!*args)
         return false;
 
-    std::string str = GetblizzlikeString(LANG_GLOBAL_NOTIFY);
+    std::string str = GetBlizzLikeString(LANG_GLOBAL_NOTIFY);
     str += args;
 
     WorldPacket data(SMSG_NOTIFICATION, (str.size()+1));
@@ -192,7 +192,7 @@ bool ChatHandler::HandleGMNotifyCommand(const char* args)
     if (!*args)
         return false;
 
-    std::string str = GetblizzlikeString(LANG_GM_NOTIFY);
+    std::string str = GetBlizzLikeString(LANG_GM_NOTIFY);
     str += args;
 
     WorldPacket data(SMSG_NOTIFICATION, (str.size()+1));
@@ -278,7 +278,7 @@ bool ChatHandler::HandleGMChatCommand(const char* args)
 
 std::string ChatHandler::PGetParseString(int32 entry, ...)
 {
-        const char *format = GetblizzlikeString(entry);
+        const char *format = GetBlizzLikeString(entry);
         va_list ap;
         char str [1024];
         va_start(ap, entry);
@@ -696,7 +696,7 @@ bool ChatHandler::HandleVisibleCommand(const char* args)
 {
     if (!*args)
     {
-        PSendSysMessage(LANG_YOU_ARE, m_session->GetPlayer()->isGMVisible() ?  GetblizzlikeString(LANG_VISIBLE) : GetblizzlikeString(LANG_INVISIBLE));
+        PSendSysMessage(LANG_YOU_ARE, m_session->GetPlayer()->isGMVisible() ?  GetBlizzLikeString(LANG_VISIBLE) : GetBlizzLikeString(LANG_INVISIBLE));
         return true;
     }
 
@@ -796,7 +796,7 @@ bool ChatHandler::HandleGPSCommand(const char* args)
         GetName(),
         (obj->GetTypeId() == TYPEID_PLAYER ? "player" : "creature"), obj->GetName(),
         (obj->GetTypeId() == TYPEID_PLAYER ? "GUID" : "Entry"), (obj->GetTypeId() == TYPEID_PLAYER ? obj->GetGUIDLow(): obj->GetEntry()));
-    sLog.outDebug(GetblizzlikeString(LANG_MAP_POSITION),
+    sLog.outDebug(GetBlizzLikeString(LANG_MAP_POSITION),
         obj->GetMapId(), (mapEntry ? mapEntry->name[sWorld.GetDefaultDbcLocale()] : "<unknown>"),
         zone_id, (zoneEntry ? zoneEntry->area_name[sWorld.GetDefaultDbcLocale()] : "<unknown>"),
         area_id, (areaEntry ? areaEntry->area_name[sWorld.GetDefaultDbcLocale()] : "<unknown>"),
@@ -907,7 +907,7 @@ bool ChatHandler::HandleNamegoCommand(const char* args)
     }
     else if (uint64 guid = objmgr.GetPlayerGUIDByName(name))
     {
-        PSendSysMessage(LANG_SUMMONING, name.c_str(),GetblizzlikeString(LANG_OFFLINE));
+        PSendSysMessage(LANG_SUMMONING, name.c_str(),GetBlizzLikeString(LANG_OFFLINE));
 
         // in point where GM stay
         Player::SavePositionInDB(m_session->GetPlayer()->GetMapId(),
@@ -1238,7 +1238,7 @@ bool ChatHandler::HandleModifyEnergyCommand(const char* args)
     target->SetMaxPower(POWER_ENERGY,energym);
     target->SetPower(POWER_ENERGY, energy);
 
-    sLog.outDetail(GetblizzlikeString(LANG_CURRENT_ENERGY),target->GetMaxPower(POWER_ENERGY));
+    sLog.outDetail(GetBlizzLikeString(LANG_CURRENT_ENERGY),target->GetMaxPower(POWER_ENERGY));
 
     return true;
 }
@@ -1985,7 +1985,7 @@ bool ChatHandler::HandleModifyMoneyCommand(const char* args)
     {
         int32 newmoney = moneyuser + addmoney;
 
-        sLog.outDetail(GetblizzlikeString(LANG_CURRENT_MONEY), moneyuser, addmoney, newmoney);
+        sLog.outDetail(GetBlizzLikeString(LANG_CURRENT_MONEY), moneyuser, addmoney, newmoney);
         if (newmoney <= 0)
         {
             PSendSysMessage(LANG_YOU_TAKE_ALL_MONEY, target->GetName());
@@ -2010,7 +2010,7 @@ bool ChatHandler::HandleModifyMoneyCommand(const char* args)
         target->ModifyMoney(addmoney);
     }
 
-    sLog.outDetail(GetblizzlikeString(LANG_NEW_MONEY), moneyuser, addmoney, target->GetMoney());
+    sLog.outDetail(GetBlizzLikeString(LANG_NEW_MONEY), moneyuser, addmoney, target->GetMoney());
 
     return true;
 }
@@ -2246,7 +2246,7 @@ bool ChatHandler::HandleWhispersCommand(const char* args)
 {
     if (!*args)
     {
-        PSendSysMessage(LANG_COMMAND_WHISPERACCEPTING, m_session->GetPlayer()->isAcceptWhispers() ?  GetblizzlikeString(LANG_ON) : GetblizzlikeString(LANG_OFF));
+        PSendSysMessage(LANG_COMMAND_WHISPERACCEPTING, m_session->GetPlayer()->isAcceptWhispers() ?  GetBlizzLikeString(LANG_ON) : GetBlizzLikeString(LANG_OFF));
         return true;
     }
 
@@ -2432,7 +2432,7 @@ bool ChatHandler::HandleNameTeleCommand(const char * args)
     }
     else if (uint64 guid = objmgr.GetPlayerGUIDByName(name.c_str()))
     {
-        PSendSysMessage(LANG_TELEPORTING_TO, name.c_str(), GetblizzlikeString(LANG_OFFLINE), tele->name.c_str());
+        PSendSysMessage(LANG_TELEPORTING_TO, name.c_str(), GetBlizzLikeString(LANG_OFFLINE), tele->name.c_str());
         Player::SavePositionInDB(tele->mapId,tele->position_x,tele->position_y,tele->position_z,tele->orientation,
             MapManager::Instance().GetZoneId(tele->mapId,tele->position_x,tele->position_y,tele->position_z),guid);
     }

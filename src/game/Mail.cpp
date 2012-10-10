@@ -472,7 +472,7 @@ void WorldSession::HandleTakeItem(WorldPacket& recv_data)
                     sender_accId = objmgr.GetPlayerAccountIdByGUID(sender_guid);
 
                     if (!objmgr.GetPlayerNameByGUID(sender_guid,sender_name))
-                        sender_name = objmgr.GetblizzlikeStringForDBCLocale(LANG_UNKNOWN);
+                        sender_name = objmgr.GetBlizzLikeStringForDBCLocale(LANG_UNKNOWN);
                 }
                 sLog.outCommand(GetAccountId(),"GM %s (Account: %u) receive mail item: %s (Entry: %u Count: %u) and send COD money: %u to player: %s (Account: %u)",
                     GetPlayerName(),GetAccountId(),it->GetProto()->Name1,it->GetEntry(),it->GetCount(),m->COD,sender_name.c_str(),sender_accId);
