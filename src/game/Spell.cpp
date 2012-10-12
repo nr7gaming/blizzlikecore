@@ -1140,7 +1140,7 @@ void Spell::DoSpellHitOnUnit(Unit *unit, const uint32 effectMask)
             unit->IncrDiminishing(m_diminishGroup);
     }
 
-    for (uint32 effectNumber=0;effectNumber<3;effectNumber++)
+    for (uint32 effectNumber = 0; effectNumber < 3; effectNumber++)
     {
         if (effectMask & (1<<effectNumber))
         {
@@ -1225,7 +1225,7 @@ void Spell::DoAllEffectOnTarget(GOTargetInfo *target)
     if (!go)
         return;
 
-    for (uint32 effectNumber=0;effectNumber<3;effectNumber++)
+    for (uint32 effectNumber = 0; effectNumber < 3; effectNumber++)
         if (effectMask & (1<<effectNumber))
             HandleEffects(NULL,NULL,go,effectNumber);
 
@@ -1241,7 +1241,7 @@ void Spell::DoAllEffectOnTarget(ItemTargetInfo *target)
     if (!target->item || !effectMask)
         return;
 
-    for (uint32 effectNumber=0;effectNumber<3;effectNumber++)
+    for (uint32 effectNumber = 0; effectNumber < 3; effectNumber++)
         if (effectMask & (1<<effectNumber))
             HandleEffects(NULL, target->item, NULL, effectNumber);
 }
@@ -3356,7 +3356,7 @@ void Spell::TakeReagents()
 
     Player* p_caster = m_caster->ToPlayer();
 
-    for (uint32 x=0;x<8;x++)
+    for (uint32 x = 0; x < MAX_SPELL_REAGENTS; x++)
     {
         if (m_spellInfo->Reagent[x] <= 0)
             continue;
@@ -4512,7 +4512,7 @@ bool Spell::CanAutoCast(Unit* target)
 {
     uint64 targetguid = target->GetGUID();
 
-    for (uint32 j = 0;j<3;j++)
+    for (uint32 j = 0; j < 3; j++)
     {
         if (m_spellInfo->Effect[j] == SPELL_EFFECT_APPLY_AURA)
         {
@@ -4770,7 +4770,7 @@ uint8 Spell::CheckItems()
     if (!(m_spellInfo->AttributesEx5 & SPELL_ATTR_EX5_NO_REAGENT_WHILE_PREP &&
         m_caster->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PREPARATION)))
     {
-        for (uint32 i=0;i<8;i++)
+        for (uint32 i = 0; i < MAX_SPELL_REAGENTS; i++)
         {
             if (m_spellInfo->Reagent[i] <= 0)
                 continue;
