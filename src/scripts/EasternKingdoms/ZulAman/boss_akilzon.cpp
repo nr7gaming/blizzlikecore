@@ -180,7 +180,7 @@ struct boss_akilzonAI : public ScriptedAI
             for (uint8 i = 2; i < StormCount; ++i)
                 bp0 *= 2;
 
-            CellPair p(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+            CellPair p(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
             Cell cell(p);
             cell.data.Part.reserved = ALL_DISTRICT;
             cell.SetNoCreate();
@@ -188,11 +188,11 @@ struct boss_akilzonAI : public ScriptedAI
             std::list<Unit *> tempUnitMap;
 
             {
-                blizzlike::AnyAoETargetUnitInObjectRangeCheck u_check(me, me, 999);
-                blizzlike::UnitListSearcher<blizzlike::AnyAoETargetUnitInObjectRangeCheck> searcher(tempUnitMap, u_check);
+                BlizzLike::AnyAoETargetUnitInObjectRangeCheck u_check(me, me, 999);
+                BlizzLike::UnitListSearcher<BlizzLike::AnyAoETargetUnitInObjectRangeCheck> searcher(tempUnitMap, u_check);
 
-                TypeContainerVisitor<blizzlike::UnitListSearcher<blizzlike::AnyAoETargetUnitInObjectRangeCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-                TypeContainerVisitor<blizzlike::UnitListSearcher<blizzlike::AnyAoETargetUnitInObjectRangeCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+                TypeContainerVisitor<BlizzLike::UnitListSearcher<BlizzLike::AnyAoETargetUnitInObjectRangeCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+                TypeContainerVisitor<BlizzLike::UnitListSearcher<BlizzLike::AnyAoETargetUnitInObjectRangeCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
                 cell.Visit(p, world_unit_searcher, *(me->GetMap()));
                 cell.Visit(p, grid_unit_searcher, *(me->GetMap()));

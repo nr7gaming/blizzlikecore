@@ -265,7 +265,7 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
         return;
     }*/
 
-    if (!blizzlike::IsValidMapCoord(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation()))
+    if (!BlizzLike::IsValidMapCoord(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation()))
         return;
 
     //Save movement flags
@@ -279,7 +279,7 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
         if (movementInfo.GetTransportPos()->GetPositionX() > 50 || movementInfo.GetTransportPos()->GetPositionY() > 50 || movementInfo.GetTransportPos()->GetPositionZ() > 50)
             return;
 
-        if (!blizzlike::IsValidMapCoord(movementInfo.GetPos()->GetPositionX() + movementInfo.GetTransportPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY() + movementInfo.GetTransportPos()->GetPositionY(),
+        if (!BlizzLike::IsValidMapCoord(movementInfo.GetPos()->GetPositionX() + movementInfo.GetTransportPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY() + movementInfo.GetTransportPos()->GetPositionY(),
             movementInfo.GetPos()->GetPositionZ() + movementInfo.GetTransportPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation() + movementInfo.GetTransportPos()->GetOrientation()))
             return;
 

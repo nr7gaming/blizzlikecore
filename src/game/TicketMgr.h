@@ -88,5 +88,5 @@ class TicketMgr
 };
 
 #endif
-#define ticketmgr blizzlike::Singleton<TicketMgr>::Instance()
+#define ticketmgr BlizzLike::Singleton<TicketMgr>::Instance()
 

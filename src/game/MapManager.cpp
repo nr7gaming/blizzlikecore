@@ -30,7 +30,7 @@
 #include "Corpse.h"
 #include "ObjectMgr.h"
 
-#define CLASS_LOCK blizzlike::ClassLevelLockable<MapManager, ACE_Thread_Mutex>
+#define CLASS_LOCK BlizzLike::ClassLevelLockable<MapManager, ACE_Thread_Mutex>
 INSTANTIATE_SINGLETON_2(MapManager, CLASS_LOCK);
 INSTANTIATE_CLASS_MUTEX(MapManager, ACE_Thread_Mutex);
 
@@ -271,7 +271,7 @@ void MapManager::DoDelayedMovesAndRemoves()
 
 bool MapManager::ExistMapAndVMap(uint32 mapid, float x,float y)
 {
-    GridPair p = blizzlike::ComputeGridPair(x,y);
+    GridPair p = BlizzLike::ComputeGridPair(x,y);
 
     int gx=63-p.x_coord;
     int gy=63-p.y_coord;

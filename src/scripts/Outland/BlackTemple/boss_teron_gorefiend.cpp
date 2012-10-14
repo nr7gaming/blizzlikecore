@@ -154,7 +154,7 @@ struct mob_shadowy_constructAI : public ScriptedAI
             if (pUnit && pUnit->isAlive())
                 targets.push_back(pUnit);
         }
-        targets.sort(blizzlike::ObjectDistanceOrderPred(me));
+        targets.sort(BlizzLike::ObjectDistanceOrderPred(me));
         Unit *pTarget = targets.front();
         if (pTarget && me->IsWithinDistInMap(pTarget, me->GetAttackDistance(pTarget)))
         {

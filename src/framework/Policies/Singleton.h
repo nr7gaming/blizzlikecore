@@ -22,14 +22,14 @@
 #include "ThreadingModel.h"
 #include "ObjectLifeTime.h"
 
-namespace blizzlike
+namespace BlizzLike
 {
     template
         <
         typename T,
-        class ThreadingModel = blizzlike::SingleThreaded<T>,
-        class CreatePolicy = blizzlike::OperatorNew<T>,
-        class LifeTimePolicy = blizzlike::ObjectLifeTime<T>
+        class ThreadingModel = BlizzLike::SingleThreaded<T>,
+        class CreatePolicy = BlizzLike::OperatorNew<T>,
+        class LifeTimePolicy = BlizzLike::ObjectLifeTime<T>
         >
         class Singleton
     {

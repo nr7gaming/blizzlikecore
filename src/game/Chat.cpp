@@ -1768,14 +1768,14 @@ GameObject* ChatHandler::GetObjectGlobalyWithGuidOrNearWithDbGuid(uint32 lowguid
     if (!obj && objmgr.GetGOData(lowguid))                   // guid is DB guid of object
     {
         // search near player then
-        CellPair p(blizzlike::ComputeCellPair(pl->GetPositionX(), pl->GetPositionY()));
+        CellPair p(BlizzLike::ComputeCellPair(pl->GetPositionX(), pl->GetPositionY()));
         Cell cell(p);
         cell.data.Part.reserved = ALL_DISTRICT;
 
-        blizzlike::GameObjectWithDbGUIDCheck go_check(*pl,lowguid);
-        blizzlike::GameObjectSearcher<blizzlike::GameObjectWithDbGUIDCheck> checker(obj,go_check);
+        BlizzLike::GameObjectWithDbGUIDCheck go_check(*pl,lowguid);
+        BlizzLike::GameObjectSearcher<BlizzLike::GameObjectWithDbGUIDCheck> checker(obj,go_check);
 
-        TypeContainerVisitor<blizzlike::GameObjectSearcher<blizzlike::GameObjectWithDbGUIDCheck>, GridTypeMapContainer > object_checker(checker);
+        TypeContainerVisitor<BlizzLike::GameObjectSearcher<BlizzLike::GameObjectWithDbGUIDCheck>, GridTypeMapContainer > object_checker(checker);
         cell.Visit(p, object_checker, *pl->GetMap());
     }
 

@@ -156,8 +156,8 @@ FleeingMovementGenerator<T>::_getPoint(T &owner, float &x, float &y, float &z)
         }
         temp_x = x + distance * cos(angle);
         temp_y = y + distance * sin(angle);
-        blizzlike::NormalizeMapCoord(temp_x);
-        blizzlike::NormalizeMapCoord(temp_y);
+        BlizzLike::NormalizeMapCoord(temp_x);
+        BlizzLike::NormalizeMapCoord(temp_y);
         if (owner.IsWithinLOS(temp_x,temp_y,z))
         {
             bool is_water_now = _map->IsInWater(x,y,z);

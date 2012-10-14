@@ -429,8 +429,8 @@ void Spell::FillTargetMap()
                             float max_range = GetSpellMaxRange(srange);
                             WorldObject* result = NULL;
 
-                            blizzlike::CannibalizeObjectCheck u_check(m_caster, max_range);
-                            blizzlike::WorldObjectSearcher<blizzlike::CannibalizeObjectCheck > searcher(result, u_check);
+                            BlizzLike::CannibalizeObjectCheck u_check(m_caster, max_range);
+                            BlizzLike::WorldObjectSearcher<BlizzLike::CannibalizeObjectCheck > searcher(result, u_check);
                             m_caster->VisitNearbyGridObject(max_range, searcher);
                             if (!result)
                                 m_caster->VisitNearbyWorldObject(max_range, searcher);
@@ -1413,11 +1413,11 @@ void Spell::SearchAreaTarget(std::list<Unit*> &TagUnitMap, float radius, const u
             break;
     }
 
-    blizzlike::SpellNotifierCreatureAndPlayer notifier(*this, TagUnitMap, radius, type, TargetType, pos, entry);
+    BlizzLike::SpellNotifierCreatureAndPlayer notifier(*this, TagUnitMap, radius, type, TargetType, pos, entry);
     if ((m_spellInfo->AttributesEx3 & SPELL_ATTR_EX3_PLAYERS_ONLY) || TargetType == SPELL_TARGETS_ENTRY && !entry)
     {
         m_caster->GetMap()->VisitWorld(pos->m_positionX, pos->m_positionY, radius, notifier);
-        TagUnitMap.remove_if(blizzlike::ObjectTypeIdCheck(TYPEID_PLAYER, false)); // above line will select also pets and totems, remove them
+        TagUnitMap.remove_if(BlizzLike::ObjectTypeIdCheck(TYPEID_PLAYER, false)); // above line will select also pets and totems, remove them
     }
 	else
         m_caster->GetMap()->VisitAll(pos->m_positionX, pos->m_positionY, radius, notifier);
@@ -1491,16 +1491,16 @@ WorldObject* Spell::SearchNearbyTarget(float range, SpellTargets TargetType)
         case SPELL_TARGETS_ENEMY:
         {
             Unit *target = NULL;
-            blizzlike::AnyUnfriendlyUnitInObjectRangeCheck u_check(m_caster, m_caster, range);
-            blizzlike::UnitLastSearcher<blizzlike::AnyUnfriendlyUnitInObjectRangeCheck> searcher(target, u_check);
+            BlizzLike::AnyUnfriendlyUnitInObjectRangeCheck u_check(m_caster, m_caster, range);
+            BlizzLike::UnitLastSearcher<BlizzLike::AnyUnfriendlyUnitInObjectRangeCheck> searcher(target, u_check);
             m_caster->VisitNearbyObject(range, searcher);
             return target;
         }
         case SPELL_TARGETS_ALLY:
         {
             Unit *target = NULL;
-            blizzlike::AnyFriendlyUnitInObjectRangeCheck u_check(m_caster, m_caster, range);
-            blizzlike::UnitLastSearcher<blizzlike::AnyFriendlyUnitInObjectRangeCheck> searcher(target, u_check);
+            BlizzLike::AnyFriendlyUnitInObjectRangeCheck u_check(m_caster, m_caster, range);
+            BlizzLike::UnitLastSearcher<BlizzLike::AnyFriendlyUnitInObjectRangeCheck> searcher(target, u_check);
             m_caster->VisitNearbyObject(range, searcher);
             return target;
         }
@@ -2034,7 +2034,7 @@ void Spell::SetTargetMap(uint32 i, uint32 cur)
                 if (m_spellInfo->Id == 5246) //Intimidating Shout
                     unitList.remove(m_targets.getUnitTarget());
 
-                blizzlike::RandomResizeList(unitList, m_spellValue->MaxAffectedTargets);
+                BlizzLike::RandomResizeList(unitList, m_spellValue->MaxAffectedTargets);
             }else if (m_spellInfo->Id == 27285) // Seed of Corruption proc spell
                 unitList.remove(m_targets.getUnitTarget());
 
@@ -2307,7 +2307,7 @@ void Spell::cast(bool skipCheck)
     }
 
     if (m_customAttr & SPELL_ATTR_CU_CHARGE)
-        EffectCharge(0);
+        EffectCharge((SpellEffIndex)0);
 
     // Okay, everything is prepared. Now we need to distinguish between immediate and evented delayed spells
     if (m_spellInfo->speed > 0.0f && !IsChanneledSpell(m_spellInfo) || m_spellInfo->Id == 14157)
@@ -3426,7 +3426,7 @@ void Spell::HandleEffects(Unit *pUnitTarget,Item *pItemTarget,GameObject *pGOTar
     if (eff<TOTAL_SPELL_EFFECTS)
     {
         //sLog.outDebug("WORLD: Spell FX %d < TOTAL_SPELL_EFFECTS ", eff);
-        (*this.*SpellEffects[eff])(i);
+        (*this.*SpellEffects[eff])((SpellEffIndex)i);
     }
     /*
     else
@@ -4749,15 +4749,15 @@ uint8 Spell::CheckItems()
 
     if (m_spellInfo->RequiresSpellFocus)
     {
-        CellPair p(blizzlike::ComputeCellPair(m_caster->GetPositionX(), m_caster->GetPositionY()));
+        CellPair p(BlizzLike::ComputeCellPair(m_caster->GetPositionX(), m_caster->GetPositionY()));
         Cell cell(p);
         cell.data.Part.reserved = ALL_DISTRICT;
 
         GameObject* ok = NULL;
-        blizzlike::GameObjectFocusCheck go_check(m_caster,m_spellInfo->RequiresSpellFocus);
-        blizzlike::GameObjectSearcher<blizzlike::GameObjectFocusCheck> checker(ok,go_check);
+        BlizzLike::GameObjectFocusCheck go_check(m_caster,m_spellInfo->RequiresSpellFocus);
+        BlizzLike::GameObjectSearcher<BlizzLike::GameObjectFocusCheck> checker(ok,go_check);
 
-        TypeContainerVisitor<blizzlike::GameObjectSearcher<blizzlike::GameObjectFocusCheck>, GridTypeMapContainer > object_checker(checker);
+        TypeContainerVisitor<BlizzLike::GameObjectSearcher<BlizzLike::GameObjectFocusCheck>, GridTypeMapContainer > object_checker(checker);
         Map& map = *m_caster->GetMap();
         cell.Visit(p, object_checker, map, *m_caster, map.GetVisibilityDistance());
 
@@ -5548,16 +5548,16 @@ int32 Spell::CalculateDamageDone(Unit *unit, const uint32 effectMask, float *mul
             switch(m_spellInfo->Effect[i])
             {
                 case SPELL_EFFECT_SCHOOL_DAMAGE:
-                    SpellDamageSchoolDmg(i);
+                    SpellDamageSchoolDmg((SpellEffIndex)i);
                     break;
                 case SPELL_EFFECT_WEAPON_DAMAGE:
                 case SPELL_EFFECT_WEAPON_DAMAGE_NOSCHOOL:
                 case SPELL_EFFECT_NORMALIZED_WEAPON_DMG:
                 case SPELL_EFFECT_WEAPON_PERCENT_DAMAGE:
-                    SpellDamageWeaponDmg(i);
+                    SpellDamageWeaponDmg((SpellEffIndex)i);
                     break;
                 case SPELL_EFFECT_HEAL:
-                    SpellDamageHeal(i);
+                    SpellDamageHeal((SpellEffIndex)i);
                     break;
             }
 

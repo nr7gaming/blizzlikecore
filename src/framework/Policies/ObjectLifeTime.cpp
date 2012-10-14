@@ -18,7 +18,7 @@
 #include <cstdlib>
 #include "ObjectLifeTime.h"
 
-namespace blizzlike
+namespace BlizzLike
 {
     extern "C" void external_wrapper(void *p)
     {

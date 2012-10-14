@@ -943,17 +943,17 @@ void hyjalAI::JustDied(Unit* /*killer*/)
 }
 void hyjalAI::HideNearPos(float x, float y)
 {
-    CellPair pair(blizzlike::ComputeCellPair(x, y));
+    CellPair pair(BlizzLike::ComputeCellPair(x, y));
     Cell cell(pair);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
     // First get all creatures.
     std::list<Creature*> creatures;
-    blizzlike::AllFriendlyCreaturesInGrid creature_check(me);
-    blizzlike::CreatureListSearcher<blizzlike::AllFriendlyCreaturesInGrid> creature_searcher(creatures, creature_check);
+    BlizzLike::AllFriendlyCreaturesInGrid creature_check(me);
+    BlizzLike::CreatureListSearcher<BlizzLike::AllFriendlyCreaturesInGrid> creature_searcher(creatures, creature_check);
     TypeContainerVisitor
-        <blizzlike::CreatureListSearcher<blizzlike::AllFriendlyCreaturesInGrid>,
+        <BlizzLike::CreatureListSearcher<BlizzLike::AllFriendlyCreaturesInGrid>,
         GridTypeMapContainer> creature_visitor(creature_searcher);
 
                                                             // Get Creatures
@@ -970,14 +970,14 @@ void hyjalAI::HideNearPos(float x, float y)
 }
 void hyjalAI::RespawnNearPos(float x, float y)
 {
-    CellPair p(blizzlike::ComputeCellPair(x, y));
+    CellPair p(BlizzLike::ComputeCellPair(x, y));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::RespawnDo u_do;
-    blizzlike::WorldObjectWorker<blizzlike::RespawnDo> worker(u_do);
-    TypeContainerVisitor<blizzlike::WorldObjectWorker<blizzlike::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
+    BlizzLike::RespawnDo u_do;
+    BlizzLike::WorldObjectWorker<BlizzLike::RespawnDo> worker(u_do);
+    TypeContainerVisitor<BlizzLike::WorldObjectWorker<BlizzLike::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
     cell.Visit(p, obj_worker, *me->GetMap());
 }
 void hyjalAI::WaypointReached(uint32 i)
@@ -1001,17 +1001,17 @@ void hyjalAI::WaypointReached(uint32 i)
         }
         //do some talking
         //all alive guards walk near here
-        CellPair pair(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+        CellPair pair(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
         Cell cell(pair);
         cell.data.Part.reserved = ALL_DISTRICT;
         cell.SetNoCreate();
 
         // First get all creatures.
         std::list<Creature*> creatures;
-        blizzlike::AllFriendlyCreaturesInGrid creature_check(me);
-        blizzlike::CreatureListSearcher<blizzlike::AllFriendlyCreaturesInGrid> creature_searcher(creatures, creature_check);
+        BlizzLike::AllFriendlyCreaturesInGrid creature_check(me);
+        BlizzLike::CreatureListSearcher<BlizzLike::AllFriendlyCreaturesInGrid> creature_searcher(creatures, creature_check);
         TypeContainerVisitor
-            <blizzlike::CreatureListSearcher<blizzlike::AllFriendlyCreaturesInGrid>,
+            <BlizzLike::CreatureListSearcher<BlizzLike::AllFriendlyCreaturesInGrid>,
             GridTypeMapContainer> creature_visitor(creature_searcher);
 
         cell.Visit(pair, creature_visitor, *(me->GetMap()));
@@ -1043,16 +1043,16 @@ void hyjalAI::DoOverrun(uint32 faction, const uint32 diff)
     {
         if (TeleportTimer <= diff)
         {
-            CellPair pair(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+            CellPair pair(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
             Cell cell(pair);
             cell.data.Part.reserved = ALL_DISTRICT;
             cell.SetNoCreate();
 
             std::list<Creature*> creatures;
-            blizzlike::AllFriendlyCreaturesInGrid creature_check(me);
-            blizzlike::CreatureListSearcher<blizzlike::AllFriendlyCreaturesInGrid> creature_searcher(creatures, creature_check);
+            BlizzLike::AllFriendlyCreaturesInGrid creature_check(me);
+            BlizzLike::CreatureListSearcher<BlizzLike::AllFriendlyCreaturesInGrid> creature_searcher(creatures, creature_check);
             TypeContainerVisitor
-                <blizzlike::CreatureListSearcher<blizzlike::AllFriendlyCreaturesInGrid>,
+                <BlizzLike::CreatureListSearcher<BlizzLike::AllFriendlyCreaturesInGrid>,
                 GridTypeMapContainer> creature_visitor(creature_searcher);
 
             cell.Visit(pair, creature_visitor, *(me->GetMap()));

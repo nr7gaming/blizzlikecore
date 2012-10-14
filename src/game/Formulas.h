@@ -20,7 +20,7 @@
 
 #include "World.h"
 
-namespace blizzlike
+namespace BlizzLike
 {
     namespace Honor
     {

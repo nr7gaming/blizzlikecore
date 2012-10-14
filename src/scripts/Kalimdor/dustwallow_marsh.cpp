@@ -854,14 +854,14 @@ struct npc_private_hendelAI : public ScriptedAI
         float x, y, z;
 
         me->GetPosition(x, y, z);
-        CellPair pair(blizzlike::ComputeCellPair(x, y));
+        CellPair pair(BlizzLike::ComputeCellPair(x, y));
         Cell cell(pair);
         cell.data.Part.reserved = ALL_DISTRICT;
         cell.SetNoCreate();
 
-        blizzlike::AllCreaturesOfEntryInRange check(me, NPC_SENTRY, 20);
-        blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange> searcher(lCreatureList, check);
-        TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+        BlizzLike::AllCreaturesOfEntryInRange check(me, NPC_SENTRY, 20);
+        BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange> searcher(lCreatureList, check);
+        TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
         cell.Visit(pair, cSearcher, *(me->GetMap()));
 
         if (!lCreatureList.empty())

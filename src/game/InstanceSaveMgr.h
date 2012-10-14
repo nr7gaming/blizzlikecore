@@ -109,7 +109,7 @@ class InstanceSave
         bool m_canReset;
 };
 
-class InstanceSaveManager : public blizzlike::Singleton<InstanceSaveManager, blizzlike::ClassLevelLockable<InstanceSaveManager, ACE_Thread_Mutex> >
+class InstanceSaveManager : public BlizzLike::Singleton<InstanceSaveManager, BlizzLike::ClassLevelLockable<InstanceSaveManager, ACE_Thread_Mutex> >
 {
     friend class InstanceSave;
     public:
@@ -167,6 +167,6 @@ class InstanceSaveManager : public blizzlike::Singleton<InstanceSaveManager, bli
         ResetTimeQueue m_resetTimeQueue;
 };
 
-#define sInstanceSaveManager blizzlike::Singleton<InstanceSaveManager>::Instance()
+#define sInstanceSaveManager BlizzLike::Singleton<InstanceSaveManager>::Instance()
 #endif
 

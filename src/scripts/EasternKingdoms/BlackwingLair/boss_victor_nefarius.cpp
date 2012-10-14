@@ -188,7 +188,7 @@ struct boss_victor_nefariusAI : public ScriptedAI
     {
         DoScriptText(SAY_GAMESBEGIN_2, me);
 
-        //blizzlike::Singleton<MapManager>::Instance().GetMap(me->GetMapId(), me)->GetPlayers().begin();
+        //BlizzLike::Singleton<MapManager>::Instance().GetMap(me->GetMapId(), me)->GetPlayers().begin();
         /*
         list <Player*>::const_iterator i = MapManager::Instance().GetMap(me->GetMapId(), me)->GetPlayers().begin();
 

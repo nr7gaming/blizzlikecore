@@ -21,7 +21,7 @@
 #include <stdlib.h>
 #include "Platform/Define.h"
 
-namespace blizzlike
+namespace BlizzLike
 {
     // OperatorNew policy creates an object on the heap using new.
     template <class T>

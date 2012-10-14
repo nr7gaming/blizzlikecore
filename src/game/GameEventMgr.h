@@ -157,7 +157,7 @@ class GameEventMgr
         bool isSystemInit;
 };
 
-#define gameeventmgr blizzlike::Singleton<GameEventMgr>::Instance()
+#define gameeventmgr BlizzLike::Singleton<GameEventMgr>::Instance()
 #endif
 
 bool isGameEventActive(uint16 event_id);

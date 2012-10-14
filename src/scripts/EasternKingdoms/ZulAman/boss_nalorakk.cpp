@@ -160,14 +160,14 @@ struct boss_nalorakkAI : public ScriptedAI
         me->GetPosition(x, y, z);
 
         {
-            CellPair pair(blizzlike::ComputeCellPair(x, y));
+            CellPair pair(BlizzLike::ComputeCellPair(x, y));
             Cell cell(pair);
             cell.data.Part.reserved = ALL_DISTRICT;
             cell.SetNoCreate();
 
-            blizzlike::AllFriendlyCreaturesInGrid check(me);
-            blizzlike::CreatureListSearcher<blizzlike::AllFriendlyCreaturesInGrid> searcher(templist, check);
-            TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AllFriendlyCreaturesInGrid>, GridTypeMapContainer> cSearcher(searcher);
+            BlizzLike::AllFriendlyCreaturesInGrid check(me);
+            BlizzLike::CreatureListSearcher<BlizzLike::AllFriendlyCreaturesInGrid> searcher(templist, check);
+            TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AllFriendlyCreaturesInGrid>, GridTypeMapContainer> cSearcher(searcher);
             cell.Visit(pair, cSearcher, *(me->GetMap()));
         }
 

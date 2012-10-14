@@ -90,12 +90,12 @@ inline ChannelMgr* channelMgr(uint32 team)
 {
     if (sWorld.getConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHANNEL))
                                                             //For Test,No Seprate Faction
-        return &blizzlike::Singleton<AllianceChannelMgr>::Instance();
+        return &BlizzLike::Singleton<AllianceChannelMgr>::Instance();
 
     if (team == ALLIANCE)
-        return &blizzlike::Singleton<AllianceChannelMgr>::Instance();
+        return &BlizzLike::Singleton<AllianceChannelMgr>::Instance();
     if (team == HORDE)
-        return &blizzlike::Singleton<HordeChannelMgr>::Instance();
+        return &BlizzLike::Singleton<HordeChannelMgr>::Instance();
     return NULL;
 }
 #endif

@@ -331,7 +331,7 @@ struct boss_twinemperorsAI : public ScriptedAI
 
     Creature *RespawnNearbyBugsAndGetOne()
     {
-        CellPair p(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+        CellPair p(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
         Cell cell(p);
         cell.data.Part.reserved = ALL_DISTRICT;
         cell.SetNoCreate();
@@ -339,8 +339,8 @@ struct boss_twinemperorsAI : public ScriptedAI
         std::list<Creature*> unitList;
 
         AnyBugCheck u_check(me, 150);
-        blizzlike::CreatureListSearcher<AnyBugCheck> searcher(unitList, u_check);
-        TypeContainerVisitor<blizzlike::CreatureListSearcher<AnyBugCheck>, GridTypeMapContainer >  grid_creature_searcher(searcher);
+        BlizzLike::CreatureListSearcher<AnyBugCheck> searcher(unitList, u_check);
+        TypeContainerVisitor<BlizzLike::CreatureListSearcher<AnyBugCheck>, GridTypeMapContainer >  grid_creature_searcher(searcher);
         cell.Visit(p, grid_creature_searcher, *(me->GetMap()));
 
         Creature *nearb = NULL;

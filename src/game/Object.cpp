@@ -1362,8 +1362,8 @@ void WorldObject::GetRandomPoint(const Position &pos, float distance, float &ran
     rand_y = pos.m_positionY + new_dist * sin(angle);
     rand_z = pos.m_positionZ;
 
-    blizzlike::NormalizeMapCoord(rand_x);
-    blizzlike::NormalizeMapCoord(rand_y);
+    BlizzLike::NormalizeMapCoord(rand_x);
+    BlizzLike::NormalizeMapCoord(rand_y);
     UpdateGroundPositionZ(rand_x,rand_y,rand_z);            // update to LOS height if available
 }
 
@@ -1376,7 +1376,7 @@ void WorldObject::UpdateGroundPositionZ(float x, float y, float &z) const
 
 bool Position::IsPositionValid() const
 {
-    return blizzlike::IsValidMapCoord(m_positionX,m_positionY,m_positionZ,m_orientation);
+    return BlizzLike::IsValidMapCoord(m_positionX,m_positionY,m_positionZ,m_orientation);
 }
 
 void WorldObject::MonsterSay(const char* text, uint32 language, uint64 TargetGuid)
@@ -1435,7 +1435,7 @@ void Object::ForceValuesUpdateAtIndex(uint32 i)
     }
 }
 
-namespace blizzlike
+namespace BlizzLike
 {
     class MonsterChatBuilder
     {
@@ -1457,42 +1457,42 @@ namespace blizzlike
             uint32 i_language;
             uint64 i_targetGUID;
     };
-}                                                           // namespace blizzlike
+}                                                           // namespace BlizzLike
 
 void WorldObject::MonsterSay(int32 textId, uint32 language, uint64 TargetGuid)
 {
-    CellPair p = blizzlike::ComputeCellPair(GetPositionX(), GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY());
 
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_SAY, textId,language,TargetGuid);
-    blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> say_do(say_build);
-    blizzlike::PlayerDistWorker<blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> > say_worker(sWorld.getConfig(CONFIG_LISTEN_RANGE_SAY), say_do);
-    TypeContainerVisitor<blizzlike::PlayerDistWorker<blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
+    BlizzLike::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_SAY, textId,language,TargetGuid);
+    BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> say_do(say_build);
+    BlizzLike::PlayerDistWorker<BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> > say_worker(sWorld.getConfig(CONFIG_LISTEN_RANGE_SAY), say_do);
+    TypeContainerVisitor<BlizzLike::PlayerDistWorker<BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
     cell.Visit(p, message, *GetMap(), *this, sWorld.getConfig(CONFIG_LISTEN_RANGE_SAY));
 }
 
 void WorldObject::MonsterYell(int32 textId, uint32 language, uint64 TargetGuid)
 {
-    CellPair p = blizzlike::ComputeCellPair(GetPositionX(), GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY());
 
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, textId,language,TargetGuid);
-    blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> say_do(say_build);
-    blizzlike::PlayerDistWorker<blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> > say_worker(sWorld.getConfig(CONFIG_LISTEN_RANGE_YELL), say_do);
-    TypeContainerVisitor<blizzlike::PlayerDistWorker<blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
+    BlizzLike::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, textId,language,TargetGuid);
+    BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> say_do(say_build);
+    BlizzLike::PlayerDistWorker<BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> > say_worker(sWorld.getConfig(CONFIG_LISTEN_RANGE_YELL), say_do);
+    TypeContainerVisitor<BlizzLike::PlayerDistWorker<BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
     cell.Visit(p, message, *GetMap(), *this, sWorld.getConfig(CONFIG_LISTEN_RANGE_YELL));
 }
 
 void WorldObject::MonsterYellToZone(int32 textId, uint32 language, uint64 TargetGuid)
 {
-    blizzlike::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, textId,language,TargetGuid);
-    blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> say_do(say_build);
+    BlizzLike::MonsterChatBuilder say_build(*this, CHAT_MSG_MONSTER_YELL, textId,language,TargetGuid);
+    BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> say_do(say_build);
 
     uint32 zoneid = GetZoneId();
 
@@ -1504,16 +1504,16 @@ void WorldObject::MonsterYellToZone(int32 textId, uint32 language, uint64 Target
 
 void WorldObject::MonsterTextEmote(int32 textId, uint64 TargetGuid, bool IsBossEmote)
 {
-    CellPair p = blizzlike::ComputeCellPair(GetPositionX(), GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY());
 
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::MonsterChatBuilder say_build(*this, IsBossEmote ? CHAT_MSG_RAID_BOSS_EMOTE : CHAT_MSG_MONSTER_EMOTE, textId,LANG_UNIVERSAL,TargetGuid);
-    blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> say_do(say_build);
-    blizzlike::PlayerDistWorker<blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> > say_worker(sWorld.getConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE), say_do);
-    TypeContainerVisitor<blizzlike::PlayerDistWorker<blizzlike::LocalizedPacketDo<blizzlike::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
+    BlizzLike::MonsterChatBuilder say_build(*this, IsBossEmote ? CHAT_MSG_RAID_BOSS_EMOTE : CHAT_MSG_MONSTER_EMOTE, textId,LANG_UNIVERSAL,TargetGuid);
+    BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> say_do(say_build);
+    BlizzLike::PlayerDistWorker<BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> > say_worker(sWorld.getConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE), say_do);
+    TypeContainerVisitor<BlizzLike::PlayerDistWorker<BlizzLike::LocalizedPacketDo<BlizzLike::MonsterChatBuilder> >, WorldTypeMapContainer > message(say_worker);
     cell.Visit(p, message, *GetMap(), *this, sWorld.getConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE));
 }
 
@@ -1557,13 +1557,13 @@ void WorldObject::BuildMonsterChat(WorldPacket *data, uint8 msgtype, char const*
 
 void WorldObject::SendMessageToSet(WorldPacket *data, bool /*fake*/)
 {
-    blizzlike::MessageDistDeliverer notifier(this, data, GetMap()->GetVisibilityDistance());
+    BlizzLike::MessageDistDeliverer notifier(this, data, GetMap()->GetVisibilityDistance());
     VisitNearbyWorldObject(GetMap()->GetVisibilityDistance(), notifier);
 }
 
 void WorldObject::SendMessageToSetInRange(WorldPacket *data, float dist, bool /*bToSelf*/)
 {
-    blizzlike::MessageDistDeliverer notifier(this, data, dist);
+    BlizzLike::MessageDistDeliverer notifier(this, data, dist);
     VisitNearbyWorldObject(dist, notifier);
 }
 
@@ -1914,8 +1914,8 @@ Creature* WorldObject::SummonTrigger(float x, float y, float z, float ang, uint3
 Creature* WorldObject::FindNearestCreature(uint32 entry, float range, bool alive)
 {
     Creature *creature = NULL;
-    blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck checker(*this, entry, alive, range);
-    blizzlike::CreatureLastSearcher<blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(creature, checker);
+    BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck checker(*this, entry, alive, range);
+    BlizzLike::CreatureLastSearcher<BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(creature, checker);
     VisitNearbyObject(range, searcher);
     return creature;
 }
@@ -1923,36 +1923,36 @@ Creature* WorldObject::FindNearestCreature(uint32 entry, float range, bool alive
 GameObject* WorldObject::FindNearestGameObject(uint32 entry, float range)
 {
     GameObject *go = NULL;
-    blizzlike::NearestGameObjectEntryInObjectRangeCheck checker(*this, entry, range);
-    blizzlike::GameObjectLastSearcher<blizzlike::NearestGameObjectEntryInObjectRangeCheck> searcher(go, checker);
+    BlizzLike::NearestGameObjectEntryInObjectRangeCheck checker(*this, entry, range);
+    BlizzLike::GameObjectLastSearcher<BlizzLike::NearestGameObjectEntryInObjectRangeCheck> searcher(go, checker);
     VisitNearbyGridObject(range, searcher);
     return go;
 }
 
 void WorldObject::GetGameObjectListWithEntryInGrid(std::list<GameObject*>& lList, uint32 uiEntry, float fMaxSearchRange)
 {
-    CellPair pair(blizzlike::ComputeCellPair(this->GetPositionX(), this->GetPositionY()));
+    CellPair pair(BlizzLike::ComputeCellPair(this->GetPositionX(), this->GetPositionY()));
     Cell cell(pair);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::AllGameObjectsWithEntryInRange check(this, uiEntry, fMaxSearchRange);
-    blizzlike::GameObjectListSearcher<blizzlike::AllGameObjectsWithEntryInRange> searcher(lList, check);
-    TypeContainerVisitor<blizzlike::GameObjectListSearcher<blizzlike::AllGameObjectsWithEntryInRange>, GridTypeMapContainer> visitor(searcher);
+    BlizzLike::AllGameObjectsWithEntryInRange check(this, uiEntry, fMaxSearchRange);
+    BlizzLike::GameObjectListSearcher<BlizzLike::AllGameObjectsWithEntryInRange> searcher(lList, check);
+    TypeContainerVisitor<BlizzLike::GameObjectListSearcher<BlizzLike::AllGameObjectsWithEntryInRange>, GridTypeMapContainer> visitor(searcher);
 
     cell.Visit(pair, visitor, *(this->GetMap()));
 }
 
 void WorldObject::GetCreatureListWithEntryInGrid(std::list<Creature*>& lList, uint32 uiEntry, float fMaxSearchRange)
 {
-    CellPair pair(blizzlike::ComputeCellPair(this->GetPositionX(), this->GetPositionY()));
+    CellPair pair(BlizzLike::ComputeCellPair(this->GetPositionX(), this->GetPositionY()));
     Cell cell(pair);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::AllCreaturesOfEntryInRange check(this, uiEntry, fMaxSearchRange);
-    blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange> searcher(lList, check);
-    TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> visitor(searcher);
+    BlizzLike::AllCreaturesOfEntryInRange check(this, uiEntry, fMaxSearchRange);
+    BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange> searcher(lList, check);
+    TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> visitor(searcher);
 
     cell.Visit(pair, visitor, *(this->GetMap()));
 }
@@ -1962,8 +1962,8 @@ void WorldObject::GetNearPoint2D(float &x, float &y, float distance2d, float abs
     x = GetPositionX() + (GetObjectSize() + distance2d) * cos(absAngle);
     y = GetPositionY() + (GetObjectSize() + distance2d) * sin(absAngle);
 
-    blizzlike::NormalizeMapCoord(x);
-    blizzlike::NormalizeMapCoord(y);
+    BlizzLike::NormalizeMapCoord(x);
+    BlizzLike::NormalizeMapCoord(y);
 }
 
 void WorldObject::GetNearPoint(WorldObject const* /*searcher*/, float &x, float &y, float &z, float searcher_size, float distance2d, float absAngle) const
@@ -1978,8 +1978,8 @@ void WorldObject::MovePosition(Position &pos, float dist, float angle)
     angle += m_orientation;
     pos.m_positionX += dist * cos(angle);
     pos.m_positionY += dist * sin(angle);
-    blizzlike::NormalizeMapCoord(pos.m_positionX);
-    blizzlike::NormalizeMapCoord(pos.m_positionY);
+    BlizzLike::NormalizeMapCoord(pos.m_positionX);
+    BlizzLike::NormalizeMapCoord(pos.m_positionY);
     UpdateGroundPositionZ(pos.m_positionX, pos.m_positionY, pos.m_positionZ);
     pos.m_orientation = m_orientation;
 }
@@ -2029,8 +2029,8 @@ void WorldObject::MovePositionToFirstCollision(Position &pos, float dist, float 
         }
         }
 
-        blizzlike::NormalizeMapCoord(pos.m_positionX);
-        blizzlike::NormalizeMapCoord(pos.m_positionY);
+        BlizzLike::NormalizeMapCoord(pos.m_positionX);
+        BlizzLike::NormalizeMapCoord(pos.m_positionY);
         UpdateGroundPositionZ(pos.m_positionX, pos.m_positionY, pos.m_positionZ);
         pos.m_orientation = m_orientation;
 }
@@ -2062,8 +2062,8 @@ void WorldObject::DestroyForNearbyPlayers()
         return;
 
     std::list<Player*> targets;
-    blizzlike::AnyPlayerInObjectRangeCheck check(this, GetMap()->GetVisibilityDistance());
-    blizzlike::PlayerListSearcher<blizzlike::AnyPlayerInObjectRangeCheck> searcher(targets, check);
+    BlizzLike::AnyPlayerInObjectRangeCheck check(this, GetMap()->GetVisibilityDistance());
+    BlizzLike::PlayerListSearcher<BlizzLike::AnyPlayerInObjectRangeCheck> searcher(targets, check);
     VisitNearbyWorldObject(GetMap()->GetVisibilityDistance(), searcher);
     for (std::list<Player*>::const_iterator iter = targets.begin(); iter != targets.end(); ++iter)
     {
@@ -2086,7 +2086,7 @@ void WorldObject::DestroyForNearbyPlayers()
 void WorldObject::UpdateObjectVisibility(bool /*forced*/)
 {
     //updates object's visibility for nearby players
-    blizzlike::VisibleChangesNotifier notifier(*this);
+    BlizzLike::VisibleChangesNotifier notifier(*this);
     VisitNearbyWorldObject(GetMap()->GetVisibilityDistance(), notifier);
 }
 
@@ -2151,7 +2151,7 @@ struct WorldObjectChangeAccumulator
 
 void WorldObject::BuildUpdate(UpdateDataMapType& data_map)
 {
-    CellPair p = blizzlike::ComputeCellPair(GetPositionX(), GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY());
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();

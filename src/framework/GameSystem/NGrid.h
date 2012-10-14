@@ -71,7 +71,7 @@ unsigned int N,
 class ACTIVE_OBJECT,
 class WORLD_OBJECT_TYPES,
 class GRID_OBJECT_TYPES,
-class ThreadModel = blizzlike::SingleThreaded<ACTIVE_OBJECT>
+class ThreadModel = BlizzLike::SingleThreaded<ACTIVE_OBJECT>
 >
 class NGrid
 {

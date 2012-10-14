@@ -28,7 +28,7 @@
 #include "Utilities/TypeList.h"
 #include <map>
 
-namespace blizzlike
+namespace BlizzLike
 {
     /* ContainerMapList Helpers */
     // count functions

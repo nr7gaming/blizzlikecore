@@ -44,7 +44,7 @@ BattleGroundAV::~BattleGroundAV()
 
 const uint16 BattleGroundAV::GetBonusHonor(uint8 kills) //TODO: move this function to Battleground.cpp (needs to find a way to get m_MaxLevel)
 {
-    return blizzlike::Honor::hk_honor_at_level(m_MaxLevel, kills);
+    return BlizzLike::Honor::hk_honor_at_level(m_MaxLevel, kills);
 }
 
 void BattleGroundAV::HandleKillPlayer(Player *player, Player *killer)

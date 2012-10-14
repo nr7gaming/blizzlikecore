@@ -33,6 +33,6 @@ class AddonHandler
                                                             //built addon packet
         bool BuildAddonPacket(WorldPacket* Source, WorldPacket* Target);
 };
-#define sAddOnHandler blizzlike::Singleton<AddonHandler>::Instance()
+#define sAddOnHandler BlizzLike::Singleton<AddonHandler>::Instance()
 #endif
 

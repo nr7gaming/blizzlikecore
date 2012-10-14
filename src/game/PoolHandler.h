@@ -97,6 +97,6 @@ class PoolHandler
 
 };
 
-#define poolhandler blizzlike::Singleton<PoolHandler>::Instance()
+#define poolhandler BlizzLike::Singleton<PoolHandler>::Instance()
 #endif
 

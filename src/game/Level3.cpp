@@ -6103,15 +6103,15 @@ bool ChatHandler::HandleRespawnCommand(const char* /*args*/)
         return true;
     }
 
-    CellPair p(blizzlike::ComputeCellPair(pl->GetPositionX(), pl->GetPositionY()));
+    CellPair p(BlizzLike::ComputeCellPair(pl->GetPositionX(), pl->GetPositionY()));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::RespawnDo u_do;
-    blizzlike::WorldObjectWorker<blizzlike::RespawnDo> worker(u_do);
+    BlizzLike::RespawnDo u_do;
+    BlizzLike::WorldObjectWorker<BlizzLike::RespawnDo> worker(u_do);
 
-    TypeContainerVisitor<blizzlike::WorldObjectWorker<blizzlike::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
+    TypeContainerVisitor<BlizzLike::WorldObjectWorker<BlizzLike::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
     cell.Visit(p, obj_worker, *pl->GetMap());
 
     return true;

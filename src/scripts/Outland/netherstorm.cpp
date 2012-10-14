@@ -412,14 +412,14 @@ struct npc_commander_dawnforgeAI : public ScriptedAI
     {
         Creature* pCreature = NULL;
 
-        CellPair pair(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+        CellPair pair(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
         Cell cell(pair);
         cell.data.Part.reserved = ALL_DISTRICT;
         cell.SetNoCreate();
 
-        blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*me, entry, true, range);
-        blizzlike::CreatureLastSearcher<blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(pCreature, creature_check);
-        TypeContainerVisitor<blizzlike::CreatureLastSearcher<blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck>, GridTypeMapContainer> creature_searcher(searcher);
+        BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*me, entry, true, range);
+        BlizzLike::CreatureLastSearcher<BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(pCreature, creature_check);
+        TypeContainerVisitor<BlizzLike::CreatureLastSearcher<BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck>, GridTypeMapContainer> creature_searcher(searcher);
         cell.Visit(pair, creature_searcher,*(me->GetMap()));
 
         return pCreature;
@@ -644,14 +644,14 @@ Creature* SearchDawnforge(Player *source, uint32 entry, float range)
 {
     Creature* pCreature = NULL;
 
-    CellPair pair(blizzlike::ComputeCellPair(source->GetPositionX(), source->GetPositionY()));
+    CellPair pair(BlizzLike::ComputeCellPair(source->GetPositionX(), source->GetPositionY()));
     Cell cell(pair);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*source, entry, true, range);
-    blizzlike::CreatureLastSearcher<blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(pCreature, creature_check);
-    TypeContainerVisitor<blizzlike::CreatureLastSearcher<blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck>, GridTypeMapContainer> creature_searcher(searcher);
+    BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*source, entry, true, range);
+    BlizzLike::CreatureLastSearcher<BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(pCreature, creature_check);
+    TypeContainerVisitor<BlizzLike::CreatureLastSearcher<BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck>, GridTypeMapContainer> creature_searcher(searcher);
     cell.Visit(pair, creature_searcher,*(source->GetMap()));
 
     return pCreature;

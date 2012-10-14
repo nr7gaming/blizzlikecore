@@ -153,6 +153,6 @@ class SocialMgr
         SocialMap m_socialMap;
 };
 
-#define sSocialMgr blizzlike::Singleton<SocialMgr>::Instance()
+#define sSocialMgr BlizzLike::Singleton<SocialMgr>::Instance()
 #endif
 

@@ -268,14 +268,14 @@ inline GameObject* Map::_FindGameObject(WorldObject* pSearchObject, uint32 guid)
 {
     GameObject *pGameObject = NULL;
 
-    CellPair p(blizzlike::ComputeCellPair(pSearchObject->GetPositionX(), pSearchObject->GetPositionY()));
+    CellPair p(BlizzLike::ComputeCellPair(pSearchObject->GetPositionX(), pSearchObject->GetPositionY()));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
 
-    blizzlike::GameObjectWithDbGUIDCheck goCheck(*pSearchObject, guid);
-    blizzlike::GameObjectSearcher<blizzlike::GameObjectWithDbGUIDCheck> checker(pGameObject, goCheck);
+    BlizzLike::GameObjectWithDbGUIDCheck goCheck(*pSearchObject, guid);
+    BlizzLike::GameObjectSearcher<BlizzLike::GameObjectWithDbGUIDCheck> checker(pGameObject, goCheck);
 
-    TypeContainerVisitor<blizzlike::GameObjectSearcher<blizzlike::GameObjectWithDbGUIDCheck>, GridTypeMapContainer > objectChecker(checker);
+    TypeContainerVisitor<BlizzLike::GameObjectSearcher<BlizzLike::GameObjectWithDbGUIDCheck>, GridTypeMapContainer > objectChecker(checker);
     cell.Visit(p, objectChecker, *pSearchObject->GetMap());
 
     return pGameObject;
@@ -829,14 +829,14 @@ void Map::ScriptsProcess()
                 {
                     WorldObject* wSource = dynamic_cast <WorldObject*> (source);
 
-                    CellPair p(blizzlike::ComputeCellPair(wSource->GetPositionX(), wSource->GetPositionY()));
+                    CellPair p(BlizzLike::ComputeCellPair(wSource->GetPositionX(), wSource->GetPositionY()));
                     Cell cell(p);
                     cell.data.Part.reserved = ALL_DISTRICT;
 
-                    blizzlike::CreatureWithDbGUIDCheck target_check(wSource, step.script->CallScript.CreatureEntry);
-                    blizzlike::CreatureSearcher<blizzlike::CreatureWithDbGUIDCheck> checker(cTarget, target_check);
+                    BlizzLike::CreatureWithDbGUIDCheck target_check(wSource, step.script->CallScript.CreatureEntry);
+                    BlizzLike::CreatureSearcher<BlizzLike::CreatureWithDbGUIDCheck> checker(cTarget, target_check);
 
-                    TypeContainerVisitor<blizzlike::CreatureSearcher <blizzlike::CreatureWithDbGUIDCheck>, GridTypeMapContainer > unit_checker(checker);
+                    TypeContainerVisitor<BlizzLike::CreatureSearcher <BlizzLike::CreatureWithDbGUIDCheck>, GridTypeMapContainer > unit_checker(checker);
                     cell.Visit(p, unit_checker, *wSource->GetMap());
                 }
                 else //check hashmap holders

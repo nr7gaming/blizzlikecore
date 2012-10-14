@@ -46,7 +46,7 @@ class Config
         ACE_Configuration_Heap *mConf;
 };
 
-#define sConfig blizzlike::Singleton<Config>::Instance()
+#define sConfig BlizzLike::Singleton<Config>::Instance()
 
 #endif
 

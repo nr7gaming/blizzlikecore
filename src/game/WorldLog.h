@@ -25,13 +25,13 @@
 #include <stdarg.h>
 
 // Log packets to a file
-class WorldLog : public blizzlike::Singleton<WorldLog, blizzlike::ClassLevelLockable<WorldLog, ACE_Thread_Mutex> >
+class WorldLog : public BlizzLike::Singleton<WorldLog, BlizzLike::ClassLevelLockable<WorldLog, ACE_Thread_Mutex> >
 {
-    friend class blizzlike::OperatorNew<WorldLog>;
+    friend class BlizzLike::OperatorNew<WorldLog>;
     WorldLog();
     WorldLog(const WorldLog &);
     WorldLog& operator=(const WorldLog &);
-    typedef blizzlike::ClassLevelLockable<WorldLog, ACE_Thread_Mutex>::Lock Guard;
+    typedef BlizzLike::ClassLevelLockable<WorldLog, ACE_Thread_Mutex>::Lock Guard;
 
     // Close the file in destructor
     ~WorldLog();

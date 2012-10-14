@@ -283,8 +283,8 @@ bool OPvPCapturePoint::Update(uint32 diff)
     }
 
     std::list<Player*> players;
-    blizzlike::AnyPlayerInObjectRangeCheck checker(m_capturePoint, radius);
-    blizzlike::PlayerListSearcher<blizzlike::AnyPlayerInObjectRangeCheck> searcher(players, checker);
+    BlizzLike::AnyPlayerInObjectRangeCheck checker(m_capturePoint, radius);
+    BlizzLike::PlayerListSearcher<BlizzLike::AnyPlayerInObjectRangeCheck> searcher(players, checker);
     m_capturePoint->VisitNearbyWorldObject(radius, searcher);
 
     for (std::list<Player*>::iterator itr = players.begin(); itr != players.end(); ++itr)

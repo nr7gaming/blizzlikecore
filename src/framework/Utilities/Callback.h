@@ -20,7 +20,7 @@
 
 // BASE CLASSES
 
-namespace blizzlike
+namespace BlizzLike
 {
     template < class Class, typename ParamType1 = void, typename ParamType2 = void, typename ParamType3 = void, typename ParamType4 = void >
     class _Callback
@@ -192,7 +192,7 @@ namespace blizzlike
 
 // GENERIC CALLBACKS
 
-namespace blizzlike
+namespace BlizzLike
 {
     class ICallback
     {
@@ -269,7 +269,7 @@ namespace blizzlike
 #include "QueryResult.h"
 class QueryResult;
 
-namespace blizzlike
+namespace BlizzLike
 {
     class IQueryCallback
     {

@@ -675,15 +675,15 @@ void AreaAura::Update(uint32 diff)
                     break;
                 case AREA_AURA_FRIEND:
                 {
-                    blizzlike::AnyFriendlyUnitInObjectRangeCheck u_check(caster, caster, m_radius);
-                    blizzlike::UnitListSearcher<blizzlike::AnyFriendlyUnitInObjectRangeCheck> searcher(targets, u_check);
+                    BlizzLike::AnyFriendlyUnitInObjectRangeCheck u_check(caster, caster, m_radius);
+                    BlizzLike::UnitListSearcher<BlizzLike::AnyFriendlyUnitInObjectRangeCheck> searcher(targets, u_check);
                     caster->VisitNearbyObject(m_radius, searcher);
                     break;
                 }
                 case AREA_AURA_ENEMY:
                 {
-                    blizzlike::AnyAoETargetUnitInObjectRangeCheck u_check(caster, caster, m_radius); // No GetCharmer in searcher
-                    blizzlike::UnitListSearcher<blizzlike::AnyAoETargetUnitInObjectRangeCheck> searcher(targets, u_check);
+                    BlizzLike::AnyAoETargetUnitInObjectRangeCheck u_check(caster, caster, m_radius); // No GetCharmer in searcher
+                    BlizzLike::UnitListSearcher<BlizzLike::AnyAoETargetUnitInObjectRangeCheck> searcher(targets, u_check);
                     caster->VisitNearbyObject(m_radius, searcher);
                     break;
                 }
@@ -3055,7 +3055,7 @@ void Aura::HandleChannelDeathItem(bool apply, bool Real)
 
         // Soul Shard only from non-grey units
         if (spellInfo->EffectItemType[m_effIndex] == 6265 &&
-            (victim->getLevel() <= blizzlike::XP::GetGrayLevel(caster->getLevel()) ||
+            (victim->getLevel() <= BlizzLike::XP::GetGrayLevel(caster->getLevel()) ||
              victim->GetTypeId() == TYPEID_UNIT && !caster->ToPlayer()->isAllowedToLoot(victim->ToCreature())))
             return;
         ItemPosCountVec dest;
@@ -3232,8 +3232,8 @@ void Aura::HandleFeignDeath(bool apply, bool Real)
         */
 
         std::list<Unit*> targets;
-        blizzlike::AnyUnfriendlyUnitInObjectRangeCheck u_check(m_target, m_target, m_target->GetMap()->GetVisibilityDistance());
-        blizzlike::UnitListSearcher<blizzlike::AnyUnfriendlyUnitInObjectRangeCheck> searcher(targets, u_check);
+        BlizzLike::AnyUnfriendlyUnitInObjectRangeCheck u_check(m_target, m_target, m_target->GetMap()->GetVisibilityDistance());
+        BlizzLike::UnitListSearcher<BlizzLike::AnyUnfriendlyUnitInObjectRangeCheck> searcher(targets, u_check);
         m_target->VisitNearbyObject(m_target->GetMap()->GetVisibilityDistance(), searcher);
         for (std::list<Unit*>::iterator iter = targets.begin(); iter != targets.end(); ++iter)
         {

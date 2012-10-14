@@ -2382,7 +2382,7 @@ void Player::GiveLevel(uint32 level)
 
     GetSession()->SendPacket(&data);
 
-    SetUInt32Value(PLAYER_NEXT_LEVEL_XP, blizzlike::XP::xp_to_level(level));
+    SetUInt32Value(PLAYER_NEXT_LEVEL_XP, BlizzLike::XP::xp_to_level(level));
 
     //update level, max level of skills
     if (getLevel() != level)
@@ -2462,7 +2462,7 @@ void Player::InitStatsForLevel(bool reapplyMods)
     objmgr.GetPlayerLevelInfo(getRace(),getClass(),getLevel(),&info);
 
     SetUInt32Value(PLAYER_FIELD_MAX_LEVEL, sWorld.getConfig(CONFIG_MAX_PLAYER_LEVEL));
-    SetUInt32Value(PLAYER_NEXT_LEVEL_XP, blizzlike::XP::xp_to_level(getLevel()));
+    SetUInt32Value(PLAYER_NEXT_LEVEL_XP, BlizzLike::XP::xp_to_level(getLevel()));
 
     UpdateSkillsForLevel ();
 
@@ -5152,7 +5152,7 @@ void Player::UpdateCombatSkills(Unit *pVictim, WeaponAttackType attType, MeleeHi
     }
 */
     uint32 plevel = getLevel();                             // if defense than pVictim == attacker
-    uint32 greylevel = blizzlike::XP::GetGrayLevel(plevel);
+    uint32 greylevel = BlizzLike::XP::GetGrayLevel(plevel);
     uint32 moblevel = pVictim->getLevelForTarget(this);
     if (moblevel < greylevel)
         return;
@@ -5559,7 +5559,7 @@ void Player::removeActionButton(uint8 button)
 bool Player::SetPosition(float x, float y, float z, float orientation, bool teleport)
 {
     // prevent crash when a bad coord is sent by the client
-    if (!blizzlike::IsValidMapCoord(x,y,z,orientation))
+    if (!BlizzLike::IsValidMapCoord(x,y,z,orientation))
     {
         DEBUG_LOG("Player::SetPosition(%f, %f, %f, %f, %d) .. bad coordinates for player %d!",x,y,z,orientation,teleport,GetGUIDLow());
         return false;
@@ -5620,7 +5620,7 @@ void Player::SendMessageToSet(WorldPacket *data, bool self)
 
     // we use World::GetMaxVisibleDistance() because i cannot see why not use a distance
     // update: replaced by GetMap()->GetVisibilityDistance()
-    blizzlike::MessageDistDeliverer notifier(this, data, GetMap()->GetVisibilityDistance());
+    BlizzLike::MessageDistDeliverer notifier(this, data, GetMap()->GetVisibilityDistance());
     VisitNearbyWorldObject(GetMap()->GetVisibilityDistance(), notifier);
 }
 
@@ -5629,7 +5629,7 @@ void Player::SendMessageToSetInRange(WorldPacket *data, float dist, bool self)
     if (self)
         GetSession()->SendPacket(data);
 
-    blizzlike::MessageDistDeliverer notifier(this, data, dist);
+    BlizzLike::MessageDistDeliverer notifier(this, data, dist);
     VisitNearbyWorldObject(dist, notifier);
 }
 
@@ -5638,7 +5638,7 @@ void Player::SendMessageToSetInRange(WorldPacket *data, float dist, bool self, b
     if (self)
         GetSession()->SendPacket(data);
 
-    blizzlike::MessageDistDeliverer notifier(this, data, dist, own_team_only);
+    BlizzLike::MessageDistDeliverer notifier(this, data, dist, own_team_only);
     VisitNearbyWorldObject(dist, notifier);
 }
 
@@ -6188,7 +6188,7 @@ bool Player::SetOneFactionReputation(FactionEntry const* factionEntry, int32 sta
 int32 Player::CalculateReputationGain(uint32 creatureOrQuestLevel, int32 rep, bool for_quest)
 {
     // for grey creature kill received 20%, in other case 100.
-    int32 percent = (!for_quest && (creatureOrQuestLevel <= blizzlike::XP::GetGrayLevel(getLevel()))) ? 20 : 100;
+    int32 percent = (!for_quest && (creatureOrQuestLevel <= BlizzLike::XP::GetGrayLevel(getLevel()))) ? 20 : 100;
 
     int32 repMod = GetTotalAuraModifier(SPELL_AURA_MOD_REPUTATION_GAIN);
 
@@ -13365,7 +13365,7 @@ void Player::RewardQuest(Quest const *pQuest, uint32 reward, Object* questGiver,
 
     // honor reward
     if (pQuest->GetRewHonorableKills())
-        RewardHonor(NULL, 0, blizzlike::Honor::hk_honor_at_level(getLevel(), pQuest->GetRewHonorableKills()));
+        RewardHonor(NULL, 0, BlizzLike::Honor::hk_honor_at_level(getLevel(), pQuest->GetRewHonorableKills()));
 
     // title reward
     if (pQuest->GetCharTitleId())
@@ -14820,7 +14820,7 @@ bool Player::LoadFromDB(uint32 guid, SqlQueryHolder *holder)
 
         m_movementInfo.SetTransportData(transGUID, fields[27].GetFloat(), fields[28].GetFloat(), fields[29].GetFloat(), fields[30].GetFloat(), 0);
 
-        if (!blizzlike::IsValidMapCoord(
+        if (!BlizzLike::IsValidMapCoord(
             GetPositionX() + m_movementInfo.GetTransportPos()->GetPositionX(), GetPositionY() + m_movementInfo.GetTransportPos()->GetPositionY(),
             GetPositionZ() + m_movementInfo.GetTransportPos()->GetPositionZ(), GetOrientation() + m_movementInfo.GetTransportPos()->GetOrientation()) ||
             // transport size limited
@@ -17866,8 +17866,8 @@ void Player::SetRestBonus (float rest_bonus_new)
 void Player::HandleStealthedUnitsDetection()
 {
     std::list<Unit*> stealthedUnits;
-    blizzlike::AnyStealthedCheck u_check;
-    blizzlike::UnitListSearcher<blizzlike::AnyStealthedCheck > searcher(stealthedUnits, u_check);
+    BlizzLike::AnyStealthedCheck u_check;
+    BlizzLike::UnitListSearcher<BlizzLike::AnyStealthedCheck > searcher(stealthedUnits, u_check);
     VisitNearbyObject(GetMap()->GetVisibilityDistance(), searcher);
 
     for (std::list<Unit*>::iterator i = stealthedUnits.begin(); i != stealthedUnits.end(); ++i)
@@ -19146,7 +19146,7 @@ void Player::UpdateObjectVisibility(bool forced)
     {
         Unit::UpdateObjectVisibility(true);
         // updates visibility of all objects around point of view for current player
-        blizzlike::VisibleNotifier notifier(*this);
+        BlizzLike::VisibleNotifier notifier(*this);
         m_seer->VisitNearbyObject(GetMap()->GetVisibilityDistance(), notifier);
         notifier.SendToSelf();   // send gathered data
     }
@@ -19154,7 +19154,7 @@ void Player::UpdateObjectVisibility(bool forced)
 
 void Player::UpdateVisibilityForPlayer()
 {
-    blizzlike::VisibleNotifier notifier(*this);
+    BlizzLike::VisibleNotifier notifier(*this);
     m_seer->VisitNearbyObject(GetMap()->GetVisibilityDistance(), notifier);
     notifier.SendToSelf();   // send gathered data
 }
@@ -19978,7 +19978,7 @@ uint32 Player::GetResurrectionSpellId()
 bool Player::isHonorOrXPTarget(Unit* pVictim) const
 {
     uint32 v_level = pVictim->getLevel();
-    uint32 k_grey  = blizzlike::XP::GetGrayLevel(getLevel());
+    uint32 k_grey  = BlizzLike::XP::GetGrayLevel(getLevel());
 
     // Victim level less gray level
     if (v_level<=k_grey)
@@ -20014,12 +20014,12 @@ void Player::RewardPlayerAndGroupAtKill(Unit* pVictim)
         {
             // PvP kills doesn't yield experience
             // also no XP gained if there is no member below gray level
-            xp = (PvP || !not_gray_member_with_max_level) ? 0 : blizzlike::XP::Gain(not_gray_member_with_max_level, pVictim);
+            xp = (PvP || !not_gray_member_with_max_level) ? 0 : BlizzLike::XP::Gain(not_gray_member_with_max_level, pVictim);
 
             // skip in check PvP case (for speed, not used)
             bool is_raid = PvP ? false : sMapStore.LookupEntry(GetMapId())->IsRaid() && pGroup->isRaidGroup();
             bool is_dungeon = PvP ? false : sMapStore.LookupEntry(GetMapId())->IsDungeon();
-            float group_rate = blizzlike::XP::xp_in_group_rate(count,is_raid);
+            float group_rate = BlizzLike::XP::xp_in_group_rate(count,is_raid);
 
             for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
             {
@@ -20067,7 +20067,7 @@ void Player::RewardPlayerAndGroupAtKill(Unit* pVictim)
     }
     else                                                    // if (!pGroup)
     {
-        xp = PvP ? 0 : blizzlike::XP::Gain(this, pVictim);
+        xp = PvP ? 0 : BlizzLike::XP::Gain(this, pVictim);
 
         // honor can be in PvP and !PvP (racial leader) cases
         RewardHonor(pVictim,1, -1, true);

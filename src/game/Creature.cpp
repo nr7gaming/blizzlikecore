@@ -1673,14 +1673,14 @@ void Creature::DoFleeToGetAssistance()
     {
         Creature* pCreature = NULL;
 
-        CellPair p(blizzlike::ComputeCellPair(GetPositionX(), GetPositionY()));
+        CellPair p(BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY()));
         Cell cell(p);
         cell.data.Part.reserved = ALL_DISTRICT;
         cell.SetNoCreate();
-        blizzlike::NearestAssistCreatureInCreatureRangeCheck u_check(this, getVictim(), radius);
-        blizzlike::CreatureLastSearcher<blizzlike::NearestAssistCreatureInCreatureRangeCheck> searcher(pCreature, u_check);
+        BlizzLike::NearestAssistCreatureInCreatureRangeCheck u_check(this, getVictim(), radius);
+        BlizzLike::CreatureLastSearcher<BlizzLike::NearestAssistCreatureInCreatureRangeCheck> searcher(pCreature, u_check);
 
-        TypeContainerVisitor<blizzlike::CreatureLastSearcher<blizzlike::NearestAssistCreatureInCreatureRangeCheck>, GridTypeMapContainer > grid_creature_searcher(searcher);
+        TypeContainerVisitor<BlizzLike::CreatureLastSearcher<BlizzLike::NearestAssistCreatureInCreatureRangeCheck>, GridTypeMapContainer > grid_creature_searcher(searcher);
 
         cell.Visit(p, grid_creature_searcher, *GetMap(), *this, radius);
 
@@ -1695,7 +1695,7 @@ void Creature::DoFleeToGetAssistance()
 
 Unit* Creature::SelectNearestTarget(float dist) const
 {
-    CellPair p(blizzlike::ComputeCellPair(GetPositionX(), GetPositionY()));
+    CellPair p(BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY()));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
@@ -1703,11 +1703,11 @@ Unit* Creature::SelectNearestTarget(float dist) const
     Unit *target = NULL;
 
     {
-        blizzlike::NearestHostileUnitInAttackDistanceCheck u_check(this, dist);
-        blizzlike::UnitLastSearcher<blizzlike::NearestHostileUnitInAttackDistanceCheck> searcher(target, u_check);
+        BlizzLike::NearestHostileUnitInAttackDistanceCheck u_check(this, dist);
+        BlizzLike::UnitLastSearcher<BlizzLike::NearestHostileUnitInAttackDistanceCheck> searcher(target, u_check);
 
-        TypeContainerVisitor<blizzlike::UnitLastSearcher<blizzlike::NearestHostileUnitInAttackDistanceCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
-        TypeContainerVisitor<blizzlike::UnitLastSearcher<blizzlike::NearestHostileUnitInAttackDistanceCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+        TypeContainerVisitor<BlizzLike::UnitLastSearcher<BlizzLike::NearestHostileUnitInAttackDistanceCheck>, WorldTypeMapContainer > world_unit_searcher(searcher);
+        TypeContainerVisitor<BlizzLike::UnitLastSearcher<BlizzLike::NearestHostileUnitInAttackDistanceCheck>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
         cell.Visit(p, world_unit_searcher, *GetMap(), *this, ATTACK_DISTANCE);
         cell.Visit(p, grid_unit_searcher, *GetMap(), *this, ATTACK_DISTANCE);
@@ -1728,15 +1728,15 @@ void Creature::CallAssistance()
             std::list<Creature*> assistList;
 
             {
-                CellPair p(blizzlike::ComputeCellPair(GetPositionX(), GetPositionY()));
+                CellPair p(BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY()));
                 Cell cell(p);
                 cell.data.Part.reserved = ALL_DISTRICT;
                 cell.SetNoCreate();
 
-                blizzlike::AnyAssistCreatureInRangeCheck u_check(this, getVictim(), radius);
-                blizzlike::CreatureListSearcher<blizzlike::AnyAssistCreatureInRangeCheck> searcher(assistList, u_check);
+                BlizzLike::AnyAssistCreatureInRangeCheck u_check(this, getVictim(), radius);
+                BlizzLike::CreatureListSearcher<BlizzLike::AnyAssistCreatureInRangeCheck> searcher(assistList, u_check);
 
-                TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AnyAssistCreatureInRangeCheck>, GridTypeMapContainer >  grid_creature_searcher(searcher);
+                TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AnyAssistCreatureInRangeCheck>, GridTypeMapContainer >  grid_creature_searcher(searcher);
 
                 cell.Visit(p, grid_creature_searcher, *GetMap(), *this, radius);
             }
@@ -1761,15 +1761,15 @@ void Creature::CallForHelp(float fRadius)
     if (fRadius <= 0.0f || !getVictim() || isPet() || isCharmed())
         return;
 
-    CellPair p(blizzlike::ComputeCellPair(GetPositionX(), GetPositionY()));
+    CellPair p(BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY()));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::CallOfHelpCreatureInRangeDo u_do(this, getVictim(), fRadius);
-    blizzlike::CreatureWorker<blizzlike::CallOfHelpCreatureInRangeDo> worker(u_do);
+    BlizzLike::CallOfHelpCreatureInRangeDo u_do(this, getVictim(), fRadius);
+    BlizzLike::CreatureWorker<BlizzLike::CallOfHelpCreatureInRangeDo> worker(u_do);
 
-    TypeContainerVisitor<blizzlike::CreatureWorker<blizzlike::CallOfHelpCreatureInRangeDo>, GridTypeMapContainer >  grid_creature_searcher(worker);
+    TypeContainerVisitor<BlizzLike::CreatureWorker<BlizzLike::CallOfHelpCreatureInRangeDo>, GridTypeMapContainer >  grid_creature_searcher(worker);
 
     cell.Visit(p, grid_creature_searcher, *GetMap(), *this, fRadius);
 }

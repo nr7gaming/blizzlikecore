@@ -28,10 +28,10 @@
 
 class Transport;
 
-class MapManager : public blizzlike::Singleton<MapManager, blizzlike::ClassLevelLockable<MapManager, ACE_Thread_Mutex> >
+class MapManager : public BlizzLike::Singleton<MapManager, BlizzLike::ClassLevelLockable<MapManager, ACE_Thread_Mutex> >
 {
 
-    friend class blizzlike::OperatorNew<MapManager>;
+    friend class BlizzLike::OperatorNew<MapManager>;
     typedef UNORDERED_MAP<uint32, Map*> MapMapType;
     typedef std::pair<UNORDERED_MAP<uint32, Map*>::iterator, bool>  MapMapPair;
 
@@ -77,17 +77,17 @@ class MapManager : public blizzlike::Singleton<MapManager, blizzlike::ClassLevel
 
         static bool IsValidMapCoord(uint32 mapid, float x,float y)
         {
-            return IsValidMAP(mapid) && blizzlike::IsValidMapCoord(x,y);
+            return IsValidMAP(mapid) && BlizzLike::IsValidMapCoord(x,y);
         }
 
         static bool IsValidMapCoord(uint32 mapid, float x,float y,float z)
         {
-            return IsValidMAP(mapid) && blizzlike::IsValidMapCoord(x,y,z);
+            return IsValidMAP(mapid) && BlizzLike::IsValidMapCoord(x,y,z);
         }
 
         static bool IsValidMapCoord(uint32 mapid, float x,float y,float z,float o)
         {
-            return IsValidMAP(mapid) && blizzlike::IsValidMapCoord(x,y,z,o);
+            return IsValidMAP(mapid) && BlizzLike::IsValidMapCoord(x,y,z,o);
         }
 
         static bool IsValidMapCoord(WorldLocation const& loc)
@@ -148,7 +148,7 @@ class MapManager : public blizzlike::Singleton<MapManager, blizzlike::ClassLevel
             return (iter == i_maps.end() ? NULL : iter->second);
         }
 
-        typedef blizzlike::ClassLevelLockable<MapManager, ACE_Thread_Mutex>::Lock Guard;
+        typedef BlizzLike::ClassLevelLockable<MapManager, ACE_Thread_Mutex>::Lock Guard;
         uint32 i_gridCleanUpDelay;
         MapMapType i_maps;
         IntervalTimer i_timer;

@@ -174,7 +174,7 @@ void CreatureEventAIMgr::LoadCreatureEventAI_Summons(bool check_entry_use)
             temp.orientation = fields[4].GetFloat();
             temp.SpawnTimeSecs = fields[5].GetUInt32();
 
-            if (!blizzlike::IsValidMapCoord(temp.position_x,temp.position_y,temp.position_z,temp.orientation))
+            if (!BlizzLike::IsValidMapCoord(temp.position_x,temp.position_y,temp.position_z,temp.orientation))
             {
                 sLog.outErrorDb("CreatureEventAI:  Summon id %u has invalid coordinates (%f,%f,%f,%f), skipping.", i,temp.position_x,temp.position_y,temp.position_z,temp.orientation);
                 continue;

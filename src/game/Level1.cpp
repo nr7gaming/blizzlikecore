@@ -748,7 +748,7 @@ bool ChatHandler::HandleGPSCommand(const char* args)
             return false;
         }
     }
-    CellPair cell_val = blizzlike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
+    CellPair cell_val = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
     Cell cell(cell_val);
 
     uint32 zone_id = obj->GetZoneId();
@@ -767,7 +767,7 @@ bool ChatHandler::HandleGPSCommand(const char* args)
     float ground_z = map->GetHeight(obj->GetPositionX(), obj->GetPositionY(), MAX_HEIGHT);
     float floor_z = map->GetHeight(obj->GetPositionX(), obj->GetPositionY(), obj->GetPositionZ());
 
-    GridPair p = blizzlike::ComputeGridPair(obj->GetPositionX(), obj->GetPositionY());
+    GridPair p = BlizzLike::ComputeGridPair(obj->GetPositionX(), obj->GetPositionY());
 
     int gx=63-p.x_coord;
     int gy=63-p.y_coord;

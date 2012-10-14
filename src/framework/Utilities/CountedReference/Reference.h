@@ -36,7 +36,7 @@
 template
 <
 typename T,
-class THREADING_MODEL = blizzlike::SingleThreaded<T>
+class THREADING_MODEL = BlizzLike::SingleThreaded<T>
 >
 class Referencer
 {

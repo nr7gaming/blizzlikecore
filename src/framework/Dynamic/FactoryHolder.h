@@ -29,7 +29,7 @@ class FactoryHolder
 {
     public:
         typedef ObjectRegistry<FactoryHolder<T, Key >, Key > FactoryHolderRegistry;
-        typedef blizzlike::Singleton<FactoryHolderRegistry > FactoryHolderRepository;
+        typedef BlizzLike::Singleton<FactoryHolderRegistry > FactoryHolderRepository;
 
         FactoryHolder(Key k) : i_key(k) {}
         virtual ~FactoryHolder() {}

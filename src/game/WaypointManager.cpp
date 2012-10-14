@@ -75,8 +75,8 @@ void WaypointStore::Load()
         y = fields[3].GetFloat();
         z = fields[4].GetFloat();
 
-        blizzlike::NormalizeMapCoord(x);
-        blizzlike::NormalizeMapCoord(y);
+        BlizzLike::NormalizeMapCoord(x);
+        BlizzLike::NormalizeMapCoord(y);
 
         wp->id = fields[1].GetUInt32();
         wp->x = x;
@@ -127,8 +127,8 @@ void WaypointStore::UpdatePath(uint32 id)
         y = fields[2].GetFloat();
         z = fields[3].GetFloat();
 
-        blizzlike::NormalizeMapCoord(x);
-        blizzlike::NormalizeMapCoord(y);
+        BlizzLike::NormalizeMapCoord(x);
+        BlizzLike::NormalizeMapCoord(y);
 
         wp->id = fields[0].GetUInt32();
         wp->x = x;

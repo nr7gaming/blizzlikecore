@@ -367,7 +367,7 @@ struct boss_essence_of_sufferingAI : public ScriptedAI
         }
         if (targets.empty())
             return; // No targets added for some reason. No point continuing.
-        targets.sort(blizzlike::ObjectDistanceOrderPred(me)); // Sort players by distance.
+        targets.sort(BlizzLike::ObjectDistanceOrderPred(me)); // Sort players by distance.
         targets.resize(1); // Only need closest target.
         Unit *pTarget = targets.front(); // Get the first target.
         if (pTarget)

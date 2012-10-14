@@ -76,7 +76,7 @@ private:
     uint32 m_UpdateTimer;
 };
 
-#define sOutdoorPvPMgr blizzlike::Singleton<OutdoorPvPMgr>::Instance()
+#define sOutdoorPvPMgr BlizzLike::Singleton<OutdoorPvPMgr>::Instance()
 
 #endif /*OUTDOOR_PVP_MGR_H_*/
 

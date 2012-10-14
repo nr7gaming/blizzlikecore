@@ -67,7 +67,7 @@ class CreatureGroup
         bool IsAllowedToRespawn(Creature *member);
 };
 
-#define formation_mgr blizzlike::Singleton<CreatureGroupManager>::Instance()
+#define formation_mgr BlizzLike::Singleton<CreatureGroupManager>::Instance()
 
 #endif
 

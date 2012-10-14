@@ -334,8 +334,8 @@ void GameObject::Update(uint32 diff)
                     // search unfriendly creature
                     if (owner)                    // hunter trap
                     {
-                        blizzlike::AnyUnfriendlyNoTotemUnitInObjectRangeCheck checker(this, owner, radius);
-                        blizzlike::UnitSearcher<blizzlike::AnyUnfriendlyNoTotemUnitInObjectRangeCheck> searcher(ok, checker);
+                        BlizzLike::AnyUnfriendlyNoTotemUnitInObjectRangeCheck checker(this, owner, radius);
+                        BlizzLike::UnitSearcher<BlizzLike::AnyUnfriendlyNoTotemUnitInObjectRangeCheck> searcher(ok, checker);
                         VisitNearbyGridObject(radius, searcher);
                         if (!ok) VisitNearbyWorldObject(radius, searcher);
                     }
@@ -344,8 +344,8 @@ void GameObject::Update(uint32 diff)
                         // environmental damage spells already have around enemies targeting but this not help in case not existed GO casting support
                         // affect only players
                         Player* player = NULL;
-                        blizzlike::AnyPlayerInObjectRangeCheck checker(this, radius);
-                        blizzlike::PlayerSearcher<blizzlike::AnyPlayerInObjectRangeCheck> searcher(player, checker);
+                        BlizzLike::AnyPlayerInObjectRangeCheck checker(this, radius);
+                        BlizzLike::PlayerSearcher<BlizzLike::AnyPlayerInObjectRangeCheck> searcher(player, checker);
                         VisitNearbyWorldObject(radius, searcher);
                         ok = player;
                     }
@@ -851,14 +851,14 @@ void GameObject::TriggeringLinkedGameObject(uint32 trapEntry, Unit* target)
     GameObject* trapGO = NULL;
     {
         // using original GO distance
-        CellPair p(blizzlike::ComputeCellPair(GetPositionX(), GetPositionY()));
+        CellPair p(BlizzLike::ComputeCellPair(GetPositionX(), GetPositionY()));
         Cell cell(p);
         cell.data.Part.reserved = ALL_DISTRICT;
 
-        blizzlike::NearestGameObjectEntryInObjectRangeCheck go_check(*target,trapEntry,range);
-        blizzlike::GameObjectLastSearcher<blizzlike::NearestGameObjectEntryInObjectRangeCheck> checker(trapGO,go_check);
+        BlizzLike::NearestGameObjectEntryInObjectRangeCheck go_check(*target,trapEntry,range);
+        BlizzLike::GameObjectLastSearcher<BlizzLike::NearestGameObjectEntryInObjectRangeCheck> checker(trapGO,go_check);
 
-        TypeContainerVisitor<blizzlike::GameObjectLastSearcher<blizzlike::NearestGameObjectEntryInObjectRangeCheck>, GridTypeMapContainer > object_checker(checker);
+        TypeContainerVisitor<BlizzLike::GameObjectLastSearcher<BlizzLike::NearestGameObjectEntryInObjectRangeCheck>, GridTypeMapContainer > object_checker(checker);
         cell.Visit(p, object_checker, *GetMap(), *target, range);
     }
 
@@ -872,13 +872,13 @@ GameObject* GameObject::LookupFishingHoleAround(float range)
 {
     GameObject* ok = NULL;
 
-    CellPair p(blizzlike::ComputeCellPair(GetPositionX(),GetPositionY()));
+    CellPair p(BlizzLike::ComputeCellPair(GetPositionX(),GetPositionY()));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
-    blizzlike::NearestGameObjectFishingHole u_check(*this, range);
-    blizzlike::GameObjectSearcher<blizzlike::NearestGameObjectFishingHole> checker(ok, u_check);
+    BlizzLike::NearestGameObjectFishingHole u_check(*this, range);
+    BlizzLike::GameObjectSearcher<BlizzLike::NearestGameObjectFishingHole> checker(ok, u_check);
 
-    TypeContainerVisitor<blizzlike::GameObjectSearcher<blizzlike::NearestGameObjectFishingHole>, GridTypeMapContainer > grid_object_checker(checker);
+    TypeContainerVisitor<BlizzLike::GameObjectSearcher<BlizzLike::NearestGameObjectFishingHole>, GridTypeMapContainer > grid_object_checker(checker);
     cell.Visit(p, grid_object_checker, *GetMap(), *this, range);
 
     return ok;

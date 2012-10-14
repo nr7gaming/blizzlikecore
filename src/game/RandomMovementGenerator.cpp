@@ -63,8 +63,8 @@ RandomMovementGenerator<Creature>::_setRandomLocation(Creature &creature)
     ny = Y + distanceY;
 
     // prevent invalid coordinates generation
-    blizzlike::NormalizeMapCoord(nx);
-    blizzlike::NormalizeMapCoord(ny);
+    BlizzLike::NormalizeMapCoord(nx);
+    BlizzLike::NormalizeMapCoord(ny);
 
     dist = (nx - X)*(nx - X) + (ny - Y)*(ny - Y);
 

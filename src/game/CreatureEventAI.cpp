@@ -1231,17 +1231,17 @@ inline Unit* CreatureEventAI::GetTargetByType(uint32 Target, Unit* pActionInvoke
 
 Unit* CreatureEventAI::DoSelectLowestHpFriendly(float range, uint32 MinHPDiff)
 {
-    CellPair p(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+    CellPair p(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
     Unit* pUnit = NULL;
 
-    blizzlike::MostHPMissingInRange u_check(me, range, MinHPDiff);
-    blizzlike::UnitLastSearcher<blizzlike::MostHPMissingInRange> searcher(pUnit, u_check);
+    BlizzLike::MostHPMissingInRange u_check(me, range, MinHPDiff);
+    BlizzLike::UnitLastSearcher<BlizzLike::MostHPMissingInRange> searcher(pUnit, u_check);
 
-    TypeContainerVisitor<blizzlike::UnitLastSearcher<blizzlike::MostHPMissingInRange>, GridTypeMapContainer >  grid_unit_searcher(searcher);
+    TypeContainerVisitor<BlizzLike::UnitLastSearcher<BlizzLike::MostHPMissingInRange>, GridTypeMapContainer >  grid_unit_searcher(searcher);
 
     cell.Visit(p, grid_unit_searcher, *me->GetMap(), *me, range);
     return pUnit;
@@ -1249,30 +1249,30 @@ Unit* CreatureEventAI::DoSelectLowestHpFriendly(float range, uint32 MinHPDiff)
 
 void CreatureEventAI::DoFindFriendlyCC(std::list<Creature*>& _list, float range)
 {
-    CellPair p(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+    CellPair p(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::FriendlyCCedInRange u_check(me, range);
-    blizzlike::CreatureListSearcher<blizzlike::FriendlyCCedInRange> searcher(_list, u_check);
+    BlizzLike::FriendlyCCedInRange u_check(me, range);
+    BlizzLike::CreatureListSearcher<BlizzLike::FriendlyCCedInRange> searcher(_list, u_check);
 
-    TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::FriendlyCCedInRange>, GridTypeMapContainer >  grid_creature_searcher(searcher);
+    TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::FriendlyCCedInRange>, GridTypeMapContainer >  grid_creature_searcher(searcher);
 
     cell.Visit(p, grid_creature_searcher, *me->GetMap(), *me, range);
 }
 
 void CreatureEventAI::DoFindFriendlyMissingBuff(std::list<Creature*>& _list, float range, uint32 spellid)
 {
-    CellPair p(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+    CellPair p(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
     Cell cell(p);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::FriendlyMissingBuffInRange u_check(me, range, spellid);
-    blizzlike::CreatureListSearcher<blizzlike::FriendlyMissingBuffInRange> searcher(_list, u_check);
+    BlizzLike::FriendlyMissingBuffInRange u_check(me, range, spellid);
+    BlizzLike::CreatureListSearcher<BlizzLike::FriendlyMissingBuffInRange> searcher(_list, u_check);
 
-    TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::FriendlyMissingBuffInRange>, GridTypeMapContainer >  grid_creature_searcher(searcher);
+    TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::FriendlyMissingBuffInRange>, GridTypeMapContainer >  grid_creature_searcher(searcher);
 
     cell.Visit(p, grid_creature_searcher, *me->GetMap(), *me, range);
 }

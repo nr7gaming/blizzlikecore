@@ -78,9 +78,9 @@ enum ColorTypes
 
 const int Colors = int(WHITE)+1;
 
-class Log : public blizzlike::Singleton<Log, blizzlike::ClassLevelLockable<Log, ACE_Thread_Mutex> >
+class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log, ACE_Thread_Mutex> >
 {
-    friend class blizzlike::OperatorNew<Log>;
+    friend class BlizzLike::OperatorNew<Log>;
     Log();
     ~Log();
 
@@ -166,19 +166,19 @@ class Log : public blizzlike::Singleton<Log, blizzlike::ClassLevelLockable<Log, 
         bool m_charLog_Dump;
 };
 
-#define sLog blizzlike::Singleton<Log>::Instance()
+#define sLog BlizzLike::Singleton<Log>::Instance()
 
 #ifdef BLIZZLIKE_DEBUG
-#define DEBUG_LOG blizzlike::Singleton<Log>::Instance().outDebug
+#define DEBUG_LOG BlizzLike::Singleton<Log>::Instance().outDebug
 #else
 #define DEBUG_LOG
 #endif
 
 // primary for script library
-#define outstring_log blizzlike::Singleton<Log>::Instance().outString
-#define detail_log blizzlike::Singleton<Log>::Instance().outDetail
-#define debug_log blizzlike::Singleton<Log>::Instance().outDebug
-#define error_log blizzlike::Singleton<Log>::Instance().outError
-#define error_db_log blizzlike::Singleton<Log>::Instance().outErrorDb
+#define outstring_log BlizzLike::Singleton<Log>::Instance().outString
+#define detail_log BlizzLike::Singleton<Log>::Instance().outDetail
+#define debug_log BlizzLike::Singleton<Log>::Instance().outDebug
+#define error_log BlizzLike::Singleton<Log>::Instance().outError
+#define error_db_log BlizzLike::Singleton<Log>::Instance().outErrorDb
 #endif
 

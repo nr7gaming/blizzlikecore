@@ -138,14 +138,14 @@ struct boss_warlord_kalithreshAI : public ScriptedAI
     {
         Creature* pCreature = NULL;
 
-        CellPair pair(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+        CellPair pair(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
         Cell cell(pair);
         cell.data.Part.reserved = ALL_DISTRICT;
         cell.SetNoCreate();
 
-        blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*me, entry, true, range);
-        blizzlike::CreatureLastSearcher<blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(pCreature, creature_check);
-        TypeContainerVisitor<blizzlike::CreatureLastSearcher<blizzlike::NearestCreatureEntryWithLiveStateInObjectRangeCheck>, GridTypeMapContainer> creature_searcher(searcher);
+        BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*me, entry, true, range);
+        BlizzLike::CreatureLastSearcher<BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(pCreature, creature_check);
+        TypeContainerVisitor<BlizzLike::CreatureLastSearcher<BlizzLike::NearestCreatureEntryWithLiveStateInObjectRangeCheck>, GridTypeMapContainer> creature_searcher(searcher);
         cell.Visit(pair, creature_searcher,*(me->GetMap()));
 
         return pCreature;

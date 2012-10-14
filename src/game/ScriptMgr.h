@@ -128,6 +128,6 @@ void DoScriptText(int32 textEntry, WorldObject* pSource, Unit *pTarget = NULL);
 #define FUNC_PTR(name, callconvention, returntype, parameters)    typedef returntype(callconvention *name)parameters;
 #endif
 
-#define sScriptMgr blizzlike::Singleton<ScriptMgr>::Instance()
+#define sScriptMgr BlizzLike::Singleton<ScriptMgr>::Instance()
 #endif
 

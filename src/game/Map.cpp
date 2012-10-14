@@ -244,7 +244,7 @@ void Map::RemoveFromGrid(T* obj, NGridType *grid, Cell const& cell)
 template<class T>
 void Map::SwitchGridContainers(T* obj, bool on)
 {
-    CellPair p = blizzlike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
     {
         sLog.outError("Map::SwitchGridContainers: Object " I64FMT " has invalid coordinates X:%f Y:%f grid cell [%u:%u]", obj->GetGUID(), obj->GetPositionX(), obj->GetPositionY(), p.x_coord, p.y_coord);
@@ -368,7 +368,7 @@ bool Map::EnsureGridLoaded(const Cell &cell)
 
 void Map::LoadGrid(float x, float y)
 {
-    CellPair pair = blizzlike::ComputeCellPair(x, y);
+    CellPair pair = BlizzLike::ComputeCellPair(x, y);
     Cell cell(pair);
     EnsureGridLoaded(cell);
 }
@@ -377,7 +377,7 @@ bool Map::Add(Player *player)
 {
     // Check if we are adding to correct map
     ASSERT (player->GetMap() == this);
-    CellPair p = blizzlike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
     {
         sLog.outError("Map::Add: Player (GUID: %u) has invalid coordinates X:%f Y:%f grid cell [%u:%u]", player->GetGUIDLow(), player->GetPositionX(), player->GetPositionY(), p.x_coord, p.y_coord);
@@ -407,7 +407,7 @@ template<class T>
 void
 Map::Add(T *obj)
 {
-    CellPair p = blizzlike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
     {
         sLog.outError("Map::Add: Object " UI64FMTD " has invalid coordinates X:%f Y:%f grid cell [%u:%u]", obj->GetGUID(), obj->GetPositionX(), obj->GetPositionY(), p.x_coord, p.y_coord);
@@ -444,7 +444,7 @@ Map::Add(T *obj)
 /*
 void Map::MessageBroadcast(Player *player, WorldPacket *msg, bool to_self)
 {
-    CellPair p = blizzlike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
 
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
     {
@@ -458,14 +458,14 @@ void Map::MessageBroadcast(Player *player, WorldPacket *msg, bool to_self)
     if (!loaded(GridPair(cell.data.Part.grid_x, cell.data.Part.grid_y)))
         return;
 
-    blizzlike::MessageDeliverer post_man(*player, msg, to_self);
-    TypeContainerVisitor<blizzlike::MessageDeliverer, WorldTypeMapContainer > message(post_man);
+    BlizzLike::MessageDeliverer post_man(*player, msg, to_self);
+    TypeContainerVisitor<BlizzLike::MessageDeliverer, WorldTypeMapContainer > message(post_man);
     cell.Visit(p, message, *this, *player, GetVisibilityDistance());
 }
 
 void Map::MessageBroadcast(WorldObject *obj, WorldPacket *msg)
 {
-    CellPair p = blizzlike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
 
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
     {
@@ -482,14 +482,14 @@ void Map::MessageBroadcast(WorldObject *obj, WorldPacket *msg)
 
     //TODO: currently on continents when Visibility.Distance.InFlight > Visibility.Distance.Continents
     //we have alot of blinking mobs because monster move packet send is broken...
-    blizzlike::ObjectMessageDeliverer post_man(*obj, msg);
-    TypeContainerVisitor<blizzlike::ObjectMessageDeliverer, WorldTypeMapContainer > message(post_man);
+    BlizzLike::ObjectMessageDeliverer post_man(*obj, msg);
+    TypeContainerVisitor<BlizzLike::ObjectMessageDeliverer, WorldTypeMapContainer > message(post_man);
     cell.Visit(p, message, *this, *obj, GetVisibilityDistance());
 }
 
 void Map::MessageDistBroadcast(Player *player, WorldPacket *msg, float dist, bool to_self, bool own_team_only)
 {
-    CellPair p = blizzlike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
 
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
     {
@@ -503,14 +503,14 @@ void Map::MessageDistBroadcast(Player *player, WorldPacket *msg, float dist, boo
     if (!loaded(GridPair(cell.data.Part.grid_x, cell.data.Part.grid_y)))
         return;
 
-    blizzlike::MessageDistDeliverer post_man(*player, msg, dist, to_self, own_team_only);
-    TypeContainerVisitor<blizzlike::MessageDistDeliverer , WorldTypeMapContainer > message(post_man);
+    BlizzLike::MessageDistDeliverer post_man(*player, msg, dist, to_self, own_team_only);
+    TypeContainerVisitor<BlizzLike::MessageDistDeliverer , WorldTypeMapContainer > message(post_man);
     cell.Visit(p, message, *this, *player, dist);
 }
 
 void Map::MessageDistBroadcast(WorldObject *obj, WorldPacket *msg, float dist)
 {
-    CellPair p = blizzlike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
 
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
     {
@@ -525,8 +525,8 @@ void Map::MessageDistBroadcast(WorldObject *obj, WorldPacket *msg, float dist)
     if (!loaded(GridPair(cell.data.Part.grid_x, cell.data.Part.grid_y)))
         return;
 
-    blizzlike::ObjectMessageDistDeliverer post_man(*obj, msg, dist);
-    TypeContainerVisitor<blizzlike::ObjectMessageDistDeliverer, WorldTypeMapContainer > message(post_man);
+    BlizzLike::ObjectMessageDistDeliverer post_man(*obj, msg, dist);
+    TypeContainerVisitor<BlizzLike::ObjectMessageDistDeliverer, WorldTypeMapContainer > message(post_man);
     cell.Visit(p, message, *this, *obj, dist);
 }
 */
@@ -549,11 +549,11 @@ void Map::Update(const uint32 &t_diff)
     // update active cells around players and active objects
     resetMarkedCells();
 
-    blizzlike::ObjectUpdater updater(t_diff);
+    BlizzLike::ObjectUpdater updater(t_diff);
     // for creature
-    TypeContainerVisitor<blizzlike::ObjectUpdater, GridTypeMapContainer  > grid_object_update(updater);
+    TypeContainerVisitor<BlizzLike::ObjectUpdater, GridTypeMapContainer  > grid_object_update(updater);
     // for pets
-    TypeContainerVisitor<blizzlike::ObjectUpdater, WorldTypeMapContainer > world_object_update(updater);
+    TypeContainerVisitor<BlizzLike::ObjectUpdater, WorldTypeMapContainer > world_object_update(updater);
 
     // the player iterator is stored in the map object
     // to make sure calls to Map::Remove don't invalidate it
@@ -564,7 +564,7 @@ void Map::Update(const uint32 &t_diff)
         if (!plr->IsInWorld())
             continue;
 
-        CellPair standing_cell(blizzlike::ComputeCellPair(plr->GetPositionX(), plr->GetPositionY()));
+        CellPair standing_cell(BlizzLike::ComputeCellPair(plr->GetPositionX(), plr->GetPositionY()));
 
         // Check for correctness of standing_cell, it also avoids problems with update_cell
         if (standing_cell.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || standing_cell.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
@@ -613,7 +613,7 @@ void Map::Update(const uint32 &t_diff)
             if (!obj->IsInWorld())
                 continue;
 
-            CellPair standing_cell(blizzlike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY()));
+            CellPair standing_cell(BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY()));
 
             // Check for correctness of standing_cell, it also avoids problems with update_cell
             if (standing_cell.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || standing_cell.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
@@ -703,9 +703,9 @@ void Map::ProcessRelocationNotifies(const uint32 & diff)
                 Cell cell(pair);
                 cell.SetNoCreate();
 
-                blizzlike::DelayedUnitRelocation cell_relocation(cell, pair, *this, GetVisibilityDistance());
-                TypeContainerVisitor<blizzlike::DelayedUnitRelocation, GridTypeMapContainer  > grid_object_relocation(cell_relocation);
-                TypeContainerVisitor<blizzlike::DelayedUnitRelocation, WorldTypeMapContainer > world_object_relocation(cell_relocation);
+                BlizzLike::DelayedUnitRelocation cell_relocation(cell, pair, *this, GetVisibilityDistance());
+                TypeContainerVisitor<BlizzLike::DelayedUnitRelocation, GridTypeMapContainer  > grid_object_relocation(cell_relocation);
+                TypeContainerVisitor<BlizzLike::DelayedUnitRelocation, WorldTypeMapContainer > world_object_relocation(cell_relocation);
                 Visit(cell, grid_object_relocation);
                 Visit(cell, world_object_relocation);
             }
@@ -755,7 +755,7 @@ void Map::Remove(Player *player, bool remove)
     player->RemoveFromWorld();
     SendRemoveTransports(player);
 
-    CellPair p = blizzlike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
         sLog.outCrash("Map::Remove: Player is in invalid cell!");
     else
@@ -786,7 +786,7 @@ Map::Remove(T *obj, bool remove)
     if (obj->isActiveObject())
         RemoveFromActive(obj);
 
-    CellPair p = blizzlike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
+    CellPair p = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
     if (p.x_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP || p.y_coord >= TOTAL_NUMBER_OF_CELLS_PER_MAP)
         sLog.outError("Map::Remove: Object " I64FMT " has invalid coordinates X:%f Y:%f grid cell [%u:%u]", obj->GetGUID(), obj->GetPositionX(), obj->GetPositionY(), p.x_coord, p.y_coord);
     else
@@ -819,8 +819,8 @@ Map::PlayerRelocation(Player *player, float x, float y, float z, float orientati
 {
     ASSERT(player);
 
-    CellPair old_val = blizzlike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
-    CellPair new_val = blizzlike::ComputeCellPair(x, y);
+    CellPair old_val = BlizzLike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
+    CellPair new_val = BlizzLike::ComputeCellPair(x, y);
 
     Cell old_cell(old_val);
     Cell new_cell(new_val);
@@ -855,7 +855,7 @@ Map::CreatureRelocation(Creature *creature, float x, float y, float z, float ang
 
     Cell old_cell = creature->GetCurrentCell();
 
-    CellPair new_val = blizzlike::ComputeCellPair(x, y);
+    CellPair new_val = BlizzLike::ComputeCellPair(x, y);
     Cell new_cell(new_val);
 
     // delay creature move for grid/cell to grid/cell moves
@@ -896,7 +896,7 @@ void Map::MoveAllCreaturesInMoveList()
         i_creaturesToMove.erase(iter);
 
         // calculate cells
-        CellPair new_val = blizzlike::ComputeCellPair(cm.x, cm.y);
+        CellPair new_val = BlizzLike::ComputeCellPair(cm.x, cm.y);
         Cell new_cell(new_val);
 
         // do move or do move to respawn or remove creature if previous all fail
@@ -995,7 +995,7 @@ bool Map::CreatureRespawnRelocation(Creature *c)
     float resp_x, resp_y, resp_z, resp_o;
     c->GetRespawnCoord(resp_x, resp_y, resp_z, &resp_o);
 
-    CellPair resp_val = blizzlike::ComputeCellPair(resp_x, resp_y);
+    CellPair resp_val = BlizzLike::ComputeCellPair(resp_x, resp_y);
     Cell resp_cell(resp_val);
 
     c->CombatStop();
@@ -1896,7 +1896,7 @@ bool Map::CheckGridIntegrity(Creature* c, bool moved) const
 {
     Cell const& cur_cell = c->GetCurrentCell();
 
-    CellPair xy_val = blizzlike::ComputeCellPair(c->GetPositionX(), c->GetPositionY());
+    CellPair xy_val = BlizzLike::ComputeCellPair(c->GetPositionX(), c->GetPositionY());
     Cell xy_cell(xy_val);
     if (xy_cell != cur_cell)
     {
@@ -1920,19 +1920,19 @@ void Map::UpdateObjectVisibility(WorldObject* obj, Cell cell, CellPair cellpair)
 {
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
-    blizzlike::VisibleChangesNotifier notifier(*obj);
-    TypeContainerVisitor<blizzlike::VisibleChangesNotifier, WorldTypeMapContainer > player_notifier(notifier);
+    BlizzLike::VisibleChangesNotifier notifier(*obj);
+    TypeContainerVisitor<BlizzLike::VisibleChangesNotifier, WorldTypeMapContainer > player_notifier(notifier);
     cell.Visit(cellpair, player_notifier, *this, *obj, GetVisibilityDistance());
 }
 
 void Map::UpdateObjectsVisibilityFor(Player* player, Cell cell, CellPair cellpair)
 {
-    blizzlike::VisibleNotifier notifier(*player);
+    BlizzLike::VisibleNotifier notifier(*player);
 
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
-    TypeContainerVisitor<blizzlike::VisibleNotifier, WorldTypeMapContainer > world_notifier(notifier);
-    TypeContainerVisitor<blizzlike::VisibleNotifier, GridTypeMapContainer  > grid_notifier(notifier);
+    TypeContainerVisitor<BlizzLike::VisibleNotifier, WorldTypeMapContainer > world_notifier(notifier);
+    TypeContainerVisitor<BlizzLike::VisibleNotifier, GridTypeMapContainer  > grid_notifier(notifier);
     cell.Visit(cellpair, world_notifier, *this, *player, GetVisibilityDistance());
     cell.Visit(cellpair, grid_notifier,  *this, *player, GetVisibilityDistance());
 
@@ -2177,7 +2177,7 @@ bool Map::ActiveObjectsNearGrid(uint32 x, uint32 y) const
     {
         Player* plr = iter->getSource();
 
-        CellPair p = blizzlike::ComputeCellPair(plr->GetPositionX(), plr->GetPositionY());
+        CellPair p = BlizzLike::ComputeCellPair(plr->GetPositionX(), plr->GetPositionY());
         if ((cell_min.x_coord <= p.x_coord && p.x_coord <= cell_max.x_coord) &&
             (cell_min.y_coord <= p.y_coord && p.y_coord <= cell_max.y_coord))
             return true;
@@ -2187,7 +2187,7 @@ bool Map::ActiveObjectsNearGrid(uint32 x, uint32 y) const
     {
         WorldObject* obj = *iter;
 
-        CellPair p = blizzlike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
+        CellPair p = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
         if ((cell_min.x_coord <= p.x_coord && p.x_coord <= cell_max.x_coord) &&
             (cell_min.y_coord <= p.y_coord && p.y_coord <= cell_max.y_coord))
             return true;
@@ -2205,12 +2205,12 @@ void Map::AddToActive(Creature* c)
     {
         float x,y,z;
         c->GetRespawnCoord(x,y,z);
-        GridPair p = blizzlike::ComputeGridPair(x, y);
+        GridPair p = BlizzLike::ComputeGridPair(x, y);
         if (getNGrid(p.x_coord, p.y_coord))
             getNGrid(p.x_coord, p.y_coord)->incUnloadActiveLock();
         else
         {
-            GridPair p2 = blizzlike::ComputeGridPair(c->GetPositionX(), c->GetPositionY());
+            GridPair p2 = BlizzLike::ComputeGridPair(c->GetPositionX(), c->GetPositionY());
             sLog.outError("Active creature (GUID: %u Entry: %u) added to grid[%u,%u] but spawn grid[%u,%u] not loaded.",
                 c->GetGUIDLow(), c->GetEntry(), p.x_coord, p.y_coord, p2.x_coord, p2.y_coord);
         }
@@ -2226,12 +2226,12 @@ void Map::RemoveFromActive(Creature* c)
     {
         float x,y,z;
         c->GetRespawnCoord(x,y,z);
-        GridPair p = blizzlike::ComputeGridPair(x, y);
+        GridPair p = BlizzLike::ComputeGridPair(x, y);
         if (getNGrid(p.x_coord, p.y_coord))
             getNGrid(p.x_coord, p.y_coord)->decUnloadActiveLock();
         else
         {
-            GridPair p2 = blizzlike::ComputeGridPair(c->GetPositionX(), c->GetPositionY());
+            GridPair p2 = BlizzLike::ComputeGridPair(c->GetPositionX(), c->GetPositionY());
             sLog.outError("Active creature (GUID: %u Entry: %u) removed from grid[%u,%u] but spawn grid[%u,%u] not loaded.",
                 c->GetGUIDLow(), c->GetEntry(), p.x_coord, p.y_coord, p2.x_coord, p2.y_coord);
         }

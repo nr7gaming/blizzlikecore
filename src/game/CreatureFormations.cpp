@@ -342,8 +342,8 @@ void CreatureFormation::LeaderMoveTo(float x, float y, float z)
         float dy = y + sin(angle + pathangle) * dist;
         float dz = z;
 
-        blizzlike::NormalizeMapCoord(dx);
-        blizzlike::NormalizeMapCoord(dy);
+        BlizzLike::NormalizeMapCoord(dx);
+        BlizzLike::NormalizeMapCoord(dy);
 
         pCreature->UpdateGroundPositionZ(dx, dy, dz);
 

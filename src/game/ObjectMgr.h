@@ -1151,7 +1151,7 @@ class ObjectMgr
         CacheTrainerSpellMap m_mCacheTrainerSpellMap;
 };
 
-#define objmgr blizzlike::Singleton<ObjectMgr>::Instance()
+#define objmgr BlizzLike::Singleton<ObjectMgr>::Instance()
 
 // scripting access functions
 bool LoadblizzlikeStrings(DatabaseType& db, char const* table,int32 start_value = MAX_CREATURE_AI_TEXT_STRING_ID, int32 end_value = std::numeric_limits<int32>::min());

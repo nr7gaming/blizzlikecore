@@ -232,14 +232,14 @@ struct boss_janalaiAI : public ScriptedAI
         me->GetPosition(x, y, z);
 
         {
-            CellPair pair(blizzlike::ComputeCellPair(x, y));
+            CellPair pair(BlizzLike::ComputeCellPair(x, y));
             Cell cell(pair);
             cell.data.Part.reserved = ALL_DISTRICT;
             cell.SetNoCreate();
 
-            blizzlike::AllCreaturesOfEntryInRange check(me, MOB_EGG, 100);
-            blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange> searcher(templist, check);
-            TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+            BlizzLike::AllCreaturesOfEntryInRange check(me, MOB_EGG, 100);
+            BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange> searcher(templist, check);
+            TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
             cell.Visit(pair, cSearcher, *(me->GetMap()));
         }
 
@@ -264,14 +264,14 @@ struct boss_janalaiAI : public ScriptedAI
         me->GetPosition(x, y, z);
 
         {
-            CellPair pair(blizzlike::ComputeCellPair(x, y));
+            CellPair pair(BlizzLike::ComputeCellPair(x, y));
             Cell cell(pair);
             cell.data.Part.reserved = ALL_DISTRICT;
             cell.SetNoCreate();
 
-            blizzlike::AllCreaturesOfEntryInRange check(me, MOB_FIRE_BOMB, 100);
-            blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange> searcher(templist, check);
-            TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+            BlizzLike::AllCreaturesOfEntryInRange check(me, MOB_FIRE_BOMB, 100);
+            BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange> searcher(templist, check);
+            TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
             cell.Visit(pair, cSearcher, *(me->GetMap()));
         }
         for (std::list<Creature*>::const_iterator i = templist.begin(); i != templist.end(); ++i)
@@ -504,14 +504,14 @@ struct mob_amanishi_hatcherAI : public ScriptedAI
         me->GetPosition(x, y, z);
 
         {
-            CellPair pair(blizzlike::ComputeCellPair(x, y));
+            CellPair pair(BlizzLike::ComputeCellPair(x, y));
             Cell cell(pair);
             cell.data.Part.reserved = ALL_DISTRICT;
             cell.SetNoCreate();
 
-            blizzlike::AllCreaturesOfEntryInRange check(me, 23817, 50);
-            blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange> searcher(templist, check);
-            TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+            BlizzLike::AllCreaturesOfEntryInRange check(me, 23817, 50);
+            BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange> searcher(templist, check);
+            TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
             cell.Visit(pair, cSearcher, *(me->GetMap()));
         }
 

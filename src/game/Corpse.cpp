@@ -101,7 +101,7 @@ bool Corpse::Create(uint32 guidlow, Player *owner, uint32 mapid, float x, float 
     SetFloatValue(CORPSE_FIELD_FACING, ang);
     SetUInt64Value(CORPSE_FIELD_OWNER, owner->GetGUID());
 
-    m_grid = blizzlike::ComputeGridPair(GetPositionX(), GetPositionY());
+    m_grid = BlizzLike::ComputeGridPair(GetPositionX(), GetPositionY());
 
     return true;
 }
@@ -210,7 +210,7 @@ bool Corpse::LoadFromDB(uint32 guid, Field *fields)
         return false;
     }
 
-    m_grid = blizzlike::ComputeGridPair(GetPositionX(), GetPositionY());
+    m_grid = BlizzLike::ComputeGridPair(GetPositionX(), GetPositionY());
     return true;
 }
 

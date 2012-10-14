@@ -440,14 +440,14 @@ struct npc_lord_gregor_lescovarAI : public npc_escortAI
         std::list<Creature*> lCreatureList;
 
         me->GetPosition(x, y, z);
-        CellPair pair(blizzlike::ComputeCellPair(x, y));
+        CellPair pair(BlizzLike::ComputeCellPair(x, y));
         Cell cell(pair);
         cell.data.Part.reserved = ALL_DISTRICT;
         cell.SetNoCreate();
 
-        blizzlike::AllCreaturesOfEntryInRange check(me, NPC_STORMWIND_ROYAL, 10);
-        blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange> searcher(lCreatureList, check);
-        TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+        BlizzLike::AllCreaturesOfEntryInRange check(me, NPC_STORMWIND_ROYAL, 10);
+        BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange> searcher(lCreatureList, check);
+        TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
         cell.Visit(pair, cSearcher, *(me->GetMap()));
 
         if (!lCreatureList.empty())
@@ -664,14 +664,14 @@ struct npc_tyrion_spybotAI : public npc_escortAI
         std::list<Creature*> lCreatureList;
 
         me->GetPosition(x, y, z);
-        CellPair pair(blizzlike::ComputeCellPair(x, y));
+        CellPair pair(BlizzLike::ComputeCellPair(x, y));
         Cell cell(pair);
         cell.data.Part.reserved = ALL_DISTRICT;
         cell.SetNoCreate();
 
-        blizzlike::AllCreaturesOfEntryInRange check(me, NPC_STORMWIND_ROYAL, 10);
-        blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange> searcher(lCreatureList, check);
-        TypeContainerVisitor<blizzlike::CreatureListSearcher<blizzlike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+        BlizzLike::AllCreaturesOfEntryInRange check(me, NPC_STORMWIND_ROYAL, 10);
+        BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange> searcher(lCreatureList, check);
+        TypeContainerVisitor<BlizzLike::CreatureListSearcher<BlizzLike::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
         cell.Visit(pair, cSearcher, *(me->GetMap()));
 
         if (!lCreatureList.empty())

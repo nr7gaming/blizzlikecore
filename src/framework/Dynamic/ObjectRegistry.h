@@ -92,7 +92,7 @@ class ObjectRegistry
 
     private:
         RegistryMapType i_registeredObjects;
-        friend class blizzlike::OperatorNew<ObjectRegistry<T, Key> >;
+        friend class BlizzLike::OperatorNew<ObjectRegistry<T, Key> >;
 
         // protected for friend use since it should be a singleton
         ObjectRegistry() {}

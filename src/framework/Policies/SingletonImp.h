@@ -31,7 +31,7 @@ class CreatePolicy,
 class LifeTimePolicy
 >
 T&
-blizzlike::Singleton<T, ThreadingModel, CreatePolicy, LifeTimePolicy >::Instance()
+BlizzLike::Singleton<T, ThreadingModel, CreatePolicy, LifeTimePolicy >::Instance()
 {
     if (!si_instance)
     {
@@ -60,7 +60,7 @@ class CreatePolicy,
 class LifeTimePolicy
 >
 void
-blizzlike::Singleton<T, ThreadingModel, CreatePolicy, LifeTimePolicy>::DestroySingleton()
+BlizzLike::Singleton<T, ThreadingModel, CreatePolicy, LifeTimePolicy>::DestroySingleton()
 {
     CreatePolicy::Destroy(si_instance);
     si_instance = NULL;
@@ -68,23 +68,23 @@ blizzlike::Singleton<T, ThreadingModel, CreatePolicy, LifeTimePolicy>::DestroySi
 }
 
 #define INSTANTIATE_SINGLETON_1(TYPE) \
-    template class blizzlike::Singleton<TYPE, blizzlike::SingleThreaded<TYPE>, blizzlike::OperatorNew<TYPE>, blizzlike::ObjectLifeTime<TYPE> >; \
-    template<> TYPE* blizzlike::Singleton<TYPE, blizzlike::SingleThreaded<TYPE>, blizzlike::OperatorNew<TYPE>, blizzlike::ObjectLifeTime<TYPE> >::si_instance = 0; \
-    template<> bool blizzlike::Singleton<TYPE, blizzlike::SingleThreaded<TYPE>, blizzlike::OperatorNew<TYPE>, blizzlike::ObjectLifeTime<TYPE> >::si_destroyed = false
+    template class BlizzLike::Singleton<TYPE, BlizzLike::SingleThreaded<TYPE>, BlizzLike::OperatorNew<TYPE>, BlizzLike::ObjectLifeTime<TYPE> >; \
+    template<> TYPE* BlizzLike::Singleton<TYPE, BlizzLike::SingleThreaded<TYPE>, BlizzLike::OperatorNew<TYPE>, BlizzLike::ObjectLifeTime<TYPE> >::si_instance = 0; \
+    template<> bool BlizzLike::Singleton<TYPE, BlizzLike::SingleThreaded<TYPE>, BlizzLike::OperatorNew<TYPE>, BlizzLike::ObjectLifeTime<TYPE> >::si_destroyed = false
 
 #define INSTANTIATE_SINGLETON_2(TYPE, THREADINGMODEL) \
-    template class blizzlike::Singleton<TYPE, THREADINGMODEL, blizzlike::OperatorNew<TYPE>, blizzlike::ObjectLifeTime<TYPE> >; \
-    template<> TYPE* blizzlike::Singleton<TYPE, THREADINGMODEL, blizzlike::OperatorNew<TYPE>, blizzlike::ObjectLifeTime<TYPE> >::si_instance = 0; \
-    template<> bool blizzlike::Singleton<TYPE, THREADINGMODEL, blizzlike::OperatorNew<TYPE>, blizzlike::ObjectLifeTime<TYPE> >::si_destroyed = false
+    template class BlizzLike::Singleton<TYPE, THREADINGMODEL, BlizzLike::OperatorNew<TYPE>, BlizzLike::ObjectLifeTime<TYPE> >; \
+    template<> TYPE* BlizzLike::Singleton<TYPE, THREADINGMODEL, BlizzLike::OperatorNew<TYPE>, BlizzLike::ObjectLifeTime<TYPE> >::si_instance = 0; \
+    template<> bool BlizzLike::Singleton<TYPE, THREADINGMODEL, BlizzLike::OperatorNew<TYPE>, BlizzLike::ObjectLifeTime<TYPE> >::si_destroyed = false
 
 #define INSTANTIATE_SINGLETON_3(TYPE, THREADINGMODEL, CREATIONPOLICY ) \
-    template class blizzlike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, blizzlike::ObjectLifeTime<TYPE> >; \
-    template<> TYPE* blizzlike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, blizzlike::ObjectLifeTime<TYPE> >::si_instance = 0; \
-    template<> bool blizzlike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, blizzlike::ObjectLifeType<TYPE> >::si_destroyed = false
+    template class BlizzLike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, BlizzLike::ObjectLifeTime<TYPE> >; \
+    template<> TYPE* BlizzLike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, BlizzLike::ObjectLifeTime<TYPE> >::si_instance = 0; \
+    template<> bool BlizzLike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, BlizzLike::ObjectLifeType<TYPE> >::si_destroyed = false
 
 #define INSTANTIATE_SINGLETON_4(TYPE, THREADINGMODEL, CREATIONPOLICY, OBJECTLIFETIME) \
-    template class blizzlike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, OBJECTLIFETIME >; \
-    template<> TYPE* blizzlike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, OBJECTLIFETIME >::si_instance = 0; \
-    template<> bool blizzlike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, OBJECTLIFETIME >::si_destroyed = false
+    template class BlizzLike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, OBJECTLIFETIME >; \
+    template<> TYPE* BlizzLike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, OBJECTLIFETIME >::si_instance = 0; \
+    template<> bool BlizzLike::Singleton<TYPE, THREADINGMODEL, CREATIONPOLICY, OBJECTLIFETIME >::si_destroyed = false
 #endif
 

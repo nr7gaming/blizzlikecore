@@ -20,7 +20,7 @@
 
 #include "Platform/Define.h"
 
-namespace blizzlike
+namespace BlizzLike
 {
     inline void Guard(void *) {}
 
@@ -114,9 +114,9 @@ namespace blizzlike
 
 }
 
-template<class T, class MUTEX> MUTEX blizzlike::ClassLevelLockable<T, MUTEX>::si_mtx;
+template<class T, class MUTEX> MUTEX BlizzLike::ClassLevelLockable<T, MUTEX>::si_mtx;
 
 #define INSTANTIATE_CLASS_MUTEX(CTYPE,MUTEX) \
-    template class blizzlike::ClassLevelLockable<CTYPE, MUTEX >
+    template class BlizzLike::ClassLevelLockable<CTYPE, MUTEX >
 #endif
 

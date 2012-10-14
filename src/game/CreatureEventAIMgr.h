@@ -44,6 +44,6 @@ class CreatureEventAIMgr
         CreatureEventAI_TextMap    m_CreatureEventAI_TextMap;
 };
 
-#define CreatureEAI_Mgr blizzlike::Singleton<CreatureEventAIMgr>::Instance()
+#define CreatureEAI_Mgr BlizzLike::Singleton<CreatureEventAIMgr>::Instance()
 #endif
 

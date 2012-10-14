@@ -40,6 +40,6 @@ class Master
         void clearOnlineAccounts();
 };
 
-#define sMaster blizzlike::Singleton<Master>::Instance()
+#define sMaster BlizzLike::Singleton<Master>::Instance()
 #endif
 

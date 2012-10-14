@@ -252,6 +252,6 @@ class BattleGroundMgr
         bool   m_Testing;
 };
 
-#define sBattleGroundMgr blizzlike::Singleton<BattleGroundMgr>::Instance()
+#define sBattleGroundMgr BlizzLike::Singleton<BattleGroundMgr>::Instance()
 #endif
 

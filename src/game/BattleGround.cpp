@@ -29,7 +29,7 @@
 #include "GridNotifiersImpl.h"
 #include "Formulas.h"
 
-namespace blizzlike
+namespace BlizzLike
 {
     class BattleGroundChatBuilder
     {
@@ -109,7 +109,7 @@ namespace blizzlike
             int32 i_arg1;
             int32 i_arg2;
     };
-}                                                           // namespace blizzlike
+}                                                           // namespace BlizzLike
 
 template<class Do>
 void BattleGround::BroadcastWorker(Do& _do)
@@ -858,7 +858,7 @@ uint32 BattleGround::GetBonusHonorFromKill(uint32 kills) const
 {
     // Variable kills means how many honorable kills you scored (so we need kills * honor_for_one_kill)
     uint32 maxLevel = std::min(GetMaxLevel(), 70U);
-    return blizzlike::Honor::hk_honor_at_level(maxLevel, float(kills));
+    return BlizzLike::Honor::hk_honor_at_level(maxLevel, float(kills));
 }
 
 uint32 BattleGround::GetBattlemasterEntry() const
@@ -1679,8 +1679,8 @@ bool BattleGround::AddSpiritGuide(uint32 type, float x, float y, float z, float 
 
 void BattleGround::SendMessageToAll(int32 entry, ChatMsg type, Player const* source)
 {
-    blizzlike::BattleGroundChatBuilder bg_builder(type, entry, source);
-    blizzlike::LocalizedPacketDo<blizzlike::BattleGroundChatBuilder> bg_do(bg_builder);
+    BlizzLike::BattleGroundChatBuilder bg_builder(type, entry, source);
+    BlizzLike::LocalizedPacketDo<BlizzLike::BattleGroundChatBuilder> bg_do(bg_builder);
     BroadcastWorker(bg_do);
 }
 
@@ -1689,8 +1689,8 @@ void BattleGround::PSendMessageToAll(int32 entry, ChatMsg type, Player const* so
     va_list ap;
     va_start(ap, source);
 
-    blizzlike::BattleGroundChatBuilder bg_builder(type, entry, source, &ap);
-    blizzlike::LocalizedPacketDo<blizzlike::BattleGroundChatBuilder> bg_do(bg_builder);
+    BlizzLike::BattleGroundChatBuilder bg_builder(type, entry, source, &ap);
+    BlizzLike::LocalizedPacketDo<BlizzLike::BattleGroundChatBuilder> bg_do(bg_builder);
     BroadcastWorker(bg_do);
 
     va_end(ap);
@@ -1698,8 +1698,8 @@ void BattleGround::PSendMessageToAll(int32 entry, ChatMsg type, Player const* so
 
 void BattleGround::SendMessage2ToAll(int32 entry, ChatMsg type, Player const* source, int32 arg1, int32 arg2)
 {
-    blizzlike::BattleGround2ChatBuilder bg_builder(type, entry, source, arg1, arg2);
-    blizzlike::LocalizedPacketDo<blizzlike::BattleGround2ChatBuilder> bg_do(bg_builder);
+    BlizzLike::BattleGround2ChatBuilder bg_builder(type, entry, source, arg1, arg2);
+    BlizzLike::LocalizedPacketDo<BlizzLike::BattleGround2ChatBuilder> bg_do(bg_builder);
     BroadcastWorker(bg_do);
 }
 

@@ -11043,8 +11043,8 @@ void Unit::UpdateReactives(uint32 p_time)
 Unit* Unit::SelectNearbyTarget(float dist) const
 {
     std::list<Unit *> targets;
-    blizzlike::AnyUnfriendlyUnitInObjectRangeCheck u_check(this, this, dist);
-    blizzlike::UnitListSearcher<blizzlike::AnyUnfriendlyUnitInObjectRangeCheck> searcher(targets, u_check);
+    BlizzLike::AnyUnfriendlyUnitInObjectRangeCheck u_check(this, this, dist);
+    BlizzLike::UnitListSearcher<BlizzLike::AnyUnfriendlyUnitInObjectRangeCheck> searcher(targets, u_check);
     VisitNearbyObject(dist, searcher);
 
     // remove current target
@@ -11500,7 +11500,7 @@ void Unit::RemoveAurasAtChanneledTarget(SpellEntry const* spellInfo, Unit * cast
 bool Unit::SetPosition(float x, float y, float z, float orientation, bool teleport)
 {
     // prevent crash when a bad coord is sent by the client
-    if (!blizzlike::IsValidMapCoord(x,y,z,orientation))
+    if (!BlizzLike::IsValidMapCoord(x,y,z,orientation))
     {
         sLog.outDebug("Unit::SetPosition(%f, %f, %f) .. bad coordinates!", x, y, z);
         return false;
@@ -12263,7 +12263,7 @@ void Unit::UpdateObjectVisibility(bool forced)
     {
         WorldObject::UpdateObjectVisibility(true);
         // call MoveInLineOfSight for nearby creatures
-        blizzlike::AIRelocationNotifier notifier(*this);
+        BlizzLike::AIRelocationNotifier notifier(*this);
         VisitNearbyObject(GetMap()->GetVisibilityDistance(), notifier);
     }
 }

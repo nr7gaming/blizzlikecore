@@ -23,7 +23,7 @@
 
 typedef void (* Destroyer)(void);
 
-namespace blizzlike
+namespace BlizzLike
 {
     void at_exit( void (*func)() );
 

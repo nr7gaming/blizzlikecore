@@ -685,6 +685,6 @@ class World
 
 extern uint32 realmID;
 
-#define sWorld blizzlike::Singleton<World>::Instance()
+#define sWorld BlizzLike::Singleton<World>::Instance()
 #endif
 

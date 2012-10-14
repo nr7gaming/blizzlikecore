@@ -4001,7 +4001,7 @@ diff --git a/src/shared/Log.h b/src/shared/Log.h
 index d718c35..45b99ae 100644
 --- a/src/shared/Log.h
 +++ b/src/shared/Log.h
-@@ -106,6 +106,7 @@ class Log : public blizzlike::Singleton<Log, blizzlike::ClassLevelLockable<Log,
+@@ -106,6 +106,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
          void outCommand( uint32 account, const char * str, ...) ATTR_PRINTF(3,4);
          void outRemote( const char * str, ... )                 ATTR_PRINTF(2,3);
          void outChat( const char * str, ... )                   ATTR_PRINTF(2,3);
@@ -4009,7 +4009,7 @@ index d718c35..45b99ae 100644
          void outArena( const char * str, ... )                  ATTR_PRINTF(2,3);
          void outCharDump( const char * str, uint32 account_id, uint32 guid, const char * name );
  
-@@ -136,6 +137,7 @@ class Log : public blizzlike::Singleton<Log, blizzlike::ClassLevelLockable<Log,
+@@ -136,6 +137,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
          FILE* dberLogfile;
          FILE* chatLogfile;
          FILE* arenaLogFile;

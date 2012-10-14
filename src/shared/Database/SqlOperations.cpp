@@ -82,7 +82,7 @@ void SqlQuery::Execute(Database *db)
 void SqlResultQueue::Update()
 {
     // execute the callbacks waiting in the synchronization queue
-    blizzlike::IQueryCallback* callback;
+    BlizzLike::IQueryCallback* callback;
     while (next(callback))
     {
         callback->Execute();
@@ -90,7 +90,7 @@ void SqlResultQueue::Update()
     }
 }
 
-bool SqlQueryHolder::Execute(blizzlike::IQueryCallback * callback, SqlDelayThread *thread, SqlResultQueue *queue)
+bool SqlQueryHolder::Execute(BlizzLike::IQueryCallback * callback, SqlDelayThread *thread, SqlResultQueue *queue)
 {
     if (!callback || !thread || !queue)
         return false;

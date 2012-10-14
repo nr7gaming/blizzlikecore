@@ -473,8 +473,8 @@ void ScriptedAI::DoTeleportAll(float fX, float fY, float fZ, float fO)
 Unit* ScriptedAI::DoSelectLowestHpFriendly(float fRange, uint32 uiMinHPDiff)
 {
     Unit* pUnit = NULL;
-    blizzlike::MostHPMissingInRange u_check(me, fRange, uiMinHPDiff);
-    blizzlike::UnitLastSearcher<blizzlike::MostHPMissingInRange> searcher(pUnit, u_check);
+    BlizzLike::MostHPMissingInRange u_check(me, fRange, uiMinHPDiff);
+    BlizzLike::UnitLastSearcher<BlizzLike::MostHPMissingInRange> searcher(pUnit, u_check);
     me->VisitNearbyObject(fRange, searcher);
 
     return pUnit;
@@ -483,8 +483,8 @@ Unit* ScriptedAI::DoSelectLowestHpFriendly(float fRange, uint32 uiMinHPDiff)
 std::list<Creature*> ScriptedAI::DoFindFriendlyCC(float fRange)
 {
     std::list<Creature*> pList;
-    blizzlike::FriendlyCCedInRange u_check(me, fRange);
-    blizzlike::CreatureListSearcher<blizzlike::FriendlyCCedInRange> searcher(pList, u_check);
+    BlizzLike::FriendlyCCedInRange u_check(me, fRange);
+    BlizzLike::CreatureListSearcher<BlizzLike::FriendlyCCedInRange> searcher(pList, u_check);
     me->VisitNearbyObject(fRange, searcher);
     return pList;
 }
@@ -492,8 +492,8 @@ std::list<Creature*> ScriptedAI::DoFindFriendlyCC(float fRange)
 std::list<Creature*> ScriptedAI::DoFindFriendlyMissingBuff(float fRange, uint32 uiSpellid)
 {
     std::list<Creature*> pList;
-    blizzlike::FriendlyMissingBuffInRange u_check(me, fRange, uiSpellid);
-    blizzlike::CreatureListSearcher<blizzlike::FriendlyMissingBuffInRange> searcher(pList, u_check);
+    BlizzLike::FriendlyMissingBuffInRange u_check(me, fRange, uiSpellid);
+    BlizzLike::CreatureListSearcher<BlizzLike::FriendlyMissingBuffInRange> searcher(pList, u_check);
     me->VisitNearbyObject(fRange, searcher);
     return pList;
 }
@@ -502,14 +502,14 @@ Player* ScriptedAI::GetPlayerAtMinimumRange(float fMinimumRange)
 {
     Player* pPlayer = NULL;
 
-    CellPair pair(blizzlike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
+    CellPair pair(BlizzLike::ComputeCellPair(me->GetPositionX(), me->GetPositionY()));
     Cell cell(pair);
     cell.data.Part.reserved = ALL_DISTRICT;
     cell.SetNoCreate();
 
-    blizzlike::PlayerAtMinimumRangeAway check(me, fMinimumRange);
-    blizzlike::PlayerSearcher<blizzlike::PlayerAtMinimumRangeAway> searcher(pPlayer, check);
-    TypeContainerVisitor<blizzlike::PlayerSearcher<blizzlike::PlayerAtMinimumRangeAway>, GridTypeMapContainer> visitor(searcher);
+    BlizzLike::PlayerAtMinimumRangeAway check(me, fMinimumRange);
+    BlizzLike::PlayerSearcher<BlizzLike::PlayerAtMinimumRangeAway> searcher(pPlayer, check);
+    TypeContainerVisitor<BlizzLike::PlayerSearcher<BlizzLike::PlayerAtMinimumRangeAway>, GridTypeMapContainer> visitor(searcher);
 
     cell.Visit(pair, visitor, *(me->GetMap()));
 

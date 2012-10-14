@@ -79,17 +79,17 @@ TotemAI::UpdateAI(const uint32 /*diff*/)
         !victim->isTargetableForAttack() || !i_totem.IsWithinDistInMap(victim, max_range) ||
         i_totem.IsFriendlyTo(victim) || !victim->isVisibleForOrDetect(&i_totem,false))
     {
-        CellPair p(blizzlike::ComputeCellPair(i_totem.GetPositionX(),i_totem.GetPositionY()));
+        CellPair p(BlizzLike::ComputeCellPair(i_totem.GetPositionX(),i_totem.GetPositionY()));
         Cell cell(p);
         cell.data.Part.reserved = ALL_DISTRICT;
 
         victim = NULL;
 
-        blizzlike::NearestAttackableUnitInObjectRangeCheck u_check(&i_totem, &i_totem, max_range);
-        blizzlike::UnitLastSearcher<blizzlike::NearestAttackableUnitInObjectRangeCheck> checker(victim, u_check);
+        BlizzLike::NearestAttackableUnitInObjectRangeCheck u_check(&i_totem, &i_totem, max_range);
+        BlizzLike::UnitLastSearcher<BlizzLike::NearestAttackableUnitInObjectRangeCheck> checker(victim, u_check);
 
-        TypeContainerVisitor<blizzlike::UnitLastSearcher<blizzlike::NearestAttackableUnitInObjectRangeCheck>, GridTypeMapContainer > grid_object_checker(checker);
-        TypeContainerVisitor<blizzlike::UnitLastSearcher<blizzlike::NearestAttackableUnitInObjectRangeCheck>, WorldTypeMapContainer > world_object_checker(checker);
+        TypeContainerVisitor<BlizzLike::UnitLastSearcher<BlizzLike::NearestAttackableUnitInObjectRangeCheck>, GridTypeMapContainer > grid_object_checker(checker);
+        TypeContainerVisitor<BlizzLike::UnitLastSearcher<BlizzLike::NearestAttackableUnitInObjectRangeCheck>, WorldTypeMapContainer > world_object_checker(checker);
 
         //TODO: Backport BLizzLike Add to CreatureAI field pointing to creature itself
         //cell.Visit(p, grid_object_checker,  *m_creature.GetMap(), *m_creature, max_range);

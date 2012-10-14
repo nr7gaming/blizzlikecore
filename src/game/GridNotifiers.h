@@ -34,7 +34,7 @@
 class Player;
 //class Map;
 
-namespace blizzlike
+namespace BlizzLike
 {
     struct VisibleNotifier
     {

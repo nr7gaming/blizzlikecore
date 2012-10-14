@@ -28,7 +28,7 @@
 
 template<class T>
 inline void
-blizzlike::VisibleNotifier::Visit(GridRefManager<T> &m)
+BlizzLike::VisibleNotifier::Visit(GridRefManager<T> &m)
 {
     for (typename GridRefManager<T>::iterator iter = m.begin(); iter != m.end(); ++iter)
     {
@@ -38,7 +38,7 @@ blizzlike::VisibleNotifier::Visit(GridRefManager<T> &m)
 }
 
 inline void
-blizzlike::ObjectUpdater::Visit(CreatureMapType &m)
+BlizzLike::ObjectUpdater::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator iter=m.begin(); iter != m.end(); ++iter)
         if (iter->getSource()->IsInWorld() && !iter->getSource()->isSpiritService())
@@ -50,7 +50,7 @@ blizzlike::ObjectUpdater::Visit(CreatureMapType &m)
 // WorldObject searchers & workers
 
 template<class Check>
-void blizzlike::WorldObjectSearcher<Check>::Visit(GameObjectMapType &m)
+void BlizzLike::WorldObjectSearcher<Check>::Visit(GameObjectMapType &m)
 {
     // already found
     if (i_object)
@@ -67,7 +67,7 @@ void blizzlike::WorldObjectSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectSearcher<Check>::Visit(PlayerMapType &m)
+void BlizzLike::WorldObjectSearcher<Check>::Visit(PlayerMapType &m)
 {
     // already found
     if (i_object)
@@ -84,7 +84,7 @@ void blizzlike::WorldObjectSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectSearcher<Check>::Visit(CreatureMapType &m)
+void BlizzLike::WorldObjectSearcher<Check>::Visit(CreatureMapType &m)
 {
     // already found
     if (i_object)
@@ -101,7 +101,7 @@ void blizzlike::WorldObjectSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectSearcher<Check>::Visit(CorpseMapType &m)
+void BlizzLike::WorldObjectSearcher<Check>::Visit(CorpseMapType &m)
 {
     // already found
     if (i_object)
@@ -118,7 +118,7 @@ void blizzlike::WorldObjectSearcher<Check>::Visit(CorpseMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectSearcher<Check>::Visit(DynamicObjectMapType &m)
+void BlizzLike::WorldObjectSearcher<Check>::Visit(DynamicObjectMapType &m)
 {
     // already found
     if (i_object)
@@ -135,7 +135,7 @@ void blizzlike::WorldObjectSearcher<Check>::Visit(DynamicObjectMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectListSearcher<Check>::Visit(PlayerMapType &m)
+void BlizzLike::WorldObjectListSearcher<Check>::Visit(PlayerMapType &m)
 {
     for (PlayerMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -143,7 +143,7 @@ void blizzlike::WorldObjectListSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectListSearcher<Check>::Visit(CreatureMapType &m)
+void BlizzLike::WorldObjectListSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -151,7 +151,7 @@ void blizzlike::WorldObjectListSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectListSearcher<Check>::Visit(CorpseMapType &m)
+void BlizzLike::WorldObjectListSearcher<Check>::Visit(CorpseMapType &m)
 {
     for (CorpseMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -159,7 +159,7 @@ void blizzlike::WorldObjectListSearcher<Check>::Visit(CorpseMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectListSearcher<Check>::Visit(GameObjectMapType &m)
+void BlizzLike::WorldObjectListSearcher<Check>::Visit(GameObjectMapType &m)
 {
     for (GameObjectMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -167,7 +167,7 @@ void blizzlike::WorldObjectListSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void blizzlike::WorldObjectListSearcher<Check>::Visit(DynamicObjectMapType &m)
+void BlizzLike::WorldObjectListSearcher<Check>::Visit(DynamicObjectMapType &m)
 {
     for (DynamicObjectMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -177,7 +177,7 @@ void blizzlike::WorldObjectListSearcher<Check>::Visit(DynamicObjectMapType &m)
 // Gameobject searchers
 
 template<class Check>
-void blizzlike::GameObjectSearcher<Check>::Visit(GameObjectMapType &m)
+void BlizzLike::GameObjectSearcher<Check>::Visit(GameObjectMapType &m)
 {
     // already found
     if (i_object)
@@ -194,7 +194,7 @@ void blizzlike::GameObjectSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void blizzlike::GameObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
+void BlizzLike::GameObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
 {
     for (GameObjectMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -204,7 +204,7 @@ void blizzlike::GameObjectLastSearcher<Check>::Visit(GameObjectMapType &m)
 }
 
 template<class Check>
-void blizzlike::GameObjectListSearcher<Check>::Visit(GameObjectMapType &m)
+void BlizzLike::GameObjectListSearcher<Check>::Visit(GameObjectMapType &m)
 {
     for (GameObjectMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -214,7 +214,7 @@ void blizzlike::GameObjectListSearcher<Check>::Visit(GameObjectMapType &m)
 // Unit searchers
 
 template<class Check>
-void blizzlike::UnitSearcher<Check>::Visit(CreatureMapType &m)
+void BlizzLike::UnitSearcher<Check>::Visit(CreatureMapType &m)
 {
     // already found
     if (i_object)
@@ -231,7 +231,7 @@ void blizzlike::UnitSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void blizzlike::UnitSearcher<Check>::Visit(PlayerMapType &m)
+void BlizzLike::UnitSearcher<Check>::Visit(PlayerMapType &m)
 {
     // already found
     if (i_object)
@@ -248,7 +248,7 @@ void blizzlike::UnitSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void blizzlike::UnitLastSearcher<Check>::Visit(CreatureMapType &m)
+void BlizzLike::UnitLastSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -258,7 +258,7 @@ void blizzlike::UnitLastSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void blizzlike::UnitLastSearcher<Check>::Visit(PlayerMapType &m)
+void BlizzLike::UnitLastSearcher<Check>::Visit(PlayerMapType &m)
 {
     for (PlayerMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -268,7 +268,7 @@ void blizzlike::UnitLastSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void blizzlike::UnitListSearcher<Check>::Visit(PlayerMapType &m)
+void BlizzLike::UnitListSearcher<Check>::Visit(PlayerMapType &m)
 {
     for (PlayerMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -276,7 +276,7 @@ void blizzlike::UnitListSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void blizzlike::UnitListSearcher<Check>::Visit(CreatureMapType &m)
+void BlizzLike::UnitListSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -286,7 +286,7 @@ void blizzlike::UnitListSearcher<Check>::Visit(CreatureMapType &m)
 // Creature searchers
 
 template<class Check>
-void blizzlike::CreatureSearcher<Check>::Visit(CreatureMapType &m)
+void BlizzLike::CreatureSearcher<Check>::Visit(CreatureMapType &m)
 {
     // already found
     if (i_object)
@@ -303,7 +303,7 @@ void blizzlike::CreatureSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void blizzlike::CreatureLastSearcher<Check>::Visit(CreatureMapType &m)
+void BlizzLike::CreatureLastSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
     {
@@ -313,7 +313,7 @@ void blizzlike::CreatureLastSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void blizzlike::CreatureListSearcher<Check>::Visit(CreatureMapType &m)
+void BlizzLike::CreatureListSearcher<Check>::Visit(CreatureMapType &m)
 {
     for (CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -321,7 +321,7 @@ void blizzlike::CreatureListSearcher<Check>::Visit(CreatureMapType &m)
 }
 
 template<class Check>
-void blizzlike::PlayerListSearcher<Check>::Visit(PlayerMapType &m)
+void BlizzLike::PlayerListSearcher<Check>::Visit(PlayerMapType &m)
 {
     for (PlayerMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         if (i_check(itr->getSource()))
@@ -329,7 +329,7 @@ void blizzlike::PlayerListSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Check>
-void blizzlike::PlayerSearcher<Check>::Visit(PlayerMapType &m)
+void BlizzLike::PlayerSearcher<Check>::Visit(PlayerMapType &m)
 {
     // already found
     if (i_object)
@@ -346,7 +346,7 @@ void blizzlike::PlayerSearcher<Check>::Visit(PlayerMapType &m)
 }
 
 template<class Builder>
-void blizzlike::LocalizedPacketDo<Builder>::operator()(Player* p)
+void BlizzLike::LocalizedPacketDo<Builder>::operator()(Player* p)
 {
     uint32 loc_idx = p->GetSession()->GetSessionDbLocaleIndex();
     uint32 cache_idx = loc_idx+1;
@@ -371,7 +371,7 @@ void blizzlike::LocalizedPacketDo<Builder>::operator()(Player* p)
 }
 
 template<class Builder>
-void blizzlike::LocalizedPacketListDo<Builder>::operator()(Player* p)
+void BlizzLike::LocalizedPacketListDo<Builder>::operator()(Player* p)
 {
     uint32 loc_idx = p->GetSession()->GetSessionDbLocaleIndex();
     uint32 cache_idx = loc_idx+1;

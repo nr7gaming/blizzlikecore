@@ -1235,7 +1235,7 @@ public:
     uint32 GetAHBplayerGUID() { return AHBplayerGUID; };
 };
 
-#define auctionbot blizzlike::Singleton<AuctionHouseBot>::Instance()
+#define auctionbot BlizzLike::Singleton<AuctionHouseBot>::Instance()
 
 #endif
 
