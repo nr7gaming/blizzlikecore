@@ -102,7 +102,7 @@ pEffect SpellEffects[TOTAL_SPELL_EFFECTS]=
     &Spell::EffectUnused,                                   // 39 SPELL_EFFECT_LANGUAGE
     &Spell::EffectDualWield,                                // 40 SPELL_EFFECT_DUAL_WIELD
     &Spell::EffectUnused,                                   // 41 SPELL_EFFECT_41 (old SPELL_EFFECT_SUMMON_WILD)
-    &Spell::EffectSummonClassPet,                                 // 42 SPELL_EFFECT_SUMMON_CLASS_PET
+    &Spell::EffectSummonClassPet,                           // 42 SPELL_EFFECT_SUMMON_CLASS_PET
     &Spell::EffectTeleUnitsFaceCaster,                      // 43 SPELL_EFFECT_TELEPORT_UNITS_FACE_CASTER
     &Spell::EffectLearnSkill,                               // 44 SPELL_EFFECT_SKILL_STEP
     &Spell::EffectAddHonor,                                 // 45 SPELL_EFFECT_ADD_HONOR                honor/pvp related
@@ -3476,10 +3476,10 @@ void Spell::EffectSummonChangeItem(SpellEffIndex effIndex)
 
 void Spell::EffectOpenSecretSafe(SpellEffIndex effIndex)
 {
-    EffectOpenLock(effIndex);                                  //no difference for now
+    EffectOpenLock(effIndex);                                      //no difference for now
 }
 
-void Spell::EffectProficiency(SpellEffIndex effIndex)
+void Spell::EffectProficiency(SpellEffIndex /*effIndex*/)
 {
     if (!unitTarget || unitTarget->GetTypeId() != TYPEID_PLAYER)
         return;
@@ -3489,12 +3489,12 @@ void Spell::EffectProficiency(SpellEffIndex effIndex)
     if (m_spellInfo->EquippedItemClass == 2 && !(p_target->GetWeaponProficiency() & subClassMask))
     {
         p_target->AddWeaponProficiency(subClassMask);
-        p_target->SendProficiency(uint8(0x02),p_target->GetWeaponProficiency());
+        p_target->SendProficiency(uint8(0x02), p_target->GetWeaponProficiency());
     }
     if (m_spellInfo->EquippedItemClass == 4 && !(p_target->GetArmorProficiency() & subClassMask))
     {
         p_target->AddArmorProficiency(subClassMask);
-        p_target->SendProficiency(uint8(0x04),p_target->GetArmorProficiency());
+        p_target->SendProficiency(uint8(0x04), p_target->GetArmorProficiency());
     }
 }
 
@@ -3793,20 +3793,20 @@ void Spell::EffectDispel(SpellEffIndex effIndex)
     }
 }
 
-void Spell::EffectDualWield(SpellEffIndex effIndex)
+void Spell::EffectDualWield(SpellEffIndex /*effIndex*/)
 {
     unitTarget->SetCanDualWield(true);
     if (unitTarget->GetTypeId() == TYPEID_UNIT)
         unitTarget->ToCreature()->UpdateDamagePhysical(OFF_ATTACK);
 }
 
-void Spell::EffectPull(SpellEffIndex effIndex)
+void Spell::EffectPull(SpellEffIndex /*effIndex*/)
 {
     // TODO: create a proper pull towards distract spell center for distract
     DEBUG_LOG("WORLD: Spell Effect DUMMY");
 }
 
-void Spell::EffectDistract(SpellEffIndex effIndex)
+void Spell::EffectDistract(SpellEffIndex /*effIndex*/)
 {
     // Check for possible target
     if (!unitTarget || unitTarget->isInCombat())
@@ -5902,7 +5902,7 @@ void Spell::EffectSummonObject(SpellEffIndex effIndex)
     m_caster->m_ObjectSlot[slot] = pGameObj->GetGUID();
 }
 
-void Spell::EffectResurrect(SpellEffIndex effIndex)
+void Spell::EffectResurrect(SpellEffIndex /*effIndex*/)
 {
     if (!unitTarget)
         return;
@@ -6385,7 +6385,7 @@ void Spell::EffectDurabilityDamagePCT(SpellEffIndex effIndex)
         unitTarget->ToPlayer()->DurabilityLoss(item, double(damage)/100.0f);
 }
 
-void Spell::EffectModifyThreatPercent(SpellEffIndex effIndex)
+void Spell::EffectModifyThreatPercent(SpellEffIndex /*effIndex*/)
 {
     if (!unitTarget)
         return;
