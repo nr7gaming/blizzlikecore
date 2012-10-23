@@ -171,7 +171,7 @@ public:
     // ctor
     OutdoorPvP();
     // dtor
-    ~OutdoorPvP();
+    virtual ~OutdoorPvP();
     // deletes all gos/creatures spawned by the pvp
     void DeleteSpawns();
 

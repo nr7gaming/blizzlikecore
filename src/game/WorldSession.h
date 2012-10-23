@@ -64,6 +64,7 @@ enum PartyResult
 class WorldSession
 {
     friend class CharacterHandler;
+
     public:
         WorldSession(uint32 id, WorldSocket *sock, uint32 sec, uint8 expansion, time_t mute_time, LocaleConstant locale);
         ~WorldSession();
@@ -218,6 +219,9 @@ class WorldSession
             return false;
         }
 
+    // Misc;
+    void SendPlaySpellVisual(ObjectGuid guid, uint32 spellArtKit);
+    void SendItemPageInfo(ItemPrototype* itemProto);
 
     public:                                                 // opcodes handlers
 
@@ -406,6 +410,7 @@ class WorldSession
         void HandleBuyBankSlotOpcode(WorldPacket& recvPacket);
         void HandleTrainerListOpcode(WorldPacket& recvPacket);
         void HandleTrainerBuySpellOpcode(WorldPacket& recvPacket);
+
         void HandlePetitionShowListOpcode(WorldPacket& recvPacket);
         void HandleGossipHelloOpcode(WorldPacket& recvPacket);
         void HandleGossipSelectOptionOpcode(WorldPacket& recvPacket);
@@ -453,7 +458,6 @@ class WorldSession
         void HandleMsgQueryNextMailtime(WorldPacket& recv_data);
         void HandleCancelChanneling(WorldPacket& recv_data);
 
-        void SendItemPageInfo(ItemPrototype *itemProto);
         void HandleSplitItemOpcode(WorldPacket& recvPacket);
         void HandleSwapInvItemOpcode(WorldPacket& recvPacket);
         void HandleDestroyItemOpcode(WorldPacket& recvPacket);

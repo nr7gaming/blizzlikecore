@@ -3215,17 +3215,6 @@ void Spell::SendResurrectRequest(Player* target)
     target->GetSession()->SendPacket(&data);
 }
 
-void Spell::SendPlaySpellVisual(uint32 SpellID)
-{
-    if (m_caster->GetTypeId() != TYPEID_PLAYER)
-        return;
-
-    WorldPacket data(SMSG_PLAY_SPELL_VISUAL, 12);
-    data << uint64(m_caster->GetGUID());
-    data << uint32(SpellID);                                // spell visual id?
-    m_caster->ToPlayer()->GetSession()->SendPacket(&data);
-}
-
 void Spell::TakeCastItem()
 {
     if (!m_CastItem || m_caster->GetTypeId() != TYPEID_PLAYER)
@@ -3510,6 +3499,10 @@ uint8 Spell::CanCast(bool strict)
             (IsAutoRepeat() || (m_spellInfo->AuraInterruptFlags & AURA_INTERRUPT_FLAG_NOT_SEATED) != 0))
             return SPELL_FAILED_MOVING;
     }
+
+    // Spells like Disengage are allowed only in combat
+    if (!m_caster->isInCombat() && m_spellInfo->HasAttribute(SPELL_ATTR_STOP_ATTACK_TARGET) && m_spellInfo->HasAttribute(SPELL_ATTR_EX2_UNK26))
+        return SPELL_FAILED_CASTER_AURASTATE;
 
     Unit *target = m_targets.getUnitTarget();
 
@@ -5140,8 +5133,8 @@ bool Spell::CheckTargetCreatureType(Unit* target) const
         spellCreatureTargetMask = 0x7FF;
     }
 
-    // Dismiss Pet and Taming Lesson skipped
-    if (m_spellInfo->Id == 2641 || m_spellInfo->Id == 23356)
+    // Dismiss Pet and Taming Lesson and Control Roskipped
+    if (m_spellInfo->Id == 2641 || m_spellInfo->Id == 23356 || m_spellInfo->Id == 30009)
         spellCreatureTargetMask =  0;
 
     if (spellCreatureTargetMask)
