@@ -369,7 +369,7 @@ bool Master::_StartDB()
     // Initialise the world database
     if (!WorldDatabase.Initialize(dbstring.c_str()))
     {
-        sLog.outError("Cannot connect to world database %s",dbstring.c_str());
+        sLog.outError("BC> Can't connect to database at %s", dbstring.c_str());
         sleep(10);
         return false;
     }

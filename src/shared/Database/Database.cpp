@@ -178,7 +178,7 @@ bool Database::Initialize(const char *infoString)
     }
     else
     {
-        sLog.outError("Could not connect to MySQL database at %s: %s\n", host.c_str(),mysql_error(mysqlInit));
+        sLog.outError("BC> %s", mysql_error(mysqlInit));
         mysql_close(mysqlInit);
         sleep(10);
         return false;

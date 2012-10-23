@@ -342,7 +342,7 @@ bool StartDB()
     sLog.outString("Database: %s", dbstring.c_str() );
     if (!LoginDatabase.Initialize(dbstring.c_str()))
     {
-        sLog.outError("Cannot connect to database");
+        sLog.outError("BC> Can't connect to database at %s", dbstring.c_str());
         sleep(10);
         return false;
     }
