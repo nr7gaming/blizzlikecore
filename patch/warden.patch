@@ -3707,7 +3707,7 @@ index bf7df10..f6ee1bb 100644
  {
      // need prevent do internal far teleports in handlers because some handlers do lot steps
 diff --git a/src/game/WorldSession.h b/src/game/WorldSession.h
-index aaa81de..1d3181f 100644
+index 6e862ea..3ffccba 100644
 --- a/src/game/WorldSession.h
 +++ b/src/game/WorldSession.h
 @@ -21,6 +21,7 @@
@@ -3718,7 +3718,7 @@ index aaa81de..1d3181f 100644
  
  struct ItemPrototype;
  struct AuctionEntry;
-@@ -91,6 +92,8 @@ class WorldSession
+@@ -92,6 +93,8 @@ class WorldSession
          void SetPlayer(Player *plr) { _player = plr; }
          uint8 Expansion() const { return m_expansion; }
  
@@ -3727,7 +3727,7 @@ index aaa81de..1d3181f 100644
          // Session in auth.queue currently
          void SetInQueue(bool state) { m_inQueue = state; }
  
-@@ -660,6 +663,9 @@ class WorldSession
+@@ -664,6 +667,9 @@ class WorldSession
          uint32 _accountId;
          uint8 m_expansion;
  
