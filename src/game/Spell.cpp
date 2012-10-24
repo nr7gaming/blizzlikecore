@@ -2483,8 +2483,8 @@ void Spell::_handle_immediate_phase()
         if (m_spellInfo->Effect[j] == 0)
             continue;
 
-        // apply Send Event effect to ground in case empty target lists
-        if (m_spellInfo->Effect[j] == SPELL_EFFECT_SEND_EVENT && !HaveTargetsForEffect(j))
+        // apply Send Event and spawn gameobject effect to ground in case empty target lists
+        if ((m_spellInfo->Effect[j] == SPELL_EFFECT_SEND_EVENT || m_spellInfo->Effect[j] == SPELL_EFFECT_TRANS_DOOR) && !HaveTargetsForEffect(j))
         {
             HandleEffects(NULL, NULL, NULL, j);
             continue;
