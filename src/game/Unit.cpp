@@ -7010,7 +7010,7 @@ void Unit::SetMinion(Minion *minion, bool apply)
             {
                 if (oldPet != minion && (oldPet->isPet() || minion->isPet() || oldPet->GetEntry() != minion->GetEntry()))
                 {
-                    // remove existing minion pet
+                    // Remove existing minion pet
                     if (oldPet->isPet())
                         ((Pet*)oldPet)->Remove(PET_SAVE_AS_CURRENT);
                     else
@@ -7766,10 +7766,11 @@ int32 Unit::SpellBaseDamageBonusForVictim(SpellSchoolMask schoolMask, Unit *pVic
 
 bool Unit::isSpellCrit(Unit *pVictim, SpellEntry const *spellProto, SpellSchoolMask schoolMask, WeaponAttackType attackType)
 {
-    if (IS_CREATURE_GUID(GetGUID())) // creatures cannot spell crit in TBC
+    // Creatures (except totems, pets) can't crit with spells at all
+    if (IS_CREATURE_GUID(GetGUID()) && !(ToCreature()->isTotem()) && !(ToCreature()->isPet()))
         return false;
 
-    // not critting spell
+    // Not critting spell
     if ((spellProto->AttributesEx2 & SPELL_ATTR_EX2_CANT_CRIT))
         return false;
 
