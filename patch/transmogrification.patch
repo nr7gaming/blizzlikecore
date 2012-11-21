@@ -380,7 +380,7 @@ index b4be73d..31bab94 100644
      sLog.outString("Loading Creature Model Based Info Data...");
      objmgr.LoadCreatureModelInfo();
 diff --git a/src/scripts/World/npcs_special.cpp b/src/scripts/World/npcs_special.cpp
-index 888e409..0512d56 100644
+index be13e2f..504e195 100644
 --- a/src/scripts/World/npcs_special.cpp
 +++ b/src/scripts/World/npcs_special.cpp
 @@ -40,6 +40,8 @@ EndContentData */
@@ -392,7 +392,7 @@ index 888e409..0512d56 100644
  
  /*######
  ## npc_lunaclaw_spirit
-@@ -1523,6 +1525,245 @@ bool GossipSelect_npc_spiritofazuregos(Player *player, Creature *creature, uint3
+@@ -1508,6 +1510,245 @@ bool GossipSelect_npc_spiritofazuregos(Player *player, Creature *creature, uint3
          return true; 
  }
  
@@ -638,7 +638,7 @@ index 888e409..0512d56 100644
  void AddSC_npcs_special()
  {
      Script *newscript;
-@@ -1613,12 +1854,18 @@ void AddSC_npcs_special()
+@@ -1598,12 +1839,18 @@ void AddSC_npcs_special()
      newscript->Name = "mob_mojo";
      newscript->GetAI = &GetAI_mob_mojo;
      newscript->RegisterSelf();
