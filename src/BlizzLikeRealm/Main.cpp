@@ -182,7 +182,7 @@ extern int main(int argc, char **argv)
 
     sLog.outBasic("Max allowed open files is %d", ACE::max_handles());
 
-    // realmd PID file creation
+    // BlizzLikeRealm PID file creation
     std::string pidfile = sConfig.GetStringDefault("PidFile", "");
     if (!pidfile.empty())
     {
@@ -223,7 +223,7 @@ extern int main(int argc, char **argv)
 
     if (acceptor.open(bind_addr, ACE_Reactor::instance(), ACE_NONBLOCK) == -1)
     {
-        sLog.outError("realmd can not bind to %s:%d", bind_ip.c_str(), rmport);
+        sLog.outError("BlizzLikeRealm can not bind to %s:%d", bind_ip.c_str(), rmport);
         return 1;
     }
 
@@ -247,7 +247,7 @@ extern int main(int argc, char **argv)
 
                 if (!curAff )
                 {
-                    sLog.outError("Processors marked in UseProcessors bitmask (hex) %x not accessible for realmd. Accessible processors bitmask (hex): %x",Aff,appAff);
+                    sLog.outError("Processors marked in UseProcessors bitmask (hex) %x not accessible for BlizzLikeRealm. Accessible processors bitmask (hex): %x",Aff,appAff);
                 }
                 else
                 {
@@ -265,9 +265,9 @@ extern int main(int argc, char **argv)
         if (Prio)
         {
             if (SetPriorityClass(hProcess,HIGH_PRIORITY_CLASS))
-                sLog.outString("realmd process priority class set to HIGH");
+                sLog.outString("BlizzLikeRealm process priority class set to HIGH");
             else
-                sLog.outError("ERROR: Can't set realmd process priority class.");
+                sLog.outError("ERROR: Can't set BlizzLikeRealm process priority class.");
             sLog.outString();
         }
     }
