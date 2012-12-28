@@ -67,7 +67,7 @@ namespace BlizzLike
                 data << uint64(target_guid);
                 data << uint32(strlen(text)+1);
                 data << text;
-                data << uint8(i_source ? i_source->chatTag() : uint8(0));
+                data << uint8(i_source ? i_source->GetChatTag() : CHAT_TAG_NONE);
             }
 
             ChatMsg i_msgtype;
@@ -99,7 +99,7 @@ namespace BlizzLike
                 data << uint64(target_guid);
                 data << uint32(strlen(str)+1);
                 data << str;
-                data << uint8(i_source ? i_source->chatTag() : uint8(0));
+                data << uint8(i_source ? i_source->GetChatTag() : CHAT_TAG_NONE);
             }
         private:
 
