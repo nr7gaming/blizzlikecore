@@ -24,9 +24,9 @@ index 9927bb6..2334fe4 100644
 +#                 0 - (Disabled)
 +#
 +#    Anticheat.Movement.GmLevel
-+#        Only accounts that are below this gm-level or exact at the same, are 
-+#         reported for cheating.
-+#        Default: 0 - (Only normal Players)
++#        Cheaters are detected only below this gm-level  
++#         or exact at the same.
++#        Default: 0 - (Only Players)
 +#
 +###############################################################################
 +

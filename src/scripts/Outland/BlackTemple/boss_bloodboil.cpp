@@ -268,7 +268,7 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
                 FelGeyserTimer = 30000;
             } else FelGeyserTimer -= diff;
 
-            if (Unit *pTarget = me->getVictim()) // getVictim can become invalid during update /? probably can :P 
+            if (Unit *pTarget = me->getVictim()) // getVictim can become invalid during update /? probably can :P/> 
                 if (pTarget->IsImmunedToDamage(SPELL_SCHOOL_MASK_ALL,true)) 
                     me->getThreatManager().modifyThreatPercent(pTarget,-100); 
         }

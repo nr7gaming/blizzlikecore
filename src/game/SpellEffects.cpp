@@ -2218,6 +2218,44 @@ void Spell::EffectTriggerSpell(SpellEffIndex effIndex)
             m_TriggerSpells.push_back(spellInfo);
             return;
         }
+
+       // Spell 22904 for quest 7509
+       case 22904:
+       {
+               CellPair p(BlizzLike::ComputeCellPair(m_caster->GetPositionX(), m_caster->GetPositionY()));
+               Cell cell(p);
+               cell.data.Part.reserved = ALL_DISTRICT;
+
+               GameObject* ok = NULL;
+               BlizzLike::GameObjectFocusCheck go_check(m_caster,1223);
+               BlizzLike::GameObjectSearcher<BlizzLike::GameObjectFocusCheck> checker(ok,go_check);
+
+               TypeContainerVisitor<BlizzLike::GameObjectSearcher<BlizzLike::GameObjectFocusCheck>, GridTypeMapContainer > object_checker(checker);
+                
+                Map& map = *m_caster->GetMap();
+               cell.Visit(p, object_checker, map, *m_caster, map.GetVisibilityDistance());
+   
+               if(!ok)
+               return;
+
+                // Need fix otherwise the core crash
+               Unit* owner = ok->GetOwner();
+                
+               if (!owner) //Obsolete when the GetOwner() function will fix
+                {
+                        Player* player = NULL;
+               BlizzLike::AnyPlayerInObjectRangeCheck checker(m_caster, m_caster->GetMap()->GetVisibilityDistance());
+               BlizzLike::PlayerSearcher<BlizzLike::AnyPlayerInObjectRangeCheck> searcher(player, checker);
+               m_caster->VisitNearbyWorldObject(m_caster->GetMap()->GetVisibilityDistance(), searcher);
+               owner = player;
+                }
+
+                GameObject* go = owner->SummonGameObject(179562, ok->GetPositionX(), ok->GetPositionY(), ok->GetPositionZ(), ok->GetOrientation(), 0, 0, 0, 0, ok->GetRespawnTime()-time(NULL));
+               go->SetOwnerGUID(owner->GetGUID());
+               owner->RemoveGameObject(ok, true);
+                return;
+       }
+
         // just skip
         case 23770:                                         // Sayge's Dark Fortune of *
             // not exist, common cooldown can be implemented in scripts if need.
@@ -6310,7 +6348,7 @@ void Spell::EffectSummonDeadPet(SpellEffIndex effIndex)
     pet->SetHealth(uint32(pet->GetMaxHealth()*(float(damage)/100)));
 
     //pet->AIM_Initialize();
-    // _player->PetSpellInitialize(); -- action bar not removed at death and not required send at revive
+    _player->PetSpellInitialize(); // -- action bar not removed at death and not required send at revive. new troble, non-controll pet.
     pet->SavePetToDB(PET_SAVE_AS_CURRENT);
 }
 
