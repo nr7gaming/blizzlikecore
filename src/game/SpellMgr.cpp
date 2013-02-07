@@ -1472,8 +1472,8 @@ void SpellMgr::LoadSpellThreats()
 
     sSpellThreatStore.Load();
 
-    sLog.outString(">> Loaded %u aggro generating spells", sSpellThreatStore.RecordCount);
     sLog.outString();
+    sLog.outString(">> Loaded %u aggro generating spells", sSpellThreatStore.RecordCount);
 }
 
 void SpellMgr::LoadSpellEnchantProcData()
@@ -1523,6 +1523,7 @@ void SpellMgr::LoadSpellEnchantProcData()
         ++count;
     } while (result->NextRow());
 
+    sLog.outString();
     sLog.outString(">> Loaded %u enchant proc data definitions", count);
 }
 

@@ -395,7 +395,6 @@ void PoolHandler::LoadFromDB()
 
     // Creatures
 
-    sLog.outString();
     sLog.outString("Loading Creatures Pooling Data...");
 
     mPoolCreatureGroups.resize(max_pool_id + 1);
