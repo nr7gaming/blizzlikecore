@@ -3435,7 +3435,30 @@ bool Unit::AddAura(Aura *Aur)
     SpellEntry const* aurSpellInfo = Aur->GetSpellProto();
 
     spellEffectPair spair = spellEffectPair(Aur->GetId(), Aur->GetEffIndex());
-
+    if(this->HasAura(1044,0))
+    {
+        if(aurSpellInfo->EffectApplyAuraName[0] == SPELL_AURA_MOD_DECREASE_SPEED || aurSpellInfo->EffectApplyAuraName[1] == SPELL_AURA_MOD_DECREASE_SPEED || aurSpellInfo->EffectApplyAuraName[2] == SPELL_AURA_MOD_DECREASE_SPEED)
+        {
+            delete Aur;
+            return false;
+        }
+    }
+    if(this->HasAura(2895,1))
+    {
+        if(Aur->GetId() == 2895)
+        {
+            delete Aur;
+            return false;
+        }
+    }
+    // Maim Interrupt
+    if(aurSpellInfo->Id == 22570)
+    {
+        Unit* target = Aur->GetTarget();
+        Unit* caster = Aur->GetCaster();
+           if(caster->HasAura(44835,0))
+           CastSpell(target,32747,true,0,0,0);
+    }
     bool stackModified=false;
     // passive and persistent auras can stack with themselves any number of times
     if (!Aur->IsPassive() && !Aur->IsPersistent())
@@ -5255,13 +5278,6 @@ bool Unit::HandleDummyAuraProc(Unit *pVictim, uint32 damage, Aura* triggeredByAu
                         return false;
 
                     target = this;
-                    break;
-                }
-                // Maim Interrupt
-                case 44835:
-                {
-                    // Deadly Interrupt Effect
-                    triggered_spell_id = 32747;
                     break;
                 }
             }
@@ -10189,6 +10205,12 @@ void CharmInfo::InitCharmCreateSpells()
                 newstate = ACT_DISABLED;
             else
                 newstate = ACT_CAST;
+
+            if(spellId == 31707)
+            {
+                newstate = ACT_ENABLED;
+                ToggleCreatureAutocast(spellId, true);
+            }
 
             AddSpellToActionBar(0, spellId, newstate);
         }

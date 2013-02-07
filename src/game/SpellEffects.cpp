@@ -606,7 +606,8 @@ void Spell::SpellDamageSchoolDmg(SpellEffIndex effIndex)
                 //Explosive Trap Effect
                 else if (m_spellInfo->SpellFamilyFlags & 0x00000004)
                 {
-                    damage += int32(m_caster->GetTotalAttackPowerValue(RANGED_ATTACK)*0.1);
+                    if (m_originalCaster)
+                    damage += int32(m_originalCaster->GetTotalAttackPowerValue(RANGED_ATTACK)*0.1);
                 }
                 break;
             }
@@ -1754,7 +1755,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                             sLog.outError("Spell::EffectDummy: Spell 28598 triggered by unhandled spell %u",m_triggeredByAuraSpell->Id);
                             return;
                     }
-                    m_caster->CastSpell(unitTarget, spellid, true, NULL);
+                    unitTarget->CastSpell(unitTarget, spellid, true, NULL);
                     return;
                 }
             }
@@ -6366,7 +6367,12 @@ void Spell::EffectDestroyAllTotems(SpellEffIndex effIndex)
             uint32 spell_id = totem->GetUInt32Value(UNIT_CREATED_BY_SPELL);
             SpellEntry const* spellInfo = sSpellStore.LookupEntry(spell_id);
             if (spellInfo)
-                mana += spellInfo->manaCost * damage / 100;
+    {
+    float cost = spellInfo->manaCost;
+    if(spellInfo->ManaCostPercentage)
+       cost = spellInfo->ManaCostPercentage * m_caster->GetCreateMana() / 100;
+               mana += cost * damage / 100.0f;
+   }
             ((Totem*)totem)->UnSummon();
         }
     }

@@ -124,7 +124,7 @@ int Master::Run()
     sLog.outString("         B: ..:BBBB       B:  .B      BB .B ");
     sLog.outString("          BBBBB            B.  :B     B.: B ");
     sLog.outString("                            B.  :BB    BB:BB");
-    sLog.outString("     BlizzLikeCore 2012(c)   BB   BBBBBBB B ");
+    sLog.outString("       BlizzLike Core        BB   BBBBBBB B ");
     sLog.outString("  <blizzlike.servegame.com>    BBB.    .BB  ");
     sLog.outString("                                 BBBBBBBB   ");
     sLog.outString(" ");
