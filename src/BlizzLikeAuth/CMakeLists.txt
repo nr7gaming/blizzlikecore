@@ -10,14 +10,14 @@
 
 file(GLOB sources_localdir *.cpp *.h)
 
-set(authserver_SRCS
-  ${authserver_SRCS}
+set(AUTHSERVER_SRCS
+  ${AUTHSERVER_SRCS}
   ${sources_localdir}
 )
 
 if( WIN32 )
-  set(authserver_SRCS
-    ${authserver_SRCS}
+  set(AUTHSERVER_SRCS
+    ${AUTHSERVER_SRCS}
     ${sources_Debugging}
     authserver.rc
   )
@@ -33,10 +33,10 @@ include_directories(
   ${OPENSSL_INCLUDE_DIR}
 )
 
-set(authserver_LINK_FLAGS "")
+set(AUTHSERVER_LINK_FLAGS "")
 
 add_executable(authserver
-  ${authserver_SRCS}
+  ${AUTHSERVER_SRCS}
 )
 
 add_dependencies(authserver revision.h)
@@ -46,14 +46,14 @@ if( NOT WIN32 )
 endif()
 
 if( UNIX )
-  set(authserver_LINK_FLAGS "-pthread ${authserver_LINK_FLAGS}")
+  set(AUTHSERVER_LINK_FLAGS "-pthread ${AUTHSERVER_LINK_FLAGS}")
 endif()
 
 if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-  set(authserver_LINK_FLAGS "-framework Carbon ${authserver_LINK_FLAGS}")
+  set(AUTHSERVER_LINK_FLAGS "-framework Carbon ${AUTHSERVER_LINK_FLAGS}")
 endif()
 
-set_target_properties(authserver PROPERTIES LINK_FLAGS "${authserver_LINK_FLAGS}")
+set_target_properties(authserver PROPERTIES LINK_FLAGS "${AUTHSERVER_LINK_FLAGS}")
 
 target_link_libraries(authserver
   shared

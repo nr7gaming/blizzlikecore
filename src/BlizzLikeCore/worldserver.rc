@@ -68,12 +68,12 @@ BEGIN
     BEGIN
         BLOCK "080004b0"
         BEGIN
-            VALUE "FileDescription", "BlizzLikeCore"
+            VALUE "FileDescription", "worldserver"
             VALUE "FileVersion", STRFILEVER
-            VALUE "InternalName", "BlizzLikeCore"
+            VALUE "InternalName", "worldserver"
             VALUE "LegalCopyright", LEGALCOPYRIGHT
-            VALUE "OriginalFilename", "BlizzLikeCore.exe"
-            VALUE "ProductName", "BlizzLikeCore"
+            VALUE "OriginalFilename", "worldserver.exe"
+            VALUE "ProductName", "worldserver"
             VALUE "ProductVersion", STRPRODUCTVER
         END
     END

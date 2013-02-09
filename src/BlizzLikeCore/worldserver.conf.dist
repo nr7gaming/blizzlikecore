@@ -279,7 +279,7 @@ MapUpdate.Threads = 1
 #
 #    LogFile
 #        Logfile name
-#        Default: "server.log"
+#        Default: "world.log"
 #                 "" - Empty name disable creating log file
 #
 #    ChatLogFile
@@ -475,7 +475,7 @@ MapUpdate.Threads = 1
 LogSQL = 1
 PidFile = ""
 LogLevel = 1
-LogFile = "server.log"
+LogFile = "world.log"
 ChatLogFile = "chat.log"
 LogTimestamp = 0
 LogFileLevel = 0

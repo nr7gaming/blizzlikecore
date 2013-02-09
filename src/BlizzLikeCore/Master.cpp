@@ -157,7 +157,7 @@ int Master::Run()
     ACE_Based::Thread world_thread(new WorldRunnable);
     world_thread.setPriority(ACE_Based::Highest);
 
-    // set realmbuilds depend on BlizzLikeCore expected builds, and set server online
+    // set realmbuilds depend on worldserver expected builds, and set server online
     std::string builds = AcceptableClientBuildsListStr();
     LoginDatabase.escape_string(builds);
     LoginDatabase.PExecute("UPDATE realmlist SET realmflags = realmflags & ~(%u), population = 0, realmbuilds = '%s'  WHERE id = '%d'", REALM_FLAG_OFFLINE, builds.c_str(), realmID);
@@ -193,7 +193,7 @@ int Master::Run()
 
                 if (!curAff)
                 {
-                    sLog.outError("Processors marked in UseProcessors bitmask (hex) %x not accessible for BlizzLikeCore. Accessible processors bitmask (hex): %x",Aff,appAff);
+                    sLog.outError("Processors marked in UseProcessors bitmask (hex) %x not accessible for worldserver. Accessible processors bitmask (hex): %x",Aff,appAff);
                 }
                 else
                 {
@@ -211,9 +211,9 @@ int Master::Run()
         if (Prio)
         {
             if (SetPriorityClass(hProcess,HIGH_PRIORITY_CLASS))
-                sLog.outString("BlizzLikeCore process priority class set to HIGH");
+                sLog.outString("WorldServer process priority class set to HIGH");
             else
-                sLog.outError("ERROR: Can't set BlizzLikeCore process priority class.");
+                sLog.outError("ERROR: Can't set WorldServer process priority class.");
             sLog.outString();
         }
     }

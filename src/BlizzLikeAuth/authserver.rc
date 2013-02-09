@@ -68,12 +68,12 @@ BEGIN
     BEGIN
         BLOCK "080004b0"
         BEGIN
-            VALUE "FileDescription", "BlizzLikeAuth"
+            VALUE "FileDescription", "authserver"
             VALUE "FileVersion", STRFILEVER
-            VALUE "InternalName", "BlizzLikeAuth"
+            VALUE "InternalName", "authserver"
             VALUE "LegalCopyright", LEGALCOPYRIGHT
-            VALUE "OriginalFilename", "BlizzLikeAuth.exe"
-            VALUE "ProductName", "BlizzLikeAuth"
+            VALUE "OriginalFilename", "authserver.exe"
+            VALUE "ProductName", "authserver"
             VALUE "ProductVersion", STRPRODUCTVER
         END
     END
