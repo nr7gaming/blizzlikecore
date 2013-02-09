@@ -24,7 +24,7 @@ index 9927bb6..10f70ba 100644
 +#                 0 - (Disabled)
 +#
 +#    Anticheat.Movement.GmLevel
-+#        Detection occurs in GM level equal and below this  
++#        Detection occurs below and at the same GmLevel
 +#        Default: 0 - (Only Players)
 +#
 +###############################################################################
