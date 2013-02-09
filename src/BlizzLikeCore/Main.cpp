@@ -32,12 +32,12 @@
 #endif //_BLIZZLIKE_CORE_CONFVER
 
 #ifndef _BLIZZLIKE_CORE_CONFIG
-# define _BLIZZLIKE_CORE_CONFIG  "blizzlikecore.conf"
+# define _BLIZZLIKE_CORE_CONFIG  "worldserver.conf"
 #endif //_BLIZZLIKE_CORE_CONFIG
 
 #ifdef _WIN32
 #include "ServiceWin32.h"
-char serviceName[] = "blizzlike-core";
+char serviceName[] = "worldserver";
 char serviceLongName[] = "blizzlike core service";
 char serviceDescription[] = "blizzlike core service";
 /*

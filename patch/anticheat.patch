@@ -6,10 +6,10 @@ index 0000000..4dc2128
 @@ -0,0 +1,2 @@
 +-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
 +INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s is kicked for use Teleport to Plane Hack.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s produces a anticheat alarm for %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-diff --git a/src/BlizzLikeCore/blizzlikecore.conf.dist b/src/BlizzLikeCore/blizzlikecore.conf.dist
+diff --git a/src/BlizzLikeCore/worldserver.conf.dist b/src/BlizzLikeCore/worldserver.conf.dist
 index 9927bb6..10f70ba 100644
---- a/src/BlizzLikeCore/blizzlikecore.conf.dist
-+++ b/src/BlizzLikeCore/blizzlikecore.conf.dist
+--- a/src/BlizzLikeCore/worldserver.conf.dist
++++ b/src/BlizzLikeCore/worldserver.conf.dist
 @@ -2034,3 +2034,20 @@ DuelMod.Cooldowns = 0
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0

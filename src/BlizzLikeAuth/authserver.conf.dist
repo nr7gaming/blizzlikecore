@@ -1,5 +1,5 @@
 #################################################
-# BlizzLike Core Auth Server configuration file #
+# BLIZZLIKE CORE AUTH SERVER CONFIGURATION FILE #
 #################################################
 
 [authserver]
@@ -7,7 +7,7 @@ ConfVersion=20120921
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
-# auth SETTINGS
+# AUTH SETTINGS
 #
 #    LoginDatabaseInfo
 #        Database connection settings for the realm server.
