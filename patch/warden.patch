@@ -1,8 +1,8 @@
-diff --git a/sql/warden/realmd_warden.sql b/sql/warden/realmd_warden.sql
+diff --git a/sql/warden/auth_warden.sql b/sql/warden/auth_warden.sql
 new file mode 100644
 index 0000000..6712b9d
 --- /dev/null
-+++ b/sql/warden/realmd_warden.sql
++++ b/sql/warden/auth_warden.sql
 @@ -0,0 +1,3 @@
 +-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
 +ALTER TABLE `account` 

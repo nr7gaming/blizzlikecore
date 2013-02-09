@@ -161,7 +161,7 @@ extern int main(int argc, char **argv)
     sLog.outDetail("Using ACE: %s", ACE_VERSION);
 
     // and run the 'Master'
-    // todo - Why do we need this 'Master'? Can't all of this be in the Main as for Realmd?
+    // todo - Why do we need this 'Master'? Can't all of this be in the Main as for auth?
     return sMaster.Run();
 
     // at sMaster return function exist with codes
