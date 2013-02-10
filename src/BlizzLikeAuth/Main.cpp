@@ -33,13 +33,13 @@
 #include <ace/SOCK_Acceptor.h>
 
 // Format is YYYYMMDD (change in the conf file)
-#ifndef _BLIZZLIKE_REALM_CONFVER
-# define _BLIZZLIKE_REALM_CONFVER 20120921
-#endif //_BLIZZLIKE_REALM_CONFVER
+#ifndef _BLIZZLIKE_AUTH_CONFVER
+# define _BLIZZLIKE_AUTH_CONFVER 20130210
+#endif //_BLIZZLIKE_AUTH_CONFVER
 
-#ifndef _BLIZZLIKE_REALM_CONFIG
-# define _BLIZZLIKE_REALM_CONFIG  "authserver.conf"
-#endif //_BLIZZLIKE_REALM_CONFIG
+#ifndef _BLIZZLIKE_AUTH_CONFIG
+# define _BLIZZLIKE_AUTH_CONFIG  "authserver.conf"
+#endif //_BLIZZLIKE_AUTH_CONFIG
 
 #ifdef _WIN32
 #include "ServiceWin32.h"
@@ -89,7 +89,7 @@ void usage(const char *prog)
 extern int main(int argc, char **argv)
 {
     // Command line parsing
-    char const* cfg_file = _BLIZZLIKE_REALM_CONFIG;
+    char const* cfg_file = _BLIZZLIKE_AUTH_CONFIG;
 
 #ifdef _WIN32
     char const *options = ":c:s:";
@@ -164,7 +164,7 @@ extern int main(int argc, char **argv)
 
     // Check the version of the configuration file
     uint32 confVersion = sConfig.GetIntDefault("ConfVersion", 0);
-    if (confVersion != _BLIZZLIKE_REALM_CONFVER)
+    if (confVersion != _BLIZZLIKE_AUTH_CONFVER)
     {
         sLog.outError(" WARNING:");
         sLog.outError(" Your %s file is out of date.", cfg_file);
@@ -216,7 +216,7 @@ extern int main(int argc, char **argv)
     // Launch the listening network socket
     ACE_Acceptor<AuthSocket, ACE_SOCK_Acceptor> acceptor;
 
-    uint16 rmport = sConfig.GetIntDefault("RealmServerPort", DEFAULT_REALMSERVER_PORT);
+    uint16 rmport = sConfig.GetIntDefault("AuthServerPort", DEFAULT_AUTHSERVER_PORT);
     std::string bind_ip = sConfig.GetStringDefault("BindIP", "0.0.0.0");
 
     ACE_INET_Addr bind_addr(rmport, bind_ip.c_str());

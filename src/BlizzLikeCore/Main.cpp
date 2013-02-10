@@ -27,13 +27,13 @@
 #include <ace/Get_Opt.h>
 
 // Format is YYYYMMDD (change in the conf file)
-#ifndef _BLIZZLIKE_CORE_CONFVER
-# define _BLIZZLIKE_CORE_CONFVER 20120922
-#endif //_BLIZZLIKE_CORE_CONFVER
+#ifndef _BLIZZLIKE_WORLD_CONFVER
+# define _BLIZZLIKE_WORLD_CONFVER 20130210
+#endif //_BLIZZLIKE_WORLD_CONFVER
 
-#ifndef _BLIZZLIKE_CORE_CONFIG
-# define _BLIZZLIKE_CORE_CONFIG  "worldserver.conf"
-#endif //_BLIZZLIKE_CORE_CONFIG
+#ifndef _BLIZZLIKE_WORLD_CONFIG
+# define _BLIZZLIKE_WORLD_CONFIG  "worldserver.conf"
+#endif //_BLIZZLIKE_WORLD_CONFIG
 
 #ifdef _WIN32
 #include "ServiceWin32.h"
@@ -81,7 +81,7 @@ void usage(const char *prog)
 extern int main(int argc, char **argv)
 {
     // Command line parsing
-    char const* cfg_file = _BLIZZLIKE_CORE_CONFIG;
+    char const* cfg_file = _BLIZZLIKE_WORLD_CONFIG;
 
 #ifdef _WIN32
     char const *options = ":c:s:";
@@ -150,7 +150,7 @@ extern int main(int argc, char **argv)
     }
 
     uint32 confVersion = sConfig.GetIntDefault("ConfVersion", 0);
-    if (confVersion != _BLIZZLIKE_CORE_CONFVER)
+    if (confVersion != _BLIZZLIKE_WORLD_CONFVER)
     {
         sLog.outError(" WARNING:");
         sLog.outError(" Your %s file is out of date.", cfg_file);

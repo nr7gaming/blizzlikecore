@@ -3,7 +3,7 @@
 #################################################
 
 [authserver]
-ConfVersion=20120921
+ConfVersion=20130210
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -29,8 +29,8 @@ ConfVersion=20120921
 #    MaxPingTime
 #         Settings for maximum database-ping interval (minutes between pings)
 #
-#    RealmServerPort
-#         Default RealmServerPort
+#    AuthServerPort
+#         Default AuthServerPort
 #
 #    BindIP
 #         Bind Realm Server to IP/hostname
@@ -132,7 +132,7 @@ ConfVersion=20120921
 LoginDatabaseInfo = "127.0.0.1;3306;blizzlike;blizzlike;auth"
 LogsDir = ""
 MaxPingTime = 30
-RealmServerPort = 3724
+AuthServerPort = 3724
 BindIP = "0.0.0.0"
 PidFile = ""
 LogLevel = 0

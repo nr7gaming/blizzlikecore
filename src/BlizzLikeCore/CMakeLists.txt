@@ -44,7 +44,7 @@ set(WORLDSERVER_LINK_FLAGS "")
 add_executable(worldserver ${WORLDSERVER_SRCS})
 
 if( NOT WIN32 )
-  add_definitions(-D_BLIZZLIKE_CORE_CONFIG="${CONF_DIR}/worldserver.conf")
+  add_definitions(-D_BLIZZLIKE_WORLD_CONFIG="${CONF_DIR}/worldserver.conf")
 endif()
 
 add_dependencies(worldserver revision.h)
