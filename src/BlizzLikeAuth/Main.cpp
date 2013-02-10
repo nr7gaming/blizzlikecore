@@ -44,8 +44,8 @@
 #ifdef _WIN32
 #include "ServiceWin32.h"
 char serviceName[] = "authserver";
-char serviceLongName[] = "blizzlike realm service";
-char serviceDescription[] = "blizzlike realm service";
+char serviceLongName[] = "blizzlike auth service";
+char serviceDescription[] = "blizzlike core auth service";
 /*
  * -1 - not in service mode
  *  0 - stopped
@@ -68,7 +68,7 @@ void HookSignals();
 
 bool stopEvent = false;                                     // Setting it to true stops the server
 
-DatabaseType LoginDatabase;                                 // Accessor to the realm server database
+DatabaseType LoginDatabase;                                 // Accessor to the auth server database
 
 // Print out the usage string for this program on the console.
 void usage(const char *prog)
@@ -85,7 +85,7 @@ void usage(const char *prog)
         ,prog);
 }
 
-// Launch the realm server
+// Launch the auth server
 extern int main(int argc, char **argv)
 {
     // Command line parsing
@@ -158,7 +158,7 @@ extern int main(int argc, char **argv)
     }
     sLog.Initialize();
 
-    sLog.outString("%s [realm-daemon]", _FULLVERSION);
+    sLog.outString("%s [auth-daemon]", _FULLVERSION);
     sLog.outString("<Ctrl-C> to stop.");
     sLog.outString(" ");
 

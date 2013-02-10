@@ -105,7 +105,7 @@ Master::~Master()
 // Main function
 int Master::Run()
 {
-    sLog.outString("%s [core-daemon]", _FULLVERSION);
+    sLog.outString("%s [world-daemon]", _FULLVERSION);
     sLog.outString("<Ctrl-C> to stop.");
     sLog.outString(" ");
     sLog.outString("              BBBBBB                BBB     ");

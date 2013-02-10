@@ -38,8 +38,8 @@
 #ifdef _WIN32
 #include "ServiceWin32.h"
 char serviceName[] = "worldserver";
-char serviceLongName[] = "blizzlike core service";
-char serviceDescription[] = "blizzlike core service";
+char serviceLongName[] = "blizzlike world service";
+char serviceDescription[] = "blizzlike core world service";
 /*
  * -1 - not in service mode
  *  0 - stopped
@@ -58,7 +58,7 @@ int m_ServiceStatus = -1;
 
 DatabaseType WorldDatabase;                                 ///< Accessor to the world database
 DatabaseType CharacterDatabase;                             ///< Accessor to the character database
-DatabaseType LoginDatabase;                                 ///< Accessor to the realm/login database
+DatabaseType LoginDatabase;                                 ///< Accessor to the auth/login database
 
 uint32 realmID;                                             ///< Id of the realm
 
@@ -77,7 +77,7 @@ void usage(const char *prog)
         ,prog);
 }
 
-// Launch the blizzlike server
+// Launch the world server
 extern int main(int argc, char **argv)
 {
     // Command line parsing
