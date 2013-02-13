@@ -7,11 +7,11 @@ BlizzLikeCore is an MMORPG framework that's built using C++, and using a back-en
 
 Download
 
-You can download this project in either zip or tar formats. or you can also clone the project with Git by running: git clone git://github.com/blizzlikegroup/blizzlikecore.git
+You can download this project in either zip or tar formats, or you can also clone the project with Git by running: git clone git://github.com/blizzlikegroup/blizzlikecore.git
 
 Install
  
-Check http://blizzlike.servegame.com
+Check: http://blizzlike.servegame.com
 
 License
  
