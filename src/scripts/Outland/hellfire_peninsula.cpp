@@ -678,7 +678,6 @@ struct npc_hand_berserkerAI : public ScriptedAI
         if (pWho->GetTypeId() == TYPEID_PLAYER && me->IsWithinDistInMap(((Player *)pWho), 15) && ((Player *)pWho)->GetQuestStatus(10909) == QUEST_STATUS_COMPLETE)
         {return;}
 
-
         if (Creature* Bunny = me->FindNearestCreature(NPC_BUNNY, 17.5f))
         {
             me->CastSpell(Bunny, SPELL_SOUL_BURDEN, false);
@@ -745,6 +744,8 @@ struct npc_anchorite_relic_bunnyAI : public ScriptedAI
                 pRelic->RemoveFromWorld();
                 me->setDeathState(CORPSE);
             }
+            else return;
+
             uiEndTimer = 60000;
         }
         else uiEndTimer -= uiDiff;
