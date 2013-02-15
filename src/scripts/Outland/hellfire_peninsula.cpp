@@ -640,7 +640,12 @@ struct npc_hand_berserkerAI : public ScriptedAI
 {
     npc_hand_berserkerAI(Creature* pCreature) : ScriptedAI(pCreature) {}
 
-    void Reset() {}
+    uint32 CheckTimer;
+ 
+    void Reset()
+    {
+        CheckTimer = 4000;
+    }
 
     void AttackStart(Unit *pWho)
     {
@@ -669,6 +674,11 @@ struct npc_hand_berserkerAI : public ScriptedAI
 
     void JustDied(Unit* pWho)
     {
+
+        if (pWho->GetTypeId() == TYPEID_PLAYER && me->IsWithinDistInMap(((Player *)pWho), 15) && ((Player *)pWho)->GetQuestStatus(10909) == QUEST_STATUS_COMPLETE)
+        {return;}
+
+
         if (Creature* Bunny = me->FindNearestCreature(NPC_BUNNY, 17.5f))
         {
             me->CastSpell(Bunny, SPELL_SOUL_BURDEN, false);
@@ -716,19 +726,6 @@ struct npc_anchorite_relic_bunnyAI : public ScriptedAI
 
     void UpdateAI(const uint32 uiDiff)
     {
-        if (uiEndTimer <= uiDiff)
-        {
-            if (GameObject* pRelic = me->FindNearestGameObject(GO_RELIC, 5.0f))
-            {
-                pRelic->RemoveFromWorld();
-                me->setDeathState(CORPSE);
-            }
-            else return;
-
-            uiEndTimer = 60000;
-        }
-        else uiEndTimer -= uiDiff;
-
         if (uiChTimer <= uiDiff)
         {
             if (Creature* pBer = me->FindNearestCreature(NPC_HAND_BERSERKER, 17.5f, true))
@@ -740,6 +737,17 @@ struct npc_anchorite_relic_bunnyAI : public ScriptedAI
             uiChTimer = 5000;
         }
         else uiChTimer -= uiDiff;
+
+        if (uiEndTimer <= uiDiff)
+        {
+            if (GameObject* pRelic = me->FindNearestGameObject(GO_RELIC, 5.0f))
+            {
+                pRelic->RemoveFromWorld();
+                me->setDeathState(CORPSE);
+            }
+            uiEndTimer = 60000;
+        }
+        else uiEndTimer -= uiDiff;
     }
 };
 
