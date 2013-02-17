@@ -4878,6 +4878,33 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
         {
             switch(m_spellInfo->Id)
             {
+                //Giddyup! - I don't know how to fix it in any other way!
+                case 42924: 
+                {
+                    if (m_caster->GetTypeId() != TYPEID_PLAYER || !m_caster)
+                         return;
+
+                     Player* player = m_caster->ToPlayer();
+                     if (Unit* pTarget = player->FindNearestCreature(24263, 12.0f, true))
+                        {
+                            if ((pTarget->GetEntry() == 24263) && ((player->GetQuestStatus(11318) == QUEST_STATUS_INCOMPLETE) || (player->GetQuestStatus(11409) == QUEST_STATUS_INCOMPLETE)))
+                            player->KilledMonsterCredit(24263,0);
+							player->CastSpell(m_caster, 42992, true);
+                        } 
+                        if (Unit* pTarget = player->FindNearestCreature(24264, 12.0f, true))
+                        {
+                            if ((pTarget->GetEntry() == 24264) && ((player->GetQuestStatus(11318) == QUEST_STATUS_INCOMPLETE) || (player->GetQuestStatus(11409) == QUEST_STATUS_INCOMPLETE)))
+                            player->KilledMonsterCredit(24264,0);
+                            player->CastSpell(m_caster, 42993, true);
+                        } 	
+                        if (Unit* pTarget = player->FindNearestCreature(24265, 12.0f, true))
+                        {
+                            if ((pTarget->GetEntry() == 24265) && ((player->GetQuestStatus(11318) == QUEST_STATUS_INCOMPLETE) || (player->GetQuestStatus(11409) == QUEST_STATUS_INCOMPLETE)))
+                            player->KilledMonsterCredit(24265,0);
+                            player->CastSpell(m_caster, 42994, true);
+                        } 	
+                        break;
+                }
                 // Improved Mana Gems (Serpent-Coil Braid)
                 case 5497:
                 {

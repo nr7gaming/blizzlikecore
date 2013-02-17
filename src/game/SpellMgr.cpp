@@ -2304,6 +2304,10 @@ void SpellMgr::LoadSpellCustomAttr()
 
         switch(i)
         {
+        case 42924: //GiddyUP!
+            spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_NEARBY_ENTRY;
+            spellInfo->RecoveryTime = 2000; //2sec
+            break;
         case 26029: // dark glare
         case 37433: // spout
         case 43140: case 43215: // flame breath
