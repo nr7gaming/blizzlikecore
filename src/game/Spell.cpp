@@ -888,7 +888,7 @@ void Spell::DoAllEffectOnTarget(TargetInfo *target)
         && !(m_spellInfo->AttributesEx2 & SPELL_ATTR_EX2_TRIGGERED_CAN_TRIGGER_2)
         ? PROC_EX_INTERNAL_TRIGGERED : PROC_EX_NONE;
     //m_spellAura = NULL; // Set aura to null for every target-make sure that pointer is not used for unit without aura applied
-    sLog.outError("%d, %d, %d",m_procAttacker, m_procVictim, procEx);
+    sLog.outDebug("%d, %d, %d",m_procAttacker, m_procVictim, procEx);
 
                             //Spells with this flag cannot trigger if effect is casted on self
                             // Slice and Dice, relentless strikes, eviscerate
