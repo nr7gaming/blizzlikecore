@@ -1438,6 +1438,7 @@ class Unit : public WorldObject
         virtual bool IsImmunedToSpell(SpellEntry const* spellInfo, bool useCharges = false);
                                                             // redefined in Creature
         bool IsImmunedToDamage(SpellSchoolMask meleeSchoolMask, bool useCharges = false);
+        bool IsImmunedToDamage(SpellEntry const* spellInfo);
         virtual bool IsImmunedToSpellEffect(SpellEntry const* spellInfo, uint32 index) const;
                                                             // redefined in Creature
 

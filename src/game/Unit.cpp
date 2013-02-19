@@ -2645,11 +2645,9 @@ SpellMissInfo Unit::SpellHitResult(Unit *pVictim, SpellEntry const *spell, bool 
         &&(!IsHostileTo(pVictim)))  //prevent from affecting enemy by "positive" spell
         return SPELL_MISS_NONE;
 
-    // Check for immune (use charges)
-    // Check if Spell cannot be immuned
-    if (!(spell->Attributes & SPELL_ATTR_UNAFFECTED_BY_INVULNERABILITY))
-        if (pVictim->IsImmunedToDamage(GetSpellSchoolMask(spell),true))
-            return SPELL_MISS_IMMUNE;
+    // Check for immune
+    if (pVictim->IsImmunedToDamage(spell))
+        return SPELL_MISS_IMMUNE;
 
     if (this == pVictim)
         return SPELL_MISS_NONE;
@@ -8140,18 +8138,39 @@ int32 Unit::SpellBaseHealingBonusForVictim(SpellSchoolMask schoolMask, Unit *pVi
     return AdvertisedBenefit;
 }
 
-bool Unit::IsImmunedToDamage(SpellSchoolMask shoolMask, bool useCharges)
+bool Unit::IsImmunedToDamage(SpellSchoolMask schoolMask, bool useCharges)
 {
     //If m_immuneToSchool type contain this school type, IMMUNE damage.
     SpellImmuneList const& schoolList = m_spellImmune[IMMUNITY_SCHOOL];
     for (SpellImmuneList::const_iterator itr = schoolList.begin(); itr != schoolList.end(); ++itr)
-        if (itr->type & shoolMask)
+        if (itr->type & schoolMask)
             return true;
 
     //If m_immuneToDamage type contain magic, IMMUNE damage.
     SpellImmuneList const& damageList = m_spellImmune[IMMUNITY_DAMAGE];
     for (SpellImmuneList::const_iterator itr = damageList.begin(); itr != damageList.end(); ++itr)
-        if (itr->type & shoolMask)
+        if (itr->type & schoolMask)
+            return true;
+
+    return false;
+}
+
+bool Unit::IsImmunedToDamage(SpellEntry const* spellInfo)
+{
+    uint32 schoolMask = GetSpellSchoolMask(spellInfo);
+    if (spellInfo->Id != 42292)
+    {
+        //If m_immuneToSchool type contain this school type, IMMUNE damage.
+        SpellImmuneList const& schoolList = m_spellImmune[IMMUNITY_SCHOOL];
+        for (SpellImmuneList::const_iterator itr = schoolList.begin(); itr != schoolList.end(); ++itr)
+            if(itr->type & schoolMask &&!IsDispelableBySpell(spellInfo, itr->spellId))
+                return true;
+    }
+
+    //If m_immuneToDamage type contain magic, IMMUNE damage.
+    SpellImmuneList const& damageList = m_spellImmune[IMMUNITY_DAMAGE];
+    for (SpellImmuneList::const_iterator itr = damageList.begin(); itr != damageList.end(); ++itr)
+        if(itr->type & schoolMask)
             return true;
 
     return false;
@@ -8162,34 +8181,29 @@ bool Unit::IsImmunedToSpell(SpellEntry const* spellInfo, bool useCharges)
     if (!spellInfo)
         return false;
 
-    // If Spell has this flag cannot be resisted/immuned/etc
-    if (spellInfo->Attributes & SPELL_ATTR_UNAFFECTED_BY_INVULNERABILITY)
-        return false;
+    // Single spell immunity.
+    SpellImmuneList const& idList = m_spellImmune[IMMUNITY_ID];
+    for(SpellImmuneList::const_iterator itr = idList.begin(); itr != idList.end(); ++itr)
+        if(itr->type == spellInfo->Id)
+            return true;
 
     SpellImmuneList const& dispelList = m_spellImmune[IMMUNITY_DISPEL];
     for (SpellImmuneList::const_iterator itr = dispelList.begin(); itr != dispelList.end(); ++itr)
         if (itr->type == spellInfo->Dispel)
             return true;
 
-    if (!(spellInfo->AttributesEx & SPELL_ATTR_EX_UNAFFECTED_BY_SCHOOL_IMMUNE) &&         // unaffected by school immunity
-        !(spellInfo->AttributesEx & SPELL_ATTR_EX_DISPEL_AURAS_ON_IMMUNITY)               // can remove immune (by dispell or immune it)
-        && (spellInfo->Id != 42292))
+    if (spellInfo->Id != 42292)
     {
         SpellImmuneList const& schoolList = m_spellImmune[IMMUNITY_SCHOOL];
         for (SpellImmuneList::const_iterator itr = schoolList.begin(); itr != schoolList.end(); ++itr)
             if (!(IsPositiveSpell(itr->spellId) && IsPositiveSpell(spellInfo->Id)) &&
-                (itr->type & GetSpellSchoolMask(spellInfo)))
+                (itr->type & GetSpellSchoolMask(spellInfo)) && !IsDispelableBySpell(spellInfo, itr->spellId))
                 return true;
     }
 
     SpellImmuneList const& mechanicList = m_spellImmune[IMMUNITY_MECHANIC];
     for (SpellImmuneList::const_iterator itr = mechanicList.begin(); itr != mechanicList.end(); ++itr)
         if (itr->type == spellInfo->Mechanic)
-            return true;
-
-    SpellImmuneList const& idList = m_spellImmune[IMMUNITY_ID];
-    for (SpellImmuneList::const_iterator itr = idList.begin(); itr != idList.end(); ++itr)
-        if (itr->type == spellInfo->Id)
             return true;
 
     return false;
@@ -11384,6 +11398,13 @@ bool Unit::IsTriggeredAtSpellProcEvent(Unit *pVictim, Aura* aura, SpellEntry con
     // Continue if no trigger exist
     if (!EventProcFlag)
         return false;
+
+    // Additional checks for triggered spells
+    if (procExtra & PROC_EX_INTERNAL_TRIGGERED)
+    {
+        if (!(spellProto->AttributesEx3 & SPELL_ATTR_EX3_CAN_PROC_TRIGGERED))
+            return false;
+    }
 
     // Check spellProcEvent data requirements
     if (!SpellMgr::IsSpellProcEventCanTriggeredBy(spellProcEvent, EventProcFlag, procSpell, procFlag, procExtra, active))

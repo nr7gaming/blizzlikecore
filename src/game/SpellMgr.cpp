@@ -848,6 +848,40 @@ bool IsPositiveSpell(uint32 spellId)
     return true;
 }
 
+bool IsDispelableBySpell(SpellEntry const * dispelSpell, uint32 spellId, bool def)
+{
+    if (!dispelSpell) return false;
+    SpellEntry const *spellproto = sSpellStore.LookupEntry(spellId);
+    if (!spellproto) return false;
+
+    if (spellproto->Mechanic == MECHANIC_IMMUNE_SHIELD)
+    {
+        if (dispelSpell->Attributes & SPELL_ATTR_UNAFFECTED_BY_INVULNERABILITY)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    else if (spellproto->Mechanic == MECHANIC_INVULNERABILITY)
+    {
+        if (dispelSpell->AttributesEx & SPELL_ATTR_EX_UNAFFECTED_BY_SCHOOL_IMMUNE)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    else
+    {
+        if ((dispelSpell->AttributesEx & SPELL_ATTR_EX_UNAFFECTED_BY_SCHOOL_IMMUNE)
+            || (dispelSpell->Attributes & SPELL_ATTR_UNAFFECTED_BY_INVULNERABILITY))
+            return !def;
+    }
+
+    return def;
+}
+
 bool IsSingleTargetSpell(SpellEntry const *spellInfo)
 {
     // all other single target spells have if it has AttributesEx5
@@ -1367,8 +1401,8 @@ bool SpellMgr::IsSpellProcEventCanTriggeredBy(SpellProcEventEntry const * spellP
         }
         else // For spells need check school/spell family/family mask
         {
-            // Potions can trigger only if spellfamily given
-            if (procSpell->SpellFamilyName == SPELLFAMILY_POTION)
+            // Item cast can trigger only with spells with spellfamily
+            if (procExtra & PROC_EX_INTERNAL_ITEM_CAST && procSpell->SpellFamilyName)
             {
                 if (procSpell->SpellFamilyName == spellProcEvent->spellFamilyName)
                     return true;
@@ -1392,8 +1426,8 @@ bool SpellMgr::IsSpellProcEventCanTriggeredBy(SpellProcEventEntry const * spellP
             }
         }
     }
-    // potions can trigger only if have spell_proc entry
-    else if (procSpell && procSpell->SpellFamilyName==SPELLFAMILY_POTION)
+    // Item cast can trigger only with spells with spellfamily
+    else if (procExtra & PROC_EX_INTERNAL_ITEM_CAST)
         return false;
 
     // Check for extra req (if none) and hit/crit
@@ -1406,7 +1440,7 @@ bool SpellMgr::IsSpellProcEventCanTriggeredBy(SpellProcEventEntry const * spellP
     else // Passive spells hits here only if resist/reflect/immune/evade
     {
         // Exist req for PROC_EX_EX_TRIGGER_ALWAYS
-        if (procEvent_procEx & PROC_EX_EX_TRIGGER_ALWAYS)
+        if ((procExtra & AURA_SPELL_PROC_EX_MASK) && (procEvent_procEx & PROC_EX_EX_TRIGGER_ALWAYS))
             return true;
         // Passive spells cant trigger if need hit
         if ((procEvent_procEx & PROC_EX_NORMAL_HIT) && !active)
@@ -2277,7 +2311,9 @@ void SpellMgr::LoadSpellCustomAttr()
                     mSpellCustomAttr[i] |= SPELL_ATTR_CU_CHARGE;
                     break;
                 case SPELL_EFFECT_TRIGGER_SPELL:
-                    if (IsPositionTarget(spellInfo->EffectImplicitTargetA[j]) ||
+                    if (SpellTargetType[spellInfo->EffectImplicitTargetA[j]]== TARGET_TYPE_DEST_CASTER ||
+                        SpellTargetType[spellInfo->EffectImplicitTargetA[j]]== TARGET_TYPE_DEST_TARGET ||
+                        SpellTargetType[spellInfo->EffectImplicitTargetA[j]]== TARGET_TYPE_DEST_DEST ||
                         spellInfo->Targets & (TARGET_FLAG_SOURCE_LOCATION|TARGET_FLAG_DEST_LOCATION))
                         spellInfo->Effect[j] = SPELL_EFFECT_TRIGGER_MISSILE;
                     break;
