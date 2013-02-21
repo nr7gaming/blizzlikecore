@@ -242,10 +242,10 @@ index 7370d55..6d475c9 100644
          void LoadNpcTextLocales();
          void LoadPageTextLocales();
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 79ee92c..c10343f 100644
+index ced42a7..08c8798 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -10835,7 +10835,11 @@ void Player::SetVisibleItemSlot(uint8 slot, Item *pItem)
+@@ -10832,7 +10832,11 @@ void Player::SetVisibleItemSlot(uint8 slot, Item *pItem)
          SetUInt64Value(PLAYER_VISIBLE_ITEM_1_CREATOR + (slot * MAX_VISIBLE_ITEM_OFFSET), pItem->GetUInt64Value(ITEM_FIELD_CREATOR));
  
          int VisibleBase = PLAYER_VISIBLE_ITEM_1_0 + (slot * MAX_VISIBLE_ITEM_OFFSET);
@@ -258,7 +258,7 @@ index 79ee92c..c10343f 100644
  
          for (int i = 0; i < MAX_INSPECTED_ENCHANTMENT_SLOT; ++i)
              SetUInt32Value(VisibleBase + 1 + i, pItem->GetEnchantmentId(EnchantmentSlot(i)));
-@@ -10959,6 +10963,7 @@ void Player::MoveItemFromInventory(uint8 bag, uint8 slot, bool update)
+@@ -10956,6 +10960,7 @@ void Player::MoveItemFromInventory(uint8 bag, uint8 slot, bool update)
  {
      if (Item* it = GetItemByPos(bag,slot))
      {
