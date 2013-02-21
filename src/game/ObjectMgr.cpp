@@ -2660,8 +2660,6 @@ void ObjectMgr::LoadArenaTeams()
 
     do
     {
-        Field *fields = result->Fetch();
-
         bar.step();
         ++count;
 

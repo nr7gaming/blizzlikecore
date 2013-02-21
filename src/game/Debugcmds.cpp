@@ -662,7 +662,6 @@ bool ChatHandler::HandleSetInstanceDataCommand(const char *args)
 
     char *id = strtok((char*)args, " ");
     char *data = strtok(NULL, " ");
-    char *trash = strtok(NULL, " ");
 
     if (!id || !data)
         return false;
@@ -688,7 +687,6 @@ bool ChatHandler::HandleGetInstanceDataCommand(const char *args)
     }
 
     char *id = strtok((char*)args, " ");
-    char *trash = strtok(NULL, " ");
 
     if (!id)
         return false;

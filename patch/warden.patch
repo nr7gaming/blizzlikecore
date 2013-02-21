@@ -3176,7 +3176,7 @@ index 0000000..258325b
 +
 +    ServerTicks = getMSTime();
 +
-+    uint32 maxid = WardenDataStorage.InternalDataID;
++    //uint32 maxid = WardenDataStorage.InternalDataID;
 +
 +    uint32 id;
 +    uint8 type;

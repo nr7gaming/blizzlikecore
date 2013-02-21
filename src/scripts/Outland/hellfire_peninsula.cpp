@@ -1039,7 +1039,7 @@ struct npc_darkness_releasedAI : public ScriptedAI
 
         if (uiChTimer <= uiDiff)
         {
-            if (Creature* pBar = me->FindNearestCreature(NPC_BARADA, 15.0f, false))
+            if (/*Creature* pBar = */me->FindNearestCreature(NPC_BARADA, 15.0f, false))
                 me->setDeathState(CORPSE);
 
             if (Creature* pBara = me->FindNearestCreature(NPC_BARADA, 15.0f, true))
@@ -1087,7 +1087,7 @@ struct npc_foul_purgeAI : public ScriptedAI
     {
         if (uiChTimer <= uiDiff)
         {
-            if (Creature* pBar = me->FindNearestCreature(NPC_BARADA, 15.0f, false))
+            if (/*Creature* pBar = */me->FindNearestCreature(NPC_BARADA, 15.0f, false))
                 me->setDeathState(CORPSE);
 
             if (Creature* pBara = me->FindNearestCreature(NPC_BARADA, 15.0f, true))
@@ -1527,7 +1527,7 @@ struct npc_magic_sucker_device_spawnerAI : public ScriptedAI
 
         if (uiCheckTimer <= uiDiff)
         {
-            if (Creature* pScr = me->FindNearestCreature(NPC_SCRYER, 15.0f, false))
+            if (/*Creature* pScr = */me->FindNearestCreature(NPC_SCRYER, 15.0f, false))
             {
                 if (Creature* pBut = me->FindNearestCreature(NPC_BUTTRES, 5.0f))
                 {
