@@ -890,10 +890,6 @@ void Spell::DoAllEffectOnTarget(TargetInfo *target)
     //m_spellAura = NULL; // Set aura to null for every target-make sure that pointer is not used for unit without aura applied
     sLog.outDebug("%d, %d, %d",m_procAttacker, m_procVictim, procEx);
 
-                            //Spells with this flag cannot trigger if effect is casted on self
-                            // Slice and Dice, relentless strikes, eviscerate
-    //bool canEffectTrigger = (m_spellInfo->AttributesEx4 & (SPELL_ATTR_EX4_CANT_PROC_FROM_SELFCAST | SPELL_ATTR_EX4_UNK4) ? m_caster != unitTarget : true)
-
     if (missInfo == SPELL_MISS_NONE)                        // In case spell hit target, do all effect on that target
         DoSpellHitOnUnit(unit, mask);
     else if (missInfo == SPELL_MISS_REFLECT)                // In case spell reflect from target, do all effect on caster (if hit)
