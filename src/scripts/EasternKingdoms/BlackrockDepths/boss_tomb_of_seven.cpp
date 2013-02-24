@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Tomb_Of_Seven
-SD%Complete: 90
-SDComment: Learning Smelt Dark Iron if tribute quest rewarded. Missing event.
-SDCategory: Blackrock Depths
+Name: Boss_Tomb_Of_Seven
+Complete(%): 90
+Comment: Learning Smelt Dark Iron if tribute quest rewarded. Missing event.
+Category: Blackrock Depths
 EndScriptData */
 
 #include "ScriptPCH.h"

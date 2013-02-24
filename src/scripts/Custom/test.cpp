@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Test
-SD%Complete: 100
-SDComment: Script used for testing escortAI
-SDCategory: Script Examples
+Name: Test
+Complete(%): 100
+Comment: Script used for testing escortAI
+Category: Script Examples
 EndScriptData */
 
 #include "ScriptPCH.h"

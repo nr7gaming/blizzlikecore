@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_the_black_stalker
-SD%Complete: 95
-SDComment: Timers may be incorrect
-SDCategory: Coilfang Resevoir, Underbog
+Name: Boss_the_black_stalker
+Complete(%): 95
+Comment: Timers may be incorrect
+Category: Coilfang Resevoir, Underbog
 EndScriptData */
 
 #include "ScriptPCH.h"

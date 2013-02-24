@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: Boss_Muru
-SD%Complete: 80
-SDComment: all sounds, black hole effect triggers to often (46228)
+Name: Boss_Muru
+Complete(%): 80
+Comment: all sounds, black hole effect triggers to often (46228)
 */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Captain_Skarloc
-SD%Complete: 75
-SDComment: Missing adds, missing waypoints to move up to Thrall once spawned + speech before enter combat.
-SDCategory: Caverns of Time, Old Hillsbrad Foothills
+Name: Boss_Captain_Skarloc
+Complete(%): 75
+Comment: Missing adds, missing waypoints to move up to Thrall once spawned + speech before enter combat.
+Category: Caverns of Time, Old Hillsbrad Foothills
 EndScriptData */
 
 #include "ScriptPCH.h"

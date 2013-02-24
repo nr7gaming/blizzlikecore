@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Ungoro Crater
-SD%Complete: 100
-SDComment: Support for Quest: 4245, 4491
-SDCategory: Ungoro Crater
+Name: Ungoro Crater
+Complete(%): 100
+Comment: Support for Quest: 4245, 4491
+Category: Ungoro Crater
 EndScriptData */
 
 /* ContentData

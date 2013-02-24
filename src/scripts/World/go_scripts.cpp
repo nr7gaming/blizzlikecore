@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: GO_Scripts
-SD%Complete: 100
-SDComment: Quest support: 4285,4287,4288(crystal pylons), 4296, 6481, 10990, 10991, 10992. Field_Repair_Bot->Teaches spell 22704. Barov_journal->Teaches spell 26089, 2936. Soulwell
-SDCategory: Game Objects
+Name: GO_Scripts
+Complete(%): 100
+Comment: Quest support: 4285,4287,4288(crystal pylons), 4296, 6481, 10990, 10991, 10992. Field_Repair_Bot->Teaches spell 22704. Barov_journal->Teaches spell 26089, 2936. Soulwell
+Category: Game Objects
 EndScriptData */
 
 /* ContentData

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Grandmaster_Vorpil
-SD%Complete: 100
-SDComment:
-SDCategory: Auchindoun, Shadow Labyrinth
+Name: Boss_Grandmaster_Vorpil
+Complete(%): 100
+Comment:
+Category: Auchindoun, Shadow Labyrinth
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Warlord_Najentus
-SD%Complete: 95
-SDComment:
-SDCategory: Black Temple
+Name: Boss_Warlord_Najentus
+Complete(%): 95
+Comment:
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

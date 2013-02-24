@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Shadowmoon_Valley
-SD%Complete: 98
-SDComment: Quest support: 10519, 10583, 10601, 10814, 10804, 10854, 10458, 10481, 10480, 11082, 10781, 10451. Vendor Drake Dealer Hurlunk, 10563, 10596.
-SDCategory: Shadowmoon Valley
+Name: Shadowmoon_Valley
+Complete(%): 98
+Comment: Quest support: 10519, 10583, 10601, 10814, 10804, 10854, 10458, 10481, 10480, 11082, 10781, 10451. Vendor Drake Dealer Hurlunk, 10563, 10596.
+Category: Shadowmoon Valley
 EndScriptData */
 
 /* ContentData

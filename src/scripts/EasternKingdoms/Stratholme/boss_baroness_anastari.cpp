@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Baroness_Anastari
-SD%Complete: 90
-SDComment: MC disabled
-SDCategory: Stratholme
+Name: Boss_Baroness_Anastari
+Complete(%): 90
+Comment: MC disabled
+Category: Stratholme
 EndScriptData */
 
 #include "ScriptPCH.h"

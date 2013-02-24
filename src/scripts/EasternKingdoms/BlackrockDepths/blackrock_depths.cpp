@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Blackrock_Depths
-SD%Complete: 95
-SDComment: Quest support: 4001, 4342, 7604, 4322. Vendor Lokhtos Darkbargainer. Need to rewrite the Jail Break support
-SDCategory: Blackrock Depths
+Name: Blackrock_Depths
+Complete(%): 95
+Comment: Quest support: 4001, 4342, 7604, 4322. Vendor Lokhtos Darkbargainer. Need to rewrite the Jail Break support
+Category: Blackrock Depths
 EndScriptData */
 
 /* ContentData

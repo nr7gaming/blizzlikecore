@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Felblood_Kaelthas
-SD%Complete: 80
-SDComment: Normal and Heroic Support. Issues: Arcane Spheres do not initially follow targets.
-SDCategory: Magisters' Terrace
+Name: Boss_Felblood_Kaelthas
+Complete(%): 80
+Comment: Normal and Heroic Support. Issues: Arcane Spheres do not initially follow targets.
+Category: Magisters' Terrace
 EndScriptData */
 
 #include "ScriptPCH.h"

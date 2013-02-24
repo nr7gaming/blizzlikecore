@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Ras_Frostwhisper
-SD%Complete: 100
-SDComment:
-SDCategory: Scholomance
+Name: Boss_Ras_Frostwhisper
+Complete(%): 100
+Comment:
+Category: Scholomance
 EndScriptData */
 
 #include "ScriptPCH.h"

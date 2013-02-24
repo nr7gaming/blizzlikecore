@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Murmur
-SD%Complete: 90
-SDComment: Timers may be incorrect
-SDCategory: Auchindoun, Shadow Labyrinth
+Name: Boss_Murmur
+Complete(%): 90
+Comment: Timers may be incorrect
+Category: Auchindoun, Shadow Labyrinth
 EndScriptData */
 
 #include "ScriptPCH.h"

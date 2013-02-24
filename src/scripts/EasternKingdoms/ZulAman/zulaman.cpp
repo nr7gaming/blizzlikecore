@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Zulaman
-SD%Complete: 90
-SDComment: Forest Frog will turn into different NPC's. Workaround to prevent new entry from running this script
-SDCategory: Zul'Aman
+Name: Zulaman
+Complete(%): 90
+Comment: Forest Frog will turn into different NPC's. Workaround to prevent new entry from running this script
+Category: Zul'Aman
 EndScriptData */
 
 /* ContentData

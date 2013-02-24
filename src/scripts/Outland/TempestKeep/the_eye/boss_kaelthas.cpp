@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: boss_Kaelthas
-SD%Complete: 60
-SDComment: Mind Control, Reset Event if Weapons despawn/reset
-SDCategory: Tempest Keep, The Eye
+Name: boss_Kaelthas
+Complete(%): 60
+Comment: Mind Control, Reset Event if Weapons despawn/reset
+Category: Tempest Keep, The Eye
 EndScriptData */
 
 #include "ScriptPCH.h"

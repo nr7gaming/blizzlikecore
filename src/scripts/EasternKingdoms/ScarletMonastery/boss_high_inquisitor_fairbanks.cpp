@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_High_Inquisitor_Fairbanks
-SD%Complete: 100
-SDComment: TODO: if this guy not involved in some special event, remove (and let ACID script)
-SDCategory: Scarlet Monastery
+Name: Boss_High_Inquisitor_Fairbanks
+Complete(%): 100
+Comment: TODO: if this guy not involved in some special event, remove (and let ACID script)
+Category: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptPCH.h"

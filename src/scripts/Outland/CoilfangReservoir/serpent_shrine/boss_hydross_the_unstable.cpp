@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Hydross_The_Unstable
-SD%Complete: 90
-SDComment: Some details and adjustments left to do, probably nothing major. Spawns may be spawned in different way/location.
-SDCategory: Coilfang Resevoir, Serpent Shrine Cavern
+Name: Boss_Hydross_The_Unstable
+Complete(%): 90
+Comment: Some details and adjustments left to do, probably nothing major. Spawns may be spawned in different way/location.
+Category: Coilfang Resevoir, Serpent Shrine Cavern
 EndScriptData */
 
 #include "ScriptPCH.h"

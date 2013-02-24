@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Aeonus
-SD%Complete: 80
-SDComment: Some spells not implemented
-SDCategory: Caverns of Time, The Dark Portal
+Name: Boss_Aeonus
+Complete(%): 80
+Comment: Some spells not implemented
+Category: Caverns of Time, The Dark Portal
 EndScriptData */
 
 #include "ScriptPCH.h"

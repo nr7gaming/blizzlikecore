@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Dun_Morogh
-SD%Complete: 50
-SDComment: Quest support: 1783
-SDCategory: Dun Morogh
+Name: Dun_Morogh
+Complete(%): 50
+Comment: Quest support: 1783
+Category: Dun Morogh
 EndScriptData */
 
 /* ContentData

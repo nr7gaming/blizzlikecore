@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Custom_Gossip_Codebox
-SD%Complete: 100
-SDComment: Show a codebox in gossip option
-SDCategory: Script Examples
+Name: Custom_Gossip_Codebox
+Complete(%): 100
+Comment: Show a codebox in gossip option
+Category: Script Examples
 EndScriptData */
 
 #include "ScriptPCH.h"

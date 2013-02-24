@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Desolace
-SD%Complete: 100
-SDComment: Quest support: 5561, 1440
-SDCategory: Desolace
+Name: Desolace
+Complete(%): 100
+Comment: Quest support: 5561, 1440
+Category: Desolace
 EndScriptData */
 
 /* ContentData

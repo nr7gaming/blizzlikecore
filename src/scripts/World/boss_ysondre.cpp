@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Ysondre
-SD%Complete: 90
-SDComment: Mark of Nature & Teleport missing
-SDCategory: Bosses
+Name: Ysondre
+Complete(%): 90
+Comment: Mark of Nature & Teleport missing
+Category: Bosses
 EndScriptData */
 
 #include "ScriptPCH.h"

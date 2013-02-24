@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: HyjalAI
-SD%Complete: 90
-SDComment:
-SDCategory: Caverns of Time, Mount Hyjal
+Name: HyjalAI
+Complete(%): 90
+Comment:
+Category: Caverns of Time, Mount Hyjal
 EndScriptData */
 
 #include "ScriptPCH.h"

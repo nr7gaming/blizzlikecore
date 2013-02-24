@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Azshara
-SD%Complete: 90
-SDComment: Quest support: 2744, 3141, 9364, 10994
-SDCategory: Azshara
+Name: Azshara
+Complete(%): 90
+Comment: Quest support: 2744, 3141, 9364, 10994
+Category: Azshara
 EndScriptData */
 
 /* ContentData

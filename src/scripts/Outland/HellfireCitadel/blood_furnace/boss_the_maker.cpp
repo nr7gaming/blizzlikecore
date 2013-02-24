@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_The_Maker
-SD%Complete: 99
-SDComment:
-SDCategory: Hellfire Citadel, Blood Furnace
+Name: Boss_The_Maker
+Complete(%): 99
+Comment:
+Category: Hellfire Citadel, Blood Furnace
 EndScriptData */
 
 #include "ScriptPCH.h"

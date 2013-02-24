@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Shattered_Halls
-SD%Complete: 95
-SDComment:
-SDCategory: Hellfire Citadel, Shattered Halls
+Name: Instance_Shattered_Halls
+Complete(%): 95
+Comment:
+Category: Hellfire Citadel, Shattered Halls
 EndScriptData */
 
 #include "ScriptPCH.h"

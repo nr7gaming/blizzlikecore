@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: boss_cannon_master_willey
-SD%Complete: 100
-SDComment:
-SDCategory: Stratholme
+Name: boss_cannon_master_willey
+Complete(%): 100
+Comment:
+Category: Stratholme
 EndScriptData */
 
 #include "ScriptPCH.h"

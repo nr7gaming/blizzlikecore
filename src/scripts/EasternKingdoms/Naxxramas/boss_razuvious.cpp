@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Razuvious
-SD%Complete: 50
-SDComment: Missing adds and event is impossible without Mind Control
-SDCategory: Naxxramas
+Name: Boss_Razuvious
+Complete(%): 50
+Comment: Missing adds and event is impossible without Mind Control
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

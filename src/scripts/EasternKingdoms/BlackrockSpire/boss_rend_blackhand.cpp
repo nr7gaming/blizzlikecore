@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Rend_Blackhand
-SD%Complete: 100
-SDComment: Intro event NYI
-SDCategory: Blackrock Spire
+Name: Boss_Rend_Blackhand
+Complete(%): 100
+Comment: Intro event NYI
+Category: Blackrock Spire
 EndScriptData */
 
 #include "ScriptPCH.h"

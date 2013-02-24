@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Guard_AI
-SD%Complete: 90
-SDComment:
-SDCategory: Guards
+Name: Guard_AI
+Complete(%): 90
+Comment:
+Category: Guards
 EndScriptData */
 
 #include "ScriptPCH.h"

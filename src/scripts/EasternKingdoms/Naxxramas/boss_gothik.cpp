@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Gothik
-SD%Complete: 0
-SDComment: Placeholder
-SDCategory: Naxxramas
+Name: Boss_Gothik
+Complete(%): 0
+Comment: Placeholder
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

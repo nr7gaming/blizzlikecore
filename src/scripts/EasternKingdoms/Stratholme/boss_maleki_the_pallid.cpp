@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: boss_maleki_the_pallid
-SD%Complete: 100
-SDComment:
-SDCategory: Stratholme
+Name: boss_maleki_the_pallid
+Complete(%): 100
+Comment:
+Category: Stratholme
 EndScriptData */
 
 #include "ScriptPCH.h"

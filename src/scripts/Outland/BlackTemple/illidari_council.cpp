@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Illidari_Council
-SD%Complete: 95
-SDComment: Circle of Healing not working properly.
-SDCategory: Black Temple
+Name: Illidari_Council
+Complete(%): 95
+Comment: Circle of Healing not working properly.
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

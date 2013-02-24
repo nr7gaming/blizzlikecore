@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Faerlina
-SD%Complete: 50
-SDComment: Without Mindcontrol boss cannot be defeated
-SDCategory: Naxxramas
+Name: Boss_Faerlina
+Complete(%): 50
+Comment: Without Mindcontrol boss cannot be defeated
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

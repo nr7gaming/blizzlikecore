@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Magtheridon
-SD%Complete: 60
-SDComment: In Development
-SDCategory: Hellfire Citadel, Magtheridon's lair
+Name: Boss_Magtheridon
+Complete(%): 60
+Comment: In Development
+Category: Hellfire Citadel, Magtheridon's lair
 EndScriptData */
 
 #include "ScriptPCH.h"

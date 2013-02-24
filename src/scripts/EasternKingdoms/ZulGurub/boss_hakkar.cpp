@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Hakkar
-SD%Complete: 95
-SDComment: Blood siphon spell buggy cause of Core Issue.
-SDCategory: Zul'Gurub
+Name: Boss_Hakkar
+Complete(%): 95
+Comment: Blood siphon spell buggy cause of Core Issue.
+Category: Zul'Gurub
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Darkweaver_Syth
-SD%Complete: 95
-SDComment: Shock spells/times need more work. Heroic partly implemented.
-SDCategory: Auchindoun, Sethekk Halls
+Name: Boss_Darkweaver_Syth
+Complete(%): 95
+Comment: Shock spells/times need more work. Heroic partly implemented.
+Category: Auchindoun, Sethekk Halls
 EndScriptData */
 
 #include "ScriptPCH.h"

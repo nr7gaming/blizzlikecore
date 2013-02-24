@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Epoch_Hunter
-SD%Complete: 60
-SDComment: Missing spawns pre-event, missing speech to be coordinated with rest of escort event.
-SDCategory: Caverns of Time, Old Hillsbrad Foothills
+Name: Boss_Epoch_Hunter
+Complete(%): 60
+Comment: Missing spawns pre-event, missing speech to be coordinated with rest of escort event.
+Category: Caverns of Time, Old Hillsbrad Foothills
 EndScriptData */
 
 #include "ScriptPCH.h"

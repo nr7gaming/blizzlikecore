@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Jeklik
-SD%Complete: 95
-SDComment: Timers need to be verified.
-SDCategory: Zul'Gurub
+Name: Boss_Jeklik
+Complete(%): 95
+Comment: Timers need to be verified.
+Category: Zul'Gurub
 EndScriptData */
 
 #include "ScriptPCH.h"

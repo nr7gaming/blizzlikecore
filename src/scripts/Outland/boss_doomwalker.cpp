@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Doomwalker
-SD%Complete: 100
-SDComment:
-SDCategory: Shadowmoon Valley
+Name: Boss_Doomwalker
+Complete(%): 100
+Comment:
+Category: Shadowmoon Valley
 EndScriptData */
 
 #include "ScriptPCH.h"

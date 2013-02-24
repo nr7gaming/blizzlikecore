@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Ambassador_Hellmaw
-SD%Complete: 75
-SDComment: Waypoints after Intro not implemented. Enrage spell missing/not known
-SDCategory: Auchindoun, Shadow Labyrinth
+Name: Boss_Ambassador_Hellmaw
+Complete(%): 75
+Comment: Waypoints after Intro not implemented. Enrage spell missing/not known
+Category: Auchindoun, Shadow Labyrinth
 EndScriptData */
 
 #include "ScriptPCH.h"

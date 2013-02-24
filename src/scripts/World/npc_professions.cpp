@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Npc_Professions
-SD%Complete: 80
-SDComment: Provides learn/unlearn/relearn-options for professions. Not supported: Unlearn engineering, re-learn engineering, re-learn leatherworking.
-SDCategory: NPCs
+Name: Npc_Professions
+Complete(%): 80
+Comment: Provides learn/unlearn/relearn-options for professions. Not supported: Unlearn engineering, re-learn engineering, re-learn leatherworking.
+Category: NPCs
 EndScriptData */
 
 #include "ScriptPCH.h"

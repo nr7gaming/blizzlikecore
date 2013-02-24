@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: instance_uldaman
-SD%Complete: 99%
-SDComment: Need some cosmetics updates when archeadas door are closing (Guardians Waypoints).
-SDCategory: Uldaman
+Name: instance_uldaman
+Complete(%): 99%
+Comment: Need some cosmetics updates when archeadas door are closing (Guardians Waypoints).
+Category: Uldaman
 EndScriptData */
 
 #include "ScriptPCH.h"

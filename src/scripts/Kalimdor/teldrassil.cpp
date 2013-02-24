@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Teldrassil
-SD%Complete: 100
-SDComment: Quest support: 938
-SDCategory: Teldrassil
+Name: Teldrassil
+Complete(%): 100
+Comment: Quest support: 938
+Category: Teldrassil
 EndScriptData */
 
 /* ContentData

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Kelidan_The_Breaker
-SD%Complete: 99
-SDComment:
-SDCategory: Hellfire Citadel, Blood Furnace
+Name: Boss_Kelidan_The_Breaker
+Complete(%): 99
+Comment:
+Category: Hellfire Citadel, Blood Furnace
 EndScriptData */
 
 /* ContentData

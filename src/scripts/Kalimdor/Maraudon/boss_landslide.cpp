@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Landslide
-SD%Complete: 100
-SDComment:
-SDCategory: Maraudon
+Name: Boss_Landslide
+Complete(%): 100
+Comment:
+Category: Maraudon
 EndScriptData */
 
 #include "ScriptPCH.h"

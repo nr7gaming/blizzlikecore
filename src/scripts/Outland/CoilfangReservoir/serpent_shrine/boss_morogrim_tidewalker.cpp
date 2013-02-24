@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Morogrim_Tidewalker
-SD%Complete: 90
-SDComment: Water globules don't explode properly, remove hacks
-SDCategory: Coilfang Resevoir, Serpent Shrine Cavern
+Name: Boss_Morogrim_Tidewalker
+Complete(%): 90
+Comment: Water globules don't explode properly, remove hacks
+Category: Coilfang Resevoir, Serpent Shrine Cavern
 EndScriptData */
 
 #include "ScriptPCH.h"

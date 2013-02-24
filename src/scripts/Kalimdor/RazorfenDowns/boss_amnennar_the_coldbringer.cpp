@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Amnennar_the_coldbringer
-SD%Complete: 100
-SDComment:
-SDCategory: Razorfen Downs
+Name: Boss_Amnennar_the_coldbringer
+Complete(%): 100
+Comment:
+Category: Razorfen Downs
 EndScriptData */
 
 #include "ScriptPCH.h"

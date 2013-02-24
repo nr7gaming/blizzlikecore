@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Hellfire_Ramparts
-SD%Complete: 95
-SDComment:
-SDCategory: Hellfire Ramparts
+Name: Instance_Hellfire_Ramparts
+Complete(%): 95
+Comment:
+Category: Hellfire Ramparts
 EndScriptData */
 
 #include "ScriptPCH.h"

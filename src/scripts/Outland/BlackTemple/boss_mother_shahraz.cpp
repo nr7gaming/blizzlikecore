@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Mother_Shahraz
-SD%Complete: 80
-SDComment: Saber Lash missing, Fatal Attraction slightly incorrect; need to damage only if affected players are within range of each other
-SDCategory: Black Temple
+Name: Boss_Mother_Shahraz
+Complete(%): 80
+Comment: Saber Lash missing, Fatal Attraction slightly incorrect; need to damage only if affected players are within range of each other
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

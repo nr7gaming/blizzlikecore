@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Marli
-SD%Complete: 95
-SDComment: Unknown correct Thrash timer. Threat not resetting for entire raid upon charge (core issue?)
-SDCategory: Zul'Gurub
+Name: Boss_Marli
+Complete(%): 95
+Comment: Unknown correct Thrash timer. Threat not resetting for entire raid upon charge (core issue?)
+Category: Zul'Gurub
 EndScriptData */
 
 #include "ScriptPCH.h"

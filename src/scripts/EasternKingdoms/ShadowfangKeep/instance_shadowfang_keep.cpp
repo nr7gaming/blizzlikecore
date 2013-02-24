@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Shadowfang_Keep
-SD%Complete: 90
-SDComment:
-SDCategory: Shadowfang Keep
+Name: Instance_Shadowfang_Keep
+Complete(%): 90
+Comment:
+Category: Shadowfang Keep
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Mekgineer_Steamrigger
-SD%Complete: 60
-SDComment: Mechanics' interrrupt heal doesn't work very well, also a proper movement needs to be implemented -> summon further away and move towards pTarget to repair.
-SDCategory: Coilfang Resevoir, The Steamvault
+Name: Boss_Mekgineer_Steamrigger
+Complete(%): 60
+Comment: Mechanics' interrrupt heal doesn't work very well, also a proper movement needs to be implemented -> summon further away and move towards pTarget to repair.
+Category: Coilfang Resevoir, The Steamvault
 EndScriptData */
 
 /* ContentData

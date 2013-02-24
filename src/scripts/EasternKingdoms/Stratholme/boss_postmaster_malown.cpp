@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: boss_postmaster_malown
-SD%Complete: 50
-SDComment:
-SDCategory: Stratholme
+Name: boss_postmaster_malown
+Complete(%): 50
+Comment:
+Category: Stratholme
 EndScriptData */
 
 #include "ScriptPCH.h"

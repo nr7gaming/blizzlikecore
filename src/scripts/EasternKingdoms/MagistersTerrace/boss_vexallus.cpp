@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Vexallus
-SD%Complete: 90
-SDComment: Heroic and Normal support. Needs further testing.
-SDCategory: Magister's Terrace
+Name: Boss_Vexallus
+Complete(%): 90
+Comment: Heroic and Normal support. Needs further testing.
+Category: Magister's Terrace
 EndScriptData */
 
 #include "ScriptPCH.h"

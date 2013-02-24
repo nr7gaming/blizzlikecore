@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Warmaster_Voone
-SD%Complete: 100
-SDComment:
-SDCategory: Blackrock Spire
+Name: Boss_Warmaster_Voone
+Complete(%): 100
+Comment:
+Category: Blackrock Spire
 EndScriptData */
 
 #include "ScriptPCH.h"

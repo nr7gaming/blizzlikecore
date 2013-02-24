@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Houndmaster_Loksey
-SD%Complete: 100
-SDComment:
-SDCategory: Scarlet Monastery
+Name: Boss_Houndmaster_Loksey
+Complete(%): 100
+Comment:
+Category: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptPCH.h"

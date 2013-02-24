@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: boss_darhrohan_balnazzar
-SD%Complete: 100
-SDComment: CHECK SQL
-SDCategory: Stratholme
+Name: boss_darhrohan_balnazzar
+Complete(%): 100
+Comment: CHECK SQL
+Category: Stratholme
 EndScriptData */
 
 #include "ScriptPCH.h"

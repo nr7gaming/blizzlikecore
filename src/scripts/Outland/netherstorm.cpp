@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Netherstorm
-SD%Complete: 90
-SDComment: Quest support: 10337, 10438, 10652 (special flight paths), 10299,10321,10322,10323,10329,10330,10338,10365(Shutting Down Manaforge), 10198, 10191, 10924, 10221, 10310.
-SDCategory: Netherstorm
+Name: Netherstorm
+Complete(%): 90
+Comment: Quest support: 10337, 10438, 10652 (special flight paths), 10299,10321,10322,10323,10329,10330,10338,10365(Shutting Down Manaforge), 10198, 10191, 10924, 10221, 10310.
+Category: Netherstorm
 EndScriptData */
 
 /* ContentData

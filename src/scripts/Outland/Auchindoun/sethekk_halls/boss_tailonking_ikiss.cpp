@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Talon_King_Ikiss
-SD%Complete: 95
-SDComment: Heroic supported. Some details missing, but most are spell related.
-SDCategory: Auchindoun, Sethekk Halls
+Name: Boss_Talon_King_Ikiss
+Complete(%): 95
+Comment: Heroic supported. Some details missing, but most are spell related.
+Category: Auchindoun, Sethekk Halls
 EndScriptData */
 
 #include "ScriptPCH.h"

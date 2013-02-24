@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Npc_EscortAI
-SD%Complete: 100
-SDComment:
-SDCategory: Npc
+Name: Npc_EscortAI
+Complete(%): 100
+Comment:
+Category: Npc
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Zulfarrak
-SD%Complete: 50
-SDComment: Consider it temporary, no instance script made for this instance yet.
-SDCategory: Zul'Farrak
+Name: Zulfarrak
+Complete(%): 50
+Comment: Consider it temporary, no instance script made for this instance yet.
+Category: Zul'Farrak
 EndScriptData */
 
 /* ContentData

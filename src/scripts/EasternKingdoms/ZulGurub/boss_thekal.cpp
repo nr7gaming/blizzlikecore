@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Thekal
-SD%Complete: 100
-SDComment: Combat animation after resurrection is missing. Same issue with the Mograine and Whitemane fight. Core Issue?
-SDCategory: Zul'Gurub
+Name: Boss_Thekal
+Complete(%): 100
+Comment: Combat animation after resurrection is missing. Same issue with the Mograine and Whitemane fight. Core Issue?
+Category: Zul'Gurub
 EndScriptData */
 
 #include "ScriptPCH.h"

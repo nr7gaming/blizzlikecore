@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Baron_Rivendare
-SD%Complete: 70
-SDComment: aura applied/defined in database
-SDCategory: Stratholme
+Name: Boss_Baron_Rivendare
+Complete(%): 70
+Comment: aura applied/defined in database
+Category: Stratholme
 EndScriptData */
 
 #include "ScriptPCH.h"

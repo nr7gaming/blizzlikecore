@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Ghostlands
-SD%Complete: 100
-SDComment: Quest support: 9692, 9212. Obtain Budd's Guise of Zul'aman. Vendor Rathis Tomber
-SDCategory: Ghostlands
+Name: Ghostlands
+Complete(%): 100
+Comment: Quest support: 9692, 9212. Obtain Budd's Guise of Zul'aman. Vendor Rathis Tomber
+Category: Ghostlands
 EndScriptData */
 
 /* ContentData

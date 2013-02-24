@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Onyxia
-SD%Complete: 90
-SDComment: Spell Heated Ground is wrong, flying animation, visual for area effect
-SDCategory: Onyxia's Lair
+Name: Boss_Onyxia
+Complete(%): 90
+Comment: Spell Heated Ground is wrong, flying animation, visual for area effect
+Category: Onyxia's Lair
 EndScriptData */
 
 #include "ScriptPCH.h"

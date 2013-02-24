@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: Boss_Brutallus
-SD%Complete: 80
-SDComment: Find a way to start the intro, best code for the intro
+Name: Boss_Brutallus
+Complete(%): 80
+Comment: Find a way to start the intro, best code for the intro
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Teron_Gorefiend
-SD%Complete: 60
-SDComment: Requires Mind Control support for Ghosts.
-SDCategory: Black Temple
+Name: Boss_Teron_Gorefiend
+Complete(%): 60
+Comment: Requires Mind Control support for Ghosts.
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Orgrimmar
-SD%Complete: 100
-SDComment: Quest support: 2460, 5727, 6566
-SDCategory: Orgrimmar
+Name: Orgrimmar
+Complete(%): 100
+Comment: Quest support: 2460, 5727, 6566
+Category: Orgrimmar
 EndScriptData */
 
 /* ContentData

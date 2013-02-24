@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Leotheras_The_Blind
-SD%Complete: 80
-SDComment: Possesion Support
-SDCategory: Coilfang Resevoir, Serpent Shrine Cavern
+Name: Boss_Leotheras_The_Blind
+Complete(%): 80
+Comment: Possesion Support
+Category: Coilfang Resevoir, Serpent Shrine Cavern
 EndScriptData */
 
 #include "ScriptPCH.h"

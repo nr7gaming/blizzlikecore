@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: Boss_ZulJin
-SD%Complete: 85%
-SDComment:
+Name: Boss_ZulJin
+Complete(%): 85%
+Comment:
 EndScriptData */
 
 #include "ScriptPCH.h"

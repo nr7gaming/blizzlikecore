@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Silverpine_Forest
-SD%Complete: 100
-SDComment: Quest support: 1886, 435, 452
-SDCategory: Silverpine Forest
+Name: Silverpine_Forest
+Complete(%): 100
+Comment: Quest support: 1886, 435, 452
+Category: Silverpine Forest
 EndScriptData */
 
 /* ContentData

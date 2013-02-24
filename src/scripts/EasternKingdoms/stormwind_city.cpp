@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Stormwind_City
-SD%Complete: 100
-SDComment: Quest support: 1640, 1447, 4185, 11223, 434. Receive emote General Marcus
-SDCategory: Stormwind City
+Name: Stormwind_City
+Complete(%): 100
+Comment: Quest support: 1640, 1447, 4185, 11223, 434. Receive emote General Marcus
+Category: Stormwind City
 EndScriptData */
 
 /* ContentData

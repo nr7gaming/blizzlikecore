@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Mechanar
-SD%Complete: 100
-SDComment:
-SDCategory: Mechanar
+Name: Instance_Mechanar
+Complete(%): 100
+Comment:
+Category: Mechanar
 EndScriptData */
 
 #include "ScriptPCH.h"

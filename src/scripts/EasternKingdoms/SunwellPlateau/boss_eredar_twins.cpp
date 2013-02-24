@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: Boss_Eredar_Twins
-SD%Complete: 100
-SDComment:
+Name: Boss_Eredar_Twins
+Complete(%): 100
+Comment:
 EndScriptData */
 
 #include "ScriptPCH.h"

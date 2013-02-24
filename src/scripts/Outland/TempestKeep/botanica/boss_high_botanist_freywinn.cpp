@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_High_Botanist_Freywinn
-SD%Complete: 90
-SDComment: some strange visual related to tree form(if aura lost before normal duration end). possible make summon&transform -process smoother(transform after delay)
-SDCategory: Tempest Keep, The Botanica
+Name: Boss_High_Botanist_Freywinn
+Complete(%): 90
+Comment: some strange visual related to tree form(if aura lost before normal duration end). possible make summon&transform -process smoother(transform after delay)
+Category: Tempest Keep, The Botanica
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: boss_Akilzon
-SD%Complete: 75%
-SDComment: Missing timer for Call Lightning and Sound ID's
+Name: boss_Akilzon
+Complete(%): 75%
+Comment: Missing timer for Call Lightning and Sound ID's
 SQLUpdate:
 #Temporary fix for Soaring Eagles
 

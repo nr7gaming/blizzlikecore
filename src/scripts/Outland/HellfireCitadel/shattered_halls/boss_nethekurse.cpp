@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Grand_Warlock_Nethekurse
-SD%Complete: 99
-SDComment:
-SDCategory: Hellfire Citadel, Shattered Halls
+Name: Boss_Grand_Warlock_Nethekurse
+Complete(%): 99
+Comment:
+Category: Hellfire Citadel, Shattered Halls
 EndScriptData */
 
 /* ContentData

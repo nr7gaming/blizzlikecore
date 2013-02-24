@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Karazhan
-SD%Complete: 100
-SDComment: Support for Barnes (Opera controller) and Berthold (Doorman), Support for Quest 9645.
-SDCategory: Karazhan
+Name: Karazhan
+Complete(%): 100
+Comment: Support for Barnes (Opera controller) and Berthold (Doorman), Support for Quest 9645.
+Category: Karazhan
 EndScriptData */
 
 /* ContentData

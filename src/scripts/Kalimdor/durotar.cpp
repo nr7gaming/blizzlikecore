@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Durotar
-SD%Complete: 100
-SDComment: Quest support: 5441.
-SDCategory: Durotar
+Name: Durotar
+Complete(%): 100
+Comment: Quest support: 5441.
+Category: Durotar
 EndScriptData */
 
 /* ContentData

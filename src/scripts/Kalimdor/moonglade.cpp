@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Moonglade
-SD%Complete: 100
-SDComment: Quest support: 30, 272, 5929, 5930, 10965. Special Flight Paths for Druid class.
-SDCategory: Moonglade
+Name: Moonglade
+Complete(%): 100
+Comment: Quest support: 30, 272, 5929, 5930, 10965. Special Flight Paths for Druid class.
+Category: Moonglade
 EndScriptData */
 
 /* ContentData

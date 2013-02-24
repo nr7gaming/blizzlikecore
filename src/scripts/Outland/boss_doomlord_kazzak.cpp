@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Doomlord_Kazzak
-SD%Complete: 70
-SDComment: Using incorrect spell for Mark of Kazzak
-SDCategory: Hellfire Peninsula
+Name: Boss_Doomlord_Kazzak
+Complete(%): 70
+Comment: Using incorrect spell for Mark of Kazzak
+Category: Hellfire Peninsula
 EndScriptData */
 
 #include "ScriptPCH.h"

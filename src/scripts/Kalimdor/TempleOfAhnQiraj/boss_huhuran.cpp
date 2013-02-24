@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Huhuran
-SD%Complete: 100
-SDComment:
-SDCategory: Temple of Ahn'Qiraj
+Name: Boss_Huhuran
+Complete(%): 100
+Comment:
+Category: Temple of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

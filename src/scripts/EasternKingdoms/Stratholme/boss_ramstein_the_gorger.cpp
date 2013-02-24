@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Ramstein_The_Gorger
-SD%Complete: 70
-SDComment:
-SDCategory: Stratholme
+Name: Boss_Ramstein_The_Gorger
+Complete(%): 70
+Comment:
+Category: Stratholme
 EndScriptData */
 
 #include "ScriptPCH.h"

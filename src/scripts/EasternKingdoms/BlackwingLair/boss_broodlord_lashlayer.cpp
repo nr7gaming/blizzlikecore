@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Broodlord_Lashlayer
-SD%Complete: 100
-SDComment:
-SDCategory: Blackwing Lair
+Name: Boss_Broodlord_Lashlayer
+Complete(%): 100
+Comment:
+Category: Blackwing Lair
 EndScriptData */
 
 #include "ScriptPCH.h"

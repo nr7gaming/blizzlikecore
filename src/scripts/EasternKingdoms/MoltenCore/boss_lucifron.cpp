@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Lucifron
-SD%Complete: 100
-SDComment:
-SDCategory: Molten Core
+Name: Boss_Lucifron
+Complete(%): 100
+Comment:
+Category: Molten Core
 EndScriptData */
 
 #include "ScriptPCH.h"

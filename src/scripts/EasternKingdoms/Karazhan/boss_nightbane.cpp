@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Nightbane
-SD%Complete: 95
-SDComment:  timers,
-SDCategory: Karazhan
+Name: Boss_Nightbane
+Complete(%): 95
+Comment:  timers,
+Category: Karazhan
 EndScriptData */
 
 #include "ScriptPCH.h"

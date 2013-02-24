@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Four_Horsemen
-SD%Complete: 75
-SDComment: Lady Blaumeux, Thane Korthazz, Sir Zeliek, Baron Rivendare (this script maybe is not correct for TC1)
-SDCategory: Naxxramas
+Name: Boss_Four_Horsemen
+Complete(%): 75
+Comment: Lady Blaumeux, Thane Korthazz, Sir Zeliek, Baron Rivendare (this script maybe is not correct for TC1)
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Old_Hillsbrad
-SD%Complete: 40
-SDComment: Quest support: 10283, 10284. All friendly NPC's. Thrall waypoints fairly complete, missing many details, but possible to complete escort.
-SDCategory: Caverns of Time, Old Hillsbrad Foothills
+Name: Old_Hillsbrad
+Complete(%): 40
+Comment: Quest support: 10283, 10284. All friendly NPC's. Thrall waypoints fairly complete, missing many details, but possible to complete escort.
+Category: Caverns of Time, Old Hillsbrad Foothills
 EndScriptData */
 
 /* ContentData

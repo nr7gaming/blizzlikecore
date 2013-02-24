@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Gruuls_Lair
-SD%Complete: 100
-SDComment:
-SDCategory: Gruul's Lair
+Name: Instance_Gruuls_Lair
+Complete(%): 100
+Comment:
+Category: Gruul's Lair
 EndScriptData */
 
 #include "ScriptPCH.h"

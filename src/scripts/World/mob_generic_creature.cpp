@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Generic_Creature
-SD%Complete: 80
-SDComment: Should be replaced with core based AI
-SDCategory: Creatures
+Name: Generic_Creature
+Complete(%): 80
+Comment: Should be replaced with core based AI
+Category: Creatures
 EndScriptData */
 
 #include "ScriptPCH.h"

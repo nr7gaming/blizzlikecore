@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_KelThuzud
-SD%Complete: 0
-SDComment: VERIFY SCRIPT
-SDCategory: Naxxramas
+Name: Boss_KelThuzud
+Complete(%): 0
+Comment: VERIFY SCRIPT
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

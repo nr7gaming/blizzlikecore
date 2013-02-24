@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Exarch_Maladaar
-SD%Complete: 95
-SDComment: Most of event implemented, some adjustments to timers remain and possibly make some better code for switching his dark side in to better "images" of player.
-SDCategory: Auchindoun, Auchenai Crypts
+Name: Boss_Exarch_Maladaar
+Complete(%): 95
+Comment: Most of event implemented, some adjustments to timers remain and possibly make some better code for switching his dark side in to better "images" of player.
+Category: Auchindoun, Auchenai Crypts
 EndScriptData */
 
 /* ContentData

@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: Boss_Vanndar
-SD%Complete:
-SDComment:
+Name: Boss_Vanndar
+Complete(%):
+Comment:
 EndScriptData */
 
 #include "ScriptPCH.h"

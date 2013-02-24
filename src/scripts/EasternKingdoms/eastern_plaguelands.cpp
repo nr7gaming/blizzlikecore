@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Eastern_Plaguelands
-SD%Complete: 100
-SDComment: Quest support: 5211, 5742. Special vendor Augustus the Touched
-SDCategory: Eastern Plaguelands
+Name: Eastern_Plaguelands
+Complete(%): 100
+Comment: Quest support: 5211, 5742. Special vendor Augustus the Touched
+Category: Eastern Plaguelands
 EndScriptData */
 
 /* ContentData

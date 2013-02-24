@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Dustwallow_Marsh
-SD%Complete: 95
-SDComment: Quest support: 11180, 558, 11126, 1173, 1273, 1324, 11183, 11142, 11209,Vendor Nat Pagle
-SDCategory: Dustwallow Marsh
+Name: Dustwallow_Marsh
+Complete(%): 95
+Comment: Quest support: 11180, 558, 11126, 1173, 1273, 1324, 11183, 11142, 11209,Vendor Nat Pagle
+Category: Dustwallow Marsh
 EndScriptData */
 
 /* ContentData

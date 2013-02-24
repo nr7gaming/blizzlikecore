@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Headless_Horseman
-SD%Complete:
-SDComment:
-SDCategory: Scarlet Monastery
+Name: Boss_Headless_Horseman
+Complete(%):
+Comment:
+Category: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptPCH.h"

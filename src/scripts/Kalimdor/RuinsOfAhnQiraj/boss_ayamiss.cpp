@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Ayamiss
-SD%Complete: 50
-SDComment: VERIFY SCRIPT
-SDCategory: Ruins of Ahn'Qiraj
+Name: Boss_Ayamiss
+Complete(%): 50
+Comment: VERIFY SCRIPT
+Category: Ruins of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Netherspite
-SD%Complete: 80
-SDComment: some workaround
-SDCategory: Karazhan
+Name: Boss_Netherspite
+Complete(%): 80
+Comment: some workaround
+Category: Karazhan
 EndScriptData */
 
 #include "ScriptPCH.h"

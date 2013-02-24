@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Hellfire_Peninsula
-SD%Complete: 99
- SDComment: Quest support: 9375, 9418, 10129, 10146, 10162, 10163, 10340, 10346, 10347, 10382 (Special flight paths), 9410, 10909, 10935, 9545, 10838, 11516, 10351.
-SDCategory: Hellfire Peninsula
+Name: Hellfire_Peninsula
+Complete(%): 99
+ Comment: Quest support: 9375, 9418, 10129, 10146, 10162, 10163, 10340, 10346, 10347, 10382 (Special flight paths), 9410, 10909, 10935, 9545, 10838, 11516, 10351.
+Category: Hellfire Peninsula
 EndScriptData */
 
 /* ContentData

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Eversong_Woods
-SD%Complete: 100
-SDComment: Quest support: 8346, 8483, 8488, 8490
-SDCategory: Eversong Woods
+Name: Eversong_Woods
+Complete(%): 100
+Comment: Quest support: 8346, 8483, 8488, 8490
+Category: Eversong Woods
 EndScriptData */
 
 /* ContentData

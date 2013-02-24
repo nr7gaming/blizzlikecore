@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Victor_Nefarius
-SD%Complete: 75
-SDComment: Missing some text, Vael beginning event, and spawns Nef in wrong place
-SDCategory: Blackwing Lair
+Name: Boss_Victor_Nefarius
+Complete(%): 75
+Comment: Missing some text, Vael beginning event, and spawns Nef in wrong place
+Category: Blackwing Lair
 EndScriptData */
 
 #include "ScriptPCH.h"

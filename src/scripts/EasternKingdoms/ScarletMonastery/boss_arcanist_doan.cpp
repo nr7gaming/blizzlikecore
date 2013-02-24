@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Arcanist_Doan
-SD%Complete: 100
-SDComment:
-SDCategory: Scarlet Monastery
+Name: Boss_Arcanist_Doan
+Complete(%): 100
+Comment:
+Category: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptPCH.h"

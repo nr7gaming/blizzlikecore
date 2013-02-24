@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Jin'do the Hexxer
-SD%Complete: 85
-SDComment: Mind Control not working because of core bug. Shades visible for all.
-SDCategory: Zul'Gurub
+Name: Boss_Jin'do the Hexxer
+Complete(%): 85
+Comment: Mind Control not working because of core bug. Shades visible for all.
+Category: Zul'Gurub
 EndScriptData */
 
 #include "ScriptPCH.h"

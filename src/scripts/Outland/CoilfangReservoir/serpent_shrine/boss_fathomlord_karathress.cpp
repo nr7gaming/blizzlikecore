@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Fathomlord_Karathress
-SD%Complete: 70
-SDComment: Cyclone workaround
-SDCategory: Coilfang Resevoir, Serpent Shrine Cavern
+Name: Boss_Fathomlord_Karathress
+Complete(%): 70
+Comment: Cyclone workaround
+Category: Coilfang Resevoir, Serpent Shrine Cavern
 EndScriptData */
 
 #include "ScriptPCH.h"

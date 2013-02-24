@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Emperor_Dagran_Thaurissan
-SD%Complete: 99
-SDComment:
-SDCategory: Blackrock Depths
+Name: Boss_Emperor_Dagran_Thaurissan
+Complete(%): 99
+Comment:
+Category: Blackrock Depths
 EndScriptData */
 
 #include "ScriptPCH.h"

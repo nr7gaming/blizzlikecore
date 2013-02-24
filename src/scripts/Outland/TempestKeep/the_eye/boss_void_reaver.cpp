@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Void_Reaver
-SD%Complete: 90
-SDComment: Should reset if raid are out of room.
-SDCategory: Tempest Keep, The Eye
+Name: Boss_Void_Reaver
+Complete(%): 90
+Comment: Should reset if raid are out of room.
+Category: Tempest Keep, The Eye
 EndScriptData */
 
 #include "ScriptPCH.h"

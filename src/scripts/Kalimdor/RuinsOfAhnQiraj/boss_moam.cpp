@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Moam
-SD%Complete: 100
-SDComment: VERIFY SCRIPT AND SQL
-SDCategory: Ruins of Ahn'Qiraj
+Name: Boss_Moam
+Complete(%): 100
+Comment: VERIFY SCRIPT AND SQL
+Category: Ruins of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Warlord_Kalithres
-SD%Complete: 65
-SDComment: Contains workarounds regarding warlord's rage spells not acting as expected. Both scripts here require review and fine tuning.
-SDCategory: Coilfang Resevoir, The Steamvault
+Name: Boss_Warlord_Kalithres
+Complete(%): 65
+Comment: Contains workarounds regarding warlord's rage spells not acting as expected. Both scripts here require review and fine tuning.
+Category: Coilfang Resevoir, The Steamvault
 EndScriptData */
 
 #include "ScriptPCH.h"

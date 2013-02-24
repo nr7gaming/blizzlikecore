@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Cthun
-SD%Complete: 95
-SDComment: Darkglare tracking issue
-SDCategory: Temple of Ahn'Qiraj
+Name: Boss_Cthun
+Complete(%): 95
+Comment: Darkglare tracking issue
+Category: Temple of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

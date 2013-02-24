@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Illucia_Barov
-SD%Complete: 100
-SDComment:
-SDCategory: Scholomance
+Name: Boss_Illucia_Barov
+Complete(%): 100
+Comment:
+Category: Scholomance
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Priestess_Delrissa
-SD%Complete: 45
-SDComment: No Heroic support yet. Needs further testing. Several scripts for pets disabled, not seem to require any special script.
-SDCategory: Magister's Terrace
+Name: Boss_Priestess_Delrissa
+Complete(%): 45
+Comment: No Heroic support yet. Needs further testing. Several scripts for pets disabled, not seem to require any special script.
+Category: Magister's Terrace
 EndScriptData */
 
 #include "ScriptPCH.h"

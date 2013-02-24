@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_High_Interrogator_Gerstahn
-SD%Complete: 100
-SDComment:
-SDCategory: Blackrock Depths
+Name: Boss_High_Interrogator_Gerstahn
+Complete(%): 100
+Comment:
+Category: Blackrock Depths
 EndScriptData */
 
 #include "ScriptPCH.h"

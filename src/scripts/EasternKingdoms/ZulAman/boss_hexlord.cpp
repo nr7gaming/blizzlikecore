@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Hex_Lord_Malacrass
-SD%Complete:
-SDComment:
-SDCategory: Zul'Aman
+Name: Boss_Hex_Lord_Malacrass
+Complete(%):
+Comment:
+Category: Zul'Aman
 EndScriptData */
 
 #include "ScriptPCH.h"

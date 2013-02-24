@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Warbringer_Omrogg
-SD%Complete: 99
-SDComment: Heroic enabled. Spell timing may need additional tweaks
-SDCategory: Hellfire Citadel, Shattered Halls
+Name: Boss_Warbringer_Omrogg
+Complete(%): 99
+Comment: Heroic enabled. Spell timing may need additional tweaks
+Category: Hellfire Citadel, Shattered Halls
 EndScriptData */
 
 /* ContentData

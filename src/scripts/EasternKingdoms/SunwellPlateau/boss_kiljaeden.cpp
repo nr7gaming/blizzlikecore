@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Kiljaeden
-SD%Complete: 80
-SDComment: Sinister Reflection Model, Armageddon Visual, SAY_KJ_SHADOWSPIKE3, Emote, End Sequence
-SDCategory: Sunwell_Plateau
+Name: Boss_Kiljaeden
+Complete(%): 80
+Comment: Sinister Reflection Model, Armageddon Visual, SAY_KJ_SHADOWSPIKE3, Emote, End Sequence
+Category: Sunwell_Plateau
 EndScriptData */
 
 //TODO rewrite Armageddon

@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: boss_archaedas
-SD%Complete: 100
-SDComment: Archaedas is activated when 3 prople click on his altar.
+Name: boss_archaedas
+Complete(%): 100
+Comment: Archaedas is activated when 3 prople click on his altar.
 Every 10 seconds he will awaken one of his minions along the wall.
 At 66%, he will awaken the 6 Guardians.
 At 33%, he will awaken the Vault Walkers
@@ -194,9 +194,9 @@ CreatureAI* GetAI_boss_archaedas(Creature* pCreature)
 }
 
 /* ScriptData
-SDName: mob_archaedas_minions
-SD%Complete: 100
-SDComment: These mobs are initially frozen until Archaedas awakens them
+Name: mob_archaedas_minions
+Complete(%): 100
+Comment: These mobs are initially frozen until Archaedas awakens them
 one at a time.
 EndScriptData */
 
@@ -280,10 +280,10 @@ CreatureAI* GetAI_mob_archaedas_minions(Creature* pCreature)
 }
 
 /* ScriptData
-SDName: go_altar_archaedas
-SD%Complete: 100
-SDComment: Needs 3 people to activate the Archaedas script
-SDCategory: Uldaman
+Name: go_altar_archaedas
+Complete(%): 100
+Comment: Needs 3 people to activate the Archaedas script
+Category: Uldaman
 EndScriptData */
 
 #define OBJECT_ALTAR_OF_ARCHAEDAS   133234
@@ -336,9 +336,9 @@ bool GOHello_go_altar_of_archaedas(Player *player, GameObject* go)
 }
 
 /* ScriptData
-SDName: mob_stonekeepers
-SD%Complete: 100
-SDComment: After activating the altar of the keepers, the stone keepers will
+Name: mob_stonekeepers
+Complete(%): 100
+Comment: After activating the altar of the keepers, the stone keepers will
 wake up one by one.
 EndScriptData */
 
@@ -395,10 +395,10 @@ CreatureAI* GetAI_mob_stonekeepers(Creature* pCreature)
 }
 
 /* ScriptData
-SDName: go_altar_of_the_keepers
-SD%Complete: 100
-SDComment: Need 3 people to activate to open the altar.  One by one the StoneKeepers will activate.  After all four are dead than the door will open.
-SDCategory: Uldaman
+Name: go_altar_of_the_keepers
+Complete(%): 100
+Comment: Need 3 people to activate to open the altar.  One by one the StoneKeepers will activate.  After all four are dead than the door will open.
+Category: Uldaman
 EndScriptData */
 
 #define SPELL_BOSS_OBJECT_VISUAL    11206

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Broggok
-SD%Complete: 99
-SDComment:
-SDCategory: Hellfire Citadel, Blood Furnace
+Name: Boss_Broggok
+Complete(%): 99
+Comment:
+Category: Hellfire Citadel, Blood Furnace
 EndScriptData */
 
 #include "ScriptPCH.h"

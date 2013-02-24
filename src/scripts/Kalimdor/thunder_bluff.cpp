@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Thunder_Bluff
-SD%Complete: 100
-SDComment: Quest support: 925
-SDCategory: Thunder Bluff
+Name: Thunder_Bluff
+Complete(%): 100
+Comment: Quest support: 925
+Category: Thunder Bluff
 EndScriptData */
 
 #include "ScriptPCH.h"

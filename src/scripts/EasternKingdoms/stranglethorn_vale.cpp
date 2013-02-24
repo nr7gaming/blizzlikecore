@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Stranglethorn_Vale
-SD%Complete: 100
-SDComment: Quest support: 592
-SDCategory: Stranglethorn Vale
+Name: Stranglethorn_Vale
+Complete(%): 100
+Comment: Quest support: 592
+Category: Stranglethorn Vale
 EndScriptData */
 
 /* ContentData

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Azuregos
-SD%Complete: 90
-SDComment: Teleport not included, spell reflect not effecting dots (Core problem)
-SDCategory: Azshara
+Name: Boss_Azuregos
+Complete(%): 90
+Comment: Teleport not included, spell reflect not effecting dots (Core problem)
+Category: Azshara
 EndScriptData */
 
 #include "ScriptPCH.h"

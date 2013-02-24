@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Temporus
-SD%Complete: 75
-SDComment: More abilities need to be implemented
-SDCategory: Caverns of Time, The Dark Portal
+Name: Boss_Temporus
+Complete(%): 75
+Comment: More abilities need to be implemented
+Category: Caverns of Time, The Dark Portal
 EndScriptData */
 
 #include "ScriptPCH.h"

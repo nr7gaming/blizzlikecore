@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Janalai
-SD%Complete: 100
-SDComment:
-SDCategory: Zul'Aman
+Name: Boss_Janalai
+Complete(%): 100
+Comment:
+Category: Zul'Aman
 EndScriptData */
 
 #include "ScriptPCH.h"

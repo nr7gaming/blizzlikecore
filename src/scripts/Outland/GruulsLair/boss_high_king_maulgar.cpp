@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_High_King_Maulgar
-SD%Complete: 90
-SDComment: Correct timers, after whirlwind melee attack bug, prayer of healing
-SDCategory: Gruul's Lair
+Name: Boss_High_King_Maulgar
+Complete(%): 90
+Comment: Correct timers, after whirlwind melee attack bug, prayer of healing
+Category: Gruul's Lair
 EndScriptData */
 
 #include "ScriptPCH.h"

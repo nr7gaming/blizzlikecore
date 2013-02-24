@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss Pathaleon the Calculator
-SD%Complete: 50
-SDComment: Event missing. Script for himself 99% blizzlike.
-SDCategory: Tempest Keep, The Mechanar
+Name: Boss Pathaleon the Calculator
+Complete(%): 50
+Comment: Event missing. Script for himself 99% blizzlike.
+Category: Tempest Keep, The Mechanar
 EndScriptData */
 
 #include "ScriptPCH.h"

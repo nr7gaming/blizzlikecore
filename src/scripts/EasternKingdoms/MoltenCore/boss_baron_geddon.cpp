@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Baron_Geddon
-SD%Complete: 100
-SDComment:
-SDCategory: Molten Core
+Name: Boss_Baron_Geddon
+Complete(%): 100
+Comment:
+Category: Molten Core
 EndScriptData */
 
 #include "ScriptPCH.h"

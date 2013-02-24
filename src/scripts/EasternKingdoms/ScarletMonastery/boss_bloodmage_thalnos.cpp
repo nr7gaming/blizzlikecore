@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Bloodmage_Thalnos
-SD%Complete: 100
-SDComment:
-SDCategory: Scarlet Monastery
+Name: Boss_Bloodmage_Thalnos
+Complete(%): 100
+Comment:
+Category: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptPCH.h"

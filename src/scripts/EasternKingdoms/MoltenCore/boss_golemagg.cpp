@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Golemagg
-SD%Complete: 90
-SDComment: Timers need to be confirmed, Golemagg's Trust need to be checked
-SDCategory: Molten Core
+Name: Boss_Golemagg
+Complete(%): 90
+Comment: Timers need to be confirmed, Golemagg's Trust need to be checked
+Category: Molten Core
 EndScriptData */
 
 #include "ScriptPCH.h"

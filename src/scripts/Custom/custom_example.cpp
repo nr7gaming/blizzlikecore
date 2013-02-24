@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Custom_Example
-SD%Complete: 100
-SDComment: Short custom scripting example
-SDCategory: Script Examples
+Name: Custom_Example
+Complete(%): 100
+Comment: Short custom scripting example
+Category: Script Examples
 EndScriptData */
 
 #include "ScriptPCH.h"

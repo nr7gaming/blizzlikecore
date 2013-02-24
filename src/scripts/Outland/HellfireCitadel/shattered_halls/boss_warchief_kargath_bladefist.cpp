@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Warchief_Kargath_Bladefist
-SD%Complete: 99
-SDComment:
-SDCategory: Hellfire Citadel, Shattered Halls
+Name: Boss_Warchief_Kargath_Bladefist
+Complete(%): 99
+Comment:
+Category: Hellfire Citadel, Shattered Halls
 EndScriptData */
 
 /* ContentData

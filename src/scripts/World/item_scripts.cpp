@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Item_Scripts
-SD%Complete: 100
-SDComment: Items for a range of different items. See content below (in script)
-SDCategory: Items
+Name: Item_Scripts
+Complete(%): 100
+Comment: Items for a range of different items. See content below (in script)
+Category: Items
 EndScriptData */
 
 /* ContentData

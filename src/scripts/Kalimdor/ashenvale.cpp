@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Ashenvale
-SD%Complete: 70
-SDComment: Quest support: 6544, 6482, 6641
-SDCategory: Ashenvale Forest
+Name: Ashenvale
+Complete(%): 70
+Comment: Quest support: 6544, 6482, 6641
+Category: Ashenvale Forest
 EndScriptData */
 
 /* ContentData

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Black_Temple
-SD%Complete: 100
-SDComment: Instance Data Scripts and functions to acquire mobs and set encounter status for use in various Black Temple Scripts
-SDCategory: Black Temple
+Name: Instance_Black_Temple
+Complete(%): 100
+Comment: Instance Data Scripts and functions to acquire mobs and set encounter status for use in various Black Temple Scripts
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

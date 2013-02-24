@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Elwynn_Forest
-SD%Complete: 50
-SDComment: Quest support: 1786
-SDCategory: Elwynn Forest
+Name: Elwynn_Forest
+Complete(%): 50
+Comment: Quest support: 1786
+Category: Elwynn Forest
 EndScriptData */
 
 /* ContentData

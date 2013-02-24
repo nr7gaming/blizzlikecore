@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Shade_of_Aran
-SD%Complete: 95
-SDComment: Flame wreath missing cast animation, mods won't triggere.
-SDCategory: Karazhan
+Name: Boss_Shade_of_Aran
+Complete(%): 95
+Comment: Flame wreath missing cast animation, mods won't triggere.
+Category: Karazhan
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Shade_of_Akama
-SD%Complete: 95
-SDComment: Seems to be complete.
-SDCategory: Black Temple
+Name: Boss_Shade_of_Akama
+Complete(%): 95
+Comment: Seems to be complete.
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

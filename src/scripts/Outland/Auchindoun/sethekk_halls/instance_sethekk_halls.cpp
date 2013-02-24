@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance - Sethekk Halls
-SD%Complete: 95
-SDComment: Instance Data for Sethekk Halls instance
-SDCategory: Auchindoun, Sethekk Halls
+Name: Instance - Sethekk Halls
+Complete(%): 95
+Comment: Instance Data for Sethekk Halls instance
+Category: Auchindoun, Sethekk Halls
 EndScriptData */
 
 #include "ScriptPCH.h"

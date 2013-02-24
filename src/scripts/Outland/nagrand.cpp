@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Nagrand
-SD%Complete: 99
-SDComment: Quest support: 9849, 9918, 9874, 9991, 10107, 10108, 10044, 10172, 10646, 10085, 10987, 9868, 9948, 9923, 9924, 9955, 9879. TextId's unknown for altruis_the_sufferer and greatmother_geyah (npc_text)
-SDCategory: Nagrand
+Name: Nagrand
+Complete(%): 99
+Comment: Quest support: 9849, 9918, 9874, 9991, 10107, 10108, 10044, 10172, 10646, 10085, 10987, 9868, 9948, 9923, 9924, 9955, 9879. TextId's unknown for altruis_the_sufferer and greatmother_geyah (npc_text)
+Category: Nagrand
 EndScriptData */
 
 /* ContentData

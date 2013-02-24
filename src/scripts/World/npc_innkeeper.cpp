@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Npc_Innkeeper
-SD%Complete: 50
-SDComment:
-SDCategory: NPCs
+Name: Npc_Innkeeper
+Complete(%): 50
+Comment:
+Category: NPCs
 EndScriptData */
 
 #include "ScriptPCH.h"

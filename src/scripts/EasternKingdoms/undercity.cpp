@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Undercity
-SD%Complete: 95
-SDComment: Quest support: 6628, 9180(post-event).
-SDCategory: Undercity
+Name: Undercity
+Complete(%): 95
+Comment: Quest support: 6628, 9180(post-event).
+Category: Undercity
 EndScriptData */
 
 /* ContentData

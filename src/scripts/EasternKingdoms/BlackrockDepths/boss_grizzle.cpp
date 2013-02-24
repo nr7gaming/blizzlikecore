@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Grizzle
-SD%Complete: 100
-SDComment:
-SDCategory: Blackrock Depths
+Name: Boss_Grizzle
+Complete(%): 100
+Comment:
+Category: Blackrock Depths
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Warp_Splinter
-SD%Complete: 80
-SDComment: Includes Sapling (need some better control with these).
-SDCategory: Tempest Keep, The Botanica
+Name: Boss_Warp_Splinter
+Complete(%): 80
+Comment: Includes Sapling (need some better control with these).
+Category: Tempest Keep, The Botanica
 EndScriptData */
 
 #include "ScriptPCH.h"

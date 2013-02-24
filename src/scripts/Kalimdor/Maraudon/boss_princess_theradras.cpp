@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Princess_Theradras
-SD%Complete: 100
-SDComment:
-SDCategory: Maraudon
+Name: Boss_Princess_Theradras
+Complete(%): 100
+Comment:
+Category: Maraudon
 EndScriptData */
 
 #include "ScriptPCH.h"

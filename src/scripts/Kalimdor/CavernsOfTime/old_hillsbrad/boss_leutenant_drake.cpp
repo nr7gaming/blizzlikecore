@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Luetenant_Drake
-SD%Complete: 70
-SDComment: Missing proper code for patrolling area after being spawned. Script for GO (barrels) quest 10283
-SDCategory: Caverns of Time, Old Hillsbrad Foothills
+Name: Boss_Luetenant_Drake
+Complete(%): 70
+Comment: Missing proper code for patrolling area after being spawned. Script for GO (barrels) quest 10283
+Category: Caverns of Time, Old Hillsbrad Foothills
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Steam_Vault
-SD%Complete: 80
-SDComment:  Instance script and access panel GO
-SDCategory: Coilfang Resevoir, The Steamvault
+Name: Instance_Steam_Vault
+Complete(%): 80
+Comment:  Instance script and access panel GO
+Category: Coilfang Resevoir, The Steamvault
 EndScriptData */
 
 #include "ScriptPCH.h"

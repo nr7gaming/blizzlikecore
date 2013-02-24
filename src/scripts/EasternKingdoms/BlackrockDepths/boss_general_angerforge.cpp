@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_General_Angerforge
-SD%Complete: 100
-SDComment:
-SDCategory: Blackrock Depths
+Name: Boss_General_Angerforge
+Complete(%): 100
+Comment:
+Category: Blackrock Depths
 EndScriptData */
 
 #include "ScriptPCH.h"

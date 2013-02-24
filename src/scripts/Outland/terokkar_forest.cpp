@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Terokkar_Forest
-SD%Complete: 80
-SDComment: Quest support: 9889, 10009, 10873, 10896, 11096, 10052, 10051, 10898, 10446/10447, 10852, 10887, 10922, 11085, Skettis->Ogri'la Flight
-SDCategory: Terokkar Forest
+Name: Terokkar_Forest
+Complete(%): 80
+Comment: Quest support: 9889, 10009, 10873, 10896, 11096, 10052, 10051, 10898, 10446/10447, 10852, 10887, 10922, 11085, Skettis->Ogri'la Flight
+Category: Terokkar Forest
 EndScriptData */
 
 /* ContentData

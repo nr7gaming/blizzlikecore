@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Gruul
-SD%Complete: 25
-SDComment: Ground Slam seriously messed up due to core problem
-SDCategory: Gruul's Lair
+Name: Boss_Gruul
+Complete(%): 25
+Comment: Ground Slam seriously messed up due to core problem
+Category: Gruul's Lair
 EndScriptData */
 
 #include "ScriptPCH.h"

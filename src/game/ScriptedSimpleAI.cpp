@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: SimpleAI
-SD%Complete: 100
-SDComment: Base Class for SimpleAI creatures
-SDCategory: Creatures
+Name: SimpleAI
+Complete(%): 100
+Comment: Base Class for SimpleAI creatures
+Category: Creatures
 EndScriptData */
 
 #include "ScriptPCH.h"

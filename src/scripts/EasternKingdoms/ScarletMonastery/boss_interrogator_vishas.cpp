@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Interrogator_Vishas
-SD%Complete: 100
-SDComment:
-SDCategory: Scarlet Monastery
+Name: Boss_Interrogator_Vishas
+Complete(%): 100
+Comment:
+Category: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptPCH.h"

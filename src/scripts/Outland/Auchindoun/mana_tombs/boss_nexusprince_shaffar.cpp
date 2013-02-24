@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_NexusPrince_Shaffar
-SD%Complete: 80
-SDComment: Need more tuning of spell timers, it should not be as linear fight as current. Also should possibly find a better way to deal with his three initial beacons to make sure all aggro.
-SDCategory: Auchindoun, Mana Tombs
+Name: Boss_NexusPrince_Shaffar
+Complete(%): 80
+Comment: Need more tuning of spell timers, it should not be as linear fight as current. Also should possibly find a better way to deal with his three initial beacons to make sure all aggro.
+Category: Auchindoun, Mana Tombs
 EndScriptData */
 
 /* ContentData

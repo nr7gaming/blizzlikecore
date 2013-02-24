@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Guards
-SD%Complete: 100
-SDComment: All Guard gossip data, quite some npc_text-id's still missing, adding constantly as new id's are known. CombatAI should be organized better for future.
-SDCategory: Guards
+Name: Guards
+Complete(%): 100
+Comment: All Guard gossip data, quite some npc_text-id's still missing, adding constantly as new id's are known. CombatAI should be organized better for future.
+Category: Guards
 EndScriptData */
 
 /* ContentData

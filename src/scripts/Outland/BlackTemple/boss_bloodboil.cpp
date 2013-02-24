@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Bloodboil
-SD%Complete: 80
-SDComment: Bloodboil not working correctly, missing enrage
-SDCategory: Black Temple
+Name: Boss_Bloodboil
+Complete(%): 80
+Comment: Bloodboil not working correctly, missing enrage
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

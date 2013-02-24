@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Anzu
-SD%Complete: 95
-SDComment:Summon event is missing. 
-SDCategory: Auchindoun, Sethekk Halls
+Name: Boss_Anzu
+Complete(%): 95
+Comment:Summon event is missing. 
+Category: Auchindoun, Sethekk Halls
 EndScriptData */
 
 #include "ScriptPCH.h"

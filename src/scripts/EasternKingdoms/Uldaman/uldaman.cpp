@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Uldaman
-SD%Complete: 100
-SDComment: Quest support: 2240, 2278 + 1 trash mob
-SDCategory: Uldaman
+Name: Uldaman
+Complete(%): 100
+Comment: Quest support: 2240, 2278 + 1 trash mob
+Category: Uldaman
 EndScriptData */
 
 /* ContentData

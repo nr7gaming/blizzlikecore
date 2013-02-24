@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Highlord_Mograine
-SD%Complete: 100
-SDComment: SCRIPT OBSOLETE
-SDCategory: Naxxramas
+Name: Boss_Highlord_Mograine
+Complete(%): 100
+Comment: SCRIPT OBSOLETE
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

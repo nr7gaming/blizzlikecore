@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: The_Eye
-SD%Complete: 100
-SDComment:
-SDCategory: Tempest Keep, The Eye
+Name: The_Eye
+Complete(%): 100
+Comment:
+Category: Tempest Keep, The Eye
 EndScriptData */
 
 /* ContentData

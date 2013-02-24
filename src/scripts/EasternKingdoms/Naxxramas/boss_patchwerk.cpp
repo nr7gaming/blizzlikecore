@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Patchwerk
-SD%Complete: 100
-SDComment: Some issues with hateful strike inturrupting the melee swing timer. Probably core issue.
-SDCategory: Naxxramas
+Name: Boss_Patchwerk
+Complete(%): 100
+Comment: Some issues with hateful strike inturrupting the melee swing timer. Probably core issue.
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

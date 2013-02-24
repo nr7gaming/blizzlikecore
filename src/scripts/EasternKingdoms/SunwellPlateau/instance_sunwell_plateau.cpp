@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Sunwell_Plateau
-SD%Complete: 25
-SDComment: VERIFY SCRIPT
-SDCategory: Sunwell_Plateau
+Name: Instance_Sunwell_Plateau
+Complete(%): 25
+Comment: VERIFY SCRIPT
+Category: Sunwell_Plateau
 EndScriptData */
 
 #include "ScriptPCH.h"

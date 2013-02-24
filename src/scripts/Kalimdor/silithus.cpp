@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Silithus
-SD%Complete: 100
-SDComment: Quest support: 7785, 8304, 8305, 8519.
-SDCategory: Silithus
+Name: Silithus
+Complete(%): 100
+Comment: Quest support: 7785, 8304, 8305, 8519.
+Category: Silithus
 EndScriptData */
 
 /* ContentData

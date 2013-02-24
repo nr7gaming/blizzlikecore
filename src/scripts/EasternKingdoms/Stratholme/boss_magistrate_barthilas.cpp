@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Magistrate_Barthilas
-SD%Complete: 70
-SDComment:
-SDCategory: Stratholme
+Name: Boss_Magistrate_Barthilas
+Complete(%): 70
+Comment:
+Category: Stratholme
 EndScriptData */
 
 #include "ScriptPCH.h"

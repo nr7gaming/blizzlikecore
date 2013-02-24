@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Herod
-SD%Complete: 95
-SDComment: Should in addition spawn Myrmidons in the hallway outside
-SDCategory: Scarlet Monastery
+Name: Boss_Herod
+Complete(%): 95
+Comment: Should in addition spawn Myrmidons in the hallway outside
+Category: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptPCH.h"

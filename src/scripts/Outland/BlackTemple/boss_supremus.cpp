@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Supremus
-SD%Complete: 95
-SDComment: Need to implement molten punch
-SDCategory: Black Temple
+Name: Boss_Supremus
+Complete(%): 95
+Comment: Need to implement molten punch
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

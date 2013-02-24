@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Hungarfen
-SD%Complete: 95
-SDComment: Need confirmation if spell data are same in both modes. Summons should have faster rate in heroic
-SDCategory: Coilfang Resevoir, Underbog
+Name: Boss_Hungarfen
+Complete(%): 95
+Comment: Need confirmation if spell data are same in both modes. Summons should have faster rate in heroic
+Category: Coilfang Resevoir, Underbog
 EndScriptData */
 
 #include "ScriptPCH.h"

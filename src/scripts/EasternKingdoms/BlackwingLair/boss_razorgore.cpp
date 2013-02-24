@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Razorgore
-SD%Complete: 50
-SDComment: Needs additional review. Phase 1 NYI (Grethok the Controller)
-SDCategory: Blackwing Lair
+Name: Boss_Razorgore
+Complete(%): 50
+Comment: Needs additional review. Phase 1 NYI (Grethok the Controller)
+Category: Blackwing Lair
 EndScriptData */
 
 #include "ScriptPCH.h"

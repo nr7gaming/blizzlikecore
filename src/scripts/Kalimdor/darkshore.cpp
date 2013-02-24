@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Darkshore
-SD%Complete: 100
-SDComment: Quest support: 731, 2078, 5321
-SDCategory: Darkshore
+Name: Darkshore
+Complete(%): 100
+Comment: Quest support: 731, 2078, 5321
+Category: Darkshore
 EndScriptData */
 
 /* ContentData

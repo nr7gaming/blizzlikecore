@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Astromancer
-SD%Complete: 80
-SDComment:
-SDCategory: Tempest Keep, The Eye
+Name: Boss_Astromancer
+Complete(%): 80
+Comment:
+Category: Tempest Keep, The Eye
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Zangarmarsh
-SD%Complete: 100
-SDComment: Quest support: 9785, 9803, 10009, 9752. Mark Of ... buffs.
-SDCategory: Zangarmarsh
+Name: Zangarmarsh
+Complete(%): 100
+Comment: Quest support: 9785, 9803, 10009, 9752. Mark Of ... buffs.
+Category: Zangarmarsh
 EndScriptData */
 
 /* ContentData

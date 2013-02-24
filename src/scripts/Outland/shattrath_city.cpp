@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Shattrath_City
-SD%Complete: 100
-SDComment: Quest support: 10004, 10009, 10211, 10231. Flask vendors, Teleport to Caverns of Time
-SDCategory: Shattrath City
+Name: Shattrath_City
+Complete(%): 100
+Comment: Quest support: 10004, 10009, 10211, 10231. Flask vendors, Teleport to Caverns of Time
+Category: Shattrath City
 EndScriptData */
 
 /* ContentData

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Lord_Alexei_Barov
-SD%Complete: 100
-SDComment: aura applied/defined in database
-SDCategory: Scholomance
+Name: Boss_Lord_Alexei_Barov
+Complete(%): 100
+Comment: aura applied/defined in database
+Category: Scholomance
 EndScriptData */
 
 #include "ScriptPCH.h"

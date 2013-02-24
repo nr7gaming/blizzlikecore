@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Maiden_of_Virtue
-SD%Complete: 100
-SDComment:
-SDCategory: Karazhan
+Name: Boss_Maiden_of_Virtue
+Complete(%): 100
+Comment:
+Category: Karazhan
 EndScriptData */
 
 #include "ScriptPCH.h"

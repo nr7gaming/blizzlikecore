@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Death_knight_darkreaver
-SD%Complete: 100
-SDComment:
-SDCategory: Scholomance
+Name: Boss_Death_knight_darkreaver
+Complete(%): 100
+Comment:
+Category: Scholomance
 EndScriptData */
 
 #include "ScriptPCH.h"

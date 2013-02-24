@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Blackfathom_Deeps
-SD%Complete: 50
-SDComment:
-SDCategory: Blackfathom Deeps
+Name: Instance_Blackfathom_Deeps
+Complete(%): 50
+Comment:
+Category: Blackfathom Deeps
 EndScriptData */
 
 #include "ScriptPCH.h"

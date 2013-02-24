@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Magmadar
-SD%Complete: 75
-SDComment: Conflag on ground nyi, fear causes issues without VMAPs
-SDCategory: Molten Core
+Name: Boss_Magmadar
+Complete(%): 75
+Comment: Conflag on ground nyi, fear causes issues without VMAPs
+Category: Molten Core
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Shadow_Hunter_Voshgajin
-SD%Complete: 100
-SDComment:
-SDCategory: Blackrock Spire
+Name: Boss_Shadow_Hunter_Voshgajin
+Complete(%): 100
+Comment:
+Category: Blackrock Spire
 EndScriptData */
 
 #include "ScriptPCH.h"

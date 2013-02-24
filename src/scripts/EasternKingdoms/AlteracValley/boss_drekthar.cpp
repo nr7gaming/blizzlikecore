@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: Boss_DrekThar
-SD%Complete: 50%
-SDComment:
+Name: Boss_DrekThar
+Complete(%): 50%
+Comment:
 EndScriptData */
 
 #include "ScriptPCH.h"

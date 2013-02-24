@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Selin_Fireheart
-SD%Complete: 90
-SDComment: Heroic and Normal Support. Needs further testing.
-SDCategory: Magister's Terrace
+Name: Boss_Selin_Fireheart
+Complete(%): 90
+Comment: Heroic and Normal Support. Needs further testing.
+Category: Magister's Terrace
 EndScriptData */
 
 #include "ScriptPCH.h"

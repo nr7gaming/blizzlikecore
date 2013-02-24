@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Blood_Furnace
-SD%Complete: 95
-SDComment:
-SDCategory: Hellfire Citadel, Blood Furnace
+Name: Instance_Blood_Furnace
+Complete(%): 95
+Comment:
+Category: Hellfire Citadel, Blood Furnace
 EndScriptData */
 
 #include "ScriptPCH.h"

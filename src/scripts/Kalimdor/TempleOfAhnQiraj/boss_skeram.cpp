@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Skeram
-SD%Complete: 75
-SDComment: Mind Control buggy.
-SDCategory: Temple of Ahn'Qiraj
+Name: Boss_Skeram
+Complete(%): 75
+Comment: Mind Control buggy.
+Category: Temple of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Nethermancer_Sepethrea
-SD%Complete: 90
-SDComment: Need adjustments to initial summons
-SDCategory: Tempest Keep, The Mechanar
+Name: Boss_Nethermancer_Sepethrea
+Complete(%): 90
+Comment: Need adjustments to initial summons
+Category: Tempest Keep, The Mechanar
 EndScriptData */
 
 #include "ScriptPCH.h"

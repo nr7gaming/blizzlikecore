@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Terestian_Illhoof
-SD%Complete: 95
-SDComment: Complete! Needs adjustments to use spell though.
-SDCategory: Karazhan
+Name: Boss_Terestian_Illhoof
+Complete(%): 95
+Comment: Complete! Needs adjustments to use spell though.
+Category: Karazhan
 EndScriptData */
 
 #include "ScriptPCH.h"

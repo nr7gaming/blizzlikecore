@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Fankriss
-SD%Complete: 100
-SDComment: sound not implemented
-SDCategory: Temple of Ahn'Qiraj
+Name: Boss_Fankriss
+Complete(%): 100
+Comment: sound not implemented
+Category: Temple of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

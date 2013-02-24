@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Vaelastrasz
-SD%Complete: 75
-SDComment: Burning Adrenaline not correctly implemented in core
-SDCategory: Blackwing Lair
+Name: Boss_Vaelastrasz
+Complete(%): 75
+Comment: Burning Adrenaline not correctly implemented in core
+Category: Blackwing Lair
 EndScriptData */
 
 #include "ScriptPCH.h"

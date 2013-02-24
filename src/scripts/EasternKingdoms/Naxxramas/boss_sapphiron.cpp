@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Sapphiron
-SD%Complete: 0
-SDComment: Place Holder
-SDCategory: Naxxramas
+Name: Boss_Sapphiron
+Complete(%): 0
+Comment: Place Holder
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

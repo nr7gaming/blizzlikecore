@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Azuremyst_Isle
-SD%Complete: 75
-SDComment: Quest support: 9283, 9537, 9582, 9554, 9531, 9303(special flight path, proper model for mount missing). Injured Draenei cosmetic only, 9582.
-SDCategory: Azuremyst Isle
+Name: Azuremyst_Isle
+Complete(%): 75
+Comment: Quest support: 9283, 9537, 9582, 9554, 9531, 9303(special flight path, proper model for mount missing). Injured Draenei cosmetic only, 9582.
+Category: Azuremyst Isle
 EndScriptData */
 
 /* ContentData

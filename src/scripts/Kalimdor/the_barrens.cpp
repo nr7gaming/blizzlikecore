@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: The_Barrens
-SD%Complete: 90
-SDComment: Quest support: 863, 1719, 2458, 4921, 6981, 898
-SDCategory: Barrens
+Name: The_Barrens
+Complete(%): 90
+Comment: Quest support: 863, 1719, 2458, 4921, 6981, 898
+Category: Barrens
 EndScriptData */
 
 /* ContentData

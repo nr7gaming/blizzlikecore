@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Dark_Portal
-SD%Complete: 30
-SDComment: Misc NPC's and mobs for instance. Most here far from complete.
-SDCategory: Caverns of Time, The Dark Portal
+Name: Dark_Portal
+Complete(%): 30
+Comment: Misc NPC's and mobs for instance. Most here far from complete.
+Category: Caverns of Time, The Dark Portal
 EndScriptData */
 
 /* ContentData

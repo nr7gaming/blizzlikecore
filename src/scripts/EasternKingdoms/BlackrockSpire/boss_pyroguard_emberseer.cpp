@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Pyroguard_Emberseer
-SD%Complete: 100
-SDComment: Event to activate Emberseer NYI
-SDCategory: Blackrock Spire
+Name: Boss_Pyroguard_Emberseer
+Complete(%): 100
+Comment: Event to activate Emberseer NYI
+Category: Blackrock Spire
 EndScriptData */
 
 #include "ScriptPCH.h"

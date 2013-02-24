@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: boss_alar
-SD%Complete: 95
-SDComment:
-SDCategory: Tempest Keep, The Eye
+Name: boss_alar
+Complete(%): 95
+Comment:
+Category: Tempest Keep, The Eye
 EndScriptData */
 
 #include "ScriptPCH.h"

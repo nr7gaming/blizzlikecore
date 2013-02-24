@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Stratholme
-SD%Complete: 100
-SDComment: Misc mobs for instance. GO-script to apply aura and start event for quest 8945
-SDCategory: Stratholme
+Name: Stratholme
+Complete(%): 100
+Comment: Misc mobs for instance. GO-script to apply aura and start event for quest 8945
+Category: Stratholme
 EndScriptData */
 
 /* ContentData

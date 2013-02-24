@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Blackheart_the_Inciter
-SD%Complete: 75
-SDComment: Incite Chaos not functional since core lacks Mind Control support
-SDCategory: Auchindoun, Shadow Labyrinth
+Name: Boss_Blackheart_the_Inciter
+Complete(%): 75
+Comment: Incite Chaos not functional since core lacks Mind Control support
+Category: Auchindoun, Shadow Labyrinth
 EndScriptData */
 
 #include "ScriptPCH.h"

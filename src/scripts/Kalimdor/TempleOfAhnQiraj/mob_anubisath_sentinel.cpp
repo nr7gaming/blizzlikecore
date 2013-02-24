@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: mob_anubisath_sentinel
-SD%Complete: 95
-SDComment: Shadow storm is not properly implemented in core it should only pTarget ppl outside of melee range.
-SDCategory: Temple of Ahn'Qiraj
+Name: mob_anubisath_sentinel
+Complete(%): 95
+Comment: Shadow storm is not properly implemented in core it should only pTarget ppl outside of melee range.
+Category: Temple of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

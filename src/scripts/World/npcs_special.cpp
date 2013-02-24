@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Npcs_Special
-SD%Complete: 100
-SDComment: To be used for special NPCs that are located globally.
-SDCategory: NPCs
+Name: Npcs_Special
+Complete(%): 100
+Comment: To be used for special NPCs that are located globally.
+Category: NPCs
 EndScriptData
 */
 

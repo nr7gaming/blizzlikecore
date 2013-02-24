@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Omar_The_Unscarred
-SD%Complete: 99
-SDComment:
-SDCategory: Hellfire Citadel, Hellfire Ramparts
+Name: Boss_Omar_The_Unscarred
+Complete(%): 99
+Comment:
+Category: Hellfire Citadel, Hellfire Ramparts
 EndScriptData */
 
 #include "ScriptPCH.h"

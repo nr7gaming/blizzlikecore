@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Harbinger_Skyriss
-SD%Complete: 45
-SDComment: CombatAI not fully implemented. Timers will need adjustments. Need more docs on how event fully work. Reset all event and force start over if fail at one point?
-SDCategory: Tempest Keep, The Arcatraz
+Name: Boss_Harbinger_Skyriss
+Complete(%): 45
+Comment: CombatAI not fully implemented. Timers will need adjustments. Need more docs on how event fully work. Reset all event and force start over if fail at one point?
+Category: Tempest Keep, The Arcatraz
 EndScriptData */
 
 /* ContentData

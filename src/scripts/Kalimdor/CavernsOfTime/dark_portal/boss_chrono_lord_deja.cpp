@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Chrono_Lord_Deja
-SD%Complete: 65
-SDComment: All abilities not implemented
-SDCategory: Caverns of Time, The Dark Portal
+Name: Boss_Chrono_Lord_Deja
+Complete(%): 65
+Comment: All abilities not implemented
+Category: Caverns of Time, The Dark Portal
 EndScriptData */
 
 #include "ScriptPCH.h"

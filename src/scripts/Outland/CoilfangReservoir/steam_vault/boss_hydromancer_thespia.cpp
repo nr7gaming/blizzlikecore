@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Hydromancer_Thespia
-SD%Complete: 80
-SDComment: Needs additional adjustments (when instance script is adjusted)
-SDCategory: Coilfang Resevoir, The Steamvault
+Name: Boss_Hydromancer_Thespia
+Complete(%): 80
+Comment: Needs additional adjustments (when instance script is adjusted)
+Category: Coilfang Resevoir, The Steamvault
 EndScriptData */
 
 /* ContentData

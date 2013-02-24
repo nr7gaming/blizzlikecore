@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Gatewatcher_Ironhand
-SD%Complete: 75
-SDComment:
-SDCategory: Tempest Keep, The Mechanar
+Name: Boss_Gatewatcher_Ironhand
+Complete(%): 75
+Comment:
+Category: Tempest Keep, The Mechanar
 EndScriptData */
 
 #include "ScriptPCH.h"

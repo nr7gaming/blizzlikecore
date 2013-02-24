@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Mandokir
-SD%Complete: 90
-SDComment: Ohgan function needs improvements.
-SDCategory: Zul'Gurub
+Name: Boss_Mandokir
+Complete(%): 90
+Comment: Ohgan function needs improvements.
+Category: Zul'Gurub
 EndScriptData */
 
 #include "ScriptPCH.h"

@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Burning_Steppes
-SD%Complete: 100
-SDComment: Quest support: 4224, 4866
-SDCategory: Burning Steppes
+Name: Burning_Steppes
+Complete(%): 100
+Comment: Quest support: 4224, 4866
+Category: Burning Steppes
 EndScriptData */
 
 /* ContentData

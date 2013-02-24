@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Azshir_the_Sleepless
-SD%Complete: 80
-SDComment:
-SDCategory: Scarlet Monastery
+Name: Boss_Azshir_the_Sleepless
+Complete(%): 80
+Comment:
+Category: Scarlet Monastery
 EndScriptData */
 
 #include "ScriptPCH.h"

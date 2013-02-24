@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Gahz'ranka
-SD%Complete: 85
-SDComment: Massive Geyser with knockback not working. Spell buggy.
-SDCategory: Zul'Gurub
+Name: Boss_Gahz'ranka
+Complete(%): 85
+Comment: Massive Geyser with knockback not working. Spell buggy.
+Category: Zul'Gurub
 EndScriptData */
 
 #include "ScriptPCH.h"

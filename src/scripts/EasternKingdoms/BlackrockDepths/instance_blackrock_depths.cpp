@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Blackrock_Depths
-SD%Complete: 100
-SDComment:
-SDCategory: Blackrock Depths
+Name: Instance_Blackrock_Depths
+Complete(%): 100
+Comment:
+Category: Blackrock Depths
 EndScriptData */
 
 /*

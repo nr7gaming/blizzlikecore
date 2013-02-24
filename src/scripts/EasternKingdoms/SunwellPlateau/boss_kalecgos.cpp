@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Kalecgos
-SD%Complete: 95
-SDComment:
-SDCategory: Sunwell_Plateau
+Name: Boss_Kalecgos
+Complete(%): 95
+Comment:
+Category: Sunwell_Plateau
 EndScriptData */
 
 #include "ScriptPCH.h"

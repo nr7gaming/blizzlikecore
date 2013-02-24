@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Pandemonius
-SD%Complete: 75
-SDComment: Not known how void blast is done (amount of rapid cast seems to be related to players in party). All mobs remaining in surrounding area should aggro when engaged.
-SDCategory: Auchindoun, Mana Tombs
+Name: Boss_Pandemonius
+Complete(%): 75
+Comment: Not known how void blast is done (amount of rapid cast seems to be related to players in party). All mobs remaining in surrounding area should aggro when engaged.
+Category: Auchindoun, Mana Tombs
 EndScriptData */
 
 #include "ScriptPCH.h"

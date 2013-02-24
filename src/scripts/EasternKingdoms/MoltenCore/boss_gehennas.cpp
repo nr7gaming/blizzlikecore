@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Gehennas
-SD%Complete: 90
-SDComment: Adds MC NYI
-SDCategory: Molten Core
+Name: Boss_Gehennas
+Complete(%): 90
+Comment: Adds MC NYI
+Category: Molten Core
 EndScriptData */
 
 #include "ScriptPCH.h"

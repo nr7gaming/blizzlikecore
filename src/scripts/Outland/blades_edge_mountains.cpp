@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Blades_Edge_Mountains
-SD%Complete: 90
-SDComment: Quest support: 10556, 10609, 10682, 10980, 10512. Ogri'la->Skettis Flight. (npc_daranelle needs bit more work before consider complete)
-SDCategory: Blade's Edge Mountains
+Name: Blades_Edge_Mountains
+Complete(%): 90
+Comment: Quest support: 10556, 10609, 10682, 10980, 10512. Ogri'la->Skettis Flight. (npc_daranelle needs bit more work before consider complete)
+Category: Blade's Edge Mountains
 EndScriptData */
 
 /* ContentData

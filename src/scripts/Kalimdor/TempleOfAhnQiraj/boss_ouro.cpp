@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Ouro
-SD%Complete: 85
-SDComment: No model for submerging. Currently just invisible.
-SDCategory: Temple of Ahn'Qiraj
+Name: Boss_Ouro
+Complete(%): 85
+Comment: No model for submerging. Currently just invisible.
+Category: Temple of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

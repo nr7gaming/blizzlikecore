@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Arathi Highlands
-SD%Complete: 100
-SDComment: Quest support: 665
-SDCategory: Arathi Highlands
+Name: Arathi Highlands
+Complete(%): 100
+Comment: Quest support: 665
+Category: Arathi Highlands
 EndScriptData */
 
 /* ContentData

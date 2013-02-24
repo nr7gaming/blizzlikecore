@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Watchkeeper_Gargolmar
-SD%Complete: 99
-SDComment: Missing adds to heal him. Should work with ACID.
-SDCategory: Hellfire Citadel, Hellfire Ramparts
+Name: Boss_Watchkeeper_Gargolmar
+Complete(%): 99
+Comment: Missing adds to heal him. Should work with ACID.
+Category: Hellfire Citadel, Hellfire Ramparts
 EndScriptData */
 
 #include "ScriptPCH.h"

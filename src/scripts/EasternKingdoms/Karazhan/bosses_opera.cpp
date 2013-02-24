@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Bosses_Opera
-SD%Complete: 90
-SDComment: Oz, Hood, and RAJ event implemented. RAJ event requires more testing.
-SDCategory: Karazhan
+Name: Bosses_Opera
+Complete(%): 90
+Comment: Oz, Hood, and RAJ event implemented. RAJ event requires more testing.
+Category: Karazhan
 EndScriptData */
 
 #include "ScriptPCH.h"

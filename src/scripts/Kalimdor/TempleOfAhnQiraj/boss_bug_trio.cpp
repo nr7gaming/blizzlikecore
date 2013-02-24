@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: boss_kri, boss_yauj, boss_vem : The Bug Trio
-SD%Complete: 100
-SDComment:
-SDCategory: Temple of Ahn'Qiraj
+Name: boss_kri, boss_yauj, boss_vem : The Bug Trio
+Complete(%): 100
+Comment:
+Category: Temple of Ahn'Qiraj
 EndScriptData */
 
 #include "ScriptPCH.h"

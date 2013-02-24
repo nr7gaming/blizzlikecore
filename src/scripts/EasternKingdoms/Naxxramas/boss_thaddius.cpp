@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Thaddius
-SD%Complete: 0
-SDComment: Merge Feugen & Stalagg with this script
-SDCategory: Naxxramas
+Name: Boss_Thaddius
+Complete(%): 0
+Comment: Merge Feugen & Stalagg with this script
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

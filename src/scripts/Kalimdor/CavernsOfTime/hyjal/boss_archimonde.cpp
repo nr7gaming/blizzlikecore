@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Archimonde
-SD%Complete: 85
-SDComment: Doomfires not completely offlike due to core limitations for random moving. Tyrande and second phase not fully implemented.
-SDCategory: Caverns of Time, Mount Hyjal
+Name: Boss_Archimonde
+Complete(%): 85
+Comment: Doomfires not completely offlike due to core limitations for random moving. Tyrande and second phase not fully implemented.
+Category: Caverns of Time, Mount Hyjal
 EndScriptData */
 
 #include "ScriptPCH.h"

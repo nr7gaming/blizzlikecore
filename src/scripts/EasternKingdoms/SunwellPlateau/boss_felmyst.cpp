@@ -16,9 +16,9 @@
  */
 
 /* ScriptData
-SDName: Boss_Felmyst
-SD%Complete: 0
-SDComment:
+Name: Boss_Felmyst
+Complete(%): 0
+Comment:
 EndScriptData */
 
 #include "ScriptPCH.h"

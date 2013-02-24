@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Silvermoon_City
-SD%Complete: 100
-SDComment: Quest support: 9685
-SDCategory: Silvermoon City
+Name: Silvermoon_City
+Complete(%): 100
+Comment: Quest support: 9685
+Category: Silvermoon City
 EndScriptData */
 
 /* ContentData

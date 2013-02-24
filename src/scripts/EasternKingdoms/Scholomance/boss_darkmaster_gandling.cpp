@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Darkmaster_Gandling
-SD%Complete: 99
-SDComment: Doors missing in instance script.
-SDCategory: Scholomance
+Name: Boss_Darkmaster_Gandling
+Complete(%): 99
+Comment: Doors missing in instance script.
+Category: Scholomance
 EndScriptData */
 
 #include "ScriptPCH.h"

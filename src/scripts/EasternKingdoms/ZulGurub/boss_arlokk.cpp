@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Arlokk
-SD%Complete: 95
-SDComment: Mark still not causing Panthers to attack a single target.
-SDCategory: Zul'Gurub
+Name: Boss_Arlokk
+Complete(%): 95
+Comment: Mark still not causing Panthers to attack a single target.
+Category: Zul'Gurub
 EndScriptData */
 
 #include "ScriptPCH.h"

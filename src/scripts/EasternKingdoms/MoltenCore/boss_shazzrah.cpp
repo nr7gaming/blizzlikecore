@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Shazzrah
-SD%Complete: 75
-SDComment: Teleport NYI
-SDCategory: Molten Core
+Name: Boss_Shazzrah
+Complete(%): 75
+Comment: Teleport NYI
+Category: Molten Core
 EndScriptData */
 
 #include "ScriptPCH.h"

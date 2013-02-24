@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Noth
-SD%Complete: 40
-SDComment: Missing Balcony stage
-SDCategory: Naxxramas
+Name: Boss_Noth
+Complete(%): 40
+Comment: Missing Balcony stage
+Category: Naxxramas
 EndScriptData */
 
 #include "ScriptPCH.h"

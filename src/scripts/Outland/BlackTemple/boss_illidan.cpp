@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: boss_illidan_stormrage
-SD%Complete: 90
-SDComment: Somewhat of a workaround for Parasitic Shadowfiend, unable to summon GOs for Cage Trap.
-SDCategory: Black Temple
+Name: boss_illidan_stormrage
+Complete(%): 90
+Comment: Somewhat of a workaround for Parasitic Shadowfiend, unable to summon GOs for Cage Trap.
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

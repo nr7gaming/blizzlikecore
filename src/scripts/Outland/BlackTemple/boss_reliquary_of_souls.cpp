@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_Reliquary_of_Souls
-SD%Complete: 90
-SDComment:
-SDCategory: Black Temple
+Name: Boss_Reliquary_of_Souls
+Complete(%): 90
+Comment:
+Category: Black Temple
 EndScriptData */
 
 #include "ScriptPCH.h"

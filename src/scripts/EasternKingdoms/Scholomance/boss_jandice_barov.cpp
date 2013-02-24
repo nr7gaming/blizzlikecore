@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Boss_jandicebarov
-SD%Complete: 100
-SDComment:
-SDCategory: Scholomance
+Name: Boss_jandicebarov
+Complete(%): 100
+Comment:
+Category: Scholomance
 EndScriptData */
 
 #include "ScriptPCH.h"

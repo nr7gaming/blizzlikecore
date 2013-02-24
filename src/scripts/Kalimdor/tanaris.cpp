@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Tanaris
-SD%Complete: 80
-SDComment: Quest support: 648, 1560, 2882, 2954, 4005, 10277, 10279(Special flight path). Noggenfogger vendor
-SDCategory: Tanaris
+Name: Tanaris
+Complete(%): 80
+Comment: Quest support: 648, 1560, 2882, 2954, 4005, 10277, 10279(Special flight path). Noggenfogger vendor
+Category: Tanaris
 EndScriptData */
 
 /* ContentData

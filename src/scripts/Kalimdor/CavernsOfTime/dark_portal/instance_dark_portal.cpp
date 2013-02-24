@@ -16,10 +16,10 @@
  */
 
 /* ScriptData
-SDName: Instance_Dark_Portal
-SD%Complete: 50
-SDComment: Quest support: 9836, 10297. Currently in progress.
-SDCategory: Caverns of Time, The Dark Portal
+Name: Instance_Dark_Portal
+Complete(%): 50
+Comment: Quest support: 9836, 10297. Currently in progress.
+Category: Caverns of Time, The Dark Portal
 EndScriptData */
 
 #include "ScriptPCH.h"
