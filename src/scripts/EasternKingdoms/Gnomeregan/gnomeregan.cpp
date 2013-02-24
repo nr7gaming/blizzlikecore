@@ -17,7 +17,6 @@
 
 /* Script Data Start
 Name: Gnomeregan
-SDAuthor: Manuel
 Complete(%): 90%
 Comment: Some visual effects are not implemented.
 Script Data End */
