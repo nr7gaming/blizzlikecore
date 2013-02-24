@@ -242,7 +242,7 @@ index 7370d55..6d475c9 100644
          void LoadNpcTextLocales();
          void LoadPageTextLocales();
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index ced42a7..08c8798 100644
+index bfbf638..e0163f0 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -10832,7 +10832,11 @@ void Player::SetVisibleItemSlot(uint8 slot, Item *pItem)
@@ -266,7 +266,7 @@ index ced42a7..08c8798 100644
          ItemRemovedQuestCheck(it->GetEntry(), it->GetCount());
          RemoveItem(bag, slot, update);
          it->RemoveFromUpdateQueueOf(this);
-@@ -20840,3 +20845,56 @@ void Player::SetMap(Map * map)
+@@ -20850,3 +20855,56 @@ void Player::SetMap(Map * map)
      Unit::SetMap(map);
      m_mapRef.link(map, this);
  }

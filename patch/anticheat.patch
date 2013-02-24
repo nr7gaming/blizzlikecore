@@ -653,7 +653,7 @@ index 55b7f6c..adc6c9a 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 79ee92c..863396a 100644
+index bfbf638..fd1e5a1 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -382,6 +382,27 @@ Player::Player (WorldSession *session): Unit()
@@ -684,7 +684,7 @@ index 79ee92c..863396a 100644
      m_mailsLoaded = false;
      m_mailsUpdated = false;
      unReadMails = 0;
-@@ -20487,12 +20508,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
+@@ -20497,12 +20518,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
  
  void Player::HandleFallDamage(MovementInfo& movementInfo)
  {
