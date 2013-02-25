@@ -158,10 +158,9 @@ extern int main(int argc, char **argv)
     }
     sLog.Initialize();
 
-    sLog.outString(" ");
-    sLog.outString("********************************************************************");
+    sLog.outString("************************************************************************");
     sLog.outString("%s(auth) Rev: %s Hash: %s", _PACKAGENAME, _REVISION, _HASH);
-    sLog.outString("********************************************************************");
+    sLog.outString("************************************************************************");
     sLog.outString("<Ctrl-C> to stop.");
     sLog.outString(" ");
 
