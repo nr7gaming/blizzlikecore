@@ -3,11 +3,16 @@
 Copyright (C) BlizzLikeCore (https://github.com/blizzlikegroup/blizzlikecore)
 
 
-BlizzLikeCore is an MMORPG framework that's built using C++, and using a back-end of MySQL for the DB content. BlizzLikeCore is an individual project, if you have code for us to merge into the repo (please file a pull request), or help us by posting issues, patches, and enhancement suggestions on the forum: http://blizzlike.servegame.com
+BlizzLikeCore is an MMORPG framework that's built using C++, and using a 
+back-end of MySQL for the DB content. BlizzLikeCore is an individual project, 
+if you have code for us to merge into the repo (please file a pull request), 
+or help us by posting issues, patches, and enhancement suggestions on the 
+forum: http://blizzlike.servegame.com
 
 Download
 
-You can download this project in either zip or tar formats, or you can also clone the project with Git by running: git clone git://github.com/blizzlikegroup/blizzlikecore.git
+You can download this project, or you can also clone the project with Git 
+by running: git clone git://github.com/blizzlikegroup/blizzlikecore.git
 
 Install
  
@@ -15,6 +20,8 @@ Check: http://blizzlike.servegame.com
 
 License
  
-BlizzLikeCore is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+BlizzLikeCore is free software; you can redistribute it and/or modify it 
+under the terms of the GNU General Public License as published by the 
+Free Software Foundation; version 2 of the License.
 
 Contact: blizzlikegroup@gmail.com

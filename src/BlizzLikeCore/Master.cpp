@@ -105,28 +105,11 @@ Master::~Master()
 // Main function
 int Master::Run()
 {
-    sLog.outString("%s [world-daemon]", _FULLVERSION);
-    sLog.outString("<Ctrl-C> to stop.");
     sLog.outString(" ");
-    sLog.outString("              BBBBBB                BBB     ");
-    sLog.outString("          BBBB:..:::BB        BBBBBBBBB     ");
-    sLog.outString("         B:::::BBB:::B      BB:....:::B     ");
-    sLog.outString("          BB:::B BB::B     B:::BBBB:::B     ");
-    sLog.outString("           B:::B BB:.B    B:::B    BB.:B    ");
-    sLog.outString("           B:::BBB::BBB  BB::B      BB.B    ");
-    sLog.outString("           B.:..BBB....BBB.:.B              ");
-    sLog.outString("           B...BB  BB..:BB...B              ");
-    sLog.outString("           B...B    B..:BB...B              ");
-    sLog.outString("           B...B    B..BBB...B              ");
-    sLog.outString("           B...B   BB.BBBB...B              ");
-    sLog.outString("           B...B BB:.BB  B...BB             ");
-    sLog.outString("          B: . B. :BB     B . B        BBB  ");
-    sLog.outString("         B: ..:BBBB       B:  .B      BB .B ");
-    sLog.outString("          BBBBB            B.  :B     B.: B ");
-    sLog.outString("                            B.  :BB    BB:BB");
-    sLog.outString("       BlizzLike Core        BB   BBBBBBB B ");
-    sLog.outString("  <blizzlike.servegame.com>    BBB.    .BB  ");
-    sLog.outString("                                 BBBBBBBB   ");
+    sLog.outString("********************************************************************");
+    sLog.outString("%s(world) Rev: %s Hash: %s", _PACKAGENAME, _REVISION, _HASH);
+    sLog.outString("********************************************************************");
+    sLog.outString("<Ctrl-C> to stop.");
     sLog.outString(" ");
 
     // worldd PID file creation
