@@ -94,7 +94,7 @@ struct npc_manaforge_control_consoleAI : public ScriptedAI
         add = NULL;
     }
 
-    void EnterCombat(Unit *who) { return; }
+    void EnterCombat(Unit* /*who*/) { return; }
 
     /*void SpellHit(Unit *caster, const SpellEntry *spell)
     {
@@ -104,7 +104,7 @@ struct npc_manaforge_control_consoleAI : public ScriptedAI
             DoSay("Silence! I kill you!",LANG_UNIVERSAL, NULL);
     }*/
 
-    void JustDied(Unit* killer)
+    void JustDied(Unit* /*killer*/)
     {
         DoScriptText(EMOTE_ABORT, me);
 
@@ -405,7 +405,7 @@ struct npc_commander_dawnforgeAI : public ScriptedAI
         isEvent = false;
     }
 
-    void EnterCombat(Unit *who) { }
+    void EnterCombat(Unit* /*who*/) { }
 
     //Select any creature in a grid
     Creature* SelectCreatureInGrid(uint32 entry, float range)
@@ -657,7 +657,7 @@ Creature* SearchDawnforge(Player *source, uint32 entry, float range)
     return pCreature;
 }
 
-bool AreaTrigger_at_commander_dawnforge(Player *player, const AreaTriggerEntry *at)
+bool AreaTrigger_at_commander_dawnforge(Player *player, const AreaTriggerEntry* /*at*/)
 {
     //if player lost aura or not have at all, we should not try start event.
     if (!player->HasAura(SPELL_SUNFURY_DISGUISE,0))
@@ -700,7 +700,7 @@ bool GossipHello_npc_professor_dabiri(Player *player, Creature* pCreature)
     return true;
 }
 
-bool GossipSelect_npc_professor_dabiri(Player *player, Creature* pCreature, uint32 sender, uint32 action)
+bool GossipSelect_npc_professor_dabiri(Player *player, Creature* pCreature, uint32 /*sender*/, uint32 action)
 {
     if (action == GOSSIP_ACTION_INFO_DEF+1)
     {
@@ -765,7 +765,7 @@ struct mob_phase_hunterAI : public ScriptedAI
             PlayerGUID = player->GetGUID();
     }
 
-    void SpellHit(Unit *caster, const SpellEntry *spell)
+    void SpellHit(Unit* /*caster*/, const SpellEntry* /*spell*/)
     {
         DoCast(me, SPELL_DE_MATERIALIZE);
     }
@@ -854,7 +854,7 @@ struct npc_bessyAI : public npc_escortAI
 
     npc_bessyAI(Creature *c) : npc_escortAI(c) {}
 
-    void JustDied(Unit* killer)
+    void JustDied(Unit* /*killer*/)
     {
         if (Player* pPlayer = GetPlayerForEscort())
             pPlayer->FailQuest(Q_ALMABTRIEB);
@@ -896,7 +896,7 @@ struct npc_bessyAI : public npc_escortAI
         summoned->AI()->AttackStart(me);
     }
 
-    void EnterCombat(Unit* who){}
+    void EnterCombat(Unit* /*who*/){}
 
     void Reset()
     {
@@ -1157,10 +1157,10 @@ struct npc_boom_botAI : public ScriptedAI
         me->SetUnitMovementFlags(MOVEFLAG_WALK_MODE);
     }
  
-    void AttackedBy(Unit* pWho) {}
-    void AttackStart(Unit* pWho) {}
+    void AttackedBy(Unit* /*pWho*/) {}
+    void AttackStart(Unit* /*pWho*/) {}
  
-    void MovementInform(uint32 type, uint32 id)
+    void MovementInform(uint32 type, uint32 /*id*/)
     {
         if (type != POINT_MOTION_TYPE)
             return;
@@ -1256,8 +1256,8 @@ struct npc_drijyaAI : public npc_escortAI
         DestroyingTimer = 60000;
     }
 
-    void AttackedBy(Unit* pWho) {}
-    void AttackStart(Unit* pWho) {}
+    void AttackedBy(Unit* /*pWho*/) {}
+    void AttackStart(Unit* /*pWho*/) {}
 
     void SpawnImp()
     {

@@ -311,12 +311,13 @@ struct boss_shahrazAI : public ScriptedAI
 
         //Enrage
         if (!me->HasAura(SPELL_BERSERK, 0))
+        {
             if (EnrageTimer <= diff)
             {
                 DoCast(me, SPELL_BERSERK);
                 DoScriptText(SAY_ENRAGE, me);
             } else EnrageTimer -= diff;
-
+        }
         //Random taunts
         if (RandomYellTimer <= diff)
         {

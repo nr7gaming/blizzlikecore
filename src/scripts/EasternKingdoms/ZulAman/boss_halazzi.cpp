@@ -120,7 +120,7 @@ struct boss_halazziAI : public ScriptedAI
         if (pInstance)
             pInstance->SetData(DATA_HALAZZIEVENT, IN_PROGRESS);
 
-        me->MonsterYell(YELL_AGGRO, LANG_UNIVERSAL, NULL);
+        me->MonsterYell(YELL_AGGRO, LANG_UNIVERSAL, 0);
         DoPlaySoundToSet(me, SOUND_AGGRO);
 
         EnterPhase(PHASE_LYNX);
@@ -172,7 +172,7 @@ struct boss_halazziAI : public ScriptedAI
             TotemTimer = 12000;
             break;
         case PHASE_SPLIT:
-            me->MonsterYell(YELL_SPLIT, LANG_UNIVERSAL, NULL);
+            me->MonsterYell(YELL_SPLIT, LANG_UNIVERSAL, 0);
             DoPlaySoundToSet(me, SOUND_SPLIT);
             DoCast(me, SPELL_TRANSFORM_SPLIT, true);
             break;
@@ -187,7 +187,7 @@ struct boss_halazziAI : public ScriptedAI
         case PHASE_MERGE:
             if (Unit *pLynx = Unit::GetUnit(*me, LynxGUID))
             {
-                me->MonsterYell(YELL_MERGE, LANG_UNIVERSAL, NULL);
+                me->MonsterYell(YELL_MERGE, LANG_UNIVERSAL, 0);
                 DoPlaySoundToSet(me, SOUND_MERGE);
                 pLynx->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
                 pLynx->GetMotionMaster()->Clear();
@@ -210,7 +210,7 @@ struct boss_halazziAI : public ScriptedAI
 
         if (BerserkTimer <= diff)
         {
-            me->MonsterYell(YELL_BERSERK, LANG_UNIVERSAL, NULL);
+            me->MonsterYell(YELL_BERSERK, LANG_UNIVERSAL, 0);
             DoPlaySoundToSet(me, SOUND_BERSERK);
             DoCast(me, SPELL_BERSERK, true);
             BerserkTimer = 60000;
@@ -223,11 +223,11 @@ struct boss_halazziAI : public ScriptedAI
                 switch(rand()%2)
                 {
                     case 0:
-                        me->MonsterYell(YELL_SABER_ONE, LANG_UNIVERSAL, NULL);
+                        me->MonsterYell(YELL_SABER_ONE, LANG_UNIVERSAL, 0);
                         DoPlaySoundToSet(me, SOUND_SABER_ONE);
                         break;
                     case 1:
-                        me->MonsterYell(YELL_SABER_TWO, LANG_UNIVERSAL, NULL);
+                        me->MonsterYell(YELL_SABER_TWO, LANG_UNIVERSAL, 0);
                         DoPlaySoundToSet(me, SOUND_SABER_TWO);
                         break;
                 }
@@ -245,12 +245,14 @@ struct boss_halazziAI : public ScriptedAI
             } else FrenzyTimer -= diff;
 
             if (Phase == PHASE_LYNX)
+            {
                 if (CheckTimer <= diff)
                 {
                     if (me->GetHealth() * 4 < me->GetMaxHealth() * (3 - TransformCount))
                         EnterPhase(PHASE_SPLIT);
                     CheckTimer = 1000;
                 } else CheckTimer -= diff;
+            }
         }
 
         if (Phase == PHASE_HUMAN || Phase == PHASE_ENRAGE)
@@ -274,6 +276,7 @@ struct boss_halazziAI : public ScriptedAI
             } else ShockTimer -= diff;
 
             if (Phase == PHASE_HUMAN)
+            {
                 if (CheckTimer <= diff)
                 {
                     if (((me->GetHealth()*100) / me->GetMaxHealth() <= 20)/*me->GetHealth() * 10 < me->GetMaxHealth()*/)
@@ -286,6 +289,7 @@ struct boss_halazziAI : public ScriptedAI
                     }
                     CheckTimer = 1000;
                 } else CheckTimer -= diff;
+            }
         }
 
         if (Phase == PHASE_MERGE)
@@ -317,12 +321,12 @@ struct boss_halazziAI : public ScriptedAI
         switch (urand(0,1))
         {
             case 0:
-                me->MonsterYell(YELL_KILL_ONE, LANG_UNIVERSAL, NULL);
+                me->MonsterYell(YELL_KILL_ONE, LANG_UNIVERSAL, 0);
                 DoPlaySoundToSet(me, SOUND_KILL_ONE);
                 break;
 
             case 1:
-                me->MonsterYell(YELL_KILL_TWO, LANG_UNIVERSAL, NULL);
+                me->MonsterYell(YELL_KILL_TWO, LANG_UNIVERSAL, 0);
                 DoPlaySoundToSet(me, SOUND_KILL_TWO);
                 break;
         }
@@ -333,7 +337,7 @@ struct boss_halazziAI : public ScriptedAI
         if (pInstance)
             pInstance->SetData(DATA_HALAZZIEVENT, DONE);
 
-        me->MonsterYell(YELL_DEATH, LANG_UNIVERSAL, NULL);
+        me->MonsterYell(YELL_DEATH, LANG_UNIVERSAL, 0);
         DoPlaySoundToSet(me, SOUND_DEATH);
     }
 };

@@ -142,7 +142,7 @@ struct boss_high_astromancer_solarianAI : public ScriptedAI
             pInstance->SetData(DATA_HIGHASTROMANCERSOLARIANEVENT, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit *victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch(rand()%3)
         {
@@ -152,7 +152,7 @@ struct boss_high_astromancer_solarianAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit *victim)
+    void JustDied(Unit* /*victim*/)
     {
         me->SetFloatValue(OBJECT_FIELD_SCALE_X, defaultsize);
         me->SetDisplayId(MODEL_HUMAN);
@@ -162,7 +162,7 @@ struct boss_high_astromancer_solarianAI : public ScriptedAI
             pInstance->SetData(DATA_HIGHASTROMANCERSOLARIANEVENT, DONE);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         StartEvent();
     }
@@ -189,13 +189,8 @@ struct boss_high_astromancer_solarianAI : public ScriptedAI
 
     float Portal_Y(float x, float radius)
     {
-        float z;
+        float z = (rand()%2 == 0) ? 1 : -1;
 
-        switch(rand()%2)
-        {
-            case 0: z = 1; break;
-            case 1: z = -1; break;
-        }
         return (z*sqrt(radius*radius - (x - CENTER_X)*(x - CENTER_X)) + CENTER_Y);
     }
 
@@ -409,7 +404,7 @@ struct mob_solarium_priestAI : public ScriptedAI
         aoesilenceTimer = 15000;
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 

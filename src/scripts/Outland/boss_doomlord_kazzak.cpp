@@ -77,7 +77,7 @@ struct boss_doomlordkazzakAI : public ScriptedAI
         DoScriptText(SAY_INTRO, me);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit *)
     {
         switch(rand()%2)
         {
@@ -102,7 +102,7 @@ struct boss_doomlordkazzakAI : public ScriptedAI
             }
     }
 
-    void JustDied(Unit *victim)
+    void JustDied(Unit *)
     {
         DoScriptText(SAY_DEATH, me);
     }

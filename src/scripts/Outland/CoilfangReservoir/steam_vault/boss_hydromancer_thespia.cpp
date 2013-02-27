@@ -67,7 +67,7 @@ struct boss_thespiaAI : public ScriptedAI
             pInstance->SetData(TYPE_HYDROMANCER_THESPIA, NOT_STARTED);
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         DoScriptText(SAY_DEAD, me);
 
@@ -75,7 +75,7 @@ struct boss_thespiaAI : public ScriptedAI
             pInstance->SetData(TYPE_HYDROMANCER_THESPIA, DONE);
     }
 
-    void KilledUnit(Unit* victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch(rand()%2)
         {
@@ -84,7 +84,7 @@ struct boss_thespiaAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         switch(rand()%3)
         {
@@ -154,7 +154,7 @@ struct mob_coilfang_waterelementalAI : public ScriptedAI
         WaterBoltVolley_Timer = 3000+rand()%3000;
     }
 
-    void EnterCombat(Unit *who) { }
+    void EnterCombat(Unit* /*who*/) { }
 
     void UpdateAI(const uint32 diff)
     {

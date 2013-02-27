@@ -401,6 +401,7 @@ struct boss_leotheras_the_blindAI : public ScriptedAI
             return;
         }
         if (me->HasAura(SPELL_WHIRLWIND, 0))
+        {
             if (Whirlwind_Timer <= diff)
             {
                 Unit *newTarget = SelectUnit(SELECT_TARGET_RANDOM, 0);
@@ -412,7 +413,7 @@ struct boss_leotheras_the_blindAI : public ScriptedAI
                 }
                 Whirlwind_Timer = 2000;
             } else Whirlwind_Timer -= diff;
-
+        }
         // reseting after changing forms and after ending whirlwind
         if (NeedThreatReset && !me->HasAura(SPELL_WHIRLWIND, 0))
         {
@@ -452,6 +453,7 @@ struct boss_leotheras_the_blindAI : public ScriptedAI
             //Switch_Timer
 
             if (!IsFinalForm)
+            {
                 if (SwitchToDemon_Timer <= diff)
                 {
                     //switch to demon form
@@ -464,7 +466,9 @@ struct boss_leotheras_the_blindAI : public ScriptedAI
                     NeedThreatReset = true;
                     SwitchToDemon_Timer = 45000;
                 } else SwitchToDemon_Timer -= diff;
-            DoMeleeAttackIfReady();
+                
+                DoMeleeAttackIfReady();
+           }
         }
         else
         {

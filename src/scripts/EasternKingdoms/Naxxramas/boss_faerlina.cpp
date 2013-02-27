@@ -56,7 +56,7 @@ struct boss_faerlinaAI : public ScriptedAI
         HasTaunted = false;
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         switch (rand()%4)
         {
@@ -78,7 +78,7 @@ struct boss_faerlinaAI : public ScriptedAI
          ScriptedAI::MoveInLineOfSight(who);
     }
 
-    void KilledUnit(Unit* victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch (rand()%2)
         {
@@ -87,7 +87,7 @@ struct boss_faerlinaAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         DoScriptText(SAY_DEATH, me);
     }

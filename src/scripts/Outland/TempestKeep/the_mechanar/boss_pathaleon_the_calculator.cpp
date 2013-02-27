@@ -80,12 +80,12 @@ struct boss_pathaleon_the_calculatorAI : public ScriptedAI
         Counter = 0;
         summons.DespawnAll();
     }
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         DoScriptText(SAY_AGGRO, me);
     }
 
-    void KilledUnit(Unit* victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch(rand()%2)
         {
@@ -94,7 +94,7 @@ struct boss_pathaleon_the_calculatorAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         DoScriptText(SAY_DEATH, me);
 
@@ -196,7 +196,7 @@ struct mob_nether_wraithAI : public ScriptedAI
 
     }
 
-    void EnterCombat(Unit* who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 

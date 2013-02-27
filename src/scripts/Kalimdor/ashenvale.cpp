@@ -105,7 +105,7 @@ struct npc_muglashAI : public npc_escortAI
         }
     }
 
-    void Aggro(Unit* pWho)
+    void Aggro(Unit* /*pWho*/)
     {
         if (HasEscortState(STATE_ESCORT_PAUSED))
         {
@@ -224,7 +224,7 @@ CreatureAI* GetAI_npc_muglash(Creature* pCreature)
     return new npc_muglashAI(pCreature);
 }
 
-bool GOHello_go_naga_brazier(Player* pPlayer, GameObject* pGo)
+bool GOHello_go_naga_brazier(Player* /*pPlayer*/, GameObject* pGo)
 {
     if (Creature* pCreature = GetClosestCreatureWithEntry(pGo, NPC_MUGLASH, INTERACTION_DISTANCE*2))
     {
@@ -311,7 +311,7 @@ struct npc_torekAI : public npc_escortAI
         Completed = false;
     }
 
-    void EnterCombat(Unit* who) {}
+    void EnterCombat(Unit* /*who*/) {}
 
     void JustSummoned(Creature* summoned)
     {
@@ -404,7 +404,7 @@ struct npc_ruul_snowhoofAI : public npc_escortAI
         }
     }
 
-    void EnterCombat(Unit* who) {}
+    void EnterCombat(Unit* /*who*/) {}
 
     void Reset()
     {

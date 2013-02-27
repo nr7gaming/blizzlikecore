@@ -108,7 +108,7 @@ struct boss_talon_king_ikissAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit *)
     {
         switch(rand()%3)
         {
@@ -121,7 +121,7 @@ struct boss_talon_king_ikissAI : public ScriptedAI
             pInstance->SetData(DATA_IKISSEVENT, IN_PROGRESS);
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit*)
     {
         DoScriptText(SAY_DEATH, me);
 
@@ -129,7 +129,7 @@ struct boss_talon_king_ikissAI : public ScriptedAI
             pInstance->SetData(DATA_IKISSEVENT, DONE);
     }
 
-    void KilledUnit(Unit* victim)
+    void KilledUnit(Unit*)
     {
         switch(rand()%2)
         {

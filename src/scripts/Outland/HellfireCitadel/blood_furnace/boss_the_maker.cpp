@@ -58,7 +58,7 @@ struct boss_the_makerAI : public ScriptedAI
             pInstance->SetData(DATA_MAKEREVENT, NOT_STARTED);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         switch(rand()%3)
         {
@@ -71,7 +71,7 @@ struct boss_the_makerAI : public ScriptedAI
             pInstance->SetData(DATA_MAKEREVENT, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch(rand()%2)
         {
@@ -80,7 +80,7 @@ struct boss_the_makerAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         DoScriptText(SAY_DIE, me);
 

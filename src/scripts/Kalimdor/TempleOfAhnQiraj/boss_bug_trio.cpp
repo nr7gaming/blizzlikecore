@@ -62,11 +62,11 @@ struct boss_kriAI : public ScriptedAI
         Death = false;
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 
-    void JustDied(Unit* killer)
+    void JustDied(Unit* /*killer*/)
     {
         if (pInstance)
         {
@@ -145,7 +145,7 @@ struct boss_vemAI : public ScriptedAI
         Enraged = false;
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         if (pInstance)
         {
@@ -157,7 +157,7 @@ struct boss_vemAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 
@@ -226,7 +226,7 @@ struct boss_yaujAI : public ScriptedAI
         VemDead = false;
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         if (pInstance)
         {
@@ -245,7 +245,7 @@ struct boss_yaujAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 

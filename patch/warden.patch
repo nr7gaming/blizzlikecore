@@ -253,15 +253,15 @@ index 0000000..bc78986
 +    delete[] Module->CompressedData;
 +    delete Module;
 +    Module = NULL;
-+    m_initialized = false;
 +}
 +
-+void WardenBase::Init(WorldSession *pClient, BigNumber *K)
++
++void WardenBase::Init(WorldSession* /*pClient*/, BigNumber* /*K*/)
 +{
 +    ASSERT(false);
 +}
 +
-+ClientWardenModule *WardenBase::GetModuleForClient(WorldSession *session)
++ClientWardenModule *WardenBase::GetModuleForClient(WorldSession* /*session*/)
 +{
 +    ASSERT(false);
 +    return NULL;
@@ -277,7 +277,7 @@ index 0000000..bc78986
 +    ASSERT(false);
 +}
 +
-+void WardenBase::HandleHashResult(ByteBuffer &buff)
++void WardenBase::HandleHashResult(ByteBuffer& /*buff*/)
 +{
 +    ASSERT(false);
 +}
@@ -287,7 +287,7 @@ index 0000000..bc78986
 +    ASSERT(false);
 +}
 +
-+void WardenBase::HandleData(ByteBuffer &buff)
++vvoid WardenBase::HandleData(ByteBuffer& /*buff*/)
 +{
 +    ASSERT(false);
 +}
@@ -566,8 +566,8 @@ index 0000000..e16636f
 +        SARC4 iCrypto;
 +        SARC4 oCrypto;
 +        uint32 m_WardenCheckTimer;                          // timer between data packets
-+        bool m_WardenDataSent;
 +        uint32 m_WardenKickTimer;                           // time after send packet
++        bool m_WardenDataSent;
 +        uint32 m_WardenTimer;
 +        ClientWardenModule *Module;
 +        bool m_initialized;
@@ -883,7 +883,7 @@ index 0000000..cf748a9
 +    RequestModule();
 +}
 +
-+ClientWardenModule *WardenMac::GetModuleForClient(WorldSession *session)
++ClientWardenModule *WardenMac::GetModuleForClient(WorldSession* /*session*/)
 +{
 +    ClientWardenModule *mod = new ClientWardenModule;
 +
@@ -3051,7 +3051,7 @@ index 0000000..258325b
 +    RequestModule();
 +}
 +
-+ClientWardenModule *WardenWin::GetModuleForClient(WorldSession *session)
++ClientWardenModule *WardenWin::GetModuleForClient(WorldSession* /*session*/)
 +{
 +    ClientWardenModule *mod = new ClientWardenModule;
 +
@@ -3184,7 +3184,7 @@ index 0000000..258325b
 +
 +    SendDataId.clear();
 +
-+    for (int i = 0; i < sWorld.getConfig(CONFIG_WARDEN_NUM_CHECKS); ++i)                             // for now include 3 MEM_CHECK's
++    for (uint32 i = 0; i < sWorld.getConfig(CONFIG_WARDEN_NUM_CHECKS); ++i)                           // for now include 3 MEM_CHECK's
 +    {   
 +        if (MemCheck.empty())
 +            break;
@@ -3296,7 +3296,7 @@ index 0000000..258325b
 +    stream << "Sent check id's: ";
 +    for (std::vector<uint32>::iterator itr = SendDataId.begin(); itr != SendDataId.end(); ++itr)
 +        stream << *itr << " ";
-+    sLog.outDebug(stream.str().c_str());
++    sLog.outDebug("%s", stream.str().c_str());
 +}
 +
 +void WardenWin::HandleData(ByteBuffer &buff)

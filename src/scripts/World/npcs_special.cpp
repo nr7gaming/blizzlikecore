@@ -24,18 +24,19 @@ EndScriptData
 */
 
 /* ContentData
-npc_lunaclaw_spirit      80%    support for quests 6001/6002 (Body and Heart)
-npc_chicken_cluck       100%    support for quest 3861 (Cluck!)
-npc_dancing_flames      100%    midsummer event NPC
-npc_guardian            100%    guardianAI used to prevent players from accessing off-limits areas. Not in use by BSCR
-npc_garments_of_quests   80%    NPC's related to all Garments of-quests 5621, 5624, 5625, 5648, 5650
-npc_injured_patient     100%    patients for triage-quests (6622 and 6624)
-npc_doctor              100%    Gustaf Vanhowzen and Gregory Victor, quest 6622 and 6624 (Triage)
-npc_mount_vendor        100%    Regular mount vendors all over the world. Display gossip if player doesn't meet the requirements to buy
-npc_rogue_trainer        80%    Scripted trainers, so they are able to offer item 17126 for class quest 6681
-npc_sayge               100%    Darkmoon event fortune teller, buff player based on answers given
-npc_snake_trap_serpents  80%    AI for snakes that summoned by Snake Trap
-azuregos_magical_ledger 100%    support for quest Azuregos Magical Ledger
+npc_lunaclaw_spirit          80%    support for quests 6001/6002 (Body and Heart)
+npc_chicken_cluck           100%    support for quest 3861 (Cluck!)
+npc_dancing_flames          100%    midsummer event NPC
+npc_guardian                100%    guardianAI used to prevent players from accessing off-limits areas. Not in use by BSCR
+npc_garments_of_quests       80%    NPC's related to all Garments of-quests 5621, 5624, 5625, 5648, 5650
+npc_injured_patient         100%    patients for triage-quests (6622 and 6624)
+npc_doctor                  100%    Gustaf Vanhowzen and Gregory Victor, quest 6622 and 6624 (Triage)
+npc_mount_vendor            100%    Regular mount vendors all over the world. Display gossip if player doesn't meet the requirements to buy
+npc_rogue_trainer            80%    Scripted trainers, so they are able to offer item 17126 for class quest 6681
+npc_sayge                   100%    Darkmoon event fortune teller, buff player based on answers given
+npc_snake_trap_serpents      80%    AI for snakes that summoned by Snake Trap
+azuregos_magical_ledger     100%    support for quest Azuregos Magical Ledger
+npc_force_of_nature_treants 100%    AI for force of nature (druid spell)
 EndContentData */
 
 #include "ScriptPCH.h"
@@ -1279,6 +1280,54 @@ CreatureAI* GetAI_npc_winter_reveler(Creature* pCreature)
     return new npc_winter_revelerAI(pCreature);
 }
 
+/************************************************************/
+
+struct npc_force_of_nature_treantsAI : public ScriptedAI {
+
+    npc_force_of_nature_treantsAI(Creature* c) : ScriptedAI(c) {}
+    
+    Unit* Owner;
+    
+    void Reset() {
+        Owner = me->GetOwner();
+        if(!Owner)
+            return;
+        
+        if(Unit* target = Owner->getAttackerForHelper())
+        {
+            me->SetInCombatWith(target);
+            AttackStart(target);
+        }
+    }
+    
+    void UpdateAI(const uint32 /*diff*/) {
+        
+        if(!Owner)
+            return;
+            
+        if (!me->getVictim())
+        {
+            if (Unit* target = Owner->getAttackerForHelper())
+            {
+                AttackStart(target);
+            }
+            else if (!me->hasUnitState(UNIT_STAT_FOLLOW))
+            {
+                me->GetMotionMaster()->Clear();
+                me->GetMotionMaster()->MoveFollow(Owner,PET_FOLLOW_DIST,PET_FOLLOW_ANGLE);
+            }
+        }
+        
+        DoMeleeAttackIfReady();
+    }
+
+};
+
+CreatureAI* GetAI_npc_force_of_nature_treants(Creature* pCreature)
+{
+    return new npc_force_of_nature_treantsAI(pCreature);
+}
+
 /*####
 ## npc_snake_trap_serpents
 ####*/
@@ -1298,7 +1347,7 @@ enum SnakeTrap
 
 struct npc_snake_trap_serpentsAI : public ScriptedAI
 {
-    npc_snake_trap_serpentsAI(Creature* creature) : ScriptedAI(creature) {}
+    npc_snake_trap_serpentsAI(Creature* creature) : ScriptedAI(creature), SpellTimer(0) {}
 
     uint32 SpellTimer;
     bool IsViper;
@@ -1379,8 +1428,9 @@ struct npc_snake_trap_serpentsAI : public ScriptedAI
                 SpellTimer = VENOMOUS_SNAKE_TIMER + (rand() %5)*100;
             }
         } else SpellTimer -= diff;
+        
         DoMeleeAttackIfReady();
-    }
+     }
 };
 
 CreatureAI* GetAI_npc_snake_trap_serpents(Creature* pCreature)
@@ -1587,6 +1637,11 @@ void AddSC_npcs_special()
     newscript = new Script;
     newscript->Name = "npc_brewfest_reveler";
     newscript->GetAI = &GetAI_npc_winter_reveler;
+    newscript->RegisterSelf();
+
+    newscript = new Script;
+    newscript->Name = "npc_force_of_nature_treants";
+    newscript->GetAI = &GetAI_npc_force_of_nature_treants;
     newscript->RegisterSelf();
 
     newscript = new Script;

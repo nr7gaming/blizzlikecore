@@ -81,7 +81,7 @@ struct boss_fankrissAI : public ScriptedAI
             ((CreatureAI*)Spawn->AI())->AttackStart(victim);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 

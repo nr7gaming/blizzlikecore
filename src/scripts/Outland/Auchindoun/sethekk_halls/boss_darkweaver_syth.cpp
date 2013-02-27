@@ -90,7 +90,7 @@ struct boss_darkweaver_sythAI : public ScriptedAI
             pInstance->SetData(DATA_SYTHEVENT, NOT_STARTED);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit *)
     {
         switch(rand()%3)
         {
@@ -103,7 +103,7 @@ struct boss_darkweaver_sythAI : public ScriptedAI
             pInstance->SetData(DATA_SYTHEVENT, IN_PROGRESS);
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit*)
     {
         DoScriptText(SAY_DEATH, me);
 
@@ -111,7 +111,7 @@ struct boss_darkweaver_sythAI : public ScriptedAI
             pInstance->SetData(DATA_SYTHEVENT, DONE);
     }
 
-    void KilledUnit(Unit* victim)
+    void KilledUnit(Unit*)
     {
         if (rand()%2)
             return;
@@ -235,7 +235,7 @@ struct mob_syth_fireAI : public ScriptedAI
         flamebuffet_timer = 5000;
     }
 
-    void EnterCombat(Unit *who) { }
+    void EnterCombat(Unit *) { }
 
     void UpdateAI(const uint32 diff)
     {
@@ -286,7 +286,7 @@ struct mob_syth_arcaneAI : public ScriptedAI
         arcanebuffet_timer = 5000;
     }
 
-    void EnterCombat(Unit *who) { }
+    void EnterCombat(Unit *) { }
 
     void UpdateAI(const uint32 diff)
     {
@@ -337,7 +337,7 @@ struct mob_syth_frostAI : public ScriptedAI
         frostbuffet_timer = 5000;
     }
 
-    void EnterCombat(Unit *who) { }
+    void EnterCombat(Unit *) { }
 
     void UpdateAI(const uint32 diff)
     {
@@ -388,7 +388,7 @@ struct mob_syth_shadowAI : public ScriptedAI
         shadowbuffet_timer = 5000;
     }
 
-    void EnterCombat(Unit *who) { }
+    void EnterCombat(Unit *) { }
 
     void UpdateAI(const uint32 diff)
     {

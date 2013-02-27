@@ -95,7 +95,7 @@ struct boss_ambassador_hellmawAI : public ScriptedAI
         ScriptedAI::MoveInLineOfSight(who);
     }
 
-    void MovementInform(uint32 type, uint32 id)
+    void MovementInform(uint32 type, uint32 /*id*/)
     {
         if (type != POINT_MOTION_TYPE)
             return;
@@ -115,7 +115,7 @@ struct boss_ambassador_hellmawAI : public ScriptedAI
             pInstance->SetData(TYPE_HELLMAW, IN_PROGRESS);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit *)
     {
         switch(rand()%3)
         {
@@ -125,7 +125,7 @@ struct boss_ambassador_hellmawAI : public ScriptedAI
         }
     }
 
-    void KilledUnit(Unit *victim)
+    void KilledUnit(Unit *)
     {
         switch(rand()%2)
         {
@@ -134,7 +134,7 @@ struct boss_ambassador_hellmawAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit *victim)
+    void JustDied(Unit *)
     {
         DoScriptText(SAY_DEATH, me);
 

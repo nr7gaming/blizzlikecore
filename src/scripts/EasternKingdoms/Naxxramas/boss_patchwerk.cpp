@@ -55,7 +55,7 @@ struct boss_patchwerkAI : public ScriptedAI
         Enraged = false;
     }
 
-    void KilledUnit(Unit* Victim)
+    void KilledUnit(Unit* /*Victim*/)
     {
         if (rand()%5)
             return;
@@ -63,12 +63,12 @@ struct boss_patchwerkAI : public ScriptedAI
         DoScriptText(SAY_SLAY, me);
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         DoScriptText(SAY_DEATH, me);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         if (rand()%2)
         {

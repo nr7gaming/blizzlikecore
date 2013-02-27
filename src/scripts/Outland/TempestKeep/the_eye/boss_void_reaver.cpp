@@ -67,7 +67,7 @@ struct boss_void_reaverAI : public ScriptedAI
             pInstance->SetData(DATA_VOIDREAVEREVENT, NOT_STARTED);
     }
 
-    void KilledUnit(Unit *victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch(rand()%3)
         {
@@ -77,7 +77,7 @@ struct boss_void_reaverAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit *victim)
+    void JustDied(Unit* /*victim*/)
     {
         DoScriptText(SAY_DEATH, me);
 
@@ -85,7 +85,7 @@ struct boss_void_reaverAI : public ScriptedAI
             pInstance->SetData(DATA_VOIDREAVEREVENT, DONE);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         DoScriptText(SAY_AGGRO, me);
 

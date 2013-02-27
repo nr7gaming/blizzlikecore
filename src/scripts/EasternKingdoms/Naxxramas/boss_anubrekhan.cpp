@@ -72,7 +72,7 @@ struct boss_anubrekhanAI : public ScriptedAI
          DoScriptText(SAY_SLAY, me);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         switch(rand()%3)
         {

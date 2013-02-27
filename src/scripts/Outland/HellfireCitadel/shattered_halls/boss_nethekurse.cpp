@@ -228,7 +228,7 @@ struct boss_grand_warlock_nethekurseAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         switch(rand()%3)
         {
@@ -245,7 +245,7 @@ struct boss_grand_warlock_nethekurseAI : public ScriptedAI
         summoned->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
     }
 
-    void KilledUnit(Unit* victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch(rand()%2)
         {
@@ -287,7 +287,7 @@ struct boss_grand_warlock_nethekurseAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         DoScriptText(SAY_DIE, me);
 
@@ -297,7 +297,7 @@ struct boss_grand_warlock_nethekurseAI : public ScriptedAI
         pInstance->SetData(TYPE_NETHEKURSE,DONE);
     }
 
-    void MovementInform(uint32 uiMotionType, uint32 uiPointId)
+    void MovementInform(uint32 uiMotionType, uint32 /*uiPointId*/)
     {
         if (uiMotionType == POINT_MOTION_TYPE)
         {
@@ -387,12 +387,12 @@ struct mob_fel_orc_convertAI : public ScriptedAI
         Hemorrhage_Timer = 3000;
     }
 
-    void MoveInLineOfSight(Unit *who)
+    void MoveInLineOfSight(Unit* /*who*/)
     {
         return;
     }
 
-    void EnterCombat(Unit* who)
+    void EnterCombat(Unit* /*who*/)
     {
         if (pInstance)
         {
@@ -409,7 +409,7 @@ struct mob_fel_orc_convertAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         if (pInstance)
         {
@@ -451,11 +451,11 @@ struct mob_lesser_shadow_fissureAI : public ScriptedAI
         Stop_Timer = 30000;
     }
 
-    void EnterCombat(Unit* who) { }
+    void EnterCombat(Unit* /*who*/) { }
 
-    void MoveInLineOfSight(Unit *who) { return; }
+    void MoveInLineOfSight(Unit* /*who*/) { return; }
 
-    void AttackStart(Unit* who) { return; }
+    void AttackStart(Unit* /*who*/) { return; }
 
     void UpdateAI(const uint32 diff)
     {

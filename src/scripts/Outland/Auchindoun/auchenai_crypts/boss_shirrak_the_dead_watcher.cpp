@@ -62,7 +62,7 @@ struct boss_shirrak_the_dead_watcherAI : public ScriptedAI
         focusedTarget = NULL;
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit *)
     { }
 
     void JustSummoned(Creature *summoned)
@@ -169,7 +169,7 @@ struct mob_focus_fireAI : public ScriptedAI
         fiery1 = fiery2 = true;
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit *)
     { }
 
     void UpdateAI(const uint32 diff)

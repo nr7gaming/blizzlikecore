@@ -90,7 +90,7 @@ struct boss_nazanAI : public ScriptedAI
         UnsummonCheck = 5000;
     }
 
-    void EnterCombat(Unit* who) {}
+    void EnterCombat(Unit* /*who*/) {}
 
     void JustSummoned(Creature *summoned)
     {
@@ -198,7 +198,7 @@ struct boss_vazrudenAI : public ScriptedAI
         WipeSaid = false;
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         switch(rand()%3)
         {
@@ -352,7 +352,7 @@ struct boss_vazruden_the_heraldAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         if (phase == 0)
         {
@@ -421,9 +421,9 @@ struct boss_vazruden_the_heraldAI : public ScriptedAI
             {
                 Creature *Nazan = Unit::GetCreature(*me, NazanGUID);
                 Creature *Vazruden = Unit::GetCreature(*me, VazrudenGUID);
-                if (Nazan && Nazan->isAlive() || Vazruden && Vazruden->isAlive())
+                if ((Nazan && Nazan->isAlive()) || (Vazruden && Vazruden->isAlive()))
                 {
-                    if (Nazan && Nazan->getVictim() || Vazruden && Vazruden->getVictim())
+                    if ((Nazan && Nazan->getVictim()) || (Vazruden && Vazruden->getVictim()))
                         return;
                     else
                     {
@@ -457,7 +457,7 @@ struct mob_hellfire_sentryAI : public ScriptedAI
         KidneyShot_Timer = 3000+rand()%4000;
     }
 
-    void EnterCombat(Unit* who) {}
+    void EnterCombat(Unit* /*who*/) {}
 
     void JustDied(Unit* who)
     {

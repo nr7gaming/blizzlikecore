@@ -68,7 +68,7 @@ struct mob_webwrapAI : public ScriptedAI
         }
     }
 
-    void DamageTaken(Unit *done_by, uint32 &damage)
+    void DamageTaken(Unit* /*done_by*/, uint32 &damage)
     {
         if (damage > me->GetHealth())
         {
@@ -82,15 +82,15 @@ struct mob_webwrapAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 
-    void MoveInLineOfSight(Unit *who)
+    void MoveInLineOfSight(Unit* /*who*/)
     {
     }
 
-    void UpdateAI(const uint32 diff)
+    void UpdateAI(const uint32 /*diff*/)
     {
     }
 };
@@ -116,7 +116,7 @@ struct boss_maexxnaAI : public ScriptedAI
         Enraged = false;
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 

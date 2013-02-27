@@ -88,11 +88,11 @@ struct boss_rage_winterchillAI : public hyjal_trashAI
         {
             case 0:
                 DoPlaySoundToSet(me, SOUND_ONSLAY1);
-                me->MonsterYell(SAY_ONSLAY1, LANG_UNIVERSAL, NULL);
+                me->MonsterYell(SAY_ONSLAY1, LANG_UNIVERSAL, 0);
                 break;
             case 1:
                 DoPlaySoundToSet(me, SOUND_ONSLAY2);
-                me->MonsterYell(SAY_ONSLAY2, LANG_UNIVERSAL, NULL);
+                me->MonsterYell(SAY_ONSLAY2, LANG_UNIVERSAL, 0);
                 break;
         }
     }
@@ -114,7 +114,7 @@ struct boss_rage_winterchillAI : public hyjal_trashAI
         if (pInstance && IsEvent)
             pInstance->SetData(DATA_RAGEWINTERCHILLEVENT, DONE);
         DoPlaySoundToSet(me, SOUND_ONDEATH);
-        me->MonsterYell(SAY_ONDEATH, LANG_UNIVERSAL, NULL);
+        me->MonsterYell(SAY_ONDEATH, LANG_UNIVERSAL, 0);
     }
 
     void UpdateAI(const uint32 diff)
@@ -159,11 +159,11 @@ struct boss_rage_winterchillAI : public hyjal_trashAI
             {
                 case 0:
                     DoPlaySoundToSet(me, SOUND_DECAY1);
-                    me->MonsterYell(SAY_DECAY1, LANG_UNIVERSAL, NULL);
+                    me->MonsterYell(SAY_DECAY1, LANG_UNIVERSAL, 0);
                     break;
                 case 1:
                     DoPlaySoundToSet(me, SOUND_DECAY2);
-                    me->MonsterYell(SAY_DECAY2, LANG_UNIVERSAL, NULL);
+                    me->MonsterYell(SAY_DECAY2, LANG_UNIVERSAL, 0);
                     break;
             }
         } else DecayTimer -= diff;
@@ -175,11 +175,11 @@ struct boss_rage_winterchillAI : public hyjal_trashAI
             {
                 case 0:
                     DoPlaySoundToSet(me, SOUND_NOVA1);
-                    me->MonsterYell(SAY_NOVA1, LANG_UNIVERSAL, NULL);
+                    me->MonsterYell(SAY_NOVA1, LANG_UNIVERSAL, 0);
                     break;
                 case 1:
                     DoPlaySoundToSet(me, SOUND_NOVA2);
-                    me->MonsterYell(SAY_NOVA2, LANG_UNIVERSAL, NULL);
+                    me->MonsterYell(SAY_NOVA2, LANG_UNIVERSAL, 0);
                     break;
             }
         } else NovaTimer -= diff;

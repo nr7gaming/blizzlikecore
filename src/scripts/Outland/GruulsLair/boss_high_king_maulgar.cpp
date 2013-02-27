@@ -167,7 +167,7 @@ struct boss_high_king_maulgarAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         DoScriptText(SAY_DEATH, me);
 
@@ -334,7 +334,7 @@ struct boss_olm_the_summonerAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         if (pInstance)
         {
@@ -438,7 +438,7 @@ struct boss_kiggler_the_crazedAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         if (pInstance)
         {
@@ -544,7 +544,7 @@ struct boss_blindeye_the_seerAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         if (pInstance)
         {
@@ -635,7 +635,7 @@ struct boss_krosh_firehandAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         if (pInstance)
         {

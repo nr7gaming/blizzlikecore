@@ -111,11 +111,11 @@ struct npc_millhouse_manastormAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
     }
 
-    void KilledUnit(Unit *victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch(rand()%2)
         {
@@ -124,7 +124,7 @@ struct npc_millhouse_manastormAI : public ScriptedAI
         }
     }
 
-    void JustDied(Unit *victim)
+    void JustDied(Unit* /*victim*/)
     {
         DoScriptText(SAY_DEATH, me);
 
@@ -281,7 +281,7 @@ struct npc_warden_mellicharAI : public ScriptedAI
             pInstance->SetData(TYPE_HARBINGERSKYRISS,NOT_STARTED);
     }
 
-    void AttackStart(Unit* who) { }
+    void AttackStart(Unit* /*who*/) { }
 
     void MoveInLineOfSight(Unit *who)
     {
@@ -301,7 +301,7 @@ struct npc_warden_mellicharAI : public ScriptedAI
         }
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         DoScriptText(YELL_INTRO1, me);
         DoCast(me,SPELL_BUBBLE_VISUAL);
@@ -495,7 +495,7 @@ struct mob_zerekethvoidzoneAI : public ScriptedAI
         DoCast(me,SPELL_VOID_ZONE_DAMAGE);
     }
 
-    void EnterCombat(Unit* who) {}
+    void EnterCombat(Unit* /*who*/) {}
 };
 CreatureAI* GetAI_mob_zerekethvoidzoneAI(Creature* pCreature)
 {

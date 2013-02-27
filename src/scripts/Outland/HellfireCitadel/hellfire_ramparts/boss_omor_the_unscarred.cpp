@@ -80,7 +80,7 @@ struct boss_omor_the_unscarredAI : public Scripted_NoMovementAI
             pInstance->SetData(DATA_OMOR, NOT_STARTED);
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         switch(rand()%3)
         {
@@ -93,7 +93,7 @@ struct boss_omor_the_unscarredAI : public Scripted_NoMovementAI
             pInstance->SetData(DATA_OMOR, IN_PROGRESS);
     }
 
-    void KilledUnit(Unit* victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         if (rand()%2)
             return;
@@ -109,7 +109,7 @@ struct boss_omor_the_unscarredAI : public Scripted_NoMovementAI
             summoned->AI()->AttackStart(random);
     }
 
-    void JustDied(Unit* Killer)
+    void JustDied(Unit* /*Killer*/)
     {
         DoScriptText(SAY_DIE, me);
 

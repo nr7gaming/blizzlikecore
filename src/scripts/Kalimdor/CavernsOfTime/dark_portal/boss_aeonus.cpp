@@ -61,7 +61,7 @@ struct boss_aeonusAI : public ScriptedAI
         Frenzy_Timer = 120000;
     }
 
-    void EnterCombat(Unit *who)
+    void EnterCombat(Unit* /*who*/)
     {
         DoScriptText(SAY_AGGRO, me);
     }
@@ -81,7 +81,7 @@ struct boss_aeonusAI : public ScriptedAI
         ScriptedAI::MoveInLineOfSight(who);
     }
 
-    void JustDied(Unit *victim)
+    void JustDied(Unit* /*victim*/)
     {
         DoScriptText(SAY_DEATH, me);
 
@@ -92,7 +92,7 @@ struct boss_aeonusAI : public ScriptedAI
          }
     }
 
-    void KilledUnit(Unit *victim)
+    void KilledUnit(Unit* /*victim*/)
     {
         switch(rand()%2)
         {
