@@ -1816,7 +1816,7 @@ bool ChatHandler::HandleItemMoveCommand(const char* args)
 //demorph player or unit
 bool ChatHandler::HandleDeMorphCommand(const char* /*args*/)
 {
-    Unit *target = getSelectedUnit();
+    Unit* target = getSelectedUnit();
     if (!target)
         target = m_session->GetPlayer();
 
@@ -1833,7 +1833,7 @@ bool ChatHandler::HandleMorphCommand(const char* args)
 
     uint16 display_id = (uint16)atoi((char*)args);
 
-    Unit *target = getSelectedUnit();
+    Unit* target = getSelectedUnit();
     if (!target)
         target = m_session->GetPlayer();
 
@@ -3229,7 +3229,7 @@ bool ChatHandler::HandleAddHonorCommand(const char* args)
 
 bool ChatHandler::HandleHonorAddKillCommand(const char* /*args*/)
 {
-    Unit *target = getSelectedUnit();
+    Unit* target = getSelectedUnit();
     if (!target)
     {
         SendSysMessage(LANG_PLAYER_NOT_FOUND);

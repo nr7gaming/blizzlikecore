@@ -101,7 +101,7 @@ index 55b7f6c..adc6c9a 100644
  {
 +    uint32 timediff = getMSTime();
 +
-     Unit *mover = _player->m_mover;
+     Unit* mover = _player->m_mover;
  
      ASSERT(mover != NULL);                                  // there must always be a mover
 @@ -246,6 +260,7 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)

@@ -283,7 +283,7 @@ struct npc_warden_mellicharAI : public ScriptedAI
 
     void AttackStart(Unit* /*who*/) { }
 
-    void MoveInLineOfSight(Unit *who)
+    void MoveInLineOfSight(Unit* who)
     {
         if (IsRunning)
             return;

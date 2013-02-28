@@ -124,7 +124,7 @@ struct boss_entropiusAI : public ScriptedAI
             pInstance->SetData(DATA_MURU_EVENT, NOT_STARTED);
     }
 
-    void EnterCombat(Unit * /*who*/)
+    void EnterCombat(Unit* /*who*/)
     {
         DoCastAOE(SPELL_NEGATIVE_ENERGY_E, true);
         DoCast(me, SPELL_ENTROPIUS_SPAWN, false);
@@ -229,7 +229,7 @@ struct boss_muruAI : public Scripted_NoMovementAI
             pInstance->SetData(DATA_MURU_EVENT, NOT_STARTED);
     }
 
-    void EnterCombat(Unit * /*who*/)
+    void EnterCombat(Unit* /*who*/)
     {
         DoCastAOE(SPELL_NEGATIVE_ENERGY,false);
 
@@ -237,7 +237,7 @@ struct boss_muruAI : public Scripted_NoMovementAI
             pInstance->SetData(DATA_MURU_EVENT, IN_PROGRESS);
     }
 
-    void DamageTaken(Unit * /*done_by*/, uint32 &damage)
+    void DamageTaken(Unit* /*done_by*/, uint32 &damage)
     {
         if (damage > me->GetHealth() && Phase == 1)
         {

@@ -428,13 +428,13 @@ struct boss_illidan_stormrageAI : public ScriptedAI
             Timer[EVENT_FLIGHT_SEQUENCE] = 1000;
     }
 
-    void EnterCombat(Unit * /*who*/)
+    void EnterCombat(Unit* /*who*/)
     {
         me->setActive(true);
         DoZoneInCombat();
     }
 
-    void AttackStart(Unit *who)
+    void AttackStart(Unit* who)
     {
         if (!who || Phase >= PHASE_TALK_SEQUENCE)
             return;
@@ -445,9 +445,9 @@ struct boss_illidan_stormrageAI : public ScriptedAI
             ScriptedAI::AttackStart(who);
     }
 
-    void MoveInLineOfSight(Unit *) {}
+    void MoveInLineOfSight(Unit*) {}
 
-    void JustDied(Unit * /*killer*/)
+    void JustDied(Unit* /*killer*/)
     {
         me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
@@ -460,7 +460,7 @@ struct boss_illidan_stormrageAI : public ScriptedAI
             pInstance->HandleGameObject(pInstance->GetData64(i), true);
     }
 
-    void KilledUnit(Unit * victim)
+    void KilledUnit(Unit* victim)
     {
         if (victim == me) return;
         // TODO: Find better way to handle emote
@@ -477,7 +477,7 @@ struct boss_illidan_stormrageAI : public ScriptedAI
         }
     }
 
-    void DamageTaken(Unit *done_by, uint32 &damage)
+    void DamageTaken(Unit* done_by, uint32 &damage)
     {
         if (damage >= me->GetHealth() && done_by != me)
             damage = 0;
@@ -485,7 +485,7 @@ struct boss_illidan_stormrageAI : public ScriptedAI
             done_by->AddThreat(me, -(3*(float)damage)/4); // do not let maiev tank him
     }
 
-    void SpellHit(Unit * /*caster*/, const SpellEntry *spell)
+    void SpellHit(Unit* /*caster*/, const SpellEntry *spell)
     {
         if (spell->Id == SPELL_GLAIVE_RETURNS) // Re-equip our warblades!
         {
@@ -786,7 +786,7 @@ struct boss_illidan_stormrageAI : public ScriptedAI
 
             case EVENT_PARASITIC_SHADOWFIEND:
                 {
-                    if (Unit *pTarget = SelectTarget(SELECT_TARGET_RANDOM, 1, 200, true))
+                    if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 1, 200, true))
                         DoCast(pTarget, SPELL_PARASITIC_SHADOWFIEND, true);
                     Timer[EVENT_PARASITIC_SHADOWFIEND] = 35000 + rand()%10000;
                 }
@@ -905,11 +905,11 @@ struct flame_of_azzinothAI : public ScriptedAI
         GlaiveGUID = 0;
     }
 
-    void EnterCombat(Unit * /*who*/) {DoZoneInCombat();}
+    void EnterCombat(Unit* /*who*/) {DoZoneInCombat();}
 
     void ChargeCheck()
     {
-        Unit *pTarget = SelectTarget(SELECT_TARGET_FARTHEST, 0, 200, false);
+        Unit* pTarget = SelectTarget(SELECT_TARGET_FARTHEST, 0, 200, false);
         if (pTarget && (!me->IsWithinCombatRange(pTarget, FLAME_CHARGE_DISTANCE)))
         {
             me->AddThreat(pTarget, 5000000.0f);
@@ -928,7 +928,7 @@ struct flame_of_azzinothAI : public ScriptedAI
                 Glaive->InterruptNonMeleeSpells(true);
                 DoCast(me, SPELL_FLAME_ENRAGE, true);
                 DoResetThreat();
-                Unit *pTarget = SelectUnit(SELECT_TARGET_RANDOM, 0);
+                Unit* pTarget = SelectUnit(SELECT_TARGET_RANDOM, 0);
                 if (pTarget && pTarget->isAlive())
                 {
                     me->AddThreat(me->getVictim(), 5000000.0f);
@@ -1057,7 +1057,7 @@ struct npc_akama_illidanAI : public ScriptedAI
         me->CombatStop(true);
     }
 
-    void EnterCombat(Unit * /*who*/) {}
+    void EnterCombat(Unit* /*who*/) {}
     void MoveInLineOfSight(Unit* /*who*/) {}
 
     void MovementInform(uint32 MovementType, uint32 /*Data*/)
@@ -1066,7 +1066,7 @@ struct npc_akama_illidanAI : public ScriptedAI
             Timer = 1;
     }
 
-    void DamageTaken(Unit *done_by, uint32 &damage)
+    void DamageTaken(Unit* done_by, uint32 &damage)
     {
         if (damage > me->GetHealth() || done_by->GetGUID() != IllidanGUID)
             damage = 0;
@@ -1427,12 +1427,12 @@ struct boss_maievAI : public ScriptedAI
         me->SetUInt32Value(UNIT_VIRTUAL_ITEM_SLOT_DISPLAY + 2, 45738);
     }
 
-    void EnterCombat(Unit * /*who*/) {}
-    void MoveInLineOfSight(Unit * /*who*/) {}
+    void EnterCombat(Unit* /*who*/) {}
+    void MoveInLineOfSight(Unit* /*who*/) {}
     void EnterEvadeMode() {}
     void GetIllidanGUID(uint64 guid) { IllidanGUID = guid; }
 
-    void DamageTaken(Unit *done_by, uint32 &damage)
+    void DamageTaken(Unit* done_by, uint32 &damage)
     {
         if (done_by->GetGUID() != IllidanGUID)
             damage = 0;
@@ -1446,7 +1446,7 @@ struct boss_maievAI : public ScriptedAI
         }
     }
 
-    void AttackStart(Unit *who)
+    void AttackStart(Unit* who)
     {
         if (!who || Timer[EVENT_MAIEV_STEALTH])
             return;
@@ -1520,7 +1520,7 @@ struct boss_maievAI : public ScriptedAI
     {
         if (GETCRE(Illidan, IllidanGUID))
         {
-            Unit *pTarget = CAST_AI(boss_illidan_stormrageAI, Illidan->AI())->SelectUnit(SELECT_TARGET_RANDOM, 0);
+            Unit* pTarget = CAST_AI(boss_illidan_stormrageAI, Illidan->AI())->SelectUnit(SELECT_TARGET_RANDOM, 0);
 
             if (!pTarget || !me->IsWithinDistInMap(pTarget, 80) || Illidan->IsWithinDistInMap(pTarget, 20))
             {
@@ -1652,9 +1652,9 @@ struct cage_trap_triggerAI : public ScriptedAI
         me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
     }
 
-    void EnterCombat(Unit * /*who*/){}
+    void EnterCombat(Unit* /*who*/){}
 
-    void MoveInLineOfSight(Unit *who)
+    void MoveInLineOfSight(Unit* who)
     {
         if (!Active)
             return;
@@ -1714,7 +1714,7 @@ struct shadow_demonAI : public ScriptedAI
 
     uint64 TargetGUID;
 
-    void EnterCombat(Unit * /*who*/) {DoZoneInCombat();}
+    void EnterCombat(Unit* /*who*/) {DoZoneInCombat();}
 
     void Reset()
     {
@@ -1722,9 +1722,9 @@ struct shadow_demonAI : public ScriptedAI
         DoCast(me, SPELL_SHADOW_DEMON_PASSIVE, true);
     }
 
-    void JustDied(Unit * /*killer*/)
+    void JustDied(Unit* /*killer*/)
     {
-        if (Unit *pTarget = Unit::GetUnit((*me), TargetGUID))
+        if (Unit* pTarget = Unit::GetUnit((*me), TargetGUID))
             pTarget->RemoveAurasDueToSpell(SPELL_PARALYZE);
     }
 
@@ -1790,7 +1790,7 @@ struct mob_parasitic_shadowfiendAI : public ScriptedAI
     {
         if (!me->getVictim())
         {
-            if (Unit *pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 999, true))
+            if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 999, true))
                 AttackStart(pTarget);
             else
             {
@@ -1819,7 +1819,7 @@ struct blade_of_azzinothAI : public NullCreatureAI
 {
     blade_of_azzinothAI(Creature* c) : NullCreatureAI(c) {}
 
-    void SpellHit(Unit * /*caster*/, const SpellEntry *spell)
+    void SpellHit(Unit* /*caster*/, const SpellEntry *spell)
     {
         if (spell->Id == SPELL_THROW_GLAIVE2 || spell->Id == SPELL_THROW_GLAIVE)
             me->SetDisplayId(21431);//appear when hit by Illidan's glaive
@@ -1887,7 +1887,7 @@ void boss_illidan_stormrageAI::JustSummoned(Creature* summon)
                 summon->setDeathState(JUST_DIED);
                 return;
             }
-            Unit *pTarget = SelectTarget(SELECT_TARGET_TOPAGGRO, 0, 999, true);
+            Unit* pTarget = SelectTarget(SELECT_TARGET_TOPAGGRO, 0, 999, true);
             if (!pTarget || pTarget->HasAura(SPELL_PARASITIC_SHADOWFIEND, 0)
                 || pTarget->HasAura(SPELL_PARASITIC_SHADOWFIEND2, 0))
                 pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 999, true);
@@ -1896,7 +1896,7 @@ void boss_illidan_stormrageAI::JustSummoned(Creature* summon)
         }
         break;
     case SHADOW_DEMON:
-        if (Unit *pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 999, true)) // only on players.
+        if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 999, true)) // only on players.
         {
             summon->AddThreat(pTarget, 5000000.0f);
             summon->AI()->AttackStart(pTarget);

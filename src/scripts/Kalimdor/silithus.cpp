@@ -294,34 +294,34 @@ static QuestCinematic EventAnim[]=
     {ARYGOS_EMOTE_1, 2, 2000},
     {CAELESTRASZ_SAY_1, 4, 8000},
     {MERITHRA_SAY_2, 3, 6000},
-    {0,3,2000},
+    {0, 3, 2000},
     {MERITHRA_YELL_1, 3, 2500},
     {0, 3, 3000},//Morph
-    {0,3,4000},//EmoteLiftoff
+    {0, 3, 4000},//EmoteLiftoff
     {0, 3, 4000},// spell
     {0, 3, 1250},//fly
     {0, 3, 250},//remove flags
     {ARYGOS_SAY_1, 2, 3000},
-    {0,3,2000},
+    {0, 3, 2000},
     {ARYGOS_YELL_1, 2, 3000},
     {0, 3, 3000},//Morph
-    {0,3,4000},//EmoteLiftoff
+    {0, 3, 4000},//EmoteLiftoff
     {0, 3, 4000},// spell
     {0, 3, 1000},//fly
     {0, 3, 1000},//remove flags
     {CAELESTRASZ_SAY_2, 4, 5000},
-    {0,3,3000},
+    {0, 3, 3000},
     {CAELESTRASZ_YELL_1, 4, 3000},
     {0, 3, 3000},//Morph
-    {0,3,4000},//EmoteLiftoff
+    {0, 3, 4000},//EmoteLiftoff
     {0, 3, 2500},// spell
     {ANACHRONOS_SAY_2, 0, 2000},
     {0, 3, 250},//fly
     {0, 3, 25},//remove flags
     {FANDRAL_SAY_2, 1, 3000},
     {ANACHRONOS_SAY_3, 0, 10000},//Both run through the armies
-    {0,3,2000},// Sands will stop
-    {0,3,8000},// Summon Gate
+    {0, 3, 2000},// Sands will stop
+    {0, 3, 8000},// Summon Gate
     {ANACHRONOS_SAY_4, 0, 4000},
     {0, 0, 2000},//spell 1-> Arcane cosmetic (Mobs freeze)
     {0, 0, 5000}, //Spell 2-> Arcane long cosmetic (barrier appears) (Barrier -> Glyphs)
@@ -826,7 +826,7 @@ struct mob_qiraj_war_spawnAI : public ScriptedAI
 
     void UpdateAI(const uint32 diff)
     {
-        Unit *pTarget = NULL;
+        Unit* pTarget = NULL;
         //Player* plr = me->GetPlayer(PlayerGUID);
 
         if (!Timers)
@@ -1079,10 +1079,10 @@ bool OnQuestAccept(Player* plr, GameObject* go, Quest const* quest)
         if (Unit* Anachronos_Quest_Trigger = go->FindNearestCreature(15454, 100, plr))
         {
 
-            Unit *Merithra = Anachronos_Quest_Trigger->SummonCreature(15378,-8034.535f,1535.14f,2.61f,0,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
-            Unit *Caelestrasz = Anachronos_Quest_Trigger->SummonCreature(15379,-8032.767f, 1533.148f,2.61f, 1.5f,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
-            Unit *Arygos = Anachronos_Quest_Trigger->SummonCreature(15380,-8034.52f, 1537.843f, 2.61f, 5.7f,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
-            /* Unit *Fandral = */ Anachronos_Quest_Trigger->SummonCreature(15382,-8028.462f, 1535.843f, 2.61f, 3.141592f,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
+            Unit* Merithra = Anachronos_Quest_Trigger->SummonCreature(15378,-8034.535f,1535.14f,2.61f,0,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
+            Unit* Caelestrasz = Anachronos_Quest_Trigger->SummonCreature(15379,-8032.767f, 1533.148f,2.61f, 1.5f,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
+            Unit* Arygos = Anachronos_Quest_Trigger->SummonCreature(15380,-8034.52f, 1537.843f, 2.61f, 5.7f,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
+            /* Unit* Fandral = */ Anachronos_Quest_Trigger->SummonCreature(15382,-8028.462f, 1535.843f, 2.61f, 3.141592f,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
             Creature *Anachronos = Anachronos_Quest_Trigger->SummonCreature(15381,-8028.75f, 1538.795f, 2.61f, 4,TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,220000);
 
             if (Merithra)

@@ -1686,7 +1686,7 @@ bool ChatHandler::HandleModifyScaleCommand(const char* args)
         return false;
     }
 
-    Unit *target = getSelectedUnit();
+    Unit* target = getSelectedUnit();
     if (target == NULL)
     {
         SendSysMessage(LANG_SELECT_CHAR_OR_CREATURE);

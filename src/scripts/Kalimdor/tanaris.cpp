@@ -194,7 +194,7 @@ struct npc_custodian_of_timeAI : public npc_escortAI
         }
     }
 
-    void MoveInLineOfSight(Unit *who)
+    void MoveInLineOfSight(Unit* who)
     {
         if (HasEscortState(STATE_ESCORT_ESCORTING))
             return;
@@ -527,7 +527,7 @@ struct npc_toogaAI : public FollowerAI
         TortaGUID = 0;
     }
 
-    void MoveInLineOfSight(Unit *pWho)
+    void MoveInLineOfSight(Unit* pWho)
     {
         FollowerAI::MoveInLineOfSight(pWho);
 
@@ -569,7 +569,7 @@ struct npc_toogaAI : public FollowerAI
                 {
                     m_uiPostEventTimer = 5000;
 
-                    Unit *pTorta = Unit::GetUnit(*me, TortaGUID);
+                    Unit* pTorta = Unit::GetUnit(*me, TortaGUID);
                     if (!pTorta || !pTorta->isAlive())
                     {
                         //something happened, so just complete

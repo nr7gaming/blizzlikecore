@@ -627,7 +627,7 @@ struct boss_kiljaedenAI : public Scripted_NoMovementAI
         for (uint8 i = 0; i < 4; ++i)
         {
             float x,y,z;
-            Unit *pTarget = NULL;
+            Unit* pTarget = NULL;
             for (uint8 z = 0; z < 6; ++z)
             {
                 pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true);
@@ -808,7 +808,7 @@ struct boss_kiljaedenAI : public Scripted_NoMovementAI
                         TimerIsDeactivated[TIMER_ORBS_EMPOWER] = true;
                         break;
                     case TIMER_ARMAGEDDON: //Phase 4
-                        Unit *pTarget = NULL;
+                        Unit* pTarget = NULL;
                         for (uint8 z = 0; z < 6; ++z)
                         {
                             pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true);
@@ -1023,7 +1023,7 @@ struct mob_volatile_felfire_fiendAI : public ScriptedAI
         bLockedTarget = false;
     }
 
-    void DamageTaken(Unit * /*done_by*/, uint32 &damage)
+    void DamageTaken(Unit* /*done_by*/, uint32 &damage)
     {
         if (damage > me->GetHealth())
             DoCast(me, SPELL_FELFIRE_FISSION, true);

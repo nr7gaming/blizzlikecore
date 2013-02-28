@@ -96,7 +96,7 @@ struct boss_viscidusAI : public ScriptedAI
         state = NORMAL_STATE_1;
     }
 
-    void Aggro(Unit *who){}
+    void Aggro(Unit* who){}
 
     void DamageTaken(Unit* Done_by, uint32 &Damage)
     {

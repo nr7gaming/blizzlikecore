@@ -521,7 +521,7 @@ bool GOHello_go_blood_filled_orb(Player *pPlayer, GameObject *pGO)
 
 bool GOHello_go_soulwell(Player *pPlayer, GameObject* pGO)
 {
-    Unit *caster = pGO->GetOwner();
+    Unit* caster = pGO->GetOwner();
     if (!caster || caster->GetTypeId() != TYPEID_PLAYER)
         return true;
 

@@ -64,13 +64,13 @@ struct npc_sergeant_blyAI : public ScriptedAI
             pInstance->SetData(0, NOT_STARTED);*/
     }
 
-    void EnterCombat(Unit * /*who*/)
+    void EnterCombat(Unit* /*who*/)
     {
         /*if (pInstance)
             pInstance->SetData(0, IN_PROGRESS);*/
     }
 
-    void JustDied(Unit * /*victim*/)
+    void JustDied(Unit* /*victim*/)
     {
         /*if (pInstance)
             pInstance->SetData(0, DONE);*/
@@ -153,13 +153,13 @@ struct npc_weegli_blastfuseAI : public ScriptedAI
             pInstance->SetData(0, NOT_STARTED);*/
     }
 
-    void EnterCombat(Unit * /*who*/)
+    void EnterCombat(Unit* /*who*/)
     {
         /*if (pInstance)
             pInstance->SetData(0, IN_PROGRESS);*/
     }
 
-    void JustDied(Unit * /*victim*/)
+    void JustDied(Unit* /*victim*/)
     {
         /*if (pInstance)
             pInstance->SetData(0, DONE);*/

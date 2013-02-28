@@ -115,7 +115,7 @@ struct boss_halazziAI : public ScriptedAI
         EnterPhase(PHASE_LYNX);
     }
 
-    void EnterCombat(Unit * /*who*/)
+    void EnterCombat(Unit* /*who*/)
     {
         if (pInstance)
             pInstance->SetData(DATA_HALAZZIEVENT, IN_PROGRESS);
@@ -133,7 +133,7 @@ struct boss_halazziAI : public ScriptedAI
             LynxGUID = summon->GetGUID();
     }
 
-    void DamageTaken(Unit * /*done_by*/, uint32 &damage)
+    void DamageTaken(Unit* /*done_by*/, uint32 &damage)
     {
         if (damage >= me->GetHealth() && Phase != PHASE_ENRAGE)
             damage = 0;
@@ -145,7 +145,7 @@ struct boss_halazziAI : public ScriptedAI
             EnterPhase(PHASE_HUMAN);
     }
 
-    void AttackStart(Unit *who)
+    void AttackStart(Unit* who)
     {
         if (Phase != PHASE_MERGE) ScriptedAI::AttackStart(who);
     }
@@ -185,7 +185,7 @@ struct boss_halazziAI : public ScriptedAI
             TotemTimer = 12000;
             break;
         case PHASE_MERGE:
-            if (Unit *pLynx = Unit::GetUnit(*me, LynxGUID))
+            if (Unit* pLynx = Unit::GetUnit(*me, LynxGUID))
             {
                 me->MonsterYell(YELL_MERGE, LANG_UNIVERSAL, 0);
                 DoPlaySoundToSet(me, SOUND_MERGE);
@@ -265,7 +265,7 @@ struct boss_halazziAI : public ScriptedAI
 
             if (ShockTimer <= diff)
             {
-                if (Unit *pTarget = SelectUnit(SELECT_TARGET_RANDOM,0))
+                if (Unit* pTarget = SelectUnit(SELECT_TARGET_RANDOM,0))
                 {
                     if (pTarget->IsNonMeleeSpellCasted(false))
                         DoCast(pTarget, SPELL_EARTHSHOCK);
@@ -283,7 +283,7 @@ struct boss_halazziAI : public ScriptedAI
                         EnterPhase(PHASE_MERGE);
                     else
                     {
-                        Unit *Lynx = Unit::GetUnit(*me, LynxGUID);
+                        Unit* Lynx = Unit::GetUnit(*me, LynxGUID);
                         if (Lynx && ((Lynx->GetHealth()*100) / Lynx->GetMaxHealth() <= 20)/*Lynx->GetHealth() * 10 < Lynx->GetMaxHealth()*/)
                             EnterPhase(PHASE_MERGE);
                     }
@@ -296,7 +296,7 @@ struct boss_halazziAI : public ScriptedAI
         {
             if (CheckTimer <= diff)
             {
-                Unit *Lynx = Unit::GetUnit(*me, LynxGUID);
+                Unit* Lynx = Unit::GetUnit(*me, LynxGUID);
                 if (Lynx)
                 {
                     Lynx->GetMotionMaster()->MoveFollow(me, 0, 0);
@@ -357,19 +357,19 @@ struct boss_spiritlynxAI : public ScriptedAI
         shredder_timer = 4000;
     }
 
-    void DamageTaken(Unit * /*done_by*/, uint32 &damage)
+    void DamageTaken(Unit* /*done_by*/, uint32 &damage)
     {
         if (damage >= me->GetHealth())
             damage = 0;
     }
 
-    void AttackStart(Unit *who)
+    void AttackStart(Unit* who)
     {
         if (!me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE))
             ScriptedAI::AttackStart(who);
     }
 
-    void EnterCombat(Unit * /*who*/) {/*DoZoneInCombat();*/}
+    void EnterCombat(Unit* /*who*/) {/*DoZoneInCombat();*/}
 
     void UpdateAI(const uint32 diff)
     {

@@ -192,7 +192,7 @@ void WorldSession::HandleMoveTeleportAck(WorldPacket& recv_data)
     DEBUG_LOG("Guid " UI64FMTD, guid);
     DEBUG_LOG("Flags %u, time %u", flags, time/IN_MILLISECONDS);
 
-    Unit *mover = _player->m_mover;
+    Unit* mover = _player->m_mover;
     Player *plMover = mover->GetTypeId() == TYPEID_PLAYER ? mover->ToPlayer() : NULL;
 
     if (!plMover || !plMover->IsBeingTeleportedNear())
@@ -237,7 +237,7 @@ void WorldSession::HandleMoveTeleportAck(WorldPacket& recv_data)
 
 void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
 {
-    Unit *mover = _player->m_mover;
+    Unit* mover = _player->m_mover;
 
     ASSERT(mover != NULL);                                  // there must always be a mover
 
@@ -408,7 +408,7 @@ void WorldSession::HandleSetActiveMoverOpcode(WorldPacket& recv_data)
     recv_data >> guid;
 
     if (GetPlayer()->IsInWorld())
-        if (Unit *mover = ObjectAccessor::GetUnit(*GetPlayer(), guid))
+        if (Unit* mover = ObjectAccessor::GetUnit(*GetPlayer(), guid))
             GetPlayer()->SetMover(mover);
     else
     {
