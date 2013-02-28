@@ -155,7 +155,7 @@ extern int main(int argc, char **argv)
         sLog.outError(" WARNING:");
         sLog.outError(" Your %s file is out of date.", cfg_file);
         sLog.outError(" Please, check for updates.");
-        sleep(10);
+        sleep(5);
     }
 
     sLog.outDetail("Using ACE: %s", ACE_VERSION);

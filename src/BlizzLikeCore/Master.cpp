@@ -344,7 +344,7 @@ bool Master::_StartDB()
     if (dbstring.empty())
     {
         sLog.outError("World database not specified in configuration file");
-        sleep(10);
+        sleep(5);
         return false;
     }
 
@@ -352,7 +352,7 @@ bool Master::_StartDB()
     if (!WorldDatabase.Initialize(dbstring.c_str()))
     {
         sLog.outError("BC> Can't connect to database at %s", dbstring.c_str());
-        sleep(10);
+        sleep(5);
         return false;
     }
 
@@ -361,7 +361,7 @@ bool Master::_StartDB()
     if (dbstring.empty())
     {
         sLog.outError("Character database not specified in configuration file");
-        sleep(10);
+        sleep(5);
         return false;
     }
 
@@ -369,7 +369,7 @@ bool Master::_StartDB()
     if (!CharacterDatabase.Initialize(dbstring.c_str()))
     {
         sLog.outError("Cannot connect to Character database %s",dbstring.c_str());
-        sleep(10);
+        sleep(5);
         return false;
     }
 
@@ -378,7 +378,7 @@ bool Master::_StartDB()
     if (dbstring.empty())
     {
         sLog.outError("Login database not specified in configuration file");
-        sleep(10);
+        sleep(5);
         return false;
     }
 
@@ -386,7 +386,7 @@ bool Master::_StartDB()
     if (!LoginDatabase.Initialize(dbstring.c_str()))
     {
         sLog.outError("Cannot connect to login database %s",dbstring.c_str());
-        sleep(10);
+        sleep(5);
         return false;
     }
 
@@ -395,7 +395,7 @@ bool Master::_StartDB()
     if (!realmID)
     {
         sLog.outError("Realm ID not defined in configuration file");
-        sleep(10);
+        sleep(5);
         return false;
     }
     sLog.outString("Realm running as realm ID %d", realmID);
@@ -420,7 +420,7 @@ bool Master::_StartDB()
         sLog.outError(" WARNING:");
         sLog.outError(" Your World DB version: %s is wrong.", db_version);
         sLog.outError(" Required World DB version: %s", _REQ_BDB_VERSION);
-        sleep(10);
+        sleep(5);
         return false;
     }
 

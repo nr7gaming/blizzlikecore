@@ -171,7 +171,7 @@ extern int main(int argc, char **argv)
         sLog.outError(" WARNING:");
         sLog.outError(" Your %s file is out of date.", cfg_file);
         sLog.outError(" Please, check for updates.");
-        sleep(10);
+        sleep(5);
     }
 
     sLog.outDetail("Using ACE: %s", ACE_VERSION);
@@ -207,6 +207,7 @@ extern int main(int argc, char **argv)
     if (sRealmList->size() == 0)
     {
         sLog.outError("No valid realms specified.");
+        sleep(5);
         return 1;
     }
 
@@ -337,7 +338,7 @@ bool StartDB()
     if (dbstring.empty())
     {
         sLog.outError("Database not specified");
-        sleep(10);
+        sleep(5);
         return false;
     }
 
@@ -345,7 +346,7 @@ bool StartDB()
     if (!LoginDatabase.Initialize(dbstring.c_str()))
     {
         sLog.outError("BC> Can't connect to database at %s", dbstring.c_str());
-        sleep(10);
+        sleep(5);
         return false;
     }
 
