@@ -253,15 +253,15 @@ index 0000000..bc78986
 +    delete[] Module->CompressedData;
 +    delete Module;
 +    Module = NULL;
++    m_initialized = false;
 +}
 +
-+
-+void WardenBase::Init(WorldSession* /*pClient*/, BigNumber* /*K*/)
++void WardenBase::Init(WorldSession *pClient, BigNumber *K)
 +{
 +    ASSERT(false);
 +}
 +
-+ClientWardenModule *WardenBase::GetModuleForClient(WorldSession* /*session*/)
++ClientWardenModule *WardenBase::GetModuleForClient(WorldSession *session)
 +{
 +    ASSERT(false);
 +    return NULL;
@@ -277,7 +277,7 @@ index 0000000..bc78986
 +    ASSERT(false);
 +}
 +
-+void WardenBase::HandleHashResult(ByteBuffer& /*buff*/)
++void WardenBase::HandleHashResult(ByteBuffer &buff)
 +{
 +    ASSERT(false);
 +}
@@ -287,7 +287,7 @@ index 0000000..bc78986
 +    ASSERT(false);
 +}
 +
-+vvoid WardenBase::HandleData(ByteBuffer& /*buff*/)
++void WardenBase::HandleData(ByteBuffer &buff)
 +{
 +    ASSERT(false);
 +}
@@ -566,8 +566,8 @@ index 0000000..e16636f
 +        SARC4 iCrypto;
 +        SARC4 oCrypto;
 +        uint32 m_WardenCheckTimer;                          // timer between data packets
-+        uint32 m_WardenKickTimer;                           // time after send packet
 +        bool m_WardenDataSent;
++        uint32 m_WardenKickTimer;                           // time after send packet
 +        uint32 m_WardenTimer;
 +        ClientWardenModule *Module;
 +        bool m_initialized;
@@ -883,7 +883,7 @@ index 0000000..cf748a9
 +    RequestModule();
 +}
 +
-+ClientWardenModule *WardenMac::GetModuleForClient(WorldSession* /*session*/)
++ClientWardenModule *WardenMac::GetModuleForClient(WorldSession *session)
 +{
 +    ClientWardenModule *mod = new ClientWardenModule;
 +
@@ -3051,7 +3051,7 @@ index 0000000..258325b
 +    RequestModule();
 +}
 +
-+ClientWardenModule *WardenWin::GetModuleForClient(WorldSession* /*session*/)
++ClientWardenModule *WardenWin::GetModuleForClient(WorldSession *session)
 +{
 +    ClientWardenModule *mod = new ClientWardenModule;
 +
@@ -3184,7 +3184,7 @@ index 0000000..258325b
 +
 +    SendDataId.clear();
 +
-+    for (uint32 i = 0; i < sWorld.getConfig(CONFIG_WARDEN_NUM_CHECKS); ++i)                           // for now include 3 MEM_CHECK's
++    for (int i = 0; i < sWorld.getConfig(CONFIG_WARDEN_NUM_CHECKS); ++i)                             // for now include 3 MEM_CHECK's
 +    {   
 +        if (MemCheck.empty())
 +            break;
@@ -3296,7 +3296,7 @@ index 0000000..258325b
 +    stream << "Sent check id's: ";
 +    for (std::vector<uint32>::iterator itr = SendDataId.begin(); itr != SendDataId.end(); ++itr)
 +        stream << *itr << " ";
-+    sLog.outDebug("%s", stream.str().c_str());
++    sLog.outDebug(stream.str().c_str());
 +}
 +
 +void WardenWin::HandleData(ByteBuffer &buff)
@@ -3593,7 +3593,7 @@ index 0000000..25eacd8
 +
 +#endif
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index db0dcaf..840580e 100644
+index 4e187de..0940aeb 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -60,6 +60,7 @@
@@ -3619,7 +3619,7 @@ index db0dcaf..840580e 100644
  }
  
  // Initialize the World
-@@ -1488,6 +1497,10 @@ void World::SetInitialWorldSettings()
+@@ -1492,6 +1501,10 @@ void World::SetInitialWorldSettings()
      uint32 nextGameEvent = gameeventmgr.Initialize();
      m_timers[WUPDATE_EVENTS].SetInterval(nextGameEvent);    //depend on next event
  
@@ -3939,19 +3939,19 @@ index 0000000..1c4e843
 +
 +#endif
 diff --git a/src/shared/Log.cpp b/src/shared/Log.cpp
-index bfcde93..5c458be 100644
+index 9b1473d..d0b214a 100644
 --- a/src/shared/Log.cpp
 +++ b/src/shared/Log.cpp
-@@ -30,7 +30,7 @@ Log::Log() :
+@@ -29,7 +29,7 @@ INSTANTIATE_SINGLETON_1(Log);
+ Log::Log() :
      raLogfile(NULL), logfile(NULL), gmLogfile(NULL), charLogfile(NULL),
-     dberLogfile(NULL), chatLogfile(NULL), m_gmlog_per_account(false),
-     m_enableLogDBLater(false), m_enableLogDB(false), m_colored(false),
--    arenaLogFile(NULL)
-+    arenaLogFile(NULL), wardenLogFile(NULL)
+     dberLogfile(NULL), chatLogfile(NULL), arenaLogFile(NULL), m_gmlog_per_account(false),
+-    m_enableLogDBLater(false), m_enableLogDB(false), m_colored(false)
++    m_enableLogDBLater(false), m_enableLogDB(false), m_colored(false), wardenLogFile(NULL)
  {
      Initialize();
  }
-@@ -64,6 +64,10 @@ Log::~Log()
+@@ -63,6 +63,10 @@ Log::~Log()
      if (arenaLogFile != NULL)
          fclose(arenaLogFile);
      arenaLogFile = NULL;
@@ -3962,7 +3962,7 @@ index bfcde93..5c458be 100644
  }
  
  void Log::SetLogLevel(char *Level)
-@@ -155,6 +159,7 @@ void Log::Initialize()
+@@ -154,6 +158,7 @@ void Log::Initialize()
      raLogfile = openLogFile("RaLogFile",NULL,"a");
      chatLogfile = openLogFile("ChatLogFile","ChatLogTimestamp","a");
      arenaLogFile = openLogFile("ArenaLogFile",NULL,"a");
@@ -3970,7 +3970,7 @@ index bfcde93..5c458be 100644
  
      // Main log file settings
      m_logLevel     = sConfig.GetIntDefault("LogLevel", LOGL_NORMAL);
-@@ -877,3 +882,26 @@ void Log::outChat(const char * str, ...)
+@@ -918,3 +923,26 @@ void Log::outChat(const char * str, ...)
      fflush(stdout);
  }
  
@@ -3998,10 +3998,10 @@ index bfcde93..5c458be 100644
 +    fflush(stdout);
 +}
 diff --git a/src/shared/Log.h b/src/shared/Log.h
-index d718c35..45b99ae 100644
+index 3a91e98..8da71cb 100644
 --- a/src/shared/Log.h
 +++ b/src/shared/Log.h
-@@ -106,6 +106,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
+@@ -107,6 +107,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
          void outCommand( uint32 account, const char * str, ...) ATTR_PRINTF(3,4);
          void outRemote( const char * str, ... )                 ATTR_PRINTF(2,3);
          void outChat( const char * str, ... )                   ATTR_PRINTF(2,3);
@@ -4009,7 +4009,7 @@ index d718c35..45b99ae 100644
          void outArena( const char * str, ... )                  ATTR_PRINTF(2,3);
          void outCharDump( const char * str, uint32 account_id, uint32 guid, const char * name );
  
-@@ -136,6 +137,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
+@@ -137,6 +138,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
          FILE* dberLogfile;
          FILE* chatLogfile;
          FILE* arenaLogFile;
