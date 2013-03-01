@@ -408,8 +408,10 @@ void WorldSession::HandleSetActiveMoverOpcode(WorldPacket& recv_data)
     recv_data >> guid;
 
     if (GetPlayer()->IsInWorld())
+    {
         if (Unit* mover = ObjectAccessor::GetUnit(*GetPlayer(), guid))
             GetPlayer()->SetMover(mover);
+    }
     else
     {
         sLog.outError("HandleSetActiveMoverOpcode: incorrect mover guid: mover is " UI64FMTD " and should be " UI64FMTD, guid, _player->m_mover->GetGUID());
