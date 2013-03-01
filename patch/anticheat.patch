@@ -45,7 +45,7 @@ index a82de33..3a51e62 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 55b7f6c..adc6c9a 100644
+index 960f4bd..1808909 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -20,6 +20,7 @@
@@ -613,7 +613,7 @@ index 55b7f6c..adc6c9a 100644
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -463,6 +852,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -465,6 +854,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -633,7 +633,7 @@ index 55b7f6c..adc6c9a 100644
  }
  
  void WorldSession::HandleMoveFlyModeChangeAckOpcode(WorldPacket& recv_data)
-@@ -478,6 +880,18 @@ void WorldSession::HandleMoveFlyModeChangeAckOpcode(WorldPacket& recv_data)
+@@ -480,6 +882,18 @@ void WorldSession::HandleMoveFlyModeChangeAckOpcode(WorldPacket& recv_data)
      recv_data >> movementInfo;
      recv_data.read_skip<uint32>();                          // unk2
  
@@ -653,7 +653,7 @@ index 55b7f6c..adc6c9a 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index bfbf638..fd1e5a1 100644
+index 83904bd..639a86d 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -382,6 +382,27 @@ Player::Player (WorldSession *session): Unit()
@@ -684,7 +684,7 @@ index bfbf638..fd1e5a1 100644
      m_mailsLoaded = false;
      m_mailsUpdated = false;
      unReadMails = 0;
-@@ -20497,12 +20518,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
+@@ -20501,12 +20522,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
  
  void Player::HandleFallDamage(MovementInfo& movementInfo)
  {
