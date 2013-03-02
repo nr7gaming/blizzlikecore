@@ -186,7 +186,7 @@ class ThreatManager
 
         HostileReference* getCurrentVictim() { return iCurrentVictim; }
 
-        Unit*  getOwner() { return iOwner; }
+        Unit* getOwner() { return iOwner; }
 
         Unit* getHostileTarget();
 

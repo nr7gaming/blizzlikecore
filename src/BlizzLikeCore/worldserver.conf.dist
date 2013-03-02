@@ -3,7 +3,7 @@
 ##################################################
 
 [worldserver]
-ConfVersion=20130210
+ConfVersion=20130302
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -1983,13 +1983,18 @@ CharDelete.KeepDays = 30
 #
 #    DuelMod.Enable
 #        Allows players cooldowns/mana/hp to reset before each duel.
-#        Default: 0 (Disabled)
-#                 1 - Enabled
+#        Default: 0 - (Disabled)
+#                 1 - (Enabled)
 #
 #    DuelMod.Cooldowns
 #        Makes the players arena cooldowns reset before each duel.
-#        Default: 0 (Disabled)
-#                 1 - Enabled
+#        Default: 0 - (Disabled)
+#                 1 - (Enabled)
+#
+#    Die.Command.Mode
+#        Description: Do not trigger things like loot from .die command.
+#        Default: 1 - (Enabled)
+#                 0 - (Disabled)
 #
 ###############################################################################
 
@@ -2011,6 +2016,7 @@ MinRecordUpdateTimeDiff = 100
 PlayerStart.String = ""
 DuelMod.Enable = 0
 DuelMod.Cooldowns = 0
+Die.Command.Mode = 1
 
 ###############################################################################
 # AUTO BROADCAST
