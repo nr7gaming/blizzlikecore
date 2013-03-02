@@ -48,10 +48,10 @@ index 0000000..57684e0
 +UNLOCK TABLES;
 \ No newline at end of file
 diff --git a/src/BlizzLikeCore/worldserver.conf.dist b/src/BlizzLikeCore/worldserver.conf.dist
-index 9927bb6..5deb532 100644
+index 9b6dd63..ddcdaec 100644
 --- a/src/BlizzLikeCore/worldserver.conf.dist
 +++ b/src/BlizzLikeCore/worldserver.conf.dist
-@@ -2034,3 +2034,51 @@ DuelMod.Cooldowns = 0
+@@ -2040,3 +2040,51 @@ Die.Command.Mode = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000
@@ -3593,7 +3593,7 @@ index 0000000..25eacd8
 +
 +#endif
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 4e187de..0940aeb 100644
+index d14320f..ff3a891 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -60,6 +60,7 @@
@@ -3604,7 +3604,7 @@ index 4e187de..0940aeb 100644
  
  INSTANTIATE_SINGLETON_1(World);
  
-@@ -1100,6 +1101,14 @@ void World::LoadConfigSettings(bool reload)
+@@ -1102,6 +1103,14 @@ void World::LoadConfigSettings(bool reload)
      m_configs[CONFIG_CHATLOG_PUBLIC] = sConfig.GetBoolDefault("ChatLogs.Public", false);
      m_configs[CONFIG_CHATLOG_ADDON] = sConfig.GetBoolDefault("ChatLogs.Addon", false);
      m_configs[CONFIG_CHATLOG_BGROUND] = sConfig.GetBoolDefault("ChatLogs.BattleGround", false);
@@ -3619,7 +3619,7 @@ index 4e187de..0940aeb 100644
  }
  
  // Initialize the World
-@@ -1492,6 +1501,10 @@ void World::SetInitialWorldSettings()
+@@ -1494,6 +1503,10 @@ void World::SetInitialWorldSettings()
      uint32 nextGameEvent = gameeventmgr.Initialize();
      m_timers[WUPDATE_EVENTS].SetInterval(nextGameEvent);    //depend on next event
  
@@ -3631,10 +3631,10 @@ index 4e187de..0940aeb 100644
      sLog.outString("Starting BattleGround System");
      sBattleGroundMgr.CreateInitialBattleGrounds();
 diff --git a/src/game/World.h b/src/game/World.h
-index 4add340..522d330 100644
+index 7ad3d80..2bd700b 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -250,6 +250,12 @@ enum WorldConfigs
+@@ -251,6 +251,12 @@ enum WorldConfigs
      CONFIG_AUTOBROADCAST_TIMER,
      CONFIG_AUTOBROADCAST_ENABLED,
      CONFIG_AUTOBROADCAST_CENTER,

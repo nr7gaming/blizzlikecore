@@ -7,10 +7,10 @@ index 0000000..4dc2128
 +-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
 +INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s is kicked for use Teleport to Plane Hack.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s produces a anticheat alarm for %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 diff --git a/src/BlizzLikeCore/worldserver.conf.dist b/src/BlizzLikeCore/worldserver.conf.dist
-index 5b33308..97153c9 100644
+index 9b6dd63..f40f64a 100644
 --- a/src/BlizzLikeCore/worldserver.conf.dist
 +++ b/src/BlizzLikeCore/worldserver.conf.dist
-@@ -2034,3 +2034,20 @@ DuelMod.Cooldowns = 0
+@@ -2040,3 +2040,20 @@ Die.Command.Mode = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000
@@ -807,10 +807,10 @@ index 5394703..7318fab 100644
  
      m_configs[CONFIG_COMPRESSION] = sConfig.GetIntDefault("Compression", 1);
 diff --git a/src/game/World.h b/src/game/World.h
-index c537b7c..1ed0899 100644
+index 7ad3d80..9874e72 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -575,6 +575,10 @@ class World
+@@ -576,6 +576,10 @@ class World
          static int32 GetVisibilityNotifyPeriodInInstances() { return m_visibility_notify_periodInInstances;  }
          static int32 GetVisibilityNotifyPeriodInBGArenas()  { return m_visibility_notify_periodInBGArenas;   }
  
@@ -821,7 +821,7 @@ index c537b7c..1ed0899 100644
          void ProcessCliCommands();
          void QueueCliCommand(CliCommandHolder* commandHolder) { cliCmdQueue.add(commandHolder); }
  
-@@ -662,6 +666,10 @@ class World
+@@ -663,6 +667,10 @@ class World
          static int32 m_visibility_notify_periodInInstances;
          static int32 m_visibility_notify_periodInBGArenas;
  

@@ -366,10 +366,10 @@ index 4e67504..16bfbc6 100644
      protected:
  
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index b4be73d..31bab94 100644
+index d14320f..ed31ba3 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -1219,6 +1219,9 @@ void World::SetInitialWorldSettings()
+@@ -1221,6 +1221,9 @@ void World::SetInitialWorldSettings()
  
      sLog.outString("Loading Item Texts...");
      objmgr.LoadItemTexts();
