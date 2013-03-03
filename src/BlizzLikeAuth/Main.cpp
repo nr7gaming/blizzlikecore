@@ -158,9 +158,9 @@ extern int main(int argc, char **argv)
     }
     sLog.Initialize();
 
-    sLog.outString("************************************************************************");
-    sLog.outString("%s(auth) Rev: %s Hash: %s", _PACKAGENAME, _REVISION, _HASH);
-    sLog.outString("************************************************************************");
+    sLog.outString("*************************************************************************");
+    sLog.outString(" %s(auth) Rev: %s Hash: %s ", _PACKAGENAME, _REVISION, _HASH);
+    sLog.outString("*************************************************************************");
     sLog.outString("<Ctrl-C> to stop.");
     sLog.outString(" ");
 
@@ -232,6 +232,8 @@ extern int main(int argc, char **argv)
 
     // Catch termination signals
     HookSignals();
+
+    sLog.outString("AuthServer initialized");
 
     // Handle affinity for multiple processors and process priority on Windows
     #ifdef _WIN32

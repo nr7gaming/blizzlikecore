@@ -105,9 +105,9 @@ Master::~Master()
 // Main function
 int Master::Run()
 {
-    sLog.outString("************************************************************************");
-    sLog.outString("%s(world) Rev: %s Hash: %s", _PACKAGENAME, _REVISION, _HASH);
-    sLog.outString("************************************************************************");
+    sLog.outString("**************************************************************************");
+    sLog.outString(" %s(world) Rev: %s Hash: %s ", _PACKAGENAME, _REVISION, _HASH);
+    sLog.outString("**************************************************************************");
     sLog.outString("<Ctrl-C> to stop.");
     sLog.outString(" ");
 

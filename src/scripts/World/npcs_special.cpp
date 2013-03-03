@@ -1345,7 +1345,7 @@ struct npc_snake_trap_serpentsAI : public ScriptedAI
 {
     npc_snake_trap_serpentsAI(Creature *c) : ScriptedAI(c), SpellTimer(0) {}
 
-    uint32 SpellTimer;
+    int32 SpellTimer;
     Unit* Owner;
     bool IsViper;
 
