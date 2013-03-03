@@ -1535,7 +1535,7 @@ void World::SetInitialWorldSettings()
     // Delete all characters which have been deleted X days before
     Player::DeleteOldCharacters();
 
-    sLog.outString("WorldServer initialized");
+    sLog.outString("WorldServer started");
 }
 
 void World::DetectDBCLang()

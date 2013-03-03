@@ -233,7 +233,7 @@ extern int main(int argc, char **argv)
     // Catch termination signals
     HookSignals();
 
-    sLog.outString("AuthServer initialized");
+    sLog.outString("AuthServer started");
 
     // Handle affinity for multiple processors and process priority on Windows
     #ifdef _WIN32
