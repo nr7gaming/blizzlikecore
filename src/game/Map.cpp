@@ -2298,7 +2298,7 @@ bool InstanceMap::CanEnter(Player *player)
     }
 
     // cannot enter while an encounter in the instance is in progress
-    if (!player->isGameMaster() && GetInstanceScript() && GetInstanceScript()->IsEncounterInProgress() && player->GetMapId() != GetId())
+    if (!player->isGameMaster() && GetInstanceData() && GetInstanceData()->IsEncounterInProgress() && player->GetMapId() != GetId())
     {
         player->SendTransferAborted(GetId(), TRANSFER_ABORT_ZONE_IN_COMBAT);
         return false;
