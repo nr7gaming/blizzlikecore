@@ -2264,8 +2264,8 @@ void World::UpdateSessions(time_t diff)
         next = itr;
         ++next;
 
-        if (!itr->second)
-            continue;
+      //if (!itr->second) // UpdateSessions will never get NULL at this point.
+      //    continue;
 
         // and remove not active sessions from the list
         if (!itr->second->Update(diff))                      // As interval = 0

@@ -554,8 +554,8 @@ class ObjectMgr
 
         UNORDERED_MAP<uint32, uint32> TransportEventMap;
 
-        Player* GetPlayer(const char* name) const { return ObjectAccessor::Instance().FindPlayerByName(name);} // useless
-        Player* GetPlayer(uint64 guid) const { return ObjectAccessor::FindPlayer(guid); }                      // useless
+      //Player* GetPlayer(const char* name) const { return ObjectAccessor::Instance().FindPlayerByName(name);} // removed
+      //Player* GetPlayer(uint64 guid) const { return ObjectAccessor::FindPlayer(guid); }                      // removed
 
         static GameObjectInfo const *GetGameObjectInfo(uint32 id) { return sGOStorage.LookupEntry<GameObjectInfo>(id); }
 
