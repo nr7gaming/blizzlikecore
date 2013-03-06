@@ -30,15 +30,15 @@
 #include "Player.h"
 #include "Util.h"
 
-#if PLATFORM != WINDOWS
+#if PLATFORM != PLATFORM_WINDOWS
 #include <readline/readline.h>
 #include <readline/history.h>
 
 char * command_finder(const char* text, int state)
 {
-    static int idx,len;
+    static int idx, len;
     const char* ret;
-    ChatCommand *cmd = ChatHandler::getCommandTable();
+    ChatCommand* cmd = ChatHandler::getCommandTable();
 
     if (!state)
     {
@@ -46,7 +46,7 @@ char * command_finder(const char* text, int state)
         len = strlen(text);
     }
 
-    while(ret = cmd[idx].Name)
+    while ((ret = cmd[idx].Name))
     {
         if (!cmd[idx].AllowConsole)
         {
@@ -65,36 +65,47 @@ char * command_finder(const char* text, int state)
     return ((char*)NULL);
 }
 
-char ** cli_completion(const char * text, int start, int end)
+char ** cli_completion(const char * text, int start, int /*end*/)
 {
     char ** matches;
     matches = (char**)NULL;
 
     if (start == 0)
-        matches = rl_completion_matches((char*)text,&command_finder);
+        matches = rl_completion_matches((char*)text, &command_finder);
     else
-        rl_bind_key('\t',rl_abort);
+        rl_bind_key('\t', rl_abort);
     return (matches);
 }
+
+int cli_hook_func(void)
+{
+       if (World::IsStopped())
+           rl_done = 1;
+       return 0;
+}
+
 #endif
 
-void utf8print(void* arg, const char* str)
+void utf8print(void* /*arg*/, const char* str)
 {
 #if PLATFORM == PLATFORM_WINDOWS
     wchar_t wtemp_buf[6000];
     size_t wtemp_len = 6000-1;
-    if (!Utf8toWStr(str,strlen(str),wtemp_buf,wtemp_len))
+    if (!Utf8toWStr(str, strlen(str), wtemp_buf, wtemp_len))
         return;
 
     char temp_buf[6000];
-    CharToOemBuffW(&wtemp_buf[0],&temp_buf[0],wtemp_len+1);
+    CharToOemBuffW(&wtemp_buf[0], &temp_buf[0], wtemp_len+1);
     printf(temp_buf);
 #else
+{
     printf("%s", str);
+    fflush(stdout);
+}
 #endif
 }
 
-void commandFinished(void*, bool sucess)
+void commandFinished(void*, bool /*success*/)
 {
     printf("BC>");
     fflush(stdout);
@@ -108,14 +119,14 @@ bool ChatHandler::HandleAccountDeleteCommand(const char* args)
         return false;
 
     ///- Get the account name from the command line
-    char *account_name_str=strtok ((char*)args," ");
+    char *account_name_str=strtok ((char*)args, " ");
     if (!account_name_str)
         return false;
 
     std::string account_name = account_name_str;
     if (!AccountMgr::normalizeString(account_name))
     {
-        PSendSysMessage(LANG_ACCOUNT_NOT_EXIST,account_name.c_str());
+        PSendSysMessage(LANG_ACCOUNT_NOT_EXIST, account_name.c_str());
         SetSentErrorMessage(true);
         return false;
     }
@@ -123,10 +134,11 @@ bool ChatHandler::HandleAccountDeleteCommand(const char* args)
     uint32 account_id = sAccountMgr->GetId(account_name);
     if (!account_id)
     {
-        PSendSysMessage(LANG_ACCOUNT_NOT_EXIST,account_name.c_str());
+        PSendSysMessage(LANG_ACCOUNT_NOT_EXIST, account_name.c_str());
         SetSentErrorMessage(true);
         return false;
     }
+
 
     // Commands not recommended call from chat, but support anyway
     if (m_session)
@@ -144,25 +156,24 @@ bool ChatHandler::HandleAccountDeleteCommand(const char* args)
     }
 
     AccountOpResult result = sAccountMgr->DeleteAccount(account_id);
-    switch(result)
+    switch (result)
     {
         case AOR_OK:
-            PSendSysMessage(LANG_ACCOUNT_DELETED,account_name.c_str());
+            PSendSysMessage(LANG_ACCOUNT_DELETED, account_name.c_str());
             break;
         case AOR_NAME_NOT_EXIST:
-            PSendSysMessage(LANG_ACCOUNT_NOT_EXIST,account_name.c_str());
+            PSendSysMessage(LANG_ACCOUNT_NOT_EXIST, account_name.c_str());
             SetSentErrorMessage(true);
             return false;
         case AOR_DB_INTERNAL_ERROR:
-            PSendSysMessage(LANG_ACCOUNT_NOT_DELETED_SQL_ERROR,account_name.c_str());
+            PSendSysMessage(LANG_ACCOUNT_NOT_DELETED_SQL_ERROR, account_name.c_str());
             SetSentErrorMessage(true);
             return false;
         default:
-            PSendSysMessage(LANG_ACCOUNT_NOT_DELETED,account_name.c_str());
+            PSendSysMessage(LANG_ACCOUNT_NOT_DELETED, account_name.c_str());
             SetSentErrorMessage(true);
             return false;
     }
-
     return true;
 }
 
@@ -180,11 +191,11 @@ bool ChatHandler::GetDeletedCharacterInfoList(DeletedInfoList& foundList, std::s
     {
         // search by GUID
         if (isNumeric(searchString.c_str()))
-            resultChar = CharacterDatabase.PQuery("SELECT guid, deleteInfos_Name, deleteInfos_Account, deleteDate FROM characters WHERE deleteDate IS NOT NULL AND guid = %u", uint64(atoi(searchString.c_str())));
+            resultChar = CharacterDatabase.PQuery("SELECT guid, deleteInfos_Name, deleteInfos_Account, deleteDate FROM characters WHERE deleteDate IS NOT NULL AND guid = %llu", uint64(atoi(searchString.c_str())));
         // search by name
         else
         {
-            if(!normalizePlayerName(searchString))
+            if (!normalizePlayerName(searchString))
                 return false;
 
             resultChar = CharacterDatabase.PQuery("SELECT guid, deleteInfos_Name, deleteInfos_Account, deleteDate FROM characters WHERE deleteDate IS NOT NULL AND deleteInfos_Name " _LIKE_ " " _CONCAT3_("'%%'", "'%s'", "'%%'"), searchString.c_str());
@@ -228,7 +239,7 @@ std::string ChatHandler::GenerateDeletedCharacterGUIDsWhereStr(DeletedInfoList::
 {
     std::ostringstream wherestr;
     wherestr << "guid IN ('";
-    for(; itr != itr_end; ++itr)
+    for (; itr != itr_end; ++itr)
     {
         wherestr << itr->lowguid;
 
@@ -239,8 +250,8 @@ std::string ChatHandler::GenerateDeletedCharacterGUIDsWhereStr(DeletedInfoList::
         }
 
         DeletedInfoList::const_iterator itr2 = itr;
-        if(++itr2 != itr_end)
-            wherestr << "','";
+        if (++itr2 != itr_end)
+            wherestr << "', '";
     }
     wherestr << "')";
     return wherestr.str();
@@ -318,7 +329,7 @@ bool ChatHandler::HandleCharacterDeletedListCommand(const char* args)
  * @see ChatHandler::HandleCharacterDeletedDeleteCommand
  * @see ChatHandler::DeletedInfoList
  *
- * @param delInfo the informations about the character which will be restored
+ * @param delInfo the information about the character which will be restored
  */
 void ChatHandler::HandleCharacterDeletedRestoreHelper(DeletedInfo const& delInfo)
 {
@@ -442,7 +453,7 @@ bool ChatHandler::HandleCharacterDeletedDeleteCommand(const char* args)
     HandleCharacterDeletedListHelper(foundList);
 
     // Call the appropriate function to delete them (current account for deleted characters is 0)
-    for(DeletedInfoList::const_iterator itr = foundList.begin(); itr != foundList.end(); ++itr)
+    for (DeletedInfoList::const_iterator itr = foundList.begin(); itr != foundList.end(); ++itr)
         Player::DeleteFromDB(itr->lowguid, 0, false, true);
 
     return true;
@@ -539,7 +550,9 @@ bool ChatHandler::HandleAccountOnlineListCommand(const char* /*args*/)
     // Get the list of accounts ID logged to the realm
     QueryResult_AutoPtr resultDB = CharacterDatabase.Query("SELECT name,account FROM characters WHERE online > 0");
     if (!resultDB)
+    {
         return true;
+    }
 
     // Display the list of account/characters online
     SendSysMessage("=====================================================================");
@@ -570,7 +583,7 @@ bool ChatHandler::HandleAccountOnlineListCommand(const char* /*args*/)
         else
             PSendSysMessage(LANG_ACCOUNT_LIST_ERROR,name.c_str());
 
-    }while(resultDB->NextRow());
+    } while (resultDB->NextRow());
 
     SendSysMessage("=====================================================================");
     return true;
@@ -593,10 +606,10 @@ bool ChatHandler::HandleAccountCreateCommand(const char* args)
     std::string password = szPassword;
 
     AccountOpResult result = sAccountMgr->CreateAccount(account_name, password);
-    switch(result)
+    switch (result)
     {
         case AOR_OK:
-            PSendSysMessage(LANG_ACCOUNT_CREATED,account_name.c_str());
+            PSendSysMessage(LANG_ACCOUNT_CREATED, account_name.c_str());
             break;
         case AOR_NAME_TOO_LONG:
             SendSysMessage(LANG_ACCOUNT_TOO_LONG);
@@ -607,11 +620,11 @@ bool ChatHandler::HandleAccountCreateCommand(const char* args)
             SetSentErrorMessage(true);
             return false;
         case AOR_DB_INTERNAL_ERROR:
-            PSendSysMessage(LANG_ACCOUNT_NOT_CREATED_SQL_ERROR,account_name.c_str());
+            PSendSysMessage(LANG_ACCOUNT_NOT_CREATED_SQL_ERROR, account_name.c_str());
             SetSentErrorMessage(true);
             return false;
         default:
-            PSendSysMessage(LANG_ACCOUNT_NOT_CREATED,account_name.c_str());
+            PSendSysMessage(LANG_ACCOUNT_NOT_CREATED, account_name.c_str());
             SetSentErrorMessage(true);
             return false;
     }
@@ -677,8 +690,9 @@ void CliRunnable::run()
     bool canflush = true;
     // Display the list of available CLI functions then beep
     sLog.outString();
-    #if PLATFORM != WINDOWS
+    #if PLATFORM != PLATFORM_WINDOWS
     rl_attempted_completion_function = cli_completion;
+    rl_event_hook = cli_hook_func;
     #endif
     if (sConfig.GetBoolDefault("BeepAtStart", true))
         printf("\a");                                       // \a = Alert
@@ -694,7 +708,7 @@ void CliRunnable::run()
 
         char *command_str ;             // = fgets(commandbuf,sizeof(commandbuf),stdin);
 
-        #if PLATFORM == WINDOWS
+        #if PLATFORM == PLATFORM_WINDOWS
         command_str = fgets(commandbuf,sizeof(commandbuf),stdin);
         #else
         command_str = readline("BC>");
@@ -711,7 +725,7 @@ void CliRunnable::run()
 
             if (!*command_str)
             {
-                #if PLATFORM == WINDOWS
+                #if PLATFORM == PLATFORM_WINDOWS
                 printf("BC>");
                 #endif
                 continue;
@@ -720,14 +734,14 @@ void CliRunnable::run()
             std::string command;
             if (!consoleToUtf8(command_str,command))         // convert from console encoding to utf8
             {
-                #if PLATFORM == WINDOWS
+                #if PLATFORM == PLATFORM_WINDOWS
                 printf("BC>");
                 #endif
                 continue;
             }
             fflush(stdout);
             sWorld.QueueCliCommand(new CliCommandHolder(NULL, command.c_str(), &utf8print, &commandFinished));
-            #if PLATFORM != WINDOWS
+            #if PLATFORM != PLATFORM_WINDOWS
             add_history(command.c_str());
             #endif
 
@@ -739,6 +753,5 @@ void CliRunnable::run()
     }
 
     // End the database thread
-    WorldDatabase.ThreadEnd();                                  // free mySQL thread resources
+    WorldDatabase.ThreadEnd();                                  // free MySQL thread resources
 }
-

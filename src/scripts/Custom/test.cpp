@@ -106,7 +106,7 @@ struct npc_testAI : public npc_escortAI
                 //killer = me when player got to far from creature
                 if (killer == me)
                 {
-                    Unit* pTemp = Unit::GetUnit(*me, GetPlayerForEscort()->GetGUID());
+                    Unit *pTemp = Unit::GetUnit(*me, GetPlayerForEscort()->GetGUID());
                     if (pTemp)
                         me->MonsterWhisper(WHISPER_TOO_FAR, pTemp->GetGUID());
                 }
@@ -187,7 +187,7 @@ bool GossipSelect_npc_test(Player* pPlayer, Creature* pCreature, uint32 /*uiSend
         pPlayer->CLOSE_GOSSIP_MENU();
         ((npc_escortAI*)(pCreature->AI()))->Start(true, true, pPlayer->GetGUID());
 
-        return true;                                        // prevent BlizzLike Core handling
+        return true;                                        // prevent OREGON core handling
     }
 
     if (uiAction == GOSSIP_ACTION_INFO_DEF+2)
@@ -195,7 +195,7 @@ bool GossipSelect_npc_test(Player* pPlayer, Creature* pCreature, uint32 /*uiSend
         pPlayer->CLOSE_GOSSIP_MENU();
         ((npc_escortAI*)(pCreature->AI()))->Start(false, false, pPlayer->GetGUID());
 
-        return true;                                        // prevent BlizzLike Core handling
+        return true;                                        // prevent OREGON core handling
     }
 
     if (uiAction == GOSSIP_ACTION_INFO_DEF+3)
@@ -203,7 +203,7 @@ bool GossipSelect_npc_test(Player* pPlayer, Creature* pCreature, uint32 /*uiSend
         pPlayer->CLOSE_GOSSIP_MENU();
         ((npc_escortAI*)(pCreature->AI()))->Start(false, false, pPlayer->GetGUID());
 
-        return true;                                        // prevent BlizzLike Core handling
+        return true;                                        // prevent OREGON core handling
     }
     return false;
 }
