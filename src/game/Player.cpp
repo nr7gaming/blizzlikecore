@@ -20760,10 +20760,8 @@ void Player::AddGlobalCooldown(SpellEntry const *spellInfo, Spell const *spell)
 
     if (cdTime > 1500)
         cdTime = 1500;
-    else if (cdTime < 1000) // the global cooldown in 2.4.3 can never be lower than 1second
-        cdTime = 1000;
-
-    m_globalCooldowns[spellInfo->StartRecoveryCategory] = cdTime;        
+    if (cdTime > 0)
+        m_globalCooldowns[spellInfo->StartRecoveryCategory] = cdTime;            
 }
 
 bool Player::HasGlobalCooldown(SpellEntry const *spellInfo) const
