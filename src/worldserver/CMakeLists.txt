@@ -10,14 +10,14 @@
 
 file(GLOB sources_localdir *.cpp *.h)
 
-set(WORLDSERVER_SRCS
-  ${WORLDSERVER_SRCS}
+set(worldserver_SRCS
+  ${worldserver_SRCS}
   ${sources_localdir}
 )
 
 if( WIN32 )
-  set(WORLDSERVER_SRCS
-    ${WORLDSERVER_SRCS}
+  set(worldserver_SRCS
+    ${worldserver_SRCS}
     ${sources_Debugging}
     worldserver.rc
   )
@@ -39,9 +39,9 @@ include_directories(
   ${OPENSSL_INCLUDE_DIR}
 )
 
-set(WORLDSERVER_LINK_FLAGS "")
+set(worldserver_LINK_FLAGS "")
 
-add_executable(worldserver ${WORLDSERVER_SRCS})
+add_executable(worldserver ${worldserver_SRCS})
 
 if( NOT WIN32 )
   add_definitions(-D_BLIZZLIKE_WORLD_CONFIG="${CONF_DIR}/worldserver.conf")
@@ -50,10 +50,10 @@ endif()
 add_dependencies(worldserver revision.h)
 
 if( UNIX )
-  set(WORLDSERVER_LINK_FLAGS "-pthread ${WORLDSERVER_LINK_FLAGS}")
+  set(worldserver_LINK_FLAGS "-pthread ${worldserver_LINK_FLAGS}")
 endif()
 
-set_target_properties(worldserver PROPERTIES LINK_FLAGS "${WORLDSERVER_LINK_FLAGS}")
+set_target_properties(worldserver PROPERTIES LINK_FLAGS "${worldserver_LINK_FLAGS}")
 
 target_link_libraries(worldserver
   game
