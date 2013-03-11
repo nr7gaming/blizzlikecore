@@ -15960,7 +15960,7 @@ void Player::_LoadBoundInstances(QueryResult_AutoPtr result)
     for (uint8 i = 0; i < TOTAL_DIFFICULTIES; i++)
         m_boundInstances[i].clear();
 
-    Group *group = GetGroup();
+    Group* group = GetGroup();
 
     //QueryResult_AutoPtr result = CharacterDatabase.PQuery("SELECT id, permanent, map, difficulty, resettime FROM character_instance LEFT JOIN instance ON instance = id WHERE guid = '%u'", GUID_LOPART(m_guid));
     if (result)
@@ -16017,7 +16017,7 @@ InstanceSave * Player::GetInstanceSave(uint32 mapid)
     InstancePlayerBind *pBind = GetBoundInstance(mapid, GetDifficulty());
     InstanceSave *pSave = pBind ? pBind->save : NULL;
     if (!pBind || !pBind->perm)
-        if (Group *group = GetGroup())
+        if (Group* group = GetGroup())
             if (InstanceGroupBind *groupBind = group->GetBoundInstance(this))
                 pSave = groupBind->save;
 
@@ -16147,7 +16147,7 @@ void Player::SendSavedInstances()
 }
 
 // convert the player's binds to the group
-void Player::ConvertInstancesToGroup(Player *player, Group *group, uint64 player_guid)
+void Player::ConvertInstancesToGroup(Player *player, Group* group, uint64 player_guid)
 {
     bool has_binds = false;
     bool has_solo = false;
@@ -19243,7 +19243,7 @@ void Player::ClearComboPoints()
     m_comboTarget = 0;
 }
 
-void Player::SetGroup(Group *group, int8 subgroup)
+void Player::SetGroup(Group* group, int8 subgroup)
 {
     if (group == NULL)
         m_group.unlink();
@@ -20410,7 +20410,7 @@ void Player::RemoveFromBattleGroundRaid()
     SetOriginalGroup(NULL);
 }
 
-void Player::SetOriginalGroup(Group *group, int8 subgroup)
+void Player::SetOriginalGroup(Group* group, int8 subgroup)
 {
     if (group == NULL)
         m_originalGroup.unlink();

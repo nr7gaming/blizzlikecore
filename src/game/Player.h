@@ -2073,7 +2073,7 @@ class Player : public Unit, public GridObject<Player>
         InstancePlayerBind* BindToInstance(InstanceSave *save, bool permanent, bool load = false);
         void SendRaidInfo();
         void SendSavedInstances();
-        static void ConvertInstancesToGroup(Player *player, Group *group = NULL, uint64 player_guid = 0);
+        static void ConvertInstancesToGroup(Player *player, Group* group = NULL, uint64 player_guid = 0);
         bool Satisfy(AccessRequirement const*, uint32 target_map, bool report = false);
 
         /*********************************************************/
@@ -2081,11 +2081,11 @@ class Player : public Unit, public GridObject<Player>
         /*********************************************************/
 
         Group * GetGroupInvite() { return m_groupInvite; }
-        void SetGroupInvite(Group *group) { m_groupInvite = group; }
+        void SetGroupInvite(Group* group) { m_groupInvite = group; }
         Group * GetGroup() { return m_group.getTarget(); }
         const Group * GetGroup() const { return (const Group*)m_group.getTarget(); }
         GroupReference& GetGroupRef() { return m_group; }
-        void SetGroup(Group *group, int8 subgroup = -1);
+        void SetGroup(Group* group, int8 subgroup = -1);
         uint8 GetSubGroup() const { return m_group.getSubGroup(); }
         uint32 GetGroupUpdateFlag() { return m_groupUpdateMask; }
         void SetGroupUpdateFlag(uint32 flag) { m_groupUpdateMask |= flag; }
@@ -2096,12 +2096,12 @@ class Player : public Unit, public GridObject<Player>
         PartyResult CanUninviteFromGroup() const;
 
         // BattleGround Group System
-        void SetBattleGroundRaid(Group *group, int8 subgroup = -1);
+        void SetBattleGroundRaid(Group* group, int8 subgroup = -1);
         void RemoveFromBattleGroundRaid();
         Group * GetOriginalGroup() { return m_originalGroup.getTarget(); }
         GroupReference& GetOriginalGroupRef() { return m_originalGroup; }
         uint8 GetOriginalSubGroup() const { return m_originalGroup.getSubGroup(); }
-        void SetOriginalGroup(Group *group, int8 subgroup = -1);
+        void SetOriginalGroup(Group* group, int8 subgroup = -1);
 
         MapReference &GetMapRef() { return m_mapRef; }
 
