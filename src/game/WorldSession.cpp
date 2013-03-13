@@ -188,7 +188,7 @@ bool WorldSession::Update(uint32 diff)
         }
         else
         {
-            OpcodeHandler& opHandle = opcodeTable[packet->GetOpcode()];
+            OpcodeHandler const& opHandle = opcodeTable[packet->GetOpcode()];
             try
             {
                 switch (opHandle.status)
