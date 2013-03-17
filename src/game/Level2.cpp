@@ -1119,7 +1119,7 @@ bool ChatHandler::HandleNpcAddMoveCommand(const char* args)
 
     // update movement type
     WorldDatabase.PExecuteLog("UPDATE creature SET MovementType = '%u' WHERE guid = '%u'", WAYPOINT_MOTION_TYPE, lowguid);
-    PSendSysMessage(LANG_MOVE_TYPE_SET, "way");
+    PSendSysMessage("%s%s|r", "|cffff33ff", "Creature movement type set to way.");
     if (pCreature && pCreature->GetWaypointPath())
     {
         pCreature->SetDefaultMovementType(WAYPOINT_MOTION_TYPE);
