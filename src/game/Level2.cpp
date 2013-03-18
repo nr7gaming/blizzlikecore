@@ -1119,7 +1119,7 @@ bool ChatHandler::HandleNpcAddMoveCommand(const char* args)
 
     // update movement type
     WorldDatabase.PExecuteLog("UPDATE creature SET MovementType = '%u' WHERE guid = '%u'", WAYPOINT_MOTION_TYPE, lowguid);
-    PSendSysMessage("%s%s|r", "|cffff33ff", "Creature movement type set to way.");
+    PSendSysMessage("%s%s%u|r", "|cffffff00", "Movement type set to way, creature guid: ", lowguid);
     if (pCreature && pCreature->GetWaypointPath())
     {
         pCreature->SetDefaultMovementType(WAYPOINT_MOTION_TYPE);
@@ -2140,14 +2140,15 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
 {
     sLog.outDebug("DEBUG: HandleWpAddCommand");
 
-    // optional
     char* path_number = NULL;
     uint32 pathid = 0;
-
-    if (*args)
-        path_number = strtok((char*)args, " ");
-
     uint32 point = 0;
+    uint32 wpdelay = 0;
+    path_number = strtok((char*)args, " ");
+    char* wp_delay = strtok((char*)NULL, " ");
+    if (wp_delay)
+    wpdelay = atoi(wp_delay);
+
     Creature* target = getSelectedCreature();
 
     if (!path_number)
@@ -2186,10 +2187,10 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
     Player* player = m_session->GetPlayer();
     //Map *map = player->GetMap();
 
-    WorldDatabase.PExecuteLog("INSERT INTO waypoint_data (id, point, position_x, position_y, position_z) VALUES ('%u','%u','%f', '%f', '%f')",
-        pathid, point+1, player->GetPositionX(), player->GetPositionY(), player->GetPositionZ());
+    WorldDatabase.PExecuteLog("INSERT INTO waypoint_data (id, point, position_x, position_y, position_z, delay) VALUES ('%u','%u','%f', '%f', '%f','%u')",
+        pathid, point+1, player->GetPositionX(), player->GetPositionY(), player->GetPositionZ(), wpdelay);
 
-    PSendSysMessage("%s%s%u%s%u%s|r", "|cff00ff00", "PathID: |r|cff00ffff", pathid, "|r|cff00ff00: Waypoint |r|cff00ffff", point,"|r|cff00ff00 created. ");
+    PSendSysMessage("%s%s%u%s%u%s%u%s|r", "|cff00ff00", "PathID: |r|cff00ffff", pathid, "|r|cff00ff00 Waypoint: |r|cff00ffff", point, "|r|cff00ff00 Delay: |r|cff00ffff", wpdelay, "|r|cff00ff00 created. ");
     return true;
 }                                                           // HandleWpAddCommand
 
