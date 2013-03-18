@@ -2144,10 +2144,14 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
     uint32 pathid = 0;
     uint32 point = 0;
     uint32 wpdelay = 0;
-    path_number = strtok((char*)args, " ");
-    char* wp_delay = strtok((char*)NULL, " ");
-    if (wp_delay)
-    wpdelay = atoi(wp_delay);
+
+    if (*args)
+    {
+        path_number = strtok((char*)args, " ");
+        char* wp_delay = strtok((char*)NULL, " ");
+        if (wp_delay)
+        wpdelay = atoi(wp_delay);
+    }
 
     Creature* target = getSelectedCreature();
 
