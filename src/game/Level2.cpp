@@ -2150,7 +2150,7 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
         path_number = strtok((char*)args, " ");
         char* wp_delay = strtok((char*)NULL, " ");
         if (wp_delay)
-        wpdelay = atoi(wp_delay);
+            wpdelay = atoi(wp_delay);
     }
 
     Creature* target = getSelectedCreature();
@@ -2191,7 +2191,7 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
     Player* player = m_session->GetPlayer();
     //Map *map = player->GetMap();
 
-    WorldDatabase.PExecuteLog("INSERT INTO waypoint_data (id, point, position_x, position_y, position_z, delay) VALUES ('%u','%u','%f', '%f', '%f','%u')",
+    WorldDatabase.PExecuteLog("INSERT INTO waypoint_data (id, point, position_x, position_y, position_z, delay) VALUES ('%u', '%u', '%f', '%f', '%f', '%u')",
         pathid, point+1, player->GetPositionX(), player->GetPositionY(), player->GetPositionZ(), wpdelay);
 
     PSendSysMessage("%s%s%u%s%u%s%u%s|r", "|cff00ff00", "PathID: |r|cff00ffff", pathid, "|r|cff00ff00 Waypoint: |r|cff00ffff", point, "|r|cff00ff00 Delay: |r|cff00ffff", wpdelay, "|r|cff00ff00 created. ");
