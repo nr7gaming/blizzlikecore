@@ -2140,14 +2140,13 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
 {
     sLog.outDebug("DEBUG: HandleWpAddCommand");
 
-    char* path_number = NULL;
     uint32 pathid = 0;
     uint32 point = 0;
     uint32 wpdelay = 0;
 
     if (*args)
     {
-        path_number = strtok((char*)args, " ");
+        char* path_number = strtok((char*)args, " ");
         pathid = atoi(path_number);
         if (!pathid)
         {
