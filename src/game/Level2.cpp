@@ -2148,10 +2148,10 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
             PSendSysMessage("%s%s|r", "|cffff33ff", "Invalid creature GUID.");
             return true;
         }
-        PSendSysMessage("%s%s|r", "|cff00ff00", "Path added to the creature:");
         char* wp_delay = strtok((char*)NULL, " ");
         if (wp_delay)
             wpdelay = atoi(wp_delay);
+        PSendSysMessage("%s%s|r", "|cff00ff00", "Path added to the creature:");
     }
     else
     {
