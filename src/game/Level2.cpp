@@ -2148,17 +2148,25 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
     if (*args)
     {
         path_number = strtok((char*)args, " ");
+        pathid = atoi(path_number);
+        if (!pathid)
+        {
+            sLog.outDebug("DEBUG: HandleWpAddCommand - Invalid parameter.");
+            PSendSysMessage("%s%s|r", "|cffff33ff", "Invalid parameter.");
+            return true;
+        }
         char* wp_delay = strtok((char*)NULL, " ");
         if (wp_delay)
             wpdelay = atoi(wp_delay);
     }
-
-    Creature* target = getSelectedCreature();
-
-    if (!path_number)
+    else
     {
+    Creature* target = getSelectedCreature();
         if (target)
-            pathid = target->GetWaypointPath();
+        {
+            pathid = target->GetGUIDLow();
+            sLog.outDebug("DEBUG: HandleWpAddCommand - Creature selected.");
+        }
         else
         {
             QueryResult_AutoPtr result = WorldDatabase.Query("SELECT MAX(id) FROM waypoint_data");
@@ -2168,20 +2176,6 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
             PSendSysMessage("%s%s|r", "|cff00ff00", "New path started.");
         }
     }
-    else
-        pathid = atoi(path_number);
-
-    // path_id -> ID of the Path
-    // point   -> number of the waypoint (if not 0)
-
-    if (!pathid)
-    {
-        sLog.outDebug("DEBUG: HandleWpAddCommand - Current creature has no loaded path.");
-        PSendSysMessage("%s%s|r", "|cffff33ff", "Current creature has no loaded path.");
-        return true;
-    }
-
-    sLog.outDebug("DEBUG: HandleWpAddCommand - point == 0");
 
     QueryResult_AutoPtr result = WorldDatabase.PQuery("SELECT MAX(point) FROM waypoint_data WHERE id = '%u'",pathid);
 
@@ -2189,14 +2183,13 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
         point = (*result)[0].GetUInt32();
 
     Player* player = m_session->GetPlayer();
-    //Map *map = player->GetMap();
 
     WorldDatabase.PExecuteLog("INSERT INTO waypoint_data (id, point, position_x, position_y, position_z, delay) VALUES ('%u', '%u', '%f', '%f', '%f', '%u')",
         pathid, point+1, player->GetPositionX(), player->GetPositionY(), player->GetPositionZ(), wpdelay);
 
     PSendSysMessage("%s%s%u%s%u%s%u%s|r", "|cff00ff00", "PathID: |r|cff00ffff", pathid, "|r|cff00ff00 Waypoint: |r|cff00ffff", point, "|r|cff00ff00 Delay: |r|cff00ffff", wpdelay, "|r|cff00ff00 created. ");
     return true;
-}                                                           // HandleWpAddCommand
+}
 
 bool ChatHandler::HandleWpLoadPathCommand(const char *args)
 {
