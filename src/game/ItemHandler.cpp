@@ -107,7 +107,7 @@ void WorldSession::HandleAutoEquipItemSlotOpcode(WorldPacket& recv_data)
     _player->SwapItem(item->GetPos(), dstpos);
 }
 
-void WorldSession::HandleSwapItem(WorldPacket& recv_data)
+void WorldSession::HandleSwapItemOpcode(WorldPacket& recv_data)
 {
     //sLog.outDebug("WORLD: CMSG_SWAP_ITEM");
     uint8 dstbag, dstslot, srcbag, srcslot;
@@ -425,7 +425,7 @@ void WorldSession::HandleItemQuerySingleOpcode(WorldPacket& recv_data)
     }
 }
 
-void WorldSession::HandleReadItem(WorldPacket& recv_data)
+void WorldSession::HandleReadItemOpcode(WorldPacket& recv_data)
 {
     //sLog.outDebug("WORLD: CMSG_READ_ITEM");
 

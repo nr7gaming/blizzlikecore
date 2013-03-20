@@ -467,7 +467,7 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
     GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
 }
 
-void WorldSession::HandleMoveFlyModeChangeAckOpcode(WorldPacket& recv_data)
+void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
 {
     // fly mode on/off
     DEBUG_LOG("WORLD: CMSG_MOVE_SET_CAN_FLY_ACK");

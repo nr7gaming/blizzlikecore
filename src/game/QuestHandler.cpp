@@ -418,7 +418,7 @@ void WorldSession::HandleQuestConfirmAccept(WorldPacket& recv_data)
     }
 }
 
-void WorldSession::HandleQuestComplete(WorldPacket& recv_data)
+void WorldSession::HandleQuestgiverCompleteQuest(WorldPacket& recv_data)
 {
     uint32 quest;
     uint64 guid;
@@ -435,7 +435,7 @@ void WorldSession::HandleQuestComplete(WorldPacket& recv_data)
         if (GetPlayer()->InBattleGround())
             if (BattleGround* bg = GetPlayer()->GetBattleGround())
                 if (bg->GetTypeID() == BATTLEGROUND_AV)
-                    ((BattleGroundAV*)bg)->HandleQuestComplete(quest, GetPlayer());
+                    ((BattleGroundAV*)bg)->HandleQuestgiverCompleteQuest(quest, GetPlayer());
 
         if (_player->GetQuestStatus(quest) != QUEST_STATUS_COMPLETE)
         {

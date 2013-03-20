@@ -818,7 +818,6 @@ bool ChatHandler::HandleGameObjectCommand(const char* args)
     {
         uint32 value = atoi((char*)spawntimeSecs);
         pGameObj->SetRespawnTime(value);
-        //sLog.outDebug("*** spawntimeSecs: %d", value);
     }
 
     // fill the gameobject data and save to the db
@@ -830,8 +829,6 @@ bool ChatHandler::HandleGameObjectCommand(const char* args)
         delete pGameObj;
         return false;
     }
-
-    sLog.outDebug(GetBlizzLikeString(LANG_GAMEOBJECT_CURRENT), gInfo->name, db_lowGUID, x, y, z, o);
 
     map->Add(pGameObj);
 
@@ -2138,8 +2135,6 @@ bool ChatHandler::HandlePInfoCommand(const char* args)
 
 bool ChatHandler::HandleWpAddCommand(const char* args)
 {
-    sLog.outDebug("DEBUG: HandleWpAddCommand");
-
     uint32 pathid = 0;
     uint32 point = 0;
     uint32 wpdelay = 0;
@@ -2150,10 +2145,10 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
         pathid = atoi(path_number);
         if (!pathid)
         {
-            sLog.outDebug("DEBUG: HandleWpAddCommand - Invalid parameter.");
-            PSendSysMessage("%s%s|r", "|cffff33ff", "Invalid parameter.");
+            PSendSysMessage("%s%s|r", "|cffff33ff", "Invalid creature GUID.");
             return true;
         }
+        PSendSysMessage("%s%s|r", "|cff00ff00", "Path added to the creature:");
         char* wp_delay = strtok((char*)NULL, " ");
         if (wp_delay)
             wpdelay = atoi(wp_delay);
@@ -2164,14 +2159,13 @@ bool ChatHandler::HandleWpAddCommand(const char* args)
         if (target)
         {
             pathid = target->GetGUIDLow();
-            sLog.outDebug("DEBUG: HandleWpAddCommand - Creature selected.");
+            PSendSysMessage("%s%s|r", "|cff00ff00", "Path added to the selected creature:");
         }
         else
         {
             QueryResult_AutoPtr result = WorldDatabase.Query("SELECT MAX(id) FROM waypoint_data");
             uint32 maxpathid = result->Fetch()->GetInt32();
             pathid = maxpathid+1;
-            sLog.outDebug("DEBUG: HandleWpAddCommand - New path started.");
             PSendSysMessage("%s%s|r", "|cff00ff00", "New path started.");
         }
     }
@@ -2513,8 +2507,6 @@ bool ChatHandler::HandleWpEventCommand(const char* args)
 
 bool ChatHandler::HandleWpModifyCommand(const char* args)
 {
-    sLog.outDebug("DEBUG: HandleWpModifyCommand");
-
     if (!*args)
         return false;
 
@@ -2552,7 +2544,6 @@ bool ChatHandler::HandleWpModifyCommand(const char* args)
         return false;
     }
 
-    sLog.outDebug("DEBUG: HandleWpModifyCommand - User did select an NPC");
     // The visual waypoint
     Creature* wpCreature = NULL;
     wpGuid = target->GetGUIDLow();
@@ -2574,7 +2565,7 @@ bool ChatHandler::HandleWpModifyCommand(const char* args)
 
         if (!result)
         {
-            sLog.outDebug("DEBUG: HandleWpModifyCommand - No waypoint found - used 'wpguid'");
+            // No waypoint found - used 'wpguid'
 
             PSendSysMessage(LANG_WAYPOINT_NOTFOUNDSEARCH, target->GetGUIDLow());
             // Select waypoint number from database
@@ -2592,7 +2583,7 @@ bool ChatHandler::HandleWpModifyCommand(const char* args)
                     return true;
             }
         }
-        sLog.outDebug("DEBUG: HandleWpModifyCommand - After getting wpGuid");
+        // After getting wpGuid
 
         do
         {
@@ -2607,7 +2598,7 @@ bool ChatHandler::HandleWpModifyCommand(const char* args)
         arg_str = strtok((char*)NULL, " ");
     }
 
-    sLog.outDebug("DEBUG: HandleWpModifyCommand - Parameters parsed - now execute the command");
+    // Parameters parsed - now execute the command
 
     // Check for argument
     if (show != "del" && show != "move" && arg_str == NULL)
@@ -2704,8 +2695,6 @@ bool ChatHandler::HandleWpModifyCommand(const char* args)
 
 bool ChatHandler::HandleWpShowCommand(const char* args)
 {
-    sLog.outDebug("DEBUG: HandleWpShowCommand");
-
     if (!*args)
         return false;
 

@@ -4743,14 +4743,14 @@ bool ChatHandler::HandleSetValue(const char *args)
     if (isint32)
     {
         iValue = (uint32)atoi(py);
-        sLog.outDebug(GetBlizzLikeString(LANG_SET_UINT), GUID_LOPART(guid), Opcode, iValue);
+     // sLog.outDebug(GetBlizzLikeString(LANG_SET_UINT), GUID_LOPART(guid), Opcode, iValue);
         target->SetUInt32Value(Opcode , iValue);
         PSendSysMessage(LANG_SET_UINT_FIELD, GUID_LOPART(guid), Opcode,iValue);
     }
     else
     {
         fValue = (float)atof(py);
-        sLog.outDebug(GetBlizzLikeString(LANG_SET_FLOAT), GUID_LOPART(guid), Opcode, fValue);
+     // sLog.outDebug(GetBlizzLikeString(LANG_SET_FLOAT), GUID_LOPART(guid), Opcode, fValue);
         target->SetFloatValue(Opcode , fValue);
         PSendSysMessage(LANG_SET_FLOAT_FIELD, GUID_LOPART(guid), Opcode,fValue);
     }
@@ -4794,13 +4794,13 @@ bool ChatHandler::HandleGetValue(const char *args)
     if (isint32)
     {
         iValue = target->GetUInt32Value(Opcode);
-        sLog.outDebug(GetBlizzLikeString(LANG_GET_UINT), GUID_LOPART(guid), Opcode, iValue);
+     // sLog.outDebug(GetBlizzLikeString(LANG_GET_UINT), GUID_LOPART(guid), Opcode, iValue);
         PSendSysMessage(LANG_GET_UINT_FIELD, GUID_LOPART(guid), Opcode,    iValue);
     }
     else
     {
         fValue = target->GetFloatValue(Opcode);
-        sLog.outDebug(GetBlizzLikeString(LANG_GET_FLOAT), GUID_LOPART(guid), Opcode, fValue);
+     // sLog.outDebug(GetBlizzLikeString(LANG_GET_FLOAT), GUID_LOPART(guid), Opcode, fValue);
         PSendSysMessage(LANG_GET_FLOAT_FIELD, GUID_LOPART(guid), Opcode, fValue);
     }
 
@@ -4823,7 +4823,7 @@ bool ChatHandler::HandleSet32Bit(const char *args)
     if (Value > 32)                                         //uint32 = 32 bits
         return false;
 
-    sLog.outDebug(GetBlizzLikeString(LANG_SET_32BIT), Opcode, Value);
+ // sLog.outDebug(GetBlizzLikeString(LANG_SET_32BIT), Opcode, Value);
 
     m_session->GetPlayer()->SetUInt32Value(Opcode , 2^Value);
 
@@ -4851,7 +4851,7 @@ bool ChatHandler::HandleMod32Value(const char *args)
         return false;
     }
 
-    sLog.outDebug(GetBlizzLikeString(LANG_CHANGE_32BIT), Opcode, Value);
+ // sLog.outDebug(GetBlizzLikeString(LANG_CHANGE_32BIT), Opcode, Value);
 
     int CurrentValue = (int)m_session->GetPlayer()->GetUInt32Value(Opcode);
 

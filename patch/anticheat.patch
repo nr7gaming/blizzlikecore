@@ -632,8 +632,8 @@ index 960f4bd..1808909 100644
 +    GetPlayer()->m_anti_lastspeed_changetime = movementInfo.time + 1750;
  }
  
- void WorldSession::HandleMoveFlyModeChangeAckOpcode(WorldPacket& recv_data)
-@@ -480,6 +882,18 @@ void WorldSession::HandleMoveFlyModeChangeAckOpcode(WorldPacket& recv_data)
+ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -480,6 +882,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data >> movementInfo;
      recv_data.read_skip<uint32>();                          // unk2
  
