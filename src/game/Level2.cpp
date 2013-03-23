@@ -2273,9 +2273,9 @@ bool ChatHandler::HandleWpUnLoadPathCommand(const char * /*args*/)
     {
         if (target->GetCreatureAddon()->path_id != 0)
         {
-            WorldDatabase.PExecute("DELETE FROM creature_addon WHERE guid = %u", target->GetGUIDLow());
+            WorldDatabase.PExecuteLog("DELETE FROM creature_addon WHERE guid = %u", target->GetGUIDLow());
             target->UpdateWaypointID(0);
-            WorldDatabase.PExecute("UPDATE creature SET MovementType = '%u' WHERE guid = '%u'", IDLE_MOTION_TYPE, guidlow);
+            WorldDatabase.PExecuteLog("UPDATE creature SET MovementType = '%u' WHERE guid = '%u'", IDLE_MOTION_TYPE, guidlow);
             target->LoadPath(0);
             target->SetDefaultMovementType(IDLE_MOTION_TYPE);
             target->GetMotionMaster()->MoveTargetedHome();
@@ -2313,7 +2313,7 @@ bool ChatHandler::HandleWpEventCommand(const char* args)
 
             if (!result)
             {
-                WorldDatabase.PExecute("INSERT INTO waypoint_scripts(guid)VALUES(%u)", id);
+                WorldDatabase.PExecuteLog("INSERT INTO waypoint_scripts(guid)VALUES(%u)", id);
                 PSendSysMessage("%s%s%u|r", "|cff00ff00", "Wp Event: New waypoint event added: ", id);
             }
             else
@@ -2323,7 +2323,7 @@ bool ChatHandler::HandleWpEventCommand(const char* args)
         {
             QueryResult_AutoPtr result = WorldDatabase.Query("SELECT MAX(guid) FROM waypoint_scripts");
             id = result->Fetch()->GetUInt32();
-            WorldDatabase.PExecute("INSERT INTO waypoint_scripts(guid)VALUES(%u)", id+1);
+            WorldDatabase.PExecuteLog("INSERT INTO waypoint_scripts(guid)VALUES(%u)", id+1);
             PSendSysMessage("%s%s%u|r", "|cff00ff00","Wp Event: New waypoint event added: |r|cff00ffff", id+1);
         }
 
@@ -4046,7 +4046,7 @@ bool ChatHandler::HandleNpcAddFormationCommand(const char* args)
        leaderGUID = fields[1].GetUInt32();
        formationAI = fields[2].GetUInt8();
 
-       WorldDatabase.PExecute("INSERT INTO creature_formation_data (formationId, memberGUID, dist, angle) VALUES (%u, %u, %f, %f)", formationId, memberGUID, follow_dist, follow_angle);
+       WorldDatabase.PExecuteLog("INSERT INTO creature_formation_data (formationId, memberGUID, dist, angle) VALUES (%u, %u, %f, %f)", formationId, memberGUID, follow_dist, follow_angle);
 
        PSendSysMessage("Creature %u added to formation %u with leader %u and formationAI %u", memberGUID, formationId, leaderGUID, formationAI);
    }
@@ -4060,7 +4060,7 @@ bool ChatHandler::HandleNpcAddFormationCommand(const char* args)
        }
       
        //Must be executed direct, not asyncron
-       WorldDatabase.DirectPExecute("INSERT INTO creature_formations (leaderGUID, formationAI, comment) VALUES (%u, %u, %s)", leaderGUID, formationAI, commentText);
+       WorldDatabase.DirectPExecuteLog("INSERT INTO creature_formations (leaderGUID, formationAI, comment) VALUES (%u, %u, %s)", leaderGUID, formationAI, commentText);
 
        QueryResult_AutoPtr result_newFormationId = WorldDatabase.Query("SELECT MAX(formationId) FROM creature_formations");
         
@@ -4074,7 +4074,7 @@ bool ChatHandler::HandleNpcAddFormationCommand(const char* args)
 
        CreatureFormationMap[formationId] = formation_info;
 
-       WorldDatabase.PExecute("INSERT INTO creature_formation_data (formationId, memberGUID, dist, angle) VALUES (%u, %u, 0, 0)", formationId, memberGUID);
+       WorldDatabase.PExecuteLog("INSERT INTO creature_formation_data (formationId, memberGUID, dist, angle) VALUES (%u, %u, 0, 0)", formationId, memberGUID);
 
        PSendSysMessage("Creature %u added to new formation %u with leader %u and formationAI %u", memberGUID, formationId, leaderGUID, formationAI);
    }
@@ -4156,7 +4156,7 @@ bool ChatHandler::HandleNpcAddGroupCommand(const char* args)
         leaderGUID = fields[1].GetUInt32();
         groupType = fields[2].GetUInt8();
 
-        WorldDatabase.PExecute("INSERT INTO creature_group_data (groupId, memberGUID) VALUES (%u, %u)", groupId, memberGUID);
+        WorldDatabase.PExecuteLog("INSERT INTO creature_group_data (groupId, memberGUID) VALUES (%u, %u)", groupId, memberGUID);
 
         PSendSysMessage("Creature %u added to group %u with leader %u and GroupType %u", memberGUID, groupId, leaderGUID, groupType);
     }
@@ -4184,7 +4184,7 @@ bool ChatHandler::HandleNpcAddGroupCommand(const char* args)
 
         CreatureGroupMap[groupId] = group_member;
 
-        WorldDatabase.PExecute("INSERT INTO creature_group_data (groupId, memberGUID) VALUES (%u, %u)", groupId, memberGUID);
+        WorldDatabase.PExecuteLog("INSERT INTO creature_group_data (groupId, memberGUID) VALUES (%u, %u)", groupId, memberGUID);
 
         PSendSysMessage("Creature %u added to new group %u with leader %u and GroupType %u", memberGUID, groupId, leaderGUID, groupType);
     }
