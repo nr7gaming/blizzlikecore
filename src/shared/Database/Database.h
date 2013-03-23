@@ -111,6 +111,7 @@ class Database
 
         // Writes SQL commands to a LOG file (see worldserver.conf "LogSQL")
         bool PExecuteLog(const char *format,...) ATTR_PRINTF(2,3);
+        bool DirectPExecuteLog(const char *format,...) ATTR_PRINTF(2,3);
 
         bool BeginTransaction();
         bool CommitTransaction();

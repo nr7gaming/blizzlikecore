@@ -4170,7 +4170,7 @@ bool ChatHandler::HandleNpcAddGroupCommand(const char* args)
         }
 
         //Must be executed direct, not asyncron
-        WorldDatabase.DirectPExecute("INSERT INTO creature_groups (leaderGUID, groupType, comment) VALUES (%u, %u, %s)", leaderGUID, groupType, commentText);
+        WorldDatabase.DirectPExecuteLog("INSERT INTO creature_groups (leaderGUID, groupType, comment) VALUES (%u, %u, %s)", leaderGUID, groupType, commentText);
 
         QueryResult_AutoPtr result_newGroupId = WorldDatabase.Query("SELECT MAX(groupId) FROM creature_groups");
         

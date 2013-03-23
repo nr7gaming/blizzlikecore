@@ -474,6 +474,50 @@ bool Database::DirectPExecute(const char * format,...)
     return DirectExecute(szQuery);
 }
 
+bool Database::DirectPExecuteLog(const char * format,...)
+{
+    if (!format)
+        return false;
+
+    va_list ap;
+    char szQuery [MAX_QUERY_LEN];
+    va_start(ap, format);
+    int res = vsnprintf(szQuery, MAX_QUERY_LEN, format, ap);
+    va_end(ap);
+
+    if (res==-1)
+    {
+        sLog.outError("SQL Query truncated (and not execute) for format: %s",format);
+        return false;
+    }
+
+    if (m_logSQL)
+    {
+        time_t curr;
+        tm local;
+        time(&curr);                                        // get current time_t value
+        local=*(localtime(&curr));                          // dereference and assign
+        char fName[128];
+        sprintf(fName, "%04d-%02d-%02d_logSQL.sql", local.tm_year+1900, local.tm_mon+1, local.tm_mday);
+
+        FILE* log_file;
+        std::string logsDir_fname = m_logsDir+fName;
+        log_file = fopen(logsDir_fname.c_str(), "a");
+        if (log_file)
+        {
+            fprintf(log_file, "%s;\n", szQuery);
+            fclose(log_file);
+        }
+        else
+        {
+            // The file could not be opened
+            sLog.outError("SQL-Logging is disabled - Log file for the SQL commands could not be openend: %s",fName);
+        }
+    }
+
+    return DirectExecute(szQuery);
+}
+
 bool Database::_TransactionCmd(const char *sql)
 {
     if (mysql_query(mMysql, sql))
