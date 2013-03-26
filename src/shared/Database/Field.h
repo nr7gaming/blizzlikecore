@@ -33,13 +33,13 @@ class Field
 
         Field();
         Field(Field &f);
-        Field(const char *value, enum DataTypes type);
+        Field(const char* value, enum DataTypes type);
 
         ~Field();
 
         enum DataTypes GetType() const { return mType; }
 
-        const char *GetString() const { return mValue; }
+        const char* GetString() const { return mValue; }
         std::string GetCppString() const
         {
             return mValue ? mValue : "";                    // std::string s = 0 have undefine result in C++
@@ -56,7 +56,18 @@ class Field
             if (mValue)
             {
                 uint64 value;
-                sscanf(mValue,UI64FMTD,&value);
+                sscanf(mValue, UI64FMTD, &value);
+                return value;
+            }
+            else
+                return 0;
+        }
+        uint64 GetInt64() const
+        {
+            if (mValue)
+            {
+                int64 value;
+                sscanf(mValue, SI64FMTD, &value);
                 return value;
             }
             else
@@ -65,10 +76,10 @@ class Field
 
         void SetType(enum DataTypes type) { mType = type; }
 
-        void SetValue(const char *value);
+        void SetValue(const char* value);
 
     private:
-        char *mValue;
+        char* mValue;
         enum DataTypes mType;
 };
 #endif
