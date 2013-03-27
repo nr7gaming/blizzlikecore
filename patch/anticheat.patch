@@ -6,31 +6,7 @@ index 0000000..4dc2128
 @@ -0,0 +1,2 @@
 +-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
 +INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s is kicked for use Teleport to Plane Hack.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s produces a anticheat alarm for %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 9b6dd63..f40f64a 100644
---- a/src/worldserver/worldserver.conf.dist
-+++ b/src/worldserver/worldserver.conf.dist
-@@ -2040,3 +2040,20 @@ Die.Command.Mode = 1
- AutoBroadcast.On = 0
- AutoBroadcast.Center = 0
- AutoBroadcast.Timer = 60000
-+
-+###############################################################################
-+# MOVEMENT ANTICHEAT
-+#
-+#    Anticheat.Movement.Enable
-+#        Enable Movement Anticheat
-+#        Default: 1 - (Enabled)
-+#                 0 - (Disabled)
-+#
-+#    Anticheat.Movement.GmLevel
-+#        Detection occurs below and at the same GmLevel
-+#        Default: 0 - (Only Players)
-+#
-+###############################################################################
-+
-+Anticheat.Movement.Enable = 1
-+Anticheat.Movement.GmLevel = 0
+\ No newline at end of file
 diff --git a/src/game/Language.h b/src/game/Language.h
 index a82de33..3a51e62 100644
 --- a/src/game/Language.h
@@ -45,7 +21,7 @@ index a82de33..3a51e62 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 960f4bd..1808909 100644
+index 677fd3e..d4a9ec8 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -20,6 +20,7 @@
@@ -134,7 +110,7 @@ index 960f4bd..1808909 100644
      //Save movement flags
      mover->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
-@@ -276,73 +306,421 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -276,73 +306,428 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      {
          // transports size limited
          // (also received at zeppelin/lift leave by some reason with t_* as absolute in continent coordinates, can be safely skipped)
@@ -229,7 +205,7 @@ index 960f4bd..1808909 100644
 -        mover->GetCharmer()->SendMessageToSet(&data, false);
 -    else
 -        mover->SendMessageToSet(&data, false);
-+    if (plMover && World::GetEnableMvAnticheat() && GetPlayer()->GetSession()->GetSecurity() <= World::GetMvAnticheatGmLevel())
++    if (plMover)
 +    {
 +        // fall damage generation (ignore in flight case that can be triggered also at lags in moment teleportation to another map).
 +        if (opcode == MSG_MOVE_FALL_LAND && !plMover->isInFlight())
@@ -471,8 +447,11 @@ index 960f4bd..1808909 100644
 +                        #endif
 +                        plMover->m_anti_lastcheat = "Teleport to Plane Hack";
 +                        check_passed = false;
-+                        plMover->GetSession()->KickPlayer();
-+                        sWorld.SendGMText(LANG_GM_AC_KICK_ANNOUNCE, plMover->GetName());
++                        if (World::GetEnableMvAnticheat() && GetPlayer()->GetSession()->GetSecurity() <= World::GetMvAnticheatGmLevel())
++                        {
++                            plMover->GetSession()->KickPlayer();
++                            sWorld.SendGMText(LANG_GM_AC_KICK_ANNOUNCE, plMover->GetName());
++                        }
 +                    }
 +                }
 +            }
@@ -539,6 +518,10 @@ index 960f4bd..1808909 100644
 -        // we should add the check only for class hunter
 -        if (plMover->isMovingOrTurning())
 -            plMover->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH);
++        if (!World::GetEnableMvAnticheat())
++            check_passed = true;
++        else if (GetPlayer()->GetSession()->GetSecurity() > World::GetMvAnticheatGmLevel())
++            check_passed = true;        
 +        if (check_passed || forcemovement)
 +        {
 +            /* process position-change */
@@ -595,7 +578,7 @@ index 960f4bd..1808909 100644
  }
  
  void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
-@@ -367,6 +745,17 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
+@@ -367,6 +752,17 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
@@ -613,7 +596,7 @@ index 960f4bd..1808909 100644
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -465,6 +854,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -465,6 +861,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -633,7 +616,7 @@ index 960f4bd..1808909 100644
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -480,6 +882,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -480,6 +889,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data >> movementInfo;
      recv_data.read_skip<uint32>();                          // unk2
  
@@ -653,7 +636,7 @@ index 960f4bd..1808909 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 4cebad9..7798762 100644
+index d0c29f6..7cd3e92 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -382,6 +382,27 @@ Player::Player (WorldSession *session): Unit()
@@ -781,7 +764,7 @@ index 503d5bd..9c17b43 100644
      if (curDestNode && curDestNode->map_id != GetPlayer()->GetMapId())
      {
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 5394703..7318fab 100644
+index 52a5fd7..587b90f 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -80,6 +80,10 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -832,3 +815,28 @@ index 7ad3d80..9874e72 100644
          // CLI command holder to be thread safe
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
+diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
+index 9b6dd63..f40f64a 100644
+--- a/src/worldserver/worldserver.conf.dist
++++ b/src/worldserver/worldserver.conf.dist
+@@ -2040,3 +2040,20 @@ Die.Command.Mode = 1
+ AutoBroadcast.On = 0
+ AutoBroadcast.Center = 0
+ AutoBroadcast.Timer = 60000
++
++###############################################################################
++# MOVEMENT ANTICHEAT
++#
++#    Anticheat.Movement.Enable
++#        Enable Movement Anticheat
++#        Default: 1 - (Enabled)
++#                 0 - (Disabled)
++#
++#    Anticheat.Movement.GmLevel
++#        Detection occurs below and at the same GmLevel
++#        Default: 0 - (Only Players)
++#
++###############################################################################
++
++Anticheat.Movement.Enable = 1
++Anticheat.Movement.GmLevel = 0
