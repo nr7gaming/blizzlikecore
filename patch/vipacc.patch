@@ -106,14 +106,14 @@ index 821e2d8..8e024d2 100644
 +        return false;
 +
 +    char* id_vipacc  = strtok((char*)args, " ");
-+    char* date_vipacc = strtok((char*)NULL, " ");
++    char* time_to_expire = strtok((char*)NULL, " ");
 +    uint32 idvipacc = atoi(id_vipacc);
-+    uint32 datevipacc = atoi(date_vipacc);
-+    if (!idvipacc || !datevipacc)
++    uint32 timetoexpire = atoi(time_to_expire);
++    if (!idvipacc || !timetoexpire)
 +        return false;
 +
 +    LoginDatabase.PExecute("DELETE FROM account_premium WHERE id = '%u'", idvipacc);
-+    LoginDatabase.PExecute("INSERT INTO account_premium VALUES ('%u',UNIX_TIMESTAMP(),UNIX_TIMESTAMP()+'%u', 1, 1)", idvipacc, datevipacc);
++    LoginDatabase.PExecute("INSERT INTO account_premium VALUES ('%u',UNIX_TIMESTAMP(),UNIX_TIMESTAMP()+'%u', 1, 1)", idvipacc, timetoexpire);
 +    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Add new vip account id:", idvipacc);
 +
 +    return true;
