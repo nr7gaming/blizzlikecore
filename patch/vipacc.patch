@@ -20,7 +20,7 @@ index 0000000..4dc2128
 +++ b/sql/vipacc/world_vipacc.sql
 @@ -0,0 +1,2 @@
 +-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
-+INSERT INTO `command` VALUES ('addvip', 3, 'Syntax: .addvip $id $date\r\n\r\nAdd a vip account.'),('delvip', 3, 'Syntax: .delvip $id\r\n\r\nDelete a vip account.');
++INSERT INTO `command` VALUES ('addvip', 3, 'Syntax: .addvip $id $time_to_expire\r\n\r\nAdd a vip account with time to expire.'),('delvip', 3, 'Syntax: .delvip $id\r\n\r\nDelete a vip account.');
 \ No newline at end of file
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
 index 0eadbc4..f8f6a98 100644
