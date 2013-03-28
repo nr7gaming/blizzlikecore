@@ -5,7 +5,7 @@ index 0000000..4dc2128
 +++ b/sql/anticheat/world_anticheat.sql
 @@ -0,0 +1,2 @@
 +-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
-+INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s is kicked for use Teleport to Plane Hack.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s produces a anticheat alarm for %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
++INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s is kicked for use: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s is using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 \ No newline at end of file
 diff --git a/src/game/Language.h b/src/game/Language.h
 index a82de33..3a51e62 100644
@@ -21,7 +21,7 @@ index a82de33..3a51e62 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 677fd3e..d4a9ec8 100644
+index 677fd3e..7cd114a 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -20,6 +20,7 @@
@@ -110,7 +110,7 @@ index 677fd3e..d4a9ec8 100644
      //Save movement flags
      mover->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
-@@ -276,73 +306,428 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -276,73 +306,429 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      {
          // transports size limited
          // (also received at zeppelin/lift leave by some reason with t_* as absolute in continent coordinates, can be safely skipped)
@@ -233,9 +233,7 @@ index 677fd3e..d4a9ec8 100644
 +            plMover->m_anti_isjumping = false;
 +        else if (opcode == MSG_MOVE_JUMP)
 +            plMover->m_anti_isjumping = true;
- 
--    mover->m_movementInfo = movementInfo;
--    mover->SetPosition(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation());
++
 +        if (plMover->m_anti_isknockedback)
 +            forcemovement = true;
 +
@@ -354,7 +352,9 @@ index 677fd3e..d4a9ec8 100644
 +            }
 +            else if (plMover->IsInWater())
 +                plMover->m_anti_justjumped = 0;
-+
+ 
+-    mover->m_movementInfo = movementInfo;
+-    mover->SetPosition(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation());
 +            // Anti-Speedhack
 +            // Disabled to revert: if ((real_delta > allowed_delta) && (delta_z < (plMover->m_anti_last_vspeed * time_delta) || delta_z < 1))
 +            if ((real_delta > allowed_delta) && (delta_z < 1))
@@ -447,11 +447,6 @@ index 677fd3e..d4a9ec8 100644
 +                        #endif
 +                        plMover->m_anti_lastcheat = "Teleport to Plane Hack";
 +                        check_passed = false;
-+                        if (World::GetEnableMvAnticheat() && GetPlayer()->GetSession()->GetSecurity() <= World::GetMvAnticheatGmLevel())
-+                        {
-+                            plMover->GetSession()->KickPlayer();
-+                            sWorld.SendGMText(LANG_GM_AC_KICK_ANNOUNCE, plMover->GetName());
-+                        }
 +                    }
 +                }
 +            }
@@ -548,7 +543,13 @@ index 677fd3e..d4a9ec8 100644
 +
 +            if (plMover->m_anti_alarmcount > 0)
 +            {
-+                sWorld.SendGMText(LANG_GM_AC_ANNOUNCE, plMover->GetName(), plMover->m_anti_lastcheat.c_str());
++                if (World::GetMvAnticheatKick())
++                {
++                    plMover->GetSession()->KickPlayer();
++                    sWorld.SendGMText(LANG_GM_AC_KICK_ANNOUNCE, plMover->GetName(), plMover->m_anti_lastcheat.c_str());
++                }
++                else
++                    sWorld.SendGMText(LANG_GM_AC_ANNOUNCE, plMover->GetName(), plMover->m_anti_lastcheat.c_str());
 +            }
  
 -        if (movementInfo.GetPos()->GetPositionZ() < -500.0f)
@@ -578,7 +579,7 @@ index 677fd3e..d4a9ec8 100644
  }
  
  void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
-@@ -367,6 +752,17 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
+@@ -367,6 +753,17 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
@@ -596,7 +597,7 @@ index 677fd3e..d4a9ec8 100644
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -465,6 +861,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -465,6 +862,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -616,7 +617,7 @@ index 677fd3e..d4a9ec8 100644
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -480,6 +889,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -480,6 +890,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data >> movementInfo;
      recv_data.read_skip<uint32>();                          // unk2
  
@@ -764,62 +765,66 @@ index 503d5bd..9c17b43 100644
      if (curDestNode && curDestNode->map_id != GetPlayer()->GetMapId())
      {
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 52a5fd7..587b90f 100644
+index 52a5fd7..084f508 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -80,6 +80,10 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
+@@ -80,6 +80,11 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
  int32 World::m_visibility_notify_periodInInstances  = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
  int32 World::m_visibility_notify_periodInBGArenas   = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
  
 +// Movement Anticheat
 +bool World::m_EnableMvAnticheat = true;
 +uint32 World::m_MvAnticheatGmLevel = 0;
++bool World::m_MvAnticheatKick = false;
 +
  // World constructor
  World::World()
  {
-@@ -531,6 +535,10 @@ void World::LoadConfigSettings(bool reload)
+@@ -531,6 +536,11 @@ void World::LoadConfigSettings(bool reload)
          rate_values[RATE_DURABILITY_LOSS_BLOCK] = 0.0f;
      }
  
 +    // Movement Anticheat
 +    m_EnableMvAnticheat = sConfig.GetBoolDefault("Anticheat.Movement.Enable", true);
 +    m_MvAnticheatGmLevel = sConfig.GetIntDefault("Anticheat.Movement.GmLevel", 0);
++    m_MvAnticheatKick = sConfig.GetBoolDefault("Anticheat.Movement.Kick", false);
 +
      // Read other configuration items from the config file
  
      m_configs[CONFIG_COMPRESSION] = sConfig.GetIntDefault("Compression", 1);
 diff --git a/src/game/World.h b/src/game/World.h
-index 7ad3d80..9874e72 100644
+index 7ad3d80..652027e 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -576,6 +576,10 @@ class World
+@@ -576,6 +576,11 @@ class World
          static int32 GetVisibilityNotifyPeriodInInstances() { return m_visibility_notify_periodInInstances;  }
          static int32 GetVisibilityNotifyPeriodInBGArenas()  { return m_visibility_notify_periodInBGArenas;   }
  
 +        // Movement Anticheat
 +        static bool GetEnableMvAnticheat()              { return m_EnableMvAnticheat;       }
 +        static uint32 GetMvAnticheatGmLevel()           { return m_MvAnticheatGmLevel;      }
++        static bool GetMvAnticheatKick()                { return m_MvAnticheatKick;         }
 +
          void ProcessCliCommands();
          void QueueCliCommand(CliCommandHolder* commandHolder) { cliCmdQueue.add(commandHolder); }
  
-@@ -663,6 +667,10 @@ class World
+@@ -663,6 +668,11 @@ class World
          static int32 m_visibility_notify_periodInInstances;
          static int32 m_visibility_notify_periodInBGArenas;
  
 +        // Movement Anticheat (Enable Flag)
 +        static bool m_EnableMvAnticheat;
 +        static uint32 m_MvAnticheatGmLevel;
++        static bool m_MvAnticheatKick;
 +
          // CLI command holder to be thread safe
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 9b6dd63..f40f64a 100644
+index 9b6dd63..03bc077 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
-@@ -2040,3 +2040,20 @@ Die.Command.Mode = 1
+@@ -2040,3 +2040,26 @@ Die.Command.Mode = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000
@@ -836,7 +841,13 @@ index 9b6dd63..f40f64a 100644
 +#        Detection occurs below and at the same GmLevel
 +#        Default: 0 - (Only Players)
 +#
++#    Anticheat.Movement.Kick
++#        Kick player on failed check
++#        Default: 0 - (Disabled)
++#                 1 - (Enabled)
++#
 +###############################################################################
 +
 +Anticheat.Movement.Enable = 1
 +Anticheat.Movement.GmLevel = 0
++Anticheat.Movement.Kick = 0
