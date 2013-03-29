@@ -20,10 +20,10 @@ index 0000000..4dc2128
 +++ b/sql/vipacc/world_vipacc.sql
 @@ -0,0 +1,2 @@
 +-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
-+INSERT INTO `command` VALUES ('addvip', 3, 'Syntax: .addvip $id $time_to_expire\r\n\r\nAdd a vip account with time to expire.'),('delvip', 3, 'Syntax: .delvip $id\r\n\r\nDelete a vip account.');
++INSERT INTO `command` VALUES ('addvip', 3, 'Syntax: .addvip $id_account $5d2h10m15s\r\n\r\nAdd a vip account with time to expire.'),('delvip', 3, 'Syntax: .delvip $id_account\r\n\r\nDelete a vip account.');
 \ No newline at end of file
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
-index 0eadbc4..f8f6a98 100644
+index 1f133fa..3db7dac 100644
 --- a/src/authserver/AuthSocket.cpp
 +++ b/src/authserver/AuthSocket.cpp
 @@ -359,6 +359,8 @@ bool AuthSocket::_HandleLogonChallenge()
@@ -93,10 +93,10 @@ index 3d60cd5..f64f9a5 100644
  
          inline uint32 xp_Diff(uint32 lvl)
 diff --git a/src/game/Level3.cpp b/src/game/Level3.cpp
-index 821e2d8..8e024d2 100644
+index 821e2d8..923f551 100644
 --- a/src/game/Level3.cpp
 +++ b/src/game/Level3.cpp
-@@ -5279,6 +5279,41 @@ bool ChatHandler::HandleResetAllCommand(const char * args)
+@@ -5279,6 +5279,40 @@ bool ChatHandler::HandleResetAllCommand(const char * args)
      return true;
  }
  
@@ -108,13 +108,12 @@ index 821e2d8..8e024d2 100644
 +    char* id_vipacc  = strtok((char*)args, " ");
 +    char* time_to_expire = strtok((char*)NULL, " ");
 +    uint32 idvipacc = atoi(id_vipacc);
-+    uint32 timetoexpire = atoi(time_to_expire);
-+    if (!idvipacc || !timetoexpire)
++    if (!idvipacc || !time_to_expire)
 +        return false;
 +
 +    LoginDatabase.PExecute("DELETE FROM account_premium WHERE id = '%u'", idvipacc);
-+    LoginDatabase.PExecute("INSERT INTO account_premium VALUES ('%u',UNIX_TIMESTAMP(),UNIX_TIMESTAMP()+'%u', 1, 1)", idvipacc, timetoexpire);
-+    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Add new vip account id:", idvipacc);
++    LoginDatabase.PExecute("INSERT INTO account_premium VALUES ('%u',UNIX_TIMESTAMP(),UNIX_TIMESTAMP()+'%u', 1, 1)", idvipacc, TimeStringToSecs(time_to_expire));
++    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Add new vip account id: ", idvipacc);
 +
 +    return true;
 +}
@@ -130,7 +129,7 @@ index 821e2d8..8e024d2 100644
 +        return false;
 +
 +    LoginDatabase.PExecute("DELETE FROM account_premium WHERE id = '%u'", idvipacc);
-+    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Del vip account id:", idvipacc);
++    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Del vip account id: ", idvipacc);
 +
 +    return true;
 +}
