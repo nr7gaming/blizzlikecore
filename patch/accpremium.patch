@@ -19,8 +19,8 @@ index 0000000..4dc2128
 --- /dev/null
 +++ b/sql/accpremium/world_accpremium.sql
 @@ -0,0 +1,2 @@
-+DELETE FROM `command` WHERE `name`='addpremium' OR `name`='delpremium';
-+INSERT INTO `command` VALUES ('addpremium', 3, 'Syntax: .addpremium $account_id $5d2h10m15s\r\n\r\nAdd a premium account with time to expire.'),('delpremium', 3, 'Syntax: .delpremium $account_id\r\n\r\nDelete a premium account.');
++DELETE FROM `command` WHERE `name`='accpadd' OR `name`='accpdel';
++INSERT INTO `command` VALUES ('accpadd', 3, 'Syntax: .accpadd $account_id $5d2h10m15s\r\n\r\nAdd a premium account with time to expire.'),('accpdel', 3, 'Syntax: .accpdel $account_id\r\n\r\nDelete a premium account.');
 \ No newline at end of file
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
 index 1f133fa..3db7dac 100644
@@ -57,8 +57,8 @@ index 705963a..cb72c94 100644
          { "unbindsight",    SEC_ADMINISTRATOR,  false, &ChatHandler::HandleUnbindSightCommand,         "", NULL },
  
 +        // accpremium commands
-+        { "addpremium",     SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleAddPremiumAccountCommand,   "", NULL },
-+        { "delpremium",     SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleDelPremiumAccountCommand,   "", NULL },
++        { "accpadd",        SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleAddPremiumAccountCommand,   "", NULL },
++        { "accpdel",        SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleDelPremiumAccountCommand,   "", NULL },
 +
          // warp command
          { "warp",           SEC_ADMINISTRATOR,  false, &ChatHandler::HandleWarpCommand,                "", NULL },
