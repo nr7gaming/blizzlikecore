@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
+ * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
  * Please, read the credits file.
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -964,7 +964,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                         case 6: spell_id = 16716; break;    // Launch
                     }
 
-                    m_caster->CastSpell(unitTarget, spell_id, true, NULL, NULL, m_originalCasterGUID, m_spellInfo);
+                    m_caster->CastSpell(unitTarget, spell_id, true, NULL, NULL, m_originalCasterGUID);
                     return;
                 }
                 case 17251:                                 // Spirit Healer Res

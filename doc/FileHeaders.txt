@@ -8,7 +8,7 @@ But remember we don't change the header of files in the /dep folder.
 Header for Core Files:
 --- SNIP ---
 /*
- * Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
+ * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
  * Please, read the credits file.
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -28,7 +28,7 @@ Header for Core Files:
 Header for Script Files:
 --- SNIP ---
 /*
- * Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
+ * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
  * Please, read the credits file.
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -47,7 +47,7 @@ Header for Script Files:
 
 Header for CMake Files:
 --- SNIP ---
-# Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
+# Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without

@@ -4,7 +4,7 @@ index 0000000..4dc2128
 --- /dev/null
 +++ b/sql/anticheat/world_anticheat.sql
 @@ -0,0 +1,2 @@
-+-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
++-- Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
 +INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s is kicked for use: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s is using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 \ No newline at end of file
 diff --git a/src/game/Language.h b/src/game/Language.h
