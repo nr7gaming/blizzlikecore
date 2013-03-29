@@ -1,4 +1,4 @@
--- Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
+-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
 --
 -- Host: localhost    Database: characters
 -- ------------------------------------------------------
