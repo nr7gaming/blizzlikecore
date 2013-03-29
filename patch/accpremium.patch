@@ -1,8 +1,8 @@
-diff --git a/sql/vipacc/auth_vipacc.sql b/sql/vipacc/auth_vipacc.sql
+diff --git a/sql/accpremium/auth_accpremium.sql b/sql/accpremium/auth_accpremium.sql
 new file mode 100644
 index 0000000..df317ed
 --- /dev/null
-+++ b/sql/vipacc/auth_vipacc.sql
++++ b/sql/accpremium/auth_accpremium.sql
 @@ -0,0 +1,8 @@
 +CREATE TABLE IF NOT EXISTS `account_premium` (
 +  `id` int(11) NOT NULL default '0' COMMENT 'Account id',
@@ -13,14 +13,14 @@ index 0000000..df317ed
 +  PRIMARY KEY  (`id`,`setdate`)
 +) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='Premium Accounts';
 \ No newline at end of file
-diff --git a/sql/vipacc/world_vipacc.sql b/sql/vipacc/world_vipacc.sql
+diff --git a/sql/accpremium/world_accpremium.sql b/sql/accpremium/world_accpremium.sql
 new file mode 100644
 index 0000000..4dc2128
 --- /dev/null
-+++ b/sql/vipacc/world_vipacc.sql
++++ b/sql/accpremium/world_accpremium.sql
 @@ -0,0 +1,2 @@
-+-- Copyright (C) 2011-2013 BlizzLikeCore <http://blizzlike.servegame.com/>
-+INSERT INTO `command` VALUES ('addvip', 3, 'Syntax: .addvip $id_account $5d2h10m15s\r\n\r\nAdd a vip account with time to expire.'),('delvip', 3, 'Syntax: .delvip $id_account\r\n\r\nDelete a vip account.');
++DELETE FROM `command` WHERE `name`='addpremium' OR `name`='delpremium';
++INSERT INTO `command` VALUES ('addpremium', 3, 'Syntax: .addpremium $account_id $5d2h10m15s\r\n\r\nAdd a premium account with time to expire.'),('delpremium', 3, 'Syntax: .delpremium $account_id\r\n\r\nDelete a premium account.');
 \ No newline at end of file
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
 index 1f133fa..3db7dac 100644
@@ -56,9 +56,9 @@ index 705963a..cb72c94 100644
          { "bindsight",      SEC_ADMINISTRATOR,  false, &ChatHandler::HandleBindSightCommand,           "", NULL },
          { "unbindsight",    SEC_ADMINISTRATOR,  false, &ChatHandler::HandleUnbindSightCommand,         "", NULL },
  
-+        // vipacc commands
-+        { "addvip",         SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleAddVipAccountCommand,       "", NULL },
-+        { "delvip",         SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleDelVipAccountCommand,       "", NULL },
++        // accpremium commands
++        { "addpremium",     SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleAddPremiumAccountCommand,   "", NULL },
++        { "delpremium",     SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleDelPremiumAccountCommand,   "", NULL },
 +
          // warp command
          { "warp",           SEC_ADMINISTRATOR,  false, &ChatHandler::HandleWarpCommand,                "", NULL },
@@ -71,9 +71,9 @@ index dd6847f..e7e3f1b 100644
  
          bool HandleResetAllCommand(const char * args);
  
-+        // vipacc commands
-+        bool HandleAddVipAccountCommand(const char* args);
-+        bool HandleDelVipAccountCommand(const char* args);
++        // accpremium commands
++        bool HandleAddPremiumAccountCommand(const char* args);
++        bool HandleDelPremiumAccountCommand(const char* args);
 +
          // warp command
          bool HandleWarpCommand(const char * args);                                              
@@ -100,36 +100,36 @@ index 821e2d8..923f551 100644
      return true;
  }
  
-+bool ChatHandler::HandleAddVipAccountCommand(const char* args)
++bool ChatHandler::HandleAddPremiumAccountCommand(const char* args)
 +{
 +    if (!*args)
 +        return false;
 +
-+    char* id_vipacc  = strtok((char*)args, " ");
++    char* id_accpremium  = strtok((char*)args, " ");
 +    char* time_to_expire = strtok((char*)NULL, " ");
-+    uint32 idvipacc = atoi(id_vipacc);
-+    if (!idvipacc || !time_to_expire)
++    uint32 idaccpremium = atoi(id_accpremium);
++    if (!idaccpremium || !time_to_expire)
 +        return false;
 +
-+    LoginDatabase.PExecute("DELETE FROM account_premium WHERE id = '%u'", idvipacc);
-+    LoginDatabase.PExecute("INSERT INTO account_premium VALUES ('%u',UNIX_TIMESTAMP(),UNIX_TIMESTAMP()+'%u', 1, 1)", idvipacc, TimeStringToSecs(time_to_expire));
-+    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Add new vip account id: ", idvipacc);
++    LoginDatabase.PExecute("DELETE FROM account_premium WHERE id = '%u'", idaccpremium);
++    LoginDatabase.PExecute("INSERT INTO account_premium VALUES ('%u',UNIX_TIMESTAMP(),UNIX_TIMESTAMP()+'%u', 1, 1)", idaccpremium, TimeStringToSecs(time_to_expire));
++    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Add new premium account id: ", idaccpremium);
 +
 +    return true;
 +}
 +
-+bool ChatHandler::HandleDelVipAccountCommand(const char* args)
++bool ChatHandler::HandleDelPremiumAccountCommand(const char* args)
 +{
 +    if (!*args)
 +        return false;
 +
-+    char* id_vipacc  = strtok((char*)args, " ");
-+    uint32 idvipacc = atoi(id_vipacc);
-+    if (!idvipacc)
++    char* id_accpremium  = strtok((char*)args, " ");
++    uint32 idaccpremium = atoi(id_accpremium);
++    if (!idaccpremium)
 +        return false;
 +
-+    LoginDatabase.PExecute("DELETE FROM account_premium WHERE id = '%u'", idvipacc);
-+    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Del vip account id: ", idvipacc);
++    LoginDatabase.PExecute("DELETE FROM account_premium WHERE id = '%u'", idaccpremium);
++    PSendSysMessage("%s%s%u|r", "|cff00ff00", "Del premium account id: ", idaccpremium);
 +
 +    return true;
 +}
