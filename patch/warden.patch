@@ -43,7 +43,7 @@ index 0000000..57684e0
 +
 +LOCK TABLES `warden_data_result` WRITE;
 +/*!40000 ALTER TABLE `warden_data_result` DISABLE KEYS */;
-+INSERT INTO `warden_data_result` VALUES (11,243,'','',8095301,2,'7513','Air Jump 2'),(10,243,'','',9208728,4,'BB8D243F','Wallclimb'),(9,243,'','',6518444,2,'DECA','Wallclimb 1'),(8,243,'','',8095954,3,'8B4908 ','Teleport To Plane 2'),(7,243,'','',8095957,3,'894808 ','Teleport To Plane'),(6,243,'','',8103107,3,'894E3C','No Fall DMG'),(5,243,'','',8100062,2,'7541','Air Jump'),(4,243,'','',8979979,5,'E04D62503F','Hyper Speed'),(3,243,'','',4840352,2,'558B','Lua Protection'),(2,243,'','',9208923,5,'C0854A3340','WoWEmuHacker Detect + Gravity'),(1,243,'','',1342508000,1,'00','WowMaelStrom Detect. Need BC Warden mod.');
++INSERT INTO `warden_data_result` VALUES (11,243,'','',8095301,2,'7513','Air Jump 2'),(10,243,'','',9208728,4,'BB8D243F','Wallclimb'),(9,243,'','',6518444,2,'DECA','Wallclimb 1'),(8,243,'','',8095954,3,'8B4908 ','Teleport To Plane 2'),(7,243,'','',8095957,3,'894808 ','Teleport To Plane'),(6,243,'','',8103107,3,'894E3C','No Fall DMG'),(5,243,'','',8100062,2,'7541','Air Jump'),(4,243,'','',8979979,5,'E04D62503F','Hyper Speed'),(3,243,'','',4840352,2,'558B','Lua Protection'),(2,243,'','',9208923,5,'C0854A3340','WoWEmuHacker Detect + Gravity'),(1,243,'','',1342508000,1,'00','WowMaelStrom Detect.');
 +/*!40000 ALTER TABLE `warden_data_result` ENABLE KEYS */;
 +UNLOCK TABLES;
 \ No newline at end of file
@@ -294,7 +294,7 @@ index 0000000..bc78986
 +
 +void WardenBase::SendModuleToClient()
 +{
-+    sLog.outDebug("Send module to client");
++    sLog.outDebug("WARDEN: Send module to client");
 +
 +    // Create packet structure
 +    WardenModuleTransfer pkt;
@@ -320,7 +320,7 @@ index 0000000..bc78986
 +
 +void WardenBase::RequestModule()
 +{
-+    sLog.outDebug("Request module");
++    sLog.outDebug("WARDEN: Request module");
 +
 +    // Create packet structure
 +    WardenModuleUse Request;
@@ -389,7 +389,7 @@ index 0000000..bc78986
 +    }
 +    else
 +    {
-+        sLog.outDebug("CHECKSUM IS VALID");
++        sLog.outDebug("WARDEN: CHECKSUM IS VALID");
 +        return true;
 +    }
 +}
@@ -409,7 +409,7 @@ index 0000000..bc78986
 +    m_Warden->DecryptData(const_cast<uint8*>(recv_data.contents()), recv_data.size());
 +    uint8 Opcode;
 +    recv_data >> Opcode;
-+    sLog.outDebug("Got packet, opcode %02X, size %u", Opcode, recv_data.size());
++    sLog.outDebug("WARDEN: Got packet, opcode %02X, size %u", Opcode, recv_data.size());
 +    recv_data.hexlike();
 +
 +    switch(Opcode)
@@ -424,14 +424,14 @@ index 0000000..bc78986
 +            m_Warden->HandleData(recv_data);
 +            break;
 +        case WARDEN_CMSG_MEM_CHECKS_RESULT:
-+            sLog.outDebug("NYI WARDEN_CMSG_MEM_CHECKS_RESULT received!");
++            sLog.outDebug("WARDEN: NYI WARDEN_CMSG_MEM_CHECKS_RESULT received!");
 +            break;
 +        case WARDEN_CMSG_HASH_RESULT:
 +            m_Warden->HandleHashResult(recv_data);
 +            m_Warden->InitializeModule();
 +            break;
 +        case WARDEN_CMSG_MODULE_FAILED:
-+            sLog.outDebug("NYI WARDEN_CMSG_MODULE_FAILED received!");
++            sLog.outDebug("WARDEN: NYI WARDEN_CMSG_MODULE_FAILED received!");
 +            break;
 +        default:
 +            sLog.outError("Got unknown warden opcode %02X of size %u.", Opcode, recv_data.size() - 1);
@@ -870,16 +870,16 @@ index 0000000..cf748a9
 +
 +    iCrypto.Init(InputKey);
 +    oCrypto.Init(OutputKey);
-+    sLog.outDebug("WARDEN Server side warden for client %u initializing...", pClient->GetAccountId());
-+    sLog.outDebug("WARDEN   C->S Key: %s", ByteArrayToHexStr(InputKey, 16).c_str());
-+    sLog.outDebug("WARDEN   S->C Key: %s", ByteArrayToHexStr(OutputKey, 16).c_str());
-+    sLog.outDebug("WARDEN   Seed: %s", ByteArrayToHexStr(Seed, 16).c_str());
-+    sLog.outDebug("WARDEN Loading Module...");
++    sLog.outDebug("WARDEN: Server side warden for client %u initializing...", pClient->GetAccountId());
++    sLog.outDebug("WARDEN:   C->S Key: %s", ByteArrayToHexStr(InputKey, 16).c_str());
++    sLog.outDebug("WARDEN:   S->C Key: %s", ByteArrayToHexStr(OutputKey, 16).c_str());
++    sLog.outDebug("WARDEN:   Seed: %s", ByteArrayToHexStr(Seed, 16).c_str());
++    sLog.outDebug("WARDEN: Loading Module...");
 +
 +    Module = GetModuleForClient(Client);
 +
-+    sLog.outDebug("WARDEN   Module Key: %s", ByteArrayToHexStr(Module->Key, 16).c_str());
-+    sLog.outDebug("WARDEN   Module ID: %s", ByteArrayToHexStr(Module->ID, 16).c_str());
++    sLog.outDebug("WARDEN:   Module Key: %s", ByteArrayToHexStr(Module->Key, 16).c_str());
++    sLog.outDebug("WARDEN:   Module ID: %s", ByteArrayToHexStr(Module->ID, 16).c_str());
 +    RequestModule();
 +}
 +
@@ -906,12 +906,12 @@ index 0000000..cf748a9
 +
 +void WardenMac::InitializeModule()
 +{
-+    sLog.outDebug("WARDEN Initialize module");
++    sLog.outDebug("WARDEN: Initialize module");
 +}
 +
 +void WardenMac::RequestHash()
 +{
-+    sLog.outDebug("WARDEN Request hash");
++    sLog.outDebug("WARDEN: Request hash");
 +
 +    // Create packet structure
 +    WardenHashRequest Request;
@@ -964,12 +964,12 @@ index 0000000..cf748a9
 +    // verify key not equal kick player
 +    if (memcmp(buff.contents() + 1, sha1.GetDigest(), 20) != 0)
 +    {
-+        sLog.outWarden("WARDEN Request hash reply: failed");
++        sLog.outWarden("Request hash reply: failed");
 +        Client->KickPlayer();
 +        return;
 +    }
 +
-+    sLog.outDebug("WARDEN Request hash reply: succeed");
++    sLog.outDebug("WARDEN: Request hash reply: succeed");
 +
 +    // client 7F96EEFDA5B63D20A4DF8E00CBF48304
 +    //const uint8 client_key[16] = { 0x7F, 0x96, 0xEE, 0xFD, 0xA5, 0xB6, 0x3D, 0x20, 0xA4, 0xDF, 0x8E, 0x00, 0xCB, 0xF4, 0x83, 0x04 };
@@ -991,7 +991,7 @@ index 0000000..cf748a9
 +
 +void WardenMac::RequestData()
 +{
-+    sLog.outDebug("WARDEN Request data");
++    sLog.outDebug("WARDEN: Request data");
 +
 +    ByteBuffer buff;
 +    buff << uint8(WARDEN_SMSG_CHEAT_CHECKS_REQUEST);
@@ -1015,7 +1015,7 @@ index 0000000..cf748a9
 +
 +void WardenMac::HandleData(ByteBuffer &buff)
 +{
-+    sLog.outDebug("WARDEN Handle data");
++    sLog.outDebug("WARDEN: Handle data");
 +
 +    m_WardenDataSent = false;
 +    m_WardenKickTimer = 0;
@@ -1048,7 +1048,7 @@ index 0000000..cf748a9
 +
 +    if (memcmp(sha1Hash, sha1.GetDigest(), 20))
 +    {
-+        sLog.outWarden("WARDEN Handle data failed: SHA1 hash is wrong!");
++        sLog.outWarden("Handle data failed: SHA1 hash is wrong!");
 +        found = true;
 +    }
 +
@@ -1063,7 +1063,7 @@ index 0000000..cf748a9
 +
 +    if (memcmp(ourMD5Hash, theirsMD5Hash, 16))
 +    {
-+        sLog.outWarden("WARDEN Handle data failed: MD5 hash is wrong!");
++        sLog.outWarden("Handle data failed: MD5 hash is wrong!");
 +        found = true;
 +    }
 +
@@ -3038,16 +3038,16 @@ index 0000000..258325b
 +
 +    iCrypto.Init(InputKey);
 +    oCrypto.Init(OutputKey);
-+    sLog.outDebug("WARDEN Server side warden for client %u initializing...", pClient->GetAccountId());
-+    sLog.outDebug("WARDEN   C->S Key: %s", ByteArrayToHexStr(InputKey, 16).c_str());
-+    sLog.outDebug("WARDEN   S->C Key: %s", ByteArrayToHexStr(OutputKey, 16).c_str());
-+    sLog.outDebug("WARDEN   Seed: %s", ByteArrayToHexStr(Seed, 16).c_str());
-+    sLog.outDebug("WARDEN Loading Module...");
++    sLog.outDebug("WARDEN: Server side warden for client %u initializing...", pClient->GetAccountId());
++    sLog.outDebug("WARDEN:   C->S Key: %s", ByteArrayToHexStr(InputKey, 16).c_str());
++    sLog.outDebug("WARDEN:   S->C Key: %s", ByteArrayToHexStr(OutputKey, 16).c_str());
++    sLog.outDebug("WARDEN:   Seed: %s", ByteArrayToHexStr(Seed, 16).c_str());
++    sLog.outDebug("WARDEN: Loading Module...");
 +
 +    Module = GetModuleForClient(Client);
 +
-+    sLog.outDebug("WARDEN   Module Key: %s", ByteArrayToHexStr(Module->Key, 16).c_str());
-+    sLog.outDebug("WARDEN   Module ID: %s", ByteArrayToHexStr(Module->ID, 16).c_str());
++    sLog.outDebug("WARDEN:   Module Key: %s", ByteArrayToHexStr(Module->Key, 16).c_str());
++    sLog.outDebug("WARDEN:   Module ID: %s", ByteArrayToHexStr(Module->ID, 16).c_str());
 +    RequestModule();
 +}
 +
@@ -3074,7 +3074,7 @@ index 0000000..258325b
 +
 +void WardenWin::InitializeModule()
 +{
-+    sLog.outDebug("WARDEN Initialize module");
++    sLog.outDebug("WARDEN: Initialize module");
 +
 +    // Create packet structure
 +    WardenInitModuleRequest Request;
@@ -3118,7 +3118,7 @@ index 0000000..258325b
 +
 +void WardenWin::RequestHash()
 +{
-+    sLog.outDebug("WARDEN Request hash");
++    sLog.outDebug("WARDEN: Request hash");
 +
 +    // Create packet structure
 +    WardenHashRequest Request;
@@ -3142,12 +3142,12 @@ index 0000000..258325b
 +    // verify key not equal kick player
 +    if (memcmp(buff.contents() + 1, validHash, sizeof(validHash)) != 0)
 +    {
-+        sLog.outWarden("WARDEN Request hash reply: failed");
++        sLog.outWarden("Request hash reply: failed");
 +        Client->KickPlayer();
 +        return;
 +    }
 +
-+    sLog.outDebug("WARDEN Request hash reply: succeed");
++    sLog.outDebug("WARDEN: Request hash reply: succeed");
 +
 +    // client 7F96EEFDA5B63D20A4DF8E00CBF48304
 +    const uint8 client_key[16] = { 0x7F, 0x96, 0xEE, 0xFD, 0xA5, 0xB6, 0x3D, 0x20, 0xA4, 0xDF, 0x8E, 0x00, 0xCB, 0xF4, 0x83, 0x04 };
@@ -3169,7 +3169,7 @@ index 0000000..258325b
 +
 +void WardenWin::RequestData()
 +{
-+    sLog.outDebug("WARDEN Request data");
++    sLog.outDebug("WARDEN: Request data");
 +
 +    if (MemCheck.empty())
 +        MemCheck.assign(WardenDataStorage.MemCheckIds.begin(), WardenDataStorage.MemCheckIds.end());
@@ -3301,7 +3301,7 @@ index 0000000..258325b
 +
 +void WardenWin::HandleData(ByteBuffer &buff)
 +{
-+    sLog.outDebug("WARDEN Handle data");
++    sLog.outDebug("WARDEN: Handle data");
 +
 +    m_WardenDataSent = false;
 +    m_WardenKickTimer = 0;
@@ -3327,7 +3327,7 @@ index 0000000..258325b
 +        // TODO: test it.
 +        if (result == 0x00)
 +        {
-+            sLog.outWarden("WARDEN TIMING CHECK FAIL result 0x00");
++            sLog.outWarden("TIMING CHECK FAIL result 0x00");
 +            found = true;
 +        }
 +
@@ -3337,10 +3337,10 @@ index 0000000..258325b
 +        uint32 ticksNow = getMSTime();
 +        uint32 ourTicks = newClientTicks + (ticksNow - ServerTicks);
 +
-+        sLog.outDebug("WARDEN ServerTicks %u", ticksNow);         // now
-+        sLog.outDebug("WARDEN RequestTicks %u", ServerTicks);     // at request
-+        sLog.outDebug("WARDEN Ticks %u", newClientTicks);         // at response
-+        sLog.outDebug("WARDEN Ticks diff %u", ourTicks - newClientTicks);
++        sLog.outDebug("WARDEN: ServerTicks %u", ticksNow);         // now
++        sLog.outDebug("WARDEN: RequestTicks %u", ServerTicks);     // at request
++        sLog.outDebug("WARDEN: Ticks %u", newClientTicks);         // at response
++        sLog.outDebug("WARDEN: Ticks diff %u", ourTicks - newClientTicks);
 +    }
 +
 +    WardenDataResult *rs;
@@ -3362,7 +3362,7 @@ index 0000000..258325b
 +
 +                if (Mem_Result != 0)
 +                {
-+                    sLog.outDebug("RESULT MEM_CHECK not 0x00 at this stage, CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                    sLog.outDebug("WARDEN: RESULT MEM_CHECK not 0x00 at this stage, CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                    continue;
 +                }
 +
@@ -3375,7 +3375,7 @@ index 0000000..258325b
 +                }
 +
 +                buff.rpos(buff.rpos() + rd->Length);
-+                sLog.outDebug("RESULT MEM_CHECK passed CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                sLog.outDebug("WARDEN: RESULT MEM_CHECK passed CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                break;
 +            }
 +            case PAGE_CHECK_A:
@@ -3387,11 +3387,11 @@ index 0000000..258325b
 +                if (memcmp(buff.contents() + buff.rpos(), &byte, sizeof(uint8)) != 0)
 +                {
 +                    if (type == PAGE_CHECK_A || type == PAGE_CHECK_B)
-+                        sLog.outWarden("WARDEN PAGE_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                        sLog.outWarden("PAGE_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                    if (type == MODULE_CHECK)
-+                        sLog.outWarden("WARDEN MODULE_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                        sLog.outWarden("MODULE_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                    if (type == DRIVER_CHECK)
-+                        sLog.outWarden("WARDEN DRIVER_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                        sLog.outWarden("DRIVER_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                    found = true;
 +                    buff.rpos(buff.rpos() + 1);
 +                    continue;
@@ -3399,11 +3399,11 @@ index 0000000..258325b
 +
 +                buff.rpos(buff.rpos() + 1);
 +                if (type == PAGE_CHECK_A || type == PAGE_CHECK_B)
-+                    sLog.outDebug("WARDEN PAGE_CHECK passed CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                    sLog.outDebug("WARDEN: PAGE_CHECK passed CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                else if (type == MODULE_CHECK)
-+                    sLog.outDebug("WARDEN MODULE_CHECK passed CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                    sLog.outDebug("WARDEN: MODULE_CHECK passed CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                else if (type == DRIVER_CHECK)
-+                    sLog.outDebug("WARDEN DRIVER_CHECK passed CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                    sLog.outDebug("WARDEN: DRIVER_CHECK passed CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                break;
 +            }
 +            case LUA_STR_CHECK:
@@ -3413,7 +3413,7 @@ index 0000000..258325b
 +
 +                if (Lua_Result != 0)
 +                {
-+                    sLog.outWarden("WARDEN LUA_STR_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                    sLog.outWarden("LUA_STR_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                    found = true;
 +                    continue;
 +                }
@@ -3426,11 +3426,11 @@ index 0000000..258325b
 +                    char *str = new char[luaStrLen + 1];
 +                    memset(str, 0, luaStrLen + 1);
 +                    memcpy(str, buff.contents() + buff.rpos(), luaStrLen);
-+                    sLog.outDebug("WARDEN Lua string: %s", str);
++                    sLog.outDebug("WARDEN: Lua string: %s", str);
 +                    delete[] str;
 +                }
 +                buff.rpos(buff.rpos() + luaStrLen);         // skip string
-+                sLog.outDebug("WARDEN LUA_STR_CHECK passed, CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                sLog.outDebug("WARDEN: LUA_STR_CHECK passed, CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                break;
 +            }
 +            case MPQ_CHECK:
@@ -3440,21 +3440,21 @@ index 0000000..258325b
 +
 +                if (Mpq_Result != 0)
 +                {
-+                    sLog.outWarden("WARDEN MPQ_CHECK not 0x00 account id %u", Client->GetAccountId());
++                    sLog.outWarden("MPQ_CHECK not 0x00 account id %u", Client->GetAccountId());
 +                    found = true;
 +                    continue;
 +                }
 +
 +                if (memcmp(buff.contents() + buff.rpos(), rs->res.AsByteArray(0), 20) != 0) // SHA1
 +                {
-+                    sLog.outWarden("WARDEN MPQ_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                    sLog.outWarden("MPQ_CHECK fail, CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                    found = true;
 +                    buff.rpos(buff.rpos() + 20);            // 20 bytes SHA1
 +                    continue;
 +                }
 +
 +                buff.rpos(buff.rpos() + 20);                // 20 bytes SHA1
-+                sLog.outDebug("WARDEN MPQ_CHECK passed, CheckId %u account Id %u", rd->id, Client->GetAccountId());
++                sLog.outDebug("WARDEN: MPQ_CHECK passed, CheckId %u account Id %u", rd->id, Client->GetAccountId());
 +                break;
 +            }
 +            default:                                        // should never happens
