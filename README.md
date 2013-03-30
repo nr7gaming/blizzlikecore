@@ -9,8 +9,8 @@ and is based on the code of some projects with extensive changes over time
 to optimize, improve and cleanup the codebase at the same time as improving 
 the ingame mechanics and functionality.
 if you have code for us to merge into the repo (please file a pull request), 
-or help us by posting issues, patches, and enhancement suggestions on the 
-forum: [http://blizzlike.servegame.com](http://blizzlike.servegame.com "BlizzLikeGroup")
+or help us by posting issues, patches and enhancement suggestions on the
+forum: [BlizzLikeGroup](http://blizzlike.servegame.com "Forum")
 
 Download
 -------
@@ -19,7 +19,7 @@ by running: **git clone git://github.com/blizzlikegroup/blizzlikecore.git**
 
 How to Install
 -------
-Check: [http://blizzlike.servegame.com](http://blizzlike.servegame.com)
+Check: [BlizzLikeGroup](http://blizzlike.servegame.com "Forum")
 
 License
 -------
