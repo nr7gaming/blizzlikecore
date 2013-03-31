@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
- * Please, read the credits file.
+ * Please, look at the CREDITS.md file.
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation; either version 2 of the License, or (at your
@@ -1474,7 +1474,7 @@ bool Player::BuildEnumData(QueryResult_AutoPtr result, WorldPacket * p_data)
             if (!enchantId)
                 continue;
 
-            if ((enchant = sSpellItemEnchantmentStore.LookupEntry(enchantId)))
+            if (enchant = sSpellItemEnchantmentStore.LookupEntry(enchantId))
                 break;
         }
 

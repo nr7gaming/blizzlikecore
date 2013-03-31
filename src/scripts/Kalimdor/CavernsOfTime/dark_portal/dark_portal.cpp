@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
- * Please, read the credits file.
+ * Please, look at the CREDITS.md file.
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation; either version 2 of the License, or (at your
@@ -232,9 +232,9 @@ struct Wave
 
 static Wave PortalWaves[]=
 {
-    {{C_ASSAS, C_WHELP, C_CHRON, 0}},
-    {{C_EXECU, C_CHRON, C_WHELP, C_ASSAS}},
-    {{C_EXECU, C_VANQU, C_CHRON, C_ASSAS}}
+    {C_ASSAS, C_WHELP, C_CHRON, 0},
+    {C_EXECU, C_CHRON, C_WHELP, C_ASSAS},
+    {C_EXECU, C_VANQU, C_CHRON, C_ASSAS}
 };
 
 struct npc_time_riftAI : public ScriptedAI
@@ -253,7 +253,6 @@ struct npc_time_riftAI : public ScriptedAI
 
     void Reset()
     {
-
         TimeRiftWave_Timer = 15000;
         mRiftWaveCount = 0;
 
@@ -267,7 +266,6 @@ struct npc_time_riftAI : public ScriptedAI
         else if (mPortalCount > 12)
             mWaveId = 2;
         else mWaveId = 1;
-
     }
     void EnterCombat(Unit*) {}
 

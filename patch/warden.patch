@@ -215,7 +215,7 @@ index 0000000..bc78986
 @@ -0,0 +1,225 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -446,7 +446,7 @@ index 0000000..e16636f
 @@ -0,0 +1,130 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -582,7 +582,7 @@ index 0000000..d00f8d4
 @@ -0,0 +1,155 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -743,7 +743,7 @@ index 0000000..804ccb2
 @@ -0,0 +1,62 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -811,7 +811,7 @@ index 0000000..cf748a9
 @@ -0,0 +1,278 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -1095,7 +1095,7 @@ index 0000000..b114425
 @@ -0,0 +1,44 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -1145,7 +1145,7 @@ index 0000000..75405d6
 @@ -0,0 +1,613 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -1764,7 +1764,7 @@ index 0000000..4b33d0c
 @@ -0,0 +1,1203 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -2973,7 +2973,7 @@ index 0000000..258325b
 @@ -0,0 +1,511 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -3490,7 +3490,7 @@ index 0000000..25eacd8
 @@ -0,0 +1,104 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
@@ -3868,7 +3868,7 @@ index 0000000..1c4e843
 @@ -0,0 +1,72 @@
 +/*
 + * Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+ * Please, read the credits file.
++ * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the
 + * Free Software Foundation; either version 2 of the License, or (at your
