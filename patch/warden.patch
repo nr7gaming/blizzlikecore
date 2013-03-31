@@ -14,8 +14,8 @@ index 0000000..57684e0
 +++ b/sql/warden/world_warden.sql
 @@ -0,0 +1,33 @@
 +-- Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
-+
-+INSERT INTO `blizzlike_string` VALUES (6617,'|cfff00000Account [%s] has been banned.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6618,'|cfff00000Account [%s] has been kicked.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6619,'|cfff00000Account [%s] has been detected by Anti-Cheat.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
++DELETE FROM `blizzlike_string` WHERE `entry` IN (6617,6618,6619);
++INSERT INTO `blizzlike_string` VALUES (6617,'|cfff00000Account [%s] was banned by warden anticheat.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6618,'|cfff00000Account [%s] was kicked by warden anticheat.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6619,'|cfff00000Account [%s] was detected by warden anticheat.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 +
 +--
 +-- Table structure for table `warden_data_result`

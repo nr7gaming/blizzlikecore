@@ -5,7 +5,7 @@ index 0000000..4dc2128
 +++ b/sql/anticheat/world_anticheat.sql
 @@ -0,0 +1,2 @@
 +DELETE FROM `blizzlike_string` WHERE `entry` IN (6620,6621,6622);
-+INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s is using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s was kicked for using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6622,'|cfff00000%s was banned for using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
++INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s was detected using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s was kicked using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6622,'|cfff00000%s was banned using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 \ No newline at end of file
 diff --git a/src/game/Language.h b/src/game/Language.h
 index a7b8c93..580661d 100644
