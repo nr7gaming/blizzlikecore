@@ -5917,7 +5917,7 @@ void ObjectMgr::LoadCorpses()
 
         uint32 guid = fields[15].GetUInt32();
 
-        Corpse *corpse = new Corpse;
+        Corpse* corpse = new Corpse;
         if (!corpse->LoadFromDB(guid, fields))
         {
             delete corpse;

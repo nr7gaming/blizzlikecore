@@ -197,7 +197,7 @@ bool GossipSelect_npc_lore_keeper_of_norgannon(Player* pPlayer, Creature* pCreat
 ## go_keystone_chamber
 ######*/
 
-bool GOHello_go_keystone_chamber(Player* , GameObject* go)
+bool GOHello_go_keystone_chamber(Player*, GameObject* go)
 {
     ScriptedInstance* pInstance = go->GetInstanceData();
 

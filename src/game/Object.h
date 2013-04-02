@@ -323,7 +323,7 @@ class Object
         virtual bool hasQuest(uint32 /* quest_id */) const { return false; }
         virtual bool hasInvolvedQuest(uint32 /* quest_id */) const { return false; }
         virtual void BuildUpdate(UpdateDataMapType&) {}
-        void BuildFieldsUpdate(Player* , UpdateDataMapType &) const;
+        void BuildFieldsUpdate(Player*, UpdateDataMapType &) const;
 
         // FG: some hacky helpers
         void ForceValuesUpdateAtIndex(uint32);

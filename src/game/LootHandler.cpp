@@ -66,7 +66,7 @@ void WorldSession::HandleAutostoreLootItemOpcode(WorldPacket& recv_data)
     }
     else if (IS_CORPSE_GUID(lguid))
     {
-        Corpse *bones = ObjectAccessor::GetCorpse(*player, lguid);
+        Corpse* bones = ObjectAccessor::GetCorpse(*player, lguid);
         if (!bones)
         {
             player->SendLootRelease(lguid);
@@ -177,7 +177,7 @@ void WorldSession::HandleLootMoneyOpcode(WorldPacket & /*recv_data*/)
         }
         case HIGHGUID_CORPSE:                               // remove insignia ONLY in BG
         {
-            Corpse *bones = ObjectAccessor::GetCorpse(*GetPlayer(), guid);
+            Corpse* bones = ObjectAccessor::GetCorpse(*GetPlayer(), guid);
 
             if (bones && bones->IsWithinDistInMap(_player,INTERACTION_DISTANCE))
                 pLoot = &bones->loot;
@@ -360,7 +360,7 @@ void WorldSession::DoLootRelease(uint64 lguid)
     }
     else if (IS_CORPSE_GUID(lguid))        // ONLY remove insignia at BG
     {
-        Corpse *corpse = ObjectAccessor::GetCorpse(*player, lguid);
+        Corpse* corpse = ObjectAccessor::GetCorpse(*player, lguid);
         if (!corpse || !corpse->IsWithinDistInMap(_player,INTERACTION_DISTANCE))
             return;
 

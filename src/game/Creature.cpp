@@ -1641,7 +1641,7 @@ bool Creature::IsVisibleInGridForPlayer(Player const* pl) const
     }
 
     // Dead player see creatures near own corpse
-    Corpse *corpse = pl->GetCorpse();
+    Corpse* corpse = pl->GetCorpse();
     if (corpse)
     {
         // 20 - aggro distance for same level, 25 - max additional distance if player level less that creature level

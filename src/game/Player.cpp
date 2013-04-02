@@ -3994,7 +3994,7 @@ void Player::BuildPlayerRepop()
 
     // create a corpse and place it at the player's location
     CreateCorpse();
-    Corpse *corpse = GetCorpse();
+    Corpse* corpse = GetCorpse();
     if (!corpse)
     {
         sLog.outError("Error creating corpse for Player %s [%u]", GetName(), GetGUIDLow());
@@ -4135,7 +4135,7 @@ void Player::CreateCorpse()
 
     uint32 _uf, _pb, _pb2, _cfb1, _cfb2;
 
-    Corpse *corpse = new Corpse((m_ExtraFlags & PLAYER_EXTRA_PVP_DEATH) ? CORPSE_RESURRECTABLE_PVP : CORPSE_RESURRECTABLE_PVE);
+    Corpse* corpse = new Corpse((m_ExtraFlags & PLAYER_EXTRA_PVP_DEATH) ? CORPSE_RESURRECTABLE_PVP : CORPSE_RESURRECTABLE_PVE);
     SetPvPDeath(false);
 
     if (!corpse->Create(objmgr.GenerateLowGuid(HIGHGUID_CORPSE), this, GetMapId(), GetPositionX(),
@@ -7599,13 +7599,13 @@ void Player::RemovedInsignia(Player* looterPlr)
         RepopAtGraveyard();
     }
 
-    Corpse *corpse = GetCorpse();
+    Corpse* corpse = GetCorpse();
     if (!corpse)
         return;
 
     // We have to convert player corpse to bones, not to be able to resurrect there
     // SpawnCorpseBones isn't handy, 'cos it saves player while he in BG
-    Corpse *bones = ObjectAccessor::Instance().ConvertCorpseForPlayer(GetGUID(),true);
+    Corpse* bones = ObjectAccessor::Instance().ConvertCorpseForPlayer(GetGUID(),true);
     if (!bones)
         return;
 
@@ -7761,7 +7761,7 @@ void Player::SendLoot(uint64 guid, LootType loot_type)
     }
     else if (IS_CORPSE_GUID(guid))                          // remove insignia
     {
-        Corpse *bones = ObjectAccessor::GetCorpse(*this, guid);
+        Corpse* bones = ObjectAccessor::GetCorpse(*this, guid);
 
         if (!bones || !(loot_type == LOOT_CORPSE || loot_type == LOOT_INSIGNIA) || bones->GetType() != CORPSE_BONES)
         {
@@ -15342,7 +15342,7 @@ void Player::LoadCorpse()
         ObjectAccessor::Instance().ConvertCorpseForPlayer(GetGUID());
     else
     {
-        if (Corpse *corpse = GetCorpse())
+        if (Corpse* corpse = GetCorpse())
             ApplyModFlag(PLAYER_FIELD_BYTES, PLAYER_FIELD_BYTE_RELEASE_TIMER, corpse && !sMapStore.LookupEntry(corpse->GetMapId())->Instanceable());
         else
             //Prevent Dead Player login without corpse
@@ -18991,7 +18991,7 @@ bool Player::IsVisibleInGridForPlayer(Player const * pl) const
     // Dead player see live players near own corpse
     if (isAlive())
     {
-        Corpse *corpse = pl->GetCorpse();
+        Corpse* corpse = pl->GetCorpse();
         if (corpse)
         {
             // 20 - aggro distance for same level, 25 - max additional distance if player level less that creature level

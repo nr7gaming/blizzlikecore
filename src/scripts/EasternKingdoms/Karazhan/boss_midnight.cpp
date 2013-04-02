@@ -147,7 +147,7 @@ struct boss_midnightAI : public ScriptedAI
         Mount_Timer = 1000;
     }
 
-    void SetMidnight(Creature* , uint64);                   //Below ..
+    void SetMidnight(Creature*, uint64);                   //Below ..
 };
 
 CreatureAI* GetAI_boss_midnight(Creature* pCreature)

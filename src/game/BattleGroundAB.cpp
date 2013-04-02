@@ -402,7 +402,7 @@ void BattleGroundAB::_NodeDeOccupied(uint8 node)
     // buff object isn't despawned
 }
 
-/* Invoked if a player used a banner as a GameObject* /
+/* Invoked if a player used a banner as a gameobject */
 void BattleGroundAB::EventPlayerClickedOnFlag(Player* source, GameObject* /*target_obj*/)
 {
     if (GetStatus() != STATUS_IN_PROGRESS)

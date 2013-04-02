@@ -4280,7 +4280,7 @@ void Unit::RemoveAllDynObjects()
     }
 }
 
-DynamicObject * Unit::GetDynObject(uint32 spellId, uint32 effIndex)
+DynamicObject* Unit::GetDynObject(uint32 spellId, uint32 effIndex)
 {
     for (DynObjectGUIDs::iterator i = m_dynObjGUIDs.begin(); i != m_dynObjGUIDs.end();)
     {
@@ -4298,7 +4298,7 @@ DynamicObject * Unit::GetDynObject(uint32 spellId, uint32 effIndex)
     return NULL;
 }
 
-DynamicObject * Unit::GetDynObject(uint32 spellId)
+DynamicObject* Unit::GetDynObject(uint32 spellId)
 {
     for (DynObjectGUIDs::iterator i = m_dynObjGUIDs.begin(); i != m_dynObjGUIDs.end();)
     {

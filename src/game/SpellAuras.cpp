@@ -765,7 +765,7 @@ void PersistentAreaAura::Update(uint32 diff)
     Unit* caster = GetCaster();
     if (caster)
     {
-        DynamicObject *dynObj = caster->GetDynObject(GetId(), GetEffIndex());
+        DynamicObject* dynObj = caster->GetDynObject(GetId(), GetEffIndex());
         if (dynObj)
         {
             if (!m_target->IsWithinDistInMap(dynObj, dynObj->GetRadius()))
@@ -985,7 +985,7 @@ void Aura::_RemoveAura()
 
     if (caster && IsPersistent())
     {
-        DynamicObject *dynObj = caster->GetDynObject(GetId(), GetEffIndex());
+        DynamicObject* dynObj = caster->GetDynObject(GetId(), GetEffIndex());
         if (dynObj)
             dynObj->RemoveAffected(m_target);
     }

@@ -258,7 +258,7 @@ void WorldSession::HandleCorpseQueryOpcode(WorldPacket & /*recv_data*/)
 {
     sLog.outDetail("WORLD: Received MSG_CORPSE_QUERY");
 
-    Corpse *corpse = GetPlayer()->GetCorpse();
+    Corpse* corpse = GetPlayer()->GetCorpse();
 
     if (!corpse)
     {

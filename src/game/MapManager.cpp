@@ -197,7 +197,7 @@ bool MapManager::CanPlayerEnter(uint32 mapid, Player* player)
 
         if (!player->isAlive())
         {
-            if (Corpse *corpse = player->GetCorpse())
+            if (Corpse* corpse = player->GetCorpse())
             {
                 // let enter in ghost mode in instance that connected to inner instance with corpse
                 uint32 instance_map = corpse->GetMapId();

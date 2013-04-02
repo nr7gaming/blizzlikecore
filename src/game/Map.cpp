@@ -274,8 +274,8 @@ void Map::SwitchGridContainers(T* obj, bool on)
     obj->m_isWorldObject = on;
 }
 
-template void Map::SwitchGridContainers(Creature* , bool);
-//template void Map::SwitchGridContainers(DynamicObject *, bool);
+template void Map::SwitchGridContainers(Creature*, bool);
+//template void Map::SwitchGridContainers(DynamicObject*, bool);
 
 template<class T>
 void Map::DeleteFromWorld(T* obj)
@@ -2238,15 +2238,15 @@ void Map::RemoveFromActive(Creature* c)
     }
 }
 
-template void Map::Add(Corpse *);
-template void Map::Add(Creature* );
-template void Map::Add(GameObject* );
-template void Map::Add(DynamicObject *);
+template void Map::Add(Corpse*);
+template void Map::Add(Creature*);
+template void Map::Add(GameObject*);
+template void Map::Add(DynamicObject*);
 
-template void Map::Remove(Corpse *,bool);
-template void Map::Remove(Creature* ,bool);
-template void Map::Remove(GameObject* , bool);
-template void Map::Remove(DynamicObject *, bool);
+template void Map::Remove(Corpse*, bool);
+template void Map::Remove(Creature*, bool);
+template void Map::Remove(GameObject*, bool);
+template void Map::Remove(DynamicObject*, bool);
 
 /* ******* Dungeon Instance Maps ******* */
 

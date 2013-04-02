@@ -1629,7 +1629,7 @@ class Player : public Unit, public GridObject<Player>
         void SendMessageToSetInRange(WorldPacket* data, float fist, bool self);// overwrite Object::SendMessageToSetInRange
         void SendMessageToSetInRange(WorldPacket* data, float dist, bool self, bool own_team_only);
 
-        Corpse *GetCorpse() const;
+        Corpse* GetCorpse() const;
         void SpawnCorpseBones();
         void CreateCorpse();
         void KillPlayer();

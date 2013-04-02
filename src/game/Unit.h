@@ -1408,8 +1408,8 @@ class Unit : public WorldObject
         void RemoveGameObject(GameObject* gameObj, bool del);
         void RemoveGameObject(uint32 spellid, bool del);
         void RemoveAllGameObjects();
-        DynamicObject *GetDynObject(uint32 spellId, uint32 effIndex);
-        DynamicObject *GetDynObject(uint32 spellId);
+        DynamicObject* GetDynObject(uint32 spellId, uint32 effIndex);
+        DynamicObject* GetDynObject(uint32 spellId);
         uint32 CalculateDamage(WeaponAttackType attType, bool normalized);
         float GetAPMultiplier(WeaponAttackType attType, bool normalized);
         void ModifyAuraState(AuraState flag, bool apply);

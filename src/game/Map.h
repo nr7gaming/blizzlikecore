@@ -264,24 +264,24 @@ class Map : public GridRefManager<NGridType>, public BlizzLike::ObjectLevelLocka
         }
 
         virtual bool Add(Player* );
-        virtual void Remove(Player* , bool);
+        virtual void Remove(Player*, bool);
         template<class T> void Add(T *);
         template<class T> void Remove(T *, bool);
 
         virtual void Update(const uint32&);
 
         /*
-        void MessageBroadcast(Player* , WorldPacket* , bool to_self);
-        void MessageBroadcast(WorldObject *, WorldPacket* );
-        void MessageDistBroadcast(Player* , WorldPacket* , float dist, bool to_self, bool own_team_only = false);
-        void MessageDistBroadcast(WorldObject *, WorldPacket* , float dist);
+        void MessageBroadcast(Player*, WorldPacket*, bool to_self);
+        void MessageBroadcast(WorldObject*, WorldPacket* );
+        void MessageDistBroadcast(Player*, WorldPacket*, float dist, bool to_self, bool own_team_only = false);
+        void MessageDistBroadcast(WorldObject*, WorldPacket*, float dist);
         */
 
         float GetVisibilityDistance() const { return m_VisibleDistance; }
         //function for setting up visibility distance for maps on per-type/per-Id basis
         virtual void InitVisibilityDistance();
 
-        void PlayerRelocation(Player* , float x, float y, float z, float orientation);
+        void PlayerRelocation(Player*, float x, float y, float z, float orientation);
         void CreatureRelocation(Creature* creature, float x, float y, float z, float ang);
 
         template<class T, class CONTAINER> void Visit(const Cell& cell, TypeContainerVisitor<T, CONTAINER> &visitor);
@@ -566,7 +566,7 @@ class InstanceMap : public Map
         InstanceMap(uint32 id, time_t, uint32 InstanceId, uint8 SpawnMode, Map* _parent);
         ~InstanceMap();
         bool Add(Player* );
-        void Remove(Player* , bool);
+        void Remove(Player*, bool);
         void Update(const uint32&);
         void CreateInstanceData(bool load);
         bool Reset(uint8 method);
@@ -594,7 +594,7 @@ class BattleGroundMap : public Map
         ~BattleGroundMap();
 
         bool Add(Player* );
-        void Remove(Player* , bool);
+        void Remove(Player*, bool);
         bool CanEnter(Player* player);
         void SetUnload();
         void RemoveAllPlayers();

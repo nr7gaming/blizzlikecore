@@ -78,7 +78,7 @@ class SqlResultQueue;                                       // queue for thread 
 class SqlQueryHolder;                                       // groups several async quries
 class SqlQueryHolderEx;                                     // points to a holder, added to the delay thread
 
-class SqlResultQueue : public ACE_Based::LockedQueue<BlizzLike::IQueryCallback* , ACE_Thread_Mutex>
+class SqlResultQueue : public ACE_Based::LockedQueue<BlizzLike::IQueryCallback*, ACE_Thread_Mutex>
 {
     public:
         SqlResultQueue() {}

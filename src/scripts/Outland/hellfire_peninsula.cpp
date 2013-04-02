@@ -215,7 +215,7 @@ CreatureAI* GetAI_npc_ancestral_wolf(Creature* pCreature)
 ## go_haaleshi_altar
 ######*/
 
-bool GOHello_go_haaleshi_altar(Player* , GameObject* _GO)
+bool GOHello_go_haaleshi_altar(Player*, GameObject* _GO)
 {
     _GO->SummonCreature(C_AERANAS,-1321.79f, 4043.80f, 116.24f, 1.25f, TEMPSUMMON_TIMED_DESPAWN, 180000);
     return false;
