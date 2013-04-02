@@ -146,8 +146,8 @@ class SpellCastTargets
         void setDst(Position *pos);
 
         uint64 getGOTargetGUID() const { return m_GOTargetGUID.GetRawValue(); }
-        GameObject *getGOTarget() const { return m_GOTarget; }
-        void setGOTarget(GameObject *target);
+        GameObject* getGOTarget() const { return m_GOTarget; }
+        void setGOTarget(GameObject* target);
 
         uint64 getCorpseTargetGUID() const { return m_CorpseTargetGUID.GetRawValue(); }
         void setCorpseTarget(Corpse* corpse);
@@ -178,7 +178,7 @@ class SpellCastTargets
     private:
         // objects (can be used at spell creating and after Update at casting
         Unit* m_unitTarget;
-        GameObject *m_GOTarget;
+        GameObject* m_GOTarget;
         Item *m_itemTarget;
 
         // object GUID/etc, can be used always
@@ -406,7 +406,7 @@ class Spell
         void SendChannelStart(uint32 duration);
         void SendResurrectRequest(Player* target);
 
-        void HandleEffects(Unit* pUnitTarget,Item *pItemTarget,GameObject *pGOTarget,uint32 i, float DamageMultiplier = 1.0);
+        void HandleEffects(Unit* pUnitTarget,Item *pItemTarget,GameObject* pGOTarget,uint32 i, float DamageMultiplier = 1.0);
         void HandleThreatSpells(uint32 spellId);
         //void HandleAddAura(Unit* Target);
 

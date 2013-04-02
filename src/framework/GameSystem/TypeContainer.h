@@ -66,7 +66,7 @@ class TypeMapContainer
         template<class SPECIFIC_TYPE> size_t Count() const { return BlizzLike::Count(i_elements, (SPECIFIC_TYPE*)NULL); }
 
         // inserts a specific object into the container
-        template<class SPECIFIC_TYPE> bool insert(SPECIFIC_TYPE *obj)
+        template<class SPECIFIC_TYPE> bool insert(SPECIFIC_TYPE* obj)
         {
             SPECIFIC_TYPE* t = BlizzLike::Insert(i_elements, obj);
             return (t != NULL);

@@ -65,7 +65,7 @@ struct Script
     bool (*pQuestSelect         )(Player*, Creature*, Quest const*);
     bool (*pQuestComplete       )(Player*, Creature*, Quest const*);
     uint32 (*pNPCDialogStatus   )(Player*, Creature*);
-    uint32 (*pGODialogStatus    )(Player*, GameObject * _GO);
+    uint32 (*pGODialogStatus    )(Player*, GameObject* _GO);
     bool (*pChooseReward        )(Player*, Creature*, Quest const*, uint32);
     bool (*pItemHello           )(Player*, Item*, Quest const*);
     bool (*pGOHello             )(Player*, GameObject*);

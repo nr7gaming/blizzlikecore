@@ -270,7 +270,7 @@ class OPvPCapturePointNA : public OPvPCapturePoint
         bool HandlePlayerEnter(Player* plr);
         void HandlePlayerLeave(Player* plr);
 
-        bool HandleCustomSpell(Player* plr, uint32 spellId, GameObject * go);
+        bool HandleCustomSpell(Player* plr, uint32 spellId, GameObject* go);
 
         int32 HandleOpenGo(Player* plr, uint64 guid);
 

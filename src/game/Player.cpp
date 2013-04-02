@@ -2109,7 +2109,7 @@ Creature* Player::GetNPCIfCanInteractWith(uint64 guid, uint32 npcflagmask)
 
 GameObject* Player::GetGameObjectIfCanInteractWith(uint64 guid, GameobjectTypes type) const
 {
-    if (GameObject *go = GetMap()->GetGameObject(guid))
+    if (GameObject* go = GetMap()->GetGameObject(guid))
     {
         if (go->GetGoType() == type)
         {
@@ -7649,7 +7649,7 @@ void Player::SendLoot(uint64 guid, LootType loot_type)
     if (IS_GAMEOBJECT_GUID(guid))
     {
         DEBUG_LOG("       IS_GAMEOBJECT_GUID(guid)");
-        GameObject *go = GetMap()->GetGameObject(guid);
+        GameObject* go = GetMap()->GetGameObject(guid);
 
         // not check distance for GO in case owned GO (fishing bobber case, for example)
         // And permit out of range GO with no owner in case fishing hole
@@ -12548,7 +12548,7 @@ void Player::PrepareGossipMenu(WorldObject *pSource, uint32 menuId)
         }
         else if (pSource->GetTypeId() == TYPEID_GAMEOBJECT)
         {
-            GameObject *pGo = (GameObject*)pSource;
+            GameObject* pGo = (GameObject*)pSource;
 
             switch(itr->second.option_id)
             {
@@ -12842,7 +12842,7 @@ void Player::PrepareQuestMenu(uint64 guid)
         //only for quests which cast teleport spells on player
         Map * _map = IsInWorld() ? GetMap() : MapManager::Instance().FindMap(GetMapId(), GetInstanceId());
         ASSERT(_map);
-        GameObject *pGameObject = _map->GetGameObject(guid);
+        GameObject* pGameObject = _map->GetGameObject(guid);
         if (pGameObject)
         {
             pObject = (Object*)pGameObject;
@@ -12995,7 +12995,7 @@ Quest const * Player::GetNextQuest(uint64 guid, Quest const *pQuest)
         //only for quests which cast teleport spells on player
         Map * _map = IsInWorld() ? GetMap() : MapManager::Instance().FindMap(GetMapId(), GetInstanceId());
         ASSERT(_map);
-        GameObject *pGameObject = _map->GetGameObject(guid);
+        GameObject* pGameObject = _map->GetGameObject(guid);
         if (pGameObject)
         {
             pObject = (Object*)pGameObject;
@@ -19783,7 +19783,7 @@ void Player::UpdateForQuestsGO()
     {
         if (IS_GAMEOBJECT_GUID(*itr))
         {
-            if (GameObject *obj = HashMapHolder<GameObject>::Find(*itr))
+            if (GameObject* obj = HashMapHolder<GameObject>::Find(*itr))
                 obj->BuildValuesUpdateBlockForPlayer(&udata,this);
         }
     }

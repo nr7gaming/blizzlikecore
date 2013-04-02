@@ -426,7 +426,7 @@ void OPvPCapturePointEP::SummonShrine(uint32 team)
         EP_TOWER_EVENT_TEAM[EP_TOWER_NORTHPASS] = team;
         DelObject(EP_NPT_SHRINE);
         AddObject(EP_NPT_SHRINE,EP_NPT_LordaeronShrine.entry,0,EP_NPT_LordaeronShrine.map,EP_NPT_LordaeronShrine.x,EP_NPT_LordaeronShrine.y,EP_NPT_LordaeronShrine.z,EP_NPT_LordaeronShrine.o,EP_NPT_LordaeronShrine.rot0,EP_NPT_LordaeronShrine.rot1,EP_NPT_LordaeronShrine.rot2,EP_NPT_LordaeronShrine.rot3);
-        GameObject * go = HashMapHolder<GameObject>::Find(m_Objects[EP_NPT_SHRINE]);
+        GameObject* go = HashMapHolder<GameObject>::Find(m_Objects[EP_NPT_SHRINE]);
         if (go)
             go->SetUInt32Value(GAMEOBJECT_FACTION,(team == ALLIANCE ? 84 : 83));
 

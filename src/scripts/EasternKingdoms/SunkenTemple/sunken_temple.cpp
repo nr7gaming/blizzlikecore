@@ -33,7 +33,7 @@ EndContentData */
 # at_malfurion_Stormrage_trigger
 #####*/
 
-bool AreaTrigger_at_malfurion_stormrage(Player* pPlayer, const AreaTriggerEntry * /*at*/)
+bool AreaTrigger_at_malfurion_stormrage(Player* pPlayer, const AreaTriggerEntry* /*at*/)
 {
     if (ScriptedInstance* pInstance = pPlayer->GetInstanceData())
     {

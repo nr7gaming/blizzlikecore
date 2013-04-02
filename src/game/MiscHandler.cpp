@@ -91,7 +91,7 @@ void WorldSession::HandleGossipSelectOptionOpcode(WorldPacket& recv_data)
     }
 
     Creature* unit = NULL;
-    GameObject *go = NULL;
+    GameObject* go = NULL;
     if (IS_CREATURE_GUID(guid))
     {
         unit = GetPlayer()->GetNPCIfCanInteractWith(guid, UNIT_NPC_FLAG_NONE);

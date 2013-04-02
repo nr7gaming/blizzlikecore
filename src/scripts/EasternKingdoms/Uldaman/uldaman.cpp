@@ -215,7 +215,7 @@ bool GOHello_go_keystone_chamber(Player* , GameObject* go)
 ## at_map_chamber
 ######*/
 
-bool AT_map_chamber(Player* pPlayer, const AreaTriggerEntry *)
+bool AT_map_chamber(Player* pPlayer, const AreaTriggerEntry*)
 {
     if (pPlayer && pPlayer->GetQuestStatus(QUEST_HIDDEN_CHAMBER) == QUEST_STATUS_INCOMPLETE)
         pPlayer->AreaExploredOrEventHappens(QUEST_HIDDEN_CHAMBER);

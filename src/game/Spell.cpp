@@ -122,7 +122,7 @@ void SpellCastTargets::setDst(Position *pos)
     }
 }
 
-void SpellCastTargets::setGOTarget(GameObject *target)
+void SpellCastTargets::setGOTarget(GameObject* target)
 {
     m_GOTarget = target;
     m_GOTargetGUID = target->GetGUID();
@@ -1414,7 +1414,7 @@ WorldObject* Spell::SearchNearbyTarget(float range, SpellTargets TargetType)
                     case SPELL_TARGET_TYPE_GAMEOBJECT:
                         if (i_spellST->second.targetEntry)
                         {
-                            if (GameObject *go = m_caster->FindNearestGameObject(i_spellST->second.targetEntry, range))
+                            if (GameObject* go = m_caster->FindNearestGameObject(i_spellST->second.targetEntry, range))
                             {
                                 // remember found target and range, next attempt will find more near target with another entry
                                 goScriptTarget = go;
@@ -3064,7 +3064,7 @@ void Spell::SendLogExecute()
                         data << unit->GetPackGUID();
                     else if (m_targets.getItemTargetGUID())
                         data.appendPackGUID(m_targets.getItemTargetGUID());
-                    else if (GameObject *go = m_targets.getGOTarget())
+                    else if (GameObject* go = m_targets.getGOTarget())
                         data << go->GetPackGUID();
                     else
                         data << uint8(0);                   // guid
@@ -3371,7 +3371,7 @@ void Spell::HandleThreatSpells(uint32 spellId)
     DEBUG_LOG("Spell %u, rank %u, added an additional %i threat", spellId, spellmgr.GetSpellRank(spellId), threatSpell->threat);
 }
 
-void Spell::HandleEffects(Unit* pUnitTarget,Item *pItemTarget,GameObject *pGOTarget,uint32 i, float /*DamageMultiplier*/)
+void Spell::HandleEffects(Unit* pUnitTarget,Item *pItemTarget,GameObject* pGOTarget,uint32 i, float /*DamageMultiplier*/)
 {
     unitTarget = pUnitTarget;
     itemTarget = pItemTarget;

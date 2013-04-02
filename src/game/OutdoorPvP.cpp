@@ -179,7 +179,7 @@ bool OPvPCapturePoint::DelObject(uint32 type)
     if (!m_Objects[type])
         return false;
 
-    GameObject *obj = HashMapHolder<GameObject>::Find(m_Objects[type]);
+    GameObject* obj = HashMapHolder<GameObject>::Find(m_Objects[type]);
     if (!obj)
     {
         m_Objects[type] = 0;
@@ -467,7 +467,7 @@ bool OPvPCapturePoint::IsInsideObjective(Player* plr) const
     return m_activePlayers[plr->GetTeamId()].find(plr) != m_activePlayers[plr->GetTeamId()].end();
 }
 
-bool OutdoorPvP::HandleCustomSpell(Player* plr, uint32 spellId, GameObject * go)
+bool OutdoorPvP::HandleCustomSpell(Player* plr, uint32 spellId, GameObject* go)
 {
     for (OPvPCapturePointMap::iterator itr = m_capturePoints.begin(); itr != m_capturePoints.end(); ++itr)
         if (itr->second->HandleCustomSpell(plr,spellId,go))
@@ -476,7 +476,7 @@ bool OutdoorPvP::HandleCustomSpell(Player* plr, uint32 spellId, GameObject * go)
     return false;
 }
 
-bool OPvPCapturePoint::HandleCustomSpell(Player* plr, uint32 /*spellId*/, GameObject * /*go*/)
+bool OPvPCapturePoint::HandleCustomSpell(Player* plr, uint32 /*spellId*/, GameObject* /*go*/)
 {
     if (!plr->IsOutdoorPvPActive())
         return false;
@@ -575,7 +575,7 @@ void OutdoorPvP::TeamApplyBuff(TeamId team, uint32 spellId, uint32 spellId2)
     TeamCastSpell(OTHER_TEAM(team), spellId2 ? -(int32)spellId2 : -(int32)spellId);
 }
 
-void OutdoorPvP::OnGameObjectCreate(GameObject *go, bool add)
+void OutdoorPvP::OnGameObjectCreate(GameObject* go, bool add)
 {
     if (go->GetGoType() != GAMEOBJECT_TYPE_CAPTURE_POINT)
         return;

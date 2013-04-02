@@ -1188,7 +1188,7 @@ void Unit::CastSpell(float x, float y, float z, uint32 spellId, bool triggered, 
 }
 
 // used for scripting
-void Unit::CastSpell(GameObject *go, uint32 spellId, bool triggered, Item *castItem, Aura* triggeredByAura, uint64 originalCaster)
+void Unit::CastSpell(GameObject* go, uint32 spellId, bool triggered, Item *castItem, Aura* triggeredByAura, uint64 originalCaster)
 {
     if (!go)
         return;

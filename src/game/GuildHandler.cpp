@@ -860,7 +860,7 @@ void WorldSession::HandleGuildBankGetRights(WorldPacket& /* recv_data */)
     sLog.outDebug("WORLD: Sent (MSG_GUILD_PERMISSIONS)");
 }
 
-/* Called when clicking on Guild bank gameobject */
+/* Called when clicking on Guild bank GameObject* /
 void WorldSession::HandleGuildBankQuery(WorldPacket& recv_data)
 {
     sLog.outDebug("WORLD: Received (CMSG_GUILD_BANKER_ACTIVATE)");

@@ -1876,7 +1876,7 @@ GameObject* WorldObject::SummonGameObject(uint32 entry, float x, float y, float 
         return NULL;
     }
     Map *map = GetMap();
-    GameObject *go = new GameObject();
+    GameObject* go = new GameObject();
     if (!go->Create(objmgr.GenerateLowGuid(HIGHGUID_GAMEOBJECT),entry,map,x,y,z,ang,rotation0,rotation1,rotation2,rotation3,100,GO_STATE_READY))
     {
         delete go;
@@ -1922,7 +1922,7 @@ Creature* WorldObject::FindNearestCreature(uint32 entry, float range, bool alive
 
 GameObject* WorldObject::FindNearestGameObject(uint32 entry, float range)
 {
-    GameObject *go = NULL;
+    GameObject* go = NULL;
     BlizzLike::NearestGameObjectEntryInObjectRangeCheck checker(*this, entry, range);
     BlizzLike::GameObjectLastSearcher<BlizzLike::NearestGameObjectEntryInObjectRangeCheck> searcher(go, checker);
     VisitNearbyGridObject(range, searcher);

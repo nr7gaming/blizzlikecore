@@ -51,7 +51,7 @@ enum
 # at_twilight_grove
 ######*/
 
-bool AreaTrigger_at_twilight_grove(Player* pPlayer, const AreaTriggerEntry * /*at*/)
+bool AreaTrigger_at_twilight_grove(Player* pPlayer, const AreaTriggerEntry* /*at*/)
 {
     if (pPlayer->HasQuestForItem(21149))
     {

@@ -267,7 +267,7 @@ void WorldSession::HandleGameObjectUseOpcode(WorldPacket& recv_data)
 
     DEBUG_LOG("WORLD: Recvd CMSG_GAMEOBJ_USE Message [guid=%u]", GUID_LOPART(guid));
 
-    GameObject *obj = GetPlayer()->GetMap()->GetGameObject(guid);
+    GameObject* obj = GetPlayer()->GetMap()->GetGameObject(guid);
     if (!obj)
         return;
 

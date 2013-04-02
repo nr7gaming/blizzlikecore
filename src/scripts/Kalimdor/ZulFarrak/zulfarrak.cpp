@@ -238,7 +238,7 @@ enum {
     ZUMRAH_HOSTILE_FACTION = 37
 };
 
-bool AreaTrigger_at_zumrah(Player* pPlayer, const AreaTriggerEntry * /*at*/)
+bool AreaTrigger_at_zumrah(Player* pPlayer, const AreaTriggerEntry* /*at*/)
 {
     Creature* Zumrah = pPlayer->FindNearestCreature(ZUMRAH_ID, 30.0f);
 

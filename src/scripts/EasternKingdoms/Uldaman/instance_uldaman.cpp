@@ -157,7 +157,7 @@ struct instance_uldaman : public ScriptedInstance
 
     void BlockGO(uint64 guid)
     {
-        GameObject *go = instance->GetGameObject(guid);
+        GameObject* go = instance->GetGameObject(guid);
         if (!go)
             return;
         go->SetUInt32Value(GAMEOBJECT_FLAGS, GO_FLAG_INTERACT_COND);

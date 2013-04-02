@@ -160,7 +160,7 @@ index 84156bd..c34e604 100644
                  }
              }
 +
-+            GameObject *obj = HashMapHolder<GameObject>::Find(movementInfo.t_guid);
++            GameObject* obj = HashMapHolder<GameObject>::Find(movementInfo.t_guid);
 +            if (obj)
 +                plMover->m_anti_transportGUID = obj->GetDBTableGUIDLow();
 +            else

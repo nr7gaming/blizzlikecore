@@ -156,7 +156,7 @@ struct instance_zulaman : public ScriptedInstance
 
     void OpenDoor(uint64 DoorGUID, bool open)
     {
-        if (GameObject *Door = instance->GetGameObject(DoorGUID))
+        if (GameObject* Door = instance->GetGameObject(DoorGUID))
             Door->SetGoState(open ? GO_STATE_ACTIVE : GO_STATE_READY);
     }
 
