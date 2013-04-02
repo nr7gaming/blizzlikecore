@@ -73,7 +73,7 @@ enum eManaforge
 
 struct npc_manaforge_control_consoleAI : public ScriptedAI
 {
-    npc_manaforge_control_consoleAI(Creature *c) : ScriptedAI(c) {}
+    npc_manaforge_control_consoleAI(Creature* c) : ScriptedAI(c) {}
 
     uint32 Event_Timer;
     uint32 Wave_Timer;
@@ -142,7 +142,7 @@ struct npc_manaforge_control_consoleAI : public ScriptedAI
         }
     }
 
-    void DoWaveSpawnForCreature(Creature *creature)
+    void DoWaveSpawnForCreature(Creature* creature)
     {
         switch(creature->GetEntry())
         {
@@ -196,7 +196,7 @@ struct npc_manaforge_control_consoleAI : public ScriptedAI
                 break;
         }
     }
-    void DoFinalSpawnForCreature(Creature *creature)
+    void DoFinalSpawnForCreature(Creature* creature)
     {
         switch(creature->GetEntry())
         {
@@ -300,7 +300,7 @@ CreatureAI* GetAI_npc_manaforge_control_console(Creature* pCreature)
 ######*/
 
 //TODO: clean up this workaround when blizzlike adds support to do it properly (with gossip selections instead of instant summon)
-bool GOHello_go_manaforge_control_console(Player *player, GameObject* _GO)
+bool GOHello_go_manaforge_control_console(Player* player, GameObject* _GO)
 {
     if (_GO->GetGoType() == GAMEOBJECT_TYPE_QUESTGIVER)
     {
@@ -377,7 +377,7 @@ int CreatureEntry[3][1] =
 
 struct npc_commander_dawnforgeAI : public ScriptedAI
 {
-    npc_commander_dawnforgeAI(Creature *c) : ScriptedAI(c) { Reset (); }
+    npc_commander_dawnforgeAI(Creature* c) : ScriptedAI(c) { Reset (); }
 
 
     uint64 playerGUID;
@@ -425,7 +425,7 @@ struct npc_commander_dawnforgeAI : public ScriptedAI
         return pCreature;
     }
 
-    void JustSummoned(Creature *summoned)
+    void JustSummoned(Creature* summoned)
     {
         pathaleonGUID = summoned->GetGUID();
     }
@@ -433,9 +433,9 @@ struct npc_commander_dawnforgeAI : public ScriptedAI
     // Emote Ardonis and Pathaleon
     void Turn_to_Pathaleons_Image()
     {
-        Creature *ardonis = Unit::GetCreature(*me,ardonisGUID);
-        Creature *pathaleon = Unit::GetCreature(*me,pathaleonGUID);
-        Player *player = Unit::GetPlayer(*me, playerGUID);
+        Creature* ardonis = Unit::GetCreature(*me,ardonisGUID);
+        Creature* pathaleon = Unit::GetCreature(*me,pathaleonGUID);
+        Player* player = Unit::GetPlayer(*me, playerGUID);
 
         if (!ardonis || !pathaleon || !player)
             return;
@@ -461,7 +461,7 @@ struct npc_commander_dawnforgeAI : public ScriptedAI
     {
         if (Unit* ardonis = Unit::GetUnit(*me,ardonisGUID))
         {
-            Player *player = Unit::GetPlayer(*me, playerGUID);
+            Player* player = Unit::GetPlayer(*me, playerGUID);
 
             if (!player)
                 return;
@@ -482,11 +482,11 @@ struct npc_commander_dawnforgeAI : public ScriptedAI
         }
     }
 
-    bool CanStartEvent(Player *player)
+    bool CanStartEvent(Player* player)
     {
         if (!isEvent)
         {
-            Creature *ardonis = SelectCreatureInGrid(CreatureEntry[0][0], 10.0f);
+            Creature* ardonis = SelectCreatureInGrid(CreatureEntry[0][0], 10.0f);
             if (!ardonis)
                 return false;
 
@@ -518,7 +518,7 @@ struct npc_commander_dawnforgeAI : public ScriptedAI
 
         Unit* ardonis = Unit::GetUnit(*me,ardonisGUID);
         Unit* pathaleon = Unit::GetUnit(*me,pathaleonGUID);
-        Player *player = Unit::GetPlayer(*me, playerGUID);
+        Player* player = Unit::GetPlayer(*me, playerGUID);
 
         if (!ardonis || !player)
         {
@@ -640,7 +640,7 @@ CreatureAI* GetAI_npc_commander_dawnforge(Creature* pCreature)
     return new npc_commander_dawnforgeAI(pCreature);
 }
 
-Creature* SearchDawnforge(Player *source, uint32 entry, float range)
+Creature* SearchDawnforge(Player* source, uint32 entry, float range)
 {
     Creature* pCreature = NULL;
 
@@ -657,7 +657,7 @@ Creature* SearchDawnforge(Player *source, uint32 entry, float range)
     return pCreature;
 }
 
-bool AreaTrigger_at_commander_dawnforge(Player *player, const AreaTriggerEntry* /*at*/)
+bool AreaTrigger_at_commander_dawnforge(Player* player, const AreaTriggerEntry* /*at*/)
 {
     //if player lost aura or not have at all, we should not try start event.
     if (!player->HasAura(SPELL_SUNFURY_DISGUISE,0))
@@ -687,7 +687,7 @@ bool AreaTrigger_at_commander_dawnforge(Player *player, const AreaTriggerEntry* 
 #define QUEST_DIMENSIUS 10439
 #define QUEST_ON_NETHERY_WINGS 10438
 
-bool GossipHello_npc_professor_dabiri(Player *player, Creature* pCreature)
+bool GossipHello_npc_professor_dabiri(Player* player, Creature* pCreature)
 {
     if (pCreature->isQuestGiver())
         player->PrepareQuestMenu(pCreature->GetGUID());
@@ -700,7 +700,7 @@ bool GossipHello_npc_professor_dabiri(Player *player, Creature* pCreature)
     return true;
 }
 
-bool GossipSelect_npc_professor_dabiri(Player *player, Creature* pCreature, uint32 /*sender*/, uint32 action)
+bool GossipSelect_npc_professor_dabiri(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action)
 {
     if (action == GOSSIP_ACTION_INFO_DEF+1)
     {
@@ -711,7 +711,7 @@ bool GossipSelect_npc_professor_dabiri(Player *player, Creature* pCreature, uint
     return true;
 }
 
-bool QuestAccept_npc_professor_dabiri(Player *player, Creature *creature, Quest const *quest)
+bool QuestAccept_npc_professor_dabiri(Player* player, Creature* creature, Quest const *quest)
 {
     if (quest->GetQuestId() == QUEST_DIMENSIUS)
         DoScriptText(WHISPER_DABIRI, creature, player);
@@ -735,7 +735,7 @@ bool QuestAccept_npc_professor_dabiri(Player *player, Creature *creature, Quest 
 struct mob_phase_hunterAI : public ScriptedAI
 {
 
-    mob_phase_hunterAI(Creature *c) : ScriptedAI(c) {}
+    mob_phase_hunterAI(Creature* c) : ScriptedAI(c) {}
 
     bool Weak;
     bool Materialize;
@@ -761,7 +761,7 @@ struct mob_phase_hunterAI : public ScriptedAI
 
     void EnterCombat(Unit* who)
     {
-        if (Player *player = who->GetCharmerOrOwnerPlayerOrPlayerItself())
+        if (Player* player = who->GetCharmerOrOwnerPlayerOrPlayerItself())
             PlayerGUID = player->GetGUID();
     }
 
@@ -852,7 +852,7 @@ CreatureAI* GetAI_mob_phase_hunter(Creature* pCreature)
 struct npc_bessyAI : public npc_escortAI
 {
 
-    npc_bessyAI(Creature *c) : npc_escortAI(c) {}
+    npc_bessyAI(Creature* c) : npc_escortAI(c) {}
 
     void JustDied(Unit* /*killer*/)
     {
@@ -1029,7 +1029,7 @@ enum
 
 struct npc_zeppitAI : public ScriptedAI
 {
-    npc_zeppitAI(Creature *pCreature) : ScriptedAI(pCreature) {}
+    npc_zeppitAI(Creature* pCreature) : ScriptedAI(pCreature) {}
 
     uint32 uiCheckTimer;
     uint64 uiWarpGUID;
@@ -1077,7 +1077,7 @@ enum
 
 struct npc_dr_boomAI : public ScriptedAI
 {
-    npc_dr_boomAI(Creature *pCeature) : ScriptedAI(pCeature) {}
+    npc_dr_boomAI(Creature* pCeature) : ScriptedAI(pCeature) {}
 
     std::vector<uint64> targetGUID;
 
@@ -1144,7 +1144,7 @@ CreatureAI* GetAI_npc_dr_boom(Creature* pCreature)
 
 struct npc_boom_botAI : public ScriptedAI
 {
-    npc_boom_botAI(Creature *pCreature) : ScriptedAI(pCreature) {}
+    npc_boom_botAI(Creature* pCreature) : ScriptedAI(pCreature) {}
 
     bool Boom;
 

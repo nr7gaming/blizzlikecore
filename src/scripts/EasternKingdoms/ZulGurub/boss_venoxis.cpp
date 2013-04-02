@@ -46,7 +46,7 @@ enum Spells
 
 struct boss_venoxisAI : public ScriptedAI
 {
-    boss_venoxisAI(Creature *c) : ScriptedAI(c)
+    boss_venoxisAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
     }

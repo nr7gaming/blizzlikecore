@@ -76,7 +76,7 @@ enum PhaseHalazzi
 
 struct boss_halazziAI : public ScriptedAI
 {
-    boss_halazziAI(Creature *c) : ScriptedAI(c)
+    boss_halazziAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
         // need to find out what controls totem's spell cooldown
@@ -162,7 +162,7 @@ struct boss_halazziAI : public ScriptedAI
                 me->Attack(me->getVictim(), true);
                 me->GetMotionMaster()->MoveChase(me->getVictim());
             }
-            if (Creature *Lynx = Unit::GetCreature(*me, LynxGUID))
+            if (Creature* Lynx = Unit::GetCreature(*me, LynxGUID))
                 Lynx->DisappearAndDie();
             me->SetMaxHealth(600000);
             me->SetHealth(600000 - 150000 * TransformCount);
@@ -346,7 +346,7 @@ struct boss_halazziAI : public ScriptedAI
 
 struct boss_spiritlynxAI : public ScriptedAI
 {
-    boss_spiritlynxAI(Creature *c) : ScriptedAI(c) {}
+    boss_spiritlynxAI(Creature* c) : ScriptedAI(c) {}
 
     uint32 FrenzyTimer;
     uint32 shredder_timer;

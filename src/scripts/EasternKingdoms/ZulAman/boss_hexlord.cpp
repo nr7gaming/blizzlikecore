@@ -201,7 +201,7 @@ struct boss_hexlord_addAI : public ScriptedAI
 
 struct boss_hex_lord_malacrassAI : public ScriptedAI
 {
-    boss_hex_lord_malacrassAI(Creature *c) : ScriptedAI(c)
+    boss_hex_lord_malacrassAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
         SelectAddEntry();
@@ -316,7 +316,7 @@ struct boss_hex_lord_malacrassAI : public ScriptedAI
     {
         for (uint8 i = 0; i < 4; ++i)
         {
-            Creature *pCreature = (Unit::GetCreature((*me), AddGUID[i]));
+            Creature* pCreature = (Unit::GetCreature((*me), AddGUID[i]));
             if (!pCreature || !pCreature->isAlive())
             {
                 if (pCreature) pCreature->setDeathState(DEAD);
@@ -350,7 +350,7 @@ struct boss_hex_lord_malacrassAI : public ScriptedAI
         if (CheckAddState_Timer <= diff)
         {
             for (uint8 i = 0; i < 4; ++i)
-                if (Creature *pTemp = Unit::GetCreature(*me, AddGUID[i]))
+                if (Creature* pTemp = Unit::GetCreature(*me, AddGUID[i]))
                     if (pTemp->isAlive() && !pTemp->getVictim())
                         pTemp->AI()->AttackStart(me->getVictim());
 
@@ -473,7 +473,7 @@ struct boss_hex_lord_malacrassAI : public ScriptedAI
 struct boss_thurgAI : public boss_hexlord_addAI
 {
 
-    boss_thurgAI(Creature *c) : boss_hexlord_addAI(c) {}
+    boss_thurgAI(Creature* c) : boss_hexlord_addAI(c) {}
 
     uint32 bloodlust_timer;
     uint32 cleave_timer;
@@ -518,7 +518,7 @@ struct boss_thurgAI : public boss_hexlord_addAI
 struct boss_alyson_antilleAI : public boss_hexlord_addAI
 {
     //Holy Priest
-    boss_alyson_antilleAI(Creature *c) : boss_hexlord_addAI(c) {}
+    boss_alyson_antilleAI(Creature* c) : boss_hexlord_addAI(c) {}
 
     uint32 flashheal_timer;
     uint32 dispelmagic_timer;
@@ -601,7 +601,7 @@ struct boss_alyson_antilleAI : public boss_hexlord_addAI
 
 struct boss_gazakrothAI : public boss_hexlord_addAI
 {
-    boss_gazakrothAI(Creature *c) : boss_hexlord_addAI(c)  {}
+    boss_gazakrothAI(Creature* c) : boss_hexlord_addAI(c)  {}
 
     uint32 firebolt_timer;
 
@@ -646,7 +646,7 @@ struct boss_gazakrothAI : public boss_hexlord_addAI
 
 struct boss_lord_raadanAI : public boss_hexlord_addAI
 {
-    boss_lord_raadanAI(Creature *c) : boss_hexlord_addAI(c)  {}
+    boss_lord_raadanAI(Creature* c) : boss_hexlord_addAI(c)  {}
 
     uint32 flamebreath_timer;
     uint32 thunderclap_timer;
@@ -684,7 +684,7 @@ struct boss_lord_raadanAI : public boss_hexlord_addAI
 
 struct boss_darkheartAI : public boss_hexlord_addAI
 {
-    boss_darkheartAI(Creature *c) : boss_hexlord_addAI(c)  {}
+    boss_darkheartAI(Creature* c) : boss_hexlord_addAI(c)  {}
 
     uint32 psychicwail_timer;
 
@@ -712,7 +712,7 @@ struct boss_darkheartAI : public boss_hexlord_addAI
 
 struct boss_slitherAI : public boss_hexlord_addAI
 {
-    boss_slitherAI(Creature *c) : boss_hexlord_addAI(c) {}
+    boss_slitherAI(Creature* c) : boss_hexlord_addAI(c) {}
 
     uint32 venomspit_timer;
 
@@ -758,7 +758,7 @@ struct boss_slitherAI : public boss_hexlord_addAI
 
 struct boss_fenstalkerAI : public boss_hexlord_addAI
 {
-    boss_fenstalkerAI(Creature *c) : boss_hexlord_addAI(c) {}
+    boss_fenstalkerAI(Creature* c) : boss_hexlord_addAI(c) {}
 
     uint32 volatileinf_timer;
 
@@ -790,7 +790,7 @@ struct boss_fenstalkerAI : public boss_hexlord_addAI
 
 struct boss_koraggAI : public boss_hexlord_addAI
 {
-    boss_koraggAI(Creature *c) : boss_hexlord_addAI(c) {}
+    boss_koraggAI(Creature* c) : boss_hexlord_addAI(c) {}
 
     uint32 coldstare_timer;
     uint32 mightyblow_timer;

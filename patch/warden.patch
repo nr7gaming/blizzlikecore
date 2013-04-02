@@ -3719,7 +3719,7 @@ index 6e862ea..3ffccba 100644
  struct ItemPrototype;
  struct AuctionEntry;
 @@ -92,6 +93,8 @@ class WorldSession
-         void SetPlayer(Player *plr) { _player = plr; }
+         void SetPlayer(Player* plr) { _player = plr; }
          uint8 Expansion() const { return m_expansion; }
  
 +        void InitWarden(BigNumber *K, std::string os);

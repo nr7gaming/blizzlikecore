@@ -110,7 +110,7 @@ void Resurrect(Unit* Target)
 
 struct boss_thekalAI : public ScriptedAI
 {
-    boss_thekalAI(Creature *c) : ScriptedAI(c)
+    boss_thekalAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
     }
@@ -315,7 +315,7 @@ struct boss_thekalAI : public ScriptedAI
 
 struct mob_zealot_lorkhanAI : public ScriptedAI
 {
-    mob_zealot_lorkhanAI(Creature *c) : ScriptedAI(c)
+    mob_zealot_lorkhanAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
     }
@@ -484,7 +484,7 @@ struct mob_zealot_lorkhanAI : public ScriptedAI
 
 struct mob_zealot_zathAI : public ScriptedAI
 {
-    mob_zealot_zathAI(Creature *c) : ScriptedAI(c)
+    mob_zealot_zathAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
     }

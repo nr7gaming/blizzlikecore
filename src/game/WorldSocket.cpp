@@ -1055,7 +1055,7 @@ int WorldSocket::iSendPartialPacket(WorldPacket& pct)
 
 bool WorldSocket::iFlushPacketQueue()
 {
-    WorldPacket *pct;
+    WorldPacket* pct;
     bool haveone = false;
 
     while (m_PacketQueue.dequeue_head (pct) == 0)

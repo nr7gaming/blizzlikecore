@@ -103,7 +103,7 @@ float hatcherway[2][5][3] =
 
 struct boss_janalaiAI : public ScriptedAI
 {
-    boss_janalaiAI(Creature *c) : ScriptedAI(c)
+    boss_janalaiAI(Creature* c) : ScriptedAI(c)
     {
         pInstance =c->GetInstanceData();
 
@@ -446,7 +446,7 @@ CreatureAI* GetAI_boss_janalaiAI(Creature* pCreature)
 
 struct mob_janalai_firebombAI : public ScriptedAI
 {
-    mob_janalai_firebombAI(Creature *c) : ScriptedAI(c){}
+    mob_janalai_firebombAI(Creature* c) : ScriptedAI(c){}
 
     void Reset() {}
 
@@ -472,7 +472,7 @@ CreatureAI* GetAI_mob_janalai_firebombAI(Creature* pCreature)
 
 struct mob_amanishi_hatcherAI : public ScriptedAI
 {
-    mob_amanishi_hatcherAI(Creature *c) : ScriptedAI(c)
+    mob_amanishi_hatcherAI(Creature* c) : ScriptedAI(c)
     {
         pInstance =c->GetInstanceData();
     }
@@ -592,7 +592,7 @@ CreatureAI* GetAI_mob_amanishi_hatcherAI(Creature* pCreature)
 
 struct mob_hatchlingAI : public ScriptedAI
 {
-    mob_hatchlingAI(Creature *c) : ScriptedAI(c)
+    mob_hatchlingAI(Creature* c) : ScriptedAI(c)
     {
         pInstance =c->GetInstanceData();
     }
@@ -641,7 +641,7 @@ CreatureAI* GetAI_mob_hatchlingAI(Creature* pCreature)
 
 struct mob_eggAI : public ScriptedAI
 {
-    mob_eggAI(Creature *c) : ScriptedAI(c){}
+    mob_eggAI(Creature* c) : ScriptedAI(c){}
     void Reset() {}
     void EnterCombat(Unit* /*who*/) {}
     void AttackStart(Unit* /*who*/) {}

@@ -30,7 +30,7 @@ INSTANTIATE_SINGLETON_1(MovementGeneratorRegistry);
 
 namespace FactorySelector
 {
-    CreatureAI* selectAI(Creature *creature)
+    CreatureAI* selectAI(Creature* creature)
     {
         const CreatureAICreator *ai_factory = NULL;
         CreatureAIRegistry &ai_registry(CreatureAIRepository::Instance());
@@ -99,7 +99,7 @@ namespace FactorySelector
         return (ai_factory == NULL ? new NullCreatureAI(creature) : ai_factory->Create(creature));
     }
 
-    MovementGenerator* selectMovementGenerator(Creature *creature)
+    MovementGenerator* selectMovementGenerator(Creature* creature)
     {
         MovementGeneratorRegistry &mv_registry(MovementGeneratorRepository::Instance());
         ASSERT(creature->GetCreatureInfo() != NULL);

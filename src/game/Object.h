@@ -169,14 +169,14 @@ class Object
         uint8 GetTypeId() const { return m_objectTypeId; }
         bool isType(uint16 mask) const { return (mask & m_objectType); }
 
-        virtual void BuildCreateUpdateBlockForPlayer(UpdateData *data, Player *target) const;
+        virtual void BuildCreateUpdateBlockForPlayer(UpdateData *data, Player* target) const;
         void SendUpdateToPlayer(Player* player);
 
-        void BuildValuesUpdateBlockForPlayer(UpdateData *data, Player *target) const;
+        void BuildValuesUpdateBlockForPlayer(UpdateData *data, Player* target) const;
         void BuildOutOfRangeUpdateBlock(UpdateData *data) const;
         void BuildMovementUpdateBlock(UpdateData * data, uint32 flags = 0) const;
 
-        virtual void DestroyForPlayer(Player *target) const;
+        virtual void DestroyForPlayer(Player* target) const;
 
         const int32& GetInt32Value(uint16 index) const
         {
@@ -323,7 +323,7 @@ class Object
         virtual bool hasQuest(uint32 /* quest_id */) const { return false; }
         virtual bool hasInvolvedQuest(uint32 /* quest_id */) const { return false; }
         virtual void BuildUpdate(UpdateDataMapType&) {}
-        void BuildFieldsUpdate(Player *, UpdateDataMapType &) const;
+        void BuildFieldsUpdate(Player* , UpdateDataMapType &) const;
 
         // FG: some hacky helpers
         void ForceValuesUpdateAtIndex(uint32);
@@ -341,11 +341,11 @@ class Object
         void _Create (uint32 guidlow, uint32 entry, HighGuid guidhigh);
         void _LoadIntoDataField(const char* data, uint32 startOffset, uint32 count);
 
-        virtual void _SetUpdateBits(UpdateMask *updateMask, Player *target) const;
+        virtual void _SetUpdateBits(UpdateMask *updateMask, Player* target) const;
 
-        virtual void _SetCreateBits(UpdateMask *updateMask, Player *target) const;
+        virtual void _SetCreateBits(UpdateMask *updateMask, Player* target) const;
         void _BuildMovementUpdate(ByteBuffer * data, uint8 updateFlags) const;
-        void _BuildValuesUpdate(uint8 updatetype, ByteBuffer *data, UpdateMask *updateMask, Player *target) const;
+        void _BuildValuesUpdate(uint8 updatetype, ByteBuffer *data, UpdateMask *updateMask, Player* target) const;
 
         uint16 m_objectType;
 
@@ -676,8 +676,8 @@ class WorldObject : public Object, public WorldLocation
 
         virtual void CleanupsBeforeDelete();                // used in destructor or explicitly before mass creature delete to remove cross-references to already deleted units
 
-        virtual void SendMessageToSet(WorldPacket *data, bool self);
-        virtual void SendMessageToSetInRange(WorldPacket *data, float dist, bool self);
+        virtual void SendMessageToSet(WorldPacket* data, bool self);
+        virtual void SendMessageToSetInRange(WorldPacket* data, float dist, bool self);
 
         void MonsterSay(const char* text, uint32 language, uint64 TargetGuid);
         void MonsterYell(const char* text, uint32 language, uint64 TargetGuid);
@@ -688,7 +688,7 @@ class WorldObject : public Object, public WorldLocation
         void MonsterTextEmote(int32 textId, uint64 TargetGuid, bool IsBossEmote = false);
         void MonsterWhisper(int32 textId, uint64 receiver, bool IsBossWhisper = false);
         void MonsterYellToZone(int32 textId, uint32 language, uint64 TargetGuid);
-        void BuildMonsterChat(WorldPacket *data, uint8 msgtype, char const* text, uint32 language, char const* name, uint64 TargetGuid) const;
+        void BuildMonsterChat(WorldPacket* data, uint8 msgtype, char const* text, uint32 language, char const* name, uint64 TargetGuid) const;
 
         void PlayDistanceSound(uint32 sound_id, Player* target = NULL);
         void PlayDirectSound(uint32 sound_id, Player* target = NULL);

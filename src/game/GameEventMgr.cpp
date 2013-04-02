@@ -943,7 +943,7 @@ void GameEventMgr::LoadFromDB()
     }
 }
 
-uint32 GameEventMgr::GetNPCFlag(Creature * cr)
+uint32 GameEventMgr::GetNPCFlag(Creature* cr)
 {
     uint32 mask = 0;
     uint32 guid = cr->GetDBTableGUIDLow();
@@ -1097,7 +1097,7 @@ void GameEventMgr::UpdateEventNPCFlags(uint16 event_id)
         // get the creature data from the low guid to get the entry, to be able to find out the whole guid
         if (CreatureData const* data = objmgr.GetCreatureData(itr->first))
         {
-            Creature * cr = HashMapHolder<Creature>::Find(MAKE_NEW_GUID(itr->first,data->id,HIGHGUID_UNIT));
+            Creature* cr = HashMapHolder<Creature>::Find(MAKE_NEW_GUID(itr->first,data->id,HIGHGUID_UNIT));
             // if we found the creature, modify its npcflag
             if (cr)
             {
@@ -1537,7 +1537,7 @@ void GameEventMgr::SaveWorldEventStateToDB(uint16 event_id)
     CharacterDatabase.CommitTransaction();
 }
 
-void GameEventMgr::HandleWorldEventGossip(Player *plr, Creature *c)
+void GameEventMgr::HandleWorldEventGossip(Player* plr, Creature* c)
 {
     // this function is used to send world state update before sending gossip menu
     // find the npc's gossip id (if set) in an active game event
@@ -1549,7 +1549,7 @@ void GameEventMgr::HandleWorldEventGossip(Player *plr, Creature *c)
             SendWorldStateUpdate(plr, itr->second.first);
 }
 
-void GameEventMgr::SendWorldStateUpdate(Player * plr, uint16 event_id)
+void GameEventMgr::SendWorldStateUpdate(Player* plr, uint16 event_id)
 {
     std::map<uint32,GameEventFinishCondition>::iterator itr;
     for (itr = mGameEvent[event_id].conditions.begin(); itr != mGameEvent[event_id].conditions.end(); ++itr)

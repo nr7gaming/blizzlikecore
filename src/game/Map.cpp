@@ -274,7 +274,7 @@ void Map::SwitchGridContainers(T* obj, bool on)
     obj->m_isWorldObject = on;
 }
 
-template void Map::SwitchGridContainers(Creature *, bool);
+template void Map::SwitchGridContainers(Creature* , bool);
 //template void Map::SwitchGridContainers(DynamicObject *, bool);
 
 template<class T>
@@ -320,7 +320,7 @@ Map::EnsureGridCreated(const GridPair &p)
 }
 
 void
-Map::EnsureGridLoadedAtEnter(const Cell &cell, Player *player)
+Map::EnsureGridLoadedAtEnter(const Cell &cell, Player* player)
 {
     EnsureGridLoaded(cell);
     NGridType *grid = getNGrid(cell.GridX(), cell.GridY());
@@ -373,7 +373,7 @@ void Map::LoadGrid(float x, float y)
     EnsureGridLoaded(cell);
 }
 
-bool Map::Add(Player *player)
+bool Map::Add(Player* player)
 {
     // Check if we are adding to correct map
     ASSERT (player->GetMap() == this);
@@ -442,7 +442,7 @@ Map::Add(T *obj)
 }
 
 /*
-void Map::MessageBroadcast(Player *player, WorldPacket *msg, bool to_self)
+void Map::MessageBroadcast(Player* player, WorldPacket* msg, bool to_self)
 {
     CellPair p = BlizzLike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
 
@@ -463,7 +463,7 @@ void Map::MessageBroadcast(Player *player, WorldPacket *msg, bool to_self)
     cell.Visit(p, message, *this, *player, GetVisibilityDistance());
 }
 
-void Map::MessageBroadcast(WorldObject *obj, WorldPacket *msg)
+void Map::MessageBroadcast(WorldObject *obj, WorldPacket* msg)
 {
     CellPair p = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
 
@@ -487,7 +487,7 @@ void Map::MessageBroadcast(WorldObject *obj, WorldPacket *msg)
     cell.Visit(p, message, *this, *obj, GetVisibilityDistance());
 }
 
-void Map::MessageDistBroadcast(Player *player, WorldPacket *msg, float dist, bool to_self, bool own_team_only)
+void Map::MessageDistBroadcast(Player* player, WorldPacket* msg, float dist, bool to_self, bool own_team_only)
 {
     CellPair p = BlizzLike::ComputeCellPair(player->GetPositionX(), player->GetPositionY());
 
@@ -508,7 +508,7 @@ void Map::MessageDistBroadcast(Player *player, WorldPacket *msg, float dist, boo
     cell.Visit(p, message, *this, *player, dist);
 }
 
-void Map::MessageDistBroadcast(WorldObject *obj, WorldPacket *msg, float dist)
+void Map::MessageDistBroadcast(WorldObject *obj, WorldPacket* msg, float dist)
 {
     CellPair p = BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY());
 
@@ -750,7 +750,7 @@ void Map::ProcessRelocationNotifies(const uint32 & diff)
     }
 }
 
-void Map::Remove(Player *player, bool remove)
+void Map::Remove(Player* player, bool remove)
 {
     player->RemoveFromWorld();
     SendRemoveTransports(player);
@@ -815,7 +815,7 @@ Map::Remove(T *obj, bool remove)
 }
 
 void
-Map::PlayerRelocation(Player *player, float x, float y, float z, float orientation)
+Map::PlayerRelocation(Player* player, float x, float y, float z, float orientation)
 {
     ASSERT(player);
 
@@ -849,7 +849,7 @@ Map::PlayerRelocation(Player *player, float x, float y, float z, float orientati
 }
 
 void
-Map::CreatureRelocation(Creature *creature, float x, float y, float z, float ang)
+Map::CreatureRelocation(Creature* creature, float x, float y, float z, float ang)
 {
     ASSERT(CheckGridIntegrity(creature,false));
 
@@ -877,7 +877,7 @@ Map::CreatureRelocation(Creature *creature, float x, float y, float z, float ang
     ASSERT(CheckGridIntegrity(creature,true));
 }
 
-void Map::AddCreatureToMoveList(Creature *c, float x, float y, float z, float ang)
+void Map::AddCreatureToMoveList(Creature* c, float x, float y, float z, float ang)
 {
     if (!c)
         return;
@@ -924,7 +924,7 @@ void Map::MoveAllCreaturesInMoveList()
     }
 }
 
-bool Map::CreatureCellRelocation(Creature *c, Cell new_cell)
+bool Map::CreatureCellRelocation(Creature* c, Cell new_cell)
 {
     Cell const& old_cell = c->GetCurrentCell();
     if (!old_cell.DiffGrid(new_cell))                       // in same grid
@@ -990,7 +990,7 @@ bool Map::CreatureCellRelocation(Creature *c, Cell new_cell)
     return false;
 }
 
-bool Map::CreatureRespawnRelocation(Creature *c)
+bool Map::CreatureRespawnRelocation(Creature* c)
 {
     float resp_x, resp_y, resp_z, resp_o;
     c->GetRespawnCoord(resp_x, resp_y, resp_z, &resp_o);
@@ -1940,7 +1940,7 @@ void Map::UpdateObjectsVisibilityFor(Player* player, Cell cell, CellPair cellpai
     notifier.SendToSelf();
 }
 
-void Map::SendInitSelf(Player * player)
+void Map::SendInitSelf(Player* player)
 {
     sLog.outDetail("Creating player data for himself %u", player->GetGUIDLow());
 
@@ -1976,7 +1976,7 @@ void Map::SendInitSelf(Player * player)
     player->GetSession()->SendPacket(&packet);
 }
 
-void Map::SendInitTransports(Player * player)
+void Map::SendInitTransports(Player* player)
 {
     // Hack to send out transports
     MapManager::TransportMap& tmap = MapManager::Instance().m_TransportsByMap;
@@ -2006,7 +2006,7 @@ void Map::SendInitTransports(Player * player)
     player->GetSession()->SendPacket(&packet);
 }
 
-void Map::SendRemoveTransports(Player * player)
+void Map::SendRemoveTransports(Player* player)
 {
     // Hack to send out transports
     MapManager::TransportMap& tmap = MapManager::Instance().m_TransportsByMap;
@@ -2239,12 +2239,12 @@ void Map::RemoveFromActive(Creature* c)
 }
 
 template void Map::Add(Corpse *);
-template void Map::Add(Creature *);
+template void Map::Add(Creature* );
 template void Map::Add(GameObject *);
 template void Map::Add(DynamicObject *);
 
 template void Map::Remove(Corpse *,bool);
-template void Map::Remove(Creature *,bool);
+template void Map::Remove(Creature* ,bool);
 template void Map::Remove(GameObject *, bool);
 template void Map::Remove(DynamicObject *, bool);
 
@@ -2279,7 +2279,7 @@ void InstanceMap::InitVisibilityDistance()
 /*
     Do map specific checks to see if the player can enter
 */
-bool InstanceMap::CanEnter(Player *player)
+bool InstanceMap::CanEnter(Player* player)
 {
     if (player->GetMapRef().getTarget() == this)
     {
@@ -2310,7 +2310,7 @@ bool InstanceMap::CanEnter(Player *player)
 /*
     Do map specific checks and add the player to the map if successful.
 */
-bool InstanceMap::Add(Player *player)
+bool InstanceMap::Add(Player* player)
 {
     // TODO: Not sure about checking player level: already done in HandleAreaTriggerOpcode
     // GMs still can teleport player in instance.
@@ -2429,7 +2429,7 @@ void InstanceMap::Update(const uint32& t_diff)
         i_data->Update(t_diff);
 }
 
-void InstanceMap::Remove(Player *player, bool remove)
+void InstanceMap::Remove(Player* player, bool remove)
 {
     sLog.outDetail("MAP: Removing player '%s' from instance '%u' of map '%s' before relocating to another map", player->GetName(), GetInstanceId(), GetMapName());
     //if last player set unload timer
@@ -2513,7 +2513,7 @@ bool InstanceMap::Reset(uint8 method)
     return m_mapRefManager.isEmpty();
 }
 
-void InstanceMap::PermBindAllPlayers(Player *player)
+void InstanceMap::PermBindAllPlayers(Player* player)
 {
     if (!IsDungeon())
         return;
@@ -2602,7 +2602,7 @@ void BattleGroundMap::InitVisibilityDistance()
     m_VisibilityNotifyPeriod = World::GetVisibilityNotifyPeriodInBGArenas();
 }
 
-bool BattleGroundMap::CanEnter(Player * player)
+bool BattleGroundMap::CanEnter(Player* player)
 {
     if (player->GetMapRef().getTarget() == this)
     {
@@ -2619,7 +2619,7 @@ bool BattleGroundMap::CanEnter(Player * player)
     return Map::CanEnter(player);
 }
 
-bool BattleGroundMap::Add(Player * player)
+bool BattleGroundMap::Add(Player* player)
 {
     {
         Guard guard(*this);
@@ -2631,7 +2631,7 @@ bool BattleGroundMap::Add(Player * player)
     return Map::Add(player);
 }
 
-void BattleGroundMap::Remove(Player *player, bool remove)
+void BattleGroundMap::Remove(Player* player, bool remove)
 {
     sLog.outDetail("MAP: Removing player '%s' from bg '%u' of map '%s' before relocating to other map", player->GetName(), GetInstanceId(), GetMapName());
     Map::Remove(player, remove);
@@ -2670,7 +2670,7 @@ Map::GetDynamicObject(uint64 guid)
     return ObjectAccessor::GetObjectInMap(guid, this, (DynamicObject*)NULL);
 }
 
-void Map::UpdateIteratorBack(Player *player)
+void Map::UpdateIteratorBack(Player* player)
 {
     if (m_mapRefIter == player->GetMapRef())
         m_mapRefIter = m_mapRefIter->nocheck_prev();

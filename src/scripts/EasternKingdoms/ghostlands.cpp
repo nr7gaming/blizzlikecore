@@ -121,11 +121,11 @@ bool GossipSelect_npc_rathis_tomber(Player* pPlayer, Creature* pCreature, uint32
 ## go_gilded_brazier (Paladin First Trail quest (9678))
 #####*/
 
-bool GOHello_gilded_brazier(Player *player, GameObject* /*_GO*/)
+bool GOHello_gilded_brazier(Player* player, GameObject* /*_GO*/)
 {
     if (player->GetQuestStatus(9678) == QUEST_STATUS_INCOMPLETE)
     {
-        Creature *Stillblade = player->SummonCreature(17716, 8106.11f, -7542.06f, 151.775f, 3.02598f, TEMPSUMMON_DEAD_DESPAWN, 60000);
+        Creature* Stillblade = player->SummonCreature(17716, 8106.11f, -7542.06f, 151.775f, 3.02598f, TEMPSUMMON_DEAD_DESPAWN, 60000);
         if (Stillblade)
             ((CreatureAI*)Stillblade->AI())->AttackStart(player);
     }
@@ -154,7 +154,7 @@ enum eEnums
 
 struct npc_ranger_lilathaAI : public npc_escortAI
 {
-    npc_ranger_lilathaAI(Creature *c) : npc_escortAI(c) {}
+    npc_ranger_lilathaAI(Creature* c) : npc_escortAI(c) {}
 
     void WaypointReached(uint32 i)
     {

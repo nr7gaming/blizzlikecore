@@ -30,7 +30,7 @@ EndScriptData */
 ## go_barrel_old_hillsbrad
 ######*/
 
-bool GOHello_go_barrel_old_hillsbrad(Player *, GameObject* _GO)
+bool GOHello_go_barrel_old_hillsbrad(Player* , GameObject* _GO)
 {
     ScriptedInstance* pInstance = _GO->GetInstanceData();
 
@@ -95,7 +95,7 @@ static Location DrakeWP[]=
 
 struct boss_lieutenant_drakeAI : public ScriptedAI
 {
-    boss_lieutenant_drakeAI(Creature *c) : ScriptedAI(c) {}
+    boss_lieutenant_drakeAI(Creature* c) : ScriptedAI(c) {}
 
     bool CanPatrol;
     uint32 wpId;

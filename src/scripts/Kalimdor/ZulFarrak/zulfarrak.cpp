@@ -43,7 +43,7 @@ EndContentData */
 
 struct npc_sergeant_blyAI : public ScriptedAI
 {
-    npc_sergeant_blyAI(Creature *c) : ScriptedAI(c)
+    npc_sergeant_blyAI(Creature* c) : ScriptedAI(c)
     {
         //pInstance = c->GetInstanceData();
     }
@@ -140,7 +140,7 @@ bool GossipSelect_npc_sergeant_bly(Player* pPlayer, Creature* pCreature, uint32 
 
 struct npc_weegli_blastfuseAI : public ScriptedAI
 {
-    npc_weegli_blastfuseAI(Creature *c) : ScriptedAI(c)
+    npc_weegli_blastfuseAI(Creature* c) : ScriptedAI(c)
     {
         //pInstance = c->GetInstanceData();
     }

@@ -115,7 +115,7 @@ void WorldSession::HandleMoveWorldportAckOpcode()
             GetPlayer()->SetBGTeam(0);
         }
         // join to bg case
-        else if (BattleGround *bg = GetPlayer()->GetBattleGround())
+        else if (BattleGround* bg = GetPlayer()->GetBattleGround())
         {
             if (GetPlayer()->IsInvitedForBattleGroundInstance(GetPlayer()->GetBattleGroundId()))
                 bg->AddPlayer(GetPlayer());
@@ -193,7 +193,7 @@ void WorldSession::HandleMoveTeleportAck(WorldPacket& recv_data)
     DEBUG_LOG("Flags %u, time %u", flags, time/IN_MILLISECONDS);
 
     Unit* mover = _player->m_mover;
-    Player *plMover = mover->GetTypeId() == TYPEID_PLAYER ? mover->ToPlayer() : NULL;
+    Player* plMover = mover->GetTypeId() == TYPEID_PLAYER ? mover->ToPlayer() : NULL;
 
     if (!plMover || !plMover->IsBeingTeleportedNear())
         return;
@@ -241,7 +241,7 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
 
     ASSERT(mover != NULL);                                  // there must always be a mover
 
-    Player *plMover = mover->GetTypeId() == TYPEID_PLAYER ? mover->ToPlayer() : NULL;
+    Player* plMover = mover->GetTypeId() == TYPEID_PLAYER ? mover->ToPlayer() : NULL;
 
     // ignore, waiting processing in WorldSession::HandleMoveWorldportAckOpcode and WorldSession::HandleMoveTeleportAck
     if (plMover && plMover->IsBeingTeleported())

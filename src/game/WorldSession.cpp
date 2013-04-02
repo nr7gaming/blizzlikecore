@@ -150,7 +150,7 @@ void WorldSession::LogUnexpectedOpcode(WorldPacket* packet, const char *reason)
 }
 
 // Logging helper for unexpected opcodes
-void WorldSession::LogUnprocessedTail(WorldPacket *packet)
+void WorldSession::LogUnprocessedTail(WorldPacket* packet)
 {
     sLog.outDebug("SESSION: opcode %s (0x%.4X) has unprocessed tail data (read stop at %u from %u)",
         LookupOpcodeName(packet->GetOpcode()),
@@ -321,7 +321,7 @@ void WorldSession::LogoutPlayer(bool Save)
             // give bg rewards and update counters like kill by first from attackers
             // this can't be called for all attackers.
             if (!aset.empty())
-                if (BattleGround *bg = _player->GetBattleGround())
+                if (BattleGround* bg = _player->GetBattleGround())
                     bg->HandleKillPlayer(_player,*aset.begin());
         }
         else if (_player->HasAuraType(SPELL_AURA_SPIRIT_OF_REDEMPTION))
@@ -334,7 +334,7 @@ void WorldSession::LogoutPlayer(bool Save)
             _player->RepopAtGraveyard();
         }
         //drop a flag if player is carrying it
-        if (BattleGround *bg = _player->GetBattleGround())
+        if (BattleGround* bg = _player->GetBattleGround())
             bg->EventPlayerLoggedOut(_player);
 
         // Teleport to home if the player is in an invalid instance

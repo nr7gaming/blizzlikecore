@@ -459,7 +459,7 @@ void Unit::SendMonsterMove(float NewPosX, float NewPosY, float NewPosZ, uint32 T
     addUnitState(UNIT_STAT_MOVE);
 }
 
-void Unit::SendMonsterMove(float NewPosX, float NewPosY, float NewPosZ, uint32 MoveFlags, uint32 time, float speedZ, Player *player)
+void Unit::SendMonsterMove(float NewPosX, float NewPosY, float NewPosZ, uint32 MoveFlags, uint32 time, float speedZ, Player* player)
 {
     WorldPacket data(SMSG_MONSTER_MOVE, 12+4+1+4+4+4+12+GetPackGUID().size());
     data << GetPackGUID();
@@ -511,7 +511,7 @@ void Unit::SendMonsterMoveByPath(Path const& path, uint32 start, uint32 end)
     addUnitState(UNIT_STAT_MOVE);
 }
 
-void Unit::BuildHeartBeatMsg(WorldPacket *data) const
+void Unit::BuildHeartBeatMsg(WorldPacket* data) const
 {
     data->Initialize(MSG_MOVE_HEARTBEAT, 32);
     *data << GetPackGUID();
@@ -867,9 +867,9 @@ uint32 Unit::DealDamage(Unit* pVictim, uint32 damage, CleanDamage const* cleanDa
     {
         if (pVictim->ToPlayer()->InBattleGround())
         {
-            Player *killer = ToPlayer();
+            Player* killer = ToPlayer();
             if (killer != pVictim->ToPlayer())
-                if (BattleGround *bg = killer->GetBattleGround())
+                if (BattleGround* bg = killer->GetBattleGround())
                     bg->UpdatePlayerScore(killer, SCORE_DAMAGE_DONE, damage);
         }
     }
@@ -891,8 +891,8 @@ uint32 Unit::DealDamage(Unit* pVictim, uint32 damage, CleanDamage const* cleanDa
         //Hook for OnPVPKill Event
         if (pVictim->GetTypeId() == TYPEID_PLAYER && this->GetTypeId() == TYPEID_PLAYER)
         {
-            Player *killer = ToPlayer();
-            Player *killed = pVictim->ToPlayer();
+            Player* killer = ToPlayer();
+            Player* killed = pVictim->ToPlayer();
             sScriptMgr.OnPVPKill(killer, killed);
         }
     }
@@ -994,7 +994,7 @@ uint32 Unit::DealDamage(Unit* pVictim, uint32 damage, CleanDamage const* cleanDa
         if (duel_hasEnded)
         {
             ASSERT(pVictim->GetTypeId() == TYPEID_PLAYER);
-            Player *he = pVictim->ToPlayer();
+            Player* he = pVictim->ToPlayer();
 
             ASSERT(he->duel);
 
@@ -1945,7 +1945,7 @@ void Unit::CalcAbsorbResist(Unit* pVictim, SpellSchoolMask schoolMask, DamageEff
             currentAbsorb = RemainingDamage;
 
         float manaMultiplier = (*i)->GetSpellProto()->EffectMultipleValue[(*i)->GetEffIndex()];
-        if (Player *modOwner = GetSpellModOwner())
+        if (Player* modOwner = GetSpellModOwner())
             modOwner->ApplySpellMod((*i)->GetId(), SPELLMOD_MULTIPLE_VALUE, manaMultiplier);
 
         if (manaMultiplier)
@@ -2387,7 +2387,7 @@ float Unit::MeleeSpellMissChance(const Unit* pVictim, WeaponAttackType attType, 
     // Spellmod from SPELLMOD_RESIST_MISS_CHANCE
     if (spellId)
     {
-        if (Player *modOwner = GetSpellModOwner())
+        if (Player* modOwner = GetSpellModOwner())
             modOwner->ApplySpellMod(spellId, SPELLMOD_RESIST_MISS_CHANCE, HitChance);
     }
 
@@ -2584,7 +2584,7 @@ SpellMissInfo Unit::MagicSpellHitResult(Unit* pVictim, SpellEntry const *spell)
         modHitChance = 94 - (leveldif - 2) * lchance;
 
     // Spellmod from SPELLMOD_RESIST_MISS_CHANCE
-    if (Player *modOwner = GetSpellModOwner())
+    if (Player* modOwner = GetSpellModOwner())
         modOwner->ApplySpellMod(spell->Id, SPELLMOD_RESIST_MISS_CHANCE, modHitChance);
     // Increase from attacker SPELL_AURA_MOD_INCREASES_SPELL_PCT_TO_HIT auras
     modHitChance+=GetTotalAuraModifierByMiscMask(SPELL_AURA_MOD_INCREASES_SPELL_PCT_TO_HIT, schoolMask);
@@ -6860,7 +6860,7 @@ bool Unit::isAttackingPlayer() const
 
     for (uint8 i = 0; i < MAX_SUMMON_SLOT; ++i)
         if (m_SummonSlot[i])
-            if (Creature *summon = GetMap()->GetCreature(m_SummonSlot[i]))
+            if (Creature* summon = GetMap()->GetCreature(m_SummonSlot[i]))
                 if (summon->isAttackingPlayer())
                     return true;
 
@@ -7166,7 +7166,7 @@ void Unit::SetCharm(Unit* charm, bool apply)
             charm->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PVP_ATTACKABLE);
             charm->ToPlayer()->UpdatePvPState();
         }
-        else if (Player *player = charm->GetCharmerOrOwnerPlayerOrPlayerItself())
+        else if (Player* player = charm->GetCharmerOrOwnerPlayerOrPlayerItself())
         {
             charm->m_ControlledByPlayer = true;
             charm->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PVP_ATTACKABLE);
@@ -7261,7 +7261,7 @@ void Unit::UnsummonAllTotems()
         if (!m_SummonSlot[i])
             continue;
 
-        if (Creature *OldTotem = GetMap()->GetCreature(m_SummonSlot[i]))
+        if (Creature* OldTotem = GetMap()->GetCreature(m_SummonSlot[i]))
             if (OldTotem->isSummon())
                 ((TempSummon*)OldTotem)->UnSummon();
     }
@@ -8497,7 +8497,7 @@ void Unit::Mount(uint32 mount)
         Pet* pet = ToPlayer()->GetPet();
         if (pet)
         {
-            BattleGround *bg = ToPlayer()->GetBattleGround();
+            BattleGround* bg = ToPlayer()->GetBattleGround();
             // don't unsummon pet in arena but SetFlag UNIT_FLAG_STUNNED to disable pet's interface
             if (bg && bg->isArena())
                 pet->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_STUNNED);
@@ -8592,7 +8592,7 @@ void Unit::CombatStart(Unit* target, bool initialAggro)
     if (who->GetTypeId() == TYPEID_PLAYER)
         SetContestedPvP(who->ToPlayer());
 
-    Player *me = GetCharmerOrOwnerPlayerOrPlayerItself();
+    Player* me = GetCharmerOrOwnerPlayerOrPlayerItself();
     if (me && who->IsPvP()
         && (who->GetTypeId() != TYPEID_PLAYER
         || !me->duel || me->duel->opponent != who))
@@ -10118,7 +10118,7 @@ CharmInfo::CharmInfo(Unit* unit)
 CharmInfo::~CharmInfo()
 {
     if (m_unit->GetTypeId() == TYPEID_UNIT)
-        if (Creature *pCreature = m_unit->ToCreature())
+        if (Creature* pCreature = m_unit->ToCreature())
             pCreature->SetReactState(m_oldReactState);
 }
 
@@ -11297,7 +11297,7 @@ bool Unit::IsUnderLastManaUseEffect() const
     return  getMSTimeDiff(m_lastManaUse,getMSTime()) < 5000;
 }
 
-void Unit::SetContestedPvP(Player *attackedPlayer)
+void Unit::SetContestedPvP(Player* attackedPlayer)
 {
     Player* player = GetCharmerOrOwnerPlayerOrPlayerItself();
 
@@ -11600,8 +11600,8 @@ void Unit::Kill(Unit* pVictim, bool durabilityLoss)
     pVictim->SetHealth(0);
 
     // find player: owner of controlled `this` or `this` itself maybe
-    Player *player = GetCharmerOrOwnerPlayerOrPlayerItself();
-    Creature *creature = pVictim->ToCreature();
+    Player* player = GetCharmerOrOwnerPlayerOrPlayerItself();
+    Creature* creature = pVictim->ToCreature();
 
     bool bRewardIsAllowed = true;
     if (creature)
@@ -11711,7 +11711,7 @@ void Unit::Kill(Unit* pVictim, bool durabilityLoss)
         if (creature->GetInstanceId())
         {
             Map *m = creature->GetMap();
-            Player *creditedPlayer = GetCharmerOrOwnerPlayerOrPlayerItself();
+            Player* creditedPlayer = GetCharmerOrOwnerPlayerOrPlayerItself();
             // TODO: do instance binding anyway if the charmer/owner is offline
 
             if (m->IsDungeon() && creditedPlayer)
@@ -11746,7 +11746,7 @@ void Unit::Kill(Unit* pVictim, bool durabilityLoss)
     // battleground things (do this at the end, so the death state flag will be properly set to handle in the bg->handlekill)
     if (player && player->InBattleGround())
     {
-        if (BattleGround *bg = player->GetBattleGround())
+        if (BattleGround* bg = player->GetBattleGround())
         {
             if (pVictim->GetTypeId() == TYPEID_PLAYER)
                 bg->HandleKillPlayer(pVictim->ToPlayer(), player);
@@ -12199,7 +12199,7 @@ bool Unit::IsInRaidWith(Unit const *unit) const
 
 void Unit::GetRaidMember(std::list<Unit*> &nearMembers, float radius)
 {
-    Player *owner = GetCharmerOrOwnerPlayerOrPlayerItself();
+    Player* owner = GetCharmerOrOwnerPlayerOrPlayerItself();
     if (!owner)
         return;
 

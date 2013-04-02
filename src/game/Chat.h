@@ -45,14 +45,14 @@ class ChatHandler
         explicit ChatHandler(Player* player) : m_session(player->GetSession()) {}
          ~ChatHandler() {}
 
-        static void FillMessageData(WorldPacket *data, WorldSession* session, uint8 type, uint32 language, const char *channelName, uint64 target_guid, const char *message, Unit* speaker);
+        static void FillMessageData(WorldPacket* data, WorldSession* session, uint8 type, uint32 language, const char *channelName, uint64 target_guid, const char *message, Unit* speaker);
 
-        void FillMessageData(WorldPacket *data, uint8 type, uint32 language, uint64 target_guid, const char* message)
+        void FillMessageData(WorldPacket* data, uint8 type, uint32 language, uint64 target_guid, const char* message)
         {
             FillMessageData(data, m_session, type, language, NULL, target_guid, message, NULL);
         }
 
-        void FillSystemMessageData(WorldPacket *data, const char* message)
+        void FillSystemMessageData(WorldPacket* data, const char* message)
         {
             FillMessageData(data, CHAT_MSG_SYSTEM, LANG_UNIVERSAL, 0, message);
         }

@@ -59,7 +59,7 @@ uint32 const LevelStartLoyalty[6] =
     17500,
 };
 
-Pet::Pet(Player *owner, PetType type) : Guardian(NULL, owner),
+Pet::Pet(Player* owner, PetType type) : Guardian(NULL, owner),
 m_resetTalentsCost(0), m_resetTalentsTime(0),
 m_removed(false), m_owner(owner), m_happinessTimer(7500),
 m_petType(type), m_duration(0), m_declinedname(NULL)

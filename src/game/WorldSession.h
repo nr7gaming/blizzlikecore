@@ -89,7 +89,7 @@ class WorldSession
         char const* GetPlayerName() const;
         void SetSecurity(uint32 security) { _security = security; }
         std::string const& GetRemoteAddress() { return m_Address; }
-        void SetPlayer(Player *plr) { _player = plr; }
+        void SetPlayer(Player* plr) { _player = plr; }
         uint8 Expansion() const { return m_expansion; }
 
         // Session in auth.queue currently
@@ -153,7 +153,7 @@ class WorldSession
         static void SendExternalMails();
 
         //auction
-        void SendAuctionHello(uint64 guid, Creature * unit);
+        void SendAuctionHello(uint64 guid, Creature* unit);
         void SendAuctionCommandResult(uint32 auctionId, uint32 Action, uint32 ErrorCode, uint32 bidError = 0);
         void SendAuctionBidderNotification(uint32 location, uint32 auctionId, uint64 bidder, uint32 bidSum, uint32 diff, uint32 item_template);
         void SendAuctionOwnerNotification(AuctionEntry * auction);
@@ -184,7 +184,7 @@ class WorldSession
         bool LookingForGroup_auto_join;
         bool LookingForGroup_auto_add;
 
-        void BuildPartyMemberStatsChangedPacket(Player *player, WorldPacket *data);
+        void BuildPartyMemberStatsChangedPacket(Player* player, WorldPacket* data);
 
         void DoLootRelease(uint64 lguid);
 
@@ -198,7 +198,7 @@ class WorldSession
 
         uint32 GetLatency() const { return m_latency; }
         void SetLatency(uint32 latency) { m_latency = latency; }
-        uint32 getDialogStatus(Player *pPlayer, Object* questgiver, uint32 defstatus);
+        uint32 getDialogStatus(Player* pPlayer, Object* questgiver, uint32 defstatus);
 
         time_t m_timeOutTime;
         void UpdateTimeOutTime(uint32 diff)
@@ -653,10 +653,10 @@ class WorldSession
         void ExecuteOpcode(OpcodeHandler const& opHandle, WorldPacket* packet);
 
         // logging helper
-        void LogUnexpectedOpcode(WorldPacket *packet, const char * reason);
-        void LogUnprocessedTail(WorldPacket *packet);
+        void LogUnexpectedOpcode(WorldPacket* packet, const char * reason);
+        void LogUnprocessedTail(WorldPacket* packet);
 
-        Player *_player;
+        Player* _player;
         WorldSocket *m_Socket;
         std::string m_Address;
 

@@ -82,7 +82,7 @@ enum ViscidusState
 
 struct boss_viscidusAI : public ScriptedAI
 {
-    boss_viscidusAI(Creature *creature) : ScriptedAI(creature)
+    boss_viscidusAI(Creature* creature) : ScriptedAI(creature)
     {
         pInstance = ((ScriptedInstance*)creature->GetInstanceData());
     }

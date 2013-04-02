@@ -927,7 +927,7 @@ void Spell::DoAllEffectOnTarget(TargetInfo *target)
 
         unitTarget->getHostileRefManager().threatAssist(caster, float(gain) * 0.5f, m_spellInfo);
         if (caster->GetTypeId() == TYPEID_PLAYER)
-            if (BattleGround *bg = caster->ToPlayer()->GetBattleGround())
+            if (BattleGround* bg = caster->ToPlayer()->GetBattleGround())
                 bg->UpdatePlayerScore(caster->ToPlayer(), SCORE_HEALING_DONE, gain);
     }
     // Do damage and triggers
@@ -1436,7 +1436,7 @@ WorldObject* Spell::SearchNearbyTarget(float range, SpellTargets TargetType)
                     case SPELL_TARGET_TYPE_CREATURE:
                     case SPELL_TARGET_TYPE_DEAD:
                     default:
-                        if (Creature *cre = m_caster->FindNearestCreature(i_spellST->second.targetEntry, range, i_spellST->second.type != SPELL_TARGET_TYPE_DEAD))
+                        if (Creature* cre = m_caster->FindNearestCreature(i_spellST->second.targetEntry, range, i_spellST->second.type != SPELL_TARGET_TYPE_DEAD))
                         {
                             creatureScriptTarget = cre;
                             goScriptTarget = NULL;
@@ -1474,7 +1474,7 @@ WorldObject* Spell::SearchNearbyTarget(float range, SpellTargets TargetType)
 void Spell::SetTargetMap(uint32 i, uint32 cur)
 {
     SpellNotifyPushType pushType = PUSH_NONE;
-    Player *modOwner = NULL;
+    Player* modOwner = NULL;
     if (m_originalCaster)
         modOwner = m_originalCaster->GetSpellModOwner();
 
@@ -2911,7 +2911,7 @@ void Spell::SendSpellGo()
     m_caster->SendMessageToSet(&data, true);
 }
 
-void Spell::WriteAmmoToPacket(WorldPacket * data)
+void Spell::WriteAmmoToPacket(WorldPacket* data)
 {
     uint32 ammoInventoryType = 0;
     uint32 ammoDisplayID = 0;
@@ -2950,7 +2950,7 @@ void Spell::WriteAmmoToPacket(WorldPacket * data)
     *data << uint32(ammoInventoryType);
 }
 
-void Spell::WriteSpellGoTargets(WorldPacket * data)
+void Spell::WriteSpellGoTargets(WorldPacket* data)
 {
     *data << (uint8)m_countOfHit;
     for (std::list<TargetInfo>::iterator ihit= m_UniqueTargetInfo.begin();ihit != m_UniqueTargetInfo.end();++ihit)
@@ -3427,7 +3427,7 @@ uint8 Spell::CanCast(bool strict)
 
     // only allow triggered spells if at an ended battleground
     if (!m_IsTriggeredSpell && m_caster->GetTypeId() == TYPEID_PLAYER)
-        if (BattleGround * bg = m_caster->ToPlayer()->GetBattleGround())
+        if (BattleGround* bg = m_caster->ToPlayer()->GetBattleGround())
             if (bg->GetStatus() == STATUS_WAIT_LEAVE)
                 return SPELL_FAILED_DONT_REPORT;
 
@@ -3686,7 +3686,7 @@ uint8 Spell::CanCast(bool strict)
                         case SPELL_TARGET_TYPE_DEAD:
                         default:
                         {
-                            Creature *p_Creature = NULL;
+                            Creature* p_Creature = NULL;
 
                             CellPair p(BlizzLike::ComputeCellPair(m_caster->GetPositionX(), m_caster->GetPositionY()));
                             Cell cell(p);
@@ -4084,7 +4084,7 @@ uint8 Spell::CanCast(bool strict)
             }
             case SPELL_EFFECT_SUMMON_DEAD_PET:
             {
-                Creature *pet = m_caster->GetGuardianPet();
+                Creature* pet = m_caster->GetGuardianPet();
                 if (!pet)
                     return SPELL_FAILED_NO_PET;
 

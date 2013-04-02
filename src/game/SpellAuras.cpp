@@ -2199,7 +2199,7 @@ void Aura::HandleAuraDummy(bool apply, bool Real)
             {
                 // Waiting to resurrect spell cancel, we must remove player from resurrect queue
                 if (m_target->GetTypeId() == TYPEID_PLAYER)
-                    if (BattleGround *bg = m_target->ToPlayer()->GetBattleGround())
+                    if (BattleGround* bg = m_target->ToPlayer()->GetBattleGround())
                         bg->RemovePlayerFromResurrectQueue(m_target->GetGUID());
                 return;
             }
@@ -3830,7 +3830,7 @@ void Aura::HandleAuraModEffectImmunity(bool apply, bool Real)
         {
             if (m_target->ToPlayer()->InBattleGround())
             {
-                BattleGround *bg = m_target->ToPlayer()->GetBattleGround();
+                BattleGround* bg = m_target->ToPlayer()->GetBattleGround();
                 if (bg)
                 {
                     switch(bg->GetTypeID())
@@ -5524,7 +5524,7 @@ void Aura::HandleAuraRetainComboPoints(bool apply, bool Real)
     if (m_target->GetTypeId() != TYPEID_PLAYER)
         return;
 
-    Player *target = m_target->ToPlayer();
+    Player* target = m_target->ToPlayer();
 
     // combo points was added in SPELL_EFFECT_ADD_COMBO_POINTS handler
     // remove only if aura expire by time (in case combo points amount change aura removed without combo points lost)
@@ -5942,7 +5942,7 @@ void Aura::PeriodicTick()
                         if (spell->m_spellInfo->Id == spellProto->Id)
                             spell->cancel();
 
-            if (Player *modOwner = pCaster->GetSpellModOwner())
+            if (Player* modOwner = pCaster->GetSpellModOwner())
                 modOwner->ApplySpellMod(spellProto->Id, SPELLMOD_MULTIPLE_VALUE, multiplier);
 
             uint32 heal = pCaster->SpellHealingBonus(spellProto, uint32(new_damage * multiplier), DOT, pCaster);
@@ -5994,7 +5994,7 @@ void Aura::PeriodicTick()
 
             // add HoTs to amount healed in bgs
             if (pCaster->GetTypeId() == TYPEID_PLAYER)
-                if (BattleGround *bg = pCaster->ToPlayer()->GetBattleGround())
+                if (BattleGround* bg = pCaster->ToPlayer()->GetBattleGround())
                     bg->UpdatePlayerScore(pCaster->ToPlayer(), SCORE_HEALING_DONE, gain);
 
             //Do check before because m_modifier.auraName can be invalidate by DealDamage.
@@ -6081,7 +6081,7 @@ void Aura::PeriodicTick()
             {
                 gain_multiplier = GetSpellProto()->EffectMultipleValue[GetEffIndex()];
 
-                if (Player *modOwner = pCaster->GetSpellModOwner())
+                if (Player* modOwner = pCaster->GetSpellModOwner())
                     modOwner->ApplySpellMod(GetId(), SPELLMOD_MULTIPLE_VALUE, gain_multiplier);
             }
 
@@ -6283,7 +6283,7 @@ void Aura::PeriodicDummyTick()
             {
                 if ((*i)->GetId() == GetId())
                 {
-                    BattleGround *bg = m_target->ToPlayer()->GetBattleGround();
+                    BattleGround* bg = m_target->ToPlayer()->GetBattleGround();
                     if (!bg || !bg->isArena())
                     {
                         // default case - not in arena
@@ -6599,7 +6599,7 @@ void Aura::HandleAuraReflectSpellSchool(bool apply, bool real)
     if (!real || !apply)
         return;
 
-    if (Player *pTarget = m_target->ToPlayer())
+    if (Player* pTarget = m_target->ToPlayer())
     {
         if (GetSpellProto()->SpellFamilyName == SPELLFAMILY_MAGE)
         {

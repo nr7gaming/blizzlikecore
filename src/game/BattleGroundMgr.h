@@ -69,11 +69,11 @@ class BattleGroundQueue
 
         void Update(uint32 bgTypeId, uint32 queue_id, uint8 arenatype = 0, bool isRated = false, uint32 minRating = 0);
 
-        GroupQueueInfo * AddGroup(Player * leader, uint32 BgTypeId, uint8 ArenaType, bool isRated, uint32 ArenaRating, uint32 ArenaTeamId = 0);
-        void AddPlayer(Player *plr, GroupQueueInfo *ginfo);
+        GroupQueueInfo * AddGroup(Player* leader, uint32 BgTypeId, uint8 ArenaType, bool isRated, uint32 ArenaRating, uint32 ArenaTeamId = 0);
+        void AddPlayer(Player* plr, GroupQueueInfo *ginfo);
         void RemovePlayer(uint64 guid, bool decreaseInvitedCount);
         void DecreaseGroupLength(uint32 queueId, uint32 AsGroup);
-        void BGEndedRemoveInvites(BattleGround * bg);
+        void BGEndedRemoveInvites(BattleGround* bg);
 
         typedef std::map<uint64, PlayerQueueInfo> QueuedPlayersMap;
         QueuedPlayersMap m_QueuedPlayers[MAX_BATTLEGROUND_QUEUES];
@@ -124,7 +124,7 @@ class BattleGroundQueue
 
     private:
 
-        bool InviteGroupToBG(GroupQueueInfo * ginfo, BattleGround * bg, uint32 side);
+        bool InviteGroupToBG(GroupQueueInfo * ginfo, BattleGround* bg, uint32 side);
 };
 
 /*
@@ -170,14 +170,14 @@ class BattleGroundMgr
         void Update(time_t diff);
 
         /* Packet Building */
-        void BuildPlayerJoinedBattleGroundPacket(WorldPacket *data, Player *plr);
-        void BuildPlayerLeftBattleGroundPacket(WorldPacket *data, const uint64& guid);
-        void BuildBattleGroundListPacket(WorldPacket *data, uint64 guid, Player *plr, uint32 bgTypeId);
-        void BuildGroupJoinedBattlegroundPacket(WorldPacket *data, uint32 bgTypeId);
-        void BuildUpdateWorldStatePacket(WorldPacket *data, uint32 field, uint32 value);
-        void BuildPvpLogDataPacket(WorldPacket *data, BattleGround *bg);
-        void BuildBattleGroundStatusPacket(WorldPacket *data, BattleGround *bg, uint32 team, uint8 QueueSlot, uint8 StatusID, uint32 Time1, uint32 Time2, uint32 arenatype = 0, uint8 israted = 0);
-        void BuildPlaySoundPacket(WorldPacket *data, uint32 soundid);
+        void BuildPlayerJoinedBattleGroundPacket(WorldPacket* data, Player* plr);
+        void BuildPlayerLeftBattleGroundPacket(WorldPacket* data, const uint64& guid);
+        void BuildBattleGroundListPacket(WorldPacket* data, uint64 guid, Player* plr, uint32 bgTypeId);
+        void BuildGroupJoinedBattlegroundPacket(WorldPacket* data, uint32 bgTypeId);
+        void BuildUpdateWorldStatePacket(WorldPacket* data, uint32 field, uint32 value);
+        void BuildPvpLogDataPacket(WorldPacket* data, BattleGround* bg);
+        void BuildBattleGroundStatusPacket(WorldPacket* data, BattleGround* bg, uint32 team, uint8 QueueSlot, uint8 StatusID, uint32 Time1, uint32 Time2, uint32 arenatype = 0, uint8 israted = 0);
+        void BuildPlaySoundPacket(WorldPacket* data, uint32 soundid);
 
         /* Player invitation */
         // called from Queue update, or from Addplayer to queue
@@ -209,7 +209,7 @@ class BattleGroundMgr
         void CreateInitialBattleGrounds();
         void DeleteAlllBattleGrounds();
 
-        void SendToBattleGround(Player *pl, uint32 bgTypeId);
+        void SendToBattleGround(Player* pl, uint32 bgTypeId);
 
         /* Battleground queues */
         //these queues are instantiated when creating BattlegroundMrg
@@ -217,7 +217,7 @@ class BattleGroundMgr
 
         BGFreeSlotQueueType BGFreeSlotQueue[MAX_BATTLEGROUND_TYPES];
 
-        void SendAreaSpiritHealerQueryOpcode(Player *pl, BattleGround *bg, uint64 guid);
+        void SendAreaSpiritHealerQueryOpcode(Player* pl, BattleGround* bg, uint64 guid);
 
         bool IsArenaType(uint32 bgTypeId) const;
         bool IsBattleGroundType(uint32 bgTypeId) const;

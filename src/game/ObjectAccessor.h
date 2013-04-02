@@ -103,7 +103,7 @@ class ObjectAccessor : public BlizzLike::Singleton<ObjectAccessor, BlizzLike::Cl
         // Player may be not in world while in ObjectAccessor
         static Player* GetObjectInWorld(uint64 guid, Player* /*typeSpecifier*/)
         {
-            Player * player = HashMapHolder<Player>::Find(guid);
+            Player* player = HashMapHolder<Player>::Find(guid);
             if (player && player->IsInWorld())
                 return player;
             return NULL;

@@ -88,7 +88,7 @@ bool OutdoorPvPEP::SetupOutdoorPvP()
     return true;
 }
 
-void OutdoorPvPEP::HandlePlayerEnterZone(Player * plr, uint32 zone)
+void OutdoorPvPEP::HandlePlayerEnterZone(Player* plr, uint32 zone)
 {
     // add buffs
     if (plr->GetTeam() == ALLIANCE)
@@ -104,7 +104,7 @@ void OutdoorPvPEP::HandlePlayerEnterZone(Player * plr, uint32 zone)
     OutdoorPvP::HandlePlayerEnterZone(plr,zone);
 }
 
-void OutdoorPvPEP::HandlePlayerLeaveZone(Player * plr, uint32 zone)
+void OutdoorPvPEP::HandlePlayerLeaveZone(Player* plr, uint32 zone)
 {
     // remove buffs
     if (plr->GetTeam() == ALLIANCE)
@@ -144,7 +144,7 @@ bool OutdoorPvPEP::Update(uint32 diff)
     return changed;
 }
 
-void OutdoorPvPEP::SendRemoveWorldStates(Player *plr)
+void OutdoorPvPEP::SendRemoveWorldStates(Player* plr)
 {
     plr->SendUpdateWorldState(EP_UI_TOWER_COUNT_A,0);
     plr->SendUpdateWorldState(EP_UI_TOWER_COUNT_H,0);
@@ -316,7 +316,7 @@ void OPvPCapturePointEP::FillInitialWorldStates(WorldPacket &data)
     }
 }
 
-bool OPvPCapturePointEP::HandlePlayerEnter(Player *plr)
+bool OPvPCapturePointEP::HandlePlayerEnter(Player* plr)
 {
     if (OPvPCapturePoint::HandlePlayerEnter(plr))
     {
@@ -329,7 +329,7 @@ bool OPvPCapturePointEP::HandlePlayerEnter(Player *plr)
     return false;
 }
 
-void OPvPCapturePointEP::HandlePlayerLeave(Player *plr)
+void OPvPCapturePointEP::HandlePlayerLeave(Player* plr)
 {
     plr->SendUpdateWorldState(EP_UI_TOWER_SLIDER_DISPLAY, 0);
     OPvPCapturePoint::HandlePlayerLeave(plr);
@@ -452,7 +452,7 @@ void OPvPCapturePointEP::SummonFlightMaster(uint32 team)
         AddCreature(EP_PWT_FLIGHTMASTER,EP_PWT_FlightMaster.entry,team,EP_PWT_FlightMaster.map,EP_PWT_FlightMaster.x,EP_PWT_FlightMaster.y,EP_PWT_FlightMaster.z,EP_PWT_FlightMaster.o);
 
         // Change the flightmasters's faction to horde and display a red aura around the npc
-        Creature * c = HashMapHolder<Creature>::Find(m_Creatures[EP_PWT_FLIGHTMASTER]);
+        Creature* c = HashMapHolder<Creature>::Find(m_Creatures[EP_PWT_FLIGHTMASTER]);
         if (c && team == HORDE)
         {
             c->SetUInt32Value(UNIT_FIELD_FACTIONTEMPLATE, c->GetCreatureInfo()->faction_H);

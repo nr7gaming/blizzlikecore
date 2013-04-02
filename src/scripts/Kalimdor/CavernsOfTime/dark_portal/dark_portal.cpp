@@ -57,7 +57,7 @@ EndContentData */
 
 struct npc_medivh_bmAI : public ScriptedAI
 {
-    npc_medivh_bmAI(Creature *c) : ScriptedAI(c)
+    npc_medivh_bmAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
     }
@@ -239,7 +239,7 @@ static Wave PortalWaves[]=
 
 struct npc_time_riftAI : public ScriptedAI
 {
-    npc_time_riftAI(Creature *c) : ScriptedAI(c)
+    npc_time_riftAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
     }
@@ -343,7 +343,7 @@ CreatureAI* GetAI_npc_time_rift(Creature* pCreature)
 #define SPELL_CHRONO_BEACON     34975
 #define ITEM_CHRONO_BEACON      24289
 
-bool GossipHello_npc_saat(Player *player, Creature* pCreature)
+bool GossipHello_npc_saat(Player* player, Creature* pCreature)
 {
     if (pCreature->isQuestGiver())
         player->PrepareQuestMenu(pCreature->GetGUID());
@@ -365,7 +365,7 @@ bool GossipHello_npc_saat(Player *player, Creature* pCreature)
     return true;
 }
 
-bool GossipSelect_npc_saat(Player *player, Creature* pCreature, uint32 /*sender*/, uint32 action)
+bool GossipSelect_npc_saat(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action)
 {
     if (action == GOSSIP_ACTION_INFO_DEF+1)
     {

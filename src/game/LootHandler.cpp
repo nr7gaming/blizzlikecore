@@ -156,7 +156,7 @@ void WorldSession::HandleLootMoneyOpcode(WorldPacket & /*recv_data*/)
 {
     sLog.outDebug("WORLD: CMSG_LOOT_MONEY");
 
-    Player *player = GetPlayer();
+    Player* player = GetPlayer();
     uint64 guid = player->GetLootGUID();
     if (!guid)
         return;
@@ -404,7 +404,7 @@ void WorldSession::DoLootRelease(uint64 lguid)
         loot = &pCreature->loot;
 
         // update next looter
-        if (Player *recipient = pCreature->GetLootRecipient())
+        if (Player* recipient = pCreature->GetLootRecipient())
             if (Group* group = recipient->GetGroup())
                 if (group->GetLooterGuid() == player->GetGUID())
                     group->UpdateLooterGuid(pCreature);
@@ -437,7 +437,7 @@ void WorldSession::HandleLootMasterGiveOpcode(WorldPacket& recv_data)
         return;
     }
 
-    Player *target = ObjectAccessor::FindPlayer(MAKE_NEW_GUID(target_playerguid, 0, HIGHGUID_PLAYER));
+    Player* target = ObjectAccessor::FindPlayer(MAKE_NEW_GUID(target_playerguid, 0, HIGHGUID_PLAYER));
     if (!target)
         return;
 
@@ -454,7 +454,7 @@ void WorldSession::HandleLootMasterGiveOpcode(WorldPacket& recv_data)
 
     if (IS_CREATURE_GUID(GetPlayer()->GetLootGUID()))
     {
-        Creature *pCreature = GetPlayer()->GetMap()->GetCreature(lootguid);
+        Creature* pCreature = GetPlayer()->GetMap()->GetCreature(lootguid);
         if (!pCreature)
             return;
 

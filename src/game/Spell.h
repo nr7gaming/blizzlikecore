@@ -383,8 +383,8 @@ class Spell
 
         void DoCreateItem(uint32 i, uint32 itemtype);
 
-        void WriteSpellGoTargets(WorldPacket * data);
-        void WriteAmmoToPacket(WorldPacket * data);
+        void WriteSpellGoTargets(WorldPacket* data);
+        void WriteAmmoToPacket(WorldPacket* data);
         void FillTargetMap();
 
         void SetTargetMap(uint32 i, uint32 cur);

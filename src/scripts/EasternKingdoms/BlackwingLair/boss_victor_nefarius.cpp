@@ -70,7 +70,7 @@ EndScriptData */
 
 struct boss_victor_nefariusAI : public ScriptedAI
 {
-    boss_victor_nefariusAI(Creature *c) : ScriptedAI(c)
+    boss_victor_nefariusAI(Creature* c) : ScriptedAI(c)
     {
         NefarianGUID = 0;
         switch (urand(0,19))
@@ -184,7 +184,7 @@ struct boss_victor_nefariusAI : public ScriptedAI
         me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
     }
 
-    void BeginEvent(Player *pTarget)
+    void BeginEvent(Player* pTarget)
     {
         DoScriptText(SAY_GAMESBEGIN_2, me);
 

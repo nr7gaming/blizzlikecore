@@ -226,8 +226,8 @@ struct DuelInfo
 {
     DuelInfo() : initiator(NULL), opponent(NULL), startTimer(0), startTime(0), outOfBound(0) {}
 
-    Player *initiator;
-    Player *opponent;
+    Player* initiator;
+    Player* opponent;
     time_t startTimer;
     time_t startTime;
     time_t outOfBound;
@@ -846,8 +846,8 @@ struct BGData
 class Player : public Unit, public GridObject<Player>
 {
     friend class WorldSession;
-    friend void Item::AddToUpdateQueueOf(Player *player);
-    friend void Item::RemoveFromUpdateQueueOf(Player *player);
+    friend void Item::AddToUpdateQueueOf(Player* player);
+    friend void Item::RemoveFromUpdateQueueOf(Player* player);
     public:
         explicit Player (WorldSession *session);
         ~Player ();
@@ -883,7 +883,7 @@ class Player : public Unit, public GridObject<Player>
 
         void Update(uint32 time);
 
-        static bool BuildEnumData(QueryResult_AutoPtr result, WorldPacket * p_data);
+        static bool BuildEnumData(QueryResult_AutoPtr result, WorldPacket* p_data);
 
         void SetInWater(bool apply);
 
@@ -975,7 +975,7 @@ class Player : public Unit, public GridObject<Player>
         void Yell(const std::string& text, const uint32 language);
         void TextEmote(const std::string& text);
         void Whisper(const std::string& text, const uint32 language,uint64 receiver);
-        void BuildPlayerChat(WorldPacket *data, uint8 msgtype, const std::string& text, uint32 language) const;
+        void BuildPlayerChat(WorldPacket* data, uint8 msgtype, const std::string& text, uint32 language) const;
 
         /*********************************************************/
         /***                    STORAGE SYSTEM                 ***/
@@ -1221,7 +1221,7 @@ class Player : public Unit, public GridObject<Player>
         void SendQuestTimerFailed(uint32 quest_id);
         void SendCanTakeQuestResponse(uint32 msg);
         void SendQuestConfirmAccept(Quest const* pQuest, Player* pReceiver);
-        void SendPushToPartyResponse(Player *pPlayer, uint32 msg);
+        void SendPushToPartyResponse(Player* pPlayer, uint32 msg);
         void SendQuestUpdateAddItem(Quest const* pQuest, uint32 item_idx, uint32 count);
         void SendQuestUpdateAddCreatureOrGo(Quest const* pQuest, uint64 guid, uint32 creatureOrGO_idx, uint32 old_count, uint32 add_count);
 
@@ -1599,8 +1599,8 @@ class Player : public Unit, public GridObject<Player>
         WorldSession* GetSession() const { return m_session; }
         void SetSession(WorldSession *s) { m_session = s; }
 
-        void BuildCreateUpdateBlockForPlayer(UpdateData *data, Player *target) const;
-        void DestroyForPlayer(Player *target) const;
+        void BuildCreateUpdateBlockForPlayer(UpdateData *data, Player* target) const;
+        void DestroyForPlayer(Player* target) const;
         void SendDelayResponse(const uint32);
         void SendLogXPGain(uint32 GivenXP,Unit* victim,uint32 RestXP);
 
@@ -1625,9 +1625,9 @@ class Player : public Unit, public GridObject<Player>
 
         void UpdateUnderwaterState(Map * m, float x, float y, float z);
 
-        void SendMessageToSet(WorldPacket *data, bool self);// overwrite Object::SendMessageToSet
-        void SendMessageToSetInRange(WorldPacket *data, float fist, bool self);// overwrite Object::SendMessageToSetInRange
-        void SendMessageToSetInRange(WorldPacket *data, float dist, bool self, bool own_team_only);
+        void SendMessageToSet(WorldPacket* data, bool self);// overwrite Object::SendMessageToSet
+        void SendMessageToSetInRange(WorldPacket* data, float fist, bool self);// overwrite Object::SendMessageToSetInRange
+        void SendMessageToSetInRange(WorldPacket* data, float dist, bool self, bool own_team_only);
 
         Corpse *GetCorpse() const;
         void SpawnCorpseBones();
@@ -1796,7 +1796,7 @@ class Player : public Unit, public GridObject<Player>
 
         void SendInitWorldStates(bool force = false, uint32 forceZoneId = 0);
         void SendUpdateWorldState(uint32 Field, uint32 Value);
-        void SendDirectMessage(WorldPacket *data);
+        void SendDirectMessage(WorldPacket* data);
 
         void SendAuraDurationsForTarget(Unit* target);
 
@@ -1960,7 +1960,7 @@ class Player : public Unit, public GridObject<Player>
             m_lastFallZ = z;
         }
 
-        void BuildTeleportAckMsg( WorldPacket *data, float x, float y, float z, float ang) const;
+        void BuildTeleportAckMsg( WorldPacket* data, float x, float y, float z, float ang) const;
 
         bool isMoving() const { return HasUnitMovementFlag(MOVEFLAG_MOVING); }
         bool isMovingOrTurning() const { return HasUnitMovementFlag(MOVEFLAG_TURNING); }
@@ -2077,7 +2077,7 @@ class Player : public Unit, public GridObject<Player>
         InstancePlayerBind* BindToInstance(InstanceSave *save, bool permanent, bool load = false);
         void SendRaidInfo();
         void SendSavedInstances();
-        static void ConvertInstancesToGroup(Player *player, Group* group = NULL, uint64 player_guid = 0);
+        static void ConvertInstancesToGroup(Player* player, Group* group = NULL, uint64 player_guid = 0);
         bool Satisfy(AccessRequirement const*, uint32 target_map, bool report = false);
 
         /*********************************************************/
@@ -2190,8 +2190,8 @@ class Player : public Unit, public GridObject<Player>
         void _SaveTutorials();
         void _SaveBGData();
 
-        void _SetCreateBits(UpdateMask *updateMask, Player *target) const;
-        void _SetUpdateBits(UpdateMask *updateMask, Player *target) const;
+        void _SetCreateBits(UpdateMask *updateMask, Player* target) const;
+        void _SetUpdateBits(UpdateMask *updateMask, Player* target) const;
 
         /*********************************************************/
         /***              ENVIRONMENTAL SYSTEM                 ***/
@@ -2264,7 +2264,7 @@ class Player : public Unit, public GridObject<Player>
 
         int m_cinematic;
 
-        Player *pTrader;
+        Player* pTrader;
         bool acceptTrade;
         uint64 tradeItems[TRADE_SLOT_COUNT];
         uint32 tradeGold;

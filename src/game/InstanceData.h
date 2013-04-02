@@ -111,7 +111,7 @@ class InstanceData : public ZoneScript
         virtual bool IsEncounterInProgress() const;
 
         //Called when a player successfully enters the instance.
-        virtual void OnPlayerEnter(Player *) {}
+        virtual void OnPlayerEnter(Player* ) {}
 
         //Handle open / close objects
         //use HandleGameObject(NULL,boolen,GO); in OnObjectCreate in instance scripts
@@ -131,10 +131,10 @@ class InstanceData : public ZoneScript
         void LoadMinionData(const MinionData *data);
 
         void AddDoor(GameObject *door, bool add);
-        void AddMinion(Creature *minion, bool add);
+        void AddMinion(Creature* minion, bool add);
 
         void UpdateDoorState(GameObject *door);
-        void UpdateMinionState(Creature *minion, EncounterState state);
+        void UpdateMinionState(Creature* minion, EncounterState state);
 
         std::string LoadBossState(const char * data);
         std::string GetBossSaveData();

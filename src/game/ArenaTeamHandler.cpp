@@ -34,7 +34,7 @@ void WorldSession::HandleInspectArenaStatsOpcode(WorldPacket& recv_data)
     recv_data >> guid;
     sLog.outDebug("Inspect Arena stats (GUID: %u TypeId: %u)", GUID_LOPART(guid),GuidHigh2TypeId(GUID_HIPART(guid)));
 
-    if (Player *plr = ObjectAccessor::FindPlayer(guid))
+    if (Player* plr = ObjectAccessor::FindPlayer(guid))
     {
         for (uint8 i = 0; i < MAX_ARENA_SLOT; ++i)
         {
@@ -79,7 +79,7 @@ void WorldSession::HandleArenaTeamAddMemberOpcode(WorldPacket& recv_data)
     uint32 ArenaTeamId;                                     // arena team id
     std::string Invitedname;
 
-    Player * player = NULL;
+    Player* player = NULL;
 
     recv_data >> ArenaTeamId >> Invitedname;
 
@@ -284,7 +284,7 @@ void WorldSession::HandleArenaTeamRemoveFromTeamOpcode(WorldPacket& recv_data)
         return;
     }
 
-    Player *player = ObjectAccessor::FindPlayer(member->guid);
+    Player* player = ObjectAccessor::FindPlayer(member->guid);
     if (player && player->InArena())
         return;
 

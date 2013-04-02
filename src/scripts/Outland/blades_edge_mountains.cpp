@@ -60,7 +60,7 @@ enum eDrake
 
 struct mobs_nether_drakeAI : public ScriptedAI
 {
-    mobs_nether_drakeAI(Creature *c) : ScriptedAI(c) {}
+    mobs_nether_drakeAI(Creature* c) : ScriptedAI(c) {}
 
     bool IsNihil;
     uint32 NihilSpeech_Timer;
@@ -240,7 +240,7 @@ CreatureAI* GetAI_mobs_nether_drake(Creature* pCreature)
 
 struct npc_daranelleAI : public ScriptedAI
 {
-    npc_daranelleAI(Creature *c) : ScriptedAI(c) {}
+    npc_daranelleAI(Creature* c) : ScriptedAI(c) {}
 
     void Reset()
     {
@@ -278,7 +278,7 @@ CreatureAI* GetAI_npc_daranelle(Creature* pCreature)
 
 #define GOSSIP_HON "Overseer, I am here to negotiate on behalf of the Cenarion Expedition."
 
-bool GossipHello_npc_overseer_nuaar(Player *player, Creature* pCreature)
+bool GossipHello_npc_overseer_nuaar(Player* player, Creature* pCreature)
 {
     if (player->GetQuestStatus(10682) == QUEST_STATUS_INCOMPLETE)
         player->ADD_GOSSIP_ITEM(0, GOSSIP_HON, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
@@ -288,7 +288,7 @@ bool GossipHello_npc_overseer_nuaar(Player *player, Creature* pCreature)
     return true;
 }
 
-bool GossipSelect_npc_overseer_nuaar(Player *player, Creature* pCreature, uint32 /*sender*/, uint32 action)
+bool GossipSelect_npc_overseer_nuaar(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action)
 {
     if (action == GOSSIP_ACTION_INFO_DEF+1)
     {
@@ -305,7 +305,7 @@ bool GossipSelect_npc_overseer_nuaar(Player *player, Creature* pCreature, uint32
 #define GOSSIP_HSTE "Yes... yes, it's me."
 #define GOSSIP_SSTE "Yes elder. Tell me more of the book."
 
-bool GossipHello_npc_saikkal_the_elder(Player *player, Creature* pCreature)
+bool GossipHello_npc_saikkal_the_elder(Player* player, Creature* pCreature)
 {
     if (player->GetQuestStatus(10980) == QUEST_STATUS_INCOMPLETE)
         player->ADD_GOSSIP_ITEM(0, GOSSIP_HSTE, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
@@ -315,7 +315,7 @@ bool GossipHello_npc_saikkal_the_elder(Player *player, Creature* pCreature)
     return true;
 }
 
-bool GossipSelect_npc_saikkal_the_elder(Player *player, Creature* pCreature, uint32 /*sender*/, uint32 action)
+bool GossipSelect_npc_saikkal_the_elder(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action)
 {
     switch (action)
     {
@@ -344,7 +344,7 @@ enum eBloodmaul
 
 struct npc_bloodmaul_brutebaneAI : public ScriptedAI
 {
-    npc_bloodmaul_brutebaneAI(Creature *c) : ScriptedAI(c)
+    npc_bloodmaul_brutebaneAI(Creature* c) : ScriptedAI(c)
     {
        if (Creature* pOgre = me->FindNearestCreature(NPC_OGRE_BRUTE, 50, true))
        {
@@ -374,7 +374,7 @@ CreatureAI* GetAI_npc_bloodmaul_brutebane(Creature* pCreature)
 
 struct npc_ogre_bruteAI : public ScriptedAI
 {
-    npc_ogre_bruteAI(Creature *c) : ScriptedAI(c) {}
+    npc_ogre_bruteAI(Creature* c) : ScriptedAI(c) {}
 
     uint64 PlayerGUID;
 
@@ -430,12 +430,12 @@ CreatureAI* GetAI_npc_ogre_brute(Creature* pCreature)
 #define Q_THE_THUNDERSPIKE 10526
 #define GOR_GRIMGUT_ENTRY  21319
 
-bool GOUse_go_thunderspike(Player *player, GameObject* /*_GO*/)
+bool GOUse_go_thunderspike(Player* player, GameObject* /*_GO*/)
 {
     if (player->GetQuestStatus(Q_THE_THUNDERSPIKE) == QUEST_STATUS_INCOMPLETE)
     {
         // to prevent spawn spam :)
-        if (Creature *pGor = GetClosestCreatureWithEntry(player, GOR_GRIMGUT_ENTRY, 50.0f, true))
+        if (Creature* pGor = GetClosestCreatureWithEntry(player, GOR_GRIMGUT_ENTRY, 50.0f, true))
         {
             if (!pGor->getVictim())
                 pGor->AI()->AttackStart(player);

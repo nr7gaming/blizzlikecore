@@ -168,7 +168,7 @@ static Yells ThrallQuotes[]=
 
 struct hyjalAI : public npc_escortAI
 {
-    hyjalAI(Creature *c);
+    hyjalAI(Creature* c);
 
     void Reset();                                           // Generically used to reset our variables. Do *not* call in EnterEvadeMode as this may make problems if the raid is still in combat
 
@@ -189,7 +189,7 @@ struct hyjalAI : public npc_escortAI
 
     void SpawnVeins();
     void DeSpawnVeins();
-    void JustSummoned(Creature *summoned);
+    void JustSummoned(Creature* summoned);
     void SummonedCreatureDespawn(Creature* summoned);
     void HideNearPos(float x, float y);
     void RespawnNearPos(float x, float y);

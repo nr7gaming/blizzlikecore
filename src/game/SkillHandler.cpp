@@ -50,7 +50,7 @@ void WorldSession::HandleLearnTalentOpcode(WorldPacket& recv_data)
     if (!talentTabInfo)
         return;
 
-    Player * player = GetPlayer();
+    Player* player = GetPlayer();
 
     // prevent learn talent for different class (cheating)
     if ((player->getClassMask() & talentTabInfo->ClassMask) == 0)
@@ -141,7 +141,7 @@ void WorldSession::HandleTalentWipeOpcode(WorldPacket& recv_data)
     uint64 guid;
     recv_data >> guid;
 
-    Creature *unit = GetPlayer()->GetNPCIfCanInteractWith(guid,UNIT_NPC_FLAG_TRAINER);
+    Creature* unit = GetPlayer()->GetNPCIfCanInteractWith(guid,UNIT_NPC_FLAG_TRAINER);
     if (!unit)
     {
         sLog.outDebug("WORLD: HandleTalentWipeOpcode - Unit (GUID: %u) not found or you can't interact with him.", uint32(GUID_LOPART(guid)));

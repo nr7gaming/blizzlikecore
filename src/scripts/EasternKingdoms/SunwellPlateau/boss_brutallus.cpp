@@ -67,7 +67,7 @@ enum Spells
 
 struct boss_brutallusAI : public ScriptedAI
 {
-    boss_brutallusAI(Creature *c) : ScriptedAI(c)
+    boss_brutallusAI(Creature* c) : ScriptedAI(c)
     {
         pInstance = c->GetInstanceData();
         Intro = true;
@@ -145,7 +145,7 @@ struct boss_brutallusAI : public ScriptedAI
         if (!Intro || IsIntro)
             return;
         error_log("Start Intro");
-        Creature *Madrigosa = Unit::GetCreature(*me, pInstance ? pInstance->GetData64(DATA_MADRIGOSA) : 0);
+        Creature* Madrigosa = Unit::GetCreature(*me, pInstance ? pInstance->GetData64(DATA_MADRIGOSA) : 0);
         if (Madrigosa)
         {
             Madrigosa->Respawn();
@@ -181,7 +181,7 @@ struct boss_brutallusAI : public ScriptedAI
 
     void DoIntro()
     {
-        Creature *Madrigosa = Unit::GetCreature(*me, pInstance ? pInstance->GetData64(DATA_MADRIGOSA) : 0);
+        Creature* Madrigosa = Unit::GetCreature(*me, pInstance ? pInstance->GetData64(DATA_MADRIGOSA) : 0);
         if (!Madrigosa)
             return;
 
@@ -282,7 +282,7 @@ struct boss_brutallusAI : public ScriptedAI
             {
                 if (IntroFrostBoltTimer <= diff)
                 {
-                    if (Creature *Madrigosa = Unit::GetCreature(*me, pInstance ? pInstance->GetData64(DATA_MADRIGOSA) : 0))
+                    if (Creature* Madrigosa = Unit::GetCreature(*me, pInstance ? pInstance->GetData64(DATA_MADRIGOSA) : 0))
                     {
                         Madrigosa->CastSpell(me, SPELL_INTRO_FROSTBOLT, true);
                         IntroFrostBoltTimer = 2000;

@@ -65,7 +65,7 @@ void WorldSession::HandleGroupInviteOpcode(WorldPacket& recv_data)
         return;
     }
 
-    Player *player = ObjectAccessor::Instance().FindPlayerByName(membername.c_str());
+    Player* player = ObjectAccessor::Instance().FindPlayerByName(membername.c_str());
 
     // no player
     if (!player)
@@ -218,7 +218,7 @@ void WorldSession::HandleGroupDeclineOpcode(WorldPacket & /*recv_data*/)
     if (!group) return;
 
     // remember leader if online
-    Player *leader = ObjectAccessor::FindPlayer(group->GetLeaderGUID());
+    Player* leader = ObjectAccessor::FindPlayer(group->GetLeaderGUID());
 
     // uninvite, group can be deleted
     GetPlayer()->UninviteFromGroup();
@@ -321,7 +321,7 @@ void WorldSession::HandleGroupSetLeaderOpcode(WorldPacket& recv_data)
     uint64 guid;
     recv_data >> guid;
 
-    Player *player = ObjectAccessor::FindPlayer(guid);
+    Player* player = ObjectAccessor::FindPlayer(guid);
 
     /** error handling **/
     if (!player || !group->IsLeader(GetPlayer()->GetGUID()) || player->GetGroup() != group)
@@ -615,7 +615,7 @@ void WorldSession::HandleRaidReadyCheckFinishOpcode(WorldPacket& /*recv_data*/)
     // Is any reaction need?
 }
 
-void WorldSession::BuildPartyMemberStatsChangedPacket(Player *player, WorldPacket *data)
+void WorldSession::BuildPartyMemberStatsChangedPacket(Player* player, WorldPacket* data)
 {
     uint32 mask = player->GetGroupUpdateFlag();
 
@@ -783,7 +783,7 @@ void WorldSession::HandleRequestPartyMemberStatsOpcode(WorldPacket& recv_data)
     uint64 Guid;
     recv_data >> Guid;
 
-    Player *player = HashMapHolder<Player>::Find(Guid);
+    Player* player = HashMapHolder<Player>::Find(Guid);
     if (!player)
     {
         WorldPacket data(SMSG_PARTY_MEMBER_STATS_FULL, 3+4+2);
