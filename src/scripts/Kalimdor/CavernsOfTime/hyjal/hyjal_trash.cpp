@@ -1281,7 +1281,7 @@ struct mob_gargoyleAI : public hyjal_trashAI
                             AddWaypoint(i, GargoyleWPs[i][0]+irand(-10,10), GargoyleWPs[i][1]+irand(-10,10), GargoyleWPs[i][2]);
                         Start(false, true);
                         SetDespawnAtEnd(false);
-                    } else{//fly path FlyPathWPs
+                    } else {//fly path FlyPathWPs
                         for (uint8 i = 0; i < 3; ++i)
                             AddWaypoint(i, FlyPathWPs[i][0]+irand(-10,10),    FlyPathWPs[i][1]+irand(-10,10),    FlyPathWPs[i][2]);
                         Start(false, true);
