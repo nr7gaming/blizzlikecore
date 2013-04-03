@@ -980,9 +980,9 @@ void hyjalAI::RespawnNearPos(float x, float y)
     TypeContainerVisitor<BlizzLike::WorldObjectWorker<BlizzLike::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
     cell.Visit(p, obj_worker, *me->GetMap());
 }
-void hyjalAI::WaypointReached(uint32 i)
+void hyjalAI::WaypointReached(uint32 uiPointId)
 {
-    if (i == 1 || (i == 0 && me->GetEntry() == THRALL))
+    if (uiPointId == 1 || (uiPointId == 0 && me->GetEntry() == THRALL))
     {
         me->MonsterYell(YELL_HURRY,0,0);
         WaitForTeleport = true;

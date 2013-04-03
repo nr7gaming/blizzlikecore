@@ -445,13 +445,13 @@ void npc_escortAI::Start(bool bIsActiveAttacker, bool bRun, uint64 uiPlayerGUID,
 {
     if (me->getVictim())
     {
-        error_log("BSCR ERROR: EscortAI attempt to Start while in combat. Scriptname: %s, creature entry: %u", me->GetScriptName().c_str(), me->GetEntry());
+        debug_log("BSCR ERROR: EscortAI attempt to Start while in combat. Scriptname: %s, creature entry: %u", me->GetScriptName().c_str(), me->GetEntry());
         return;
     }
 
     if (HasEscortState(STATE_ESCORT_ESCORTING))
     {
-        error_log("BSCR: EscortAI attempt to Start while already escorting.");
+        debug_log("BSCR: EscortAI attempt to Start while already escorting.");
         return;
     }
 

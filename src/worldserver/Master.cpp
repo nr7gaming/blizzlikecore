@@ -37,7 +37,7 @@
 
 // Format is BDB_YYYYMMDD
 #ifndef _REQ_BDB_VERSION
-# define _REQ_BDB_VERSION  "BDB_20130327"
+# define _REQ_BDB_VERSION  "BDB_20130402"
 #endif //_REQ_BDB_VERSION
 
 #ifdef _WIN32
