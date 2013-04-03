@@ -919,6 +919,7 @@ void hyjalAI::UpdateAI(const uint32 diff)
 
     DoMeleeAttackIfReady();
 }
+
 void hyjalAI::JustDied(Unit* /*killer*/)
 {
     if (IsDummy)return;
@@ -941,6 +942,7 @@ void hyjalAI::JustDied(Unit* /*killer*/)
         pInstance->SetData(DATA_RESET_RAIDDAMAGE, 0);//reset damage on die
     }
 }
+
 void hyjalAI::HideNearPos(float x, float y)
 {
     CellPair pair(BlizzLike::ComputeCellPair(x, y));
@@ -968,6 +970,7 @@ void hyjalAI::HideNearPos(float x, float y)
         }
     }
 }
+
 void hyjalAI::RespawnNearPos(float x, float y)
 {
     CellPair p(BlizzLike::ComputeCellPair(x, y));
@@ -980,9 +983,10 @@ void hyjalAI::RespawnNearPos(float x, float y)
     TypeContainerVisitor<BlizzLike::WorldObjectWorker<BlizzLike::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
     cell.Visit(p, obj_worker, *me->GetMap());
 }
-void hyjalAI::WaypointReached(uint32 uiPointId)
+
+void hyjalAI::WaypointReached(uint32 i)
 {
-    if (uiPointId == 1 || (uiPointId == 0 && me->GetEntry() == THRALL))
+    if (i == 1 || (i == 0 && me->GetEntry() == THRALL))
     {
         me->MonsterYell(YELL_HURRY,0,0);
         WaitForTeleport = true;
@@ -1036,6 +1040,7 @@ void hyjalAI::WaypointReached(uint32 uiPointId)
         }
     }
 }
+
 void hyjalAI::DoOverrun(uint32 faction, const uint32 diff)
 {
     npc_escortAI::UpdateAI(diff);
