@@ -98,6 +98,12 @@ int Master::Run()
     sLog.outString("<Ctrl-C> to stop.");
     sLog.outString(" ");
 
+#ifdef USE_SFMT_FOR_RNG
+    sLog.outString("SFMT has been enabled as the random number generator, if worldserver");
+    sLog.outString("freezes or crashes randomly, first, try disabling SFMT in CMAKE configuration");
+    sLog.outString(" ");
+#endif //USE_SFMT_FOR_RNG
+
     // worldd PID file creation
     std::string pidfile = sConfig.GetStringDefault("PidFile", "");
     if (!pidfile.empty())
