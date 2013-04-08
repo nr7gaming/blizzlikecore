@@ -31,8 +31,8 @@
 #ifdef _WIN32
 #include "ServiceWin32.h"
 char serviceName[] = "authserver";
-char serviceLongName[] = "authserver service";
-char serviceDescription[] = "blizzlikecore auth service";
+char serviceLongName[] = "blizzlikecore authserver";
+char serviceDescription[] = "auth service";
 /*
  * -1 - not in service mode
  *  0 - stopped
