@@ -627,6 +627,7 @@ bool IsPositiveEffect(uint32 spellId, uint32 effIndex)
         case 31583:                                         // Arcane Empowerment Rank3
         case 43945:                                         // You're...
         case 44305:                                         // You're...
+        case 18153:                                         // Kodo Kombobulator
             return true;
         case  1852:                                         // Silenced (GM)
         case 46392:                                         // Focused Assault
