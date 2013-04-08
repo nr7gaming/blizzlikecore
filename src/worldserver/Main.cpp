@@ -25,8 +25,8 @@
 #ifdef _WIN32
 #include "ServiceWin32.h"
 char serviceName[] = "worldserver";
-char serviceLongName[] = "blizzlike world service";
-char serviceDescription[] = "blizzlike core world service";
+char serviceLongName[] = "worldserver service";
+char serviceDescription[] = "blizzlikecore world service";
 /*
  * -1 - not in service mode
  *  0 - stopped

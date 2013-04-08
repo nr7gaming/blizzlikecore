@@ -1,6 +1,6 @@
-##################################################
-# BLIZZLIKE CORE WORLD SERVER CONFIGURATION FILE #
-##################################################
+#################################################
+# BLIZZLIKECORE WORLD SERVER CONFIGURATION FILE #
+#################################################
 
 [worldserver]
 ConfVersion=20130302
