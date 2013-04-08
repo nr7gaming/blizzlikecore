@@ -210,7 +210,7 @@ CREATE TABLE `realmlist` (
 
 LOCK TABLES `realmlist` WRITE;
 /*!40000 ALTER TABLE `realmlist` DISABLE KEYS */;
-INSERT INTO `realmlist` VALUES (1,'BlizzLike Group','127.0.0.1',8085,0,0,1,0,0,'8606');
+INSERT INTO `realmlist` VALUES (1,'BlizzLikeGroup','127.0.0.1',8085,0,0,1,0,0,'8606');
 /*!40000 ALTER TABLE `realmlist` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -1,4 +1,7 @@
-# output generic information about the core and buildtype chosen
+# ShowOptions
+
+# Output generic information about the core and buildtype chosen
+
 message("")
 message("* BlizzLikeCore rev. hash  : ${rev_hash}")
 message("* BlizzLikeCore rev. date  : ${rev_date}")
@@ -7,7 +10,7 @@ if( UNIX )
 endif()
 message("")
 
-# output information about installation-directories and locations
+# Output information about installation-directories and locations
 
 message("* Install core to        : ${CMAKE_INSTALL_PREFIX}")
 if( UNIX )
