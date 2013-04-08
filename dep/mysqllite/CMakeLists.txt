@@ -1,5 +1,5 @@
 # Copyright (C) 2006 MySQL AB
-# Integral parts of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 
 # Include the platform-specific file.
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/os/Windows.cmake)

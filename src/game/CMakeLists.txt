@@ -1,4 +1,4 @@
-# Integral parts of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 
 if (USE_COREPCH)
   include_directories(${CMAKE_CURRENT_BINARY_DIR})

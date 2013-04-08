@@ -1,4 +1,4 @@
-# Integral parts of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 
 include_directories(
   ${CMAKE_SOURCE_DIR}/dep/g3dlite/include

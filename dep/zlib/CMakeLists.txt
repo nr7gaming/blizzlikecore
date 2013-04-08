@@ -1,4 +1,4 @@
-# Integral parts of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 
 SET(zlib_STAT_SRCS
   adler32.c                                                                                                                                           

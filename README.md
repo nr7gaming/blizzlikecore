@@ -1,7 +1,4 @@
 BlizzLikeCore
-==========
-
-Copyright (C) BlizzLikeGroup
 -------
 **BlizzLikeCore** is a MMORPG framework that's built using C++, and using a 
 back-end of MySQL for the DB content. **BlizzLikeCore** is an individual project

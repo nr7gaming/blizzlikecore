@@ -1,5 +1,5 @@
 /*
- * Integral parts of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
  */
 
 #define _CRT_SECURE_NO_DEPRECATE

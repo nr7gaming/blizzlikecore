@@ -1,4 +1,4 @@
-# Integral parts of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 
 if( CMAKE_COMPILER_IS_GNUCXX )
   add_definitions(--no-warnings)

@@ -1,4 +1,4 @@
--- Copyright (C) 2011-2013 BlizzLikeGroup <http://blizzlike.servegame.com/>
+-- BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 --
 -- Host: localhost    Database: auth
 -- ------------------------------------------------------

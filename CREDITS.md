@@ -1,5 +1,6 @@
+BlizzLikeGroup
+-------
 All credits to:
-==========
 
  * Copyright (C) 2005-2013 MaNGOS <http://getmangos.com/>
  * Copyright (C) 2005-2013 ScriptDev2 <http://www.scriptdev2.com/>

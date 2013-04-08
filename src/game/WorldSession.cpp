@@ -1,5 +1,5 @@
 /*
- * Integral parts of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
  */
 
 #include "WorldSocket.h"                                    // must be first to make ACE happy with ACE includes in it
