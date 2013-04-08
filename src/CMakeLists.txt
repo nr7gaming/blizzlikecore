@@ -1,6 +1,4 @@
-#
 # Integral parts of this file: CREDITS.md and LICENSE.md
-#
 
 if( SERVERS )
   set(sources_Debugging

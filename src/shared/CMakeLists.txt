@@ -1,6 +1,4 @@
-#
 # Integral parts of this file: CREDITS.md and LICENSE.md
-#
 
 file(GLOB_RECURSE sources_auth Auth/*.cpp Auth/*.h)
 file(GLOB_RECURSE sources_config Config/*.cpp Config/*.h)

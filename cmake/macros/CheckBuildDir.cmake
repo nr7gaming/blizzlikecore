@@ -1,6 +1,4 @@
-#
 # Integral parts of this file: CREDITS.md and LICENSE.md
-#
 
 #
 # Force out-of-source build

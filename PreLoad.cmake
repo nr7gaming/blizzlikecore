@@ -1,6 +1,4 @@
-#
 # Integral parts of this file: CREDITS.md and LICENSE.md
-#
 
 # This file is run right before CMake starts configuring the sourcetree
 
