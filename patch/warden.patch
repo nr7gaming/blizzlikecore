@@ -209,25 +209,12 @@ index 0eafb6d..961b673 100644
      /*0x2EA*/ { "CMSG_PET_STOP_ATTACK",             STATUS_NEVER,    &WorldSession::Handle_NULL                     },
 diff --git a/src/game/WardenBase.cpp b/src/game/WardenBase.cpp
 new file mode 100644
-index 0000000..bc78986
+index 0000000..7c491bb
 --- /dev/null
 +++ b/src/game/WardenBase.cpp
-@@ -0,0 +1,225 @@
+@@ -0,0 +1,212 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#include "Common.h"
@@ -440,25 +427,12 @@ index 0000000..bc78986
 +}
 diff --git a/src/game/WardenBase.h b/src/game/WardenBase.h
 new file mode 100644
-index 0000000..e16636f
+index 0000000..7b19316
 --- /dev/null
 +++ b/src/game/WardenBase.h
-@@ -0,0 +1,130 @@
+@@ -0,0 +1,117 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#ifndef _WARDEN_BASE_H
@@ -576,25 +550,12 @@ index 0000000..e16636f
 +#endif
 diff --git a/src/game/WardenDataStorage.cpp b/src/game/WardenDataStorage.cpp
 new file mode 100644
-index 0000000..d00f8d4
+index 0000000..aaf59b1
 --- /dev/null
 +++ b/src/game/WardenDataStorage.cpp
-@@ -0,0 +1,155 @@
+@@ -0,0 +1,142 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#include "Common.h"
@@ -737,25 +698,12 @@ index 0000000..d00f8d4
 +}
 diff --git a/src/game/WardenDataStorage.h b/src/game/WardenDataStorage.h
 new file mode 100644
-index 0000000..804ccb2
+index 0000000..301157f
 --- /dev/null
 +++ b/src/game/WardenDataStorage.h
-@@ -0,0 +1,62 @@
+@@ -0,0 +1,49 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#ifndef _WARDEN_DATA_STORAGE_H
@@ -805,25 +753,12 @@ index 0000000..804ccb2
 +#endif
 diff --git a/src/game/WardenMac.cpp b/src/game/WardenMac.cpp
 new file mode 100644
-index 0000000..cf748a9
+index 0000000..9cb557b
 --- /dev/null
 +++ b/src/game/WardenMac.cpp
-@@ -0,0 +1,278 @@
+@@ -0,0 +1,265 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#include "Auth/WardenKeyGeneration.h"
@@ -1089,25 +1024,12 @@ index 0000000..cf748a9
 +}
 diff --git a/src/game/WardenMac.h b/src/game/WardenMac.h
 new file mode 100644
-index 0000000..b114425
+index 0000000..bdbaa3a
 --- /dev/null
 +++ b/src/game/WardenMac.h
-@@ -0,0 +1,44 @@
+@@ -0,0 +1,31 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#ifndef _WARDEN_MAC_H
@@ -1139,25 +1061,12 @@ index 0000000..b114425
 +#endif
 diff --git a/src/game/WardenModuleMac.h b/src/game/WardenModuleMac.h
 new file mode 100644
-index 0000000..75405d6
+index 0000000..670c256
 --- /dev/null
 +++ b/src/game/WardenModuleMac.h
-@@ -0,0 +1,613 @@
+@@ -0,0 +1,600 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#ifndef _WARDEN_MODULE_MAC_H
@@ -1758,25 +1667,12 @@ index 0000000..75405d6
 +#endif
 diff --git a/src/game/WardenModuleWin.h b/src/game/WardenModuleWin.h
 new file mode 100644
-index 0000000..4b33d0c
+index 0000000..5707f9b
 --- /dev/null
 +++ b/src/game/WardenModuleWin.h
-@@ -0,0 +1,1203 @@
+@@ -0,0 +1,1190 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#ifndef _WARDEN_MODULE_WIN_H
@@ -2967,25 +2863,12 @@ index 0000000..4b33d0c
 +#endif
 diff --git a/src/game/WardenWin.cpp b/src/game/WardenWin.cpp
 new file mode 100644
-index 0000000..258325b
+index 0000000..af0bbfb
 --- /dev/null
 +++ b/src/game/WardenWin.cpp
-@@ -0,0 +1,511 @@
+@@ -0,0 +1,498 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#include "Auth/Hmac.h"
@@ -3484,25 +3367,12 @@ index 0000000..258325b
 +}
 diff --git a/src/game/WardenWin.h b/src/game/WardenWin.h
 new file mode 100644
-index 0000000..25eacd8
+index 0000000..e76cafd
 --- /dev/null
 +++ b/src/game/WardenWin.h
-@@ -0,0 +1,104 @@
+@@ -0,0 +1,91 @@
 +/*
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
-+ * Please, look at the CREDITS.md file.
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation; either version 2 of the License, or (at your
-+ * option) any later version.
-+ *
-+ * This program is distributed in the hope that it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
 + */
 +
 +#ifndef _WARDEN_WIN_H
