@@ -23,10 +23,10 @@ index 0000000..4dc2128
 +INSERT INTO `command` VALUES ('accpadd', 3, 'Syntax: .accpadd $account_id $5d2h10m15s\r\n\r\nAdd a premium account with time to expire.'),('accpdel', 3, 'Syntax: .accpdel $account_id\r\n\r\nDelete a premium account.');
 \ No newline at end of file
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
-index 1f133fa..3db7dac 100644
+index 4b309ae..3197606 100644
 --- a/src/authserver/AuthSocket.cpp
 +++ b/src/authserver/AuthSocket.cpp
-@@ -359,6 +359,8 @@ bool AuthSocket::_HandleLogonChallenge()
+@@ -346,6 +346,8 @@ bool AuthSocket::_HandleLogonChallenge()
      // Set expired bans to inactive
      LoginDatabase.Execute("UPDATE account_banned SET active = 0 WHERE unbandate<=UNIX_TIMESTAMP() AND unbandate<>bandate");
      LoginDatabase.Execute("DELETE FROM ip_banned WHERE unbandate<=UNIX_TIMESTAMP() AND unbandate<>bandate");
@@ -36,10 +36,10 @@ index 1f133fa..3db7dac 100644
      // Verify that this IP is not in the ip_banned table
      // No SQL injection possible (paste the IP address as passed by the socket)
 diff --git a/src/game/AuctionHouseBot.cpp b/src/game/AuctionHouseBot.cpp
-index 07c163b..781ee92 100644
+index bf0bc06..a1517b2 100644
 --- a/src/game/AuctionHouseBot.cpp
 +++ b/src/game/AuctionHouseBot.cpp
-@@ -708,7 +708,7 @@ void AuctionHouseBot::Update()
+@@ -695,7 +695,7 @@ void AuctionHouseBot::Update()
      if ((!AHBSeller) && (!AHBBuyer))
          return;
  
@@ -49,10 +49,10 @@ index 07c163b..781ee92 100644
      _AHBplayer.Initialize(AHBplayerGUID);
      ObjectAccessor::Instance().AddObject(&_AHBplayer);
 diff --git a/src/game/Chat.cpp b/src/game/Chat.cpp
-index 705963a..cb72c94 100644
+index 9170a09..47c697a 100644
 --- a/src/game/Chat.cpp
 +++ b/src/game/Chat.cpp
-@@ -695,6 +695,10 @@ ChatCommand * ChatHandler::getCommandTable()
+@@ -682,6 +682,10 @@ ChatCommand * ChatHandler::getCommandTable()
          { "bindsight",      SEC_ADMINISTRATOR,  false, &ChatHandler::HandleBindSightCommand,           "", NULL },
          { "unbindsight",    SEC_ADMINISTRATOR,  false, &ChatHandler::HandleUnbindSightCommand,         "", NULL },
  
@@ -64,10 +64,10 @@ index 705963a..cb72c94 100644
          { "warp",           SEC_ADMINISTRATOR,  false, &ChatHandler::HandleWarpCommand,                "", NULL },
  
 diff --git a/src/game/Chat.h b/src/game/Chat.h
-index dd6847f..e7e3f1b 100644
+index bc61eb6..082785e 100644
 --- a/src/game/Chat.h
 +++ b/src/game/Chat.h
-@@ -444,6 +444,10 @@ class ChatHandler
+@@ -431,6 +431,10 @@ class ChatHandler
  
          bool HandleResetAllCommand(const char * args);
  
@@ -79,10 +79,10 @@ index dd6847f..e7e3f1b 100644
          bool HandleWarpCommand(const char * args);                                              
  
 diff --git a/src/game/Formulas.h b/src/game/Formulas.h
-index 3d60cd5..f64f9a5 100644
+index d650dda..796ea05 100644
 --- a/src/game/Formulas.h
 +++ b/src/game/Formulas.h
-@@ -112,7 +112,8 @@ namespace BlizzLike
+@@ -99,7 +99,8 @@ namespace BlizzLike
              if (u->GetTypeId() == TYPEID_UNIT && ((Creature*)u)->isElite())
                  xp_gain *= 2;
  
@@ -93,10 +93,10 @@ index 3d60cd5..f64f9a5 100644
  
          inline uint32 xp_Diff(uint32 lvl)
 diff --git a/src/game/Level3.cpp b/src/game/Level3.cpp
-index 821e2d8..923f551 100644
+index b5cb957..481a0f2 100644
 --- a/src/game/Level3.cpp
 +++ b/src/game/Level3.cpp
-@@ -5279,6 +5279,40 @@ bool ChatHandler::HandleResetAllCommand(const char * args)
+@@ -5266,6 +5266,40 @@ bool ChatHandler::HandleResetAllCommand(const char * args)
      return true;
  }
  
@@ -138,10 +138,10 @@ index 821e2d8..923f551 100644
  {
      sWorld.ShutdownCancel();
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index d0c29f6..d2932f8 100644
+index 94cc424..da4200d 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -5710,6 +5710,8 @@ void Player::CheckAreaExploreAndOutdoor()
+@@ -5697,6 +5697,8 @@ void Player::CheckAreaExploreAndOutdoor()
                      XP = uint32(objmgr.GetBaseXP(p->area_level)*sWorld.getRate(RATE_XP_EXPLORE));
                  }
  
@@ -150,7 +150,7 @@ index d0c29f6..d2932f8 100644
                  GiveXP(XP, NULL);
                  SendExplorationExperience(area,XP);
              }
-@@ -13362,6 +13364,8 @@ void Player::RewardQuest(Quest const *pQuest, uint32 reward, Object* questGiver,
+@@ -13349,6 +13351,8 @@ void Player::RewardQuest(Quest const *pQuest, uint32 reward, Object* questGiver,
  
      // Not give XP in case already completed once repeatable quest
      uint32 XP = q_status.m_rewarded ? 0 : uint32(pQuest->XPValue(this)*sWorld.getRate(RATE_XP_QUEST));
@@ -160,10 +160,10 @@ index d0c29f6..d2932f8 100644
      if (getLevel() < sWorld.getConfig(CONFIG_MAX_PLAYER_LEVEL))
          GiveXP(XP , NULL);
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 52a5fd7..99b1f6e 100644
+index a4a0b7b..fbe126a 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -454,8 +454,11 @@ void World::LoadConfigSettings(bool reload)
+@@ -441,8 +441,11 @@ void World::LoadConfigSettings(bool reload)
      rate_values[RATE_DROP_ITEM_REFERENCED] = sConfig.GetFloatDefault("Rate.Drop.Item.Referenced", 1.0f);
      rate_values[RATE_DROP_MONEY]  = sConfig.GetFloatDefault("Rate.Drop.Money", 1.0f);
      rate_values[RATE_XP_KILL]     = sConfig.GetFloatDefault("Rate.XP.Kill", 1.0f);
@@ -176,10 +176,10 @@ index 52a5fd7..99b1f6e 100644
      rate_values[RATE_REPUTATION_GAIN]  = sConfig.GetFloatDefault("Rate.Reputation.Gain", 1.0f);
      rate_values[RATE_CREATURE_NORMAL_DAMAGE]          = sConfig.GetFloatDefault("Rate.Creature.Normal.Damage", 1.0f);
 diff --git a/src/game/World.h b/src/game/World.h
-index 7ad3d80..36ccc70 100644
+index 3a79e84..b29e03a 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -274,8 +274,11 @@ enum Rates
+@@ -261,8 +261,11 @@ enum Rates
      RATE_DROP_ITEM_REFERENCED,
      RATE_DROP_MONEY,
      RATE_XP_KILL,
@@ -192,10 +192,10 @@ index 7ad3d80..36ccc70 100644
      RATE_REPUTATION_GAIN,
      RATE_CREATURE_NORMAL_HP,
 diff --git a/src/game/WorldSession.cpp b/src/game/WorldSession.cpp
-index ff3b48a..bbcc1c7 100644
+index 7ddd093..693a3f8 100644
 --- a/src/game/WorldSession.cpp
 +++ b/src/game/WorldSession.cpp
-@@ -36,9 +36,9 @@
+@@ -23,9 +23,9 @@
  #include "ScriptMgr.h"
  
  // WorldSession constructor
@@ -208,10 +208,10 @@ index ff3b48a..bbcc1c7 100644
  _logoutTime(0), m_inQueue(false), m_playerLoading(false), m_playerLogout(false), m_playerRecentlyLogout(false), m_playerSave(false),
  m_latency(0), m_timeOutTime(0)
 diff --git a/src/game/WorldSession.h b/src/game/WorldSession.h
-index c372ffa..0eb50d3 100644
+index e38b42d..125cd29 100644
 --- a/src/game/WorldSession.h
 +++ b/src/game/WorldSession.h
-@@ -66,7 +66,7 @@ class WorldSession
+@@ -53,7 +53,7 @@ class WorldSession
      friend class CharacterHandler;
  
      public:
@@ -220,7 +220,7 @@ index c372ffa..0eb50d3 100644
          ~WorldSession();
  
          bool PlayerLoading() const { return m_playerLoading; }
-@@ -84,6 +84,7 @@ class WorldSession
+@@ -71,6 +71,7 @@ class WorldSession
          void SendAreaTriggerMessage(const char* Text, ...) ATTR_PRINTF(2,3);
  
          uint32 GetSecurity() const { return _security; }
@@ -228,7 +228,7 @@ index c372ffa..0eb50d3 100644
          uint32 GetAccountId() const { return _accountId; }
          Player* GetPlayer() const { return _player; }
          char const* GetPlayerName() const;
-@@ -663,6 +664,7 @@ class WorldSession
+@@ -650,6 +651,7 @@ class WorldSession
          uint32 _security;
          uint32 _accountId;
          uint8 m_expansion;
@@ -237,10 +237,10 @@ index c372ffa..0eb50d3 100644
          time_t _logoutTime;
          bool m_inQueue;                                     // session wait in auth.queue
 diff --git a/src/game/WorldSocket.cpp b/src/game/WorldSocket.cpp
-index 1855001..aaeb69f 100644
+index 5b41eff..4e53000 100644
 --- a/src/game/WorldSocket.cpp
 +++ b/src/game/WorldSocket.cpp
-@@ -698,6 +698,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+@@ -685,6 +685,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
      //uint8 expansion = 0;
      LocaleConstant locale;
      std::string account;
@@ -248,7 +248,7 @@ index 1855001..aaeb69f 100644
      Sha1Hash sha1;
      BigNumber v, s, g, N;
      WorldPacket packet, SendAddonPacked;
-@@ -845,6 +846,17 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+@@ -832,6 +833,17 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
          return -1;
      }
  
@@ -266,7 +266,7 @@ index 1855001..aaeb69f 100644
      // Check locked state for server
      sWorld.UpdateAllowedSecurity();
      AccountTypes allowedAccountType = sWorld.GetPlayerSecurityLimit ();
-@@ -901,7 +913,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+@@ -888,7 +900,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
                              safe_account.c_str());
  
      // NOTE ATM the socket is single-threaded, have this in mind ...
@@ -276,7 +276,7 @@ index 1855001..aaeb69f 100644
      m_Crypt.SetKey(&K);
      m_Crypt.Init();
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 9b6dd63..2e48cd5 100644
+index 2961462..62413f6 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
 @@ -1278,7 +1278,10 @@ Visibility.Notify.Period.InBGArenas   = 1000

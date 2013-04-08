@@ -53,10 +53,10 @@ index 0000000..1d16daf
 +INSERT INTO `blizzlike_string` (`entry`, `content_default`, `content_loc1`, `content_loc2`, `content_loc3`, `content_loc4`, `content_loc5`, `content_loc6`, `content_loc7`, `content_loc8`) VALUES (11128, 'Using this item for transmogrify will bind it to you and make it non-refundable and non-tradeable.\r\nDo you wish to continue?\r\n\r\n', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 \ No newline at end of file
 diff --git a/src/game/Item.cpp b/src/game/Item.cpp
-index 8f42622..3f583ca 100644
+index b9a5154..3cd9ac7 100644
 --- a/src/game/Item.cpp
 +++ b/src/game/Item.cpp
-@@ -408,6 +408,7 @@ bool Item::LoadFromDB(uint32 guid, uint64 owner_guid, QueryResult_AutoPtr result
+@@ -395,6 +395,7 @@ bool Item::LoadFromDB(uint32 guid, uint64 owner_guid, QueryResult_AutoPtr result
  
  void Item::DeleteFromDB()
  {
@@ -64,7 +64,7 @@ index 8f42622..3f583ca 100644
      CharacterDatabase.PExecute("DELETE FROM item_instance WHERE guid = '%u'",GetGUIDLow());
  }
  
-@@ -918,3 +919,42 @@ void Item::BuildUpdate(UpdateDataMapType& data_map)
+@@ -905,3 +906,42 @@ void Item::BuildUpdate(UpdateDataMapType& data_map)
      ClearUpdateMask(false);
  }
  
@@ -108,10 +108,10 @@ index 8f42622..3f583ca 100644
 +}
 +
 diff --git a/src/game/Item.h b/src/game/Item.h
-index 7ec9981..c9f02e3 100644
+index 2a5341c..d300813 100644
 --- a/src/game/Item.h
 +++ b/src/game/Item.h
-@@ -289,6 +289,15 @@ class Item : public Object
+@@ -276,6 +276,15 @@ class Item : public Object
          bool hasInvolvedQuest(uint32 /*quest_id*/) const { return false; }
  
          void BuildUpdate(UpdateDataMapType& );
@@ -128,10 +128,10 @@ index 7ec9981..c9f02e3 100644
      private:
          uint8 m_slot;
 diff --git a/src/game/ItemPrototype.h b/src/game/ItemPrototype.h
-index 88f236e..5e599f2 100644
+index 6155464..bf8eac1 100644
 --- a/src/game/ItemPrototype.h
 +++ b/src/game/ItemPrototype.h
-@@ -562,6 +562,8 @@ struct ItemPrototype
+@@ -549,6 +549,8 @@ struct ItemPrototype
      }
  };
  
@@ -141,10 +141,10 @@ index 88f236e..5e599f2 100644
  {
      std::vector<std::string> Name;
 diff --git a/src/game/Language.h b/src/game/Language.h
-index 2d3b749..8d5df6b 100644
+index 8b4abd6..0c28b8e 100644
 --- a/src/game/Language.h
 +++ b/src/game/Language.h
-@@ -919,6 +919,39 @@ enum BlizzLikeStrings
+@@ -906,6 +906,39 @@ enum BlizzLikeStrings
      // Use for custom patches             11000-11999
      LANG_AUTO_BROADCAST                 = 11000,
      LANG_INVALID_REALMID                = 11001,
@@ -185,10 +185,10 @@ index 2d3b749..8d5df6b 100644
      // ChatSpy
      LANG_CHATSPY_APENDED                = 11600,
 diff --git a/src/game/ObjectMgr.cpp b/src/game/ObjectMgr.cpp
-index 2eb17ff..8284841 100644
+index a56bc04..c0478aa 100644
 --- a/src/game/ObjectMgr.cpp
 +++ b/src/game/ObjectMgr.cpp
-@@ -1494,6 +1494,31 @@ uint32 ObjectMgr::GetPlayerAccountIdByPlayerName(const std::string& name) const
+@@ -1481,6 +1481,31 @@ uint32 ObjectMgr::GetPlayerAccountIdByPlayerName(const std::string& name) const
      return 0;
  }
  
@@ -221,10 +221,10 @@ index 2eb17ff..8284841 100644
  {
      mItemLocaleMap.clear();                                 // need for reload case
 diff --git a/src/game/ObjectMgr.h b/src/game/ObjectMgr.h
-index 7370d55..6d475c9 100644
+index 43c66d2..47dbbd6 100644
 --- a/src/game/ObjectMgr.h
 +++ b/src/game/ObjectMgr.h
-@@ -527,6 +527,8 @@ class ObjectMgr
+@@ -514,6 +514,8 @@ class ObjectMgr
      public:
          ObjectMgr();
          ~ObjectMgr();
@@ -233,7 +233,7 @@ index 7370d55..6d475c9 100644
  
          typedef UNORDERED_MAP<uint32, Item*> ItemMap;
  
-@@ -755,6 +757,7 @@ class ObjectMgr
+@@ -742,6 +744,7 @@ class ObjectMgr
          void LoadGameobjectRespawnTimes();
          void LoadItemPrototypes();
          void LoadItemLocales();
@@ -242,10 +242,10 @@ index 7370d55..6d475c9 100644
          void LoadNpcTextLocales();
          void LoadPageTextLocales();
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 4cebad9..bbc0df1 100644
+index 94cc424..e7283e5 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -10834,7 +10834,11 @@ void Player::SetVisibleItemSlot(uint8 slot, Item *pItem)
+@@ -10821,7 +10821,11 @@ void Player::SetVisibleItemSlot(uint8 slot, Item *pItem)
          SetUInt64Value(PLAYER_VISIBLE_ITEM_1_CREATOR + (slot * MAX_VISIBLE_ITEM_OFFSET), pItem->GetUInt64Value(ITEM_FIELD_CREATOR));
  
          int VisibleBase = PLAYER_VISIBLE_ITEM_1_0 + (slot * MAX_VISIBLE_ITEM_OFFSET);
@@ -258,7 +258,7 @@ index 4cebad9..bbc0df1 100644
  
          for (int i = 0; i < MAX_INSPECTED_ENCHANTMENT_SLOT; ++i)
              SetUInt32Value(VisibleBase + 1 + i, pItem->GetEnchantmentId(EnchantmentSlot(i)));
-@@ -10958,6 +10962,7 @@ void Player::MoveItemFromInventory(uint8 bag, uint8 slot, bool update)
+@@ -10945,6 +10949,7 @@ void Player::MoveItemFromInventory(uint8 bag, uint8 slot, bool update)
  {
      if (Item* it = GetItemByPos(bag,slot))
      {
@@ -266,7 +266,7 @@ index 4cebad9..bbc0df1 100644
          ItemRemovedQuestCheck(it->GetEntry(), it->GetCount());
          RemoveItem(bag, slot, update);
          it->RemoveFromUpdateQueueOf(this);
-@@ -20862,3 +20867,56 @@ void Player::SetMap(Map * map)
+@@ -20849,3 +20854,56 @@ void Player::SetMap(Map * map)
      Unit::SetMap(map);
      m_mapRef.link(map, this);
  }
@@ -324,10 +324,10 @@ index 4cebad9..bbc0df1 100644
 +    return NULL;
 +}
 diff --git a/src/game/Player.h b/src/game/Player.h
-index 6d21c55..77574af 100644
+index 8e10c24..5e99b7b 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
-@@ -80,6 +80,20 @@ enum BuyBankSlotResult
+@@ -67,6 +67,20 @@ enum BuyBankSlotResult
      ERR_BANKSLOT_OK                 = 3
  };
  
@@ -348,7 +348,7 @@ index 6d21c55..77574af 100644
  enum PlayerSpellState
  {
      PLAYERSPELL_UNCHANGED = 0,
-@@ -988,6 +1002,7 @@ class Player : public Unit, public GridObject<Player>
+@@ -975,6 +989,7 @@ class Player : public Unit, public GridObject<Player>
          Item* GetItemByGuid(uint64 guid) const;
          Item* GetItemByPos(uint16 pos) const;
          Item* GetItemByPos(uint8 bag, uint8 slot) const;
@@ -356,7 +356,7 @@ index 6d21c55..77574af 100644
          Item* GetWeaponForAttack(WeaponAttackType attackType, bool useable = false) const;
          Item* GetShield(bool useable = false) const;
          static uint32 GetAttackBySlot(uint8 slot);        // MAX_ATTACK if not weapon slot
-@@ -2119,6 +2134,8 @@ class Player : public Unit, public GridObject<Player>
+@@ -2106,6 +2121,8 @@ class Player : public Unit, public GridObject<Player>
          bool HasTitle(uint32 bitIndex);
          bool HasTitle(CharTitlesEntry const* title) { return HasTitle(title->bit_index); }
          void SetTitle(CharTitlesEntry const* title, bool lost = false);
@@ -366,10 +366,10 @@ index 6d21c55..77574af 100644
      protected:
  
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index d14320f..ed31ba3 100644
+index a4a0b7b..c3d6472 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -1221,6 +1221,9 @@ void World::SetInitialWorldSettings()
+@@ -1208,6 +1208,9 @@ void World::SetInitialWorldSettings()
  
      sLog.outString("Loading Item Texts...");
      objmgr.LoadItemTexts();
@@ -380,10 +380,10 @@ index d14320f..ed31ba3 100644
      sLog.outString("Loading Creature Model Based Info Data...");
      objmgr.LoadCreatureModelInfo();
 diff --git a/src/scripts/World/npcs_special.cpp b/src/scripts/World/npcs_special.cpp
-index fb03f58..3cbd597 100644
+index 14a829c..9cfe828 100644
 --- a/src/scripts/World/npcs_special.cpp
 +++ b/src/scripts/World/npcs_special.cpp
-@@ -41,6 +41,8 @@ EndContentData */
+@@ -28,6 +28,8 @@ EndContentData */
  
  #include "ScriptPCH.h"
  #include "ScriptedEscortAI.h"
@@ -392,7 +392,7 @@ index fb03f58..3cbd597 100644
  
  /*######
  ## npc_lunaclaw_spirit
-@@ -1549,6 +1551,245 @@ bool GossipSelect_npc_spiritofazuregos(Player* player, Creature* creature, uint3
+@@ -1536,6 +1538,245 @@ bool GossipSelect_npc_spiritofazuregos(Player* player, Creature* creature, uint3
          return true; 
  }
  
@@ -638,7 +638,7 @@ index fb03f58..3cbd597 100644
  void AddSC_npcs_special()
  {
      Script *newscript;
-@@ -1644,12 +1885,18 @@ void AddSC_npcs_special()
+@@ -1631,12 +1872,18 @@ void AddSC_npcs_special()
      newscript->Name = "mob_mojo";
      newscript->GetAI = &GetAI_mob_mojo;
      newscript->RegisterSelf();

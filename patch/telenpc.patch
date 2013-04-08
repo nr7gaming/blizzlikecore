@@ -522,10 +522,10 @@ index 0000000..5fc5aeb
 +(242, 'Warsong Gulch', 930.851, 1431.57, 345.537, 489, 0.015704, 18, 95000, 'See you soon!', 28750);
 \ No newline at end of file
 diff --git a/src/game/ScriptLoader.cpp b/src/game/ScriptLoader.cpp
-index ea9b286..15911c3 100644
+index a48ca4f..b56abbe 100644
 --- a/src/game/ScriptLoader.cpp
 +++ b/src/game/ScriptLoader.cpp
-@@ -19,6 +19,11 @@
+@@ -6,6 +6,11 @@
  
  #ifdef SCRIPTS
  
@@ -537,7 +537,7 @@ index ea9b286..15911c3 100644
  //examples
  //void AddSC_custom_example();
  //void AddSC_custom_gossip_codebox();
-@@ -392,6 +397,11 @@ void AddScripts()
+@@ -379,6 +384,11 @@ void AddScripts()
  {
  #ifdef SCRIPTS
  
