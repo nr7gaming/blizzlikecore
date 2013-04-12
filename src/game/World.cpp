@@ -32,6 +32,7 @@
 #include "AuctionHouseBot.h"
 #include "WaypointMovementGenerator.h"
 #include "VMapFactory.h"
+#include "MoveMap.h"
 #include "GameEventMgr.h"
 #include "PoolHandler.h"
 #include "Database/DatabaseImpl.h"
@@ -112,6 +113,7 @@ World::~World()
         delete command;
 
     VMAP::VMapFactory::clear();
+    MMAP::MMapFactory::clear();
 
     delete m_resultQueue;
 
@@ -1021,6 +1023,7 @@ void World::LoadConfigSettings(bool reload)
     bool enableLOS = sConfig.GetBoolDefault("vmap.enableLOS", true);
     bool enableHeight = sConfig.GetBoolDefault("vmap.enableHeight", true);
     bool enablePetLOS = sConfig.GetBoolDefault("vmap.petLOS", true);
+    std::string ignoreMapIds = sConfig.GetStringDefault("vmap.ignoreMapIds", "");
     std::string ignoreSpellIds = sConfig.GetStringDefault("vmap.ignoreSpellIds", "");
 
     if (!enableHeight)
@@ -1028,6 +1031,7 @@ void World::LoadConfigSettings(bool reload)
 
     VMAP::VMapFactory::createOrGetVMapManager()->setEnableLineOfSightCalc(enableLOS);
     VMAP::VMapFactory::createOrGetVMapManager()->setEnableHeightCalc(enableHeight);
+    VMAP::VMapFactory::createOrGetVMapManager()->preventMapsFromBeingUsed(ignoreMapIds.c_str());
     VMAP::VMapFactory::preventSpellsFromBeingTestedForLoS(ignoreSpellIds.c_str());
     sLog.outString("WORLD: VMap support included. LineOfSight:%i, getHeight:%i, indoorCheck:%i, PetLOS:%i", enableLOS, enableHeight, enableIndoor, enablePetLOS);
     sLog.outString("WORLD: VMap data directory is: %svmaps",m_dataPath.c_str());
@@ -1089,6 +1093,12 @@ void World::LoadConfigSettings(bool reload)
     m_configs[CONFIG_CHATLOG_PUBLIC] = sConfig.GetBoolDefault("ChatLogs.Public", false);
     m_configs[CONFIG_CHATLOG_ADDON] = sConfig.GetBoolDefault("ChatLogs.Addon", false);
     m_configs[CONFIG_CHATLOG_BGROUND] = sConfig.GetBoolDefault("ChatLogs.BattleGround", false);
+
+    // mmaps
+    m_configs[CONFIG_BOOL_MMAP_ENABLED] = sConfig.GetBoolDefault("mmap.enable", true);
+    std::string ignoreMMapIds = sConfig.GetStringDefault("mmap.ignoreMapIds", "");
+    MMAP::MMapFactory::preventPathfindingOnMaps(ignoreMMapIds.c_str());
+    sLog.outString("WORLD: mmap pathfinding %sabled", getConfig(CONFIG_BOOL_MMAP_ENABLED) ? "en" : "dis");
 }
 
 // Initialize the World
@@ -1096,6 +1106,9 @@ void World::SetInitialWorldSettings()
 {
     // Initialize the random number generator
     srand((unsigned int)time(NULL));
+
+    // Initialize detour memory management
+    dtAllocSetCustom(dtCustomAlloc, dtCustomFree);
 
     // Initialize config settings
     LoadConfigSettings();
