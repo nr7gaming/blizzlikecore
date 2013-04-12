@@ -23,7 +23,7 @@ index 0000000..4dc2128
 +INSERT INTO `command` VALUES ('accpadd', 3, 'Syntax: .accpadd $account_id $5d2h10m15s\r\n\r\nAdd a premium account with time to expire.'),('accpdel', 3, 'Syntax: .accpdel $account_id\r\n\r\nDelete a premium account.');
 \ No newline at end of file
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
-index 4b309ae..3197606 100644
+index eb54757..8f46cf3 100644
 --- a/src/authserver/AuthSocket.cpp
 +++ b/src/authserver/AuthSocket.cpp
 @@ -346,6 +346,8 @@ bool AuthSocket::_HandleLogonChallenge()
@@ -36,7 +36,7 @@ index 4b309ae..3197606 100644
      // Verify that this IP is not in the ip_banned table
      // No SQL injection possible (paste the IP address as passed by the socket)
 diff --git a/src/game/AuctionHouseBot.cpp b/src/game/AuctionHouseBot.cpp
-index bf0bc06..a1517b2 100644
+index 44f362c..2cf2ca3 100644
 --- a/src/game/AuctionHouseBot.cpp
 +++ b/src/game/AuctionHouseBot.cpp
 @@ -695,7 +695,7 @@ void AuctionHouseBot::Update()
@@ -49,12 +49,12 @@ index bf0bc06..a1517b2 100644
      _AHBplayer.Initialize(AHBplayerGUID);
      ObjectAccessor::Instance().AddObject(&_AHBplayer);
 diff --git a/src/game/Chat.cpp b/src/game/Chat.cpp
-index 9170a09..47c697a 100644
+index a9bcb7d..9456ae2 100644
 --- a/src/game/Chat.cpp
 +++ b/src/game/Chat.cpp
-@@ -682,6 +682,10 @@ ChatCommand * ChatHandler::getCommandTable()
-         { "bindsight",      SEC_ADMINISTRATOR,  false, &ChatHandler::HandleBindSightCommand,           "", NULL },
+@@ -694,6 +694,10 @@ ChatCommand * ChatHandler::getCommandTable()
          { "unbindsight",    SEC_ADMINISTRATOR,  false, &ChatHandler::HandleUnbindSightCommand,         "", NULL },
+         { "mmap",           SEC_GAMEMASTER,     false, NULL,                                           "", mmapCommandTable },
  
 +        // accpremium commands
 +        { "accpadd",        SEC_ADMINISTRATOR,  true,  &ChatHandler::HandleAddPremiumAccountCommand,   "", NULL },
@@ -64,7 +64,7 @@ index 9170a09..47c697a 100644
          { "warp",           SEC_ADMINISTRATOR,  false, &ChatHandler::HandleWarpCommand,                "", NULL },
  
 diff --git a/src/game/Chat.h b/src/game/Chat.h
-index bc61eb6..082785e 100644
+index cad3788..266f109 100644
 --- a/src/game/Chat.h
 +++ b/src/game/Chat.h
 @@ -431,6 +431,10 @@ class ChatHandler
@@ -79,7 +79,7 @@ index bc61eb6..082785e 100644
          bool HandleWarpCommand(const char * args);                                              
  
 diff --git a/src/game/Formulas.h b/src/game/Formulas.h
-index d650dda..796ea05 100644
+index 0c1a601..a3cc452 100644
 --- a/src/game/Formulas.h
 +++ b/src/game/Formulas.h
 @@ -99,7 +99,8 @@ namespace BlizzLike
@@ -93,7 +93,7 @@ index d650dda..796ea05 100644
  
          inline uint32 xp_Diff(uint32 lvl)
 diff --git a/src/game/Level3.cpp b/src/game/Level3.cpp
-index b5cb957..481a0f2 100644
+index 229151d..026d38d 100644
 --- a/src/game/Level3.cpp
 +++ b/src/game/Level3.cpp
 @@ -5266,6 +5266,40 @@ bool ChatHandler::HandleResetAllCommand(const char * args)
@@ -138,7 +138,7 @@ index b5cb957..481a0f2 100644
  {
      sWorld.ShutdownCancel();
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 94cc424..da4200d 100644
+index e95f7d1..b7b22e2 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -5697,6 +5697,8 @@ void Player::CheckAreaExploreAndOutdoor()
@@ -160,10 +160,10 @@ index 94cc424..da4200d 100644
      if (getLevel() < sWorld.getConfig(CONFIG_MAX_PLAYER_LEVEL))
          GiveXP(XP , NULL);
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index a4a0b7b..fbe126a 100644
+index 6221e1a..a216758 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -441,8 +441,11 @@ void World::LoadConfigSettings(bool reload)
+@@ -443,8 +443,11 @@ void World::LoadConfigSettings(bool reload)
      rate_values[RATE_DROP_ITEM_REFERENCED] = sConfig.GetFloatDefault("Rate.Drop.Item.Referenced", 1.0f);
      rate_values[RATE_DROP_MONEY]  = sConfig.GetFloatDefault("Rate.Drop.Money", 1.0f);
      rate_values[RATE_XP_KILL]     = sConfig.GetFloatDefault("Rate.XP.Kill", 1.0f);
@@ -176,10 +176,10 @@ index a4a0b7b..fbe126a 100644
      rate_values[RATE_REPUTATION_GAIN]  = sConfig.GetFloatDefault("Rate.Reputation.Gain", 1.0f);
      rate_values[RATE_CREATURE_NORMAL_DAMAGE]          = sConfig.GetFloatDefault("Rate.Creature.Normal.Damage", 1.0f);
 diff --git a/src/game/World.h b/src/game/World.h
-index 3a79e84..b29e03a 100644
+index 54de611..4cf2c9e 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -261,8 +261,11 @@ enum Rates
+@@ -262,8 +262,11 @@ enum Rates
      RATE_DROP_ITEM_REFERENCED,
      RATE_DROP_MONEY,
      RATE_XP_KILL,
@@ -192,7 +192,7 @@ index 3a79e84..b29e03a 100644
      RATE_REPUTATION_GAIN,
      RATE_CREATURE_NORMAL_HP,
 diff --git a/src/game/WorldSession.cpp b/src/game/WorldSession.cpp
-index 7ddd093..693a3f8 100644
+index 6b23b9d..7e8bdf7 100644
 --- a/src/game/WorldSession.cpp
 +++ b/src/game/WorldSession.cpp
 @@ -23,9 +23,9 @@
@@ -208,7 +208,7 @@ index 7ddd093..693a3f8 100644
  _logoutTime(0), m_inQueue(false), m_playerLoading(false), m_playerLogout(false), m_playerRecentlyLogout(false), m_playerSave(false),
  m_latency(0), m_timeOutTime(0)
 diff --git a/src/game/WorldSession.h b/src/game/WorldSession.h
-index e38b42d..125cd29 100644
+index af828e3..5fb4570 100644
 --- a/src/game/WorldSession.h
 +++ b/src/game/WorldSession.h
 @@ -53,7 +53,7 @@ class WorldSession
@@ -237,7 +237,7 @@ index e38b42d..125cd29 100644
          time_t _logoutTime;
          bool m_inQueue;                                     // session wait in auth.queue
 diff --git a/src/game/WorldSocket.cpp b/src/game/WorldSocket.cpp
-index 5b41eff..4e53000 100644
+index ef0eb53..09e6ea4 100644
 --- a/src/game/WorldSocket.cpp
 +++ b/src/game/WorldSocket.cpp
 @@ -685,6 +685,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
@@ -276,10 +276,10 @@ index 5b41eff..4e53000 100644
      m_Crypt.SetKey(&K);
      m_Crypt.Init();
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 2961462..62413f6 100644
+index e89f3d3..6a6c61c 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
-@@ -1278,7 +1278,10 @@ Visibility.Notify.Period.InBGArenas   = 1000
+@@ -1297,7 +1297,10 @@ Visibility.Notify.Period.InBGArenas   = 1000
  #    Rate.XP.Kill
  #    Rate.XP.Quest
  #    Rate.XP.Explore
@@ -291,7 +291,7 @@ index 2961462..62413f6 100644
  #        Default: 1
  #
  #    Rate.XP.PastLevel70
-@@ -1412,6 +1415,9 @@ Rate.Drop.Money = 1
+@@ -1431,6 +1434,9 @@ Rate.Drop.Money = 1
  Rate.XP.Kill    = 1
  Rate.XP.Quest   = 1
  Rate.XP.Explore = 1

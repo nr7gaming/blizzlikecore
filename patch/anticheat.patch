@@ -8,7 +8,7 @@ index 0000000..4dc2128
 +INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s was detected using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s was kicked using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6622,'|cfff00000%s was banned using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 \ No newline at end of file
 diff --git a/src/game/Language.h b/src/game/Language.h
-index 8b4abd6..9fb5fd0 100644
+index af41d44..1f73c00 100644
 --- a/src/game/Language.h
 +++ b/src/game/Language.h
 @@ -834,6 +834,9 @@ enum BlizzLikeStrings
@@ -22,7 +22,7 @@ index 8b4abd6..9fb5fd0 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index d7c0053..a1221fc 100644
+index 5e993bd..1b4e9e9 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -7,6 +7,7 @@
@@ -650,7 +650,7 @@ index d7c0053..a1221fc 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 94cc424..c3c1347 100644
+index e95f7d1..b8a26e1 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -369,6 +369,27 @@ Player::Player (WorldSession *session): Unit()
@@ -681,7 +681,7 @@ index 94cc424..c3c1347 100644
      m_mailsLoaded = false;
      m_mailsUpdated = false;
      unReadMails = 0;
-@@ -20489,12 +20510,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
+@@ -20491,12 +20512,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
  
  void Player::HandleFallDamage(MovementInfo& movementInfo)
  {
@@ -701,7 +701,7 @@ index 94cc424..c3c1347 100644
      //Players with low fall distance, Feather Fall or physical immunity (charges used) are ignored
      // 14.57 can be calculated by resolving damageperc formular below to 0
 diff --git a/src/game/Player.h b/src/game/Player.h
-index 8e10c24..f582e07 100644
+index 5a732ae..bf7a03f 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
 @@ -2294,6 +2294,24 @@ class Player : public Unit, public GridObject<Player>
@@ -730,7 +730,7 @@ index 8e10c24..f582e07 100644
          Transport * m_transport;
  
 diff --git a/src/game/TaxiHandler.cpp b/src/game/TaxiHandler.cpp
-index f9c1dc0..cb835e5 100644
+index dfc1e76..8c81bbd 100644
 --- a/src/game/TaxiHandler.cpp
 +++ b/src/game/TaxiHandler.cpp
 @@ -104,6 +104,9 @@ void WorldSession::SendDoFlight(uint16 MountId, uint32 path, uint32 pathNode)
@@ -743,11 +743,8 @@ index f9c1dc0..cb835e5 100644
      while (GetPlayer()->GetMotionMaster()->GetCurrentMovementGeneratorType() == FLIGHT_MOTION_TYPE)
          GetPlayer()->GetMotionMaster()->MovementExpired(false);
  
-@@ -189,13 +192,32 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
-     // 1) end taxi path in far (multi-node) flight
-     // 2) switch from one map to other in case multim-map taxi path
-     // we need process only (1)
--
+@@ -192,7 +195,15 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
+ 
      uint32 curDest = GetPlayer()->m_taxi.GetTaxiDestination();
      if (!curDest)
 +    {
@@ -762,12 +759,10 @@ index f9c1dc0..cb835e5 100644
  
      TaxiNodesEntry const* curDestNode = sTaxiNodesStore.LookupEntry(curDest);
  
-+    if (curDestNode && curDestNode->map_id == GetPlayer()->GetMapId())
-+    {
-+        while(GetPlayer()->GetMotionMaster()->GetCurrentMovementGeneratorType() == FLIGHT_MOTION_TYPE)
-+            GetPlayer()->GetMotionMaster()->MovementExpired(false);
-+    }
-+
+@@ -202,6 +213,12 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
+             GetPlayer()->GetMotionMaster()->MovementExpired(false);
+     }
+ 
 +    // Movement Anticheat
 +    GetPlayer()->SetPosition(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation());
 +    GetPlayer()->m_movementInfo = movementInfo;
@@ -778,10 +773,10 @@ index f9c1dc0..cb835e5 100644
      if (curDestNode && curDestNode->map_id != GetPlayer()->GetMapId())
      {
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index a4a0b7b..5872681 100644
+index 6221e1a..d256c1d 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -67,6 +67,12 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
+@@ -68,6 +68,12 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
  int32 World::m_visibility_notify_periodInInstances  = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
  int32 World::m_visibility_notify_periodInBGArenas   = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
  
@@ -794,7 +789,7 @@ index a4a0b7b..5872681 100644
  // World constructor
  World::World()
  {
-@@ -518,6 +524,12 @@ void World::LoadConfigSettings(bool reload)
+@@ -520,6 +526,12 @@ void World::LoadConfigSettings(bool reload)
          rate_values[RATE_DURABILITY_LOSS_BLOCK] = 0.0f;
      }
  
@@ -808,10 +803,10 @@ index a4a0b7b..5872681 100644
  
      m_configs[CONFIG_COMPRESSION] = sConfig.GetIntDefault("Compression", 1);
 diff --git a/src/game/World.h b/src/game/World.h
-index 3a79e84..00bc337 100644
+index 54de611..3753963 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -563,6 +563,12 @@ class World
+@@ -564,6 +564,12 @@ class World
          static int32 GetVisibilityNotifyPeriodInInstances() { return m_visibility_notify_periodInInstances;  }
          static int32 GetVisibilityNotifyPeriodInBGArenas()  { return m_visibility_notify_periodInBGArenas;   }
  
@@ -824,7 +819,7 @@ index 3a79e84..00bc337 100644
          void ProcessCliCommands();
          void QueueCliCommand(CliCommandHolder* commandHolder) { cliCmdQueue.add(commandHolder); }
  
-@@ -650,6 +656,12 @@ class World
+@@ -651,6 +657,12 @@ class World
          static int32 m_visibility_notify_periodInInstances;
          static int32 m_visibility_notify_periodInBGArenas;
  
@@ -838,10 +833,10 @@ index 3a79e84..00bc337 100644
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 2961462..12ae376 100644
+index e89f3d3..390c233 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
-@@ -2040,3 +2040,32 @@ Die.Command.Mode = 1
+@@ -2059,3 +2059,32 @@ Die.Command.Mode = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000

@@ -1,6 +1,6 @@
 diff --git a/sql/warden/auth_warden.sql b/sql/warden/auth_warden.sql
 new file mode 100644
-index 0000000..6712b9d
+index 0000000..c8dbbee
 --- /dev/null
 +++ b/sql/warden/auth_warden.sql
 @@ -0,0 +1,3 @@
@@ -9,7 +9,7 @@ index 0000000..6712b9d
 +ADD COLUMN `os` VARCHAR(4) DEFAULT '' NOT NULL AFTER `locale`;
 diff --git a/sql/warden/world_warden.sql b/sql/warden/world_warden.sql
 new file mode 100644
-index 0000000..57684e0
+index 0000000..47f2978
 --- /dev/null
 +++ b/sql/warden/world_warden.sql
 @@ -0,0 +1,33 @@
@@ -47,64 +47,8 @@ index 0000000..57684e0
 +/*!40000 ALTER TABLE `warden_data_result` ENABLE KEYS */;
 +UNLOCK TABLES;
 \ No newline at end of file
-diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 9b6dd63..ddcdaec 100644
---- a/src/worldserver/worldserver.conf.dist
-+++ b/src/worldserver/worldserver.conf.dist
-@@ -2040,3 +2040,51 @@ Die.Command.Mode = 1
- AutoBroadcast.On = 0
- AutoBroadcast.Center = 0
- AutoBroadcast.Timer = 60000
-+
-+###############################################################################
-+# WARDEN SETTINGS
-+#
-+#    Warden.Enabled
-+#        Enable Warden anticheat system
-+#        Default: 1 (Enabled)
-+#                 0 (Disabled)
-+#
-+#    Warden.Action
-+#        Action on failed check
-+#        Default: 1 (Kick)
-+#                 2 (Ban)
-+#                 0 (Log)
-+#
-+#    Warden.BanDuration
-+#        Time (in seconds) an account will be banned.
-+#        Default: 86400 - (24 hours)
-+#
-+#    Warden.NumChecks
-+#        Number of Warden checks that are sent to the client each cycle.
-+#        Default: 3 - (Enabled)
-+#                 0 - (Disabled)
-+#
-+#    Warden.ClientResponseDelay
-+#        Time (in seconds) before client is getting disconnecting for not responding.
-+#        Default: 600 - (600 Seconds)
-+#                 0 - (Disabled, client won't be kicked)
-+#
-+#    Warden.ClientCheckHoldOff
-+#        Time (in seconds) to wait before sending the next check request to the client.
-+#        A low number increases traffic and load on client and server side.
-+#        Default: 5 - (5 Seconds)
-+#
-+#    Warden.LogFile
-+#        Log file of Warden Fail
-+#        Default: "warden.log"
-+#                 "" - Empty name for disable
-+#
-+###############################################################################
-+
-+Warden.Enabled = 1
-+Warden.Action = 1
-+Warden.BanDuration = 86400
-+Warden.NumChecks = 3
-+Warden.ClientResponseDelay = 600
-+Warden.ClientCheckHoldOff = 5
-+Warden.LogFile = "warden.log"
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
-index 4b309ae..305862d 100644
+index eb54757..16ee562 100644
 --- a/src/authserver/AuthSocket.cpp
 +++ b/src/authserver/AuthSocket.cpp
 @@ -335,6 +335,14 @@ bool AuthSocket::_HandleLogonChallenge()
@@ -147,7 +91,7 @@ index 4b309ae..305862d 100644
  
      // Stop if the account is not found
 diff --git a/src/authserver/AuthSocket.h b/src/authserver/AuthSocket.h
-index 0de0d56..2719bb3 100644
+index 11e407f..8145d8f 100644
 --- a/src/authserver/AuthSocket.h
 +++ b/src/authserver/AuthSocket.h
 @@ -54,6 +54,7 @@ class AuthSocket: public BufferedSocket
@@ -159,7 +103,7 @@ index 0de0d56..2719bb3 100644
          AccountTypes _accountSecurityLevel;
  
 diff --git a/src/game/Language.h b/src/game/Language.h
-index 8b4abd6..1a4a995 100644
+index af41d44..b2c1068 100644
 --- a/src/game/Language.h
 +++ b/src/game/Language.h
 @@ -834,6 +834,9 @@ enum BlizzLikeStrings
@@ -173,7 +117,7 @@ index 8b4abd6..1a4a995 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MiscHandler.cpp b/src/game/MiscHandler.cpp
-index fd3eba7..e1f229f 100644
+index 11ad2f0..5752816 100644
 --- a/src/game/MiscHandler.cpp
 +++ b/src/game/MiscHandler.cpp
 @@ -999,17 +999,6 @@ void WorldSession::HandleSetActionBar(WorldPacket& recv_data)
@@ -195,7 +139,7 @@ index fd3eba7..e1f229f 100644
  {
      WorldPacket data(SMSG_PLAYED_TIME, 4 + 4);
 diff --git a/src/game/Opcodes.cpp b/src/game/Opcodes.cpp
-index 0eafb6d..961b673 100644
+index 3a5396f..1636aca 100644
 --- a/src/game/Opcodes.cpp
 +++ b/src/game/Opcodes.cpp
 @@ -751,7 +751,7 @@ OpcodeHandler opcodeTable[NUM_MSG_TYPES] =
@@ -3463,10 +3407,10 @@ index 0000000..e76cafd
 +
 +#endif
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index a4a0b7b..89ab910 100644
+index 6221e1a..aa27356 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -47,6 +47,7 @@
+@@ -48,6 +48,7 @@
  #include "CreatureEventAIMgr.h"
  #include "ScriptMgr.h"
  #include "ProgressBar.h"
@@ -3474,11 +3418,10 @@ index a4a0b7b..89ab910 100644
  
  INSTANTIATE_SINGLETON_1(World);
  
-@@ -1089,6 +1090,14 @@ void World::LoadConfigSettings(bool reload)
-     m_configs[CONFIG_CHATLOG_PUBLIC] = sConfig.GetBoolDefault("ChatLogs.Public", false);
+@@ -1094,6 +1095,14 @@ void World::LoadConfigSettings(bool reload)
      m_configs[CONFIG_CHATLOG_ADDON] = sConfig.GetBoolDefault("ChatLogs.Addon", false);
      m_configs[CONFIG_CHATLOG_BGROUND] = sConfig.GetBoolDefault("ChatLogs.BattleGround", false);
-+    
+ 
 +    // warden
 +    m_configs[CONFIG_WARDEN_ENABLED] = sConfig.GetBoolDefault("Warden.Enabled", true);
 +    m_configs[CONFIG_WARDEN_ACTION] = sConfig.GetIntDefault("Warden.Action", 1);
@@ -3486,10 +3429,11 @@ index a4a0b7b..89ab910 100644
 +    m_configs[CONFIG_WARDEN_NUM_CHECKS] = sConfig.GetIntDefault("Warden.NumChecks", 3);
 +    m_configs[CONFIG_WARDEN_CLIENT_RESPONSE_DELAY] = sConfig.GetIntDefault("Warden.ClientResponseDelay", 600);	
 +    m_configs[CONFIG_WARDEN_CLIENT_CHECK_HOLDOFF] = sConfig.GetIntDefault("Warden.ClientCheckHoldOff", 5);
- }
- 
- // Initialize the World
-@@ -1481,6 +1490,10 @@ void World::SetInitialWorldSettings()
++
+     // mmaps
+     m_configs[CONFIG_BOOL_MMAP_ENABLED] = sConfig.GetBoolDefault("mmap.enable", true);
+     std::string ignoreMMapIds = sConfig.GetStringDefault("mmap.ignoreMapIds", "");
+@@ -1494,6 +1503,10 @@ void World::SetInitialWorldSettings()
      uint32 nextGameEvent = gameeventmgr.Initialize();
      m_timers[WUPDATE_EVENTS].SetInterval(nextGameEvent);    //depend on next event
  
@@ -3501,7 +3445,7 @@ index a4a0b7b..89ab910 100644
      sLog.outString("Starting BattleGround System");
      sBattleGroundMgr.CreateInitialBattleGrounds();
 diff --git a/src/game/World.h b/src/game/World.h
-index 3a79e84..e6272aa 100644
+index 54de611..19e44cc 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
 @@ -238,6 +238,12 @@ enum WorldConfigs
@@ -3514,11 +3458,11 @@ index 3a79e84..e6272aa 100644
 +    CONFIG_WARDEN_NUM_CHECKS,
 +    CONFIG_WARDEN_CLIENT_RESPONSE_DELAY,	
 +    CONFIG_WARDEN_CLIENT_CHECK_HOLDOFF,
+     CONFIG_BOOL_MMAP_ENABLED,
      CONFIG_VALUE_COUNT
  };
- 
 diff --git a/src/game/WorldSession.cpp b/src/game/WorldSession.cpp
-index 7ddd093..24cbc2d 100644
+index 6b23b9d..c2b963a 100644
 --- a/src/game/WorldSession.cpp
 +++ b/src/game/WorldSession.cpp
 @@ -21,6 +21,8 @@
@@ -3577,7 +3521,7 @@ index 7ddd093..24cbc2d 100644
  {
      // need prevent do internal far teleports in handlers because some handlers do lot steps
 diff --git a/src/game/WorldSession.h b/src/game/WorldSession.h
-index e38b42d..930b698 100644
+index af828e3..a410d82 100644
 --- a/src/game/WorldSession.h
 +++ b/src/game/WorldSession.h
 @@ -8,6 +8,7 @@
@@ -3608,7 +3552,7 @@ index e38b42d..930b698 100644
          bool m_inQueue;                                     // session wait in auth.queue
          bool m_playerLoading;                               // code processed in LoginPlayer
 diff --git a/src/game/WorldSocket.cpp b/src/game/WorldSocket.cpp
-index 5b41eff..d3a2331 100644
+index ef0eb53..136fceb 100644
 --- a/src/game/WorldSocket.cpp
 +++ b/src/game/WorldSocket.cpp
 @@ -731,7 +731,8 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
@@ -3641,7 +3585,7 @@ index 5b41eff..d3a2331 100644
      uint32 sleepTime = sWorld.getConfig(CONFIG_SESSION_ADD_DELAY);
      ACE_OS::sleep(ACE_Time_Value (0, sleepTime));
 diff --git a/src/shared/Auth/BigNumber.cpp b/src/shared/Auth/BigNumber.cpp
-index e3f5ea6..5bc1cca 100644
+index 35ddf09..6aec7bb 100644
 --- a/src/shared/Auth/BigNumber.cpp
 +++ b/src/shared/Auth/BigNumber.cpp
 @@ -150,7 +150,7 @@ bool BigNumber::isZero() const
@@ -3664,7 +3608,7 @@ index e3f5ea6..5bc1cca 100644
      return _array;
  }
 diff --git a/src/shared/Auth/BigNumber.h b/src/shared/Auth/BigNumber.h
-index ab85bb3..24e1dbf 100644
+index aa3877a..0a7badd 100644
 --- a/src/shared/Auth/BigNumber.h
 +++ b/src/shared/Auth/BigNumber.h
 @@ -68,7 +68,7 @@ class BigNumber
@@ -3677,7 +3621,7 @@ index ab85bb3..24e1dbf 100644
          std::vector<uint8> AsByteVector();
  
 diff --git a/src/shared/Auth/Hmac.cpp b/src/shared/Auth/Hmac.cpp
-index aa1562b..a7a4fc9 100644
+index 41b1c48..fd04f4e 100644
 --- a/src/shared/Auth/Hmac.cpp
 +++ b/src/shared/Auth/Hmac.cpp
 @@ -13,6 +13,15 @@ HmacHash::HmacHash()
@@ -3715,7 +3659,7 @@ index aa1562b..a7a4fc9 100644
 +    ASSERT(length == SHA_DIGEST_LENGTH);
  }
 diff --git a/src/shared/Auth/Hmac.h b/src/shared/Auth/Hmac.h
-index 596b875..fe9be8d 100644
+index a9279d3..e5221af 100644
 --- a/src/shared/Auth/Hmac.h
 +++ b/src/shared/Auth/Hmac.h
 @@ -17,9 +17,11 @@ class HmacHash
@@ -3732,7 +3676,7 @@ index 596b875..fe9be8d 100644
          uint8 *GetDigest() { return m_digest; };
 diff --git a/src/shared/Auth/WardenKeyGeneration.h b/src/shared/Auth/WardenKeyGeneration.h
 new file mode 100644
-index 0000000..1c4e843
+index 0000000..6953317
 --- /dev/null
 +++ b/src/shared/Auth/WardenKeyGeneration.h
 @@ -0,0 +1,72 @@
@@ -3809,7 +3753,7 @@ index 0000000..1c4e843
 +
 +#endif
 diff --git a/src/shared/Log.cpp b/src/shared/Log.cpp
-index 652fc9c..2c88e38 100644
+index 79380b5..687d823 100644
 --- a/src/shared/Log.cpp
 +++ b/src/shared/Log.cpp
 @@ -16,7 +16,7 @@ INSTANTIATE_SINGLETON_1(Log);
@@ -3868,7 +3812,7 @@ index 652fc9c..2c88e38 100644
 +    fflush(stdout);
 +}
 diff --git a/src/shared/Log.h b/src/shared/Log.h
-index 7af0d73..cd70ef8 100644
+index 0e84d73..ecb5b25 100644
 --- a/src/shared/Log.h
 +++ b/src/shared/Log.h
 @@ -94,6 +94,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
@@ -3888,10 +3832,10 @@ index 7af0d73..cd70ef8 100644
          // cache values for after initilization use (like gm log per account case)
          std::string m_logsDir;
 diff --git a/src/shared/Util.cpp b/src/shared/Util.cpp
-index cb9323e..a7c09f5 100644
+index fd1c4b4..ee11323 100644
 --- a/src/shared/Util.cpp
 +++ b/src/shared/Util.cpp
-@@ -459,3 +459,15 @@ void hexEncodeByteArray(uint8* bytes, uint32 arrayLen, std::string& result)
+@@ -468,3 +468,15 @@ void hexEncodeByteArray(uint8* bytes, uint32 arrayLen, std::string& result)
      result = ss.str();
  }
  
@@ -3908,7 +3852,7 @@ index cb9323e..a7c09f5 100644
 +    return ss.str();
 +}
 diff --git a/src/shared/Util.h b/src/shared/Util.h
-index a5edbb0..5dd04c5 100644
+index 42e4eb8..57283fe 100644
 --- a/src/shared/Util.h
 +++ b/src/shared/Util.h
 @@ -279,6 +279,7 @@ bool utf8ToConsole(const std::string& utf8str, std::string& conStr);
@@ -3919,3 +3863,59 @@ index a5edbb0..5dd04c5 100644
  
  #if PLATFORM == PLATFORM_WINDOWS
  #define UTF8PRINTF(OUT,FRM,RESERR)                      \
+diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
+index e89f3d3..8f68633 100644
+--- a/src/worldserver/worldserver.conf.dist
++++ b/src/worldserver/worldserver.conf.dist
+@@ -2059,3 +2059,51 @@ Die.Command.Mode = 1
+ AutoBroadcast.On = 0
+ AutoBroadcast.Center = 0
+ AutoBroadcast.Timer = 60000
++
++###############################################################################
++# WARDEN SETTINGS
++#
++#    Warden.Enabled
++#        Enable Warden anticheat system
++#        Default: 1 (Enabled)
++#                 0 (Disabled)
++#
++#    Warden.Action
++#        Action on failed check
++#        Default: 1 (Kick)
++#                 2 (Ban)
++#                 0 (Log)
++#
++#    Warden.BanDuration
++#        Time (in seconds) an account will be banned.
++#        Default: 86400 - (24 hours)
++#
++#    Warden.NumChecks
++#        Number of Warden checks that are sent to the client each cycle.
++#        Default: 3 - (Enabled)
++#                 0 - (Disabled)
++#
++#    Warden.ClientResponseDelay
++#        Time (in seconds) before client is getting disconnecting for not responding.
++#        Default: 600 - (600 Seconds)
++#                 0 - (Disabled, client won't be kicked)
++#
++#    Warden.ClientCheckHoldOff
++#        Time (in seconds) to wait before sending the next check request to the client.
++#        A low number increases traffic and load on client and server side.
++#        Default: 5 - (5 Seconds)
++#
++#    Warden.LogFile
++#        Log file of Warden Fail
++#        Default: "warden.log"
++#                 "" - Empty name for disable
++#
++###############################################################################
++
++Warden.Enabled = 1
++Warden.Action = 1
++Warden.BanDuration = 86400
++Warden.NumChecks = 3
++Warden.ClientResponseDelay = 600
++Warden.ClientCheckHoldOff = 5
++Warden.LogFile = "warden.log"

@@ -53,7 +53,7 @@ index 0000000..1d16daf
 +INSERT INTO `blizzlike_string` (`entry`, `content_default`, `content_loc1`, `content_loc2`, `content_loc3`, `content_loc4`, `content_loc5`, `content_loc6`, `content_loc7`, `content_loc8`) VALUES (11128, 'Using this item for transmogrify will bind it to you and make it non-refundable and non-tradeable.\r\nDo you wish to continue?\r\n\r\n', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 \ No newline at end of file
 diff --git a/src/game/Item.cpp b/src/game/Item.cpp
-index b9a5154..3cd9ac7 100644
+index 1bff259..a8c3820 100644
 --- a/src/game/Item.cpp
 +++ b/src/game/Item.cpp
 @@ -395,6 +395,7 @@ bool Item::LoadFromDB(uint32 guid, uint64 owner_guid, QueryResult_AutoPtr result
@@ -108,7 +108,7 @@ index b9a5154..3cd9ac7 100644
 +}
 +
 diff --git a/src/game/Item.h b/src/game/Item.h
-index 2a5341c..d300813 100644
+index bad83e8..980fadc 100644
 --- a/src/game/Item.h
 +++ b/src/game/Item.h
 @@ -276,6 +276,15 @@ class Item : public Object
@@ -128,7 +128,7 @@ index 2a5341c..d300813 100644
      private:
          uint8 m_slot;
 diff --git a/src/game/ItemPrototype.h b/src/game/ItemPrototype.h
-index 6155464..bf8eac1 100644
+index 1648a76..bf95556 100644
 --- a/src/game/ItemPrototype.h
 +++ b/src/game/ItemPrototype.h
 @@ -549,6 +549,8 @@ struct ItemPrototype
@@ -141,7 +141,7 @@ index 6155464..bf8eac1 100644
  {
      std::vector<std::string> Name;
 diff --git a/src/game/Language.h b/src/game/Language.h
-index 8b4abd6..0c28b8e 100644
+index af41d44..b05ea12 100644
 --- a/src/game/Language.h
 +++ b/src/game/Language.h
 @@ -906,6 +906,39 @@ enum BlizzLikeStrings
@@ -185,7 +185,7 @@ index 8b4abd6..0c28b8e 100644
      // ChatSpy
      LANG_CHATSPY_APENDED                = 11600,
 diff --git a/src/game/ObjectMgr.cpp b/src/game/ObjectMgr.cpp
-index a56bc04..c0478aa 100644
+index 0dc03c1..a5229b2 100644
 --- a/src/game/ObjectMgr.cpp
 +++ b/src/game/ObjectMgr.cpp
 @@ -1481,6 +1481,31 @@ uint32 ObjectMgr::GetPlayerAccountIdByPlayerName(const std::string& name) const
@@ -221,7 +221,7 @@ index a56bc04..c0478aa 100644
  {
      mItemLocaleMap.clear();                                 // need for reload case
 diff --git a/src/game/ObjectMgr.h b/src/game/ObjectMgr.h
-index 43c66d2..47dbbd6 100644
+index c277a7e..8baabcc 100644
 --- a/src/game/ObjectMgr.h
 +++ b/src/game/ObjectMgr.h
 @@ -514,6 +514,8 @@ class ObjectMgr
@@ -233,7 +233,7 @@ index 43c66d2..47dbbd6 100644
  
          typedef UNORDERED_MAP<uint32, Item*> ItemMap;
  
-@@ -742,6 +744,7 @@ class ObjectMgr
+@@ -740,6 +742,7 @@ class ObjectMgr
          void LoadGameobjectRespawnTimes();
          void LoadItemPrototypes();
          void LoadItemLocales();
@@ -242,7 +242,7 @@ index 43c66d2..47dbbd6 100644
          void LoadNpcTextLocales();
          void LoadPageTextLocales();
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 94cc424..e7283e5 100644
+index e95f7d1..770523d 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -10821,7 +10821,11 @@ void Player::SetVisibleItemSlot(uint8 slot, Item *pItem)
@@ -266,7 +266,7 @@ index 94cc424..e7283e5 100644
          ItemRemovedQuestCheck(it->GetEntry(), it->GetCount());
          RemoveItem(bag, slot, update);
          it->RemoveFromUpdateQueueOf(this);
-@@ -20849,3 +20854,56 @@ void Player::SetMap(Map * map)
+@@ -20851,3 +20856,56 @@ void Player::SetMap(Map * map)
      Unit::SetMap(map);
      m_mapRef.link(map, this);
  }
@@ -324,7 +324,7 @@ index 94cc424..e7283e5 100644
 +    return NULL;
 +}
 diff --git a/src/game/Player.h b/src/game/Player.h
-index 8e10c24..5e99b7b 100644
+index 5a732ae..b22bfea 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
 @@ -67,6 +67,20 @@ enum BuyBankSlotResult
@@ -366,10 +366,10 @@ index 8e10c24..5e99b7b 100644
      protected:
  
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index a4a0b7b..c3d6472 100644
+index 6221e1a..ab9f82f 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -1208,6 +1208,9 @@ void World::SetInitialWorldSettings()
+@@ -1221,6 +1221,9 @@ void World::SetInitialWorldSettings()
  
      sLog.outString("Loading Item Texts...");
      objmgr.LoadItemTexts();
@@ -380,7 +380,7 @@ index a4a0b7b..c3d6472 100644
      sLog.outString("Loading Creature Model Based Info Data...");
      objmgr.LoadCreatureModelInfo();
 diff --git a/src/scripts/World/npcs_special.cpp b/src/scripts/World/npcs_special.cpp
-index 14a829c..9cfe828 100644
+index 4c7e993..24fb6b4 100644
 --- a/src/scripts/World/npcs_special.cpp
 +++ b/src/scripts/World/npcs_special.cpp
 @@ -28,6 +28,8 @@ EndContentData */
