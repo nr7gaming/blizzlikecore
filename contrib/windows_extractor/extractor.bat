@@ -1,6 +1,6 @@
 @echo off
-color 0b
 :panel
+color 0b
 cls
 echo.
 echo ////////////////////////////////////////////////////
@@ -31,6 +31,7 @@ pause>nul
 goto panel)
 echo.
 echo.
+color 0c
 echo Process finalized with errors.
 echo Press any key to panel . . .
 pause>nul
@@ -56,24 +57,16 @@ pause>nul
 goto panel)
 echo.
 echo.
+color 0c
 echo Process finalized with errors.
 echo Press any key to panel . . .
 pause>nul
 goto panel
 :3_extract_mmaps
-md mmaps
+if not exist mmaps (
+md mmaps)
 movements_extractor.exe
-if %ERRORLEVEL% == 0 (cls
-echo.
-echo.
-echo Process done!
 echo Copy mmaps folder to the core main directory.
-echo Press any key to panel . . .
-pause>nul
-goto panel)
-echo.
-echo.
-echo Process finalized with errors.
 echo Press any key to panel . . .
 pause>nul
 goto panel

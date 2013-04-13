@@ -424,7 +424,7 @@ int main(int argc, char ** argv)
     // prepare archive name list
     std::vector<std::string> archiveNames;
     fillArchiveNameVector(archiveNames);
-    for (size_t i=0; i < archiveNames.size(); ++i)
+    for (size_t i = 0; i < archiveNames.size(); ++i)
     {
         MPQArchive *archive = new MPQArchive(archiveNames[i].c_str());
         if (!gOpenArchives.size() || gOpenArchives.front() != archive)
@@ -454,7 +454,7 @@ int main(int argc, char ** argv)
         }
         map_count=dbc->getRecordCount ();
         map_ids=new map_id[map_count];
-        for (unsigned int x=0;x<map_count;++x)
+        for (unsigned int x = 0; x < map_count; ++x)
         {
             map_ids[x].id=dbc->getRecord (x).getUInt(0);
             strcpy(map_ids[x].name,dbc->getRecord(x).getString(1));
