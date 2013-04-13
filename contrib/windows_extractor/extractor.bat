@@ -66,6 +66,8 @@ goto panel
 if not exist mmaps (
 md mmaps)
 movements_extractor.exe
+echo.
+echo If process finalized without errors:
 echo Copy mmaps folder to the core main directory.
 echo Press any key to panel . . .
 pause>nul
