@@ -41,7 +41,7 @@ goto panel
 if exist buildings (del /S /Q buildings)
 vmap_extractor.exe
 if exist vmaps (del /S /Q vmaps)
-md vmaps
+if not exist vmaps (md vmaps)
 vmap_assembler.exe buildings vmaps
 if %ERRORLEVEL% == 0 (cls
 echo.
@@ -61,5 +61,8 @@ goto panel
 if not exist mmaps (
 md mmaps)
 movements_extractor.exe
+echo.
+echo Press any key to panel . . .
+pause>nul
 goto panel
 :exit
