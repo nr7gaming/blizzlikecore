@@ -4,7 +4,7 @@ index 0000000..c8dbbee
 --- /dev/null
 +++ b/sql/warden/auth_warden.sql
 @@ -0,0 +1,3 @@
-+-- BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++-- BlizzLikeCore Warden
 +ALTER TABLE `account` 
 +ADD COLUMN `os` VARCHAR(4) DEFAULT '' NOT NULL AFTER `locale`;
 diff --git a/sql/warden/world_warden.sql b/sql/warden/world_warden.sql
@@ -13,7 +13,7 @@ index 0000000..47f2978
 --- /dev/null
 +++ b/sql/warden/world_warden.sql
 @@ -0,0 +1,33 @@
-+-- BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++-- BlizzLikeCore Warden
 +DELETE FROM `blizzlike_string` WHERE `entry` IN (6617,6618,6619);
 +INSERT INTO `blizzlike_string` VALUES (6617,'|cfff00000Account [%s] was banned by warden anticheat.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6618,'|cfff00000Account [%s] was kicked by warden anticheat.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6619,'|cfff00000Account [%s] was detected by warden anticheat.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 +

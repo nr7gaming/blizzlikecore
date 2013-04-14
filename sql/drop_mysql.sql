@@ -1,7 +1,6 @@
--- BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
--- ---------------------------------------------------
--- BlizzLike Script to Remove MySQL User and Tables --
--- ---------------------------------------------------
+-- ----------------------------------------------------
+-- BlizzLikeCore Script to remove MySQL user and tables
+-- ----------------------------------------------------
 
 REVOKE ALL PRIVILEGES ON * . * FROM 'blizzlike'@'localhost';
 

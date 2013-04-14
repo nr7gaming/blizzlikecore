@@ -1,7 +1,6 @@
--- BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
--- -------------------------------------
--- Script to cleanup doublicate Items --
--- -------------------------------------
+-- ------------------------------------------------
+-- BlizzLikeCore Script to cleanup doublicate items
+-- ------------------------------------------------
 
 DROP TABLE IF EXISTS item_test;
 CREATE TABLE item_test
