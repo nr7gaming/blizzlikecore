@@ -1,6 +1,6 @@
 diff --git a/sql/warden/auth_warden.sql b/sql/warden/auth_warden.sql
 new file mode 100644
-index 0000000..c8dbbee
+index 0000000..ca57236
 --- /dev/null
 +++ b/sql/warden/auth_warden.sql
 @@ -0,0 +1,3 @@
@@ -9,7 +9,7 @@ index 0000000..c8dbbee
 +ADD COLUMN `os` VARCHAR(4) DEFAULT '' NOT NULL AFTER `locale`;
 diff --git a/sql/warden/world_warden.sql b/sql/warden/world_warden.sql
 new file mode 100644
-index 0000000..47f2978
+index 0000000..5a6f40c
 --- /dev/null
 +++ b/sql/warden/world_warden.sql
 @@ -0,0 +1,33 @@
@@ -48,10 +48,10 @@ index 0000000..47f2978
 +UNLOCK TABLES;
 \ No newline at end of file
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
-index eb54757..16ee562 100644
+index 138ff77..b9c9b39 100644
 --- a/src/authserver/AuthSocket.cpp
 +++ b/src/authserver/AuthSocket.cpp
-@@ -335,6 +335,14 @@ bool AuthSocket::_HandleLogonChallenge()
+@@ -336,6 +336,14 @@ bool AuthSocket::_HandleLogonChallenge()
      _login = (const char*)ch->I;
      _build = ch->build;
  	
@@ -66,7 +66,7 @@ index eb54757..16ee562 100644
      // Escape the user login to avoid further SQL injection
      // Memory will be freed on AuthSocket object destruction
      _safelogin = _login;
-@@ -648,7 +656,7 @@ bool AuthSocket::_HandleLogonProof()
+@@ -649,7 +657,7 @@ bool AuthSocket::_HandleLogonProof()
          // Update the sessionkey, last_ip, last login time and reset number of failed logins in the account table for this account
          // No SQL injection (escaped user name) and IP address as received by socket
          const char* K_hex = K.AsHexStr();
@@ -75,7 +75,7 @@ index eb54757..16ee562 100644
          OPENSSL_free((void*)K_hex);
  
          // Finish SRP6 and send the final result to the client
-@@ -754,6 +762,14 @@ bool AuthSocket::_HandleReconnectChallenge()
+@@ -755,6 +763,14 @@ bool AuthSocket::_HandleReconnectChallenge()
      EndianConvert(ch->build);
      _build = ch->build;
  	
@@ -91,10 +91,10 @@ index eb54757..16ee562 100644
  
      // Stop if the account is not found
 diff --git a/src/authserver/AuthSocket.h b/src/authserver/AuthSocket.h
-index 11e407f..8145d8f 100644
+index a20f37f..286cb1c 100644
 --- a/src/authserver/AuthSocket.h
 +++ b/src/authserver/AuthSocket.h
-@@ -54,6 +54,7 @@ class AuthSocket: public BufferedSocket
+@@ -55,6 +55,7 @@ class AuthSocket: public BufferedSocket
          // Since GetLocaleByName() is _NOT_ bijective, we have to store the locale as a string. Otherwise we can't differ
          // between enUS and enGB, which is important for the patch system
          std::string _localizationName;
@@ -103,10 +103,10 @@ index 11e407f..8145d8f 100644
          AccountTypes _accountSecurityLevel;
  
 diff --git a/src/game/Language.h b/src/game/Language.h
-index af41d44..b2c1068 100644
+index 44bae6e..32fc864 100644
 --- a/src/game/Language.h
 +++ b/src/game/Language.h
-@@ -834,6 +834,9 @@ enum BlizzLikeStrings
+@@ -835,6 +835,9 @@ enum BlizzLikeStrings
      LANG_GM_ANNOUNCE_COLOR               = 6615,
  
      LANG_GM_SILENCE                      = 6616,              // GM Silenced Spell 1852
@@ -117,10 +117,10 @@ index af41d44..b2c1068 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MiscHandler.cpp b/src/game/MiscHandler.cpp
-index 11ad2f0..5752816 100644
+index 6c118ec..2a52f59 100644
 --- a/src/game/MiscHandler.cpp
 +++ b/src/game/MiscHandler.cpp
-@@ -999,17 +999,6 @@ void WorldSession::HandleSetActionBar(WorldPacket& recv_data)
+@@ -1000,17 +1000,6 @@ void WorldSession::HandleSetActionBar(WorldPacket& recv_data)
      GetPlayer()->SetByteValue(PLAYER_FIELD_BYTES, 2, ActionBar);
  }
  
@@ -139,10 +139,10 @@ index 11ad2f0..5752816 100644
  {
      WorldPacket data(SMSG_PLAYED_TIME, 4 + 4);
 diff --git a/src/game/Opcodes.cpp b/src/game/Opcodes.cpp
-index 3a5396f..1636aca 100644
+index 4ef6ae5..79f0ef3 100644
 --- a/src/game/Opcodes.cpp
 +++ b/src/game/Opcodes.cpp
-@@ -751,7 +751,7 @@ OpcodeHandler opcodeTable[NUM_MSG_TYPES] =
+@@ -752,7 +752,7 @@ OpcodeHandler opcodeTable[NUM_MSG_TYPES] =
      /*0x2E4*/ { "SMSG_AREA_SPIRIT_HEALER_TIME",     STATUS_NEVER,    &WorldSession::Handle_ServerSide               },
      /*0x2E5*/ { "CMSG_GM_UNTEACH",                  STATUS_NEVER,    &WorldSession::Handle_NULL                     },
      /*0x2E6*/ { "SMSG_WARDEN_DATA",                 STATUS_NEVER,    &WorldSession::Handle_ServerSide               },
@@ -3407,10 +3407,10 @@ index 0000000..e76cafd
 +
 +#endif
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 6221e1a..aa27356 100644
+index b3fbd50..c111cd3 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
-@@ -48,6 +48,7 @@
+@@ -49,6 +49,7 @@
  #include "CreatureEventAIMgr.h"
  #include "ScriptMgr.h"
  #include "ProgressBar.h"
@@ -3418,7 +3418,7 @@ index 6221e1a..aa27356 100644
  
  INSTANTIATE_SINGLETON_1(World);
  
-@@ -1094,6 +1095,14 @@ void World::LoadConfigSettings(bool reload)
+@@ -1095,6 +1096,14 @@ void World::LoadConfigSettings(bool reload)
      m_configs[CONFIG_CHATLOG_ADDON] = sConfig.GetBoolDefault("ChatLogs.Addon", false);
      m_configs[CONFIG_CHATLOG_BGROUND] = sConfig.GetBoolDefault("ChatLogs.BattleGround", false);
  
@@ -3433,7 +3433,7 @@ index 6221e1a..aa27356 100644
      // mmaps
      m_configs[CONFIG_BOOL_MMAP_ENABLED] = sConfig.GetBoolDefault("mmap.enable", true);
      std::string ignoreMMapIds = sConfig.GetStringDefault("mmap.ignoreMapIds", "");
-@@ -1494,6 +1503,10 @@ void World::SetInitialWorldSettings()
+@@ -1495,6 +1504,10 @@ void World::SetInitialWorldSettings()
      uint32 nextGameEvent = gameeventmgr.Initialize();
      m_timers[WUPDATE_EVENTS].SetInterval(nextGameEvent);    //depend on next event
  
@@ -3445,10 +3445,10 @@ index 6221e1a..aa27356 100644
      sLog.outString("Starting BattleGround System");
      sBattleGroundMgr.CreateInitialBattleGrounds();
 diff --git a/src/game/World.h b/src/game/World.h
-index 54de611..19e44cc 100644
+index 12a1cdb..c85cf32 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -238,6 +238,12 @@ enum WorldConfigs
+@@ -239,6 +239,12 @@ enum WorldConfigs
      CONFIG_AUTOBROADCAST_TIMER,
      CONFIG_AUTOBROADCAST_ENABLED,
      CONFIG_AUTOBROADCAST_CENTER,
@@ -3462,10 +3462,10 @@ index 54de611..19e44cc 100644
      CONFIG_VALUE_COUNT
  };
 diff --git a/src/game/WorldSession.cpp b/src/game/WorldSession.cpp
-index 6b23b9d..c2b963a 100644
+index c40a18c..be24241 100644
 --- a/src/game/WorldSession.cpp
 +++ b/src/game/WorldSession.cpp
-@@ -21,6 +21,8 @@
+@@ -22,6 +22,8 @@
  #include "Chat.h"
  #include "SocialMgr.h"
  #include "ScriptMgr.h"
@@ -3474,7 +3474,7 @@ index 6b23b9d..c2b963a 100644
  
  // WorldSession constructor
  WorldSession::WorldSession(uint32 id, WorldSocket *sock, uint32 sec, uint8 expansion, time_t mute_time, LocaleConstant locale) :
-@@ -28,7 +30,7 @@ LookingForGroup_auto_join(false), LookingForGroup_auto_add(false), m_muteTime(mu
+@@ -29,7 +31,7 @@ LookingForGroup_auto_join(false), LookingForGroup_auto_add(false), m_muteTime(mu
  _player(NULL), m_Socket(sock),_security(sec), _accountId(id), m_expansion(expansion),
  m_sessionDbcLocale(sWorld.GetAvailableDbcLocale(locale)), m_sessionDbLocaleIndex(objmgr.GetIndexForLocale(locale)),
  _logoutTime(0), m_inQueue(false), m_playerLoading(false), m_playerLogout(false), m_playerRecentlyLogout(false), m_playerSave(false),
@@ -3483,7 +3483,7 @@ index 6b23b9d..c2b963a 100644
  {
      if (sock)
      {
-@@ -54,6 +56,9 @@ WorldSession::~WorldSession()
+@@ -55,6 +57,9 @@ WorldSession::~WorldSession()
          m_Socket = NULL;
      }
  
@@ -3493,7 +3493,7 @@ index 6b23b9d..c2b963a 100644
      // empty incoming packet queue
      WorldPacket* packet;
      while (_recvQueue.next(packet))
-@@ -234,6 +239,9 @@ bool WorldSession::Update(uint32 diff)
+@@ -235,6 +240,9 @@ bool WorldSession::Update(uint32 diff)
          delete packet;
      }
      
@@ -3503,7 +3503,7 @@ index 6b23b9d..c2b963a 100644
      ///- If necessary, log the player out
      time_t currTime = time(NULL);
      if (ShouldLogOut(currTime) && !m_playerLoading)
-@@ -534,6 +542,16 @@ void WorldSession::SendAuthWaitQue(uint32 position)
+@@ -535,6 +543,16 @@ void WorldSession::SendAuthWaitQue(uint32 position)
      }
  }
  
@@ -3521,10 +3521,10 @@ index 6b23b9d..c2b963a 100644
  {
      // need prevent do internal far teleports in handlers because some handlers do lot steps
 diff --git a/src/game/WorldSession.h b/src/game/WorldSession.h
-index af828e3..a410d82 100644
+index 0e60bb9..b76b0cf 100644
 --- a/src/game/WorldSession.h
 +++ b/src/game/WorldSession.h
-@@ -8,6 +8,7 @@
+@@ -9,6 +9,7 @@
  #include "Common.h"
  #include "QueryResult.h"
  #include "World.h"
@@ -3532,7 +3532,7 @@ index af828e3..a410d82 100644
  
  struct ItemPrototype;
  struct AuctionEntry;
-@@ -79,6 +80,8 @@ class WorldSession
+@@ -80,6 +81,8 @@ class WorldSession
          void SetPlayer(Player* plr) { _player = plr; }
          uint8 Expansion() const { return m_expansion; }
  
@@ -3541,7 +3541,7 @@ index af828e3..a410d82 100644
          // Session in auth.queue currently
          void SetInQueue(bool state) { m_inQueue = state; }
  
-@@ -651,6 +654,9 @@ class WorldSession
+@@ -652,6 +655,9 @@ class WorldSession
          uint32 _accountId;
          uint8 m_expansion;
  
@@ -3552,10 +3552,10 @@ index af828e3..a410d82 100644
          bool m_inQueue;                                     // session wait in auth.queue
          bool m_playerLoading;                               // code processed in LoginPlayer
 diff --git a/src/game/WorldSocket.cpp b/src/game/WorldSocket.cpp
-index ef0eb53..136fceb 100644
+index 9b54377..3b4afe2 100644
 --- a/src/game/WorldSocket.cpp
 +++ b/src/game/WorldSocket.cpp
-@@ -731,7 +731,8 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+@@ -732,7 +732,8 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
                                  "s, "                       //5
                                  "expansion, "               //6
                                  "mutetime, "                //7
@@ -3565,7 +3565,7 @@ index ef0eb53..136fceb 100644
                                  "FROM account "
                                  "WHERE username = '%s'",
                                  safe_account.c_str ());
-@@ -790,6 +791,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+@@ -791,6 +792,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
      K.SetHexStr (fields[1].GetString ());
  
      time_t mutetime = time_t (fields[7].GetUInt64 ());
@@ -3573,7 +3573,7 @@ index ef0eb53..136fceb 100644
  
      locale = LocaleConstant (fields[8].GetUInt8 ());
      if (locale >= MAX_LOCALE)
-@@ -893,6 +895,10 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+@@ -894,6 +896,10 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
      m_Crypt.SetKey(&K);
      m_Crypt.Init();
  
@@ -3585,10 +3585,10 @@ index ef0eb53..136fceb 100644
      uint32 sleepTime = sWorld.getConfig(CONFIG_SESSION_ADD_DELAY);
      ACE_OS::sleep(ACE_Time_Value (0, sleepTime));
 diff --git a/src/shared/Auth/BigNumber.cpp b/src/shared/Auth/BigNumber.cpp
-index 35ddf09..6aec7bb 100644
+index 23f43e8..08cc530 100644
 --- a/src/shared/Auth/BigNumber.cpp
 +++ b/src/shared/Auth/BigNumber.cpp
-@@ -150,7 +150,7 @@ bool BigNumber::isZero() const
+@@ -151,7 +151,7 @@ bool BigNumber::isZero() const
      return BN_is_zero(_bn)!=0;
  }
  
@@ -3597,7 +3597,7 @@ index 35ddf09..6aec7bb 100644
  {
      int length = (minSize >= GetNumBytes()) ? minSize : GetNumBytes();
  
-@@ -167,7 +167,8 @@ uint8 *BigNumber::AsByteArray(int minSize)
+@@ -168,7 +168,8 @@ uint8 *BigNumber::AsByteArray(int minSize)
  
      BN_bn2bin(_bn, (unsigned char *)_array);
  
@@ -3608,10 +3608,10 @@ index 35ddf09..6aec7bb 100644
      return _array;
  }
 diff --git a/src/shared/Auth/BigNumber.h b/src/shared/Auth/BigNumber.h
-index aa3877a..0a7badd 100644
+index 550b6c4..9af5da8 100644
 --- a/src/shared/Auth/BigNumber.h
 +++ b/src/shared/Auth/BigNumber.h
-@@ -68,7 +68,7 @@ class BigNumber
+@@ -69,7 +69,7 @@ class BigNumber
          struct bignum_st *BN() { return _bn; }
  
          uint32 AsDword();
@@ -3621,10 +3621,10 @@ index aa3877a..0a7badd 100644
          std::vector<uint8> AsByteVector();
  
 diff --git a/src/shared/Auth/Hmac.cpp b/src/shared/Auth/Hmac.cpp
-index 41b1c48..fd04f4e 100644
+index f97e37e..0094509 100644
 --- a/src/shared/Auth/Hmac.cpp
 +++ b/src/shared/Auth/Hmac.cpp
-@@ -13,6 +13,15 @@ HmacHash::HmacHash()
+@@ -14,6 +14,15 @@ HmacHash::HmacHash()
      HMAC_Init_ex(&m_ctx, &m_key, SEED_KEY_SIZE, EVP_sha1(), NULL);
  }
  
@@ -3640,7 +3640,7 @@ index 41b1c48..fd04f4e 100644
  HmacHash::~HmacHash()
  {
      memset(&m_key, 0x00, SEED_KEY_SIZE);
-@@ -29,6 +38,11 @@ void HmacHash::UpdateData(const uint8 *data, int length)
+@@ -30,6 +39,11 @@ void HmacHash::UpdateData(const uint8 *data, int length)
      HMAC_Update(&m_ctx, data, length);
  }
  
@@ -3652,17 +3652,17 @@ index 41b1c48..fd04f4e 100644
  void HmacHash::Initialize()
  {
      HMAC_Init_ex(&m_ctx, &m_key, SEED_KEY_SIZE, EVP_sha1(), NULL);
-@@ -38,4 +52,5 @@ void HmacHash::Finalize()
+@@ -39,4 +53,5 @@ void HmacHash::Finalize()
  {
      uint32 length = 0;
      HMAC_Final(&m_ctx, m_digest, &length);
 +    ASSERT(length == SHA_DIGEST_LENGTH);
  }
 diff --git a/src/shared/Auth/Hmac.h b/src/shared/Auth/Hmac.h
-index a9279d3..e5221af 100644
+index d959ad5..91ac610 100644
 --- a/src/shared/Auth/Hmac.h
 +++ b/src/shared/Auth/Hmac.h
-@@ -17,9 +17,11 @@ class HmacHash
+@@ -18,9 +18,11 @@ class HmacHash
  {
      public:
          HmacHash();
@@ -3753,10 +3753,10 @@ index 0000000..6953317
 +
 +#endif
 diff --git a/src/shared/Log.cpp b/src/shared/Log.cpp
-index 79380b5..687d823 100644
+index 2d03f96..725788c 100644
 --- a/src/shared/Log.cpp
 +++ b/src/shared/Log.cpp
-@@ -16,7 +16,7 @@ INSTANTIATE_SINGLETON_1(Log);
+@@ -17,7 +17,7 @@ INSTANTIATE_SINGLETON_1(Log);
  Log::Log() :
      raLogfile(NULL), logfile(NULL), gmLogfile(NULL), charLogfile(NULL),
      dberLogfile(NULL), chatLogfile(NULL), arenaLogFile(NULL), m_gmlog_per_account(false),
@@ -3765,7 +3765,7 @@ index 79380b5..687d823 100644
  {
      Initialize();
  }
-@@ -50,6 +50,10 @@ Log::~Log()
+@@ -51,6 +51,10 @@ Log::~Log()
      if (arenaLogFile != NULL)
          fclose(arenaLogFile);
      arenaLogFile = NULL;
@@ -3776,7 +3776,7 @@ index 79380b5..687d823 100644
  }
  
  void Log::SetLogLevel(char *Level)
-@@ -141,6 +145,7 @@ void Log::Initialize()
+@@ -142,6 +146,7 @@ void Log::Initialize()
      raLogfile = openLogFile("RaLogFile",NULL,"a");
      chatLogfile = openLogFile("ChatLogFile","ChatLogTimestamp","a");
      arenaLogFile = openLogFile("ArenaLogFile",NULL,"a");
@@ -3784,7 +3784,7 @@ index 79380b5..687d823 100644
  
      // Main log file settings
      m_logLevel     = sConfig.GetIntDefault("LogLevel", LOGL_NORMAL);
-@@ -905,3 +910,26 @@ void Log::outChat(const char * str, ...)
+@@ -906,3 +911,26 @@ void Log::outChat(const char * str, ...)
      fflush(stdout);
  }
  
@@ -3812,10 +3812,10 @@ index 79380b5..687d823 100644
 +    fflush(stdout);
 +}
 diff --git a/src/shared/Log.h b/src/shared/Log.h
-index 0e84d73..ecb5b25 100644
+index 45fb9dc..dfae96e 100644
 --- a/src/shared/Log.h
 +++ b/src/shared/Log.h
-@@ -94,6 +94,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
+@@ -95,6 +95,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
          void outCommand( uint32 account, const char * str, ...) ATTR_PRINTF(3,4);
          void outRemote( const char * str, ... )                 ATTR_PRINTF(2,3);
          void outChat( const char * str, ... )                   ATTR_PRINTF(2,3);
@@ -3823,7 +3823,7 @@ index 0e84d73..ecb5b25 100644
          void outArena( const char * str, ... )                  ATTR_PRINTF(2,3);
          void outCharDump( const char * str, uint32 account_id, uint32 guid, const char * name );
  
-@@ -124,6 +125,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
+@@ -125,6 +126,7 @@ class Log : public BlizzLike::Singleton<Log, BlizzLike::ClassLevelLockable<Log,
          FILE* dberLogfile;
          FILE* chatLogfile;
          FILE* arenaLogFile;
@@ -3832,10 +3832,10 @@ index 0e84d73..ecb5b25 100644
          // cache values for after initilization use (like gm log per account case)
          std::string m_logsDir;
 diff --git a/src/shared/Util.cpp b/src/shared/Util.cpp
-index fd1c4b4..ee11323 100644
+index e8972e9..aa078bb 100644
 --- a/src/shared/Util.cpp
 +++ b/src/shared/Util.cpp
-@@ -468,3 +468,15 @@ void hexEncodeByteArray(uint8* bytes, uint32 arrayLen, std::string& result)
+@@ -469,3 +469,15 @@ void hexEncodeByteArray(uint8* bytes, uint32 arrayLen, std::string& result)
      result = ss.str();
  }
  
@@ -3852,10 +3852,10 @@ index fd1c4b4..ee11323 100644
 +    return ss.str();
 +}
 diff --git a/src/shared/Util.h b/src/shared/Util.h
-index 42e4eb8..57283fe 100644
+index e937a1b..381516d 100644
 --- a/src/shared/Util.h
 +++ b/src/shared/Util.h
-@@ -279,6 +279,7 @@ bool utf8ToConsole(const std::string& utf8str, std::string& conStr);
+@@ -280,6 +280,7 @@ bool utf8ToConsole(const std::string& utf8str, std::string& conStr);
  bool consoleToUtf8(const std::string& conStr,std::string& utf8str);
  bool Utf8FitTo(const std::string& str, std::wstring search);
  void hexEncodeByteArray(uint8* bytes, uint32 arrayLen, std::string& result);

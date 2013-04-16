@@ -18,7 +18,7 @@ How to Install
 -------
 Check: [BlizzLikeGroup](http://blizzlike.servegame.com "Forum")
 
-License
+License ![GPLv3](http://s9.postimg.org/pkoujbqmj/gplv3.png)
 -------
 **BlizzLikeCore** is free software; you can redistribute it and/or modify it 
 under the terms of the GNU General Public License as published by the 
