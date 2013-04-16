@@ -153,11 +153,12 @@ index 4ef6ae5..79f0ef3 100644
      /*0x2EA*/ { "CMSG_PET_STOP_ATTACK",             STATUS_NEVER,    &WorldSession::Handle_NULL                     },
 diff --git a/src/game/WardenBase.cpp b/src/game/WardenBase.cpp
 new file mode 100644
-index 0000000..7c491bb
+index 0000000..57a65a5
 --- /dev/null
 +++ b/src/game/WardenBase.cpp
-@@ -0,0 +1,212 @@
+@@ -0,0 +1,213 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -371,11 +372,12 @@ index 0000000..7c491bb
 +}
 diff --git a/src/game/WardenBase.h b/src/game/WardenBase.h
 new file mode 100644
-index 0000000..7b19316
+index 0000000..8293237
 --- /dev/null
 +++ b/src/game/WardenBase.h
-@@ -0,0 +1,117 @@
+@@ -0,0 +1,118 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -494,11 +496,12 @@ index 0000000..7b19316
 +#endif
 diff --git a/src/game/WardenDataStorage.cpp b/src/game/WardenDataStorage.cpp
 new file mode 100644
-index 0000000..aaf59b1
+index 0000000..468731e
 --- /dev/null
 +++ b/src/game/WardenDataStorage.cpp
-@@ -0,0 +1,142 @@
+@@ -0,0 +1,143 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -642,11 +645,12 @@ index 0000000..aaf59b1
 +}
 diff --git a/src/game/WardenDataStorage.h b/src/game/WardenDataStorage.h
 new file mode 100644
-index 0000000..301157f
+index 0000000..674a03d
 --- /dev/null
 +++ b/src/game/WardenDataStorage.h
-@@ -0,0 +1,49 @@
+@@ -0,0 +1,50 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -697,11 +701,12 @@ index 0000000..301157f
 +#endif
 diff --git a/src/game/WardenMac.cpp b/src/game/WardenMac.cpp
 new file mode 100644
-index 0000000..9cb557b
+index 0000000..a616697
 --- /dev/null
 +++ b/src/game/WardenMac.cpp
-@@ -0,0 +1,265 @@
+@@ -0,0 +1,266 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -968,11 +973,12 @@ index 0000000..9cb557b
 +}
 diff --git a/src/game/WardenMac.h b/src/game/WardenMac.h
 new file mode 100644
-index 0000000..bdbaa3a
+index 0000000..afed8b3
 --- /dev/null
 +++ b/src/game/WardenMac.h
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,32 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -1005,11 +1011,12 @@ index 0000000..bdbaa3a
 +#endif
 diff --git a/src/game/WardenModuleMac.h b/src/game/WardenModuleMac.h
 new file mode 100644
-index 0000000..670c256
+index 0000000..33ef609
 --- /dev/null
 +++ b/src/game/WardenModuleMac.h
-@@ -0,0 +1,600 @@
+@@ -0,0 +1,601 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -1611,11 +1618,12 @@ index 0000000..670c256
 +#endif
 diff --git a/src/game/WardenModuleWin.h b/src/game/WardenModuleWin.h
 new file mode 100644
-index 0000000..5707f9b
+index 0000000..d7ece10
 --- /dev/null
 +++ b/src/game/WardenModuleWin.h
-@@ -0,0 +1,1190 @@
+@@ -0,0 +1,1191 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -2807,11 +2815,12 @@ index 0000000..5707f9b
 +#endif
 diff --git a/src/game/WardenWin.cpp b/src/game/WardenWin.cpp
 new file mode 100644
-index 0000000..af0bbfb
+index 0000000..654b275
 --- /dev/null
 +++ b/src/game/WardenWin.cpp
-@@ -0,0 +1,498 @@
+@@ -0,0 +1,499 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
@@ -3311,11 +3320,12 @@ index 0000000..af0bbfb
 +}
 diff --git a/src/game/WardenWin.h b/src/game/WardenWin.h
 new file mode 100644
-index 0000000..e76cafd
+index 0000000..f6d828f
 --- /dev/null
 +++ b/src/game/WardenWin.h
-@@ -0,0 +1,91 @@
+@@ -0,0 +1,92 @@
 +/*
++ * Copyright (C) 2013  BlizzLikeGroup
 + * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 + */
 +
