@@ -1,3 +1,4 @@
+# Copyright (C) 2013  BlizzLikeGroup
 # BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 
 file(GLOB sources_localdir *.cpp *.h)

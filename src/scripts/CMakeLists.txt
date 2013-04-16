@@ -1,3 +1,4 @@
+# Copyright (C) 2013  BlizzLikeGroup
 # BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 
 # Enable precompiled headers when using the GCC compiler.

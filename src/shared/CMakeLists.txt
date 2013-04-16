@@ -1,3 +1,4 @@
+# Copyright (C) 2013  BlizzLikeGroup
 # BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
 
 file(GLOB_RECURSE sources_auth Auth/*.cpp Auth/*.h)
