@@ -23,17 +23,7 @@ goto panel
 if exist dbc (del /S /Q dbc)
 if exist maps (del /S /Q maps)
 map_extractor.exe
-if %ERRORLEVEL% == 0 (cls
 echo.
-echo.
-echo Process done! 
-echo Press any key to panel . . .
-pause>nul
-goto panel)
-echo.
-echo.
-color 0c
-echo Process finalized with errors.
 echo Press any key to panel . . .
 pause>nul
 goto panel
