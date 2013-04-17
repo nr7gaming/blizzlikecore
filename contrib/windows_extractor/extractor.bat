@@ -1,6 +1,6 @@
 @echo off
-:panel
 color 0b
+:panel
 cls
 echo.
 echo ////////////////////////////////////////////////////
@@ -33,17 +33,7 @@ vmap_extractor.exe
 if exist vmaps (del /S /Q vmaps)
 if not exist vmaps (md vmaps)
 vmap_assembler.exe buildings vmaps
-if %ERRORLEVEL% == 0 (cls
 echo.
-echo.
-echo Process done! 
-echo Press any key to panel . . .
-pause>nul
-goto panel)
-echo.
-echo.
-color 0c
-echo Process finalized with errors.
 echo Press any key to panel . . .
 pause>nul
 goto panel
