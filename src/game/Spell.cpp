@@ -2802,11 +2802,14 @@ void Spell::SendCastResult(uint8 result)
     if (result != 0)
     {
         WorldPacket data(SMSG_CAST_FAILED, (4+1+1));
-        data << uint32(m_spellInfo->Id);
-        data << uint8(result);                              // problem
         data << uint8(m_cast_count);                        // single cast or multi 2.3 (0/1)
+        data << uint32(m_spellInfo->Id);
+        data << uint8(!IsPassiveSpell(m_spellInfo->Id) ? result : SPELL_FAILED_DONT_REPORT); // do not report failed passive spells
         switch (result)
         {
+            case SPELL_FAILED_NOT_READY:
+                data << uint32(0);                              // unknown, value 1 seen for 14177 (update cooldowns on client flag)
+                break;
             case SPELL_FAILED_REQUIRES_SPELL_FOCUS:
                 data << uint32(m_spellInfo->RequiresSpellFocus);
                 break;
