@@ -363,7 +363,7 @@ index 4390b56..bd0d249 100644
 +
 +            // Anti-Speedhack
 +            // Disabled to revert: if ((real_delta > allowed_delta) && (delta_z < (plMover->m_anti_last_vspeed * time_delta) || delta_z < 1))
-+            if ((real_delta > allowed_delta) && (delta_z < 1))
++            if ((real_delta > allowed_delta) && (allowed_delta > 4) && (delta_z < 1))
 +            {
 +                #ifdef MOVEMENT_ANTICHEAT_DEBUG
 +                sLog.outError("Movement Anticheat: %s is speed exception. real_delta=%f, allowed_delta=%f, delta_z=%f, last_vspeed=%f", plMover->GetName(), real_delta, allowed_delta, delta_z, plMover->m_anti_last_vspeed * time_delta);
