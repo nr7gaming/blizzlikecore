@@ -3,7 +3,7 @@
 #################################################
 
 [worldserver]
-ConfVersion=20130302
+ConfVersion=20130422
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -198,7 +198,7 @@ EAIErrorLevel = 2
 #         more sensitive reaction at target move.
 #        Default: 1.5
 #
-#    mmap.enabled
+#    mmap.enable
 #        Enable/Disable pathfinding using mmaps
 #        Default: 1 (enable)
 #                 0 (disable)
@@ -264,7 +264,7 @@ vmap.totem = 0
 vmap.enableIndoorCheck = 1
 DetectPosCollision = 1
 TargetPosRecalculateRange = 1.5
-mmap.enabled = 1
+mmap.enable = 1
 mmap.ignoreMapIds = ""
 UpdateUptimeInterval = 10
 LogDB.Opt.ClearInterval = 10
