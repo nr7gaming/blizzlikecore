@@ -24,6 +24,10 @@
 #   include <unistd.h>
 #endif
 
+#ifdef G3D_LINUX
+#   include <sys/socket.h>
+#endif
+
 #ifdef G3D_OSX
 #   include <CoreServices/CoreServices.h>
 #endif

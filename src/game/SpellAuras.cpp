@@ -2438,8 +2438,8 @@ void Aura::HandleAuraDummy(bool apply, bool Real)
                     if (uint64 guid = caster->m_SummonSlot[4])
                     {
                         if (Creature* totem = caster->GetMap()->GetCreature(guid))
-                        if (totem->isTotem())
-                            caster->ToPlayer()->CastSpell(totem, 6277, true);
+                            if (totem->isTotem())
+                                caster->ToPlayer()->CastSpell(totem, 6277, true);
                     }
                 }
                 else

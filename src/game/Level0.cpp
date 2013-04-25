@@ -235,16 +235,16 @@ bool ChatHandler::HandleAccountPasswordCommand(const char* args)
     std::string password_new = new_pass;
     std::string password_new_c = new_pass_c;
 
-    if (strcmp(new_pass, new_pass_c) != 0)
+    if (!sAccountMgr->CheckPassword(m_session->GetAccountId(), password_old))
     {
-        SendSysMessage(LANG_NEW_PASSWORDS_NOT_MATCH);
+        SendSysMessage(LANG_COMMAND_WRONGOLDPASSWORD);
         SetSentErrorMessage(true);
         return false;
     }
 
-    if (!sAccountMgr->CheckPassword (m_session->GetAccountId(), password_old))
+    if (strcmp(new_pass, new_pass_c) != 0)
     {
-        SendSysMessage(LANG_COMMAND_WRONGOLDPASSWORD);
+        SendSysMessage(LANG_NEW_PASSWORDS_NOT_MATCH);
         SetSentErrorMessage(true);
         return false;
     }

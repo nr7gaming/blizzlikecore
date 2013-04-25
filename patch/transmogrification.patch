@@ -60,7 +60,7 @@ index 8487537..fb41653 100644
  
  void Item::DeleteFromDB()
  {
-+	DeleteFakeFromDB(GetGUIDLow()); // transmogrification
++    DeleteFakeFromDB(GetGUIDLow()); // transmogrification
      CharacterDatabase.PExecute("DELETE FROM item_instance WHERE guid = '%u'",GetGUIDLow());
  }
  
@@ -79,8 +79,8 @@ index 8487537..fb41653 100644
 +{
 +if (!GetFakeEntry())
 +        return false;
-+	//GetOwner()->SetUInt32Value(PLAYER_VISIBLE_ITEM_1_0 + (GetSlot() * MAX_VISIBLE_ITEM_OFFSET), GetEntry());
-+	GetOwner()->SetUInt32Value(PLAYER_VISIBLE_ITEM_1_0 + (GetSlot() * 2), GetEntry());
++    //GetOwner()->SetUInt32Value(PLAYER_VISIBLE_ITEM_1_0 + (GetSlot() * MAX_VISIBLE_ITEM_OFFSET), GetEntry());
++    GetOwner()->SetUInt32Value(PLAYER_VISIBLE_ITEM_1_0 + (GetSlot() * 2), GetEntry());
 +    DeleteFakeFromDB(GetGUIDLow());
 +    return true;
 +}
@@ -94,8 +94,8 @@ index 8487537..fb41653 100644
 +void Item::SetFakeEntry(uint32 entry) // custom
 +{
 +    //GetOwner()->SetUInt32Value(PLAYER_VISIBLE_ITEM_1_0 + (GetSlot() * MAX_VISIBLE_ITEM_OFFSET), Entry);
-+	GetOwner()->SetUInt32Value(PLAYER_VISIBLE_ITEM_1_0 + (GetSlot() * 2), entry);
-+	objmgr._itemFakeEntryStore[GetGUIDLow()] = entry;
++    GetOwner()->SetUInt32Value(PLAYER_VISIBLE_ITEM_1_0 + (GetSlot() * 2), entry);
++    objmgr._itemFakeEntryStore[GetGUIDLow()] = entry;
 +    CharacterDatabase.PExecute("REPLACE INTO custom_transmogrification (GUID, FakeEntry) VALUES (%u, %u)", GetGUIDLow(), entry);
 +}
 +
@@ -116,14 +116,14 @@ index 4a4663a..51426c7 100644
  
          void BuildUpdate(UpdateDataMapType& );
 +		
-+		// transmogrification
++        // transmogrification
 +        uint32 GetFakeEntry();
 +        bool DeleteFakeEntry();
 +        static void DeleteFakeFromDB(uint32 lowGUID);
 +        void SetFakeEntry(uint32 entry);
 +        bool HasGoodFakeQuality();
-+		Bag* ToBag() { if (IsBag()) return reinterpret_cast<Bag*>(this); else return NULL; }
-+		const Bag* ToBag() const { if (IsBag()) return reinterpret_cast<const Bag*>(this); else return NULL; }
++        Bag* ToBag() { if (IsBag()) return reinterpret_cast<Bag*>(this); else return NULL; }
++        const Bag* ToBag() const { if (IsBag()) return reinterpret_cast<const Bag*>(this); else return NULL; }
  
      private:
          uint8 m_slot;
@@ -228,8 +228,8 @@ index a978dd9..94a980d 100644
      public:
          ObjectMgr();
          ~ObjectMgr();
-+		
-+		ItemFakeEntryContainer _itemFakeEntryStore;
++
++        ItemFakeEntryContainer _itemFakeEntryStore;
  
          typedef UNORDERED_MAP<uint32, Item*> ItemMap;
  
@@ -237,7 +237,7 @@ index a978dd9..94a980d 100644
          void LoadGameobjectRespawnTimes();
          void LoadItemPrototypes();
          void LoadItemLocales();
-+		void LoadTransmogrifications(); //transmogrification
++        void LoadTransmogrifications(); //transmogrification
          void LoadQuestLocales();
          void LoadNpcTextLocales();
          void LoadPageTextLocales();
@@ -250,7 +250,7 @@ index 482db15..d6bc9dd 100644
  
          int VisibleBase = PLAYER_VISIBLE_ITEM_1_0 + (slot * MAX_VISIBLE_ITEM_OFFSET);
 -        SetUInt32Value(VisibleBase + 0, pItem->GetEntry());
-+		//transmogrification
++        //transmogrification
 +        if (pItem->GetFakeEntry())
 +            SetUInt32Value(VisibleBase + 0, pItem->GetFakeEntry());
 +        else
@@ -262,7 +262,7 @@ index 482db15..d6bc9dd 100644
  {
      if (Item* it = GetItemByPos(bag,slot))
      {
-+		it->DeleteFakeFromDB(it->GetGUIDLow()); //transmogrification
++        it->DeleteFakeFromDB(it->GetGUIDLow()); //transmogrification
          ItemRemovedQuestCheck(it->GetEntry(), it->GetCount());
          RemoveItem(bag, slot, update);
          it->RemoveFromUpdateQueueOf(this);
@@ -281,7 +281,7 @@ index 482db15..d6bc9dd 100644
 +    if (oldItem->GetProto()->DisplayInfoID == newItem->GetProto()->DisplayInfoID)
 +        return ERR_FAKE_SAME_DISPLAY;
 +    if (oldItem->GetFakeEntry())
-+		if(const ItemPrototype* FakeItemTemplate = objmgr.GetItemPrototype(oldItem->GetFakeEntry()))
++        if(const ItemPrototype* FakeItemTemplate = objmgr.GetItemPrototype(oldItem->GetFakeEntry()))
 +            if(FakeItemTemplate->DisplayInfoID == newItem->GetProto()->DisplayInfoID)
 +                return ERR_FAKE_SAME_DISPLAY_FAKE;
 +    if (CanUseItem(newItem, false) != EQUIP_ERR_OK)
@@ -352,7 +352,7 @@ index e194d8b..20f6025 100644
          Item* GetItemByGuid(uint64 guid) const;
          Item* GetItemByPos(uint16 pos) const;
          Item* GetItemByPos(uint8 bag, uint8 slot) const;
-+		Bag*  GetBagByPos(uint8 slot) const; //transmogrification
++        Bag*  GetBagByPos(uint8 slot) const; //transmogrification
          Item* GetWeaponForAttack(WeaponAttackType attackType, bool useable = false) const;
          Item* GetShield(bool useable = false) const;
          static uint32 GetAttackBySlot(uint8 slot);        // MAX_ATTACK if not weapon slot
@@ -361,7 +361,7 @@ index e194d8b..20f6025 100644
          bool HasTitle(CharTitlesEntry const* title) { return HasTitle(title->bit_index); }
          void SetTitle(CharTitlesEntry const* title, bool lost = false);
 +		
-+		uint32 SuitableForTransmogrification(Item* oldItem, Item* newItem); //transmogrification
++        uint32 SuitableForTransmogrification(Item* oldItem, Item* newItem); //transmogrification
  
      protected:
  
@@ -374,7 +374,7 @@ index b3fbd50..80f8b56 100644
      sLog.outString("Loading Item Texts...");
      objmgr.LoadItemTexts();
 +	
-+	sLog.outString("Loading Transmogrifications...");           //transmogrification
++    sLog.outString("Loading Transmogrifications...");           //transmogrification
 +    objmgr.LoadTransmogrifications();
  
      sLog.outString("Loading Creature Model Based Info Data...");
@@ -622,7 +622,7 @@ index ccbc05c..dab48e7 100644
 +            } break;
 +        }
 +        return true;
-+}  
++}
 +
 +#if (GOLD_COST)
 +    uint32 GetFakePrice(Item* item)
@@ -643,13 +643,13 @@ index ccbc05c..dab48e7 100644
      newscript->GetAI = &GetAI_mob_mojo;
      newscript->RegisterSelf();
 -
-+	
++
      newscript = new Script; 
      newscript->Name = "npc_spiritofazuregos"; 
      newscript->pGossipHello = &GossipHello_npc_spiritofazuregos; 
      newscript->pGossipSelect = &GossipSelect_npc_spiritofazuregos; 
      newscript->RegisterSelf();
-+	
++
 +    newscript = new Script;
 +    newscript->Name = "transmog";
 +    newscript->pGossipHello =  &GossipHello_transmog;
