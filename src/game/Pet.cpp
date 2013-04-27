@@ -1036,6 +1036,7 @@ bool Guardian::InitStatsForLevel(uint32 petlevel)
                             val = 0;
                         //Make Water Elemental immune to frost damage.
                         ApplySpellImmune(NULL, IMMUNITY_SCHOOL, SPELL_SCHOOL_MASK_FROST, true);
+                        ApplySpellImmune(NULL, IMMUNITY_DISPEL, DISPEL_POISON, true);
                         m_deathTimer = 0;
                         m_corpseDelay = 0;
                         SetBonusDamage(int32(val));
