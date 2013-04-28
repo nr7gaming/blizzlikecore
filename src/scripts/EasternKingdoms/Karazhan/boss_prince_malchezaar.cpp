@@ -506,7 +506,7 @@ struct boss_malchezaarAI : public ScriptedAI
         if (ShadowNovaTimer <= diff)
         {
             DoCast(me->getVictim(), SPELL_SHADOWNOVA);
-            ShadowNovaTimer = phase == 3 ? 31000 : uint32(-1);
+            ShadowNovaTimer = phase == 3 ? 30000 : 0;
         } else ShadowNovaTimer -= diff;
 
         if (phase != 2)
