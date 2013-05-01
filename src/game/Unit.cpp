@@ -485,7 +485,7 @@ void Unit::SendMonsterMoveByPath(Path<Elem, Node> const& path, uint32 start, uin
 
     if (pathSize <= 1)
     {
-        SendMonsterMove(path[start].x, path[start].y, path[start].z, traveltime);
+        SendMonsterMove(GetPositionX(), GetPositionY(), GetPositionZ(), traveltime);
         return;
     }
 
