@@ -22,7 +22,7 @@ index 44bae6e..cc2946d 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 4390b56..bd0d249 100644
+index 4390b56..a1fa2dd 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -90,7 +90,7 @@ index 4390b56..bd0d249 100644
          recv_data.rpos(recv_data.wpos());                   // prevent warnings spam
          return;
      }
-@@ -256,6 +272,21 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -256,6 +272,22 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      if (!BlizzLike::IsValidMapCoord(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation()))
          return;
  
@@ -107,12 +107,13 @@ index 4390b56..bd0d249 100644
 +        #endif
 +        skipAnticheat = true;
 +        updateOrientationOnly = true;
++        plMover->m_anti_alarmcount = 0;
 +    }
 +
      //Save movement flags
      mover->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
-@@ -264,73 +295,439 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -264,73 +296,437 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      {
          // transports size limited
          // (also received at zeppelin/lift leave by some reason with t_* as absolute in continent coordinates, can be safely skipped)
@@ -252,12 +253,17 @@ index 4390b56..bd0d249 100644
 +            plMover->m_anti_justjumped = 0;
 +        }
 +        /*----------------------*/
-+
+ 
+-        // we should add the check only for class hunter
+-        if (plMover->isMovingOrTurning())
+-            plMover->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH);
 +        #ifdef MOVEMENT_ANTICHEAT_DEBUG
 +        sLog.outBasic("%s newcoord: tm:%d ftm:%d | %f, %f, %fo(%f) [%X][%s]| transport: %f, %f, %fo(%f)", plMover->GetName(), movementInfo.time, movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation(), movementInfo.GetMovementFlags(), LookupOpcodeName(opcode), movementInfo.GetTransportPos()->GetPositionX(), movementInfo.GetTransportPos()->GetPositionY(), movementInfo.GetTransportPos()->GetPositionZ(), movementInfo.GetTransportPos()->GetOrientation());
 +        sLog.outBasic("Transport: %d |  tguid: %d - %d", plMover->m_anti_transportGUID, GUID_LOPART(movementInfo.t_guid), GUID_HIPART(movementInfo.t_guid));
 +        #endif
-+
+ 
+-        if (movementInfo.GetPos()->GetPositionZ() < -500.0f)
+-            plMover->HandleFallUnderMap();
 +        //---- anti-cheat features -->>>
 +        if (!plMover->IsInWater() && updateOrientationOnly && plMover->m_anti_transportGUID == 0)
 +        {
@@ -436,10 +442,7 @@ index 4390b56..bd0d249 100644
 +                plMover->m_anti_lastcheat = "Feather Fall Hack";
 +                check_passed = false;
 +            }
- 
--        // we should add the check only for class hunter
--        if (plMover->isMovingOrTurning())
--            plMover->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH);
++
 +            // Anti-TeleportToPlane
 +            if (movementInfo.GetPos()->GetPositionZ() < 0.0001f && movementInfo.GetPos()->GetPositionZ() > -0.0001f && ((movementInfo.GetMovementFlags() & (MOVEFLAG_SWIMMING | MOVEFLAG_CAN_FLY | MOVEFLAG_FLYING | MOVEFLAG_FLYING2)) == 0))
 +            {
@@ -512,16 +515,12 @@ index 4390b56..bd0d249 100644
 +                plMover->m_anti_transportGUID = 0;
 +            }
 +        }
-+    }
- 
--        if (movementInfo.GetPos()->GetPositionZ() < -500.0f)
--            plMover->HandleFallUnderMap();
-+    if (plMover)                                            // nothing is charmed, or player charmed
-+    {
++
 +        if (!World::GetEnableMvAnticheat())
 +            check_passed = true;
 +        else if (GetPlayer()->GetSession()->GetSecurity() > World::GetMvAnticheatGmLevel())
-+            check_passed = true;        
++            check_passed = true;
++
 +        if (check_passed || forcemovement)
 +        {
 +            /* process position-change */
@@ -545,9 +544,26 @@ index 4390b56..bd0d249 100644
 +
 +            if (movementInfo.GetPos()->GetPositionZ() < -500.0f)
 +                plMover->HandleFallUnderMap();
++        }
++        else
++        {
++            plMover->m_anti_alarmcount++;
++            WorldPacket data;
++            // Temporary disabled maybee cause fall dmg on dismount in air
++            /* if (useFallingFlag)
++                plMover->SetUnitMovementFlags(MOVEFLAG_FALLING);
++            else
++                plMover->SetUnitMovementFlags(MOVEFLAG_NONE);
++            */
++            plMover->SetUnitMovementFlags(MOVEFLAG_NONE);
++            plMover->BuildTeleportAckMsg(&data, plMover->GetPositionX(), plMover->GetPositionY(), plMover->GetPositionZ(), plMover->GetOrientation());
++            plMover->GetSession()->SendPacket(&data);
++            plMover->BuildHeartBeatMsg(&data);
++            plMover->SendMessageToSet(&data, true);
 +
-+            if (plMover->m_anti_alarmcount > 0)
++            if ((plMover->m_anti_lastcheat == "Speed Hack" && plMover->m_anti_alarmcount > 1) || (plMover->m_anti_lastcheat != "Speed Hack" && plMover->m_anti_alarmcount > 0))
 +            {
++                plMover->m_anti_alarmcount = 0;
 +                switch (World::GetMvAnticheatAction())
 +                {
 +                case 0:
@@ -567,23 +583,6 @@ index 4390b56..bd0d249 100644
 +                    break;
 +                }
 +            }
-+            plMover->m_anti_alarmcount = 0;
-+        }
-+        else
-+        {
-+            plMover->m_anti_alarmcount++;
-+            WorldPacket data;
-+            // Temporary disabled maybee cause fall dmg on dismount in air
-+            /* if (useFallingFlag)
-+                plMover->SetUnitMovementFlags(MOVEFLAG_FALLING);
-+            else
-+                plMover->SetUnitMovementFlags(MOVEFLAG_NONE);
-+            */
-+            plMover->SetUnitMovementFlags(MOVEFLAG_NONE);
-+            plMover->BuildTeleportAckMsg(&data, plMover->GetPositionX(), plMover->GetPositionY(), plMover->GetPositionZ(), plMover->GetOrientation());
-+            plMover->GetSession()->SendPacket(&data);
-+            plMover->BuildHeartBeatMsg(&data);
-+            plMover->SendMessageToSet(&data, true);
 +        }
      }
 +    else
@@ -592,7 +591,7 @@ index 4390b56..bd0d249 100644
  }
  
  void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
-@@ -355,6 +752,17 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
+@@ -355,6 +751,17 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
@@ -610,7 +609,7 @@ index 4390b56..bd0d249 100644
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -453,6 +861,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -453,6 +860,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -630,7 +629,7 @@ index 4390b56..bd0d249 100644
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -468,6 +889,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -468,6 +888,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data >> movementInfo;
      recv_data.read_skip<uint32>();                          // unk2
  
@@ -650,22 +649,21 @@ index 4390b56..bd0d249 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 482db15..67c4825 100644
+index 482db15..0ed46b1 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
-@@ -370,6 +370,27 @@ Player::Player (WorldSession *session): Unit()
+@@ -370,6 +370,26 @@ Player::Player (WorldSession *session): Unit()
      rest_type=REST_TYPE_NO;
      ////////////////////Rest System/////////////////////
  
 +    // Movement Anticheat
-+    m_anti_lastmovetime = 0;          //last movement time
-+    m_anti_transportGUID = 0;         //current transport GUID
-+    m_anti_last_hspeed = 7.0f;        //horizontal speed, default RUN speed
-+    m_anti_lastspeed_changetime = 0;  //last speed change time
-+    m_anti_last_vspeed = -2.3f;       //vertical speed, default max jump height
-+    m_anti_beginfalltime = 0;         //alternative falling begin time
-+    m_anti_justteleported = false;    //seted when player was teleported
-+    m_anti_alarmcount = 0;            //alarm counter
++    m_anti_lastmovetime = 0;          // last movement time
++    m_anti_transportGUID = 0;         // current transport GUID
++    m_anti_last_hspeed = 7.0f;        // horizontal speed, default RUN speed
++    m_anti_lastspeed_changetime = 0;  // last speed change time
++    m_anti_last_vspeed = -2.3f;       // vertical speed, default max jump height
++    m_anti_beginfalltime = 0;         // alternative falling begin time
++    m_anti_justteleported = false;    // seted when player was teleported
 +    m_anti_flymounted = false;        // seted when player is mounted on flymount
 +    m_anti_wasflymounted = false;     // seted when player was mounted on flymount
 +    m_anti_ontaxipath = false;        // seted when player is on a taxi fight
@@ -681,7 +679,7 @@ index 482db15..67c4825 100644
      m_mailsLoaded = false;
      m_mailsUpdated = false;
      unReadMails = 0;
-@@ -20492,12 +20513,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
+@@ -20492,12 +20512,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
  
  void Player::HandleFallDamage(MovementInfo& movementInfo)
  {
@@ -773,7 +771,7 @@ index 0e0510e..c80a7d9 100644
      if (curDestNode && curDestNode->map_id != GetPlayer()->GetMapId())
      {
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index b3fbd50..394aca4 100644
+index 4f161d3..88338ed 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -69,6 +69,12 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -833,7 +831,7 @@ index 12a1cdb..e80b490 100644
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index e89f3d3..390c233 100644
+index e090ca9..936602e 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
 @@ -2059,3 +2059,32 @@ Die.Command.Mode = 1
