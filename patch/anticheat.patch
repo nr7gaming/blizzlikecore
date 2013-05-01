@@ -518,7 +518,7 @@ index 4390b56..a1fa2dd 100644
 +
 +        if (!World::GetEnableMvAnticheat())
 +            check_passed = true;
-+        else if (GetPlayer()->GetSession()->GetSecurity() > World::GetMvAnticheatGmLevel())
++        else if ((GetPlayer()->GetSession()->GetSecurity() > World::GetMvAnticheatGmLevel()) || (plMover->isInCombat()))
 +            check_passed = true;
 +
 +        if (check_passed || forcemovement)
