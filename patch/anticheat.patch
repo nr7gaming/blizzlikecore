@@ -22,7 +22,7 @@ index 44bae6e..cc2946d 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 4390b56..a1fa2dd 100644
+index 4390b56..45030f7 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -113,7 +113,7 @@ index 4390b56..a1fa2dd 100644
      //Save movement flags
      mover->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
-@@ -264,73 +296,437 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -264,73 +296,445 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      {
          // transports size limited
          // (also received at zeppelin/lift leave by some reason with t_* as absolute in continent coordinates, can be safely skipped)
@@ -344,6 +344,8 @@ index 4390b56..a1fa2dd 100644
 +                #endif
 +                plMover->m_anti_lastcheat = "GraviJump Hack";
 +                check_passed = false;
++                if (plMover->isInCombat())
++                plMover->m_anti_alarmcount = 0;
 +            }
 +
 +            // Anti-Jumphack
@@ -362,6 +364,8 @@ index 4390b56..a1fa2dd 100644
 +                    plMover->m_anti_justjumped = 0;
 +                    plMover->m_anti_lastcheat = "Jump Hack";
 +                    check_passed = false; //don't process new jump packet
++                    if (plMover->isInCombat())
++                    plMover->m_anti_alarmcount = 0;
 +                }
 +            }
 +            else if (plMover->IsInWater())
@@ -376,6 +380,8 @@ index 4390b56..a1fa2dd 100644
 +                #endif
 +                plMover->m_anti_lastcheat = "Speed Hack";
 +                check_passed = false;
++                if (plMover->isInCombat())
++                plMover->m_anti_alarmcount = 0;
 +            }
 +
 +            // Anti-Teleport
@@ -406,6 +412,8 @@ index 4390b56..a1fa2dd 100644
 +                #endif
 +                plMover->m_anti_lastcheat = "Wall-climbing Hack";
 +                check_passed = false;
++                if (plMover->isInCombat())
++                plMover->m_anti_alarmcount = 0;
 +            }
 +
 +            // Anti-Flyhack
@@ -518,7 +526,7 @@ index 4390b56..a1fa2dd 100644
 +
 +        if (!World::GetEnableMvAnticheat())
 +            check_passed = true;
-+        else if ((GetPlayer()->GetSession()->GetSecurity() > World::GetMvAnticheatGmLevel()) || (plMover->isInCombat()))
++        else if (GetPlayer()->GetSession()->GetSecurity() > World::GetMvAnticheatGmLevel())
 +            check_passed = true;
 +
 +        if (check_passed || forcemovement)
@@ -561,7 +569,7 @@ index 4390b56..a1fa2dd 100644
 +            plMover->BuildHeartBeatMsg(&data);
 +            plMover->SendMessageToSet(&data, true);
 +
-+            if ((plMover->m_anti_lastcheat == "Speed Hack" && plMover->m_anti_alarmcount > 1) || (plMover->m_anti_lastcheat != "Speed Hack" && plMover->m_anti_alarmcount > 0))
++            if (plMover->m_anti_alarmcount > 1)
 +            {
 +                plMover->m_anti_alarmcount = 0;
 +                switch (World::GetMvAnticheatAction())
@@ -591,7 +599,7 @@ index 4390b56..a1fa2dd 100644
  }
  
  void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
-@@ -355,6 +751,17 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
+@@ -355,6 +759,17 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
@@ -609,7 +617,7 @@ index 4390b56..a1fa2dd 100644
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -453,6 +860,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -453,6 +868,19 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -629,7 +637,7 @@ index 4390b56..a1fa2dd 100644
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -468,6 +888,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -468,6 +896,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data >> movementInfo;
      recv_data.read_skip<uint32>();                          // unk2
  
