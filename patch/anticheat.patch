@@ -348,7 +348,7 @@ index 4390b56..13d7c52 100644
 +            }
 +
 +            // Anti-Jumphack
-+            if (opcode == MSG_MOVE_JUMP && !plMover->IsInWater())
++            if (opcode == MSG_MOVE_JUMP && !plMover->IsInWater() && !(plMover->isInCombat()))
 +            {
 +                if (plMover->m_anti_justjumped == 0)
 +                {
