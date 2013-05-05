@@ -22,7 +22,7 @@ index 44bae6e..cc2946d 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 4390b56..8cc0efa 100644
+index 4390b56..df2adc6 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -87,7 +87,7 @@ index 4390b56..8cc0efa 100644
          recv_data.rpos(recv_data.wpos());                   // prevent warnings spam
          return;
      }
-@@ -256,6 +269,21 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -256,6 +269,22 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      if (!BlizzLike::IsValidMapCoord(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation()))
          return;
  
@@ -95,6 +95,7 @@ index 4390b56..8cc0efa 100644
 +    bool skipAnticheat = false;
 +    bool useFallingFlag = false;
 +    bool forcemovement = false;
++    bool speedchanged = false;
 +    bool check_passed = true;
 +
 +    if (!movementInfo.HasMovementFlag(MOVEFLAG_MOVING) && !mover->HasUnitMovementFlag(MOVEFLAG_MOVING) && !(opcode == MSG_MOVE_FALL_LAND))
@@ -109,7 +110,7 @@ index 4390b56..8cc0efa 100644
      //Save movement flags
      mover->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
-@@ -264,77 +292,444 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -264,73 +293,441 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      {
          // transports size limited
          // (also received at zeppelin/lift leave by some reason with t_* as absolute in continent coordinates, can be safely skipped)
@@ -200,13 +201,9 @@ index 4390b56..8cc0efa 100644
 +            if (!plMover->m_anti_ontaxipath && !plMover->m_anti_justteleported && !plMover->m_anti_flymounted)
 +                plMover->HandleFallDamage(movementInfo);
 +
-+            // Fix Blink / Shadowstep
++            // Blink / Shadowstep
 +            if (plMover->m_anti_justteleported)
 +                skipAnticheat = true;
-+
-+            // Fix KnockBack
-+            if (plMover->m_anti_isknockedback)
-+                forcemovement = true;
 +
 +            plMover->m_anti_justteleported = false;
 +            plMover->m_anti_ontaxipath = false;
@@ -214,7 +211,6 @@ index 4390b56..8cc0efa 100644
 +            plMover->m_anti_justjumped = 0;
 +            plMover->m_anti_jumpbase = 0;
 +            plMover->m_anti_isjumping = false;
-+            plMover->m_anti_isknockedback = false;
 +        }
 +        else if (opcode == MSG_MOVE_START_SWIM)
 +            plMover->m_anti_isjumping = false;
@@ -230,11 +226,26 @@ index 4390b56..8cc0efa 100644
 -        mover->GetCharmer()->SendMessageToSet(&data, false);
 -    else
 -        mover->SendMessageToSet(&data, false);
++        // KnockBack
 +        if (plMover->m_anti_isknockedback)
++        {
 +            forcemovement = true;
++            GetPlayer()->m_anti_isknockedback = false;
++        }
  
 -    mover->m_movementInfo = movementInfo;
 -    mover->SetPosition(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation());
++        // SpeedChanged
++        if (plMover->m_anti_speedchanged)
++        {
++            speedchanged = true;
++            GetPlayer()->m_anti_speedchanged = false;
++        }
+ 
+-    if (plMover)                                            // nothing is charmed, or player charmed
+-    {
+-        if (opcode == MSG_MOVE_FALL_LAND || plMover->m_lastFallTime > movementInfo.GetFallTime() || plMover->m_lastFallZ < movementInfo.GetPos()->GetPositionZ())
+-            plMover->SetFallInformation(movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionZ());
 +        if (movementInfo.HasMovementFlag(MOVEFLAG_SWIMMING) != plMover->IsInWater())
 +        {
 +            // now client not include swimming flag in case jumping under water
@@ -242,17 +253,16 @@ index 4390b56..8cc0efa 100644
 +            plMover->m_anti_justjumped = 0;
 +        }
 +        /*----------------------*/
- 
--    if (plMover)                                            // nothing is charmed, or player charmed
--    {
--        if (opcode == MSG_MOVE_FALL_LAND || plMover->m_lastFallTime > movementInfo.GetFallTime() || plMover->m_lastFallZ < movementInfo.GetPos()->GetPositionZ())
--            plMover->SetFallInformation(movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionZ());
++
 +        /*if (World::GetMvAnticheatDebug())
 +        {
 +            sLog.outBasic("%s newcoord: tm:%d ftm:%d | %f, %f, %fo(%f) [%X][%s]| transport: %f, %f, %fo(%f)", plMover->GetName(), movementInfo.time, movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation(), movementInfo.GetMovementFlags(), LookupOpcodeName(opcode), movementInfo.GetTransportPos()->GetPositionX(), movementInfo.GetTransportPos()->GetPositionY(), movementInfo.GetTransportPos()->GetPositionZ(), movementInfo.GetTransportPos()->GetOrientation());
 +            sLog.outBasic("Transport: %d |  tguid: %d - %d", plMover->m_anti_transportGUID, GUID_LOPART(movementInfo.t_guid), GUID_HIPART(movementInfo.t_guid));
 +        }*/
-+
+ 
+-        // we should add the check only for class hunter
+-        if (plMover->isMovingOrTurning())
+-            plMover->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH);
 +        //---- anti-cheat features -->>>
 +        if (!plMover->IsInWater() && updateOrientationOnly && plMover->m_anti_transportGUID == 0)
 +        {
@@ -360,21 +370,17 @@ index 4390b56..8cc0efa 100644
 +                plMover->m_anti_justjumped = 0;
 +
 +            // Anti-Speedhack
-+            // Disabled to revert: if ((real_delta > allowed_delta) && (allowed_delta > 4) && (delta_z < (plMover->m_anti_last_vspeed * time_delta) || delta_z < 1) && !(plMover->isInCombat()))
++            // Disabled to revert: if ((real_delta > allowed_delta) && !(speedchanged) && (allowed_delta > 4) && (delta_z < (plMover->m_anti_last_vspeed * time_delta) || delta_z < 1) && !(plMover->isInCombat()))
 +            if ((real_delta > allowed_delta)
++                 && !(speedchanged)
 +                 && (allowed_delta > 4)
 +                 && (delta_z < 1) && !(plMover->isInCombat()))
 +            {
-+                if (plMover->m_anti_speedchanged)
-+                    GetPlayer()->m_anti_speedchanged = false;
-+                else
-+                {
-+                    if (World::GetMvAnticheatDebug())
-+                        sLog.outError("Movement Anticheat: %s is speed exception. real_delta=%f, allowed_delta=%f, delta_z=%f, last_vspeed=%f", plMover->GetName(), real_delta, allowed_delta, delta_z, plMover->m_anti_last_vspeed * time_delta);
++                if (World::GetMvAnticheatDebug())
++                    sLog.outError("Movement Anticheat: %s is speed exception. real_delta=%f, allowed_delta=%f, delta_z=%f, last_vspeed=%f", plMover->GetName(), real_delta, allowed_delta, delta_z, plMover->m_anti_last_vspeed * time_delta);
 +
-+                    plMover->m_anti_lastcheat = "Speed Hack";
-+                    check_passed = false;
-+                }
++                plMover->m_anti_lastcheat = "Speed Hack";
++                check_passed = false;
 +            }
 +
 +            // Anti-Teleport
@@ -387,17 +393,16 @@ index 4390b56..8cc0efa 100644
 +                plMover->m_anti_lastcheat = "Teleport Hack";
 +                check_passed = false;
 +            }
-+
+ 
+-        if (movementInfo.GetPos()->GetPositionZ() < -500.0f)
+-            plMover->HandleFallUnderMap();
 +            if (movementInfo.time > plMover->m_anti_lastspeed_changetime)
 +            {
 +                plMover->m_anti_last_hspeed = current_speed; // store current speed
 +                plMover->m_anti_last_vspeed = -3.2f; // original value: -2.3f
 +                plMover->m_anti_lastspeed_changetime = 0;
 +            }
- 
--        // we should add the check only for class hunter
--        if (plMover->isMovingOrTurning())
--            plMover->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH);
++
 +            // Anti-Wallhack
 +            // Known issues: jump+up, and walking up with low delta_z (one and only way to make it right is to calculate the delta_z of the terrain)
 +            // Disabled to revert: if (!plMover->m_anti_isjumping && (tg_z > 1.6f) && (delta_z < (plMover->m_anti_last_vspeed * time_delta)))
@@ -445,9 +450,7 @@ index 4390b56..8cc0efa 100644
 +                plMover->m_anti_lastcheat = "Feather Fall Hack";
 +                check_passed = false;
 +            }
- 
--        if (movementInfo.GetPos()->GetPositionZ() < -500.0f)
--            plMover->HandleFallUnderMap();
++
 +            // Anti-TeleportToPlane
 +            if (movementInfo.GetPos()->GetPositionZ() < 0.0001f && movementInfo.GetPos()->GetPositionZ() > -0.0001f && ((movementInfo.GetMovementFlags() & (MOVEFLAG_SWIMMING | MOVEFLAG_CAN_FLY | MOVEFLAG_FLYING | MOVEFLAG_FLYING2)) == 0))
 +            {
@@ -588,52 +591,31 @@ index 4390b56..8cc0efa 100644
  }
  
  void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
- {
-+    GetPlayer()->m_anti_speedchanged = true;
-     DEBUG_LOG("WORLD: Recvd CMSG_SPEED_CHANGE_ACK");
-     /* extract packet */
-     ObjectGuid guid;
-@@ -355,6 +750,18 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
+@@ -355,6 +752,11 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
++    // Movement Anticheat
++    GetPlayer()->m_anti_speedchanged = true;
 +    if (World::GetMvAnticheatDebug())
-+    {
-+        sLog.outBasic("%s CMSG_SPEED_CHANGE_ACK: tm:%d ftm:%d | %f, %f, %fo(%f) [%X]", GetPlayer()->GetName(), movementInfo.time, movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation(), movementInfo.GetMovementFlags());
-+        sLog.outBasic("%s CMSG_SPEED_CHANGE_ACK additional: vspeed:%f, hspeed:%f, xdir:%f ydir:%f", GetPlayer()->GetName(), movementInfo.j_velocity, movementInfo.j_xyspeed, movementInfo.j_sinAngle, movementInfo.j_cosAngle);
-+    }
-+
-+    // skip not personal message;
-+    GetPlayer()->m_movementInfo = movementInfo;
-+    GetPlayer()->m_anti_last_hspeed = movementInfo.j_xyspeed;
-+    GetPlayer()->m_anti_last_vspeed = movementInfo.j_velocity < 3.2f ? movementInfo.j_xyspeed - 1.0f : 3.2f;
-+    GetPlayer()->m_anti_lastspeed_changetime = movementInfo.time + 1750;
++        sLog.outBasic("Movement Anticheat: %s CMSG_SPEED_CHANGE_ACK: tm:%d | %f, %f, %fo(%f) [%X]", GetPlayer()->GetName(), movementInfo.time, movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation(), movementInfo.GetMovementFlags());
 +
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -453,6 +860,20 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -453,6 +855,11 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
++
++    // Movement Anticheat
 +    GetPlayer()->m_anti_isknockedback = true;
-+    //Todo: Store the final Position and check it with the Position of MSG_MOVE_FALL_LAND in HandleMovementOpcodes
-+
 +    if (World::GetMvAnticheatDebug())
-+    {
-+        sLog.outBasic("%s CMSG_MOVE_KNOCK_BACK_ACK: tm:%d ftm:%d | %f, %f, %fo(%f) [%X]", GetPlayer()->GetName(), movementInfo.time, movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation(), movementInfo.GetMovementFlags());
-+        sLog.outBasic("%s CMSG_MOVE_KNOCK_BACK_ACK additional: vspeed:%f, hspeed:%f, xdir:%f ydir:%f", GetPlayer()->GetName(), movementInfo.j_velocity, movementInfo.j_xyspeed, movementInfo.j_sinAngle, movementInfo.j_cosAngle);
-+    }
-+
-+    // skip not personal message;
-+    GetPlayer()->m_movementInfo = movementInfo;
-+    GetPlayer()->m_anti_last_hspeed = movementInfo.j_xyspeed;
-+    GetPlayer()->m_anti_last_vspeed = movementInfo.j_velocity < 3.2f ? movementInfo.j_xyspeed - 1.0f : 3.2f;
-+    GetPlayer()->m_anti_lastspeed_changetime = movementInfo.time + 1750;
++        sLog.outBasic("%s CMSG_MOVE_KNOCK_BACK_ACK: tm:%d | %f, %f, %fo(%f) [%X]", GetPlayer()->GetName(), movementInfo.time, movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation(), movementInfo.GetMovementFlags());
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -468,6 +889,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -468,6 +875,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data >> movementInfo;
      recv_data.read_skip<uint32>();                          // unk2
  
@@ -653,7 +635,7 @@ index 4390b56..8cc0efa 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 482db15..b3cea0e 100644
+index 482db15..662af67 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -370,6 +370,26 @@ Player::Player (WorldSession *session): Unit()
@@ -703,7 +685,7 @@ index 482db15..b3cea0e 100644
      //Players with low fall distance, Feather Fall or physical immunity (charges used) are ignored
      // 14.57 can be calculated by resolving damageperc formular below to 0
 diff --git a/src/game/Player.h b/src/game/Player.h
-index e194d8b..56f2fa1 100644
+index e194d8b..b9e62c5 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
 @@ -2295,6 +2295,24 @@ class Player : public Unit, public GridObject<Player>
