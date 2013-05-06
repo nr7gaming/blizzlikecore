@@ -339,9 +339,9 @@ index a3e95e2..5aabd14 100644
 +            if ((plMover->m_anti_jumpbase != 0)
 +                        && (plMover->m_anti_justjumped > 0)
 +                        && (!plMover->m_anti_justteleported)
-+                        && !(movementInfo.HasMovementFlag(MOVEFLAG_SWIMMING) || movementInfo.HasMovementFlag(MOVEFLAG_FLYING)
++                        && !(movementInfo.HasMovementFlag(MOVEFLAG_SWIMMING) 
++                            || movementInfo.HasMovementFlag(MOVEFLAG_FLYING)
 +                            || movementInfo.HasMovementFlag(MOVEFLAG_FLYING2))
-+                        && (plMover->m_anti_last_vspeed > -2)
 +                        && (JumpHeight < GetPlayer()->m_anti_last_vspeed))
 +            {
 +                if (World::GetMvAnticheatDebug())
