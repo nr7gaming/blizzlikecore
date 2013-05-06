@@ -21,7 +21,7 @@ namespace MMAP
 
     MMapManager* MMapFactory::createOrGetMMapManager()
     {
-        if(g_MMapManager == NULL)
+        if (g_MMapManager == NULL)
             g_MMapManager = new MMapManager();
 
         return g_MMapManager;
@@ -29,7 +29,7 @@ namespace MMAP
 
     void MMapFactory::preventPathfindingOnMaps(const char* ignoreMapIds)
     {
-        if(!g_mmapDisabledIds)
+        if (!g_mmapDisabledIds)
             g_mmapDisabledIds = new std::set<uint32>();
 
         uint32 strLenght = strlen(ignoreMapIds)+1;
@@ -54,13 +54,13 @@ namespace MMAP
 
     void MMapFactory::clear()
     {
-        if(g_mmapDisabledIds)
+        if (g_mmapDisabledIds)
         {
             delete g_mmapDisabledIds;
             g_mmapDisabledIds = NULL;
         }
 
-        if(g_MMapManager)
+        if (g_MMapManager)
         {
             delete g_MMapManager;
             g_MMapManager = NULL;
@@ -131,7 +131,7 @@ namespace MMAP
     bool MMapManager::loadMap(uint32 mapId, int32 x, int32 y)
     {
         // make sure the mmap is loaded and ready to load tiles
-        if(!loadMapData(mapId))
+        if (!loadMapData(mapId))
             return false;
 
         // get this mmap data
@@ -181,7 +181,7 @@ namespace MMAP
         ASSERT(data);
 
         size_t result = fread(data, fileHeader.size, 1, file);
-        if(!result)
+        if (!result)
         {
             sLog.outError("MMAP:loadMap: Bad header or data in mmap %03u%02i%02i.mmtile", mapId, x, y);
             fclose(file);
@@ -194,7 +194,7 @@ namespace MMAP
         dtTileRef tileRef = 0;
 
         // memory allocated for data is now managed by detour, and will be deallocated when the tile is removed
-        if(DT_SUCCESS == mmap->navMesh->addTile(data, fileHeader.size, DT_TILE_FREE_DATA, 0, &tileRef))
+        if (DT_SUCCESS == mmap->navMesh->addTile(data, fileHeader.size, DT_TILE_FREE_DATA, 0, &tileRef))
         {
             mmap->mmapLoadedTiles.insert(std::pair<uint32, dtTileRef>(packedGridPos, tileRef));
             ++loadedTiles;
@@ -235,7 +235,7 @@ namespace MMAP
         dtTileRef tileRef = mmap->mmapLoadedTiles[packedGridPos];
 
         // unload, and mark as non loaded
-        if(DT_SUCCESS != mmap->navMesh->removeTile(tileRef, NULL, NULL))
+        if (DT_SUCCESS != mmap->navMesh->removeTile(tileRef, NULL, NULL))
         {
             // this is technically a memory leak
             // if the grid is later reloaded, dtNavMesh::addTile will return error but no extra memory is used
@@ -269,7 +269,7 @@ namespace MMAP
         {
             uint32 x = (i->first >> 16);
             uint32 y = (i->first & 0x0000FFFF);
-            if(DT_SUCCESS != mmap->navMesh->removeTile(i->second, NULL, NULL))
+            if (DT_SUCCESS != mmap->navMesh->removeTile(i->second, NULL, NULL))
                 sLog.outError("MMAP:unloadMap: Could not unload %03u%02i%02i.mmtile from navmesh", mapId, x, y);
             else
             {
@@ -330,7 +330,7 @@ namespace MMAP
              // allocate mesh query
             dtNavMeshQuery* query = dtAllocNavMeshQuery();
             ASSERT(query);
-            if(DT_SUCCESS != query->init(mmap->navMesh, 1024))
+            if (DT_SUCCESS != query->init(mmap->navMesh, 1024))
             {
                 dtFreeNavMeshQuery(query);
                 sLog.outError("MMAP:GetNavMeshQuery: Failed to initialize dtNavMeshQuery for mapId %03u instanceId %u", mapId, instanceId);

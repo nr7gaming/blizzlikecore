@@ -210,7 +210,7 @@ struct boss_alarAI : public ScriptedAI
                         AfterMoving = false;
                     }
 
-                    switch(WaitEvent)
+                    switch (WaitEvent)
                     {
                     case WE_PLATFORM:
                         Platforms_Move_Timer = 30000+rand()%5000;

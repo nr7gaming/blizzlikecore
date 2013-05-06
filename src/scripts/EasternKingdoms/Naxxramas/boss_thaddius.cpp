@@ -108,7 +108,7 @@ struct boss_thaddiusAI : public BossAI
         events.Update(diff);
         while(uint32 eventId = events.ExecuteEvent())
         {
-            switch(eventId)
+            switch (eventId)
             {
                 case EVENT_POLARITY_SHIFT:
                 {
@@ -155,7 +155,7 @@ struct boss_stalaggAI : public BossAI
         events.Update(diff);
         while(uint32 eventId = events.ExecuteEvent())
         {
-            switch(eventId)
+            switch (eventId)
             {
                 case EVENT_CHECK_COIL:
                 {
@@ -216,7 +216,7 @@ struct boss_fuegenAI : public BossAI
         events.Update(diff);
         while(uint32 eventId = events.ExecuteEvent())
         {
-            switch(eventId)
+            switch (eventId)
             {
                 case EVENT_CHECK_COIL:
                 {

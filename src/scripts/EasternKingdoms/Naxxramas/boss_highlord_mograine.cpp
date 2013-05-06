@@ -65,7 +65,7 @@ struct boss_highlord_mograineAI : public ScriptedAI
     {
         if (!me->isInCombat())
         {
-            switch(rand()%3)
+            switch (rand()%3)
             {
                 case 0:
                     me->MonsterYell(SAY_AGGRO1,LANG_UNIVERSAL,0);
@@ -85,7 +85,7 @@ struct boss_highlord_mograineAI : public ScriptedAI
 
     void KilledUnit()
     {
-        switch(rand()%2)
+        switch (rand()%2)
         {
             case 0:
                 me->MonsterYell(SAY_SLAY1,LANG_UNIVERSAL,0);

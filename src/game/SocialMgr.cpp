@@ -220,7 +220,7 @@ void SocialMgr::SendFriendStatus(Player* player, FriendsResult result, uint32 fr
     WorldPacket data;
     MakeFriendStatusPacket(result, friend_guid, &data);
     GetFriendInfo(player, friend_guid, fi);
-    switch(result)
+    switch (result)
     {
         case FRIEND_ADDED_OFFLINE:
         case FRIEND_ADDED_ONLINE:
@@ -228,7 +228,7 @@ void SocialMgr::SendFriendStatus(Player* player, FriendsResult result, uint32 fr
             break;
     }
 
-    switch(result)
+    switch (result)
     {
         case FRIEND_ADDED_ONLINE:
         case FRIEND_ONLINE:

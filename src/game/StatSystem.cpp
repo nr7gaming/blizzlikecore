@@ -33,7 +33,7 @@ bool Player::UpdateStats(Stats stat)
             pet->UpdateStats(stat);
     }
 
-    switch(stat)
+    switch (stat)
     {
         case STAT_STRENGTH:
             UpdateAttackPowerAndDamage();
@@ -222,13 +222,13 @@ void Player::UpdateAttackPowerAndDamage(bool ranged)
         index_mod = UNIT_FIELD_RANGED_ATTACK_POWER_MODS;
         index_mult = UNIT_FIELD_RANGED_ATTACK_POWER_MULTIPLIER;
 
-        switch(getClass())
+        switch (getClass())
         {
             case CLASS_HUNTER: val2 = level * 2.0f + GetStat(STAT_AGILITY) - 10.0f;    break;
             case CLASS_ROGUE:  val2 = level        + GetStat(STAT_AGILITY) - 10.0f;    break;
             case CLASS_WARRIOR:val2 = level        + GetStat(STAT_AGILITY) - 10.0f;    break;
             case CLASS_DRUID:
-                switch(m_form)
+                switch (m_form)
                 {
                     case FORM_CAT:
                     case FORM_BEAR:
@@ -243,7 +243,7 @@ void Player::UpdateAttackPowerAndDamage(bool ranged)
     }
     else
     {
-        switch(getClass())
+        switch (getClass())
         {
             case CLASS_WARRIOR: val2 = level*3.0f + GetStat(STAT_STRENGTH)*2.0f                    - 20.0f; break;
             case CLASS_PALADIN: val2 = level*3.0f + GetStat(STAT_STRENGTH)*2.0f                    - 20.0f; break;
@@ -254,7 +254,7 @@ void Player::UpdateAttackPowerAndDamage(bool ranged)
             {
                 //Check if Predatory Strikes is skilled
                 float mLevelMult = 0.0;
-                switch(m_form)
+                switch (m_form)
                 {
                     case FORM_CAT:
                     case FORM_BEAR:
@@ -276,7 +276,7 @@ void Player::UpdateAttackPowerAndDamage(bool ranged)
                     default: break;
                 }
 
-                switch(m_form)
+                switch (m_form)
                 {
                     case FORM_CAT:
                         val2 = getLevel()*(mLevelMult+2.0f) + GetStat(STAT_STRENGTH)*2.0f + GetStat(STAT_AGILITY) - 20.0f; break;
@@ -344,7 +344,7 @@ void Player::CalculateMinMaxDamage(WeaponAttackType attType, bool normalized, fl
     UnitMods unitMod;
     UnitMods attPower;
 
-    switch(attType)
+    switch (attType)
     {
         case BASE_ATTACK:
         default:
@@ -407,7 +407,7 @@ void Player::UpdateDamagePhysical(WeaponAttackType attType)
 
     CalculateMinMaxDamage(attType,false,mindamage,maxdamage);
 
-    switch(attType)
+    switch (attType)
     {
         case BASE_ATTACK:
         default:
@@ -457,7 +457,7 @@ void Player::UpdateCritPercentage(WeaponAttackType attType)
     uint16 index;
     CombatRating cr;
 
-    switch(attType)
+    switch (attType)
     {
         case OFF_ATTACK:
             modGroup = OFFHAND_CRIT_PERCENTAGE;
@@ -582,7 +582,7 @@ void Player::UpdateExpertise(WeaponAttackType attack)
     if (expertise < 0)
         expertise = 0;
 
-    switch(attack)
+    switch (attack)
     {
         case BASE_ATTACK: SetUInt32Value(PLAYER_EXPERTISE, expertise);         break;
         case OFF_ATTACK:  SetUInt32Value(PLAYER_OFFHAND_EXPERTISE, expertise); break;
@@ -745,7 +745,7 @@ void Creature::UpdateAttackPowerAndDamage(bool ranged)
 void Creature::UpdateDamagePhysical(WeaponAttackType attType)
 {
     UnitMods unitMod;
-    switch(attType)
+    switch (attType)
     {
         case BASE_ATTACK:
         default:
@@ -784,7 +784,7 @@ void Creature::UpdateDamagePhysical(WeaponAttackType attType)
     float mindamage = ((base_value + weapon_mindamage) * base_pct + total_value) * total_pct ;
     float maxdamage = ((base_value + weapon_maxdamage) * base_pct + total_value) * total_pct ;
 
-    switch(attType)
+    switch (attType)
     {
         case BASE_ATTACK:
         default:
@@ -831,7 +831,7 @@ bool Guardian::UpdateStats(Stats stat)
 
     SetStat(stat, int32(value));
 
-    switch(stat)
+    switch (stat)
     {
         case STAT_STRENGTH:         UpdateAttackPowerAndDamage();        break;
         case STAT_AGILITY:          UpdateArmor();                       break;
@@ -1042,7 +1042,7 @@ void Guardian::UpdateDamagePhysical(WeaponAttackType attType)
     //  Pet's base damage changes depending on happiness
     if (isHunterPet() && attType == BASE_ATTACK)
     {
-        switch(ToPet()->GetHappinessState())
+        switch (ToPet()->GetHappinessState())
         {
             case HAPPY:
                 // 125% of normal damage

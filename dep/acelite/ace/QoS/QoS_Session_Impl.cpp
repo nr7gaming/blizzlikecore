@@ -71,7 +71,7 @@ rsvp_callback (rapi_sid_t /* sid */,
 
   ACE_QoS ace_qos = qos_session->qos ();
 
-  switch(eventype)
+  switch (eventype)
     {
     case RAPI_PATH_EVENT:
       {

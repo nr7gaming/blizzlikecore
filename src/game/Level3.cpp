@@ -3895,7 +3895,7 @@ bool ChatHandler::HandleAddWeaponCommand(const char* /*args*/)
     bool added = false;
     if (tmpItem)
     {
-        switch(SlotID)
+        switch (SlotID)
         {
             case 1:
                 pCreature->SetUInt32Value(UNIT_VIRTUAL_ITEM_SLOT_DISPLAY, ItemID);
@@ -5025,7 +5025,7 @@ static bool HandleResetStatsOrLevelHelper(Player* player)
     // reset only if player not in some form;
     if (player->m_form == FORM_NONE)
     {
-        switch(player->getGender())
+        switch (player->getGender())
         {
             case GENDER_FEMALE:
                 player->SetDisplayId(info->displayId_f);
@@ -5643,7 +5643,7 @@ bool ChatHandler::HandleBanHelper(BanMode mode, const char *args)
     if (!reason)
         return false;
 
-    switch(mode)
+    switch (mode)
     {
         case BAN_ACCOUNT:
             if (!AccountMgr::normalizeString(nameOrIP))
@@ -5667,7 +5667,7 @@ bool ChatHandler::HandleBanHelper(BanMode mode, const char *args)
             break;
     }
 
-    switch(sWorld.BanAccount(mode, nameOrIP, duration, reason,m_session ? m_session->GetPlayerName() : ""))
+    switch (sWorld.BanAccount(mode, nameOrIP, duration, reason,m_session ? m_session->GetPlayerName() : ""))
     {
         case BAN_SUCCESS:
             if (atoi(duration)>0)
@@ -5678,7 +5678,7 @@ bool ChatHandler::HandleBanHelper(BanMode mode, const char *args)
         case BAN_SYNTAX_ERROR:
             return false;
         case BAN_NOTFOUND:
-            switch(mode)
+            switch (mode)
             {
                 default:
                     PSendSysMessage(LANG_BAN_NOTFOUND,"account",nameOrIP.c_str());
@@ -5723,7 +5723,7 @@ bool ChatHandler::HandleUnBanHelper(BanMode mode, const char *args)
 
     std::string nameOrIP = cnameOrIP;
 
-    switch(mode)
+    switch (mode)
     {
         case BAN_ACCOUNT:
             if (!AccountMgr::normalizeString(nameOrIP))
@@ -6218,7 +6218,7 @@ bool ChatHandler::HandleLoadPDumpCommand(const char *args)
         }
     }
 
-    switch(PlayerDumpReader().LoadDump(file, account_id, name, guid))
+    switch (PlayerDumpReader().LoadDump(file, account_id, name, guid))
     {
         case DUMP_SUCCESS:
             PSendSysMessage(LANG_COMMAND_IMPORT_SUCCESS);
@@ -6304,7 +6304,7 @@ bool ChatHandler::HandleWritePDumpCommand(const char *args)
         return false;
     }
 
-    switch(PlayerDumpWriter().WriteDump(file, guid))
+    switch (PlayerDumpWriter().WriteDump(file, guid))
     {
         case DUMP_SUCCESS:
             PSendSysMessage(LANG_COMMAND_EXPORT_SUCCESS);
@@ -6343,7 +6343,7 @@ bool ChatHandler::HandleMovegensCommand(const char* /*args*/)
             SendSysMessage("Empty");
             continue;
         }
-        switch(mg->GetMovementGeneratorType())
+        switch (mg->GetMovementGeneratorType())
         {
             case IDLE_MOTION_TYPE:          SendSysMessage(LANG_MOVEGENS_IDLE);          break;
             case RANDOM_MOTION_TYPE:        SendSysMessage(LANG_MOVEGENS_RANDOM);        break;
@@ -6437,7 +6437,7 @@ bool ChatHandler::HandleServerPLimitCommand(const char *args)
     uint32 pLimit = sWorld.GetPlayerAmountLimit();
     AccountTypes allowedAccountType = sWorld.GetPlayerSecurityLimit();
     char const* secName = "";
-    switch(allowedAccountType)
+    switch (allowedAccountType)
     {
         case SEC_PLAYER:        secName = "Player";        break;
         case SEC_MODERATOR:     secName = "Moderator";     break;
@@ -7509,14 +7509,14 @@ bool ChatHandler::HandleUnbindSightCommand(const char * /*args*/)
 
 bool ChatHandler::HandleChatSpySetCommand(const char *args)
 {
-    if(!args)
+    if (!args)
         return false;
 
     char* name = strtok((char*)args, " ");
     std::string cname;
     Player* target = NULL;
 
-    if(name)
+    if (name)
     {
         cname = name;
         normalizePlayerName(cname);
@@ -7525,7 +7525,7 @@ bool ChatHandler::HandleChatSpySetCommand(const char *args)
     else
         target = getSelectedPlayer();
 
-    if(!target || target->GetSession() == m_session)
+    if (!target || target->GetSession() == m_session)
     {
         SendSysMessage(LANG_PLAYER_NOT_FOUND);
         SetSentErrorMessage(true);
@@ -7546,8 +7546,8 @@ bool ChatHandler::HandleChatSpyResetCommand(const char* /*args*/)
         Player* plr = itr->second->GetSession()->GetPlayer();
         if (plr && plr->m_chatSpyGuid)
         {
-            if(Player* spy = ObjectAccessor::FindPlayer(plr->m_chatSpyGuid))
-                if(spy->IsInWorld())
+            if (Player* spy = ObjectAccessor::FindPlayer(plr->m_chatSpyGuid))
+                if (spy->IsInWorld())
                     ChatHandler(spy).PSendSysMessage(LANG_CHATSPY_CANCELLEDMASSIVE,
                         plr->GetName(), plr->GetGUIDLow());
             plr->m_chatSpyGuid = 0;
@@ -7559,14 +7559,14 @@ bool ChatHandler::HandleChatSpyResetCommand(const char* /*args*/)
 
 bool ChatHandler::HandleChatSpyCancelCommand(const char* args)
 {
-    if(!args)
+    if (!args)
         return false;
 
     char* name = strtok((char*)args, " ");
     std::string cname;
     Player* target = NULL;
 
-    if(name)
+    if (name)
     {
         cname = name;
         normalizePlayerName(cname);
@@ -7575,7 +7575,7 @@ bool ChatHandler::HandleChatSpyCancelCommand(const char* args)
     else
         target = getSelectedPlayer();
 
-    if(!target || target->GetSession() == m_session)
+    if (!target || target->GetSession() == m_session)
     {
         SendSysMessage(LANG_PLAYER_NOT_FOUND);
         SetSentErrorMessage(true);
@@ -7583,13 +7583,13 @@ bool ChatHandler::HandleChatSpyCancelCommand(const char* args)
     }
 
     // ok, player found
-    if(!target->m_chatSpyGuid)
+    if (!target->m_chatSpyGuid)
     {
         PSendSysMessage(LANG_CHATSPY_NOCHATSPY, target->GetName(), target->GetGUIDLow());
         SetSentErrorMessage(true);
         return false;
     }
-    if(target->m_chatSpyGuid == m_session->GetPlayer()->GetGUID())
+    if (target->m_chatSpyGuid == m_session->GetPlayer()->GetGUID())
         SendSysMessage(LANG_CHATSPY_YOURCANCELLED);
     else
     {

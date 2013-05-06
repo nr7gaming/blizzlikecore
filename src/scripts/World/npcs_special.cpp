@@ -215,7 +215,7 @@ struct npc_dancing_flamesAI : public ScriptedAI
             WorldPacket data;
             me->BuildHeartBeatMsg(&data);
             me->SendMessageToSet(&data,true);
-            switch(emote)
+            switch (emote)
             {
                 case TEXTEMOTE_KISS:    me->HandleEmoteCommand(EMOTE_ONESHOT_SHY); break;
                 case TEXTEMOTE_WAVE:    me->HandleEmoteCommand(EMOTE_ONESHOT_WAVE); break;
@@ -475,7 +475,7 @@ void npc_doctorAI::BeginEvent(Player* pPlayer)
     PatientDiedCount = 0;
     PatientSavedCount = 0;
 
-    switch(me->GetEntry())
+    switch (me->GetEntry())
     {
         case DOCTOR_ALLIANCE:
             for (uint8 i = 0; i < ALLIANCE_COORDS; ++i)
@@ -571,7 +571,7 @@ void npc_doctorAI::UpdateAI(const uint32 diff)
             std::vector<Location*>::iterator itr = Coordinates.begin()+rand()%Coordinates.size();
             uint32 patientEntry = 0;
 
-            switch(me->GetEntry())
+            switch (me->GetEntry())
             {
                 case DOCTOR_ALLIANCE: patientEntry = AllianceSoldierId[rand()%3]; break;
                 case DOCTOR_HORDE:    patientEntry = HordeSoldierId[rand()%3]; break;
@@ -690,7 +690,7 @@ struct npc_garments_of_questsAI : public npc_escortAI
 
             if (pCaster->GetTypeId() == TYPEID_PLAYER)
             {
-                switch(me->GetEntry())
+                switch (me->GetEntry())
                 {
                     case ENTRY_SHAYA:
                         if (CAST_PLR(pCaster)->GetQuestStatus(QUEST_MOON) == QUEST_STATUS_INCOMPLETE)
@@ -798,7 +798,7 @@ struct npc_garments_of_questsAI : public npc_escortAI
             {
                 if (Unit* pUnit = Unit::GetUnit(*me,caster))
                 {
-                    switch(me->GetEntry())
+                    switch (me->GetEntry())
                     {
                         case ENTRY_SHAYA: DoScriptText(SAY_SHAYA_GOODBYE,me,pUnit); break;
                         case ENTRY_ROBERTS: DoScriptText(SAY_ROBERTS_GOODBYE,me,pUnit); break;
@@ -983,7 +983,7 @@ bool GossipHello_npc_rogue_trainer(Player* pPlayer, Creature* pCreature)
 
 bool GossipSelect_npc_rogue_trainer(Player* pPlayer, Creature* pCreature, uint32 /*uiSender*/, uint32 uiAction)
 {
-    switch(uiAction)
+    switch (uiAction)
     {
         case GOSSIP_ACTION_INFO_DEF+1:
             pPlayer->CLOSE_GOSSIP_MENU();
@@ -1058,7 +1058,7 @@ bool GossipHello_npc_sayge(Player* pPlayer, Creature* pCreature)
 
 void SendAction_npc_sayge(Player* pPlayer, Creature* pCreature, uint32 uiAction)
 {
-    switch(uiAction)
+    switch (uiAction)
     {
         case GOSSIP_ACTION_INFO_DEF+1:
             pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_SENDACTION_SAYGE1,            GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
@@ -1104,7 +1104,7 @@ void SendAction_npc_sayge(Player* pPlayer, Creature* pCreature, uint32 uiAction)
 
 bool GossipSelect_npc_sayge(Player* pPlayer, Creature* pCreature, uint32 uiSender, uint32 uiAction)
 {
-    switch(uiSender)
+    switch (uiSender)
     {
         case GOSSIP_SENDER_MAIN:
             SendAction_npc_sayge(pPlayer, pCreature, uiAction);
@@ -1278,10 +1278,10 @@ struct npc_force_of_nature_treantsAI : public ScriptedAI {
     
     void Reset() {
         Owner = me->GetOwner();
-        if(!Owner)
+        if (!Owner)
             return;
         
-        if(Unit* target = Owner->getAttackerForHelper())
+        if (Unit* target = Owner->getAttackerForHelper())
         {
             me->SetInCombatWith(target);
             AttackStart(target);
@@ -1290,7 +1290,7 @@ struct npc_force_of_nature_treantsAI : public ScriptedAI {
     
     void UpdateAI(const uint32 /*diff*/) {
         
-        if(!Owner)
+        if (!Owner)
             return;
             
         if (!me->getVictim())
@@ -1516,7 +1516,7 @@ bool GossipSelect_npc_spiritofazuregos(Player* player, Creature* creature, uint3
         ItemPosCountVec dest; 
         uint8 msg; 
  
-        switch(action) 
+        switch (action) 
         { 
          case GOSSIP_ACTION_INFO_DEF+1: 
                 { 

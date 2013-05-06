@@ -50,7 +50,7 @@ template<class V>
 void SQLStorageLoaderBase<T>::storeValue(V value, SQLStorage &store, char *p, int x, uint32 &offset)
 {
     T * subclass = (static_cast<T*>(this));
-    switch(store.dst_format[x])
+    switch (store.dst_format[x])
     {
         case FT_LOGIC:
             subclass->convert(x, value, *((bool*)(&p[offset])) );
@@ -79,7 +79,7 @@ template<class T>
 void SQLStorageLoaderBase<T>::storeValue(char * value, SQLStorage &store, char *p, int x, uint32 &offset)
 {
     T * subclass = (static_cast<T*>(this));
-    switch(store.dst_format[x])
+    switch (store.dst_format[x])
     {
         case FT_LOGIC:
             subclass->convert_from_str(x, value, *((bool*)(&p[offset])) );
@@ -174,7 +174,7 @@ void SQLStorageLoaderBase<T>::Load(SQLStorage &store)
 
         offset=0;
         for (uint32 x = 0; x < store.iNumFields; x++)
-            switch(store.src_format[x])
+            switch (store.src_format[x])
             {
                 case FT_LOGIC:
                     storeValue((bool)(fields[x].GetUInt32() > 0), store, p, x, offset); break;

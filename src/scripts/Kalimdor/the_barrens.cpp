@@ -88,7 +88,7 @@ struct npc_giltharesAI : public npc_escortAI
         if (!pPlayer)
             return;
 
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 16:
                 DoScriptText(SAY_GIL_AT_LAST, me, pPlayer);
@@ -534,7 +534,7 @@ struct npc_wizzlecrank_shredderAI : public npc_escortAI
         if (!pPlayer)
             return;
 
-        switch(uiPointId)
+        switch (uiPointId)
         {
         case 0:
             DoScriptText(SAY_STARTUP1, me);
@@ -562,7 +562,7 @@ struct npc_wizzlecrank_shredderAI : public npc_escortAI
         if (!pPlayer)
             return;
 
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 9:
                 DoScriptText(SAY_STARTUP2, me, pPlayer);
@@ -591,7 +591,7 @@ struct npc_wizzlecrank_shredderAI : public npc_escortAI
             {
                 if (m_uiPostEventTimer <= uiDiff)
                 {
-                    switch(m_uiPostEventCount)
+                    switch (m_uiPostEventCount)
                     {
                         case 0:
                             DoScriptText(SAY_PROGRESS_2, me);

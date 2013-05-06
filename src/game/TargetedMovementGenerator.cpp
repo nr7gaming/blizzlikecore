@@ -70,7 +70,7 @@ bool TargetedMovementGenerator<T>::_setTargetLocation(T &owner)
                     stop = true;
             }
 
-            if(stop)
+            if (stop)
             {
 
                 owner.GetPosition(x, y, z);
@@ -78,7 +78,7 @@ bool TargetedMovementGenerator<T>::_setTargetLocation(T &owner)
                 if (owner.GetTypeId() == TYPEID_UNIT && (owner.HasUnitMovementFlag(MOVEFLAG_CAN_FLY) || owner.IsInWater() || i_target->IsInWater()))
                     z = i_target->GetPositionZ();
 
-                if(m_usePathfinding)
+                if (m_usePathfinding)
                 {
                     bool newPathCalculated = true;
 
@@ -88,7 +88,7 @@ bool TargetedMovementGenerator<T>::_setTargetLocation(T &owner)
                         newPathCalculated = i_path->Update(x, y, z);
 
                     // nothing we can do here ...
-                    if(i_path->getPathType() & PATHFIND_NOPATH)
+                    if (i_path->getPathType() & PATHFIND_NOPATH)
                         return true;
 
                     PointPath pointPath = i_path->getFullPath();
@@ -170,7 +170,7 @@ bool TargetedMovementGenerator<T>::_setTargetLocation(T &owner)
     return;
     */
 
-    if(m_usePathfinding)
+    if (m_usePathfinding)
     {
 
         bool forceDest = false;
@@ -321,7 +321,7 @@ bool TargetedMovementGenerator<T>::Update(T &owner, const uint32 & time_diff)
 
                 needNewDest = i_destinationHolder.HasArrived() && (!i_path->inRange(next_point, i_path->getActualEndPosition(), dist, dist) || !owner.IsWithinLOSInMap(i_target.getTarget()));
 
-                if(!needNewDest)
+                if (!needNewDest)
                 {
                     // GetClosePoint() will always return a point on the ground, so we need to
                     // handle the difference in elevation when the creature is flying
@@ -354,7 +354,7 @@ bool TargetedMovementGenerator<T>::Update(T &owner, const uint32 & time_diff)
                 owner.SetInFront(i_target.getTarget());
 
                 owner.StopMoving();
-                if(owner.IsWithinMeleeRange(i_target.getTarget()) && !owner.hasUnitState(UNIT_STAT_FOLLOW))
+                if (owner.IsWithinMeleeRange(i_target.getTarget()) && !owner.hasUnitState(UNIT_STAT_FOLLOW))
                     owner.Attack(i_target.getTarget(), true);
             }
         }
@@ -380,7 +380,7 @@ bool TargetedMovementGenerator<T>::Update(T &owner, const uint32 & time_diff)
             if (i_targetX != i_target->GetPositionX() || i_targetY != i_target->GetPositionY()
                 || i_targetZ != i_target->GetPositionZ())
             {
-                if(_setTargetLocation(owner) || !owner.hasUnitState(UNIT_STAT_FOLLOW))
+                if (_setTargetLocation(owner) || !owner.hasUnitState(UNIT_STAT_FOLLOW))
                     owner.SetInFront(i_target.getTarget());
                 i_target->GetPosition(i_targetX, i_targetY, i_targetZ);
             }
@@ -392,7 +392,7 @@ bool TargetedMovementGenerator<T>::Update(T &owner, const uint32 & time_diff)
                 owner.SetInFront(i_target.getTarget());
 
                 owner.StopMoving();
-                if(owner.IsWithinMeleeRange(i_target.getTarget()) && !owner.hasUnitState(UNIT_STAT_FOLLOW))
+                if (owner.IsWithinMeleeRange(i_target.getTarget()) && !owner.hasUnitState(UNIT_STAT_FOLLOW))
                     owner.Attack(i_target.getTarget(),true);
             }
         }

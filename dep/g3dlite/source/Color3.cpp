@@ -286,7 +286,7 @@ Color3 Color3::fromHSV(const Vector3& _hsv) {
     const float m = _hsv.z * (1.0f - (_hsv.y));
     const float n = _hsv.z * (1.0f - (_hsv.y * f));
     const float k = _hsv.z * (1.0f - (_hsv.y * (1 - f)));
-    switch(i) {
+    switch (i) {
     case 0:
         return Color3(_hsv.z, k, m);
         

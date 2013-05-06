@@ -109,7 +109,7 @@ bool handleArgs(int argc, char** argv,
             else
                 printf("invalid option for '--skipLiquid', using default\n");
         }
-        else if(strcmp(argv[i], "--skipContinents") == 0)
+        else if (strcmp(argv[i], "--skipContinents") == 0)
         {
             param = argv[++i];
             if (!param)

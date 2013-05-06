@@ -348,7 +348,7 @@ void hyjalAI::Reset()
     EnemyCount = 0;
 
     // Set faction properly based on Creature entry
-    switch(me->GetEntry())
+    switch (me->GetEntry())
     {
         case JAINA:
             Faction = 0;
@@ -438,7 +438,7 @@ void hyjalAI::SummonCreature(uint32 entry, float Base[4][3])
         SpawnLoc[i] = Base[random][i];
     }
     Creature* pCreature = NULL;
-    switch(entry)
+    switch (entry)
     {
             case 17906:    //GARGOYLE
 
@@ -480,7 +480,7 @@ void hyjalAI::SummonCreature(uint32 entry, float Base[4][3])
 
         pCreature->RemoveUnitMovementFlag(MOVEFLAG_WALK_MODE);
         pCreature->setActive(true);
-        switch(entry)
+        switch (entry)
         {
             case NECROMANCER:
             case ABOMINATION:
@@ -749,7 +749,7 @@ void hyjalAI::UpdateAI(const uint32 diff)
     if (DoHide)
     {
         DoHide = false;
-        switch(me->GetEntry())
+        switch (me->GetEntry())
         {
             case JAINA:
                 if (pInstance && pInstance->GetData(DATA_ALLIANCE_RETREAT))
@@ -808,7 +808,7 @@ void hyjalAI::UpdateAI(const uint32 diff)
             IsDummy = true;
             bRetreat = false;
             HideNearPos(me->GetPositionX(), me->GetPositionY());
-            switch(me->GetEntry())
+            switch (me->GetEntry())
             {
                 case JAINA://jaina
                     HideNearPos(5037.76f, -1889.71f);
@@ -889,7 +889,7 @@ void hyjalAI::UpdateAI(const uint32 diff)
 
                 Unit* pTarget = NULL;
 
-                switch(Spell[i].TargetType)
+                switch (Spell[i].TargetType)
                 {
                     case TARGETTYPE_SELF: pTarget = me; break;
                     case TARGETTYPE_RANDOM: pTarget = SelectUnit(SELECT_TARGET_RANDOM, 0); break;
@@ -1073,7 +1073,7 @@ void hyjalAI::DoOverrun(uint32 faction, const uint32 diff)
     if (!Teleported)
         return;
     Overrun = false;//execute once
-    switch(faction)
+    switch (faction)
     {
         case 0://alliance
             for (uint8 i = 0; i < 92; ++i)//summon fires

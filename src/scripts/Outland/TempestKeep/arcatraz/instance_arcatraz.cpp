@@ -82,7 +82,7 @@ struct instance_arcatraz : public ScriptedInstance
 
     void OnGameObjectCreate(GameObject* pGo, bool /*add*/)
     {
-        switch(pGo->GetEntry())
+        switch (pGo->GetEntry())
         {
             case CONTAINMENT_CORE_SECURITY_FIELD_ALPHA: Containment_Core_Security_Field_Alpha = pGo; break;
             case CONTAINMENT_CORE_SECURITY_FIELD_BETA:  Containment_Core_Security_Field_Beta =  pGo; break;
@@ -104,7 +104,7 @@ struct instance_arcatraz : public ScriptedInstance
 
     void SetData(uint32 type, uint32 data)
     {
-        switch(type)
+        switch (type)
         {
             case TYPE_ZEREKETH:
                 Encounter[0] = data;
@@ -181,7 +181,7 @@ struct instance_arcatraz : public ScriptedInstance
 
     uint32 GetData(uint32 type)
     {
-         switch(type)
+         switch (type)
         {
             case TYPE_HARBINGERSKYRISS:
                 return Encounter[3];
@@ -201,7 +201,7 @@ struct instance_arcatraz : public ScriptedInstance
 
     uint64 GetData64(uint32 data)
     {
-        switch(data)
+        switch (data)
         {
             case DATA_MELLICHAR:
                 return MellicharGUID;

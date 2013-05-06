@@ -700,7 +700,7 @@ index 0000000..fdbd561
 +{
 +    PageC(player) = PageD(player) = Cat(player) = 0;
 +
-+    if(player->isInCombat())
++    if (player->isInCombat())
 +    {
 +        player->CLOSE_GOSSIP_MENU();
 +        creature->MonsterWhisper("You are in combat!", player->GetGUID());
@@ -712,7 +712,7 @@ index 0000000..fdbd561
 +
 +bool GossipSelect_npc_teleport(Player* player, Creature* creature, uint32 sender, uint32 param)
 +{
-+    switch(sender) 
++    switch (sender) 
 +    {
 +      // Display destinations
 +      case GOSSIP_SHOW_DEST:
@@ -752,7 +752,7 @@ index 0000000..fdbd561
 +      // Teleportation
 +      case GOSSIP_TELEPORT:
 +        player->CLOSE_GOSSIP_MENU();
-+        if(player->HasAura(SPELL_ID_PASSIVE_RESURRECTION_SICKNESS,0)) {
++        if (player->HasAura(SPELL_ID_PASSIVE_RESURRECTION_SICKNESS,0)) {
 +            creature->CastSpell(player,38588,false); // Healing effect
 +            player->RemoveAurasDueToSpell(SPELL_ID_PASSIVE_RESURRECTION_SICKNESS);
 +        }
@@ -947,7 +947,7 @@ index 0000000..bdeb2c4
 +bool nsNpcTel::IsValidData(const uint32 &cat,   const Flag &flag,
 +                           const uint64 &data0, const uint32 &data1)
 +{
-+    switch(flag)
++    switch (flag)
 +    {
 +      case FLAG_TEAM:
 +        if (data1)

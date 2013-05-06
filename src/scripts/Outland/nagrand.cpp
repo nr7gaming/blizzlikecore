@@ -142,7 +142,7 @@ struct mob_lumpAI : public ScriptedAI
         if (!me->IsStandState())
              me->SetStandState(UNIT_STAND_STATE_STAND);
 
-        switch(rand()%2)
+        switch (rand()%2)
         {
             case 0: DoScriptText(LUMP_SAY0, me); break;
             case 1: DoScriptText(LUMP_SAY1, me); break;
@@ -570,7 +570,7 @@ struct npc_maghar_captiveAI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 7:
                 DoScriptText(SAY_MAG_MORE, me);
@@ -1077,7 +1077,7 @@ struct npc_corki1AI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 0:
                 SetRun();
@@ -1165,7 +1165,7 @@ struct npc_corki2AI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 0:
                 SetRun();
@@ -1251,7 +1251,7 @@ struct npc_corki3AI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 0:
                 SetRun();
@@ -1365,7 +1365,7 @@ struct npc_kurenai_captiveAI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 7:DoScriptText(SAY_KUR_MORE, me);
                    if (Creature* pTemp = me->SummonCreature(MURK_PUTRIFIER, m_afAmbushD[0], m_afAmbushD[1], m_afAmbushD[2], 0.0f, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 25000))

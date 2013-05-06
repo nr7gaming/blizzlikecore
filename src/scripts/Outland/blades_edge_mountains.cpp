@@ -82,10 +82,10 @@ struct mobs_nether_drakeAI : public ScriptedAI
         {
             uint32 cEntry = 0;
 
-            switch(me->GetEntry())
+            switch (me->GetEntry())
             {
                 case ENTRY_WHELP:
-                    switch(rand()%4)
+                    switch (rand()%4)
                     {
                         case 0: cEntry = ENTRY_PROTO; break;
                         case 1: cEntry = ENTRY_ADOLE; break;
@@ -94,7 +94,7 @@ struct mobs_nether_drakeAI : public ScriptedAI
                     }
                     break;
                 case ENTRY_PROTO:
-                    switch(rand()%3)
+                    switch (rand()%3)
                     {
                         case 0: cEntry = ENTRY_ADOLE; break;
                         case 1: cEntry = ENTRY_MATUR; break;
@@ -102,7 +102,7 @@ struct mobs_nether_drakeAI : public ScriptedAI
                     }
                     break;
                 case ENTRY_ADOLE:
-                    switch(rand()%3)
+                    switch (rand()%3)
                     {
                         case 0: cEntry = ENTRY_PROTO; break;
                         case 1: cEntry = ENTRY_MATUR; break;
@@ -110,7 +110,7 @@ struct mobs_nether_drakeAI : public ScriptedAI
                     }
                     break;
                 case ENTRY_MATUR:
-                    switch(rand()%3)
+                    switch (rand()%3)
                     {
                         case 0: cEntry = ENTRY_PROTO; break;
                         case 1: cEntry = ENTRY_ADOLE; break;
@@ -122,7 +122,7 @@ struct mobs_nether_drakeAI : public ScriptedAI
                     {
                         DoScriptText(SAY_NIHIL_INTERRUPT, me);
                         IsNihil = false;
-                        switch(rand()%3)
+                        switch (rand()%3)
                         {
                             case 0: cEntry = ENTRY_PROTO; break;
                             case 1: cEntry = ENTRY_ADOLE; break;
@@ -156,7 +156,7 @@ struct mobs_nether_drakeAI : public ScriptedAI
             {
                 if (NihilSpeech_Timer <= diff)
                 {
-                    switch(NihilSpeech_Phase)
+                    switch (NihilSpeech_Phase)
                     {
                         case 1:
                             DoScriptText(SAY_NIHIL_1, me);

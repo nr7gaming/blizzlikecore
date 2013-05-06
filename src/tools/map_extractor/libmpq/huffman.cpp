@@ -541,7 +541,7 @@ static struct huffman_tree_item *libmpq_huff_call1500E740(struct huffman_tree *h
 	struct huffman_tree_item **pp_item;
 
 	if (PTR_INT(p_item1) <= 0 || (p_item2 = p_item1) == NULL) {
-		if((p_item2 = &ht->items0008[ht->items++]) != NULL) {
+		if ((p_item2 = &ht->items0008[ht->items++]) != NULL) {
 			p_item1 = p_item2;
 		} else {
 			p_item1 = ht->first;

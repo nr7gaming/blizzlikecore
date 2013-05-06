@@ -145,7 +145,7 @@ index 482db15..7e8c712 100644
                      XP = uint32(objmgr.GetBaseXP(p->area_level)*sWorld.getRate(RATE_XP_EXPLORE));
                  }
  
-+                if(GetSession()->IsPremium())
++                if (GetSession()->IsPremium())
 +                XP *= sWorld.getRate(RATE_XP_EXPLORE_PREMIUM);
                  GiveXP(XP, NULL);
                  SendExplorationExperience(area,XP);

@@ -123,7 +123,7 @@ struct boss_entropiusAI : public ScriptedAI
 
     void JustSummoned(Creature* summoned)
     {
-        switch(summoned->GetEntry())
+        switch (summoned->GetEntry())
         {
             case CREATURE_DARK_FIENDS:
                 summoned->CastSpell(summoned,SPELL_DARKFIEND_VISUAL,false);
@@ -241,7 +241,7 @@ struct boss_muruAI : public Scripted_NoMovementAI
 
     void JustSummoned(Creature* summoned)
     {
-        switch(summoned->GetEntry())
+        switch (summoned->GetEntry())
         {
             case BOSS_ENTROPIUS:
                 me->SetVisibility(VISIBILITY_OFF);
@@ -265,7 +265,7 @@ struct boss_muruAI : public Scripted_NoMovementAI
             {
                 if (!pInstance)
                     return;
-                switch(pInstance->GetData(DATA_MURU_EVENT))
+                switch (pInstance->GetData(DATA_MURU_EVENT))
                 {
                     case NOT_STARTED:
                         Reset();
@@ -288,7 +288,7 @@ struct boss_muruAI : public Scripted_NoMovementAI
         {
             if (Timer[i] <= diff)
             {
-                switch(i)
+                switch (i)
                 {
                     case TIMER_DARKNESS:
                         if (!DarkFiend)
@@ -382,7 +382,7 @@ struct npc_muru_portalAI : public Scripted_NoMovementAI
         me->GetHomePosition(x,y,z,o);
         DoTeleportTo(x,y,z);
         InAction = true;
-        switch(Spell->Id)
+        switch (Spell->Id)
         {
             case SPELL_OPEN_ALL_PORTALS:
                 DoCastAOE(SPELL_OPEN_PORTAL, false);

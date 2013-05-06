@@ -14,7 +14,7 @@ MPQArchive::MPQArchive(const char* filename)
     int result = libmpq__archive_open(&mpq_a, filename, -1);
     printf("Opening %s\n", filename);
     if (result) {
-        switch(result) {
+        switch (result) {
             case LIBMPQ_ERROR_OPEN :
                 printf("Error opening archive '%s': Does file really exist?\n", filename);
                 break;

@@ -53,7 +53,7 @@ struct boss_epoch_hunterAI : public ScriptedAI
 
     void EnterCombat(Unit*)
     {
-        switch(rand()%2)
+        switch (rand()%2)
         {
             case 0: DoScriptText(SAY_AGGRO1, me); break;
             case 1: DoScriptText(SAY_AGGRO2, me); break;
@@ -62,7 +62,7 @@ struct boss_epoch_hunterAI : public ScriptedAI
 
     void KilledUnit(Unit*)
     {
-        switch(rand()%2)
+        switch (rand()%2)
         {
             case 0: DoScriptText(SAY_SLAY1, me); break;
             case 1: DoScriptText(SAY_SLAY2, me); break;
@@ -91,7 +91,7 @@ struct boss_epoch_hunterAI : public ScriptedAI
 
             DoCast(me->getVictim(),SPELL_SAND_BREATH);
 
-            switch(rand()%2)
+            switch (rand()%2)
             {
                 case 0: DoScriptText(SAY_BREATH1, me); break;
                 case 1: DoScriptText(SAY_BREATH2, me); break;

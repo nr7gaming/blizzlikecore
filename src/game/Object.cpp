@@ -34,7 +34,7 @@
 
 uint32 GuidHigh2TypeId(uint32 guid_hi)
 {
-    switch(guid_hi)
+    switch (guid_hi)
     {
         case HIGHGUID_ITEM:         return TYPEID_ITEM;
         //case HIGHGUID_CONTAINER:    return TYPEID_CONTAINER; HIGHGUID_CONTAINER == HIGHGUID_ITEM currently
@@ -154,7 +154,7 @@ void Object::BuildCreateUpdateBlockForPlayer(UpdateData *data, Player* target) c
         // UPDATETYPE_CREATE_OBJECT2 for some gameobject types...
         if (isType(TYPEMASK_GAMEOBJECT))
         {
-            switch(((GameObject*)this)->GetGoType())
+            switch (((GameObject*)this)->GetGoType())
             {
                 case GAMEOBJECT_TYPE_TRAP:
                 case GAMEOBJECT_TYPE_DUEL_ARBITER:
@@ -239,7 +239,7 @@ void Object::_BuildMovementUpdate(ByteBuffer * data, uint8 updateFlags) const
 
     if (updateFlags & UPDATEFLAG_LIVING)
     {
-        switch(GetTypeId())
+        switch (GetTypeId())
         {
             case TYPEID_UNIT:
             {
@@ -435,7 +435,7 @@ void Object::_BuildMovementUpdate(ByteBuffer * data, uint8 updateFlags) const
     // 0x8
     if (updateFlags & UPDATEFLAG_LOWGUID)
     {
-        switch(GetTypeId())
+        switch (GetTypeId())
         {
             case TYPEID_OBJECT:
             case TYPEID_ITEM:
@@ -463,7 +463,7 @@ void Object::_BuildMovementUpdate(ByteBuffer * data, uint8 updateFlags) const
     // 0x10
     if (updateFlags & UPDATEFLAG_HIGHGUID)
     {
-        switch(GetTypeId())
+        switch (GetTypeId())
         {
             case TYPEID_OBJECT:
             case TYPEID_ITEM:
@@ -641,7 +641,7 @@ void Object::_BuildValuesUpdate(uint8 updatetype, ByteBuffer * data, UpdateMask 
                 {
                     if (IsActivateToQuest)
                     {
-                        switch(((GameObject*)this)->GetGoType())
+                        switch (((GameObject*)this)->GetGoType())
                         {
                             case GAMEOBJECT_TYPE_CHEST:
                             case GAMEOBJECT_TYPE_GOOBER:
@@ -1325,7 +1325,7 @@ float Position::GetAngle(const float x, const float y) const
 bool WorldObject::HasInArc(const float arcangle, const float x, const float y) const
 {
     // always have self in arc
-    if(x == m_positionX && y == m_positionY)
+    if (x == m_positionX && y == m_positionY)
         return true;
 
     float arc = arcangle;
@@ -1942,7 +1942,7 @@ Pet* Player::SummonPet(uint32 entry, float x, float y, float z, float ang, PetTy
 
     SetMinion(pet, true);
 
-    switch(petType)
+    switch (petType)
     {
         case CLASS_PET:
         case SUMMON_PET:
@@ -1957,7 +1957,7 @@ Pet* Player::SummonPet(uint32 entry, float x, float y, float z, float ang, PetTy
 
     map->Add(pet->ToCreature());
 
-    switch(petType)
+    switch (petType)
     {
         case CLASS_PET:
         case SUMMON_PET:

@@ -304,7 +304,7 @@ struct instance_uldaman : public ScriptedInstance
 
     void SetData (uint32 type, uint32 data)
     {
-        switch(type)
+        switch (type)
         {
             case DATA_ALTAR_DOORS:
                 Encounters[0] = data;
@@ -330,7 +330,7 @@ struct instance_uldaman : public ScriptedInstance
                 break;
 
             case DATA_MINIONS:
-                switch(data)
+                switch (data)
                 {
                     case NOT_STARTED:
                         if (Encounters[0] == DONE) //if players opened the doors

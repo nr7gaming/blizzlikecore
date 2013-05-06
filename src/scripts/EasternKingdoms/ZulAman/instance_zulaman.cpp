@@ -97,7 +97,7 @@ struct instance_zulaman : public ScriptedInstance
 
     void OnCreatureCreate(Creature* pCreature, bool /*add*/)
     {
-        switch(pCreature->GetEntry())
+        switch (pCreature->GetEntry())
         {
         case 23578://janalai
         case 23863://zuljin
@@ -110,7 +110,7 @@ struct instance_zulaman : public ScriptedInstance
 
     void OnGameObjectCreate(GameObject* pGo, bool /*add*/)
     {
-        switch(pGo->GetEntry())
+        switch (pGo->GetEntry())
         {
             case 186303:
                 HalazziDoorExitGUID = pGo->GetGUID();
@@ -216,7 +216,7 @@ struct instance_zulaman : public ScriptedInstance
 
     void SetData(uint32 type, uint32 data)
     {
-        switch(type)
+        switch (type)
         {
         case DATA_NALORAKKEVENT:
             Encounters[0] = data;
@@ -298,7 +298,7 @@ struct instance_zulaman : public ScriptedInstance
 
     uint32 GetData(uint32 type)
     {
-        switch(type)
+        switch (type)
         {
         case DATA_NALORAKKEVENT: return Encounters[0];
         case DATA_AKILZONEVENT:  return Encounters[1];

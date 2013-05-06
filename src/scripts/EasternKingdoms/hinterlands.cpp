@@ -49,7 +49,7 @@ struct npc_00x09hlAI : public npc_escortAI
         if (!pPlayer)
             return;
 
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 26:
                 DoScriptText(SAY_OOX_AMBUSH, me);
@@ -217,7 +217,7 @@ struct npc_rinjiAI : public npc_escortAI
         if (!pPlayer)
             return;
 
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 1:
                 DoScriptText(SAY_RIN_FREE, me, pPlayer);
@@ -250,7 +250,7 @@ struct npc_rinjiAI : public npc_escortAI
 
                     if (Unit* pPlayer = GetPlayerForEscort())
                     {
-                        switch(m_uiPostEventCount)
+                        switch (m_uiPostEventCount)
                         {
                             case 1:
                                 DoScriptText(SAY_RIN_PROGRESS_1, me, pPlayer);

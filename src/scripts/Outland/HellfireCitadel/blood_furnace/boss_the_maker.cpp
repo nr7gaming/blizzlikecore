@@ -48,7 +48,7 @@ struct boss_the_makerAI : public ScriptedAI
 
     void EnterCombat(Unit* /*who*/)
     {
-        switch(rand()%3)
+        switch (rand()%3)
         {
             case 0: DoScriptText(SAY_AGGRO_1, me); break;
             case 1: DoScriptText(SAY_AGGRO_2, me); break;
@@ -61,7 +61,7 @@ struct boss_the_makerAI : public ScriptedAI
 
     void KilledUnit(Unit* /*victim*/)
     {
-        switch(rand()%2)
+        switch (rand()%2)
         {
             case 0: DoScriptText(SAY_KILL_1, me); break;
             case 1: DoScriptText(SAY_KILL_2, me); break;

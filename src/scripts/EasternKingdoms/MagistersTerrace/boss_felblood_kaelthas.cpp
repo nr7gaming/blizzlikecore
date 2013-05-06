@@ -255,7 +255,7 @@ struct boss_felblood_kaelthasAI : public ScriptedAI
         if (!UpdateVictim())
             return;
 
-        switch(Phase)
+        switch (Phase)
         {
             case 0:
             {
@@ -332,7 +332,7 @@ struct boss_felblood_kaelthasAI : public ScriptedAI
             {
                 if (GravityLapseTimer <= diff)
                 {
-                    switch(GravityLapsePhase)
+                    switch (GravityLapsePhase)
                     {
                         case 0:
                             if (FirstGravityLapse)          // Different yells at 50%, and at every following Gravity Lapse

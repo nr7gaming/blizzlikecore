@@ -337,7 +337,7 @@ bool processArgv(int argc, char ** argv, const char *versionString)
         {
             preciseVectorData = false;
         }
-        else if(strcmp("-d",argv[i]) == 0)
+        else if (strcmp("-d",argv[i]) == 0)
         {
             if ((i+1)<argc)
             {

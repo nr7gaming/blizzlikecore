@@ -190,7 +190,7 @@ struct boss_nalorakkAI : public ScriptedAI
             {
                 if (!inMove)
                 {
-                    switch(MovePhase)
+                    switch (MovePhase)
                     {
                         case 0:
                             if (me->IsWithinDistInMap(who, 50))
@@ -298,7 +298,7 @@ struct boss_nalorakkAI : public ScriptedAI
             if (MovePhase != id)
                 return;
 
-            switch(MovePhase)
+            switch (MovePhase)
             {
                 case 2:
                     me->SetOrientation(3.1415f*2);

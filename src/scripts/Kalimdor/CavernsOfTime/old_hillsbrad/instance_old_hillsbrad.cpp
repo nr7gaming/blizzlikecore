@@ -87,7 +87,7 @@ struct instance_old_hillsbrad : public ScriptedInstance
 
     void OnCreatureCreate(Creature* pCreature, bool /*add*/)
     {
-        switch(pCreature->GetEntry())
+        switch (pCreature->GetEntry())
         {
             case THRALL_ENTRY:
                 ThrallGUID = pCreature->GetGUID();
@@ -111,7 +111,7 @@ struct instance_old_hillsbrad : public ScriptedInstance
             return;
         }
 
-        switch(type)
+        switch (type)
         {
             case TYPE_BARREL_DIVERSION:
             {
@@ -185,7 +185,7 @@ struct instance_old_hillsbrad : public ScriptedInstance
 
     uint32 GetData(uint32 data)
     {
-        switch(data)
+        switch (data)
         {
             case TYPE_BARREL_DIVERSION:
                 return Encounter[0];
@@ -205,7 +205,7 @@ struct instance_old_hillsbrad : public ScriptedInstance
 
     uint64 GetData64(uint32 data)
     {
-        switch(data)
+        switch (data)
         {
             case DATA_THRALL:
                 return ThrallGUID;

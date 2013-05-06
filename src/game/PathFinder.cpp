@@ -127,7 +127,7 @@ dtPolyRef PathInfo::getPathPolyByPosition(const dtPolyRef *polyPath, uint32 poly
             minDist3d = dtVdistSqr(point, closestPoint);
         }
 
-        if(minDist2d < 1.0f) // shortcut out - close enough for us
+        if (minDist2d < 1.0f) // shortcut out - close enough for us
             break;
     }
 
@@ -143,7 +143,7 @@ dtPolyRef PathInfo::getPolyByLocation(const float* point, float *distance) const
     // if the current path doesn't contain the current poly,
     // we need to use the expensive navMesh.findNearestPoly
     dtPolyRef polyRef = getPathPolyByPosition(m_pathPolyRefs, m_polyLength, point, distance);
-    if(polyRef != INVALID_POLYREF)
+    if (polyRef != INVALID_POLYREF)
         return polyRef;
 
     // we don't have it in our old path
@@ -152,7 +152,7 @@ dtPolyRef PathInfo::getPolyByLocation(const float* point, float *distance) const
     float extents[VERTEX_SIZE] = {3.0f, 5.0f, 3.0f};    // bounds of poly search area
     float closestPoint[VERTEX_SIZE] = {0.0f, 0.0f, 0.0f};
     dtStatus result = m_navMeshQuery->findNearestPoly(point, extents, &m_filter, &polyRef, closestPoint);
-    if(DT_SUCCESS == result && polyRef != INVALID_POLYREF)
+    if (DT_SUCCESS == result && polyRef != INVALID_POLYREF)
     {
         *distance = dtVdist(closestPoint, point);
         return polyRef;
@@ -162,7 +162,7 @@ dtPolyRef PathInfo::getPolyByLocation(const float* point, float *distance) const
     // try with bigger search box
     extents[1] = 200.0f;
     result = m_navMeshQuery->findNearestPoly(point, extents, &m_filter, &polyRef, closestPoint);
-    if(DT_SUCCESS == result && polyRef != INVALID_POLYREF)
+    if (DT_SUCCESS == result && polyRef != INVALID_POLYREF)
     {
         *distance = dtVdist(closestPoint, point);
         return polyRef;
@@ -451,11 +451,11 @@ void PathInfo::BuildPointPath(const float *startPoint, const float *endPoint)
     setActualEndPosition(m_pathPoints[pointCount-1]);
 
     // force the given destination, if needed
-    if(m_forceDestination &&
+    if (m_forceDestination &&
         (!(m_type & PATHFIND_NORMAL) || !inRange(getEndPosition(), getActualEndPosition(), 1.0f, 1.0f)))
     {
         // we may want to keep partial subpath
-        if(dist3DSqr(getActualEndPosition(), getEndPosition()) < 
+        if (dist3DSqr(getActualEndPosition(), getEndPosition()) < 
             0.3f * dist3DSqr(getStartPosition(), getEndPosition()))
         {
             setActualEndPosition(getEndPosition());
@@ -655,10 +655,10 @@ dtStatus PathInfo::findSmoothPath(const float* startPos, const float* endPos,
     uint32 npolys = polyPathSize;
 
     float iterPos[VERTEX_SIZE], targetPos[VERTEX_SIZE];
-    if(DT_SUCCESS != m_navMeshQuery->closestPointOnPolyBoundary(polys[0], startPos, iterPos))
+    if (DT_SUCCESS != m_navMeshQuery->closestPointOnPolyBoundary(polys[0], startPos, iterPos))
         return DT_FAILURE;
 
-    if(DT_SUCCESS != m_navMeshQuery->closestPointOnPolyBoundary(polys[npolys-1], endPos, targetPos))
+    if (DT_SUCCESS != m_navMeshQuery->closestPointOnPolyBoundary(polys[npolys-1], endPos, targetPos))
         return DT_FAILURE;
 
     dtVcopy(&smoothPath[nsmoothPath*VERTEX_SIZE], iterPos);

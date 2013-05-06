@@ -155,7 +155,7 @@ struct boss_hydross_the_unstableAI : public ScriptedAI
     {
         if (CorruptedForm)
         {
-            switch(rand()%2)
+            switch (rand()%2)
             {
                 case 0: DoScriptText(SAY_CORRUPT_SLAY1, me); break;
                 case 1: DoScriptText(SAY_CORRUPT_SLAY2, me); break;
@@ -163,7 +163,7 @@ struct boss_hydross_the_unstableAI : public ScriptedAI
         }
         else
         {
-            switch(rand()%2)
+            switch (rand()%2)
             {
                 case 0: DoScriptText(SAY_CLEAN_SLAY1, me); break;
                 case 1: DoScriptText(SAY_CLEAN_SLAY2, me); break;
@@ -292,7 +292,7 @@ struct boss_hydross_the_unstableAI : public ScriptedAI
                 {
                     uint32 mark_spell = 0;
 
-                    switch(MarkOfHydross_Count)
+                    switch (MarkOfHydross_Count)
                     {
                         case 0:  mark_spell = SPELL_MARK_OF_HYDROSS1; break;
                         case 1:  mark_spell = SPELL_MARK_OF_HYDROSS2; break;

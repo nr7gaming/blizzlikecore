@@ -107,7 +107,7 @@ struct npc_muglashAI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 0:
                 if (Player* pPlayer = GetPlayerForEscort())
@@ -141,7 +141,7 @@ struct npc_muglashAI : public npc_escortAI
 
     void DoWaveSummon()
     {
-        switch(m_uiWaveId)
+        switch (m_uiWaveId)
         {
             case 1:
                 me->SummonCreature(NPC_WRATH_RIDER,     m_afFirstNagaCoord[0][0], m_afFirstNagaCoord[0][1], m_afFirstNagaCoord[0][2], 0.0f, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 60000);
@@ -365,7 +365,7 @@ struct npc_ruul_snowhoofAI : public npc_escortAI
         if (!pPlayer)
             return;
 
-        switch(i)
+        switch (i)
         {
         case 0:    {
                 me->SetUInt32Value(UNIT_FIELD_BYTES_1, 0);

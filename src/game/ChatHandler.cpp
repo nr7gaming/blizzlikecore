@@ -122,7 +122,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
                 lang = LANG_UNIVERSAL;
             else
             {
-                switch(type)
+                switch (type)
                 {
                     case CHAT_MSG_PARTY:
                     case CHAT_MSG_RAID:
@@ -169,7 +169,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
         }
     }
 
-    switch(type)
+    switch (type)
     {
         case CHAT_MSG_SAY:
         case CHAT_MSG_EMOTE:
@@ -271,7 +271,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_PARTY, lang);
             for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
-                if(Player* pl = itr->getSource())
+                if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_PARTY, lang, GetPlayer());
 
             WorldPacket data;
@@ -381,7 +381,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_RAID, lang);
             for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
-                if(Player* pl = itr->getSource())
+                if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_RAID, lang, GetPlayer());
 
             WorldPacket data;
@@ -417,7 +417,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_RAID_LEADER, lang);
             for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
-                if(Player* pl = itr->getSource())
+                if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_RAID_LEADER, lang, GetPlayer());
 
             WorldPacket data;
@@ -446,7 +446,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_RAID_WARNING, lang);
             for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
-                if(Player* pl = itr->getSource())
+                if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_RAID_WARNING, lang, GetPlayer());
 
             WorldPacket data;
@@ -478,7 +478,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_BATTLEGROUND, lang);
             for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
-                if(Player* pl = itr->getSource())
+                if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_BATTLEGROUND, lang, GetPlayer());
 
             WorldPacket data;
@@ -509,7 +509,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_BATTLEGROUND_LEADER, lang);
             for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
-                if(Player* pl = itr->getSource())
+                if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_BATTLEGROUND_LEADER, lang, GetPlayer());
 
             WorldPacket data;
@@ -640,7 +640,7 @@ void WorldSession::HandleTextEmoteOpcode(WorldPacket& recv_data)
 
     uint32 emote_anim = em->textid;
 
-    switch(emote_anim)
+    switch (emote_anim)
     {
         case EMOTE_STATE_SLEEP:
         case EMOTE_STATE_SIT:

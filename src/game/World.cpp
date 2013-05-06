@@ -1048,7 +1048,7 @@ void World::LoadConfigSettings(bool reload)
     if (m_configs[CONFIG_HONOR_AFTER_DUEL] < 0)
         m_configs[CONFIG_HONOR_AFTER_DUEL]= 0;
     m_configs[CONFIG_GOLD_AFTER_DUEL] = sConfig.GetIntDefault("GoldAfterDuel", 0);
-    if(m_configs[CONFIG_GOLD_AFTER_DUEL] < 0)
+    if (m_configs[CONFIG_GOLD_AFTER_DUEL] < 0)
         m_configs[CONFIG_GOLD_AFTER_DUEL]= 0;
     m_configs[CONFIG_START_ALL_EXPLORED] = sConfig.GetBoolDefault("PlayerStart.MapsExplored", false);
     m_configs[CONFIG_START_ALL_REP] = sConfig.GetBoolDefault("PlayerStart.AllReputation", false);
@@ -2062,7 +2062,7 @@ BanReturn World::BanAccount(BanMode mode, std::string nameOrIP, std::string dura
     QueryResult_AutoPtr resultAccounts = QueryResult_AutoPtr(NULL);                     //used for kicking
 
     // Update the database with ban information
-    switch(mode)
+    switch (mode)
     {
         case BAN_IP:
             //No SQL injection as strings are escaped

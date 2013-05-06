@@ -575,7 +575,7 @@ public:
 
         const int inSize = inIndices.size();
 
-        switch(inType) {
+        switch (inType) {
         case PrimitiveType::TRIANGLE_FAN:
             {
             debugAssert(inSize >= 3);

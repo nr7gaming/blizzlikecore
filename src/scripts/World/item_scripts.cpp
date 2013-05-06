@@ -65,7 +65,7 @@ bool ItemUse_item_only_for_flight(Player* pPlayer, Item* pItem, SpellCastTargets
     bool disabled = false;
 
     //for special scripts
-    switch(itemId)
+    switch (itemId)
     {
        case 24538:
             if (pPlayer->GetAreaId() != 3628)
@@ -233,7 +233,7 @@ bool ItemUse_item_muiseks_vessel(Player* player, Item* _Item, SpellCastTargets c
 
     if (itemSpell)
     {
-        switch(itemSpell)
+        switch (itemSpell)
         {
             case 11885:                                     //Wandering Forest Walker
                 cEntry =  7584;
@@ -322,7 +322,7 @@ bool ItemUse_item_tame_beast_rods(Player* player, Item* _Item, SpellCastTargets 
 
     if (itemSpell)
     {
-        switch(itemSpell)
+        switch (itemSpell)
         {
             case 19548: cEntry =  1196; break;              //Ice Claw Bear
             case 19674: cEntry =  1126; break;              //Large Crag Boar

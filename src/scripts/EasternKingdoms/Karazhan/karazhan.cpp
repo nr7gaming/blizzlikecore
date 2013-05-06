@@ -178,7 +178,7 @@ struct npc_barnesAI : public npc_escortAI
         if (!pInstance)
             return;
 
-        switch(i)
+        switch (i)
         {
             case 0:
                 DoCast(me, SPELL_TUXEDO, false);
@@ -196,7 +196,7 @@ struct npc_barnesAI : public npc_escortAI
                     pSpotlight->CastSpell(pSpotlight, SPELL_SPOTLIGHT, false);
                     m_uiSpotlightGUID = pSpotlight->GetGUID();
                 }
-                switch(m_uiEventId)
+                switch (m_uiEventId)
                 {
                     case EVENT_OZ:
                         for (int i = 0; i<5; i++)
@@ -225,7 +225,7 @@ struct npc_barnesAI : public npc_escortAI
     {
         int32 text = 0;
 
-        switch(m_uiEventId)
+        switch (m_uiEventId)
         {
             case EVENT_OZ:
                 if (OzDialogue[count].textid)
@@ -259,7 +259,7 @@ struct npc_barnesAI : public npc_escortAI
         uint8 index = 0;
         uint8 count = 0;
 
-        switch(m_uiEventId)
+        switch (m_uiEventId)
         {
             case EVENT_OZ:
                 index = 0;
@@ -393,7 +393,7 @@ bool GossipSelect_npc_barnes(Player* pPlayer, Creature* pCreature, uint32 /*uiSe
 {
     npc_barnesAI* pBarnesAI = CAST_AI(npc_barnesAI, pCreature->AI());
 
-    switch(uiAction)
+    switch (uiAction)
     {
         case GOSSIP_ACTION_INFO_DEF+1:
             pPlayer->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, OZ_GOSSIP2, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
@@ -545,7 +545,7 @@ struct npc_image_of_medivhAI : public ScriptedAI
     {
         Unit* arca = Unit::GetUnit((*me),ArcanagosGUID);
         Map* pMap = me->GetMap();
-        switch(Step)
+        switch (Step)
         {
         case 0: return 9999999;
         case 1:

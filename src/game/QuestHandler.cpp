@@ -33,7 +33,7 @@ void WorldSession::HandleQuestgiverStatusQueryOpcode(WorldPacket& recv_data)
         return;
     }
 
-    switch(questgiver->GetTypeId())
+    switch (questgiver->GetTypeId())
     {
         case TYPEID_UNIT:
         {
@@ -168,7 +168,7 @@ void WorldSession::HandleQuestgiverAcceptQuestOpcode(WorldPacket& recv_data)
             if (_player->CanCompleteQuest(quest))
                 _player->CompleteQuest(quest);
 
-            switch(pObject->GetTypeId())
+            switch (pObject->GetTypeId())
             {
                 case TYPEID_UNIT:
                     sScriptMgr.QuestAccept(_player, pObject->ToCreature(), qInfo);
@@ -274,7 +274,7 @@ void WorldSession::HandleQuestgiverChooseRewardOpcode(WorldPacket& recv_data)
         {
             _player->RewardQuest(pQuest, reward, pObject);
 
-            switch(pObject->GetTypeId())
+            switch (pObject->GetTypeId())
             {
                 case TYPEID_UNIT:
                     if (!(sScriptMgr.ChooseReward(_player, pObject->ToCreature(), pQuest, reward)))
@@ -539,7 +539,7 @@ uint32 WorldSession::getDialogStatus(Player* pPlayer, Object* questgiver, uint32
     QuestRelations const* qir;
     QuestRelations const* qr;
 
-    switch(questgiver->GetTypeId())
+    switch (questgiver->GetTypeId())
     {
         case TYPEID_GAMEOBJECT:
         {

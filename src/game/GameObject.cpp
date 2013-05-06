@@ -187,7 +187,7 @@ void GameObject::Update(uint32 diff)
     {
         case GO_NOT_READY:
         {
-            switch(GetGoType())
+            switch (GetGoType())
             {
                 case GAMEOBJECT_TYPE_TRAP:
                 {
@@ -372,7 +372,7 @@ void GameObject::Update(uint32 diff)
         }
         case GO_ACTIVATED:
         {
-            switch(GetGoType())
+            switch (GetGoType())
             {
                 case GAMEOBJECT_TYPE_DOOR:
                 case GAMEOBJECT_TYPE_BUTTON:
@@ -667,7 +667,7 @@ uint32 GameObject::GetLootId(GameObjectInfo const* ginfo)
     if (!ginfo)
         return 0;
 
-    switch(ginfo->type)
+    switch (ginfo->type)
     {
         case GAMEOBJECT_TYPE_CHEST:
             return ginfo->chest.lootId;
@@ -925,7 +925,7 @@ void GameObject::Use(Unit* user)
     uint32 spellId = 0;
     bool triggered = false;
 
-    switch(GetGoType())
+    switch (GetGoType())
     {
         case GAMEOBJECT_TYPE_DOOR:                          //0
         case GAMEOBJECT_TYPE_BUTTON:                        //1
@@ -1074,7 +1074,7 @@ void GameObject::Use(Unit* user)
             if (player->GetGUID() != GetOwnerGUID())
                 return;
 
-            switch(getLootState())
+            switch (getLootState())
             {
                 case GO_READY:                              // ready for loot
                 {
@@ -1317,7 +1317,7 @@ void GameObject::Use(Unit* user)
                 GameObjectInfo const* info = GetGOInfo();
                 if (info)
                 {
-                    switch(info->id)
+                    switch (info->id)
                     {
                         case 179785:                        // Silverwing Flag
                             // check if it's correct bg

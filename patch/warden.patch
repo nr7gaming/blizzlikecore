@@ -57,7 +57,7 @@ index 138ff77..b9c9b39 100644
  	
 +    _os = (const char*)ch->os;
 +
-+    if(_os.size() > 4)
++    if (_os.size() > 4)
 +        return false;
 +
 +    // Restore string order as its byte order is reversed
@@ -81,7 +81,7 @@ index 138ff77..b9c9b39 100644
  	
 +    _os = (const char*)ch->os;
 +
-+    if(_os.size() > 4)
++    if (_os.size() > 4)
 +        return false;
 +
 +    // Restore string order as its byte order is reversed
@@ -344,7 +344,7 @@ index 0000000..57a65a5
 +    sLog.outDebug("WARDEN: Got packet, opcode %02X, size %u", Opcode, recv_data.size());
 +    recv_data.hexlike();
 +
-+    switch(Opcode)
++    switch (Opcode)
 +    {
 +        case WARDEN_CMSG_MODULE_MISSING:
 +            m_Warden->SendModuleToClient();
@@ -538,7 +538,7 @@ index 0000000..468731e
 +
 +void CWardenDataStorage::LoadWardenDataResult(bool reload)
 +{
-+    if(reload)
++    if (reload)
 +    {
 +        _data_map.clear();
 +        _result_map.clear();
@@ -3736,7 +3736,7 @@ index 0000000..6953317
 +
 +    void generate(uint8 *buf, uint32 sz) {
 +        for(uint32 i=0;i<sz;i++) {
-+            if(taken == 20) {
++            if (taken == 20) {
 +                fillUp();
 +            }
 +
@@ -3800,7 +3800,7 @@ index 2d03f96..725788c 100644
  
 +void Log::outWarden(const char * str, ...)
 +{
-+    if(!str)
++    if (!str)
 +        return;
 +
 +    UTF8PRINTF(stdout,str,);

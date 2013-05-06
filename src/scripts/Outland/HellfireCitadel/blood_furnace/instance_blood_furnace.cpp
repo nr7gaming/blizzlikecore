@@ -93,7 +93,7 @@ struct instance_blood_furnace : public ScriptedInstance
 
     void OnCreatureCreate(Creature* pCreature, bool /*add*/)
     {
-        switch(pCreature->GetEntry())
+        switch (pCreature->GetEntry())
         {
             case NPC_BROGGOK: BroggokGUID = pCreature->GetGUID(); break;
             case NPC_NASCENT_FEL_ORC: NascentOrcGuids.push_back(pCreature->GetGUID()); break;
@@ -102,7 +102,7 @@ struct instance_blood_furnace : public ScriptedInstance
 
     void OnGameObjectCreate(GameObject* pGo, bool /*add*/)
     {
-        switch(pGo->GetEntry())
+        switch (pGo->GetEntry())
         {
             case ENTRY_SEWER1: Sewer1GUID = pGo->GetGUID(); break;
             case ENTRY_SEWER2: Sewer2GUID = pGo->GetGUID(); break;
@@ -137,7 +137,7 @@ struct instance_blood_furnace : public ScriptedInstance
 
     void SetData(uint32 type, uint32 data)
     {
-        switch(type)
+        switch (type)
         {
             case DATA_MAKEREVENT:
                 if (data == IN_PROGRESS)
@@ -230,7 +230,7 @@ struct instance_blood_furnace : public ScriptedInstance
 
     uint32 GetData(uint32 type)
     {
-        switch(type)
+        switch (type)
         {
             case DATA_MAKEREVENT: return Encounter[0];
             case DATA_BROGGOKEVENT: return Encounter[1];

@@ -122,7 +122,7 @@ struct instance_stratholme : public ScriptedInstance
 
     void OnCreatureCreate(Creature* pCreature, bool /*add*/)
     {
-        switch(pCreature->GetEntry())
+        switch (pCreature->GetEntry())
         {
         case C_BARON:           baronGUID = pCreature->GetGUID(); break;
         case C_YSIDA_TRIGGER:   ysidaTriggerGUID = pCreature->GetGUID(); break;
@@ -134,7 +134,7 @@ struct instance_stratholme : public ScriptedInstance
 
     void OnGameObjectCreate(GameObject* pGo, bool /*add*/)
     {
-        switch(pGo->GetEntry())
+        switch (pGo->GetEntry())
         {
         case GO_SERVICE_ENTRANCE:
             serviceEntranceGUID = pGo->GetGUID();
@@ -187,10 +187,10 @@ struct instance_stratholme : public ScriptedInstance
 
     void SetData(uint32 type, uint32 data)
     {
-        switch(type)
+        switch (type)
         {
         case TYPE_BARON_RUN:
-            switch(data)
+            switch (data)
             {
             case IN_PROGRESS:
                 if (Encounter[0] == IN_PROGRESS || Encounter[0] == FAIL)
@@ -365,7 +365,7 @@ struct instance_stratholme : public ScriptedInstance
 
     uint32 GetData(uint32 type)
     {
-          switch(type)
+          switch (type)
           {
           case TYPE_SH_QUEST:
               if (IsSilverHandDead[0] && IsSilverHandDead[1] && IsSilverHandDead[2] && IsSilverHandDead[3] && IsSilverHandDead[4])
@@ -389,7 +389,7 @@ struct instance_stratholme : public ScriptedInstance
 
     uint64 GetData64(uint32 data)
     {
-        switch(data)
+        switch (data)
         {
         case DATA_BARON:
             return baronGUID;

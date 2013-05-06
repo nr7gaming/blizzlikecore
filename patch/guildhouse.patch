@@ -127,7 +127,7 @@ index 0000000..34e3adb
 +    }
 +
 +    QueryResult_AutoPtr result = WorldDatabase.PQuery("SELECT `x`, `y`, `z`, `map` FROM `guild_houses` WHERE `guildId` = %u", guildId);
-+    if(result)
++    if (result)
 +    {
 +        Field *fields = result->Fetch();
 +        x = fields[0].GetFloat();
@@ -368,9 +368,9 @@ index 0000000..34e3adb
 +bool GossipSelectWithCode_npc_guildmaster( Player* player, Creature* _creature,
 +                                      uint32 sender, uint32 action, const char* sCode )
 +{
-+    if(sender == GOSSIP_SENDER_MAIN)
++    if (sender == GOSSIP_SENDER_MAIN)
 +    {
-+        if(action == ACTION_SELL_GUILDHOUSE)
++        if (action == ACTION_SELL_GUILDHOUSE)
 +        {
 +            int i = -1;
 +            try

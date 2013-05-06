@@ -94,7 +94,7 @@ int libmpq_wave_decompress(unsigned char *out_buf, int out_length, unsigned char
 		 */
 		if (one_byte & 0x80) {
 			/* 15007B32 */
-			switch(one_byte & 0x7F) {
+			switch (one_byte & 0x7F) {
 				case 0:					/* 15007B8E */
 					if (nr_array1[index] != 0) {
 						nr_array1[index]--;
@@ -149,7 +149,7 @@ int libmpq_wave_decompress(unsigned char *out_buf, int out_length, unsigned char
 			if (one_byte & 0x20) {
 				temp2 += (temp1 >> 5);
 			}
-			if(one_byte & 0x40) {
+			if (one_byte & 0x40) {
 				temp3 -= temp2;
 				if (temp3 <= (long)0xFFFF8000) {
 					temp3 = (long)0xFFFF8000;

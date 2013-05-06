@@ -215,7 +215,7 @@ struct mobs_spectral_ghostly_citizenAI : public ScriptedAI
 
     void ReceiveEmote(Player* pPlayer, uint32 emote)
     {
-        switch(emote)
+        switch (emote)
         {
             case TEXTEMOTE_DANCE:
                 EnterEvadeMode();

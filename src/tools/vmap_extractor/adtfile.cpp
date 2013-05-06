@@ -121,7 +121,7 @@ bool ADTFile::init(uint32 map_num, uint32 tileX, uint32 tileY)
                     // < 3.1.0 ADT MMDX section store filename.mdx filenames for corresponded .m2 file
                     std::string ext3 = path.size() >= 4 ? path.substr(path.size()-4,4) : "";
                     std::transform( ext3.begin(), ext3.end(), ext3.begin(), ::tolower );
-                    if(ext3 == ".mdx")
+                    if (ext3 == ".mdx")
                     {
                         // replace .mdx -> .m2
                         path.erase(path.length()-2,2);

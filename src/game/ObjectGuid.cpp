@@ -8,7 +8,7 @@
 
 char const* ObjectGuid::GetTypeName() const
 {
-    switch(GetHigh())
+    switch (GetHigh())
     {
         case HIGHGUID_ITEM:         return "item";
         case HIGHGUID_PLAYER:       return !IsEmpty() ? "player" : "none";

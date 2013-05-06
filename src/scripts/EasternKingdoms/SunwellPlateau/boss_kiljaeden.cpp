@@ -256,7 +256,7 @@ struct boss_kalecgos_kjAI : public ScriptedAI
         if (!pInstance)
             return NULL;
 
-        switch(index)
+        switch (index)
         {
             case 0:
                 return pInstance->instance->GetGameObject(pInstance->GetData64(DATA_ORB_OF_THE_BLUE_DRAGONFLIGHT_1));
@@ -312,7 +312,7 @@ struct boss_kalecgos_kjAI : public ScriptedAI
                 OrbsEmpowered = (OrbsEmpowered+1)%4;
 
                 ++EmpowerCount;
-                switch(EmpowerCount)
+                switch (EmpowerCount)
                 {
                     case 1: DoScriptText(SAY_KALEC_ORB_READY1, me); break;
                     case 2: DoScriptText(SAY_KALEC_ORB_READY2, me); break;
@@ -409,7 +409,7 @@ struct mob_kiljaeden_controllerAI : public Scripted_NoMovementAI
 
     void JustSummoned(Creature* summoned)
     {
-        switch(summoned->GetEntry())
+        switch (summoned->GetEntry())
         {
             case CREATURE_HAND_OF_THE_DECEIVER:
                 summoned->CastSpell(summoned, SPELL_SHADOW_CHANNELING, false);
@@ -651,13 +651,13 @@ struct boss_kiljaedenAI : public Scripted_NoMovementAI
         {
             if (Timer[t] <= diff && !TimerIsDeactivated[t])
             {
-                switch(t)
+                switch (t)
                 {
                     case TIMER_SPEECH:
                         if (SpeechBegins)
                         {
                             SpeechBegins=false;
-                            switch(Phase)
+                            switch (Phase)
                             {
                                 case PHASE_NORMAL:
                                     speechPhaseEnd=1;
@@ -1065,7 +1065,7 @@ struct mob_armageddonAI : public Scripted_NoMovementAI
     {
         if (uiTimer <= diff)
         {
-            switch(spell)
+            switch (spell)
             {
                 case 0:
                     DoCast(me, SPELL_ARMAGEDDON_VISUAL, true);
@@ -1226,7 +1226,7 @@ struct mob_sinster_reflectionAI : public ScriptedAI
             }
         }
 
-        switch(victimClass) {
+        switch (victimClass) {
             case CLASS_DRUID:
                 if (uiTimer[1] <= diff)
                 {

@@ -176,7 +176,7 @@ uint32 TimeStringToSecs(const std::string& timestring)
         }
         else
         {
-            switch(*itr)
+            switch (*itr)
             {
                 case 'd': multiplier = DAY;     break;
                 case 'h': multiplier = HOUR;    break;
@@ -459,7 +459,7 @@ void hexEncodeByteArray(uint8* bytes, uint32 arrayLen, std::string& result)
         {
             unsigned char nibble = 0x0F & (bytes[i]>>((1-j)*4));
             char encodedNibble;
-            if(nibble < 0x0A)
+            if (nibble < 0x0A)
                 encodedNibble = '0'+nibble;
             else
                 encodedNibble = 'A'+nibble-0x0A;

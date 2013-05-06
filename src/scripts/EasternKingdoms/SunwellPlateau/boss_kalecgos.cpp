@@ -367,7 +367,7 @@ struct boss_kalecgosAI : public ScriptedAI
 
     void GoodEnding()
     {
-        switch(TalkSequence)
+        switch (TalkSequence)
         {
         case 1:
             me->setFaction(35);
@@ -389,7 +389,7 @@ struct boss_kalecgosAI : public ScriptedAI
 
     void BadEnding()
     {
-        switch(TalkSequence)
+        switch (TalkSequence)
         {
         case 1:
             DoScriptText(SAY_EVIL_ENRAGE, me);
@@ -682,7 +682,7 @@ struct boss_kalecAI : public ScriptedAI
 
         if (YellTimer <= diff)
         {
-            switch(YellSequence)
+            switch (YellSequence)
             {
             case 0:
                 DoScriptText(SAY_GOOD_AGGRO, me);

@@ -324,7 +324,7 @@ void Spell::SpellDamageSchoolDmg(SpellEffIndex effIndex)
                     damage /= count;                    // divide to all targets
                 }
 
-                switch(m_spellInfo->Id)                     // better way to check unknown
+                switch (m_spellInfo->Id)                     // better way to check unknown
                 {
                     // percent from health with min
                     case 25599:                             // Thundercrash
@@ -457,7 +457,7 @@ void Spell::SpellDamageSchoolDmg(SpellEffIndex effIndex)
                     for (Unit::AuraList::const_iterator i = m_OverrideClassScript.begin(); i != m_OverrideClassScript.end(); ++i)
                     {
                         // Starfire Bonus (caster)
-                        switch((*i)->GetModifier()->m_miscvalue)
+                        switch ((*i)->GetModifier()->m_miscvalue)
                         {
                             case 5481:                      // Nordrassil Regalia - bonus
                             {
@@ -713,7 +713,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                         return;
 
                     uint32 spell_id = 0;
-                    switch(urand(1,5))
+                    switch (urand(1,5))
                     {
                         case 1: spell_id = 8064; break;     // Sleepy
                         case 2: spell_id = 8065; break;     // Invigorate
@@ -730,7 +730,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                         return;
 
                     uint32 spell_id = 0;
-                    switch(urand(1,2))
+                    switch (urand(1,2))
                     {
                         // Flip Out - ninja
                         case 1: spell_id = (m_caster->getGender() == GENDER_MALE ? 8219 : 8220); break;
@@ -1112,7 +1112,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                     if (m_caster->GetTypeId() != TYPEID_PLAYER)
                         return;
 
-                    switch(irand(0,3))
+                    switch (irand(0,3))
                     {
                     case 0:
                         m_caster->CastSpell(m_caster,24927,true); // Ghost
@@ -1277,7 +1277,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
 
                     uint32 spell_id = 0;
 
-                    switch(urand(1,5))
+                    switch (urand(1,5))
                     {
                         case 1: spell_id = 33053; break;    // Mr Pinchy's Blessing
                         case 2: spell_id = 33057; break;    // Summon Mighty Mr. Pinchy
@@ -1301,7 +1301,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                 case 35745:                                 // Socrethar's Stone
                 {
                     uint32 spell_id;
-                    switch(m_caster->GetAreaId())
+                    switch (m_caster->GetAreaId())
                     {
                         case 3900: spell_id = 35743; break; // Socrethar Portal
                         case 3742: spell_id = 35744; break; // Socrethar Portal
@@ -1330,7 +1330,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                 {
                     // selecting one from Bloodstained Fortune item
                     uint32 newitemid;
-                    switch(urand(1, 20))
+                    switch (urand(1, 20))
                     {
                         case 1:  newitemid = 32688; break;
                         case 2:  newitemid = 32689; break;
@@ -1647,7 +1647,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
             }
 
             //All IconID Check in there
-            switch(m_spellInfo->SpellIconID)
+            switch (m_spellInfo->SpellIconID)
             {
                 // Berserking (troll racial traits)
                 case 1661:
@@ -1672,7 +1672,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
             break;
         }
         case SPELLFAMILY_MAGE:
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 case 11958:                                 // Cold Snap
                 {
@@ -1778,7 +1778,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
             }
             break;
         case SPELLFAMILY_PRIEST:
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 case 28598:                                 // Touch of Weakness triggered spell
                 {
@@ -1786,7 +1786,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                         return;
 
                     uint32 spellid = 0;
-                    switch(m_triggeredByAuraSpell->Id)
+                    switch (m_triggeredByAuraSpell->Id)
                     {
                         case 2652:  spellid =  2943; break; // Rank 1
                         case 19261: spellid = 19249; break; // Rank 2
@@ -1805,7 +1805,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
             }
             break;
         case SPELLFAMILY_DRUID:
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 case 5420:                                  // Tree of Life passive
                 {
@@ -1817,7 +1817,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
             }
             break;
         case SPELLFAMILY_ROGUE:
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 case 31231:                                 // Cheat Death
                 {
@@ -1887,7 +1887,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                 return;
             }
 
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 case 23989:                                 //Readiness talent
                 {
@@ -1920,7 +1920,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
             }
             break;
         case SPELLFAMILY_PALADIN:
-            switch(m_spellInfo->SpellIconID)
+            switch (m_spellInfo->SpellIconID)
             {
                 case 156:                                   // Holy Shock
                 {
@@ -1930,7 +1930,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                     int hurt = 0;
                     int heal = 0;
 
-                    switch(m_spellInfo->Id)
+                    switch (m_spellInfo->Id)
                     {
                         case 20473: hurt = 25912; heal = 25914; break;
                         case 20929: hurt = 25911; heal = 25913; break;
@@ -1984,7 +1984,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                 }
             }
 
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 case 31789:                                 // Righteous Defense (step 1)
                 {
@@ -2034,7 +2034,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                         return;
 
                     uint32 spell_id = 0;
-                    switch(unitTarget->getClass())
+                    switch (unitTarget->getClass())
                     {
                         case CLASS_DRUID:   spell_id = 37878; break;
                         case CLASS_PALADIN: spell_id = 37879; break;
@@ -2062,7 +2062,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
             if (m_spellInfo->SpellFamilyFlags == 0x400000)
             {
                 uint32 spell_id = 0;
-                switch(m_spellInfo->Id)
+                switch (m_spellInfo->Id)
                 {
                     case  8017: spell_id = 36494; break;    // Rank 1
                     case  8018: spell_id = 36750; break;    // Rank 2
@@ -2218,7 +2218,7 @@ void Spell::EffectTriggerSpell(SpellEffIndex effIndex)
     uint32 triggered_spell_id = m_spellInfo->EffectTriggerSpell[effIndex];
 
     // special cases
-    switch(triggered_spell_id)
+    switch (triggered_spell_id)
     {
         // Vanish
         case 18461:
@@ -2280,7 +2280,7 @@ void Spell::EffectTriggerSpell(SpellEffIndex effIndex)
                 Map& map = *m_caster->GetMap();
                cell.Visit(p, object_checker, map, *m_caster, map.GetVisibilityDistance());
    
-               if(!ok)
+               if (!ok)
                return;
 
                 // Need fix otherwise the core crash
@@ -2729,7 +2729,7 @@ void Spell::EffectSendEvent(SpellEffIndex effIndex)
         BattleGround* bg = m_caster->ToPlayer()->GetBattleGround();
         if (bg && bg->GetStatus() == STATUS_IN_PROGRESS)
         {
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 case 23333:                                 // Pickup Horde Flag
                     /*do not uncomment .
@@ -2884,7 +2884,7 @@ void Spell::SpellDamageHeal(SpellEffIndex effIndex)
             int32 tickcount = 0;
             if (targetAura->GetSpellProto()->SpellFamilyName == SPELLFAMILY_DRUID)
             {
-                switch(targetAura->GetSpellProto()->SpellFamilyFlags)//TODO: proper spellfamily for 3.0.x
+                switch (targetAura->GetSpellProto()->SpellFamilyFlags)//TODO: proper spellfamily for 3.0.x
                 {
                     case 0x10:  tickcount = 4;  break; // Rejuvenation
                     case 0x40:  tickcount = 6;  break; // Regrowth
@@ -4091,7 +4091,7 @@ void Spell::EffectEnchantItemTmp(SpellEffIndex effIndex)
         // with already applied percent bonus from Elemental Weapons talent
         // Note: damage calculated (correctly) with rounding int32(float(v)) but
         // RW enchantments applied damage int32(float(v)+0.5), this create  0..1 difference sometime
-        switch(enchnting_damage)
+        switch (enchnting_damage)
         {
             // Rank 1
             case  2: enchant_id =   29; break;              //  0% [ 7% == 2, 14% == 2, 20% == 2]
@@ -4654,7 +4654,7 @@ void Spell::SpellDamageWeaponDmg(SpellEffIndex effIndex)
     float weaponDamagePercentMod = 1.0;
     for (int j = 0; j < 3; ++j)
     {
-        switch(m_spellInfo->Effect[j])
+        switch (m_spellInfo->Effect[j])
         {
             case SPELL_EFFECT_WEAPON_DAMAGE:
             case SPELL_EFFECT_WEAPON_DAMAGE_NOSCHOOL:
@@ -4676,7 +4676,7 @@ void Spell::SpellDamageWeaponDmg(SpellEffIndex effIndex)
     if (fixed_bonus || spell_bonus)
     {
         UnitMods unitMod;
-        switch(m_attackType)
+        switch (m_attackType)
         {
             default:
             case BASE_ATTACK:   unitMod = UNIT_MOD_DAMAGE_MAINHAND; break;
@@ -4699,7 +4699,7 @@ void Spell::SpellDamageWeaponDmg(SpellEffIndex effIndex)
     {
         // We assume that a spell have at most one fixed_bonus
         // and at most one weaponDamagePercentMod
-        switch(m_spellInfo->Effect[j])
+        switch (m_spellInfo->Effect[j])
         {
             case SPELL_EFFECT_WEAPON_DAMAGE:
             case SPELL_EFFECT_WEAPON_DAMAGE_NOSCHOOL:
@@ -4862,7 +4862,7 @@ void Spell::EffectSummonObjectWild(SpellEffIndex effIndex)
 
     if (pGameObj->GetGoType() == GAMEOBJECT_TYPE_FLAGDROP && m_caster->GetTypeId() == TYPEID_PLAYER)
     {
-        switch(pGameObj->GetMapId())
+        switch (pGameObj->GetMapId())
         {
             case 489:                                       //WS
             {
@@ -4916,11 +4916,11 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
 {
     // TODO: we must implement hunter pet summon at login there (spell 6962)
 
-    switch(m_spellInfo->SpellFamilyName)
+    switch (m_spellInfo->SpellFamilyName)
     {
         case SPELLFAMILY_GENERIC:
         {
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 //Giddyup! - I don't know how to fix it in any other way!
                 case 42924: 
@@ -4966,7 +4966,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                         return;
 
                     uint32 spell_id = 0;
-                    switch(urand(1, 5))
+                    switch (urand(1, 5))
                     {
                         case 1:  spell_id = 8854; break;
                         default: spell_id = 8855; break;
@@ -5026,7 +5026,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
 
                     uint32 spellId = 0;
 
-                    switch(urand(0, 6))
+                    switch (urand(0, 6))
                     {
                         case 0:
                             spellId = unitTarget->getGender() == GENDER_MALE ? 24708 : 24709;
@@ -5099,7 +5099,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                         return;
 
                     uint32 spellid;
-                    switch(m_spellInfo->Id)
+                    switch (m_spellInfo->Id)
                     {
                         case 25140: spellid =  32568; break;
                         case 25143: spellid =  32572; break;
@@ -5148,7 +5148,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                     if (!unitTarget || unitTarget->GetTypeId() != TYPEID_PLAYER)
                         return;
 
-                    switch(urand(0,2))
+                    switch (urand(0,2))
                     {
                         case 0: m_caster->CastSpell(unitTarget, 26207, true); break;
                         case 1: m_caster->CastSpell(unitTarget, 26206, true); break;
@@ -5308,7 +5308,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                     if (v_map != 530)
                         canFly = false;
 
-                    switch(unitTarget->ToPlayer()->GetBaseSkillValue(SKILL_RIDING))
+                    switch (unitTarget->ToPlayer()->GetBaseSkillValue(SKILL_RIDING))
                     {
                         case 75: unitTarget->CastSpell(unitTarget, 51621, true); break;;
                         case 150: unitTarget->CastSpell(unitTarget, 48024, true); break;
@@ -5345,7 +5345,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                     if (v_map != 530)
                         canFly = false;
 
-                    switch(unitTarget->ToPlayer()->GetBaseSkillValue(SKILL_RIDING))
+                    switch (unitTarget->ToPlayer()->GetBaseSkillValue(SKILL_RIDING))
                     {
                         case 75: unitTarget->CastSpell(unitTarget, 42680, true); break;
                         case 150: unitTarget->CastSpell(unitTarget, 42683, true); break;
@@ -5446,7 +5446,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                         return;
 
                     uint32 spellId = 0;
-                    switch(rand() % 4)
+                    switch (rand() % 4)
                     {
                         case 0: spellId = 46740; break;
                         case 1: spellId = 46739; break;
@@ -5471,7 +5471,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
         }
         case SPELLFAMILY_WARLOCK:
         {
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 // Healthstone creating spells
                 case  6201:
@@ -5509,7 +5509,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                         {22103, 22104, 22105}               // Master Healthstone
                     };
 
-                    switch(m_spellInfo->Id)
+                    switch (m_spellInfo->Id)
                     {
                         case  6201:
                             itemtype=itypes[0][rank];break; // Minor Healthstone
@@ -5587,7 +5587,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
         }
         case SPELLFAMILY_POTION:
         {
-            switch(m_spellInfo->Id)
+            switch (m_spellInfo->Id)
             {
                 // Dreaming Glory
                 case 28698:
@@ -6325,7 +6325,7 @@ void Spell::EffectSendTaxi(SpellEffIndex effIndex)
     nodes[1] = entry->to;
 
     uint32 mountid = 0;
-    switch(m_spellInfo->Id)
+    switch (m_spellInfo->Id)
     {
         case 31606:       //Stormcrow Amulet
             mountid = 17447;
@@ -6440,7 +6440,7 @@ void Spell::EffectDestroyAllTotems(SpellEffIndex effIndex)
             if (spellInfo)
     {
     float cost = spellInfo->manaCost;
-    if(spellInfo->ManaCostPercentage)
+    if (spellInfo->ManaCostPercentage)
        cost = spellInfo->ManaCostPercentage * m_caster->GetCreateMana() / 100;
                mana += cost * damage / 100.0f;
    }
@@ -6572,7 +6572,7 @@ void Spell::EffectTransmitted(SpellEffIndex effIndex)
 
     int32 duration = GetSpellDuration(m_spellInfo);
 
-    switch(goinfo->type)
+    switch (goinfo->type)
     {
         case GAMEOBJECT_TYPE_FISHINGNODE:
         {
@@ -6582,7 +6582,7 @@ void Spell::EffectTransmitted(SpellEffIndex effIndex)
             // end time of range when possible catch fish (FISHING_BOBBER_READY_TIME..GetDuration(m_spellInfo))
             // start time == fish-FISHING_BOBBER_READY_TIME (0..GetDuration(m_spellInfo)-FISHING_BOBBER_READY_TIME)
             int32 lastSec = 0;
-            switch(urand(0, 3))
+            switch (urand(0, 3))
             {
                 case 0: lastSec =  3; break;
                 case 1: lastSec =  7; break;

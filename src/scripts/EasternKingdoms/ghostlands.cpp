@@ -151,7 +151,7 @@ struct npc_ranger_lilathaAI : public npc_escortAI
         if (!pPlayer)
             return;
 
-        switch(i)
+        switch (i)
         {
         case 0:
             {

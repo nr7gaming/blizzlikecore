@@ -195,7 +195,7 @@ struct npc_prospector_remtravelAI : public npc_escortAI
         if (!pPlayer)
             return;
 
-        switch(i)
+        switch (i)
         {
             case 0:
                 DoScriptText(SAY_REM_START, me, pPlayer);

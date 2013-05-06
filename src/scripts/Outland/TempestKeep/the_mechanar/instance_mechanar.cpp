@@ -43,7 +43,7 @@ struct instance_mechanar : public ScriptedInstance
 
     uint32 GetData(uint32 type)
     {
-        switch(type)
+        switch (type)
         {
         case DATA_NETHERMANCER_EVENT:   return Encounters[0];
         }
@@ -58,7 +58,7 @@ struct instance_mechanar : public ScriptedInstance
 
     void SetData(uint32 type, uint32 data)
     {
-        switch(type)
+        switch (type)
         {
         case DATA_NETHERMANCER_EVENT:   Encounters[0] = data;   break;
         }

@@ -138,7 +138,7 @@ void HandleArgs(int argc, char * arg[])
         if (arg[c][0] != '-')
             Usage(arg[0]);
 
-        switch(arg[c][1])
+        switch (arg[c][1])
         {
             case 'i':
                 if (c + 1 < argc)                            // all ok
@@ -179,7 +179,7 @@ uint32 ReadBuild(int locale)
     //printf("Read %s file... ", filename.c_str());
 
     MPQFile m(filename.c_str());
-    if(m.isEof())
+    if (m.isEof())
     {
         printf("Fatal error: Not found %s file!\n", filename.c_str());
         exit(1);
@@ -829,7 +829,7 @@ bool ConvertADT(char *filename, char *filename2, int cell_y, int cell_x, uint32 
     // map hole info
     uint16 holes[ADT_CELLS_PER_GRID][ADT_CELLS_PER_GRID];
 
-    if(map.liquidMapOffset)
+    if (map.liquidMapOffset)
         map.holesOffset = map.liquidMapOffset + map.liquidMapSize;
     else
         map.holesOffset = map.heightMapOffset + map.heightMapSize;
@@ -842,7 +842,7 @@ bool ConvertADT(char *filename, char *filename2, int cell_y, int cell_x, uint32 
         for(int j = 0; j < ADT_CELLS_PER_GRID; ++j)
         {
             adt_MCNK * cell = cells->getMCNK(i,j);
-            if(!cell)
+            if (!cell)
                 continue;
             holes[i][j] = cell->holes;
         }

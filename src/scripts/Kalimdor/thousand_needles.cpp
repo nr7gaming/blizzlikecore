@@ -44,7 +44,7 @@ struct npc_kanatiAI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 0:
                 DoScriptText(SAY_KAN_START, me);
@@ -125,7 +125,7 @@ struct npc_lakota_windsongAI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 8:
                 DoScriptText(SAY_LAKO_LOOK_OUT, me);
@@ -203,7 +203,7 @@ struct npc_paoka_swiftmountainAI : public npc_escortAI
 
     void WaypointReached(uint32 uiPointId)
     {
-        switch(uiPointId)
+        switch (uiPointId)
         {
             case 15:
                 DoScriptText(SAY_WYVERN, me);
@@ -341,7 +341,7 @@ bool GossipHello_npc_plucky(Player* pPlayer, Creature* pCreature)
 
 bool GossipSelect_npc_plucky(Player* pPlayer, Creature* /*pCreature*/, uint32 /*uiSender*/, uint32 uiAction)
 {
-    switch(uiAction)
+    switch (uiAction)
     {
         case GOSSIP_ACTION_INFO_DEF+1:
             pPlayer->CLOSE_GOSSIP_MENU();

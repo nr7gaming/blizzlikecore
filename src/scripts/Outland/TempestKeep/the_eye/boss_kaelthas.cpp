@@ -410,7 +410,7 @@ struct boss_kaelthasAI : public ScriptedAI
 
     void KilledUnit()
     {
-        switch(rand()%3)
+        switch (rand()%3)
         {
         case 0: DoScriptText(SAY_SLAY1, me); break;
         case 1: DoScriptText(SAY_SLAY2, me); break;
@@ -505,7 +505,7 @@ struct boss_kaelthasAI : public ScriptedAI
                 Creature* Advisor;
 
                 //Subphase switch
-                switch(PhaseSubphase)
+                switch (PhaseSubphase)
                 {
                     //Subphase 1 - Start
                     case 0:
@@ -819,7 +819,7 @@ struct boss_kaelthasAI : public ScriptedAI
                 if (Phoenix_Timer <= diff)
                 {
                     DoCast(me, SPELL_SUMMON_PHOENIX);
-                    switch(rand()%2)
+                    switch (rand()%2)
                     {
                     case 0: DoScriptText(SAY_SUMMON_PHOENIX1, me); break;
                     case 1: DoScriptText(SAY_SUMMON_PHOENIX2, me); break;
@@ -899,7 +899,7 @@ struct boss_kaelthasAI : public ScriptedAI
                     if (GravityLapse_Timer <= diff)
                     {
                         std::list<HostileReference*>::iterator i = me->getThreatManager().getThreatList().begin();
-                        switch(GravityLapse_Phase)
+                        switch (GravityLapse_Phase)
                         {
                             case 0:
                                 me->GetMotionMaster()->Clear();
@@ -924,7 +924,7 @@ struct boss_kaelthasAI : public ScriptedAI
                                 break;
 
                             case 1:
-                                switch(rand()%2)
+                                switch (rand()%2)
                                 {
                                 case 0: DoScriptText(SAY_GRAVITYLAPSE1, me); break;
                                 case 1: DoScriptText(SAY_GRAVITYLAPSE2, me); break;

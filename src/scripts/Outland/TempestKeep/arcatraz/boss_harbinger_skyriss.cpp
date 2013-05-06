@@ -118,7 +118,7 @@ struct boss_harbinger_skyrissAI : public ScriptedAI
         if (victim->GetEntry() == 21436)
             return;
 
-        switch(rand()%2)
+        switch (rand()%2)
         {
         case 0: DoScriptText(SAY_KILL_1, me); break;
         case 1: DoScriptText(SAY_KILL_2, me); break;
@@ -147,7 +147,7 @@ struct boss_harbinger_skyrissAI : public ScriptedAI
 
             if (Intro_Timer <= diff)
             {
-                switch(Intro_Phase)
+                switch (Intro_Phase)
                 {
                     case 1:
                          DoScriptText(SAY_INTRO, me);
@@ -205,7 +205,7 @@ struct boss_harbinger_skyrissAI : public ScriptedAI
             if (me->IsNonMeleeSpellCasted(false))
                 return;
 
-            switch(rand()%2)
+            switch (rand()%2)
             {
             case 0: DoScriptText(SAY_FEAR_1, me); break;
             case 1: DoScriptText(SAY_FEAR_2, me); break;
@@ -224,7 +224,7 @@ struct boss_harbinger_skyrissAI : public ScriptedAI
             if (me->IsNonMeleeSpellCasted(false))
                 return;
 
-            switch(rand()%2)
+            switch (rand()%2)
             {
             case 0: DoScriptText(SAY_MIND_1, me); break;
             case 1: DoScriptText(SAY_MIND_2, me); break;

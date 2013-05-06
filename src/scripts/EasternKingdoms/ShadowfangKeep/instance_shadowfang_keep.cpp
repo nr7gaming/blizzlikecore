@@ -77,7 +77,7 @@ struct instance_shadowfang_keep : public ScriptedInstance
 
     void OnCreatureCreate(Creature* pCreature, bool /*add*/)
     {
-        switch(pCreature->GetEntry())
+        switch (pCreature->GetEntry())
         {
             case NPC_ASH: uiAshGUID = pCreature->GetGUID(); break;
             case NPC_ADA: uiAdaGUID = pCreature->GetGUID(); break;
@@ -87,7 +87,7 @@ struct instance_shadowfang_keep : public ScriptedInstance
 
     void OnGameObjectCreate(GameObject* pGo, bool /*add*/)
     {
-        switch(pGo->GetEntry())
+        switch (pGo->GetEntry())
         {
             case GO_COURTYARD_DOOR:
                 DoorCourtyardGUID = pGo->GetGUID();
@@ -121,7 +121,7 @@ struct instance_shadowfang_keep : public ScriptedInstance
 
     void SetData(uint32 type, uint32 data)
     {
-        switch(type)
+        switch (type)
         {
             case TYPE_FREE_NPC:
                 if (data == DONE)
@@ -134,7 +134,7 @@ struct instance_shadowfang_keep : public ScriptedInstance
                 m_auiEncounter[1] = data;
                 break;
             case TYPE_FENRUS:
-                switch(data)
+                switch (data)
                 {
                     case DONE:
                         uiTimer = 1000;
@@ -169,7 +169,7 @@ struct instance_shadowfang_keep : public ScriptedInstance
 
     uint32 GetData(uint32 type)
     {
-        switch(type)
+        switch (type)
         {
             case TYPE_FREE_NPC:
                 return m_auiEncounter[0];
@@ -225,7 +225,7 @@ struct instance_shadowfang_keep : public ScriptedInstance
         {
             if (uiTimer <= uiDiff)
             {
-                switch(uiPhase)
+                switch (uiPhase)
                 {
                     case 1:
                         pSummon = pArchmage->SummonCreature(pArchmage->GetEntry(),SpawnLocation[4],TEMPSUMMON_TIMED_DESPAWN,10000);

@@ -142,7 +142,7 @@ struct instance_blackrock_depths : public ScriptedInstance
 
     void OnCreatureCreate(Creature* pCreature, bool /*add*/)
     {
-        switch(pCreature->GetEntry())
+        switch (pCreature->GetEntry())
         {
         case NPC_EMPEROR: EmperorGUID = pCreature->GetGUID(); break;
         case NPC_PHALANX: PhalanxGUID = pCreature->GetGUID(); break;
@@ -163,7 +163,7 @@ struct instance_blackrock_depths : public ScriptedInstance
 
     void OnGameObjectCreate(GameObject* pGo, bool /*add*/)
     {
-        switch(pGo->GetEntry())
+        switch (pGo->GetEntry())
         {
         case GO_ARENA1: GoArena1GUID = pGo->GetGUID(); break;
         case GO_ARENA2: GoArena2GUID = pGo->GetGUID(); break;
@@ -198,7 +198,7 @@ struct instance_blackrock_depths : public ScriptedInstance
     {
         debug_log("BSCR: Instance Blackrock Depths: SetData64 update (Type: %u Data %llu)", type, data);
 
-        switch(type)
+        switch (type)
         {
         case DATA_EVENSTARTER:
             TombEventStarterGUID = data;
@@ -214,7 +214,7 @@ struct instance_blackrock_depths : public ScriptedInstance
     {
         debug_log("BSCR: Instance Blackrock Depths: SetData update (Type: %u Data %u)", type, data);
 
-        switch(type)
+        switch (type)
         {
         case TYPE_RING_OF_LAW:
             m_auiEncounter[0] = data;
@@ -259,7 +259,7 @@ struct instance_blackrock_depths : public ScriptedInstance
 
     uint32 GetData(uint32 type)
     {
-        switch(type)
+        switch (type)
         {
         case TYPE_RING_OF_LAW:
             return m_auiEncounter[0];
@@ -284,7 +284,7 @@ struct instance_blackrock_depths : public ScriptedInstance
 
     uint64 GetData64(uint32 data)
     {
-        switch(data)
+        switch (data)
         {
         case DATA_EMPEROR:
             return EmperorGUID;

@@ -222,7 +222,7 @@ struct npc_blastmaster_emi_shortfuseAI : public npc_escortAI
             if (me->getFaction() != GetPlayerForEscort()->getFaction())
                 me->setFaction(GetPlayerForEscort()->getFaction());
 
-        switch(uiPoint)
+        switch (uiPoint)
         {
             case 3:
                 SetEscortPaused(true);
@@ -261,7 +261,7 @@ struct npc_blastmaster_emi_shortfuseAI : public npc_escortAI
 
     void SetData(uint32 uiI,uint32 uiValue)
     {
-        switch(uiI)
+        switch (uiI)
         {
             case 1:
                 SetEscortPaused(true);
@@ -272,7 +272,7 @@ struct npc_blastmaster_emi_shortfuseAI : public npc_escortAI
                 if (!pInstance)
                     return;
 
-                switch(uiValue)
+                switch (uiValue)
                 {
                     case 1:
                         pInstance->SetData(TYPE_EVENT, IN_PROGRESS);
@@ -288,7 +288,7 @@ struct npc_blastmaster_emi_shortfuseAI : public npc_escortAI
 
     void Summon(uint8 uiCase)
     {
-        switch(uiCase)
+        switch (uiCase)
         {
             case 1:
                 me->SummonCreature(NPC_CAVERNDEEP_AMBUSHER, SpawnPosition[0], TEMPSUMMON_CORPSE_TIMED_DESPAWN, 1800000);
@@ -366,7 +366,7 @@ struct npc_blastmaster_emi_shortfuseAI : public npc_escortAI
         {
             if (uiTimer <= uiDiff)
             {
-                switch(uiPhase)
+                switch (uiPhase)
                 {
                     case 1:
                         DoScriptText(SAY_BLASTMASTER_1,me);

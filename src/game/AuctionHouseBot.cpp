@@ -393,7 +393,7 @@ void AuctionHouseBot::addNewAuctions(Player* AHBplayer, AHBConfig *config)
             }
 
             uint32 etime = urand(1,3);
-            switch(etime)
+            switch (etime)
             {
             case 1:
                 etime = 43200;
@@ -431,7 +431,7 @@ void AuctionHouseBot::addNewAuctions(Player* AHBplayer, AHBConfig *config)
             auctionHouse->AddAuction(auctionEntry);
             auctionEntry->SaveToDB();
 
-            switch(itemColor)
+            switch (itemColor)
             {
             case 0:
                 ++greyItems;

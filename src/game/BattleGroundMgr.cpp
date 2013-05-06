@@ -414,7 +414,7 @@ bool BattleGroundQueue::SelectionPool::Build(uint32 MinPlayers, uint32 MaxPlayer
 bool BattleGroundQueue::BuildSelectionPool(uint32 bgTypeId, uint32 queue_id, uint32 MinPlayers, uint32 MaxPlayers,  SelectionPoolBuildMode mode, uint8 ArenaType, bool isRated, uint32 MinRating, uint32 MaxRating, uint32 DisregardTime, uint32 excludeTeam)
 {
     uint32 side;
-    switch(mode)
+    switch (mode)
     {
         case NORMAL_ALLIANCE:
         case ONESIDE_ALLIANCE_TEAM1:
@@ -589,7 +589,7 @@ void BattleGroundQueue::Update(uint32 bgTypeId, uint32 queue_id, uint8 arenatype
         }
         else
         {
-            switch(arenatype)
+            switch (arenatype)
             {
             case ARENA_TYPE_2v2:
                 MaxPlayersPerTeam = 2;
@@ -664,7 +664,7 @@ void BattleGroundQueue::Update(uint32 bgTypeId, uint32 queue_id, uint8 arenatype
             }
             else
             {
-                switch(arenatype)
+                switch (arenatype)
                 {
                 case ARENA_TYPE_2v2:
                     bg2->SetMaxPlayersPerTeam(2);
@@ -829,7 +829,7 @@ void BattleGroundQueue::Update(uint32 bgTypeId, uint32 queue_id, uint8 arenatype
             }
             else
             {
-                switch(arenatype)
+                switch (arenatype)
                 {
                 case ARENA_TYPE_2v2:
                     bg2->SetMaxPlayersPerTeam(2);
@@ -1081,7 +1081,7 @@ void BattleGroundMgr::BuildBattleGroundStatusPacket(WorldPacket* data, BattleGro
     // following displays the minimap-icon 0 = faction icon 1 = arenaicon
     *data << uint8(israted ? israted : bg->isRated());                              // 1 for rated match, 0 for bg or non rated match
 /*    *data << uint8(arenatype ? arenatype : bg->GetArenaType());                     // team type (0=BG, 2=2x2, 3=3x3, 5=5x5), for arenas    // NOT PROPER VALUE IF ARENA ISN'T RUNNING YET!!!!
-    switch(bg->GetTypeID())                                 // value depends on bg id
+    switch (bg->GetTypeID())                                 // value depends on bg id
     {
         case BATTLEGROUND_AV:
             *data << uint8(1);
@@ -1126,7 +1126,7 @@ void BattleGroundMgr::BuildBattleGroundStatusPacket(WorldPacket* data, BattleGro
         *data << uint8(israted?israted:bg->isRated());                      // is rated battle
 */
     *data << uint32(StatusID);                              // status
-    switch(StatusID)
+    switch (StatusID)
     {
         case STATUS_WAIT_QUEUE:                             // status_in_queue
             *data << uint32(Time1);                         // average wait time, milliseconds
@@ -1217,7 +1217,7 @@ void BattleGroundMgr::BuildPvpLogDataPacket(WorldPacket* data, BattleGround* bg)
         }
         *data << uint32(itr2->second->DamageDone);              // damage done
         *data << uint32(itr2->second->HealingDone);             // healing done
-        switch(bg->GetTypeID())                                 // battleground specific things
+        switch (bg->GetTypeID())                                 // battleground specific things
         {
             case BATTLEGROUND_AV:
                 *data << uint32(0x00000005);                    // count of next fields
@@ -1316,7 +1316,7 @@ void BattleGroundMgr::InvitePlayer(Player* plr, uint32 bgInstanceGUID, uint32 te
     // set the arena teams for rated matches
     if (bg->isArena() && bg->isRated())
     {
-        switch(bg->GetArenaType())
+        switch (bg->GetArenaType())
         {
         case ARENA_TYPE_2v2:
             bg->SetArenaTeamIdForTeam(team, plr->GetArenaTeamId(0));
@@ -1360,7 +1360,7 @@ BattleGround * BattleGroundMgr::CreateNewBattleGround(uint32 bgTypeId, uint8 are
     BattleGround* bg = NULL;
 
     // create a copy of the BG template
-    switch(bgTypeId)
+    switch (bgTypeId)
     {
         case BATTLEGROUND_AV:
             bg = new BattleGroundAV(*(BattleGroundAV*)bg_template);
@@ -1427,7 +1427,7 @@ uint32 BattleGroundMgr::CreateBattleGround(uint32 bgTypeId, uint32 MinPlayersPer
     // Create the BG
     BattleGround* bg = NULL;
 
-    switch(bgTypeId)
+    switch (bgTypeId)
     {
         case BATTLEGROUND_AV: bg = new BattleGroundAV; break;
         case BATTLEGROUND_WS: bg = new BattleGroundWS; break;
@@ -1747,7 +1747,7 @@ bool BattleGroundMgr::IsBattleGroundType(uint32 bgTypeId) const
 
 uint32 BattleGroundMgr::BGQueueTypeId(uint32 bgTypeId, uint8 arenaType)
 {
-    switch(bgTypeId)
+    switch (bgTypeId)
     {
         case BATTLEGROUND_WS:
             return BATTLEGROUND_QUEUE_WS;
@@ -1761,7 +1761,7 @@ uint32 BattleGroundMgr::BGQueueTypeId(uint32 bgTypeId, uint8 arenaType)
         case BATTLEGROUND_NA:
         case BATTLEGROUND_RL:
         case BATTLEGROUND_BE:
-            switch(arenaType)
+            switch (arenaType)
             {
                 case ARENA_TYPE_2v2:
                     return BATTLEGROUND_QUEUE_2v2;
@@ -1779,7 +1779,7 @@ uint32 BattleGroundMgr::BGQueueTypeId(uint32 bgTypeId, uint8 arenaType)
 
 uint32 BattleGroundMgr::BGTemplateId(uint32 bgQueueTypeId) const
 {
-    switch(bgQueueTypeId)
+    switch (bgQueueTypeId)
     {
         case BATTLEGROUND_QUEUE_WS:
             return BATTLEGROUND_WS;
@@ -1800,7 +1800,7 @@ uint32 BattleGroundMgr::BGTemplateId(uint32 bgQueueTypeId) const
 
 uint8 BattleGroundMgr::BGArenaType(uint32 bgQueueTypeId) const
 {
-    switch(bgQueueTypeId)
+    switch (bgQueueTypeId)
     {
         case BATTLEGROUND_QUEUE_2v2:
             return ARENA_TYPE_2v2;

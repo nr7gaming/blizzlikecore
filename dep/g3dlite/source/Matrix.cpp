@@ -825,7 +825,7 @@ Matrix::T Matrix::Impl::determinant() const {
     debugAssert(R == C);
 
     // Compute using cofactors
-    switch(R) {
+    switch (R) {
     case 0:
         return 0;
 

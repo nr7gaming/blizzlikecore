@@ -1522,7 +1522,7 @@ void ChatHandler::FillMessageData(WorldPacket* data, WorldSession* session, uint
     else
         *data << uint32(LANG_UNIVERSAL);
 
-    switch(type)
+    switch (type)
     {
         case CHAT_MSG_SAY:
         case CHAT_MSG_PARTY:
