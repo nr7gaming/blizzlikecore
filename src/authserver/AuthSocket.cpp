@@ -259,6 +259,7 @@ void AuthSocket::SendProof(Sha1Hash sha)
     {
         case 5875:                                          // 1.12.1
         case 6005:                                          // 1.12.2
+        case 6141:                                          // 1.12.3
         {
             sAuthLogonProof_S_BUILD_6005 proof;
             memcpy(proof.M2, sha.GetDigest(), 20);
@@ -868,6 +869,7 @@ void AuthSocket::LoadRealmlist(ByteBuffer &pkt, uint32 acctid)
     {
         case 5875:                                          // 1.12.1
         case 6005:                                          // 1.12.2
+        case 6141:                                          // 1.12.3
         {
             pkt << uint32(0);
             pkt << uint8(sRealmList->size());

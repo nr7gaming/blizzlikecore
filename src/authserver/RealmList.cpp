@@ -11,7 +11,7 @@
 
 extern DatabaseType LoginDatabase;
 
-// will only support WoW 1.12.1/1.12.2 , WoW:TBC 2.4.3 and official release for WoW:WotLK and later, client builds 10505, 8606, 6005, 5875
+// will only support WoW 1.12.1/1.12.2/1.12.3 , WoW:TBC 2.4.3 and official release for WoW:WotLK and later, client builds 10505, 8606, 6141, 6005, 5875
 // if you need more from old build then add it in cases in auth sources code
 // list sorted from high to low build and first build used as low bound for accepted by default range (any > it will accepted by auth at least)
 
@@ -22,6 +22,7 @@ static RealmBuildInfo ExpectedauthClientBuilds[] = {
     {11159, 3, 3, 0, 'a'},
     {10505, 3, 2, 2, 'a'},
     {8606,  2, 4, 3, ' '},
+    {6141,  1,12, 3, ' '},
     {6005,  1,12, 2, ' '},
     {5875,  1,12, 1, ' '},
     {0,     0, 0, 0, ' '}                                   // terminator
