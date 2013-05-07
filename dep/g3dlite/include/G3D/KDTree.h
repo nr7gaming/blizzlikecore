@@ -445,7 +445,7 @@ protected:
                 const AABox& b = valueArray[i]->bounds;
                 debugAssert(b == boundsArray[i]);
                 
-                for(int axis = 0; axis < 3; ++axis) {
+                for (int axis = 0; axis < 3; ++axis) {
                     debugAssert(b.low()[axis] <= b.high()[axis]);
                     debugAssert(b.low()[axis] >= lo[axis]);
                     debugAssert(b.high()[axis] <= hi[axis]);

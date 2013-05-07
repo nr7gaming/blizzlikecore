@@ -782,8 +782,8 @@ void Matrix::Impl::adjoint(Impl& out) const {
 
 void Matrix::Impl::cofactor(Impl& out) const {
     debugAssert(&out != this);
-    for(int r = 0; r < R; ++r) {
-        for(int c = 0; c < C; ++c) {
+    for (int r = 0; r < R; ++r) {
+        for (int c = 0; c < C; ++c) {
             out.set(r, c, cofactor(r, c));
         }
     } 

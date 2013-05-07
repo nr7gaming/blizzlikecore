@@ -522,7 +522,7 @@ protected:
             }
 
             // Add the values stored at this interior node to the member table
-            for(int i = 0; i < node->valueArray.size(); ++i) {
+            for (int i = 0; i < node->valueArray.size(); ++i) {
                 memberTable.set(node->valueArray[i].value, node);
             }
 		    

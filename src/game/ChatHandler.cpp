@@ -270,7 +270,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
 
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_PARTY, lang);
-            for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
                 if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_PARTY, lang, GetPlayer());
 
@@ -380,7 +380,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
 
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_RAID, lang);
-            for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
                 if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_RAID, lang, GetPlayer());
 
@@ -416,7 +416,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
 
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_RAID_LEADER, lang);
-            for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
                 if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_RAID_LEADER, lang, GetPlayer());
 
@@ -445,7 +445,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
 
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_RAID_WARNING, lang);
-            for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
                 if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_RAID_WARNING, lang, GetPlayer());
 
@@ -477,7 +477,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
 
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_BATTLEGROUND, lang);
-            for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
                 if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_BATTLEGROUND, lang, GetPlayer());
 
@@ -508,7 +508,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recv_data)
 
             // ChatSpy
             GetPlayer()->HandleChatSpyMessage(msg, CHAT_MSG_BATTLEGROUND_LEADER, lang);
-            for(GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
                 if (Player* pl = itr->getSource())
                     pl->HandleChatSpyMessage(msg, CHAT_MSG_BATTLEGROUND_LEADER, lang, GetPlayer());
 

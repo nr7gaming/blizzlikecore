@@ -107,7 +107,7 @@ C_MODE_END
 static __inline int my_yield_processor()
 {
   int i;
-  for(i=0; i<YIELD_LOOPS; i++)
+  for (i=0; i<YIELD_LOOPS; i++)
   {
 #if (_MSC_VER <= 1310)
     /* On older compilers YieldProcessor is not available, use inline assembly*/

@@ -375,7 +375,7 @@ int libmpq_init_buffer(mpq_archive *mpq_a) {
 
 	/* Initialize the decryption buffer. */
 	for (index1 = 0; index1 < 0x100; index1++) {
-		for(index2 = index1, i = 0; i < 5; i++, index2 += 0x100) {
+		for (index2 = index1, i = 0; i < 5; i++, index2 += 0x100) {
 			unsigned int temp1, temp2;
 			seed  = (seed * 125 + 3) % 0x2AAAAB;
 			temp1 = (seed & 0xFFFF) << 0x10;

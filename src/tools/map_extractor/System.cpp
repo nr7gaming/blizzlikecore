@@ -837,9 +837,9 @@ bool ConvertADT(char *filename, char *filename2, int cell_y, int cell_x, uint32 
     map.holesSize = sizeof(holes);
     memset(holes, 0, map.holesSize);
 
-    for(int i = 0; i < ADT_CELLS_PER_GRID; ++i)
+    for (int i = 0; i < ADT_CELLS_PER_GRID; ++i)
     {
-        for(int j = 0; j < ADT_CELLS_PER_GRID; ++j)
+        for (int j = 0; j < ADT_CELLS_PER_GRID; ++j)
         {
             adt_MCNK * cell = cells->getMCNK(i,j);
             if (!cell)

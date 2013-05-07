@@ -698,7 +698,7 @@ int libmpq_huff_do_decompress(struct huffman_tree *ht, struct huffman_input_stre
 	libmpq_huff_build_tree(ht, n8bits);
 	ht->cmp0 = (n8bits == 0) ? TRUE : FALSE;
 
-	for(;;) {
+	for (;;) {
 		n7bits = libmpq_huff_get_7bits(is);	/* Get 7 bits from input stream */
 
 		/*

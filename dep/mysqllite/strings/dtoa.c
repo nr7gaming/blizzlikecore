@@ -806,7 +806,7 @@ static Bigint *s2b(const char *s, int nd0, int nd, ULong y9, Stack_alloc *alloc)
   }
   else
     s+= 10;
-  for(; i < nd; i++)
+  for (; i < nd; i++)
     b= multadd(b, 10, *s++ - '0', alloc);
   return b;
 }
@@ -1616,7 +1616,7 @@ static double my_strtod_int(const char *s00, char **se, int *error, char *buf, s
         goto ret;
       }
       e1>>= 4;
-      for(j= 0; e1 > 1; j++, e1>>= 1)
+      for (j= 0; e1 > 1; j++, e1>>= 1)
         if (e1 & 1)
           dval(&rv)*= bigtens[j];
     /* The last multiplication could overflow. */
@@ -1645,7 +1645,7 @@ static double my_strtod_int(const char *s00, char **se, int *error, char *buf, s
         goto undfl;
       if (e1 & Scale_Bit)
         scale= 2 * P;
-      for(j= 0; e1 > 0; j++, e1>>= 1)
+      for (j= 0; e1 > 0; j++, e1>>= 1)
         if (e1 & 1)
           dval(&rv)*= tinytens[j];
       if (scale && (j = 2 * P + 1 - ((word0(&rv) & Exp_mask) >> Exp_shift)) > 0)
@@ -1679,7 +1679,7 @@ static double my_strtod_int(const char *s00, char **se, int *error, char *buf, s
 
   bd0= s2b(s0, nd0, nd, y, &alloc);
 
-  for(;;)
+  for (;;)
   {
     bd= Balloc(bd0->k, &alloc);
     Bcopy(bd, bd0);

@@ -554,7 +554,7 @@ void Channel::Say(uint64 p, const char *what, uint32 lang)
     else
     {
         // ChatSpy
-        for(PlayerList::iterator itr = players.begin(); itr != players.end(); ++itr)
+        for (PlayerList::iterator itr = players.begin(); itr != players.end(); ++itr)
             if (Player* pl = ObjectAccessor::FindPlayer(itr->first))
                 pl->HandleChatSpyMessage(what, CHAT_MSG_CHANNEL, lang, plr, GetName());
 

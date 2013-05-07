@@ -849,12 +849,12 @@ static void rgb8_to_bayer_rggb8(const int w, const int h,
 	int offset = y * w;
 
 	// Top left pixels
-	for(int x = 0; x < w - 1; x += 2) {
+	for (int x = 0; x < w - 1; x += 2) {
 	    dstColor[x + offset] = Color1(srcColor[x + offset].r);
 	}
 
 	// Top right pixels
-	for(int x = 1; x < w - 1; x += 2) {
+	for (int x = 1; x < w - 1; x += 2) {
 	    dstColor[x + offset] = Color1(srcColor[x + offset].g);
 	}
     }
@@ -938,12 +938,12 @@ static void rgb8_to_bayer_bggr8(const int w, const int h,
 	int offset = y * w;
 
 	// Bottom left pixels
-	for(int x = 0; x < w - 1; x += 2) {
+	for (int x = 0; x < w - 1; x += 2) {
 	    dstColor[x + offset] = Color1(srcColor[x + offset].g);
 	}
 
 	// Bottom right pixels
-	for(int x = 1; x < w - 1; x += 2) {
+	for (int x = 1; x < w - 1; x += 2) {
 	    dstColor[x + offset] = Color1(srcColor[x + offset].r);
 	}
     }
@@ -956,31 +956,31 @@ static void rgb8_to_bayer_gbrg8(const int w, const int h,
     Color1uint8* dstColor = (Color1uint8*)dst;
 
     // Top row pixels
-    for(int y = 0; y < h - 1; y += 2) {
+    for (int y = 0; y < h - 1; y += 2) {
 	int offset = y * w;
 
 	// Top left pixels
-	for(int x = 0; x < w - 1; x += 2) {
+	for (int x = 0; x < w - 1; x += 2) {
 	    dstColor[x + offset] = Color1(srcColor[x + offset].g);
 	}
 
 	// Top right pixels
-	for(int x = 1; x < w - 1; x += 2) {
+	for (int x = 1; x < w - 1; x += 2) {
 	    dstColor[x + offset] = Color1(srcColor[x + offset].b);
 	}
     }
 
     // Bottom row pixels
-    for(int y = 1; y < h - 1; y += 2) {
+    for (int y = 1; y < h - 1; y += 2) {
 	int offset = y * w;
 
 	// Bottom left pixels
-	for(int x = 0; x < w - 1; x += 2) {
+	for (int x = 0; x < w - 1; x += 2) {
 	    dstColor[x + offset] = Color1(srcColor[x + offset].r);
 	}
 
 	// Bottom right pixels
-	for(int x = 1; x < w - 1; x += 2) {
+	for (int x = 1; x < w - 1; x += 2) {
 	    dstColor[x + offset] = Color1(srcColor[x + offset].g);
 	}
     }

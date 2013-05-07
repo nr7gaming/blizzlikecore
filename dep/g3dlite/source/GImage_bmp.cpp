@@ -208,7 +208,7 @@ void GImage::decodeBMP(
         input.skip(4);
 
         int c;
-        for(c = 0; c < numColors * 3; c += 3) {
+        for (c = 0; c < numColors * 3; c += 3) {
             // Palette information in bitmaps is stored in BGR_ format.
             // That means it's blue-green-red-blank, for each entry.
             blue  = input.readUInt8();

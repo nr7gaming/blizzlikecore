@@ -2287,7 +2287,7 @@ static bool planeBoxOverlap(const Vector3& normal, const Vector3& vert, const Ve
     float v;
     
     // for each axis
-    for(int a = 0; a < 3; ++a) {
+    for (int a = 0; a < 3; ++a) {
         v = vert[a];
         
         if (normal[a] > 0.0f) {

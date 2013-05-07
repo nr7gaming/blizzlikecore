@@ -435,7 +435,7 @@ public:
 
 
     void setAll(const Storage& v) {
-        for(int i = 0; i < data.size(); ++i) {
+        for (int i = 0; i < data.size(); ++i) {
             data[i] = v;
         }
         setChanged(true);

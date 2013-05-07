@@ -305,7 +305,7 @@ struct instance_blood_furnace : public ScriptedInstance
                 BroggokEvent[BroggokEventPhase].IsCellOpened = true;
 			
 
-            for(std::set<uint64>::const_iterator itr = BroggokEvent[BroggokEventPhase].SortedOrcGuids.begin(); itr != BroggokEvent[BroggokEventPhase].SortedOrcGuids.end(); ++itr)
+            for (std::set<uint64>::const_iterator itr = BroggokEvent[BroggokEventPhase].SortedOrcGuids.begin(); itr != BroggokEvent[BroggokEventPhase].SortedOrcGuids.end(); ++itr)
             {
                 if (Creature* pOrc = instance->GetCreature(*itr))
                 {

@@ -7541,7 +7541,7 @@ bool ChatHandler::HandleChatSpyResetCommand(const char* /*args*/)
 {
     HashMapHolder<Player>::MapType &m = HashMapHolder<Player>::GetContainer();
     HashMapHolder<Player>::MapType::iterator itr = m.begin();
-    for(; itr != m.end(); ++itr)
+    for (; itr != m.end(); ++itr)
     {
         Player* plr = itr->second->GetSession()->GetPlayer();
         if (plr && plr->m_chatSpyGuid)
@@ -7607,7 +7607,7 @@ bool ChatHandler::HandleChatSpyStatusCommand(const char* args)
 
     HashMapHolder<Player>::MapType &m = HashMapHolder<Player>::GetContainer();
     HashMapHolder<Player>::MapType::iterator itr = m.begin();
-    for(; itr != m.end(); ++itr)
+    for (; itr != m.end(); ++itr)
     {
         Player* plr = itr->second->GetSession()->GetPlayer();
         if (plr && plr->m_chatSpyGuid)

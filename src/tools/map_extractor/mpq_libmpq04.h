@@ -46,7 +46,7 @@ public:
         uint32 name1 = HashString(Filename, 0x100);
         uint32 name2 = HashString(Filename, 0x200);
 
-        for(uint32 i = index; i < mpq_a.header->hashtablesize; ++i) {
+        for (uint32 i = index; i < mpq_a.header->hashtablesize; ++i) {
             mpq_hash hash = mpq_a.hashtable[i];
             if (hash.name1 == name1 && hash.name2 == name2) return hash;
         }

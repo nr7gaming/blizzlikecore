@@ -756,7 +756,7 @@ public:
 
        Example:
        <pre>
-       for(PointHashGrid<Vector3>::CellIterator iter = grid.beginCells(); iter != grid.endCells(); ++iter) {	
+       for (PointHashGrid<Vector3>::CellIterator iter = grid.beginCells(); iter != grid.endCells(); ++iter) {	
        entriesFound += iter->size();
        }
        </pre>
