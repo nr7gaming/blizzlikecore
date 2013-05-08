@@ -1,8 +1,6 @@
-======================================================
-EventAI Documentation: (Last Updated: August 5, 2012)
-======================================================
-
-Integrated Files: CREDITS.md and LICENSE.md
+==================================================
+EventAI Documentation: (Last Updated: May 8, 2013)
+==================================================
 
 EventAI allows users to create new creature scripts entirely within the database.
 

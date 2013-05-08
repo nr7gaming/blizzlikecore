@@ -12,7 +12,7 @@ index 0000000..cf209a9
 +INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s was detected using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s was kicked using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6622,'|cfff00000%s was banned using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 \ No newline at end of file
 diff --git a/src/game/Language.h b/src/game/Language.h
-index 44bae6e..cc2946d 100644
+index ee46be6..5f22f3f 100644
 --- a/src/game/Language.h
 +++ b/src/game/Language.h
 @@ -835,6 +835,9 @@ enum BlizzLikeStrings
@@ -26,7 +26,7 @@ index 44bae6e..cc2946d 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index a3e95e2..7fdcb09 100644
+index b425f66..59e88dd 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -94,7 +94,7 @@ index a3e95e2..7fdcb09 100644
          return;
      }
  
-@@ -264,73 +286,464 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -264,73 +286,459 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      {
          // transports size limited
          // (also received at zeppelin/lift leave by some reason with t_* as absolute in continent coordinates, can be safely skipped)
@@ -182,7 +182,6 @@ index a3e95e2..7fdcb09 100644
 +        // Movement Anticheat		 
 +        bool updateorientationonly = false;
 +        bool skipanticheat = false;
-+        bool usefallingflag = false;
 +        bool acpassed = true;
  
 -    /* process position-change */
@@ -434,7 +433,6 @@ index a3e95e2..7fdcb09 100644
 +                        plMover->HasAuraType(SPELL_AURA_MOD_FLIGHT_SPEED_MOUNTED_NOT_STACKING));
 +                }
 +                plMover->m_anti_lastcheat = "Fly Hack";
-+                // usefallingflag = true; // Temporary disabled maybee cause fall dmg on dismount in air
 +                acpassed = false;
 +            }
 +
@@ -563,10 +561,7 @@ index a3e95e2..7fdcb09 100644
 +        else
 +        {
 +            WorldPacket data;
-+            if (usefallingflag)
-+                plMover->SetUnitMovementFlags(MOVEFLAG_FALLING);
-+            else
-+                plMover->SetUnitMovementFlags(MOVEFLAG_NONE);
++            plMover->SetUnitMovementFlags(MOVEFLAG_NONE);
 +            plMover->BuildTeleportAckMsg(&data, plMover->GetPositionX(), plMover->GetPositionY(), plMover->GetPositionZ(), plMover->GetOrientation());
 +            plMover->GetSession()->SendPacket(&data);
 +            plMover->BuildHeartBeatMsg(&data);
@@ -598,7 +593,7 @@ index a3e95e2..7fdcb09 100644
  }
  
  void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
-@@ -355,6 +768,11 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
+@@ -355,6 +763,11 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
@@ -610,7 +605,7 @@ index a3e95e2..7fdcb09 100644
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -453,6 +871,11 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -453,6 +866,11 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -622,7 +617,7 @@ index a3e95e2..7fdcb09 100644
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -468,6 +891,21 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -468,6 +886,21 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data >> movementInfo;
      recv_data.read_skip<uint32>();                          // unk2
  
@@ -645,7 +640,7 @@ index a3e95e2..7fdcb09 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index bf89a1d..7599839 100644
+index 3b4d3db..2f07e3e 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -370,6 +370,26 @@ Player::Player (WorldSession *session): Unit()
@@ -695,7 +690,7 @@ index bf89a1d..7599839 100644
      //Players with low fall distance, Feather Fall or physical immunity (charges used) are ignored
      // 14.57 can be calculated by resolving damageperc formular below to 0
 diff --git a/src/game/Player.h b/src/game/Player.h
-index e194d8b..89ffc49 100644
+index 97eb2da..806d3d8 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
 @@ -2295,6 +2295,24 @@ class Player : public Unit, public GridObject<Player>
@@ -724,7 +719,7 @@ index e194d8b..89ffc49 100644
          Transport * m_transport;
  
 diff --git a/src/game/TaxiHandler.cpp b/src/game/TaxiHandler.cpp
-index 0e0510e..505cb0b 100644
+index 68d5c31..626d7de 100644
 --- a/src/game/TaxiHandler.cpp
 +++ b/src/game/TaxiHandler.cpp
 @@ -105,6 +105,11 @@ void WorldSession::SendDoFlight(uint16 MountId, uint32 path, uint32 pathNode)
@@ -771,7 +766,7 @@ index 0e0510e..505cb0b 100644
      if (curDestNode && curDestNode->map_id != GetPlayer()->GetMapId())
      {
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 5323fa5..4f3b21a 100644
+index ea7495d..03871d4 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -69,6 +69,13 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -803,7 +798,7 @@ index 5323fa5..4f3b21a 100644
  
      m_configs[CONFIG_COMPRESSION] = sConfig.GetIntDefault("Compression", 1);
 diff --git a/src/game/World.h b/src/game/World.h
-index 12a1cdb..29ec8c2 100644
+index 977ad28..a21ff90 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
 @@ -565,6 +565,13 @@ class World
@@ -835,7 +830,7 @@ index 12a1cdb..29ec8c2 100644
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index e090ca9..2eac0a4 100644
+index 5a10889..ecbcb22 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
 @@ -2059,3 +2059,38 @@ Die.Command.Mode = 1

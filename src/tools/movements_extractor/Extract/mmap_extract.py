@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 """
-  Integrated Files: CREDITS.md and LICENSE.md
+  BlizzLikeCore Mmaps
 """
  
 import os, sys, threading, time, subprocess
