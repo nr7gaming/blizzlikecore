@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "TerrainBuilder.h"
@@ -808,7 +808,7 @@ namespace MMAP
         // pretty silly thing, as we parse entire file and load only the tile we need
         // but we don't expect this file to be too large
         char* buf = new char[512];
-        while(fgets(buf, 512, fp))
+        while (fgets(buf, 512, fp))
         {
             float p0[3], p1[3];
             int mid, tx, ty;

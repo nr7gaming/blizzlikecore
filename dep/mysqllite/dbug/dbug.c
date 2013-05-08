@@ -942,7 +942,7 @@ void _db_pop_()
       } while (0)
 #define colon_to_buf   do {                     \
         if (buf != start) char_to_buf(':');     \
-      } while(0)
+      } while (0)
 #define op_int_to_buf(C, val, def) do {         \
         if ((val) != (def))                     \
         {                                       \

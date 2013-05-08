@@ -24,7 +24,7 @@
         ACE_OS::netdb_release (); \
         return ace_result_; \
       } \
-  } while(0)
+  } while (0)
 # else /* ! (ACE_MT_SAFE && ACE_MT_SAFE != 0) */
 #   define ACE_NETDBCALL_RETURN(OP,TYPE,FAILVALUE,TARGET,SIZE) \
   do \
@@ -36,7 +36,7 @@
                     ace_result_, \
                     SIZE < sizeof (TYPE) ? SIZE : sizeof (TYPE)); \
         return ace_result_; \
-  } while(0)
+  } while (0)
 # endif /* ACE_MT_SAFE && ACE_MT_SAFE != 0 */
 #endif /* ACE_LACKS_NETDB_REENTRANT_FUNCTIONS */
 

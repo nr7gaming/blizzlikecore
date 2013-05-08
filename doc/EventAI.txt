@@ -2,7 +2,7 @@
 EventAI Documentation: (Last Updated: August 5, 2012)
 ======================================================
 
-BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+Integrated Files: CREDITS.md and LICENSE.md
 
 EventAI allows users to create new creature scripts entirely within the database.
 

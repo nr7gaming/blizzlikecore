@@ -164,7 +164,7 @@ static const dec1 frac_max[DIG_PER_DEC1-1]={
           }                                                             \
           else                                                          \
             error=E_DEC_OK;                                             \
-        } while(0)
+        } while (0)
 
 #define ADD(to, from1, from2, carry)  /* assume carry <= 1 */           \
         do                                                              \
@@ -174,7 +174,7 @@ static const dec1 frac_max[DIG_PER_DEC1-1]={
           if (((carry)= a >= DIG_BASE)) /* no division here! */         \
             a-=DIG_BASE;                                                \
           (to)=a;                                                       \
-        } while(0)
+        } while (0)
 
 #define ADD2(to, from1, from2, carry)                                   \
         do                                                              \
@@ -188,7 +188,7 @@ static const dec1 frac_max[DIG_PER_DEC1-1]={
             carry++;                                                    \
           }                                                             \
           (to)=(dec1) a;                                                \
-        } while(0)
+        } while (0)
 
 #define SUB(to, from1, from2, carry) /* to=from1-from2 */               \
         do                                                              \
@@ -197,7 +197,7 @@ static const dec1 frac_max[DIG_PER_DEC1-1]={
           if (((carry)= a < 0))                                         \
             a+=DIG_BASE;                                                \
           (to)=a;                                                       \
-        } while(0)
+        } while (0)
 
 #define SUB2(to, from1, from2, carry) /* to=from1-from2 */              \
         do                                                              \
@@ -211,7 +211,7 @@ static const dec1 frac_max[DIG_PER_DEC1-1]={
             carry++;                                                    \
           }                                                             \
           (to)=a;                                                       \
-        } while(0)
+        } while (0)
 
 /*
   Get maximum value for given precision and scale

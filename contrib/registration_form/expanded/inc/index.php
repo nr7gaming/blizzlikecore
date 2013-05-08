@@ -52,7 +52,7 @@ function add_random_frames($frame)  {
 
 // get random numbers & operator and make sure the answer is >= 0
     $k = 0 ;
-    while($k == 0)
+    while ($k == 0)
       {
         $rand1 = rand(1, 9);  // 1st number (1-9)
         $rand3 = rand(1, 9);  // 2nd number (1-9)

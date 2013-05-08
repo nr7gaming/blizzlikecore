@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 /* ScriptData
@@ -106,7 +106,7 @@ struct boss_thaddiusAI : public BossAI
             return;
 
         events.Update(diff);
-        while(uint32 eventId = events.ExecuteEvent())
+        while (uint32 eventId = events.ExecuteEvent())
         {
             switch (eventId)
             {
@@ -153,7 +153,7 @@ struct boss_stalaggAI : public BossAI
             return;
 
         events.Update(diff);
-        while(uint32 eventId = events.ExecuteEvent())
+        while (uint32 eventId = events.ExecuteEvent())
         {
             switch (eventId)
             {
@@ -214,7 +214,7 @@ struct boss_fuegenAI : public BossAI
             return;
 
         events.Update(diff);
-        while(uint32 eventId = events.ExecuteEvent())
+        while (uint32 eventId = events.ExecuteEvent())
         {
             switch (eventId)
             {

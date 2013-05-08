@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "ProgressBar.h"
@@ -188,7 +188,7 @@ void SQLStorageLoaderBase<T>::Load(SQLStorage &store)
                     storeValue((char*)fields[x].GetString(), store, p, x, offset); break;
             }
         ++count;
-    }while( result->NextRow() );
+    } while ( result->NextRow() );
 
     store.pIndex = newIndex;
     store.MaxEntry = maxi;

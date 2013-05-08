@@ -213,7 +213,7 @@ inline MTRand::uint32 MTRand::randInt( const uint32& n )
     uint32 i;
     do
         i = randInt() & used;  // toss unused bits to shorten search
-    while( i > n );
+    while ( i > n );
     return i;
 }
 

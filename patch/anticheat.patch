@@ -496,7 +496,7 @@ index a3e95e2..7fdcb09 100644
 +                if (GameObjectData const* go_data = objmgr.GetGOData(plMover->m_anti_transportGUID))
 +                {
 +                    if (World::GetMvAnticheatDebug())
-+                        sLog.outError("Movement Anticheat: %s on some transport. xyz: %f, %f, %f", plMover->GetName(), go_data->posX, go_data->posY, go_data->posZ);
++                        sLog.outBasic("Movement Anticheat: %s on some transport. xyz: %f, %f, %f", plMover->GetName(), go_data->posX, go_data->posY, go_data->posZ);
 +
 +                    int mapid = go_data->mapid;
 +                    if (plMover->GetMapId() != mapid)

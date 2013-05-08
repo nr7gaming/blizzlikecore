@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "WorldSocket.h"                                    // must be first to make ACE happy with ACE includes in it

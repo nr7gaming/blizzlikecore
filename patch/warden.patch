@@ -158,8 +158,8 @@ index 0000000..57a65a5
 +++ b/src/game/WardenBase.cpp
 @@ -0,0 +1,213 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#include "Common.h"
@@ -377,8 +377,8 @@ index 0000000..8293237
 +++ b/src/game/WardenBase.h
 @@ -0,0 +1,118 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#ifndef _WARDEN_BASE_H
@@ -501,8 +501,8 @@ index 0000000..468731e
 +++ b/src/game/WardenDataStorage.cpp
 @@ -0,0 +1,143 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#include "Common.h"
@@ -650,8 +650,8 @@ index 0000000..674a03d
 +++ b/src/game/WardenDataStorage.h
 @@ -0,0 +1,50 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#ifndef _WARDEN_DATA_STORAGE_H
@@ -706,8 +706,8 @@ index 0000000..a616697
 +++ b/src/game/WardenMac.cpp
 @@ -0,0 +1,266 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#include "Auth/WardenKeyGeneration.h"
@@ -978,8 +978,8 @@ index 0000000..afed8b3
 +++ b/src/game/WardenMac.h
 @@ -0,0 +1,32 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#ifndef _WARDEN_MAC_H
@@ -1016,8 +1016,8 @@ index 0000000..33ef609
 +++ b/src/game/WardenModuleMac.h
 @@ -0,0 +1,601 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#ifndef _WARDEN_MODULE_MAC_H
@@ -1623,8 +1623,8 @@ index 0000000..d7ece10
 +++ b/src/game/WardenModuleWin.h
 @@ -0,0 +1,1191 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#ifndef _WARDEN_MODULE_WIN_H
@@ -2820,8 +2820,8 @@ index 0000000..654b275
 +++ b/src/game/WardenWin.cpp
 @@ -0,0 +1,499 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#include "Auth/Hmac.h"
@@ -3325,8 +3325,8 @@ index 0000000..f6d828f
 +++ b/src/game/WardenWin.h
 @@ -0,0 +1,92 @@
 +/*
-+ * Copyright (C) 2013  BlizzLikeGroup
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
++ * Integrated Files: CREDITS.md and LICENSE.md
 + */
 +
 +#ifndef _WARDEN_WIN_H
@@ -3691,7 +3691,7 @@ index 0000000..6953317
 +++ b/src/shared/Auth/WardenKeyGeneration.h
 @@ -0,0 +1,72 @@
 +/*
-+ * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
++ * Integrated Files: CREDITS.md and LICENSE.md
 + * Please, look at the CREDITS.md file.
 + * This program is free software; you can redistribute it and/or modify it
 + * under the terms of the GNU General Public License as published by the

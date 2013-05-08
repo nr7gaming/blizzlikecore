@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "Common.h"
@@ -3936,7 +3936,7 @@ void Player::DeleteOldCharacters(uint32 keepDays)
             Field *charFields = resultChars->Fetch();
             Player::DeleteFromDB(charFields[0].GetUInt64(), charFields[1].GetUInt32(), true, true);
         }
-        while(resultChars->NextRow());
+        while (resultChars->NextRow());
     }
 
 }

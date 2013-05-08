@@ -1,5 +1,5 @@
-# Copyright (C) 2013  BlizzLikeGroup
-# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+# Integrated Files: CREDITS.md and LICENSE.md
 
 set(Detour_STAT_SRCS
     DetourAlloc.cpp

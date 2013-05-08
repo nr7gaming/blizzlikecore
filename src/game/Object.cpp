@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "Common.h"
@@ -1331,18 +1331,18 @@ bool WorldObject::HasInArc(const float arcangle, const float x, const float y) c
     float arc = arcangle;
 
     // move arc to range 0.. 2*pi
-    while( arc >= 2.0f * M_PI )
+    while ( arc >= 2.0f * M_PI )
         arc -=  2.0f * M_PI;
-    while( arc < 0 )
+    while ( arc < 0 )
         arc +=  2.0f * M_PI;
 
     float angle = GetAngle( x, y );
     angle -= m_orientation;
 
     // move angle to range -pi ... +pi
-    while( angle > M_PI)
+    while ( angle > M_PI)
         angle -= 2.0f * M_PI;
-    while(angle < -M_PI)
+    while (angle < -M_PI)
         angle += 2.0f * M_PI;
 
     float lborder =  -1 * (arc/2.0f);                       // in range -pi..0

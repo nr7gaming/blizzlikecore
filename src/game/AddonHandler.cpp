@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "zlib.h"
@@ -69,7 +69,7 @@ bool AddonHandler::BuildAddonPacket(WorldPacket* Source, WorldPacket* Target)
     {
         Target->Initialize(SMSG_ADDON_INFO);
 
-        while(AddOnPacked.rpos() < AddOnPacked.size())
+        while (AddOnPacked.rpos() < AddOnPacked.size())
         {
             std::string AddonNames;
             uint8 unk6;
@@ -157,7 +157,7 @@ void AddonHandler::BuildAddonPacket(WorldPacket* Source, WorldPacket* Target, ui
         Target->Initialize(SMSG_ADDON_INFO);
 
         uint32 i = 5;                                       // offset for addon extraction
-        while(i != AddOnPacked.size())
+        while (i != AddOnPacked.size())
         {
             std::string AddonNames;
             AddOns* Addonstr = new AddOns;

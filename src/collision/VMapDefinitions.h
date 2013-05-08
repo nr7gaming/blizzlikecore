@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #ifndef _VMAPDEFINITIONS_H
@@ -23,7 +23,7 @@ namespace VMAP
     #define ASSERT(x) assert(x)
     #define DEBUG_LOG(...) 0
     #define DETAIL_LOG(...) 0
-    #define ERROR_LOG(...) do{ printf("ERROR:"); printf(__VA_ARGS__); printf("\n"); } while(0)
+    #define ERROR_LOG(...) do{ printf("ERROR:"); printf(__VA_ARGS__); printf("\n"); } while (0)
 #elif !defined NO_CORE_FUNCS
     #include "Errors.h"
     #include "Log.h"
@@ -32,9 +32,9 @@ namespace VMAP
 #else
     #include <assert.h>
     #define ASSERT(x) assert(x)
-    #define DEBUG_LOG(...) do{ printf(__VA_ARGS__); printf("\n"); } while(0)
-    #define DETAIL_LOG(...) do{ printf(__VA_ARGS__); printf("\n"); } while(0)
-    #define ERROR_LOG(...) do{ printf("ERROR:"); printf(__VA_ARGS__); printf("\n"); } while(0)
+    #define DEBUG_LOG(...) do{ printf(__VA_ARGS__); printf("\n"); } while (0)
+    #define DETAIL_LOG(...) do{ printf(__VA_ARGS__); printf("\n"); } while (0)
+    #define ERROR_LOG(...) do{ printf("ERROR:"); printf(__VA_ARGS__); printf("\n"); } while (0)
 #endif
 
 #endif // _VMAPDEFINITIONS_H

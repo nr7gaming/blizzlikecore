@@ -35,7 +35,7 @@ hash(const void *key, size_t len, uint64_t seed)
 
 	assert(((uintptr_t)key & 0x7) == 0);
 
-	while(data != end) {
+	while (data != end) {
 		uint64_t k = *data++;
 
 		k *= m;

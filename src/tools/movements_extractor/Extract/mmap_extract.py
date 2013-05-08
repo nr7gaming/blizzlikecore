@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 """
-  BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+  Integrated Files: CREDITS.md and LICENSE.md
 """
  
 import os, sys, threading, time, subprocess

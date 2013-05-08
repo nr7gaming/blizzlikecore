@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #ifndef _LINKEDLIST
@@ -100,7 +100,7 @@ class LinkedListHead
             {
                 uint32 result = 0;
                 LinkedListElement const* e = getFirst();
-                while(e)
+                while (e)
                 {
                     ++result;
                     e = e->next();

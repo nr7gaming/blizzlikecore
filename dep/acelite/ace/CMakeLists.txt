@@ -1,5 +1,5 @@
-# Copyright (C) 2013  BlizzLikeGroup
-# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+# Integrated Files: CREDITS.md and LICENSE.md
 
 # NOTE: Do not use glob here, it would include files we don't want
 set(ace_STAT_SRCS

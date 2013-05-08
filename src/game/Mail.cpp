@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "Mail.h"
@@ -1102,7 +1102,7 @@ void WorldSession::SendExternalMails()
                     CharacterDatabase.PExecute("DELETE FROM mail_external WHERE id=%u", id);
                 }
             }
-            while(result -> NextRow());
+            while (result -> NextRow());
         }
     sLog.outDebug("External Mail - All Mails Sent...");
 }

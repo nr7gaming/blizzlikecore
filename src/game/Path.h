@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #ifndef BLIZZLIKECORE_PATH_H
@@ -26,13 +26,13 @@ class Path
 
         void crop(unsigned int start, unsigned int end)
         {
-            while(start && !i_nodes.empty())
+            while (start && !i_nodes.empty())
             {
                 i_nodes.pop_front();
                 --start;
             }
 
-            while(end && !i_nodes.empty())
+            while (end && !i_nodes.empty())
             {
                 i_nodes.pop_back();
                 --end;

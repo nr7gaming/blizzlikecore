@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #ifndef _REFMANAGER_H
@@ -29,7 +29,7 @@ template <class TO, class FROM> class RefManager : public LinkedListHead
         void clearReferences()
         {
             LinkedListElement* ref;
-            while((ref = getFirst()) != NULL)
+            while ((ref = getFirst()) != NULL)
             {
                 ((Reference<TO, FROM>*) ref)->invalidate();
                 ref->delink();                              // the delink might be already done by invalidate(), but doing it here again does not hurt and insures an empty list

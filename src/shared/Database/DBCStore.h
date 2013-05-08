@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #ifndef DBCSTORE_H
@@ -63,7 +63,7 @@ class DBCStorage
             delete[] ((char*)m_dataTable);
             m_dataTable = NULL;
 
-            while(!m_stringPoolList.empty())
+            while (!m_stringPoolList.empty())
             {
                 delete[] m_stringPoolList.front();
                 m_stringPoolList.pop_front();

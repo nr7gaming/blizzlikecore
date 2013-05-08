@@ -786,7 +786,7 @@ ACE_TSS_Cleanup::thread_exit (void)
     // applications should not count on this behavior because platforms which
     // do not use ACE_TSS_Cleanup may delete objects in other orders.
     unsigned int key_index = ACE_DEFAULT_THREAD_KEYS;
-    while( key_index > 0)
+    while ( key_index > 0)
       {
         --key_index;
         ACE_TSS_Info & info = this->table_[key_index];
@@ -2843,7 +2843,7 @@ ACE_OS::event_pulse (ACE_event_t *event)
           }
 
         if (result == 0)
-          while(event->eventdata_->signal_count_!=0 && event->eventdata_->waiting_threads_!=0)
+          while (event->eventdata_->signal_count_!=0 && event->eventdata_->waiting_threads_!=0)
             ACE_OS::thr_yield ();
 # endif
       }
@@ -5412,7 +5412,7 @@ vx_execae (FUNCPTR entry, char* arg, int prio, int opt, int stacksz, ...)
   if (ret == ERROR)
     return 255;
 
-  while( ret > 0 && ::taskIdVerify (ret) != ERROR )
+  while ( ret > 0 && ::taskIdVerify (ret) != ERROR )
     ::taskDelay (3 * ::sysClkRateGet ());
 
   // ::taskSpawn () returns the taskID on success: return _vx_call_rc instead if

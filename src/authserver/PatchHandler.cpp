@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "PatchHandler.h"
@@ -94,7 +94,7 @@ int PatchHandler::svc(void)
 
     ssize_t r;
 
-    while((r = ACE_OS::read(patch_fd_, data.data, sizeof(data.data))) > 0)
+    while ((r = ACE_OS::read(patch_fd_, data.data, sizeof(data.data))) > 0)
     {
         data.data_size = (ACE_UINT16)r;
 
@@ -149,7 +149,7 @@ void PatchCache::LoadPatchMD5(const char* szFileName)
 
     ACE_UINT8 buf[check_chunk_size];
 
-    while(!feof (pPatch))
+    while (!feof (pPatch))
     {
         size_t read = fread(buf, 1, check_chunk_size, pPatch);
         MD5_Update(&ctx, buf, read);
@@ -183,7 +183,7 @@ void PatchCache::LoadPatchesInfo()
 
     ACE_DIRENT* dp;
 
-    while((dp = ACE_OS::readdir(dirp)) != NULL)
+    while ((dp = ACE_OS::readdir(dirp)) != NULL)
     {
         int l = strlen(dp->d_name);
         if (l < 8)

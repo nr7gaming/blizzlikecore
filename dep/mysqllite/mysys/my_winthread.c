@@ -178,7 +178,7 @@ int my_pthread_once(my_pthread_once_t *once_control,
 
   case MY_PTHREAD_ONCE_INPROGRESS:
     /* init_routine in progress. Wait for its completion */
-    while(*once_control == MY_PTHREAD_ONCE_INPROGRESS)
+    while (*once_control == MY_PTHREAD_ONCE_INPROGRESS)
     {
       Sleep(1);
     }

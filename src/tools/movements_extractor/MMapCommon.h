@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #ifndef _MMAP_COMMON_H
@@ -35,14 +35,14 @@ namespace MMAP
             return false;
 
         // end on null character
-        while(*filter && *str)
+        while (*filter && *str)
         {
             if (*filter == '*')
             {
                 if (*++filter == '\0')   // wildcard at end of filter means all remaing chars match
                     return true;
 
-                while(true)
+                while (true)
                 {
                     if (*filter == *str)
                         break;

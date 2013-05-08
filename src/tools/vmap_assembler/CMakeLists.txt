@@ -1,5 +1,5 @@
-# Copyright (C) 2013  BlizzLikeGroup
-# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+# Integrated Files: CREDITS.md and LICENSE.md
 
 include_directories(
   ${CMAKE_SOURCE_DIR}/dep/g3dlite/include

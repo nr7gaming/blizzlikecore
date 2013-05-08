@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "Common.h"
@@ -7350,7 +7350,7 @@ void ObjectMgr::LoadGossipMenu()
 
         ++count;
     }
-    while(result->NextRow());
+    while (result->NextRow());
 
     sLog.outString();
     sLog.outString( ">> Loaded %u gossip_menu entries", count);
@@ -7473,7 +7473,7 @@ void ObjectMgr::LoadGossipMenuItems()
         ++count;
 
     }
-    while(result->NextRow());
+    while (result->NextRow());
 
     if (!gossipScriptSet.empty())
     {

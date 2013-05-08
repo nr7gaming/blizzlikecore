@@ -70,7 +70,7 @@ void max_decimal(int precision, int frac, decimal_t *to);
                                         (dec)->intg=1;      \
                                         (dec)->frac=0;      \
                                         (dec)->sign=0;      \
-                                      } while(0)
+                                      } while (0)
 
 /*
   returns the length of the buffer to hold string representation
@@ -81,7 +81,7 @@ void max_decimal(int precision, int frac, decimal_t *to);
 				  (dec)->frac + ((dec)->frac > 0) + 2)
 
 /* negate a decimal */
-#define decimal_neg(dec) do { (dec)->sign^=1; } while(0)
+#define decimal_neg(dec) do { (dec)->sign^=1; } while (0)
 
 /*
   conventions:

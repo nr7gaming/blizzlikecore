@@ -174,7 +174,7 @@ bs:
       /* No more characters */
       break;
     }
-  } while(1);
+  } while (1);
   
   if (endptr != NULL)
     *endptr = (char *) s;
@@ -286,7 +286,7 @@ bs:
       /* No more characters */
       break;
     }
-  } while(1);
+  } while (1);
   
   if (endptr != NULL)
     *endptr= (char *) s;
@@ -389,7 +389,7 @@ bs:
       /* No more characters */
       break;
     }
-  } while(1);
+  } while (1);
   
   if (endptr != NULL)
     *endptr = (char *) s;
@@ -501,7 +501,7 @@ bs:
       /* No more characters */
       break;
     }
-  } while(1);
+  } while (1);
   
   if (endptr != NULL)
     *endptr = (char *) s;

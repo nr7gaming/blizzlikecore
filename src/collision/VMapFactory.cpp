@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include <sys/types.h>
@@ -13,7 +13,7 @@ namespace VMAP
 {
     void chompAndTrim(std::string& str)
     {
-        while(str.length() >0)
+        while (str.length() >0)
         {
             char lc = str[str.length()-1];
             if (lc == '\r' || lc == '\n' || lc == ' ' || lc == '"' || lc == '\'')
@@ -25,7 +25,7 @@ namespace VMAP
                 break;
             }
         }
-        while(str.length() >0)
+        while (str.length() >0)
         {
             char lc = str[0];
             if (lc == ' ' || lc == '"' || lc == '\'')
@@ -76,7 +76,7 @@ namespace VMAP
             unsigned int id;
             std::string confString(pSpellIdString);
             chompAndTrim(confString);
-            while(getNextId(confString, pos, id))
+            while (getNextId(confString, pos, id))
             {
                 iIgnoreSpellIds->set(id, true);
             }

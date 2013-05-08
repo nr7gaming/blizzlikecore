@@ -1,5 +1,5 @@
-# Copyright (C) 2013  BlizzLikeGroup
-# BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+# BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+# Integrated Files: CREDITS.md and LICENSE.md
 
 # This file is run right before CMake starts configuring the sourcetree
 

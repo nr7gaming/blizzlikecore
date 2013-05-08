@@ -112,7 +112,7 @@ ACE_Notification_Queue::purge_pending_notifications(
 
   int number_purged = 0;
   ACE_Notification_Queue_Node * node = notify_queue_.head();
-  while(node != 0)
+  while (node != 0)
     {
       if (!node->matches_for_purging(eh))
         {

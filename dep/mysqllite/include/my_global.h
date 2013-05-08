@@ -388,13 +388,13 @@ C_MODE_END
 
 /* an assert that works at compile-time. only for constant expression */
 #ifndef __GNUC__
-#define compile_time_assert(X)  do { } while(0)
+#define compile_time_assert(X)  do { } while (0)
 #else
 #define compile_time_assert(X)                                  \
   do                                                            \
   {                                                             \
     typedef char compile_time_assert[(X) ? 1 : -1];             \
-  } while(0)
+  } while (0)
 #endif
 
 /* Go around some bugs in different OS and compilers */
@@ -478,8 +478,8 @@ typedef unsigned short ushort;
 
 #define swap_variables(t, a, b) { t dummy; dummy= a; a= b; b= dummy; }
 #define test(a)		((a) ? 1 : 0)
-#define set_if_bigger(a,b)  do { if ((a) < (b)) (a)=(b); } while(0)
-#define set_if_smaller(a,b) do { if ((a) > (b)) (a)=(b); } while(0)
+#define set_if_bigger(a,b)  do { if ((a) < (b)) (a)=(b); } while (0)
+#define set_if_smaller(a,b) do { if ((a) > (b)) (a)=(b); } while (0)
 #define test_all_bits(a,b) (((a) & (b)) == (b))
 #define array_elements(A) ((uint) (sizeof(A)/sizeof(A[0])))
 
@@ -1098,13 +1098,13 @@ typedef char		my_bool; /* Small bool */
                              *((T)+1)=(uchar) (((A) >> 8));\
                              *((T)+2)=(uchar) (((A) >> 16));\
                              *((T)+3)=(uchar) (((A) >> 24)); \
-                             *((T)+4)=(uchar) (((A) >> 32)); } while(0)
+                             *((T)+4)=(uchar) (((A) >> 32)); } while (0)
 #define int6store(T,A)  do { *(T)=    (uchar)((A));          \
                              *((T)+1)=(uchar) (((A) >> 8));  \
                              *((T)+2)=(uchar) (((A) >> 16)); \
                              *((T)+3)=(uchar) (((A) >> 24)); \
                              *((T)+4)=(uchar) (((A) >> 32)); \
-                             *((T)+5)=(uchar) (((A) >> 40)); } while(0)
+                             *((T)+5)=(uchar) (((A) >> 40)); } while (0)
 #define int8store(T,A)	*((ulonglong *) (T))= (ulonglong) (A)
 
 typedef union {
@@ -1115,11 +1115,11 @@ typedef union {
 do { doubleget_union _tmp; \
      _tmp.m[0] = *((long*)(M)); \
      _tmp.m[1] = *(((long*) (M))+1); \
-     (V) = _tmp.v; } while(0)
+     (V) = _tmp.v; } while (0)
 #define doublestore(T,V) do { *((long *) T) = ((doubleget_union *)&V)->m[0]; \
 			     *(((long *) T)+1) = ((doubleget_union *)&V)->m[1]; \
                          } while (0)
-#define float4get(V,M)   do { *((float *) &(V)) = *((float*) (M)); } while(0)
+#define float4get(V,M)   do { *((float *) &(V)) = *((float*) (M)); } while (0)
 #define float8get(V,M)   doubleget((V),(M))
 #define float4store(V,M) memcpy((uchar*) V,(uchar*) (&M),sizeof(float))
 #define floatstore(T,V)  memcpy((uchar*)(T), (uchar*)(&V),sizeof(float))
@@ -1178,44 +1178,44 @@ do { doubleget_union _tmp; \
 #define int2store(T,A)       do { uint def_temp= (uint) (A) ;\
                                   *((uchar*) (T))=  (uchar)(def_temp); \
                                    *((uchar*) (T)+1)=(uchar)((def_temp >> 8)); \
-                             } while(0)
+                             } while (0)
 #define int3store(T,A)       do { /*lint -save -e734 */\
                                   *((uchar*)(T))=(uchar) ((A));\
                                   *((uchar*) (T)+1)=(uchar) (((A) >> 8));\
                                   *((uchar*)(T)+2)=(uchar) (((A) >> 16)); \
-                                  /*lint -restore */} while(0)
+                                  /*lint -restore */} while (0)
 #define int4store(T,A)       do { *((char *)(T))=(char) ((A));\
                                   *(((char *)(T))+1)=(char) (((A) >> 8));\
                                   *(((char *)(T))+2)=(char) (((A) >> 16));\
-                                  *(((char *)(T))+3)=(char) (((A) >> 24)); } while(0)
+                                  *(((char *)(T))+3)=(char) (((A) >> 24)); } while (0)
 #define int5store(T,A)       do { *((char *)(T))=     (char)((A));  \
                                   *(((char *)(T))+1)= (char)(((A) >> 8)); \
                                   *(((char *)(T))+2)= (char)(((A) >> 16)); \
                                   *(((char *)(T))+3)= (char)(((A) >> 24)); \
                                   *(((char *)(T))+4)= (char)(((A) >> 32)); \
-		                } while(0)
+		                } while (0)
 #define int6store(T,A)       do { *((char *)(T))=     (char)((A)); \
                                   *(((char *)(T))+1)= (char)(((A) >> 8)); \
                                   *(((char *)(T))+2)= (char)(((A) >> 16)); \
                                   *(((char *)(T))+3)= (char)(((A) >> 24)); \
                                   *(((char *)(T))+4)= (char)(((A) >> 32)); \
                                   *(((char *)(T))+5)= (char)(((A) >> 40)); \
-                                } while(0)
+                                } while (0)
 #define int8store(T,A)       do { uint def_temp= (uint) (A), def_temp2= (uint) ((A) >> 32); \
                                   int4store((T),def_temp); \
-                                  int4store((T+4),def_temp2); } while(0)
+                                  int4store((T+4),def_temp2); } while (0)
 #ifdef WORDS_BIGENDIAN
 #define float4store(T,A) do { *(T)= ((uchar *) &A)[3];\
                               *((T)+1)=(char) ((uchar *) &A)[2];\
                               *((T)+2)=(char) ((uchar *) &A)[1];\
-                              *((T)+3)=(char) ((uchar *) &A)[0]; } while(0)
+                              *((T)+3)=(char) ((uchar *) &A)[0]; } while (0)
 
 #define float4get(V,M)   do { float def_temp;\
                               ((uchar*) &def_temp)[0]=(M)[3];\
                               ((uchar*) &def_temp)[1]=(M)[2];\
                               ((uchar*) &def_temp)[2]=(M)[1];\
                               ((uchar*) &def_temp)[3]=(M)[0];\
-                              (V)=def_temp; } while(0)
+                              (V)=def_temp; } while (0)
 #define float8store(T,V) do { *(T)= ((uchar *) &V)[7];\
                               *((T)+1)=(char) ((uchar *) &V)[6];\
                               *((T)+2)=(char) ((uchar *) &V)[5];\
@@ -1223,7 +1223,7 @@ do { doubleget_union _tmp; \
                               *((T)+4)=(char) ((uchar *) &V)[3];\
                               *((T)+5)=(char) ((uchar *) &V)[2];\
                               *((T)+6)=(char) ((uchar *) &V)[1];\
-                              *((T)+7)=(char) ((uchar *) &V)[0]; } while(0)
+                              *((T)+7)=(char) ((uchar *) &V)[0]; } while (0)
 
 #define float8get(V,M)   do { double def_temp;\
                               ((uchar*) &def_temp)[0]=(M)[7];\
@@ -1234,7 +1234,7 @@ do { doubleget_union _tmp; \
                               ((uchar*) &def_temp)[5]=(M)[2];\
                               ((uchar*) &def_temp)[6]=(M)[1];\
                               ((uchar*) &def_temp)[7]=(M)[0];\
-                              (V) = def_temp; } while(0)
+                              (V) = def_temp; } while (0)
 #else
 #define float4get(V,M)   memcpy(&V, (M), sizeof(float))
 #define float4store(V,M) memcpy(V, (&M), sizeof(float))
@@ -1248,7 +1248,7 @@ do { doubleget_union _tmp; \
                               *(((char*)T)+5)=(char) ((uchar *) &V)[1];\
                               *(((char*)T)+6)=(char) ((uchar *) &V)[2];\
                               *(((char*)T)+7)=(char) ((uchar *) &V)[3]; }\
-                         while(0)
+                         while (0)
 #define doubleget(V,M)   do { double def_temp;\
                               ((uchar*) &def_temp)[0]=(M)[4];\
                               ((uchar*) &def_temp)[1]=(M)[5];\
@@ -1258,7 +1258,7 @@ do { doubleget_union _tmp; \
                               ((uchar*) &def_temp)[5]=(M)[1];\
                               ((uchar*) &def_temp)[6]=(M)[2];\
                               ((uchar*) &def_temp)[7]=(M)[3];\
-                              (V) = def_temp; } while(0)
+                              (V) = def_temp; } while (0)
 #endif /* __FLOAT_WORD_ORDER */
 
 #define float8get(V,M)   doubleget((V),(M))
@@ -1284,28 +1284,28 @@ do { doubleget_union _tmp; \
 #ifdef WORDS_BIGENDIAN
 
 #define ushortget(V,M)  do { V = (uint16) (((uint16) ((uchar) (M)[1]))+\
-                                 ((uint16) ((uint16) (M)[0]) << 8)); } while(0)
+                                 ((uint16) ((uint16) (M)[0]) << 8)); } while (0)
 #define shortget(V,M)   do { V = (short) (((short) ((uchar) (M)[1]))+\
-                                 ((short) ((short) (M)[0]) << 8)); } while(0)
+                                 ((short) ((short) (M)[0]) << 8)); } while (0)
 #define longget(V,M)    do { int32 def_temp;\
                              ((uchar*) &def_temp)[0]=(M)[0];\
                              ((uchar*) &def_temp)[1]=(M)[1];\
                              ((uchar*) &def_temp)[2]=(M)[2];\
                              ((uchar*) &def_temp)[3]=(M)[3];\
-                             (V)=def_temp; } while(0)
+                             (V)=def_temp; } while (0)
 #define ulongget(V,M)   do { uint32 def_temp;\
                             ((uchar*) &def_temp)[0]=(M)[0];\
                             ((uchar*) &def_temp)[1]=(M)[1];\
                             ((uchar*) &def_temp)[2]=(M)[2];\
                             ((uchar*) &def_temp)[3]=(M)[3];\
-                            (V)=def_temp; } while(0)
+                            (V)=def_temp; } while (0)
 #define shortstore(T,A) do { uint def_temp=(uint) (A) ;\
                              *(((char*)T)+1)=(char)(def_temp); \
-                             *(((char*)T)+0)=(char)(def_temp >> 8); } while(0)
+                             *(((char*)T)+0)=(char)(def_temp >> 8); } while (0)
 #define longstore(T,A)  do { *(((char*)T)+3)=((A));\
                              *(((char*)T)+2)=(((A) >> 8));\
                              *(((char*)T)+1)=(((A) >> 16));\
-                             *(((char*)T)+0)=(((A) >> 24)); } while(0)
+                             *(((char*)T)+0)=(((A) >> 24)); } while (0)
 
 #define floatget(V,M)    memcpy(&V, (M), sizeof(float))
 #define floatstore(T,V)  memcpy((T), (void*) (&V), sizeof(float))
@@ -1316,10 +1316,10 @@ do { doubleget_union _tmp; \
 
 #else
 
-#define ushortget(V,M)	do { V = uint2korr(M); } while(0)
-#define shortget(V,M)	do { V = sint2korr(M); } while(0)
-#define longget(V,M)	do { V = sint4korr(M); } while(0)
-#define ulongget(V,M)   do { V = uint4korr(M); } while(0)
+#define ushortget(V,M)	do { V = uint2korr(M); } while (0)
+#define shortget(V,M)	do { V = sint2korr(M); } while (0)
+#define longget(V,M)	do { V = sint4korr(M); } while (0)
+#define ulongget(V,M)   do { V = uint4korr(M); } while (0)
 #define shortstore(T,V) int2store(T,V)
 #define longstore(T,V)	int4store(T,V)
 #ifndef floatstore

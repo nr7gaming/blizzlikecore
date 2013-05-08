@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2013  BlizzLikeGroup
- * BlizzLikeCore integrates as part of this file: CREDITS.md and LICENSE.md
+ * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * Integrated Files: CREDITS.md and LICENSE.md
  */
 
 #include "MapUpdater.h"
@@ -87,7 +87,7 @@ int MapUpdater::wait()
 {
     ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, this->m_mutex, -1);
 
-    while(this->pedning_requests > 0)
+    while (this->pedning_requests > 0)
         this->m_condition.wait();
 
     return 0;

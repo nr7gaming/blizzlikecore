@@ -885,7 +885,7 @@ public:
         debugAssert((count > 0) && (element + count) <= end());
         Iterator last = end() - count;
 
-        while(element < last) {
+        while (element < last) {
             element[0] = element[count];
             ++element;
         }

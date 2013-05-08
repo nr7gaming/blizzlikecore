@@ -105,7 +105,7 @@ int libmpq_decrypt_blocktable(mpq_archive *mpq_a, unsigned char *pbKey) {
 	unsigned int length = mpq_a->header->blocktablesize * 4;
 
 	/* Prepare seeds */
-	while(*pbKey != 0) {
+	while (*pbKey != 0) {
 		ch = toupper(*pbKey++);
 		seed1 = mpq_a->buf[0x300 + ch] ^ (seed1 + seed2);
 		seed2 = ch + seed1 + seed2 + (seed2 << 5) + 3;
@@ -113,7 +113,7 @@ int libmpq_decrypt_blocktable(mpq_archive *mpq_a, unsigned char *pbKey) {
 
 	/* Decrypt it */
 	seed2 = 0xEEEEEEEE;
-	while(length-- > 0) {
+	while (length-- > 0) {
 		seed2 += mpq_a->buf[0x400 + (seed1 & 0xFF)];
 		ch     = *pdwTable ^ (seed1 + seed2);
 		seed1  = ((~seed1 << 0x15) + 0x11111111) | (seed1 >> 0x0B);

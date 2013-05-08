@@ -69,18 +69,18 @@ extern  const char* _db_get_func_(void);
 #define DBUG_ENTER(a) struct _db_stack_frame_ _db_stack_frame_; \
         _db_enter_ (a,__FILE__,__LINE__,&_db_stack_frame_)
 #define DBUG_LEAVE _db_return_ (__LINE__, &_db_stack_frame_)
-#define DBUG_RETURN(a1) do {DBUG_LEAVE; return(a1);} while(0)
-#define DBUG_VOID_RETURN do {DBUG_LEAVE; return;} while(0)
+#define DBUG_RETURN(a1) do {DBUG_LEAVE; return(a1);} while (0)
+#define DBUG_VOID_RETURN do {DBUG_LEAVE; return;} while (0)
 #define DBUG_EXECUTE(keyword,a1) \
-        do {if (_db_keyword_(0, (keyword), 0)) { a1 }} while(0)
+        do {if (_db_keyword_(0, (keyword), 0)) { a1 }} while (0)
 #define DBUG_EXECUTE_IF(keyword,a1) \
-        do {if (_db_keyword_(0, (keyword), 1)) { a1 }} while(0)
+        do {if (_db_keyword_(0, (keyword), 1)) { a1 }} while (0)
 #define DBUG_EVALUATE(keyword,a1,a2) \
         (_db_keyword_(0,(keyword), 0) ? (a1) : (a2))
 #define DBUG_EVALUATE_IF(keyword,a1,a2) \
         (_db_keyword_(0,(keyword), 1) ? (a1) : (a2))
 #define DBUG_PRINT(keyword,arglist) \
-        do {_db_pargs_(__LINE__,keyword); _db_doprnt_ arglist;} while(0)
+        do {_db_pargs_(__LINE__,keyword); _db_doprnt_ arglist;} while (0)
 #define DBUG_PUSH(a1) _db_push_ (a1)
 #define DBUG_POP() _db_pop_ ()
 #define DBUG_SET(a1) _db_set_ (a1)
@@ -96,8 +96,8 @@ extern  const char* _db_get_func_(void);
 #define DBUG_ASSERT(A) assert(A)
 #define DBUG_EXPLAIN(buf,len) _db_explain_(0, (buf),(len))
 #define DBUG_EXPLAIN_INITIAL(buf,len) _db_explain_init_((buf),(len))
-#define DEBUGGER_OFF                    do { _dbug_on_= 0; } while(0)
-#define DEBUGGER_ON                     do { _dbug_on_= 1; } while(0)
+#define DEBUGGER_OFF                    do { _dbug_on_= 0; } while (0)
+#define DEBUGGER_ON                     do { _dbug_on_= 1; } while (0)
 #ifndef __WIN__
 #define DBUG_ABORT()                    (_db_flush_(), abort())
 #else
@@ -113,7 +113,7 @@ extern  const char* _db_get_func_(void);
 #endif
 #define DBUG_CHECK_CRASH(func, op) \
   do { char _dbuf_[255]; strxnmov(_dbuf_, sizeof(_dbuf_)-1, (func), (op)); \
-    DBUG_EXECUTE_IF(_dbuf_, DBUG_ABORT()); } while(0)
+    DBUG_EXECUTE_IF(_dbuf_, DBUG_ABORT()); } while (0)
 #define DBUG_CRASH_ENTER(func) \
   DBUG_ENTER(func); DBUG_CHECK_CRASH(func, "_crash_enter")
 #define DBUG_CRASH_RETURN(val) \
@@ -140,35 +140,35 @@ extern void _db_suicide_();
 
 #define DBUG_ENTER(a1)
 #define DBUG_LEAVE
-#define DBUG_RETURN(a1)                 do { return(a1); } while(0)
-#define DBUG_VOID_RETURN                do { return; } while(0)
-#define DBUG_EXECUTE(keyword,a1)        do { } while(0)
-#define DBUG_EXECUTE_IF(keyword,a1)     do { } while(0)
+#define DBUG_RETURN(a1)                 do { return(a1); } while (0)
+#define DBUG_VOID_RETURN                do { return; } while (0)
+#define DBUG_EXECUTE(keyword,a1)        do { } while (0)
+#define DBUG_EXECUTE_IF(keyword,a1)     do { } while (0)
 #define DBUG_EVALUATE(keyword,a1,a2) (a2)
 #define DBUG_EVALUATE_IF(keyword,a1,a2) (a2)
-#define DBUG_PRINT(keyword,arglist)     do { } while(0)
-#define DBUG_PUSH(a1)                   do { } while(0)
-#define DBUG_SET(a1)                    do { } while(0)
-#define DBUG_SET_INITIAL(a1)            do { } while(0)
-#define DBUG_POP()                      do { } while(0)
-#define DBUG_PROCESS(a1)                do { } while(0)
+#define DBUG_PRINT(keyword,arglist)     do { } while (0)
+#define DBUG_PUSH(a1)                   do { } while (0)
+#define DBUG_SET(a1)                    do { } while (0)
+#define DBUG_SET_INITIAL(a1)            do { } while (0)
+#define DBUG_POP()                      do { } while (0)
+#define DBUG_PROCESS(a1)                do { } while (0)
 #define DBUG_SETJMP(a1) setjmp(a1)
 #define DBUG_LONGJMP(a1) longjmp(a1)
-#define DBUG_DUMP(keyword,a1,a2)        do { } while(0)
-#define DBUG_END()                      do { } while(0)
-#define DBUG_ASSERT(A)                  do { } while(0)
-#define DBUG_LOCK_FILE                  do { } while(0)
+#define DBUG_DUMP(keyword,a1,a2)        do { } while (0)
+#define DBUG_END()                      do { } while (0)
+#define DBUG_ASSERT(A)                  do { } while (0)
+#define DBUG_LOCK_FILE                  do { } while (0)
 #define DBUG_FILE (stderr)
-#define DBUG_UNLOCK_FILE                do { } while(0)
+#define DBUG_UNLOCK_FILE                do { } while (0)
 #define DBUG_EXPLAIN(buf,len)
 #define DBUG_EXPLAIN_INITIAL(buf,len)
-#define DEBUGGER_OFF                    do { } while(0)
-#define DEBUGGER_ON                     do { } while(0)
-#define DBUG_ABORT()                    do { } while(0)
+#define DEBUGGER_OFF                    do { } while (0)
+#define DEBUGGER_ON                     do { } while (0)
+#define DBUG_ABORT()                    do { } while (0)
 #define DBUG_CRASH_ENTER(func)
-#define DBUG_CRASH_RETURN(val)          do { return(val); } while(0)
-#define DBUG_CRASH_VOID_RETURN          do { return; } while(0)
-#define DBUG_SUICIDE()                  do { } while(0)
+#define DBUG_CRASH_RETURN(val)          do { return(val); } while (0)
+#define DBUG_CRASH_VOID_RETURN          do { return; } while (0)
+#define DBUG_SUICIDE()                  do { } while (0)
 
 #endif
 

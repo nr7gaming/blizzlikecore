@@ -4330,12 +4330,12 @@ CHARSET_INFO my_charset_filename=
 
 static void test_mb(CHARSET_INFO *cs, uchar *s)
 {
-  while(*s)
+  while (*s)
   {
     if (my_ismbhead_utf8(cs,*s))
     {
       uint len=my_mbcharlen_utf8(cs,*s);
-      while(len--)
+      while (len--)
       {
         printf("%c",*s);
         s++;
