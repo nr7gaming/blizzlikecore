@@ -1,7 +1,7 @@
 # BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
 # Integrated Files: CREDITS.md and LICENSE.md
 
-add_subdirectory(movements_extractor)
 add_subdirectory(map_extractor)
+add_subdirectory(mmap_extractor)
 add_subdirectory(vmap_assembler)
 add_subdirectory(vmap_extractor)

@@ -776,8 +776,8 @@ index ea7495d..03871d4 100644
 +// Movement Anticheat
 +bool World::m_EnableMvAnticheat = true;
 +bool World::m_MvAnticheatDebug = false;
-+uint32 World::m_MvAnticheatGmLevel = 0;
-+uint32 World::m_MvAnticheatAction = 0;
++uint8 World::m_MvAnticheatGmLevel = 0;
++uint8 World::m_MvAnticheatAction = 0;
 +uint32 World::m_MvAnticheatBanDuration = 86400;
 +
  // World constructor
@@ -808,8 +808,8 @@ index 977ad28..a21ff90 100644
 +        // Movement Anticheat
 +        static bool GetEnableMvAnticheat()              { return m_EnableMvAnticheat;       }
 +        static bool GetMvAnticheatDebug()               { return m_MvAnticheatDebug ;       }
-+        static uint32 GetMvAnticheatGmLevel()           { return m_MvAnticheatGmLevel;      }
-+        static uint32 GetMvAnticheatAction()            { return m_MvAnticheatAction;       }
++        static uint8 GetMvAnticheatGmLevel()            { return m_MvAnticheatGmLevel;      }
++        static uint8 GetMvAnticheatAction()             { return m_MvAnticheatAction;       }
 +        static uint32 GetMvAnticheatBanDuration()       { return m_MvAnticheatBanDuration;  }
 +
          void ProcessCliCommands();
@@ -822,8 +822,8 @@ index 977ad28..a21ff90 100644
 +        // Movement Anticheat
 +        static bool m_EnableMvAnticheat;
 +        static bool m_MvAnticheatDebug;
-+        static uint32 m_MvAnticheatGmLevel;
-+        static uint32 m_MvAnticheatAction;
++        static uint8 m_MvAnticheatGmLevel;
++        static uint8 m_MvAnticheatAction;
 +        static uint32 m_MvAnticheatBanDuration;
 +
          // CLI command holder to be thread safe

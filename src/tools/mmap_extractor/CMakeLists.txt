@@ -33,11 +33,11 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/src/game
 )
 
-add_executable(movements_extractor
+add_executable(mmap_extractor
     ${sources}
 )
 
-target_link_libraries(movements_extractor
+target_link_libraries(mmap_extractor
   collision
   g3dlib
   Recast
@@ -50,7 +50,7 @@ target_link_libraries(movements_extractor
 )
 
 if( UNIX )
-  install(TARGETS movements_extractor DESTINATION bin)
+  install(TARGETS mmap_extractor DESTINATION bin)
 elseif( WIN32 )
-  install(TARGETS movements_extractor DESTINATION "${CMAKE_INSTALL_PREFIX}")
+  install(TARGETS mmap_extractor DESTINATION "${CMAKE_INSTALL_PREFIX}")
 endif()

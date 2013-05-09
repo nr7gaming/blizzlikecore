@@ -40,7 +40,7 @@ goto panel
 :3_extract_mmaps
 if not exist mmaps (
 md mmaps)
-movements_extractor.exe
+mmap_extractor.exe
 echo.
 echo Press any key to panel . . .
 pause>nul
