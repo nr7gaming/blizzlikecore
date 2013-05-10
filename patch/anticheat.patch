@@ -421,7 +421,7 @@ index b425f66..59e88dd 100644
 -            plMover->HandleFallUnderMap();
 +            // Anti-Fly-Hack
 +            if (((movementInfo.GetMovementFlags() & (MOVEFLAG_CAN_FLY | MOVEFLAG_FLYING | MOVEFLAG_FLYING2)) != 0) 
-+                && !(movementInfo.HasMovementFlag(MOVEFLAG_SWIMMING)) 
++                && !(movementInfo.HasMovementFlag(MOVEFLAG_SWIMMING)) && (delta_z < 0) 
 +                && !(plMover->HasAuraType(SPELL_AURA_FLY) || plMover->HasAuraType(SPELL_AURA_MOD_FLIGHT_SPEED_MOUNTED)))
 +            {
 +                if (World::GetMvAnticheatDebug())
