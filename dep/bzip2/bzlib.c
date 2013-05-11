@@ -1494,7 +1494,7 @@ int BZ_API(BZ2_bzwrite) (BZFILE* b, void* buf, int len )
    int bzerr;
 
    BZ2_bzWrite(&bzerr,b,buf,len);
-   if(bzerr == BZ_OK){
+   if (bzerr == BZ_OK){
       return len;
    }else{
       return -1;
@@ -1518,15 +1518,15 @@ void BZ_API(BZ2_bzclose) (BZFILE* b)
    
    if (b==NULL) {return;}
    fp = ((bzFile *)b)->handle;
-   if(((bzFile*)b)->writing){
+   if (((bzFile*)b)->writing){
       BZ2_bzWriteClose(&bzerr,b,0,NULL,NULL);
-      if(bzerr != BZ_OK){
+      if (bzerr != BZ_OK){
          BZ2_bzWriteClose(NULL,b,1,NULL,NULL);
       }
    }else{
       BZ2_bzReadClose(&bzerr,b);
    }
-   if(fp!=stdin && fp!=stdout){
+   if (fp!=stdin && fp!=stdout){
       fclose(fp);
    }
 }
@@ -1560,7 +1560,7 @@ const char * BZ_API(BZ2_bzerror) (BZFILE *b, int *errnum)
 {
    int err = ((bzFile *)b)->lastErr;
 
-   if(err>0) err = 0;
+   if (err>0) err = 0;
    *errnum = err;
    return bzerrorstrings[err*-1];
 }

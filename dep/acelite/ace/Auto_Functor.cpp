@@ -20,7 +20,7 @@ ACE_Utils::Auto_Functor<X,Functor>::~Auto_Functor()
 template<typename X, typename Functor> void
 ACE_Utils::Auto_Functor<X,Functor>::reset(X * p)
 {
-  if(p_ != 0)
+  if (p_ != 0)
   {
     f_(p_);
   }

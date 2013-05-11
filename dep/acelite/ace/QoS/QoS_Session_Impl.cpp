@@ -61,7 +61,7 @@ rsvp_callback (rapi_sid_t /* sid */,
     {
       // Extended Legacy format.
       csxp = &flow_spec_list->specbody_qosx;
-      if(!csxp)
+      if (!csxp)
         {
           ACE_ERROR_RETURN ((LM_ERROR,
                             "(%N|%l) Null csxp\n"),
@@ -412,7 +412,7 @@ ACE_RAPI_Session::sending_qos (const ACE_QoS &ace_qos)
                            0,
                            sending_flowspec->ttl ()) ;
   */
-  if(result!= 0)
+  if (result!= 0)
     ACE_ERROR_RETURN ((LM_ERROR,
                        "(%N|%l) rapi_sender error %d:\n\tPATH Generation can't be started\n",
                       result),

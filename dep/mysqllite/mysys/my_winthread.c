@@ -114,7 +114,7 @@ int pthread_join(pthread_t thread, void **value_ptr)
 
   ret= WaitForSingleObject(handle, INFINITE);
 
-  if(ret != WAIT_OBJECT_0)
+  if (ret != WAIT_OBJECT_0)
   {
     errno= EINVAL;
     goto error_return;
@@ -124,7 +124,7 @@ int pthread_join(pthread_t thread, void **value_ptr)
   return 0;
 
 error_return:
-  if(handle)
+  if (handle)
     CloseHandle(handle);
   return -1;
 }

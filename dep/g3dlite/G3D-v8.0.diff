@@ -291,7 +291,7 @@ diff --git a/dep/g3dlite/source/fileutils.cpp b/dep/g3dlite/source/fileutils.cpp
      if (result == -1) {
 +#if _HAVE_ZIP /* G3DFIX: Use ZIP-library only if defined */
  		std::string zip, contents;
- 		if(zipfileExists(filename, zip, contents)){
+ 		if (zipfileExists(filename, zip, contents)){
  			int64 requiredMem;
 @@ -198,6 +204,9 @@
  		} else {
