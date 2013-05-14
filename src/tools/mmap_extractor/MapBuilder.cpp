@@ -773,7 +773,7 @@ namespace MMAP
                 case 25:    // ScottTest.wdt
                 case 29:    // Test.wdt
                 case 42:    // Colin.wdt
-                case 169:   // EmeraldDream.wdt (unused, and very large)
+            //  case 169:   // EmeraldDream.wdt (unused, and very large)
                 case 451:   // development.wdt
                 case 573:   // ExteriorTest.wdt
                 case 597:   // CraigTest.wdt
