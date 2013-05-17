@@ -1321,6 +1321,29 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                     m_caster->CastCustomSpell(unitTarget, 37675, &basepoints0, NULL, NULL, true);
                     return;
                 }
+                case 39189:                                 // Sha'tari Torch
+                {
+                    if (!unitTarget || unitTarget->GetTypeId() != TYPEID_UNIT || m_caster->GetTypeId() != TYPEID_PLAYER)
+                        return;
+
+                    // Flames
+                    if (unitTarget->HasAura(39199, 0))
+                        return;
+
+                    unitTarget->CastSpell(unitTarget, 39199, true);
+                    ((Player*)m_caster)->KilledMonsterCredit(unitTarget->GetEntry(), unitTarget->GetGUID());
+                    ((Creature*)unitTarget)->ForcedDespawn(10000);
+                    return;
+                }
+                case 39635:                                 // Throw Glaive (first)
+                case 39849:                                 // Throw Glaive (second)
+                {
+                    if (!unitTarget)
+                        return;
+
+                    unitTarget->CastSpell(unitTarget, 41466, true, NULL, NULL, m_caster->GetGUID());
+                    return;
+                }
                 case 40109:                                 // Knockdown Fel Cannon: The Bolt
                 {
                     unitTarget->CastSpell(unitTarget, 40075, true);
@@ -5071,7 +5094,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
 
                     // check presence
                     for (uint8 j = 0; j < 4; ++j)
-                        if (unitTarget->HasAura(spells[j],0))
+                        if (unitTarget->HasAura(spells[j], 0))
                             return;
 
                     // select spell
@@ -5241,7 +5264,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                         return;
 
                     //Remove Stoned
-                    if (unitTarget->HasAura(33652,0))
+                    if (unitTarget->HasAura(33652, 0))
                         unitTarget->RemoveAurasDueToSpell(33652);
 
                     // Only player cast this
@@ -5415,7 +5438,7 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                     //Workaround for Range ... should be global for every ScriptEffect
                     //float radius = GetSpellRadius(sSpellRadiusStore.LookupEntry(m_spellInfo->EffectRadiusIndex[effIndex]));
                     float radius = GetSpellRadius(m_spellInfo, effIndex, false);
-                    if (unitTarget && unitTarget->GetTypeId() == TYPEID_PLAYER && unitTarget->GetDistance(m_caster) <= radius && !unitTarget->HasAura(46394,0) && unitTarget != m_caster)
+                    if (unitTarget && unitTarget->GetTypeId() == TYPEID_PLAYER && unitTarget->GetDistance(m_caster) <= radius && !unitTarget->HasAura(46394, 0) && unitTarget != m_caster)
                         unitTarget->CastSpell(unitTarget, 46394, true);
 
                     break;
