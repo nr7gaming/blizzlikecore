@@ -3,7 +3,7 @@
 ################################################
 
 [authserver]
-ConfVersion=20130210
+ConfVersion=20130517
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -38,14 +38,14 @@ ConfVersion=20130210
 #    PidFile
 #        auth daemon PID file
 #        Default: ""             - do not create PID file
-#                 "./auth.pid" - create PID file (recommended name)
+#                 "./auth.pid"   - create PID file (recommended name)
 #
 #    LogLevel
 #        Server console level of logging
-#        Default: 0 = Minimum
+#                 0 = Minimum
 #                 1 = Basic
 #                 2 = Detail
-#                 3 = Full/Debug
+#        Default: 3 = Full/Debug
 #
 #    LogFile
 #        Logfile name
@@ -83,7 +83,7 @@ ConfVersion=20130210
 #                12 - LMAGENTA
 #                13 - LCYAN
 #                14 - WHITE
-#        Example: "13 10 11 9"
+#        Example: "13 10 11 6"
 #
 #    EnableLogDB
 #        Enable/disable logging to database (LogDatabaseInfo).
@@ -135,11 +135,11 @@ MaxPingTime = 30
 AuthServerPort = 3724
 BindIP = "0.0.0.0"
 PidFile = ""
-LogLevel = 0
+LogLevel = 3
 LogFile = "auth.log"
 LogTimestamp = 0
 LogFileLevel = 0
-LogColors = "13 10 11 9"
+LogColors = "13 10 11 6"
 EnableLogDB = 0
 DBLogLevel = 1
 UseProcessors = 0

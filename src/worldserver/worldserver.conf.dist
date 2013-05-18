@@ -3,7 +3,7 @@
 #################################################
 
 [worldserver]
-ConfVersion=20130507
+ConfVersion=20130517
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -292,9 +292,9 @@ MapUpdate.Threads = 1
 #    LogLevel
 #        Server console level of logging
 #                 0 = Minimum
-#        Default: 1 = Basic
+#                 1 = Basic
 #                 2 = Detail
-#                 3 = Full/Debug
+#        Default: 3 = Full/Debug
 #
 #    LogFile
 #        Logfile name
@@ -404,7 +404,7 @@ MapUpdate.Threads = 1
 #                12 - LMAGENTA
 #                13 - LCYAN
 #                14 - WHITE
-#        Example: "13 10 11 9"
+#        Example: "13 10 11 6"
 #
 #    EnableLogDB
 #        Enable/disable logging to database (LogDatabaseInfo).
@@ -493,7 +493,7 @@ MapUpdate.Threads = 1
 
 LogSQL = 1
 PidFile = ""
-LogLevel = 1
+LogLevel = 3
 LogFile = "world.log"
 ChatLogFile = "chat.log"
 LogTimestamp = 0
@@ -512,7 +512,7 @@ GmLogPerAccount = 0
 RaLogFile = "ra_commands.log"
 ArenaLogFile = ""
 ArenaLogExtendedInfo = 0
-LogColors = "13 10 11 9"
+LogColors = "13 10 11 6"
 EnableLogDB = 0
 DBLogLevel = 2
 LogDB.Char   = 0
