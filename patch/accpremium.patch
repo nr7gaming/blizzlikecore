@@ -23,10 +23,10 @@ index 0000000..4dc2128
 +INSERT INTO `command` VALUES ('accpadd', 3, 'Syntax: .accpadd $account_id $5d2h10m15s\r\n\r\nAdd a premium account with time to expire.'),('accpdel', 3, 'Syntax: .accpdel $account_id\r\n\r\nDelete a premium account.');
 \ No newline at end of file
 diff --git a/src/authserver/AuthSocket.cpp b/src/authserver/AuthSocket.cpp
-index 138ff77..64f7dca 100644
+index 4cc9c24..e83052b 100644
 --- a/src/authserver/AuthSocket.cpp
 +++ b/src/authserver/AuthSocket.cpp
-@@ -347,6 +347,8 @@ bool AuthSocket::_HandleLogonChallenge()
+@@ -348,6 +348,8 @@ bool AuthSocket::_HandleLogonChallenge()
      // Set expired bans to inactive
      LoginDatabase.Execute("UPDATE account_banned SET active = 0 WHERE unbandate<=UNIX_TIMESTAMP() AND unbandate<>bandate");
      LoginDatabase.Execute("DELETE FROM ip_banned WHERE unbandate<=UNIX_TIMESTAMP() AND unbandate<>bandate");
