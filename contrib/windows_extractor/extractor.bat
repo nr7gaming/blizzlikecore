@@ -30,16 +30,14 @@ goto panel
 :2_extract_vmaps
 if exist buildings (del /S /Q buildings)
 vmap_extractor.exe
-if exist vmaps (del /S /Q vmaps)
-if not exist vmaps (md vmaps)
+if exist vmaps (del /S /Q vmaps) else (md vmaps)
 vmap_assembler.exe buildings vmaps
 echo.
 echo Press any key to panel . . .
 pause>nul
 goto panel
 :3_extract_mmaps
-if not exist mmaps (
-md mmaps)
+if exist mmaps (del /S /Q mmaps) else (md mmaps)
 mmap_extractor.exe
 echo.
 echo Press any key to panel . . .
