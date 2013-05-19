@@ -55,7 +55,7 @@ index 3d89b05..83de34b 100644
  {
  #ifdef SCRIPTS
  
-+    //Custom
++//  custom
 +    AddSC_npc_guildmaster();
 +
  //    AddSC_custom_example();
