@@ -3485,12 +3485,12 @@ void ObjectMgr::LoadQuests()
             if (!quest)
                 continue;
 
-            if (!quest->HasFlag(QUEST_BLIZZLIKE_FLAGS_EXPLORATION_OR_EVENT))
+            if (!quest->HasFlag(QUEST_BLIZZLIKE_FLAGS_EXPLORATION_OR_EVENT) && spellInfo->Id != 33824 && quest_id != 10162)
             {
-                sLog.outDebug("Spell (id: %u) has SPELL_EFFECT_QUEST_COMPLETE for quest %u , but quest does not have flag QUEST_BLIZZLIKE_FLAGS_EXPLORATION_OR_EVENT. Quest flags must be fixed, quest modified to enable objective.",spellInfo->Id,quest_id);
+                sLog.outErrorDb("Spell (id: %u) has SPELL_EFFECT_QUEST_COMPLETE for quest %u , but quest does not have flag QUEST_BLIZZLIKE_FLAGS_EXPLORATION_OR_EVENT. Quest flags must be fixed, quest modified to enable objective.",spellInfo->Id,quest_id);
 
                 // this will prevent quest completing without objective
-                //const_cast<Quest*>(quest)->SetFlag(QUEST_BLIZZLIKE_FLAGS_EXPLORATION_OR_EVENT);
+                const_cast<Quest*>(quest)->SetFlag(QUEST_BLIZZLIKE_FLAGS_EXPLORATION_OR_EVENT);
             }
         }
     }
