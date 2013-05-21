@@ -1764,7 +1764,8 @@ void Spell::SetTargetMap(uint32 i, uint32 cur)
                         else
                             m_targets.setDst(st->target_X, st->target_Y, st->target_Z, st->target_Orientation, (int32)st->target_mapId);
                         // far-teleport spells are handled in SpellEffect, elsewise report an error about an unexpected map (spells are always locally)
-                        if (m_spellInfo->Effect[0] != SPELL_EFFECT_TELEPORT_UNITS && m_spellInfo->Effect[0] != SPELL_EFFECT_BIND
+                        if (st->target_mapId != m_caster->GetMapId()
+                        && m_spellInfo->Effect[0] != SPELL_EFFECT_TELEPORT_UNITS && m_spellInfo->Effect[0] != SPELL_EFFECT_BIND
                         && m_spellInfo->Effect[1] != SPELL_EFFECT_TELEPORT_UNITS && m_spellInfo->Effect[1] != SPELL_EFFECT_BIND
                         && m_spellInfo->Effect[2] != SPELL_EFFECT_TELEPORT_UNITS && m_spellInfo->Effect[2] != SPELL_EFFECT_BIND)
                             sLog.outError("SPELL: wrong map (%u instead %u) target coordinates for spell ID %u", st->target_mapId, m_caster->GetMapId(), m_spellInfo->Id);
