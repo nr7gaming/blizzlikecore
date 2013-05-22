@@ -1,6 +1,3 @@
-diff --git a/anticheat.patch b/anticheat.patch
-new file mode 100644
-index 0000000..e69de29
 diff --git a/sql/anticheat/world_anticheat.sql b/sql/anticheat/world_anticheat.sql
 new file mode 100644
 index 0000000..cf209a9
@@ -8,25 +5,23 @@ index 0000000..cf209a9
 +++ b/sql/anticheat/world_anticheat.sql
 @@ -0,0 +1,3 @@
 +-- BlizzLikeCore Anticheat
-+DELETE FROM `blizzlike_string` WHERE `entry` IN (6620,6621,6622);
-+INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000%s was detected using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6621,'|cfff00000%s was kicked using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6622,'|cfff00000%s was banned using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
++DELETE FROM `blizzlike_string` WHERE `entry` = 6620;
++INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000Movement Anticheat: %s was %s using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 \ No newline at end of file
 diff --git a/src/game/Language.h b/src/game/Language.h
-index ee46be6..5f22f3f 100644
+index ee46be6..7cea4e8 100644
 --- a/src/game/Language.h
 +++ b/src/game/Language.h
-@@ -835,6 +835,9 @@ enum BlizzLikeStrings
+@@ -835,6 +835,7 @@ enum BlizzLikeStrings
      LANG_GM_ANNOUNCE_COLOR               = 6615,
  
      LANG_GM_SILENCE                      = 6616,              // GM Silenced Spell 1852
-+    LANG_GM_AC_ANNOUNCE                  = 6620,              // GM AC Announce
-+    LANG_GM_AC_KICK_ANNOUNCE             = 6621,              // GM AC Kick Announce
-+    LANG_GM_AC_BAN_ANNOUNCE              = 6622,              // GM AC Ban Announce
++    LANG_GM_AC_ANNOUNCE                  = 6620,              // GM Movement Anticheat Announce
  
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index b425f66..a26af57 100644
+index b425f66..ed340b0 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -555,11 +550,11 @@ index b425f66..a26af57 100644
 +                switch (World::GetMvAnticheatAction())
 +                {
 +                case 0:
-+                    sWorld.SendGMText(LANG_GM_AC_ANNOUNCE, plMover->GetName(), plMover->m_anti_lastcheat.c_str());
++                    sWorld.SendGMText(LANG_GM_AC_ANNOUNCE, plMover->GetName(), "detected", plMover->m_anti_lastcheat.c_str());
 +                    break;
 +                case 1:
 +                    plMover->GetSession()->KickPlayer();
-+                    sWorld.SendGMText(LANG_GM_AC_KICK_ANNOUNCE, plMover->GetName(), plMover->m_anti_lastcheat.c_str());
++                    sWorld.SendGMText(LANG_GM_AC_ANNOUNCE, plMover->GetName(), "kicked", plMover->m_anti_lastcheat.c_str());
 +                    break;
 +                case 2:
 +                    std::string accountName;
@@ -567,7 +562,7 @@ index b425f66..a26af57 100644
 +                    std::stringstream duration;
 +                    duration << World::GetMvAnticheatBanDuration() << "s";
 +                    sWorld.BanAccount(BAN_ACCOUNT, accountName, duration.str(), plMover->m_anti_lastcheat.c_str(),"AC");
-+                    sWorld.SendGMText(LANG_GM_AC_BAN_ANNOUNCE, plMover->GetName(), plMover->m_anti_lastcheat.c_str());
++                    sWorld.SendGMText(LANG_GM_AC_ANNOUNCE, plMover->GetName(), "banned", plMover->m_anti_lastcheat.c_str());
 +                    break;
 +                }
 +            }
