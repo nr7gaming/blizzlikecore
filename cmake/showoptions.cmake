@@ -58,7 +58,7 @@ if( USE_SFMT )
   message("* Use SFMT for RNG          : Yes")
   add_definitions(-DUSE_SFMT_FOR_RNG)
 else()
-  message("* Use SFMT for RNG          : No (default)")
+  message("* Use SFMT for RNG          : No  (default)")
 endif()
 
 if( WITH_WARNINGS )
