@@ -30,8 +30,8 @@ void PointMovementGenerator<T>::Initialize(T &unit)
             unit.SetUnitMovementFlags(SPLINEFLAG_WALKMODE);
         unit.SendMonsterMoveByPath(pointPath, 1, pointPath.size(), traveltime);
 
-        //PathNode p = pointPath[pointPath.size()-1];
-        //i_destinationHolder.SetDestination(traveller, p.x, p.y, p.z, false);
+        PathNode p = pointPath[pointPath.size()-1];
+        i_destinationHolder.SetDestination(traveller, p.x, p.y, p.z, false);
     }
     else
     i_destinationHolder.SetDestination(traveller, i_x, i_y, i_z, !m_usePathfinding);

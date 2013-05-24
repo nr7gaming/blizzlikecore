@@ -3,7 +3,7 @@
 #################################################
 
 [worldserver]
-ConfVersion=20130517
+ConfVersion=20130523
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -265,7 +265,7 @@ vmap.enableIndoorCheck = 1
 DetectPosCollision = 1
 TargetPosRecalculateRange = 1.5
 mmap.enable = 1
-mmap.ignoreMapIds = ""
+mmap.ignoreMapIds = "564"
 UpdateUptimeInterval = 10
 LogDB.Opt.ClearInterval = 10
 LogDB.Opt.ClearTime = 1209600
