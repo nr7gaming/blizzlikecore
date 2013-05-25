@@ -607,7 +607,7 @@ index b425f66..ed340b0 100644
 +    if (movementInfo.HasMovementFlag(MOVEFLAG_FLYING))
 +    {
 +        GetPlayer()->m_anti_flymounted = true;
-+        GetPlayer()->m_anti_plskipanticheat = false;
++      //GetPlayer()->m_anti_plskipanticheat = false;
 +    }
 +    else
 +    {
