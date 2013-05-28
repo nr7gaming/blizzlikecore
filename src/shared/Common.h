@@ -71,6 +71,12 @@
 #include <signal.h>
 #include <assert.h>
 
+#ifdef _WIN32
+# include <windows.h>
+#else
+# include <unistd.h>
+#endif
+
 #if PLATFORM == PLATFORM_WINDOWS
 #define STRCASECMP stricmp
 #else

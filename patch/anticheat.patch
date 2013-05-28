@@ -21,7 +21,7 @@ index ee46be6..7cea4e8 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index b425f66..ed340b0 100644
+index b425f66..c9ddbfb 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -45,7 +45,7 @@ index b425f66..ed340b0 100644
          return;
      }
  
-+    //reset falltimer at teleport
++    // Movement Anticheat
 +    GetPlayer()->m_anti_plskipanticheat = true;
 +
 +    if (World::GetMvAnticheatDebug())
@@ -58,7 +58,7 @@ index b425f66..ed340b0 100644
      if (guid != plMover->GetGUID())
          return;
  
-+    //reset falltimer at teleport
++    // Movement Anticheat
 +    GetPlayer()->m_anti_plskipanticheat = true;
 +
 +    if (World::GetMvAnticheatDebug())
@@ -534,15 +534,15 @@ index b425f66..ed340b0 100644
 +        }
 +        else
 +        {
-+            plMover->m_anti_alarmcount++;
 +            WorldPacket data;
 +            plMover->SetUnitMovementFlags(MOVEFLAG_NONE);
 +            plMover->BuildTeleportAckMsg(&data, plMover->GetPositionX(), plMover->GetPositionY(), plMover->GetPositionZ(), plMover->GetOrientation());
 +            plMover->GetSession()->SendPacket(&data);
 +            plMover->BuildHeartBeatMsg(&data);
 +            plMover->SendMessageToSet(&data, true);
-+            if (plMover->isInCombat())
-+                plMover->m_anti_alarmcount--;
++
++            if (!plMover->isInCombat())
++                plMover->m_anti_alarmcount++;
 +
 +            if (plMover->m_anti_alarmcount >= World::GetMvAnticheatAlarm())
 +            {
@@ -598,17 +598,14 @@ index b425f66..ed340b0 100644
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -469,6 +873,21 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -469,6 +873,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data.read_skip<uint32>();                          // unk2
  
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
 +
 +    // Movement Anticheat
 +    if (movementInfo.HasMovementFlag(MOVEFLAG_FLYING))
-+    {
 +        GetPlayer()->m_anti_flymounted = true;
-+        GetPlayer()->m_anti_plskipanticheat = false;
-+    }
 +    else
 +    {
 +        GetPlayer()->m_anti_flymounted = false;
@@ -743,7 +740,7 @@ index 68d5c31..d3830da 100644
      if (curDestNode && curDestNode->map_id != GetPlayer()->GetMapId())
      {
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index ea7495d..471ba17 100644
+index ea7495d..2cf4284 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -69,6 +69,14 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -755,7 +752,7 @@ index ea7495d..471ba17 100644
 +bool World::m_MvAnticheatDebug = false;
 +uint8 World::m_MvAnticheatGmLevel = 0;
 +uint8 World::m_MvAnticheatAction = 0;
-+uint8 World::m_MvAnticheatAlarm = 2;
++uint8 World::m_MvAnticheatAlarm = 1;
 +uint32 World::m_MvAnticheatBanDuration = 86400;
 +
  // World constructor
@@ -770,7 +767,7 @@ index ea7495d..471ba17 100644
 +    m_MvAnticheatDebug = sConfig.GetBoolDefault("Anticheat.Movement.Debug", false);
 +    m_MvAnticheatGmLevel = sConfig.GetIntDefault("Anticheat.Movement.GmLevel", 0);
 +    m_MvAnticheatAction = sConfig.GetIntDefault("Anticheat.Movement.Action", 0);
-+    m_MvAnticheatAlarm = sConfig.GetIntDefault("Anticheat.Movement.Alarm", 2);
++    m_MvAnticheatAlarm = sConfig.GetIntDefault("Anticheat.Movement.Alarm", 1);
 +    m_MvAnticheatBanDuration = sConfig.GetIntDefault("Anticheat.Movement.BanDuration", 86400);
 +
      // Read other configuration items from the config file
@@ -811,7 +808,7 @@ index 977ad28..163f49a 100644
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 7a85c30..ec3813b 100644
+index 3b9b52f..904bbe3 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
 @@ -2059,3 +2059,43 @@ Die.Command.Mode = 1
@@ -844,7 +841,7 @@ index 7a85c30..ec3813b 100644
 +#
 +#    Anticheat.Movement.Alarm
 +#        When the action should occur
-+#        Default: 2 (Alarm)
++#        Default: 1 (Alarm)
 +#
 +#    Anticheat.Movement.BanDuration
 +#        Time (in seconds) an account will be banned.
@@ -856,5 +853,5 @@ index 7a85c30..ec3813b 100644
 +Anticheat.Movement.Debug = 0
 +Anticheat.Movement.GmLevel = 0
 +Anticheat.Movement.Action = 0
-+Anticheat.Movement.Alarm = 2
++Anticheat.Movement.Alarm = 1
 +Anticheat.Movement.BanDuration = 86400

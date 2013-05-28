@@ -25,7 +25,7 @@
 
 // Format is BDB_YYYYMMDD
 #ifndef _REQ_BDB_VERSION
-# define _REQ_BDB_VERSION  "BDB_20130522"
+# define _REQ_BDB_VERSION  "BDB_20130525"
 #endif //_REQ_BDB_VERSION
 
 #ifdef _WIN32
@@ -34,10 +34,7 @@ extern int m_ServiceStatus;
 #endif
 
 #ifdef _WIN32
-# include <windows.h>
 # define sleep(x) Sleep(x * 1000)
-#else
-# include <unistd.h>
 #endif
 
 INSTANTIATE_SINGLETON_1(Master);
