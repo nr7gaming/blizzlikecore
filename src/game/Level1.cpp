@@ -1477,7 +1477,7 @@ bool ChatHandler::HandleModifyASpeedCommand(const char* args)
     float modSpeed = (float)atof((char*)args);
 
 
-    if (modSpeed > 10 || modSpeed < 0.1)
+    if (modSpeed > 10.0f || modSpeed < 0.1f)
     {
         SendSysMessage(LANG_BAD_VALUE);
         SetSentErrorMessage(true);
@@ -1519,7 +1519,7 @@ bool ChatHandler::HandleModifySpeedCommand(const char* args)
 
     float modSpeed = (float)atof((char*)args);
 
-    if (modSpeed > 10 || modSpeed < 0.1)
+    if (modSpeed > 10.0f || modSpeed < 0.1f)
     {
         SendSysMessage(LANG_BAD_VALUE);
         SetSentErrorMessage(true);
