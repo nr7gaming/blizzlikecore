@@ -44,10 +44,7 @@ int m_ServiceStatus = -1;
 #endif
 
 #ifdef _WIN32
-# include <windows.h>
 # define sleep(x) Sleep(x * 1000)
-#else
-# include <unistd.h>
 #endif
 
 bool StartDB();
