@@ -20,8 +20,10 @@
 #include "CombatAI.h"
 #include "PassiveAI.h"
 
-#ifdef WIN32
-#include <windows.h>
+#ifdef _WIN32
+# include <windows.h>
+#else
+# include <unistd.h>
 #endif
 
 #endif
