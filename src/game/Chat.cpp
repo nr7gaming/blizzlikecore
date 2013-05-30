@@ -761,7 +761,7 @@ bool ChatHandler::hasStringAbbr(const char* name, const char* part)
         if (!*part)
             return false;
 
-        for (;;)
+        while (true)
         {
             if (!*part)
                 return true;
@@ -772,7 +772,6 @@ bool ChatHandler::hasStringAbbr(const char* name, const char* part)
             ++name; ++part;
         }
     }
-    // allow with any for ""
 
     return true;
 }
