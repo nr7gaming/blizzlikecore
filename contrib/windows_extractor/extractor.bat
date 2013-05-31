@@ -38,7 +38,7 @@ pause>nul
 goto panel
 :3_extract_mmaps
 if exist mmaps (del /S /Q mmaps) else (md mmaps)
-mmap_extractor.exe
+mmap_generator.exe
 echo.
 echo Press any key to panel . . .
 pause>nul
