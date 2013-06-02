@@ -26,7 +26,7 @@ class SqlQueryHolder;
 typedef UNORDERED_MAP<ACE_Based::Thread*, SqlTransaction*> TransactionQueues;
 typedef UNORDERED_MAP<ACE_Based::Thread*, SqlResultQueue*> QueryQueues;
 
-#define MAX_QUERY_LEN   1024
+#define MAX_QUERY_LEN   (32*1024)
 
 class Database
 {

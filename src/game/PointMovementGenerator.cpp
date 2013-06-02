@@ -11,6 +11,7 @@
 #include "DestinationHolderImp.h"
 #include "World.h"
 #include "PathFinder.h"
+#include "CreatureGroups.h"
 
 //----- Point Movement Generator
 template<class T>
