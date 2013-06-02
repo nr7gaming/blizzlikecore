@@ -9,8 +9,11 @@ add_definitions("-DIOMAP_DEBUG")
 # build setup currently only supports libmpq 0.4.x
 add_definitions("-DUSE_LIBMPQ04")
 add_definitions("-Wall")
-add_definitions("-ggdb")
-add_definitions("-O3")
+
+if(NOT WIN32)
+  add_definitions("-ggdb")
+  add_definitions("-O3")
+endif(NOT WIN32)
 
 if( UNIX )
   include_directories(
