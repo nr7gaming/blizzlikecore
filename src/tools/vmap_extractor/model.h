@@ -6,6 +6,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include "warnings.h"
 #include "loadlib/loadlib.h"
 #include "vec3d.h"
 //#include "mpq.h"

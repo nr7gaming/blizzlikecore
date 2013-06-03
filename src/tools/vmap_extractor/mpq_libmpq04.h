@@ -9,6 +9,7 @@
 #ifndef MPQ_H
 #define MPQ_H
 
+#include "warnings.h"
 #include "loadlib/loadlib.h"
 #include "libmpq/mpq.h"
 #include <string.h>

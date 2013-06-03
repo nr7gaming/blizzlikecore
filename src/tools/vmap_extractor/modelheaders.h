@@ -6,6 +6,7 @@
 #ifndef MODELHEADERS_H
 #define MODELHEADERS_H
 
+#include "warnings.h"
 /* typedef unsigned char uint8;
 typedef char int8;
 typedef unsigned short uint16;

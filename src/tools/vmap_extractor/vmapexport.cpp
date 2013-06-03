@@ -4,6 +4,7 @@
  */
 
 #define _CRT_SECURE_NO_DEPRECATE
+#include "warnings.h"
 #include <cstdio>
 #include <iostream>
 #include <vector>

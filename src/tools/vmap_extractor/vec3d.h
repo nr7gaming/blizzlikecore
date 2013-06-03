@@ -6,6 +6,7 @@
 #ifndef VEC3D_H
 #define VEC3D_H
 
+#include "warnings.h"
 #include <iostream>
 #include <cmath>
 

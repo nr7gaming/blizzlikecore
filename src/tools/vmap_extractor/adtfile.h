@@ -6,6 +6,7 @@
 #ifndef ADT_H
 #define ADT_H
 
+#include "warnings.h"
 #include "mpq_libmpq04.h"
 #include "wmo.h"
 #include "model.h"

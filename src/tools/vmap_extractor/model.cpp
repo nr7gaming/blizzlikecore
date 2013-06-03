@@ -3,6 +3,7 @@
  * Integrated Files: CREDITS.md and LICENSE.md
  */
 
+#include "warnings.h"
 #include "vmapexport.h"
 #include "model.h"
 #include "wmo.h"

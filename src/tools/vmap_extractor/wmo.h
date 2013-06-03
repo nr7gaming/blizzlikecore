@@ -8,6 +8,7 @@
 #define TILESIZE (533.33333f)
 #define CHUNKSIZE ((TILESIZE) / 16.0f)
 
+#include "warnings.h"
 #include <string>
 #include <set>
 #include "vec3d.h"

@@ -6,6 +6,8 @@
 #ifndef VMAPEXPORT_H
 #define VMAPEXPORT_H
 
+#include "warnings.h"
+
 enum ModelFlags
 {
     MOD_M2 = 1,

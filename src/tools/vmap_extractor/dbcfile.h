@@ -6,6 +6,7 @@
 #ifndef DBCFILE_H
 #define DBCFILE_H
 
+#include "warnings.h"
 #include <cassert>
 #include <string>
 

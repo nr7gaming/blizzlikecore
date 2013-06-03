@@ -3,6 +3,7 @@
  * Integrated Files: CREDITS.md and LICENSE.md
  */
 
+#include "warnings.h"
 #include "dbcfile.h"
 #include "mpq_libmpq04.h"
 #undef min
