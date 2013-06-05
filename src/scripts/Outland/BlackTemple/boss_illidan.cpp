@@ -282,24 +282,24 @@ struct Locations
 
 static Locations HoverPosition[]=
 {
-    {657, 340, 355},
-    {657, 275, 355},
-    {705, 275, 355},
-    {705, 340, 355}
+    {657.0f, 340.0f, 355.0f},
+    {657.0f, 275.0f, 355.0f},
+    {705.0f, 275.0f, 355.0f},
+    {705.0f, 340.0f, 355.0f}
 };
 
 static Locations GlaivePosition[]=
 {
-    {695.105, 305.303, 354.256},
-    {659.338, 305.303, 354.256},//the distance between two glaives is 36
-    {700.105, 305.303, 354.256},
-    {664.338, 305.303, 354.256}
+    {695.105f, 305.303f, 354.256f},
+    {659.338f, 305.303f, 354.256f}, // the distance between two glaives is 36
+    {700.105f, 305.303f, 354.256f},
+    {664.338f, 305.303f, 354.256f}
 };
 
 static Locations EyeBlast[]=
 {
-    {677, 350, 354},//start point, pass through glaive point
-    {677, 260, 354}
+    {677.0f, 350.0f, 354.0f}, // start point, pass through glaive point
+    {677.0f, 260.0f, 354.0f}
 };
 
 static Locations AkamaWP[]=
@@ -318,7 +318,7 @@ static Locations AkamaWP[]=
     {796.84f, 304.89f, 319.76f}, // Down the second flight of stairs
     {782.01f, 304.55f, 319.76f}  // Final location - back at the initial gates. This is where he will fight the minions! (12)
 };
-// 755.762, 304.0747, 312.1769 -- This is where Akama should be spawned
+// 755.762f, 304.0747f, 312.1769f -- This is where Akama should be spawned
 static Locations SpiritSpawns[]=
 {
     {755.5426f, 309.9156f, 312.2129f},
@@ -335,7 +335,7 @@ static Animation DemonTransformation[]=
 {
     {SPELL_DEMON_TRANSFORM_1, 0, 1000, 0, 0, 6, true},
     {SPELL_DEMON_TRANSFORM_2, SPELL_DEMON_TRANSFORM_1, 4000, 0, 0, 6, true},
-    {0, 0, 3000, 1073741824, 21322, 6, false},//stunned, cannot cast demon form
+    {0, 0, 3000, 1073741824, 21322, 6, false}, // stunned, cannot cast demon form
     {SPELL_DEMON_TRANSFORM_3, SPELL_DEMON_TRANSFORM_2, 3500, 0, 0, 6, false},
     {SPELL_DEMON_FORM, SPELL_DEMON_TRANSFORM_3, 0, 0, 0, 4, false},
     {SPELL_DEMON_TRANSFORM_1, 0, 1000, 0, 0, 6, false},
