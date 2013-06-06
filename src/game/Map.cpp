@@ -64,7 +64,7 @@ bool Map::ExistMap(uint32 mapid,int gx,int gy)
         if (fread(&header, sizeof(header), 1, pf) == 1)
         {
             if (header.mapMagic != *((uint32 const*)(MAP_MAGIC)) || header.versionMagic != *((uint32 const*)(MAP_VERSION_MAGIC)))
-                sLog.outError("Map file '%s' is from an incompatible client version. Please recreate using the mapextractor.",tmp);
+                sLog.outError("Map file '%s' is from an incompatible client version. Please recreate using the map_extractor.",tmp);
             else
                 ret = true;
         }
