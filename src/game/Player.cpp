@@ -3021,22 +3021,22 @@ void Player::learnSpell(uint32 spell_id)
 
     bool learning = addSpell(spell_id,active);
 
-    // learn all disabled higher ranks (recursive)
-    SpellChainNode const* node = spellmgr.GetSpellChainNode(spell_id);
-    if (node)
+    // prevent duplicated entires in spell book, also not send if not in world (loading)
+    if (learning && IsInWorld())
     {
-        PlayerSpellMap::iterator iter = m_spells.find(node->next);
-        if (disabled && iter != m_spells.end() && iter->second->disabled)
-            learnSpell(node->next);
+        WorldPacket data(SMSG_LEARNED_SPELL, 4);
+        data << uint32(spell_id);
+        GetSession()->SendPacket(&data);
     }
 
-    // prevent duplicated entires in spell book
-    if (!learning)
-        return;
-
-    WorldPacket data(SMSG_LEARNED_SPELL, 4);
-    data << uint32(spell_id);
-    GetSession()->SendPacket(&data);
+    // learn all disabled higher ranks (recursive)
+    if (disabled)
+    {
+        SpellChainNode const* node = spellmgr.GetSpellChainNode(spell_id);
+        PlayerSpellMap::iterator iter = m_spells.find(node->next);
+        if (iter != m_spells.end() && iter->second->disabled)
+            learnSpell(node->next);
+    }
 }
 
 void Player::removeSpell(uint32 spell_id, bool disabled)
@@ -20924,8 +20924,8 @@ void Player::LearnTalent(uint32 talentId, uint32 talentRank)
     uint32 tTab = talentInfo->TalentTab;
     if (talentInfo->Row > 0)
     {
-        unsigned int numRows = sTalentStore.GetNumRows();
-        for (unsigned int i = 0; i < numRows; ++i)          // Loop through all talents.
+        uint32 numRows = sTalentStore.GetNumRows();
+        for (uint32 i = 0; i < numRows; ++i)          // Loop through all talents.
         {
             // Someday, someone needs to revamp
             const TalentEntry* tmpTalent = sTalentStore.LookupEntry(i);
@@ -20933,13 +20933,13 @@ void Player::LearnTalent(uint32 talentId, uint32 talentRank)
             {
                 if (tmpTalent->TalentTab == tTab)
                 {
-                    for (int j = 0; j < MAX_TALENT_RANK; ++j)
+                    for (uint8 j = 0; j < MAX_TALENT_RANK; ++j)
                     {
                         if (tmpTalent->RankID[j] != 0)
                         {
                             if (HasSpell(tmpTalent->RankID[j]))
                             {
-                                spentPoints += j + 1;
+                                spentPoints += (j + 1);
                             }
                         }
                     }

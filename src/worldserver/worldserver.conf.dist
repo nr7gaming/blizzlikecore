@@ -1923,11 +1923,8 @@ CharDelete.KeepDays = 30
 #    PlayerStart.AllSpells
 #        If enabled, players will start with all their class spells
 #         (not talents). Useful for instant 70 servers.
-#         You must import playercreateinfo_spell_custom.sql, it's included in
-#         the SQL folder.
 #        Default: 0 - off
 #                 1 - on
-#
 #
 #    PlayerStart.MapsExplored
 #        Players will start with all maps explored if enabled
