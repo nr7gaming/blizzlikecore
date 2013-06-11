@@ -1815,7 +1815,7 @@ uint32 ChatHandler::extractSpellIdFromLink(char* text)
     if (rank < 0)
         rank = 0;
 
-    return talentEntry->RankID[rank];
+    return rank < MAX_TALENT_RANK ? talentEntry->RankID[rank] : 0;
 }
 
 GameTele const* ChatHandler::extractGameTeleFromLink(char* text)
