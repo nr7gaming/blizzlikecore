@@ -3862,10 +3862,10 @@ index ec9d143..2fe7ba2 100644
  #if PLATFORM == PLATFORM_WINDOWS
  #define UTF8PRINTF(OUT,FRM,RESERR)                      \
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 5a10889..07070e3 100644
+index 90c2c19..9217084 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
-@@ -2059,3 +2059,51 @@ Die.Command.Mode = 1
+@@ -2056,3 +2056,51 @@ Die.Command.Mode = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000

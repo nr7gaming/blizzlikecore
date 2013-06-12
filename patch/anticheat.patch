@@ -21,7 +21,7 @@ index ee46be6..7cea4e8 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index b425f66..52c0225 100644
+index b425f66..4570061 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -619,7 +619,7 @@ index b425f66..52c0225 100644
  
  void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 3b4d3db..bf4afc8 100644
+index 42f258a..90921f6 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -370,6 +370,24 @@ Player::Player (WorldSession *session): Unit()
@@ -647,7 +647,7 @@ index 3b4d3db..bf4afc8 100644
      m_mailsLoaded = false;
      m_mailsUpdated = false;
      unReadMails = 0;
-@@ -20492,12 +20510,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
+@@ -20494,12 +20512,16 @@ bool ItemPosCount::isContainedIn(ItemPosCountVec const& vec) const
  
  void Player::HandleFallDamage(MovementInfo& movementInfo)
  {
@@ -667,10 +667,10 @@ index 3b4d3db..bf4afc8 100644
      //Players with low fall distance, Feather Fall or physical immunity (charges used) are ignored
      // 14.57 can be calculated by resolving damageperc formular below to 0
 diff --git a/src/game/Player.h b/src/game/Player.h
-index 97eb2da..64a08a5 100644
+index ea96957..aa6392b 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
-@@ -2295,6 +2295,22 @@ class Player : public Unit, public GridObject<Player>
+@@ -2296,6 +2296,22 @@ class Player : public Unit, public GridObject<Player>
          RestType rest_type;
          ////////////////////Rest System/////////////////////
  
@@ -694,7 +694,7 @@ index 97eb2da..64a08a5 100644
          Transport * m_transport;
  
 diff --git a/src/game/TaxiHandler.cpp b/src/game/TaxiHandler.cpp
-index 68d5c31..d3830da 100644
+index 68d5c31..a738e89 100644
 --- a/src/game/TaxiHandler.cpp
 +++ b/src/game/TaxiHandler.cpp
 @@ -105,6 +105,11 @@ void WorldSession::SendDoFlight(uint16 MountId, uint32 path, uint32 pathNode)
@@ -809,10 +809,10 @@ index 977ad28..163f49a 100644
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 3b9b52f..904bbe3 100644
+index 90c2c19..e4c260b 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
-@@ -2059,3 +2059,43 @@ Die.Command.Mode = 1
+@@ -2056,3 +2056,43 @@ Die.Command.Mode = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000
