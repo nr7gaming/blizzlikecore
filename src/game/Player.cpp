@@ -2797,14 +2797,16 @@ bool Player::addSpell(uint32 spell_id, bool active, bool learning, bool loading,
         }
     }
 
+    TalentSpellPos const* talentPos = GetTalentSpellPos(spell_id);
+
     if (!disabled_case) // skip new spell adding if spell already known (disabled spells case)
     {
         // talent: unlearn all other talent ranks (high and low)
-        if (TalentSpellPos const* talentPos = GetTalentSpellPos(spell_id))
+        if (talentPos && spell_id != 12788 && spell_id != 12789)
         {
             if (TalentEntry const *talentInfo = sTalentStore.LookupEntry(talentPos->talent_id))
             {
-                for (int i=0; i <5; ++i)
+                for (int i=0; i < MAX_TALENT_RANK; ++i)
                 {
                     // skip learning spell and no rank spell case
                     uint32 rankSpellId = talentInfo->RankID[i];
