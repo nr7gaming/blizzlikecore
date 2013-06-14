@@ -16,7 +16,7 @@ ConfVersion=20130523
 #        Data directory setting.
 #        Important: DataDir needs to be quoted, as it is a string which may
 #         contain space characters.
-#        Example: "@prefix@/share/BlizzLikeCore"
+#        Example: "/home/<username>/server/data"
 #
 #    LogsDir
 #        Logs directory setting.
