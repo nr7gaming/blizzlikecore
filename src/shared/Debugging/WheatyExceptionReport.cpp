@@ -3,7 +3,7 @@
  * Integrated Files: CREDITS.md and LICENSE.md
  */
  
-#include "CompilerDefs.h"
+#include "Platform/CompilerDefs.h"
 
 #if PLATFORM == PLATFORM_WINDOWS && !defined(__MINGW32__)
 #define WIN32_LEAN_AND_MEAN
