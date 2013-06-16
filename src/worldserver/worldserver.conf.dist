@@ -1509,6 +1509,7 @@ Death.Bones.BattlegroundOrArena = 1
 Battleground.CastDeserter = 1
 Battleground.QueueAnnouncer.Enable = 0
 Battleground.QueueAnnouncer.PlayerOnly = 0
+Battleground.QueueAnnouncer.OnStart = 0
 Battleground.PrematureReward = 1
 BattleGround.PrematureFinishTimer = 300000
 Battleground.LeaveWrathMode = 0
