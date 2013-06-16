@@ -76,7 +76,7 @@ struct mob_unkor_the_ruthlessAI : public ScriptedAI
         {
             if (Group* pGroup = CAST_PLR(done_by)->GetGroup())
             {
-                for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+                for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
                 {
                     Player* pGroupie = itr->getSource();
                     if (pGroupie &&

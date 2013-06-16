@@ -467,7 +467,7 @@ void npc_secondTrialAI::JustDied(Unit* Killer)
         {
             if (Group *pGroup = CAST_PLR(Killer)->GetGroup())
             {
-                for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+                for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
                 {
                     Player* pGroupGuy = itr->getSource();
 

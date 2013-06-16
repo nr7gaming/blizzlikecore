@@ -2469,7 +2469,7 @@ bool ChatHandler::HandleGroupTeleCommand(const char * args)
         return false;
     }
 
-    for (GroupReference *itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* pl = itr->getSource();
 
@@ -2548,7 +2548,7 @@ bool ChatHandler::HandleGroupgoCommand(const char* args)
         return false;
     }
 
-    for (GroupReference *itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* pl = itr->getSource();
 

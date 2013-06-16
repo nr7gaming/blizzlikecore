@@ -120,7 +120,7 @@ void Totem::UnSummon()
         pGroup = m_owner->ToPlayer()->GetGroup();
         if (pGroup)
         {
-            for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
             {
                 Player* Target = itr->getSource();
                 if (Target && pGroup->SameSubGroup(m_owner->ToPlayer(), Target))

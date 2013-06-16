@@ -36,7 +36,7 @@ bool GOHello_go_gauntlet_gate(Player* pPlayer, GameObject* pGo)
 
     if (Group *pGroup = pPlayer->GetGroup())
     {
-        for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+        for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
         {
             Player* pGroupie = itr->getSource();
             if (!pGroupie)

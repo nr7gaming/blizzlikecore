@@ -309,7 +309,7 @@ class Group
         void CountRollVote(const uint64& playerGUID, const uint64& Guid, uint32 NumberOfPlayers, uint8 Choise);
         void EndRoll();
 
-        void LinkMember(GroupReference *pRef) { m_memberMgr.insertFirst(pRef); }
+        void LinkMember(GroupReference* pRef) { m_memberMgr.insertFirst(pRef); }
         void DelinkMember(GroupReference* /*pRef*/) { }
 
         InstanceGroupBind* BindToInstance(InstanceSave *save, bool permanent, bool load = false);

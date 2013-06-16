@@ -822,7 +822,7 @@ void Aura::UpdateAuraDuration()
         Group* CasterGroup = caster->ToPlayer()->GetGroup();
         if (CasterGroup && (spellmgr.GetSpellCustomAttr(GetId()) & SPELL_ATTR_CU_AURA_CC))
         {
-            for (GroupReference *itr = CasterGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference* itr = CasterGroup->GetFirstMember(); itr != NULL; itr = itr->next())
             {
                 Player* player = itr->getSource();
                 if (player && player != caster)

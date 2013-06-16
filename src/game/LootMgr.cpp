@@ -370,7 +370,7 @@ void Loot::FillLoot(uint32 loot_id, LootStore const& store, Player* loot_owner)
     Group * pGroup=loot_owner->GetGroup();
     if (!pGroup)
         return;
-    for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
     {
         //fill the quest item map for every player in the recipient's group
         Player* pl = itr->getSource();

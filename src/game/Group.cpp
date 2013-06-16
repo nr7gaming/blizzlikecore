@@ -525,7 +525,7 @@ void Group::GroupLoot(const uint64& playerGUID, Loot *loot, WorldObject* object)
             Roll* r = new Roll(newitemGUID,*i);
 
             //a vector is filled with only near party members
-            for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
             {
                 Player* member = itr->getSource();
                 if (!member || !member->GetSession())
@@ -573,7 +573,7 @@ void Group::NeedBeforeGreed(const uint64& playerGUID, Loot *loot, WorldObject* o
             uint64 newitemGUID = MAKE_NEW_GUID(objmgr.GenerateLowGuid(HIGHGUID_ITEM),0,HIGHGUID_ITEM);
             Roll* r=new Roll(newitemGUID,*i);
 
-            for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
             {
                 Player* playerToRoll = itr->getSource();
                 if (!playerToRoll || !playerToRoll->GetSession())
@@ -623,7 +623,7 @@ void Group::MasterLoot(const uint64& playerGUID, Loot* /*loot*/, WorldObject* ob
     WorldPacket data(SMSG_LOOT_MASTER_LIST, 330);
     data << (uint8)GetMembersCount();
 
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* looter = itr->getSource();
         if (!looter->IsInWorld())
@@ -638,7 +638,7 @@ void Group::MasterLoot(const uint64& playerGUID, Loot* /*loot*/, WorldObject* ob
 
     data.put<uint8>(0,real_count);
 
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* looter = itr->getSource();
         if (looter->GetDistance2d(object) < sWorld.getConfig(CONFIG_GROUP_XP_DISTANCE))
@@ -841,7 +841,7 @@ void Group::SetTargetIcon(uint8 id, uint64 guid)
 
 void Group::GetDataForXPAtKill(Unit const* victim, uint32& count,uint32& sum_level, Player* & member_with_max_level, Player* & not_gray_member_with_max_level)
 {
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* member = itr->getSource();
         if (!member || !member->isAlive())                   // only for alive
@@ -939,7 +939,7 @@ void Group::UpdatePlayerOutOfRange(Player* pPlayer)
     WorldPacket data;
     pPlayer->GetSession()->BuildPartyMemberStatsChangedPacket(pPlayer, &data);
 
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         member = itr->getSource();
         if (member && member != pPlayer && !pPlayer->isVisibleFor(member))
@@ -949,7 +949,7 @@ void Group::UpdatePlayerOutOfRange(Player* pPlayer)
 
 void Group::BroadcastPacket(WorldPacket* packet, bool ignorePlayersInBGRaid, int group, uint64 ignore)
 {
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* pl = itr->getSource();
         if (!pl || (ignore != 0 && pl->GetGUID() == ignore) || (ignorePlayersInBGRaid && pl->GetGroup() != this))
@@ -962,7 +962,7 @@ void Group::BroadcastPacket(WorldPacket* packet, bool ignorePlayersInBGRaid, int
 
 void Group::BroadcastReadyCheck(WorldPacket* packet)
 {
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* pl = itr->getSource();
         if (pl && pl->GetSession())
@@ -1385,7 +1385,7 @@ uint32 Group::CanJoinBattleGroundQueue(uint32 bgTypeId, uint32 bgQueueType, uint
     uint32 team = reference->GetTeam();
 
     // check every member of the group to be able to join
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* member = itr->getSource();
         // offline member? don't let join
@@ -1426,24 +1426,22 @@ void Roll::targetObjectBuildLink()
 void Group::SetDifficulty(uint8 difficulty)
 {
     m_difficulty = difficulty;
-    if (!isBGGroup()) CharacterDatabase.PExecute("UPDATE groups SET difficulty = %u WHERE leaderGuid ='%u'", m_difficulty, GUID_LOPART(m_leaderGuid));
+    if (!isBGGroup())
+        CharacterDatabase.PExecute("UPDATE groups SET difficulty = %u WHERE leaderGuid ='%u'", m_difficulty, GUID_LOPART(m_leaderGuid));
 
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* player = itr->getSource();
         if (!player->GetSession() || player->getLevel() < LEVELREQUIREMENT_HEROIC)
             continue;
         player->SetDifficulty(difficulty);
         player->SendDungeonDifficulty(true);
-        //send player to recall positio nis a dungeon (to avoid an exploit)
-        if (sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
-            player->TeleportTo(player->m_recallMap, player->m_recallX, player->m_recallY, player->m_recallZ, player->m_recallO);
     }
 }
 
 bool Group::InCombatToInstance(uint32 instanceId)
 {
-    for (GroupReference *itr = GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* pPlayer = itr->getSource();
         if (pPlayer && pPlayer->getAttackers().size() && pPlayer->GetInstanceId() == instanceId && (pPlayer->GetMap()->IsRaid() || pPlayer->GetMap()->IsHeroic()))

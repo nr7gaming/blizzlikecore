@@ -141,7 +141,7 @@ void WorldSession::HandleBattleGroundJoinOpcode(WorldPacket& recv_data)
     {
         sLog.outDebug("Battleground: the following players are joining as group:");
         GroupQueueInfo * ginfo = sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].AddGroup(_player, bgTypeId, 0, false, 0);
-        for (GroupReference *itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
+        for (GroupReference* itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
         {
             Player* member = itr->getSource();
             if (!member) continue;   // this should never happen
@@ -744,7 +744,7 @@ void WorldSession::HandleBattleGroundArenaJoin(WorldPacket& recv_data)
         // the arenateam id must match for everyone in the group
         // get the personal ratings for queueing
         uint32 avg_pers_rating = 0;
-        for (GroupReference *itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
+        for (GroupReference* itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
         {
             Player* member = itr->getSource();
 
@@ -766,7 +766,7 @@ void WorldSession::HandleBattleGroundArenaJoin(WorldPacket& recv_data)
         sLog.outDebug("Battleground: arena join as group start");
         if (isRated)
             sLog.outDebug("Battleground: arena team id %u, leader %s queued with rating %u for type %u",_player->GetArenaTeamId(arenaslot),_player->GetName(),arenaRating,arenatype);
-        for (GroupReference *itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
+        for (GroupReference* itr = grp->GetFirstMember(); itr != NULL; itr = itr->next())
         {
             Player* member = itr->getSource();
             if (!member) continue;

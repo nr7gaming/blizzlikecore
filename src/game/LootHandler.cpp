@@ -200,7 +200,7 @@ void WorldSession::HandleLootMoneyOpcode(WorldPacket & /*recv_data*/)
             Group* group = player->GetGroup();
 
             std::vector<Player*> playersNear;
-            for (GroupReference *itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference* itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
             {
                 Player* playerGroup = itr->getSource();
                 if (!playerGroup)

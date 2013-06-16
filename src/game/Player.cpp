@@ -3032,11 +3032,11 @@ void Player::learnSpell(uint32 spell_id)
     }
 
     // learn all disabled higher ranks (recursive)
-    if (disabled)
+    SpellChainNode const* node = spellmgr.GetSpellChainNode(spell_id);
+    if (node)
     {
-        SpellChainNode const* node = spellmgr.GetSpellChainNode(spell_id);
         PlayerSpellMap::iterator iter = m_spells.find(node->next);
-        if (iter != m_spells.end() && iter->second->disabled)
+        if (disabled && iter != m_spells.end() && iter->second->disabled)
             learnSpell(node->next);
     }
 }
@@ -13956,7 +13956,7 @@ void Player::GroupEventHappens(uint32 questId, WorldObject const* pEventObject)
 {
     if (Group *pGroup = GetGroup())
     {
-        for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+        for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
         {
             Player* pGroupGuy = itr->getSource();
 
@@ -20035,7 +20035,7 @@ void Player::RewardPlayerAndGroupAtKill(Unit* pVictim)
             bool is_dungeon = PvP ? false : sMapStore.LookupEntry(GetMapId())->IsDungeon();
             float group_rate = BlizzLike::XP::xp_in_group_rate(count,is_raid);
 
-            for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+            for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
             {
                 Player* pGroupGuy = itr->getSource();
                 if (!pGroupGuy)
@@ -20111,7 +20111,7 @@ void Player::RewardPlayerAndGroupAtEvent(uint32 creature_id, WorldObject* pRewar
     // prepare data for near group iteration
     if (Group *pGroup = GetGroup())
     {
-        for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+        for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
         {
             Player* pGroupGuy = itr->getSource();
             if (!pGroupGuy)
@@ -20349,7 +20349,7 @@ Player* Player::GetNextRandomRaidMember(float radius)
     std::vector<Player*> nearMembers;
     nearMembers.reserve(pGroup->GetMembersCount());
 
-    for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+    for (GroupReference* itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* Target = itr->getSource();
 
@@ -20926,8 +20926,8 @@ void Player::LearnTalent(uint32 talentId, uint32 talentRank)
     uint32 tTab = talentInfo->TalentTab;
     if (talentInfo->Row > 0)
     {
-        uint32 numRows = sTalentStore.GetNumRows();
-        for (uint32 i = 0; i < numRows; ++i)          // Loop through all talents.
+        unsigned int numRows = sTalentStore.GetNumRows();
+        for (unsigned int i = 0; i < numRows; ++i)          // Loop through all talents.
         {
             // Someday, someone needs to revamp
             const TalentEntry* tmpTalent = sTalentStore.LookupEntry(i);
@@ -20935,7 +20935,7 @@ void Player::LearnTalent(uint32 talentId, uint32 talentRank)
             {
                 if (tmpTalent->TalentTab == tTab)
                 {
-                    for (uint8 j = 0; j < MAX_TALENT_RANK; ++j)
+                    for (unsigned int j = 0; j < MAX_TALENT_RANK; ++j)
                     {
                         if (tmpTalent->RankID[j] != 0)
                         {
