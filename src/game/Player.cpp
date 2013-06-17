@@ -3033,10 +3033,10 @@ void Player::learnSpell(uint32 spell_id)
 
     // learn all disabled higher ranks (recursive)
     SpellChainNode const* node = spellmgr.GetSpellChainNode(spell_id);
-    if (node)
+    if (node && disabled)
     {
         PlayerSpellMap::iterator iter = m_spells.find(node->next);
-        if (disabled && iter != m_spells.end() && iter->second->disabled)
+        if (iter != m_spells.end() && iter->second->disabled)
             learnSpell(node->next);
     }
 }

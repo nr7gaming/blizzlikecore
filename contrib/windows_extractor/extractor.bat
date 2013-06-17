@@ -3,9 +3,9 @@ color 0b
 :panel
 cls
 echo.
-echo ////////////////////////////////////////////////////
-echo /// BlizzLikeCore dbc/maps/vmaps/mmaps extractor ///
-echo ////////////////////////////////////////////////////
+echo //////////////////////////////////////////
+echo /// BlizzLikeCore dbc/maps/vmaps/mmaps ///
+echo //////////////////////////////////////////
 echo.
 echo Extract dbc/maps [1]
 echo Extract vmaps	 [2]
@@ -37,7 +37,13 @@ echo Press any key to panel . . .
 pause>nul
 goto panel
 :3_extract_mmaps
-if exist mmaps (del /S /Q mmaps) else (md mmaps)
+if exist mmaps (cls
+echo.
+echo The mmaps folder already exist!
+set /p opc=Do you want to delete it? [n] 
+echo.) else (md mmaps)
+if "%opc%" == "y" del /S /Q mmaps
+echo.
 mmap_generator.exe
 echo.
 echo Press any key to panel . . .
