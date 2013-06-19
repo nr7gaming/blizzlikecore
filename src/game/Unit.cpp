@@ -6848,11 +6848,16 @@ bool Unit::AttackStop()
 
     InterruptSpell(CURRENT_MELEE_SPELL);
 
-    if (GetTypeId() == TYPEID_UNIT)
+    if (Creature* creature = ToCreature())
     {
         // reset call assistance
-        ToCreature()->SetNoCallAssistance(false);
-        ToCreature()->SetNoSearchAssistance(false);
+        creature->SetNoCallAssistance(false);
+
+        if (creature->HasSearchedAssistance())
+        {
+            creature->SetNoSearchAssistance(false);
+            UpdateSpeed(MOVE_RUN, false);
+        }
     }
 
     SendMeleeAttackStop(victim);

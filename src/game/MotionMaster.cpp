@@ -466,6 +466,7 @@ void MotionMaster::Mutate(MovementGenerator *m, MovementSlot slot)
         i_top = slot;
     }
 
+    Impl[slot] = m;
     if (i_top > slot)
         needInit[slot] = true;
     else
@@ -473,7 +474,6 @@ void MotionMaster::Mutate(MovementGenerator *m, MovementSlot slot)
         m->Initialize(*i_owner);
         needInit[slot] = false;
     }
-    Impl[slot] = m;
 }
 
 void MotionMaster::MovePath(uint32 path_id, bool repeatable)
@@ -554,9 +554,9 @@ void MotionMaster::DirectDelete(_Ty curr)
 
 void MotionMaster::DelayedDelete(_Ty curr)
 {
-    sLog.outCrash("Unit (Entry %u) is trying to delete its updating MG (Type %u)!", i_owner->GetEntry(), curr->GetMovementGeneratorType());
-    if (isStatic(curr))
+    if (isStatic(curr) || curr->GetMovementGeneratorType() == 5)
         return;
+    sLog.outCrash("Unit (Entry %u) is trying to delete its updating (MovementGeneratorType %u)", i_owner->GetEntry(), curr->GetMovementGeneratorType());
     if (!m_expList)
         m_expList = new ExpireList();
     m_expList->push_back(curr);
