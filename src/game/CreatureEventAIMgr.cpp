@@ -569,7 +569,7 @@ void CreatureEventAIMgr::LoadCreatureEventAI_Scripts()
                         const SpellEntry *spell = sSpellStore.LookupEntry(action.cast.spellId);
                         if (!spell)
                             sLog.outErrorDb("CreatureEventAI:  Event %u Action %u uses non-existent SpellID %u.", i, j+1, action.cast.spellId);
-                        /* FIXME: temp.raw.param3 not have event tipes with recovery time in it.... */
+                        /* FIXME: temp.raw.param3 not have event tipes with recovery time in it....
                         else
                         {
                             if (spell->RecoveryTime > 0 && temp.event_flags & EFLAG_REPEATABLE)
@@ -579,6 +579,8 @@ void CreatureEventAIMgr::LoadCreatureEventAI_Scripts()
                                     sLog.outDebug("CreatureEventAI:  Event %u Action %u uses SpellID %u but cooldown is longer(%u) than minumum defined in event param3(%u).", i, j+1, action.cast.spellId, spell->RecoveryTime, temp.raw.param3);
                             }
                         }
+                        */
+
                         //Cast is always triggered if target is forced to cast on self
                         if (action.cast.castFlags & CAST_FORCE_TARGET_SELF)
                             action.cast.castFlags |= CAST_TRIGGERED;
