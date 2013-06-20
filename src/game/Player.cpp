@@ -3359,7 +3359,8 @@ bool Player::resetTalents(bool no_cost)
     {
         TalentEntry const *talentInfo = sTalentStore.LookupEntry(i);
 
-        if (!talentInfo) continue;
+        if (!talentInfo)
+            continue;
 
         TalentTabEntry const *talentTabInfo = sTalentTabStore.LookupEntry(talentInfo->TalentTab);
 
@@ -3372,7 +3373,7 @@ bool Player::resetTalents(bool no_cost)
         if ((getClassMask() & talentTabInfo->ClassMask) == 0)
             continue;
 
-        for (int j = 0; j < 5; ++j)
+        for (int j = 0; j < MAX_TALENT_RANK; ++j)
         {
             for (PlayerSpellMap::iterator itr = GetSpellMap().begin(); itr != GetSpellMap().end();)
             {
@@ -3388,7 +3389,7 @@ bool Player::resetTalents(bool no_cost)
                 // unlearn if first rank is talent or learned by talent
                 if (itrFirstId == talentInfo->RankID[j] || spellmgr.IsSpellLearnToSpell(talentInfo->RankID[j],itrFirstId))
                 {
-                    removeSpell(itr->first,!IsPassiveSpell(itr->first));
+                    removeSpell(itr->first, true);
                     itr = GetSpellMap().begin();
                     continue;
                 }

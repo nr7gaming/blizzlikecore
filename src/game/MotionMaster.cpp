@@ -554,9 +554,9 @@ void MotionMaster::DirectDelete(_Ty curr)
 
 void MotionMaster::DelayedDelete(_Ty curr)
 {
-    if (isStatic(curr) || curr->GetMovementGeneratorType() == 5)
+    if (isStatic(curr))
         return;
-    sLog.outCrash("Unit (Entry %u) is trying to delete its updating (MovementGeneratorType %u)", i_owner->GetEntry(), curr->GetMovementGeneratorType());
+    sLog.outDebug("Unit (Entry %u) DelayedDelete (MovementGeneratorType %u)", i_owner->GetEntry(), curr->GetMovementGeneratorType());
     if (!m_expList)
         m_expList = new ExpireList();
     m_expList->push_back(curr);
