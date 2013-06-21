@@ -9,7 +9,7 @@ index 0000000..cf209a9
 +INSERT INTO `blizzlike_string` VALUES (6620,'|cfff00000Movement Anticheat: %s was %s using: %s.|r',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 \ No newline at end of file
 diff --git a/src/game/Language.h b/src/game/Language.h
-index ee46be6..7cea4e8 100644
+index 01f45ef..c68a338 100644
 --- a/src/game/Language.h
 +++ b/src/game/Language.h
 @@ -835,6 +835,7 @@ enum BlizzLikeStrings
@@ -21,7 +21,7 @@ index ee46be6..7cea4e8 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index b425f66..4570061 100644
+index 93a6251..601f6f2 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -619,7 +619,7 @@ index b425f66..4570061 100644
  
  void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 6f9d693..657fdde 100644
+index e664071..01d15f7 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -370,6 +370,24 @@ Player::Player (WorldSession *session): Unit()
@@ -667,7 +667,7 @@ index 6f9d693..657fdde 100644
      //Players with low fall distance, Feather Fall or physical immunity (charges used) are ignored
      // 14.57 can be calculated by resolving damageperc formular below to 0
 diff --git a/src/game/Player.h b/src/game/Player.h
-index ea96957..aa6392b 100644
+index cb35745..b678451 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
 @@ -2296,6 +2296,22 @@ class Player : public Unit, public GridObject<Player>
@@ -694,7 +694,7 @@ index ea96957..aa6392b 100644
          Transport * m_transport;
  
 diff --git a/src/game/TaxiHandler.cpp b/src/game/TaxiHandler.cpp
-index 68d5c31..a738e89 100644
+index eb48863..db078d6 100644
 --- a/src/game/TaxiHandler.cpp
 +++ b/src/game/TaxiHandler.cpp
 @@ -105,6 +105,11 @@ void WorldSession::SendDoFlight(uint16 MountId, uint32 path, uint32 pathNode)
@@ -727,7 +727,7 @@ index 68d5c31..a738e89 100644
  
      TaxiNodesEntry const* curDestNode = sTaxiNodesStore.LookupEntry(curDest);
  
-@@ -203,6 +218,12 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
+@@ -206,6 +221,12 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
              GetPlayer()->GetMotionMaster()->MovementExpired(false);
      }
  
@@ -741,7 +741,7 @@ index 68d5c31..a738e89 100644
      if (curDestNode && curDestNode->map_id != GetPlayer()->GetMapId())
      {
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index ea7495d..2cf4284 100644
+index 80175c4..edfb42a 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -69,6 +69,14 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -775,7 +775,7 @@ index ea7495d..2cf4284 100644
  
      m_configs[CONFIG_COMPRESSION] = sConfig.GetIntDefault("Compression", 1);
 diff --git a/src/game/World.h b/src/game/World.h
-index 977ad28..163f49a 100644
+index fc70e52..e6f35b5 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
 @@ -565,6 +565,14 @@ class World
