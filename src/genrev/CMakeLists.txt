@@ -1,4 +1,4 @@
-# BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+# BlizzLikeCore Copyright (C) 2012-2013  BlizzLikeGroup
 # Integrated Files: CREDITS.md and LICENSE.md
 
 # Need to pass old ${CMAKE_BINARY_DIR} as param because its different at build stage

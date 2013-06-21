@@ -1,5 +1,5 @@
 /*
- * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * BlizzLikeCore Copyright (C) 2012-2013  BlizzLikeGroup
  * Integrated Files: CREDITS.md and LICENSE.md
  */
 
@@ -25,7 +25,7 @@
 
 // Format is BDB_YYYYMMDD
 #ifndef _REQ_BDB_VERSION
-# define _REQ_BDB_VERSION  "BDB_20130621"
+# define _REQ_BDB_VERSION  "BDB_20130622"
 #endif //_REQ_BDB_VERSION
 
 #ifdef _WIN32

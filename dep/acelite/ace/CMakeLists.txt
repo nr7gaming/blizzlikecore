@@ -1,4 +1,4 @@
-# BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+# BlizzLikeCore Copyright (C) 2012-2013  BlizzLikeGroup
 # Integrated Files: CREDITS.md and LICENSE.md
 
 # NOTE: Do not use glob here, it would include files we don't want

@@ -1,4 +1,4 @@
-Copyright (C) 2013  BlizzLikeGroup
+Copyright (C) 2012-2013  BlizzLikeGroup
 -------
 All credits to:
 

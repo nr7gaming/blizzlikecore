@@ -1,5 +1,5 @@
 /*
- * BlizzLikeCore Copyright (C) 2013  BlizzLikeGroup
+ * BlizzLikeCore Copyright (C) 2012-2013  BlizzLikeGroup
  * Integrated Files: CREDITS.md and LICENSE.md
  */
 
@@ -196,6 +196,9 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
         return;
 
     TaxiNodesEntry const* curDestNode = sTaxiNodesStore.LookupEntry(curDest);
+
+    if(curDest == 96 && GetPlayer()->GetQuestStatus(9718) == QUEST_STATUS_INCOMPLETE)
+        GetPlayer()->CompleteQuest(9718);
 
     if (curDestNode && curDestNode->map_id == GetPlayer()->GetMapId())
     {
