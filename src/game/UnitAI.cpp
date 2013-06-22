@@ -160,6 +160,9 @@ void UnitAI::SelectTargetList(std::list<Unit*> &targetList, uint32 num, SelectAg
         if (SelectTargetHelper(me, (*itr)->getTarget(), playerOnly, dist, aura))
             targetList.push_back((*itr)->getTarget());
 
+    if (targetList.size() < num)
+        return;
+
     if (targetType == SELECT_TARGET_NEAREST || targetType == SELECT_TARGET_FARTHEST)
     {
         targetList.sort(TargetDistanceOrder(me));
