@@ -40,8 +40,8 @@ index 0000000..7920f26
 +++ b/src/scripts/Custom/stylist.cpp
 @@ -0,0 +1,282 @@
 +/*
-+ * BlizzLikeCore Copyright (C) 2012-2013  BlizzLikeGroup
-+ * Integrated Files: CREDITS.md and LICENSE.md
++ * This file is part of the BlizzLikeCore Project.
++ * See CREDITS.md and LICENSE.md files for Copyright information.
 + */
 + 
 +#include "ScriptPCH.h"
@@ -329,8 +329,8 @@ index 0000000..3a1f9d5
 +++ b/src/scripts/Custom/stylist.h
 @@ -0,0 +1,73 @@
 +/*
-+ * BlizzLikeCore Copyright (C) 2012-2013  BlizzLikeGroup
-+ * Integrated Files: CREDITS.md and LICENSE.md
++ * This file is part of the BlizzLikeCore Project.
++ * See CREDITS.md and LICENSE.md files for Copyright information.
 + */
 + 
 +#include "ScriptedGossip.h"

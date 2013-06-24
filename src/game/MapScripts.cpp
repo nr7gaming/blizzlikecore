@@ -1,6 +1,6 @@
 /*
- * BlizzLikeCore Copyright (C) 2012-2013  BlizzLikeGroup
- * Integrated Files: CREDITS.md and LICENSE.md
+ * This file is part of the BlizzLikeCore Project.
+ * See CREDITS.md and LICENSE.md files for Copyright information.
  */
 
 #include "Map.h"
