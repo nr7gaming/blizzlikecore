@@ -161,22 +161,18 @@ void UnitAI::SelectTargetList(std::list<Unit*> &targetList, uint32 num, SelectAg
             targetList.push_back((*itr)->getTarget());
 
     if (targetType == SELECT_TARGET_NEAREST || targetType == SELECT_TARGET_FARTHEST)
-    {
         targetList.sort(TargetDistanceOrder(me));
-    }
  
     if (targetType == SELECT_TARGET_FARTHEST || targetType == SELECT_TARGET_BOTTOMAGGRO)
         targetList.reverse();
 
     if (targetType == SELECT_TARGET_RANDOM)
-    {
-        while (num < targetList.size())
+        while (targetList.size() > num)
         {
             std::list<Unit*>::iterator itr = targetList.begin();
-            advance(itr, urand(0, targetList.size()-1));
+            advance(itr, urand(0, targetList.size() - 1));
             targetList.erase(itr);
         }
-    }
     else
         targetList.resize(num);
 }
