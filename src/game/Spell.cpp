@@ -914,7 +914,10 @@ void Spell::DoAllEffectOnTarget(TargetInfo *target)
 
         int32 gain = unitTarget->ModifyHealth(int32(addhealth));
 
-        unitTarget->getHostileRefManager().threatAssist(caster, float(gain) * 0.5f, m_spellInfo);
+        if(m_spellInfo->Id == 379 || m_spellInfo->Id == 33110)
+            unitTarget->getHostileRefManager().threatAssist(unitTarget, float(gain) * 0.5f, m_spellInfo); // BC_MOD (LordUsagi suggested)
+        else
+            unitTarget->getHostileRefManager().threatAssist(caster, float(gain) * 0.5f, m_spellInfo);
         if (caster->GetTypeId() == TYPEID_PLAYER)
             if (BattleGround* bg = caster->ToPlayer()->GetBattleGround())
                 bg->UpdatePlayerScore(caster->ToPlayer(), SCORE_HEALING_DONE, gain);
@@ -2801,7 +2804,8 @@ void Spell::SendCastResult(uint8 result)
     {
         WorldPacket data(SMSG_CAST_FAILED, (4+1+1));
         data << uint32(m_spellInfo->Id);
-        data << uint8(!IsPassiveSpell(m_spellInfo) ? result : SPELL_FAILED_DONT_REPORT); // do not report failed passive spells
+     // data << uint8(!IsPassiveSpell(m_spellInfo) ? result : SPELL_FAILED_DONT_REPORT); // BC_MOD CMaNGOS backport (need more test)
+        data << uint8(result);
         data << uint8(m_cast_count);                        // single cast or multi 2.3 (0/1)
         switch (result)
         {
@@ -3487,11 +3491,11 @@ uint8 Spell::CanCast(bool strict)
         VMAP::VMapFactory::createOrGetVMapManager()->isLineOfSightCalcEnabled())
     {
         if (m_spellInfo->Attributes & SPELL_ATTR_OUTDOORS_ONLY &&
-                !m_caster->GetMap()->IsOutdoors(m_caster->GetPositionX(), m_caster->GetPositionY(), m_caster->GetPositionZ()) && m_spellInfo->Id != 17002 && m_spellInfo->Id != 24866)
+                !m_caster->GetMap()->IsOutdoors(m_caster->GetPositionX(), m_caster->GetPositionY(), m_caster->GetPositionZ()) && m_spellInfo->Id != 768 && m_spellInfo->Id != 17002 && m_spellInfo->Id != 24866) // BC_MOD (group suggested)
             return SPELL_FAILED_ONLY_OUTDOORS;
 
         if (m_spellInfo->Attributes & SPELL_ATTR_INDOORS_ONLY &&
-                m_caster->GetMap()->IsOutdoors(m_caster->GetPositionX(), m_caster->GetPositionY(), m_caster->GetPositionZ()) && m_spellInfo->Id != 17002 && m_spellInfo->Id != 24866)
+                m_caster->GetMap()->IsOutdoors(m_caster->GetPositionX(), m_caster->GetPositionY(), m_caster->GetPositionZ()))
             return SPELL_FAILED_ONLY_INDOORS;
     }
 
