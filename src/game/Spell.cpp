@@ -2804,8 +2804,7 @@ void Spell::SendCastResult(uint8 result)
     {
         WorldPacket data(SMSG_CAST_FAILED, (4+1+1));
         data << uint32(m_spellInfo->Id);
-     // data << uint8(!IsPassiveSpell(m_spellInfo) ? result : SPELL_FAILED_DONT_REPORT); // BC_MOD CMaNGOS backport (need more test)
-        data << uint8(result);
+        data << uint8(!IsPassiveSpell(m_spellInfo) ? result : SPELL_FAILED_DONT_REPORT); // BC_MOD CMaNGOS backport
         data << uint8(m_cast_count);                        // single cast or multi 2.3 (0/1)
         switch (result)
         {

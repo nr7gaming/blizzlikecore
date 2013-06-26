@@ -99,8 +99,7 @@ int Master::Run()
     sLog.outDetail("Using ACE: %s", ACE_VERSION);
 
 #ifdef USE_SFMT_FOR_RNG
-    sLog.outString("SFMT has been enabled as the random number generator, if problems occur");
-    sLog.outString("first try disabling SFMT in CMAKE configuration..");
+    sLog.outString("SFMT has been enabled as the random number generator.");
     sLog.outString(" ");
 #endif //USE_SFMT_FOR_RNG
 

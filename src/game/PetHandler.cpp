@@ -231,7 +231,7 @@ void WorldSession::HandlePetActionHelper(Unit* pet, uint64 guid1, uint16 spellid
             }
 
             // do not cast not learned spells
-            if (!pet->HasSpell(spellid) || IsPassiveSpell(spellid))
+            if (!pet->HasSpell(spellid) || IsPassiveSpell(spellInfo))
                 return;
 
             //  Clear the flags as if owner clicked 'attack'. AI will reset them
@@ -660,7 +660,7 @@ void WorldSession::HandlePetCastSpellOpcode(WorldPacket& recvPacket)
     }
 
     // do not cast not learned spells
-    if (!caster->HasSpell(spellid) || IsPassiveSpell(spellid))
+    if (!caster->HasSpell(spellid) || IsPassiveSpell(spellInfo))
         return;
 
     if (spellInfo->StartRecoveryCategory > 0) //Check if spell is affected by GCD

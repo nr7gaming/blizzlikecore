@@ -1039,6 +1039,9 @@ void Unit::CastStop(uint32 except_spellid)
 
 void Unit::CastSpell(Unit* Victim, uint32 spellId, bool triggered, Item *castItem, Aura* triggeredByAura, uint64 originalCaster)
 {
+    if (!spellId)
+        return;
+
     SpellEntry const *spellInfo = sSpellStore.LookupEntry(spellId);
 
     if (!spellInfo)
@@ -1125,7 +1128,11 @@ void Unit::CastCustomSpell(uint32 spellId, SpellValueMod mod, uint32 value, Unit
 
 void Unit::CastCustomSpell(uint32 spellId, CustomSpellValues const &value, Unit* Victim, bool triggered, Item *castItem, Aura* triggeredByAura, uint64 originalCaster)
 {
+    if (!spellId)
+        return;
+
     SpellEntry const *spellInfo = sSpellStore.LookupEntry(spellId);
+
     if (!spellInfo)
     {
         sLog.outError("CastSpell: unknown spell id %i by caster: %s %u)", spellId,(GetTypeId() == TYPEID_PLAYER ? "player (GUID:" : "creature (Entry:"),(GetTypeId() == TYPEID_PLAYER ? GetGUIDLow() : GetEntry()));
@@ -1182,6 +1189,9 @@ void Unit::CastCustomSpell(uint32 spellId, CustomSpellValues const &value, Unit*
 // used for scripting
 void Unit::CastSpell(float x, float y, float z, uint32 spellId, bool triggered, Item *castItem, Aura* triggeredByAura, uint64 originalCaster)
 {
+    if (!spellId)
+        return;
+
     SpellEntry const *spellInfo = sSpellStore.LookupEntry(spellId);
 
     if (!spellInfo)
@@ -1207,7 +1217,7 @@ void Unit::CastSpell(float x, float y, float z, uint32 spellId, bool triggered, 
 // used for scripting
 void Unit::CastSpell(GameObject* go, uint32 spellId, bool triggered, Item *castItem, Aura* triggeredByAura, uint64 originalCaster)
 {
-    if (!go)
+    if (!go || !spellId)
         return;
 
     SpellEntry const *spellInfo = sSpellStore.LookupEntry(spellId);
