@@ -159,7 +159,7 @@ index 0000000..1e72e01
 @@ -0,0 +1,213 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#include "Common.h"
@@ -378,7 +378,7 @@ index 0000000..7793392
 @@ -0,0 +1,118 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#ifndef _WARDEN_BASE_H
@@ -502,7 +502,7 @@ index 0000000..9503bec
 @@ -0,0 +1,143 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#include "Common.h"
@@ -651,7 +651,7 @@ index 0000000..ae99077
 @@ -0,0 +1,50 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#ifndef _WARDEN_DATA_STORAGE_H
@@ -707,7 +707,7 @@ index 0000000..33ef9fc
 @@ -0,0 +1,266 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#include "Auth/WardenKeyGeneration.h"
@@ -979,7 +979,7 @@ index 0000000..d4a1f71
 @@ -0,0 +1,32 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#ifndef _WARDEN_MAC_H
@@ -1017,7 +1017,7 @@ index 0000000..e888760
 @@ -0,0 +1,601 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#ifndef _WARDEN_MODULE_MAC_H
@@ -1624,7 +1624,7 @@ index 0000000..a239278
 @@ -0,0 +1,1191 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#ifndef _WARDEN_MODULE_WIN_H
@@ -2821,7 +2821,7 @@ index 0000000..ab31ad3
 @@ -0,0 +1,499 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#include "Auth/Hmac.h"
@@ -3326,7 +3326,7 @@ index 0000000..84aaccc
 @@ -0,0 +1,92 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#ifndef _WARDEN_WIN_H
@@ -3692,7 +3692,7 @@ index 0000000..b2b2c07
 @@ -0,0 +1,60 @@
 +/*
 + * This file is part of the BlizzLikeCore Project.
-+ * See CREDITS.md and LICENSE.md files for Copyright information.
++ * See CREDITS and LICENSE files for Copyright information.
 + */
 +
 +#include "Sha1.h"

@@ -1,6 +1,6 @@
 /*
  * This file is part of the BlizzLikeCore Project.
- * See CREDITS.md and LICENSE.md files for Copyright information.
+ * See CREDITS and LICENSE files for Copyright information.
  */
 
 #include "Common.h"
@@ -604,6 +604,7 @@ bool GameObject::LoadFromDB(uint32 guid, Map *map)
     float rotation2 = data->rotation2;
     float rotation3 = data->rotation3;
 
+    uint32 spawnTime = data->spawntimesecs;
     uint32 animprogress = data->animprogress;
     GOState go_state = data->go_state;
     uint32 artKit = data->artKit;
@@ -618,7 +619,7 @@ bool GameObject::LoadFromDB(uint32 guid, Map *map)
     {
         m_spawnedByDefault = true;
 
-        if (!GetDespawnPossibility())
+        if (!GetDespawnPossibility() && !GetGOInfo()->IsDespawnAtAction())
         {
             SetFlag(GAMEOBJECT_FLAGS, GO_FLAG_NODESPAWN);
             m_respawnDelayTime = 0;

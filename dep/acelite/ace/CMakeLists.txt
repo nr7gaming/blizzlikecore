@@ -1,5 +1,5 @@
 # This file is part of the BlizzLikeCore Project.
-# See CREDITS.md and LICENSE.md files for Copyright information.
+# See CREDITS and LICENSE files for Copyright information.
 
 # NOTE: Do not use glob here, it would include files we don't want
 set(ace_STAT_SRCS

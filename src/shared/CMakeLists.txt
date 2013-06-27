@@ -1,5 +1,5 @@
 # This file is part of the BlizzLikeCore Project.
-# See CREDITS.md and LICENSE.md files for Copyright information.
+# See CREDITS and LICENSE files for Copyright information.
 
 file(GLOB_RECURSE sources_auth Auth/*.cpp Auth/*.h)
 file(GLOB_RECURSE sources_config Config/*.cpp Config/*.h)

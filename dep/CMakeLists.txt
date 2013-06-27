@@ -1,5 +1,5 @@
 # This file is part of the BlizzLikeCore Project.
-# See CREDITS.md and LICENSE.md files for Copyright information.
+# See CREDITS and LICENSE files for Copyright information.
 
 if( CMAKE_COMPILER_IS_GNUCXX )
   add_definitions(--no-warnings)

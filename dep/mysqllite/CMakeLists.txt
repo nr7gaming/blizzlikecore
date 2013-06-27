@@ -1,6 +1,6 @@
 # Copyright (C) 2006 MySQL AB
 # This file is part of the BlizzLikeCore Project.
-# See CREDITS.md and LICENSE.md files for Copyright information.
+# See CREDITS and LICENSE files for Copyright information.
 
 # Include the platform-specific file.
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/os/Windows.cmake)

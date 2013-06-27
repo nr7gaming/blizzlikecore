@@ -1,6 +1,6 @@
 /*
  * This file is part of the BlizzLikeCore Project.
- * See CREDITS.md and LICENSE.md files for Copyright information.
+ * See CREDITS and LICENSE files for Copyright information.
  */
 
 #include "WorldSocket.h"                                    // must be first to make ACE happy with ACE includes in it

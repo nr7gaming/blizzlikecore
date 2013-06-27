@@ -1,6 +1,6 @@
 /*
  * This file is part of the BlizzLikeCore Project.
- * See CREDITS.md and LICENSE.md files for Copyright information.
+ * See CREDITS and LICENSE files for Copyright information.
  */
 
 #ifndef BLIZZLIKECORE_GAMEOBJECT_H
@@ -350,6 +350,17 @@ struct GameObjectInfo
         } raw;
     };
     uint32 ScriptId;
+
+    // helpers
+     bool IsDespawnAtAction() const
+     {
+         switch (type)
+         {
+             case GAMEOBJECT_TYPE_CHEST: return chest.consumable;
+             case GAMEOBJECT_TYPE_GOOBER: return goober.consumable;
+             default: return false;
+         }
+    }
 
     uint32 GetCharges() const                               // despawn at uses amount
     {

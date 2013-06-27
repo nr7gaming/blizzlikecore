@@ -1,6 +1,6 @@
 /*
  * This file is part of the BlizzLikeCore Project.
- * See CREDITS.md and LICENSE.md files for Copyright information.
+ * See CREDITS and LICENSE files for Copyright information.
  */
 
 #include "Unit.h"
@@ -2413,6 +2413,29 @@ void SpellMgr::LoadSpellCustomAttr()
         case 38794: case 33711: //Murmur's Touch
             spellInfo->MaxAffectedTargets = 1;
             spellInfo->EffectTriggerSpell[0] = 33760;
+            break;
+        case 13897: // Fiery Weapon Enchant
+        case 31024: // Living Ruby Pendant
+            spellInfo->AttributesEx3 |= SPELL_ATTR_EX3_NO_SPELL_BONUS;
+            break;
+        case 30708: // Totem of Wrath
+        case 25566: // Healing stream totem
+        case 15407: // Mind flay begin
+        case 17311:
+        case 17312:
+        case 17313:
+        case 17314:
+        case 18807:
+        case 25387: // Mind flay end
+        case 689:   // Drain Life begin
+        case 699:
+        case 709:
+        case 7651:
+        case 11699:
+        case 11700:
+        case 27219:
+        case 27220: // Drain Life end
+            spellInfo->AttributesEx3 |= SPELL_ATTR_EX3_STACKS_FOR_DIFF_CASTERS;
             break;
         case 32727: // Arena Preparation - remove invisibility aura
         case 44949: // Whirlwind's offhand attack - TODO: remove this (50% weapon damage effect)
