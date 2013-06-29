@@ -3733,6 +3733,7 @@ void Spell::EffectSummonType(SpellEffIndex effIndex)
     if (summon)
     {
         summon->SetCreatorGUID(m_originalCaster->GetGUID());
+        summon->SetUInt32Value(UNIT_CREATED_BY_SPELL, m_spellInfo->Id);
     }
 }
 
@@ -6434,12 +6435,12 @@ void Spell::EffectDestroyAllTotems(SpellEffIndex effIndex)
             uint32 spell_id = totem->GetUInt32Value(UNIT_CREATED_BY_SPELL);
             SpellEntry const* spellInfo = sSpellStore.LookupEntry(spell_id);
             if (spellInfo)
-    {
-    float cost = spellInfo->manaCost;
-    if (spellInfo->ManaCostPercentage)
-       cost = spellInfo->ManaCostPercentage * m_caster->GetCreateMana() / 100;
-               mana += cost * damage / 100.0f;
-   }
+            {
+                float cost = spellInfo->manaCost;
+                if (spellInfo->ManaCostPercentage)
+                    cost = spellInfo->ManaCostPercentage * (m_caster->GetCreateMana() / 100);
+                mana += cost * (damage / 100.0f);
+            }
             ((Totem*)totem)->UnSummon();
         }
     }
