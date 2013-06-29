@@ -16,3 +16,8 @@ Special credits to:
 
  * Desteny - Development mmaps.patch
  * Midna - Development mmaps.patch
+
+BlizzLikeGroup individual credits:
+
+melursus hellstorm06 cqqjjf kalogr ScullyNY Schtom shuwen Gimlik Dudelzack Amara
+aghameysam netherwow morno
