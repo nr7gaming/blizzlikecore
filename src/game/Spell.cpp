@@ -314,7 +314,7 @@ Spell::Spell(Unit* Caster, SpellEntry const *info, bool triggered, uint64 origin
 
     m_castPositionX = m_castPositionY = m_castPositionZ = 0;
     m_TriggerSpells.clear();
-    m_IsTriggeredSpell = bool(triggered || (info->HasAttribute(SPELL_ATTR_EX4_FORCE_TRIGGERED)));
+    m_IsTriggeredSpell = bool(triggered || (info->AttributesEx4 & SPELL_ATTR_EX4_FORCE_TRIGGERED));
     //m_AreaAura = false;
     m_CastItem = NULL;
 
@@ -3669,11 +3669,8 @@ uint8 Spell::CanCast(bool strict)
 
     // always (except passive spells) check items (focus object can be required for any type casts)
     if (!IsPassiveSpell(m_spellInfo))
-    {
-
-            if (uint8 castResult = CheckItems())
-                    return castResult;
-    }
+        if (uint8 castResult = CheckItems())
+            return castResult;
 
     /*//ImpliciteTargetA-B = 38, If fact there is 0 Spell with  ImpliciteTargetB=38
     if (m_UniqueTargetInfo.empty())                          // skip second canCast apply (for delayed spells for example)
@@ -3808,11 +3805,13 @@ uint8 Spell::CanCast(bool strict)
         }
     }*/
 
+    // Triggered spells also have range check
+    // TODO: determine if there is some flag to enable/disable the check
+    if (uint8 castResult = CheckRange(strict))
+       return castResult;
+
     if (!m_IsTriggeredSpell)
     {
-        if (uint8 castResult = CheckRange(strict))
-            return castResult;
-
         if (uint8 castResult = CheckPower())
             return castResult;
 
@@ -4624,7 +4623,7 @@ uint8 Spell::CheckRange(bool strict)
             return !m_IsTriggeredSpell ? SPELL_FAILED_TOO_CLOSE : SPELL_FAILED_DONT_REPORT;
 
         if (m_caster->GetTypeId() == TYPEID_PLAYER &&
-            (m_spellInfo->FacingCasterFlags & SPELL_FACING_FLAG_INFRONT) && !m_caster->HasInArc(M_PI, target))
+        (m_spellInfo->FacingCasterFlags & SPELL_FACING_FLAG_INFRONT) && !m_caster->HasInArc(M_PI, target))
             return !m_IsTriggeredSpell ? SPELL_FAILED_UNIT_NOT_INFRONT : SPELL_FAILED_DONT_REPORT;
     }
 
