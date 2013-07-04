@@ -78,7 +78,7 @@ struct boss_jindoAI : public ScriptedAI
             DoCast(me->getVictim(), SPELL_HEX);
 
             if (DoGetThreat(me->getVictim()))
-                DoModifyThreatPercent(me->getVictim(),-80);
+                DoModifyThreatPercent(me->getVictim(), -80);
 
             Hex_Timer = 12000 + rand()%8000;
         } else Hex_Timer -= diff;
@@ -108,7 +108,7 @@ struct boss_jindoAI : public ScriptedAI
                 DoTeleportPlayer(pTarget, -11583.7783f,-1249.4278f,77.5471f,4.745f);
 
                 if (DoGetThreat(me->getVictim()))
-                    DoModifyThreatPercent(pTarget,-100);
+                    DoModifyThreatPercent(pTarget, -100);
 
                 Creature* Skeletons;
                 Skeletons = me->SummonCreature(14826, pTarget->GetPositionX()+2, pTarget->GetPositionY(), pTarget->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 15000);

@@ -84,7 +84,7 @@ struct boss_razorgoreAI : public ScriptedAI
             //We will remove this threat reduction and add an aura check.
 
             //if (DoGetThreat(me->getVictim()))
-            //DoModifyThreatPercent(me->getVictim(),-50);
+            //DoModifyThreatPercent(me->getVictim(), -50);
 
             Conflagration_Timer = 12000;
         } else Conflagration_Timer -= diff;

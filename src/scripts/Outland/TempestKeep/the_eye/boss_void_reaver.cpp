@@ -134,7 +134,7 @@ struct boss_void_reaverAI : public ScriptedAI
 
             //Drop 25% aggro
             if (DoGetThreat(me->getVictim()))
-                DoModifyThreatPercent(me->getVictim(),-25);
+                DoModifyThreatPercent(me->getVictim(), -25);
 
             KnockAway_Timer = 30000;
         } else KnockAway_Timer -= diff;

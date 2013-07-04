@@ -175,7 +175,7 @@ struct boss_vemAI : public ScriptedAI
         {
             DoCast(me->getVictim(),SPELL_KNOCKBACK);
             if (DoGetThreat(me->getVictim()))
-                DoModifyThreatPercent(me->getVictim(),-80);
+                DoModifyThreatPercent(me->getVictim(), -80);
             KnockBack_Timer = 15000 + rand()%10000;
         } else KnockBack_Timer -= diff;
 

@@ -69,18 +69,14 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
 
     uint32 BloodboilTimer;
     uint32 BloodboilCount;
-
     uint32 FelGeyserTimer;
+    uint32 AcidicWoundTimer;
     uint32 BewilderingStrikeTimer;
-
     uint32 ArcingSmashTimer;
     uint32 FelBreathTimer;
     uint32 EjectTimer;
-
     uint32 PhaseChangeTimer;
-
     uint32 EnrageTimer;
-
     uint32 Charge_Timer;
 
     bool Phase1;
@@ -96,22 +92,16 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
 
         BloodboilTimer = 10000;
         BloodboilCount = 0;
-
         FelGeyserTimer = 1000;
+        AcidicWoundTimer = 6000;
         BewilderingStrikeTimer = 15000;
-
         ArcingSmashTimer = 19000;
         FelBreathTimer = 25000;
         EjectTimer = 10000;
-
         PhaseChangeTimer = 65000;
         EnrageTimer = 600000;
 
         Phase1 = true;
-
-        Charge_Timer = 30000;
-
-        DoCast(me,SPELL_ACIDIC_WOUND,true);
 
         me->ApplySpellImmune(0, IMMUNITY_STATE, SPELL_AURA_MOD_TAUNT, true);
         me->ApplySpellImmune(0, IMMUNITY_EFFECT,SPELL_EFFECT_ATTACK_ME, true);
@@ -162,13 +152,13 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
         targets.resize(5);
 
         //Aura each player in the targets list with Bloodboil.
-        for (std::list<Unit* >::iterator itr = targets.begin(); itr != targets.end(); ++itr)
+     /* for (std::list<Unit* >::iterator itr = targets.begin(); itr != targets.end(); ++itr)
         {
             Unit* pTarget = *itr;
             if (pTarget && pTarget->isAlive())
                 me->AddAura(SPELL_BLOODBOIL, pTarget);
         }
-        targets.clear();
+        targets.clear(); */
     }
 
     void RevertThreatOnTarget(uint64 guid)
@@ -224,7 +214,7 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
         if (Charge_Timer <= diff)
         {
             if (me->GetDistance2d(me->getVictim()) > 15)
-                DoCast(me->getVictim(),SPELL_CHARGE);
+                DoCast(me->getVictim(), SPELL_CHARGE);
             Charge_Timer = 10000;
         } else Charge_Timer -= diff;
 
@@ -235,6 +225,19 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
                 DoCast(me->getVictim(), SPELL_BEWILDERING_STRIKE);
                 BewilderingStrikeTimer = 20000;
             } else BewilderingStrikeTimer -= diff;
+
+            if (EjectTimer <= diff)
+            {
+                DoCast(me->getVictim(), SPELL_EJECT_1);
+                DoModifyThreatPercent(me->getVictim(), -40);
+                EjectTimer = 15000;
+            } else EjectTimer -= diff;
+
+            if (AcidicWoundTimer <= diff)
+            {
+                DoCast(me->getVictim(), SPELL_ACIDIC_WOUND);
+                AcidicWoundTimer = 10000;
+            } else AcidicWoundTimer -= diff;
 
             if (BloodboilTimer <= diff)
             {
@@ -256,9 +259,11 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
                 FelGeyserTimer = 30000;
             } else FelGeyserTimer -= diff;
 
-            if (Unit* pTarget = me->getVictim()) // getVictim can become invalid during update /? probably can :P/> 
-                if (pTarget->IsImmunedToDamage(SPELL_SCHOOL_MASK_ALL,true)) 
-                    me->getThreatManager().modifyThreatPercent(pTarget,-100); 
+            if (EjectTimer <= diff)
+            {
+                DoCast(me->getVictim(), SPELL_EJECT_2);
+                EjectTimer = 15000;
+            } else EjectTimer -= diff;
         }
 
         if (PhaseChangeTimer <= diff)
@@ -302,6 +307,7 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
                 Phase1 = true;
                 BloodboilTimer = 10000;
                 BloodboilCount = 0;
+                AcidicWoundTimer += 2000;
                 ArcingSmashTimer += 2000;
                 FelBreathTimer += 2000;
                 EjectTimer += 2000;
