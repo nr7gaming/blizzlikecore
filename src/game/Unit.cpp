@@ -10267,6 +10267,7 @@ void CharmInfo::InitCharmCreateSpells()
         m_charmspells[x].spellId = spellId;
 
         if (!spellId)
+            m_charmspells[x].active = ACT_DISABLED;
             continue;
 
         if (IsPassiveSpell(spellId))
@@ -10276,12 +10277,14 @@ void CharmInfo::InitCharmCreateSpells()
         }
         else
         {
+            m_charmspells[x].active = ACT_DISABLED;
+
             ActiveStates newstate;
             bool onlyselfcast = true;
             SpellEntry const *spellInfo = sSpellStore.LookupEntry(spellId);
 
             if (!spellInfo) onlyselfcast = false;
-            for (uint32 i = 0;i < 3 && onlyselfcast;++i)       //non existent spell will not make any problems as onlyselfcast would be false -> break right away
+            for (uint32 i = 0;i < 3 && onlyselfcast; ++i)       //non existent spell will not make any problems as onlyselfcast would be false -> break right away
             {
                 if (spellInfo->EffectImplicitTargetA[i] != TARGET_UNIT_CASTER && spellInfo->EffectImplicitTargetA[i] != 0)
                     onlyselfcast = false;
@@ -10293,8 +10296,6 @@ void CharmInfo::InitCharmCreateSpells()
                 ToggleCreatureAutocast(spellId, true);
             }
             else if (onlyselfcast || !IsPositiveSpell(spellId))   //only self cast and spells versus enemies are autocastable
-                newstate = ACT_DISABLED;
-            else
                 newstate = ACT_CAST;
 
             AddSpellToActionBar(0, spellId, newstate);
@@ -11519,6 +11520,19 @@ bool Unit::IsTriggeredAtSpellProcEvent(Unit* pVictim, Aura* aura, SpellEntry con
                 return false;
         }
     }
+
+    switch(spellProto->Id)
+    {
+        case 30299:            // Nether Protection procs from active / passive spells
+        case 30301:
+        case 30302:
+        active = true;
+        break;
+    }
+    // Check spellProcEvent data requirements
+    if(!SpellMgr::IsSpellProcEventCanTriggeredBy(spellProcEvent, EventProcFlag, procSpell, procFlag, procExtra, active))
+        return false;
+
     // Get chance from spell
     float chance = float(spellProto->procChance);
     // If in spellProcEvent exist custom chance, chance = spellProcEvent->customChance;

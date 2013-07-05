@@ -24,7 +24,7 @@ void UnitAI::AttackStartCaster(Unit* victim, float dist)
 
 void UnitAI::DoMeleeAttackIfReady()
 {
-    if (me->hasUnitState(UNIT_STAT_CASTING) || me->GetEntry() == 510)
+    if (me->hasUnitState(UNIT_STAT_CASTING) || me->GetEntry() == 510) // Water elemental will no longer melee attack
         return;
 
     //Make sure our attack is ready and we aren't currently casting before checking distance
