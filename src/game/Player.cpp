@@ -15298,13 +15298,8 @@ void Player::_LoadAuras(QueryResult_AutoPtr result, uint32 timediff)
             }
 
             // prevent wrong values of remaincharges
-            if (spellproto->procCharges)
-            {
-                if (remaincharges <= 0 || uint32(remaincharges) > spellproto->procCharges)
-                    remaincharges = spellproto->procCharges;
-            }
-            else
-                remaincharges = -1;
+            if (spellproto->procCharges == 0)
+				remaincharges = 0;						//Fix wrong overriding proc charges at loading
 
             //do not load single target auras (unless they were cast by the player)
             if (caster_guid != GetGUID() && IsSingleTargetSpell(spellproto))

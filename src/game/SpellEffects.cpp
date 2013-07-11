@@ -6432,7 +6432,7 @@ void Spell::EffectSummonDeadPet(SpellEffIndex effIndex)
     pet->clearUnitState(UNIT_STAT_ALL_STATE);
     pet->SetHealth(uint32(pet->GetMaxHealth()*(float(damage)/100)));
 
-    //pet->AIM_Initialize();
+    pet->AIM_Initialize();
     _player->PetSpellInitialize(); // -- action bar not removed at death and not required send at revive. new troble, non-controll pet.
     pet->SavePetToDB(PET_SAVE_AS_CURRENT);
 }
@@ -6923,9 +6923,15 @@ void Spell::SummonGuardian(uint32 i, uint32 entry, SummonPropertiesEntry const *
         if (summon->HasSummonMask(SUMMON_MASK_MINION) && m_targets.HasDst())
             ((Minion*)summon)->SetFollowAngle(m_caster->GetAngle(summon));
 
-        summon->GetMotionMaster()->MoveFollow(caster,PET_FOLLOW_DIST,summon->GetFollowAngle());
+        //pet is no longer stay after summon
+		summon->GetMotionMaster()->MoveFollow(caster,PET_FOLLOW_DIST,summon->GetFollowAngle());
         summon->SetUInt32Value(UNIT_CREATED_BY_SPELL, m_spellInfo->Id);
-        summon->AI()->EnterEvadeMode();
+        summon->GetCharmInfo()->SetCommandState(COMMAND_FOLLOW);
+        summon->GetCharmInfo()->SetIsCommandAttack(false);
+        summon->GetCharmInfo()->SetIsAtStay(false);
+        summon->GetCharmInfo()->SetIsReturning(false);
+        summon->GetCharmInfo()->SetIsFollowing(true);
+	  //summon->AI()->EnterEvadeMode();
     }
 }
 

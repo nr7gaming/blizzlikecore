@@ -62,9 +62,9 @@ m_petType(type), m_duration(0), m_declinedname(NULL)
         InitCharmInfo();
     }
 
-    if (type == CLASS_PET)
+/*    if (type == CLASS_PET)
         SetReactState(REACT_AGGRESSIVE);
-
+*/
     m_name = "Pet";
 
     m_regenTimer = 4000;
@@ -1349,13 +1349,8 @@ void Pet::_LoadAuras(uint32 timediff)
             }
 
             // prevent wrong values of remaincharges
-            if (spellproto->procCharges)
-            {
-                if (remaincharges <= 0 || uint32(remaincharges) > spellproto->procCharges)
-                    remaincharges = spellproto->procCharges;
-            }
-            else
-                remaincharges = -1;
+            if (spellproto->procCharges == 0)			//Fix wrong overriding proc charges at loading
+				remaincharges = 0;
 
             // do not load single target auras (unless they were cast by the player)
             if (caster_guid != GetGUID() && IsSingleTargetSpell(spellproto))
@@ -1580,12 +1575,15 @@ void Pet::InitPetCreateSpells()
             }
             else
                 petspellid = learn_spellproto->Id;
+                
+			if (petspellid == 31707)				//waterbolt autocast hack fix (always toggle)
+				addSpell(petspellid,ACT_ENABLED);     
+			else
+				addSpell(petspellid);
 
-            addSpell(petspellid);
-
-            if (petspellid)
+         /* if (petspellid)
                 ToggleAutocast(petspellid, true);
-            
+         */   
             SkillLineAbilityMap::const_iterator lower = spellmgr.GetBeginSkillLineAbilityMap(learn_spellproto->EffectTriggerSpell[0]);
             SkillLineAbilityMap::const_iterator upper = spellmgr.GetEndSkillLineAbilityMap(learn_spellproto->EffectTriggerSpell[0]);
 
@@ -1699,7 +1697,7 @@ bool Pet::IsPermanentPetFor(Player* owner)
             switch (owner->getClass())
             {
                 case CLASS_WARLOCK:
-                    return GetCreatureInfo()->type == CREATURE_TYPE_DEMON;
+                    return GetCreatureInfo()->type == CREATURE_TYPE_DEMON; 
                 default:
                     return false;
             }
