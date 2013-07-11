@@ -20,4 +20,4 @@ Special credits to:
 BlizzLikeGroup individual credits:
 
 melursus hellstorm06 cqqjjf kalogr ScullyNY Schtom shuwen Gimlik Dudelzack Amara
-aghameysam netherwow morno
+aghameysam netherwow morno Clanat
