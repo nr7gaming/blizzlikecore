@@ -871,6 +871,8 @@ void Guardian::UpdateResistances(uint32 school)
             value += float(owner->GetResistance(SpellSchools(school))) * 0.4f;
 
         SetResistance(SpellSchools(school), int32(value));
+        //pet shouldn't have holy resistance
+        SetResistance(SPELL_SCHOOL_HOLY, 0);
     }
     else
         UpdateArmor();
