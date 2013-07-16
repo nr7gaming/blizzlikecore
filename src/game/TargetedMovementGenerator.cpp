@@ -150,7 +150,7 @@ bool TargetedMovementGenerator<T>::_setTargetLocation(T &owner)
     else
     {
         // to at i_offset distance from target and i_angle from target facing
-        i_target->GetClosePoint(x, y, z, (owner.GetObjectSize() - 0.5f), i_offset, i_angle);
+        i_target->GetClosePoint(x, y, z, (owner.GetObjectSize() - 0.1f), i_offset, i_angle);
     }
 
     /*

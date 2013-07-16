@@ -62,9 +62,9 @@ m_petType(type), m_duration(0), m_declinedname(NULL)
         InitCharmInfo();
     }
 
-/*  if (type == CLASS_PET)
+    if (type == CLASS_PET && sWorld.getConfig(CONFIG_PET_REACT_AGGRESSIVE))
         SetReactState(REACT_AGGRESSIVE);
-*/
+
     m_name = "Pet";
 
     m_regenTimer = 4000;
