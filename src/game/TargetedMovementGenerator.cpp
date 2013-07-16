@@ -149,18 +149,8 @@ bool TargetedMovementGenerator<T>::_setTargetLocation(T &owner)
     }
     else
     {
-        float size;
-        // pets need special handling
-        if (owner.ToCreature()->isPet() && i_target->GetTypeId() == TYPEID_PLAYER)
-            size = i_target->GetCombatReach() - i_target->GetObjectSize() - 1.0f;
-        else
-            size = i_offset - 0.5f;
-
-        if (i_target->IsWithinDistInMap(&owner, size))
-            i_target->GetContactPoint(&owner, x, y, z, size);
-
         // to at i_offset distance from target and i_angle from target facing
-        i_target->GetClosePoint(x, y, z, size, i_offset, i_angle);
+        i_target->GetClosePoint(x, y, z, (owner.GetObjectSize() - 0.5f), i_offset, i_angle);
     }
 
     /*

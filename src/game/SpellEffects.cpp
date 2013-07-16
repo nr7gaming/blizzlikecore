@@ -2006,7 +2006,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                         mod->value = -50;
                         mod->type = SPELLMOD_PCT;
                         mod->spellId = m_spellInfo->Id;
-                         mod->effectId = effIndex;
+                        mod->effectId = effIndex;
                         mod->lastAffected = NULL;
                         mod->mask = 0x0000020000000000LL;
                         mod->charges = 0;
@@ -6925,13 +6925,17 @@ void Spell::SummonGuardian(uint32 i, uint32 entry, SummonPropertiesEntry const *
 
         //pet is no longer stay after summon
         summon->GetMotionMaster()->MoveFollow(caster, PET_FOLLOW_DIST, summon->GetFollowAngle());
-        summon->SetUInt32Value(UNIT_CREATED_BY_SPELL, m_spellInfo->Id);
-        summon->GetCharmInfo()->SetCommandState(COMMAND_FOLLOW);
-        summon->GetCharmInfo()->SetIsCommandAttack(false);
-        summon->GetCharmInfo()->SetIsAtStay(false);
-        summon->GetCharmInfo()->SetIsReturning(false);
-        summon->GetCharmInfo()->SetIsFollowing(true);
-      //summon->AI()->EnterEvadeMode();
+        if (m_spellInfo->Id != 39906)
+        {
+            summon->SetUInt32Value(UNIT_CREATED_BY_SPELL, m_spellInfo->Id);
+            summon->GetCharmInfo()->SetCommandState(COMMAND_FOLLOW);
+            summon->GetCharmInfo()->SetIsCommandAttack(false);
+            summon->GetCharmInfo()->SetIsAtStay(false);
+            summon->GetCharmInfo()->SetIsReturning(false);
+            summon->GetCharmInfo()->SetIsFollowing(true);
+        }
+        else
+            summon->AI()->EnterEvadeMode();
     }
 }
 
