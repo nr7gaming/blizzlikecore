@@ -6923,19 +6923,8 @@ void Spell::SummonGuardian(uint32 i, uint32 entry, SummonPropertiesEntry const *
         if (summon->HasSummonMask(SUMMON_MASK_MINION) && m_targets.HasDst())
             ((Minion*)summon)->SetFollowAngle(m_caster->GetAngle(summon));
 
-        //pet is no longer stay after summon
         summon->GetMotionMaster()->MoveFollow(caster, PET_FOLLOW_DIST, summon->GetFollowAngle());
-        if (m_spellInfo->Id != 39906)
-        {
-            summon->SetUInt32Value(UNIT_CREATED_BY_SPELL, m_spellInfo->Id);
-            summon->GetCharmInfo()->SetCommandState(COMMAND_FOLLOW);
-            summon->GetCharmInfo()->SetIsCommandAttack(false);
-            summon->GetCharmInfo()->SetIsAtStay(false);
-            summon->GetCharmInfo()->SetIsReturning(false);
-            summon->GetCharmInfo()->SetIsFollowing(true);
-        }
-        else
-            summon->AI()->EnterEvadeMode();
+        summon->AI()->EnterEvadeMode();
     }
 }
 
