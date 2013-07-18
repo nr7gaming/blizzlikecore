@@ -157,7 +157,7 @@ struct mob_healing_wardAI : public ScriptedAI
 
     uint32 Heal_Timer;
 
-    ScriptedInstance *pInstance;
+    ScriptedInstance* pInstance;
 
     void Reset()
     {
