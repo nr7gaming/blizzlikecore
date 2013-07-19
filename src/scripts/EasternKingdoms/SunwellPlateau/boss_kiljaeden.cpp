@@ -147,7 +147,6 @@ enum Spells
 /*** Others ***/
 #define FLOOR_Z         28.050388f
 #define SHIELD_ORB_Z    45.000f
-#define DECEIVER_SPEED  2.0f
 
 enum Phase
 {
@@ -182,16 +181,16 @@ enum KilJaedenTimers
 // Locations of the Hand of Deceiver adds
 Position DeceiverLocations[3]=
 {
-    {1683.450f, 635.927f, 27.636f, 5.597f},
-    {1688.945f, 613.703f, 27.679f, 0.919f},
-    {1711.338f, 615.349f, 27.734f, 2.325f},
+    {1682.045f, 631.299f, 27.593f, 0.0f},
+    {1684.099f, 618.848f, 27.593f, 0.0f},
+    {1694.170f, 612.272f, 27.593f, 0.0f},
 };
 
 // Locations, where Shield Orbs will spawn
 float ShieldOrbLocations[4][2]=
 {
     {1698.900f, 627.870f},    // middle pont of Sunwell
-    {12, 3.14f},              // First one spawns northeast of KJ
+    {12, 3.14f},             // First one spawns northeast of KJ
     {12, 3.14f/0.7f},         // Second one spawns southeast
     {12, 3.14f*3.8f}          // Third one spawns (?)
 };
@@ -419,11 +418,8 @@ struct mob_kiljaeden_controllerAI : public Scripted_NoMovementAI
                 summoned->AddUnitMovementFlag(MOVEFLAG_ONTRANSPORT | MOVEFLAG_LEVITATING);
                 summoned->CastSpell(summoned, SPELL_ANVEENA_PRISON, true);
                 summoned->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
-                summoned->NearTeleportTo(1698.900f, 627.877f, 67.540f, 0.0f); //fix Anveena's falling after reset
                 break;
             case CREATURE_KILJAEDEN:
-                summoned->AddUnitMovementFlag(MOVEFLAG_ONTRANSPORT | MOVEFLAG_LEVITATING);
-                summoned->NearTeleportTo(1698.900f, 627.877f, 29.540f, 0.0f); //fix anim. bug (because sunwell floor uneven)
                 summoned->CastSpell(summoned, SPELL_REBIRTH, false);
                 summoned->AddThreat(me->getVictim(), 1.0f);
                 break;
@@ -454,7 +450,7 @@ struct mob_kiljaeden_controllerAI : public Scripted_NoMovementAI
         {
             me->RemoveAurasDueToSpell(SPELL_ANVEENA_ENERGY_DRAIN);
             phase = PHASE_NORMAL;
-            DoSpawnCreature(CREATURE_KILJAEDEN, 0, 0, 0, 0, TEMPSUMMON_MANUAL_DESPAWN, 0);
+            DoSpawnCreature(CREATURE_KILJAEDEN, 0, 0,0, 0, TEMPSUMMON_MANUAL_DESPAWN, 0);
         }
     }
 };
@@ -884,7 +880,7 @@ struct mob_hand_of_the_deceiverAI : public ScriptedAI
     void Reset()
     {
         // TODO: Timers!
-        ShadowBoltVolleyTimer = urand(6000,12000); // So they don't all cast it in the same moment, now correct timer
+        ShadowBoltVolleyTimer = urand(8000,14000); // So they don't all cast it in the same moment.
         FelfirePortalTimer = 20000;
         if (pInstance)
             pInstance->SetData(DATA_KILJAEDEN_EVENT, NOT_STARTED);
@@ -893,6 +889,7 @@ struct mob_hand_of_the_deceiverAI : public ScriptedAI
     void JustSummoned(Creature* summoned)
     {
         summoned->setFaction(me->getFaction());
+        summoned->SetLevel(me->getLevel());
     }
 
     void EnterCombat(Unit* who)
@@ -904,8 +901,6 @@ struct mob_hand_of_the_deceiverAI : public ScriptedAI
                 pControl->AddThreat(who, 1.0f);
         }
         me->InterruptNonMeleeSpells(true);
-        me->SetSpeed(MOVE_RUN, DECEIVER_SPEED);
-        me->CallForHelp(20.0f);            //linked pull
     }
 
     void JustDied(Unit* /*killer*/)
@@ -933,7 +928,7 @@ struct mob_hand_of_the_deceiverAI : public ScriptedAI
         if (ShadowBoltVolleyTimer <= diff)
         {
             DoCast(me->getVictim(), SPELL_SHADOW_BOLT_VOLLEY);
-            ShadowBoltVolleyTimer = 9000;          //now it not stucking if we have one hand of deceiver in 30 yard radius
+            ShadowBoltVolleyTimer = 12000;
         }
         else
             ShadowBoltVolleyTimer -= diff;
@@ -979,6 +974,7 @@ struct mob_felfire_portalAI : public Scripted_NoMovementAI
     void JustSummoned(Creature* summoned)
     {
         summoned->setFaction(me->getFaction());
+        summoned->SetLevel(me->getLevel());
     }
 
     void UpdateAI(const uint32 diff)
@@ -1018,10 +1014,7 @@ struct mob_volatile_felfire_fiendAI : public ScriptedAI
     void DamageTaken(Unit* /*done_by*/, uint32 &damage)
     {
         if (damage > me->GetHealth())
-        {
-            DoCast(me->getVictim(), SPELL_FELFIRE_FISSION, true);
-            me->Kill(me);
-        }
+            DoCast(me, SPELL_FELFIRE_FISSION, true);
     }
 
     void UpdateAI(const uint32 diff)
