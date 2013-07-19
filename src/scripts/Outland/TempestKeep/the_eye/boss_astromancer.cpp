@@ -201,7 +201,7 @@ struct boss_high_astromancer_solarianAI : public ScriptedAI
             {
                 me->InterruptNonMeleeSpells(false);
                 if (Unit *pTarget = SelectTarget(SELECT_TARGET_RANDOM, 1, 100, true))
-                    DoCast(pTarget, SPELL_WRATH_OF_THE_ASTROMANCER, true);
+                    DoCast(pTarget, SPELL_WRATH_OF_THE_ASTROMANCER);
                 Wrath_Timer = 20000+rand()%5000;
             } else Wrath_Timer -= diff;
 
