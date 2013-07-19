@@ -14,6 +14,7 @@
 #include "Creature.h"
 #include "World.h"
 #include "Util.h"
+//#include "SpellAuras.h"
 
 int PetAI::Permissible(const Creature* creature)
 {
@@ -38,6 +39,21 @@ bool PetAI::_needToStop() const
     // This is needed for charmed creatures, as once their target was reset other effects can trigger threat
     if (me->isCharmed() && me->getVictim() == me->GetCharmer())
         return true;
+    //Need to complete (works for REACT_PASSIVE, see it Unit* PetAI::SelectNextTarget() ) 
+    //If REACT_AGRESSIVE || REACT_DEFENSIVE  pet try to find new target, 
+    //cuz current target have auras with flag AURA_INTERRUPT_FLAG_DAMAGE
+    /*for (Unit::AuraMap::const_iterator itr = me->getVictim()->GetAuras().begin(); itr != me->getVictim()->GetAuras().end(); ++itr)
+    {
+        Aura* aura = itr->second;
+        if (aura
+            && me->isInCombat()
+            && !aura->IsPositive() 
+            && (aura->GetSpellProto()->AuraInterruptFlags & AURA_INTERRUPT_FLAG_DAMAGE))
+        {
+            return true;        
+            break;         //if pet found required aura finishing cycle
+        }
+    }*/
 
     return !me->canAttack(me->getVictim());
 }
@@ -79,8 +95,7 @@ void PetAI::UpdateAI(const uint32 diff)
             _stopAttack();
             return;
         }
-
-        DoMeleeAttackIfReady();
+            DoMeleeAttackIfReady();
     }
     else if (owner && me->GetCharmInfo()) //no victim
     {

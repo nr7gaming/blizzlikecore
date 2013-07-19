@@ -145,8 +145,8 @@ enum Spells
 #define ERROR_KJ_NOT_SUMMONED "BSCR ERROR: Unable to summon Kil'Jaeden for some reason"
 
 /*** Others ***/
-#define KJ_Z			28.640f
-#define ANVEENA_Z		67.540f
+#define KJ_Z            28.640f
+#define ANVEENA_Z       67.540f
 #define FLOOR_Z         28.050388f
 #define SHIELD_ORB_Z    45.000f
 #define DECEIVER_SPEED  2.0f
@@ -421,11 +421,11 @@ struct mob_kiljaeden_controllerAI : public Scripted_NoMovementAI
                 summoned->AddUnitMovementFlag(MOVEFLAG_ONTRANSPORT | MOVEFLAG_LEVITATING);
                 summoned->CastSpell(summoned, SPELL_ANVEENA_PRISON, true);
                 summoned->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
-				summoned->NearTeleportTo(summoned->GetPositionX(), summoned->GetPositionY(), ANVEENA_Z, 0.0f); //fix Anveena's falling after reset
+                summoned->NearTeleportTo(summoned->GetPositionX(), summoned->GetPositionY(), ANVEENA_Z, 0.0f); //fix Anveena's falling after reset
                 break;
             case CREATURE_KILJAEDEN:
                 summoned->AddUnitMovementFlag(MOVEFLAG_ONTRANSPORT | MOVEFLAG_LEVITATING);
-				summoned->NearTeleportTo(summoned->GetPositionX(), summoned->GetPositionY(), KJ_Z, 4.016f); //fix anim. bug (because sunwell floor uneven)
+                summoned->NearTeleportTo(summoned->GetPositionX(), summoned->GetPositionY(), KJ_Z, 4.016f); //fix anim. bug (because sunwell floor uneven)
                 summoned->CastSpell(summoned, SPELL_REBIRTH, false);
                 summoned->AddThreat(me->getVictim(), 1.0f);
                 break;
