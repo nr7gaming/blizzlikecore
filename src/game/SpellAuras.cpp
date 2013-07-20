@@ -4006,13 +4006,13 @@ void Aura::HandlePeriodicTriggerSpell(bool apply, bool Real)
     if (!apply && m_spellProto->Id == 29213 && m_removeMode != AURA_REMOVE_BY_DISPEL)
     {
         // Cast Wrath of the Plaguebringer if not dispelled
-        m_target->CastSpell(m_target, 29214, true, 0, this);
+        m_target->CastSpell(m_target, 29214, true, NULL, this);
     }
 
     // Wrath of the Astromancer
     if (!apply && m_spellProto->Id == 42783)
     {
-        m_target->CastSpell(m_target, 42787, true, 0, this);
+        m_target->CastSpell(m_target, 42787, true, NULL, this);
     }
 }
 
@@ -4083,7 +4083,7 @@ void Aura::HandlePeriodicHeal(bool apply, bool Real)
     if (Real && apply && GetSpellProto()->Mechanic == MECHANIC_BANDAGE)
     {
         // provided m_target as original caster to prevent apply aura caster selection for this negative buff
-        m_target->CastSpell(m_target,11196,true,NULL,this,m_target->GetGUID());
+        m_target->CastSpell(m_target, 11196, true, NULL, this, m_target->GetGUID());
     }
 
     // For prevent double apply bonuses

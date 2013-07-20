@@ -32,6 +32,10 @@
 
 #include <limits.h>
 
+#if COMPILER == COMPILER_MICROSOFT
+#   pragma warning(disable: 4018)
+#endif
+
 #ifndef PATH_MAX
 	#define PATH_MAX 260
 #endif

@@ -323,7 +323,7 @@ int libmpq_file_check(mpq_archive *mpq_a, void *file, int type) {
  *  by the given number.
  */
 int libmpq_file_extract(mpq_archive *mpq_a, const int number, const char *filename) {
-	unsigned int blockindex = number; //-1;
+	int blockindex = number; //-1;;
 	int fd = 0;
 	int i = 0;
 	char buffer[0x1000];
@@ -355,7 +355,7 @@ int libmpq_file_extract(mpq_archive *mpq_a, const int number, const char *filena
 	}*/
 
 	/* check if file was found */
-	if (number == -1 || blockindex > mpq_a->header->blocktablesize) {
+	if (blockindex == -1 || blockindex > mpq_a->header->blocktablesize) {
 		return LIBMPQ_EFILE_NOT_FOUND;
 	}
 
@@ -534,7 +534,7 @@ int libmpq_listfile_close(mpq_archive *mpq_a) {
 }
 
 int libmpq_file_getdata(mpq_archive *mpq_a, mpq_hash mpq_h, const int number, unsigned char *dest) {
-	unsigned int blockindex = number; //-1;
+	int blockindex = number; //-1;;
 	int i = 0;
 	mpq_file *mpq_f = NULL;
 	mpq_block *mpq_b = NULL;
@@ -554,7 +554,7 @@ int libmpq_file_getdata(mpq_archive *mpq_a, mpq_hash mpq_h, const int number, un
 	}*/
 
 	/* check if file was found */
-	if (number == -1 || blockindex > mpq_a->header->blocktablesize) {
+	if (blockindex == -1 || blockindex > mpq_a->header->blocktablesize) {
 		return LIBMPQ_EFILE_NOT_FOUND;
 	}
 
