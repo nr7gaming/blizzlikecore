@@ -656,7 +656,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
         {
             switch (m_spellInfo->Id)
             {
-                case 42784:                                  // Wrath of the Astromancer
+                case 42783:                                  // Wrath of the Astromancer
                 {
                     uint32 count = 0;
                     for (std::list<TargetInfo>::iterator ihit= m_UniqueTargetInfo.begin(); ihit != m_UniqueTargetInfo.end(); ++ihit)
@@ -668,7 +668,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                             ++count;
                     }
 
-                    damage = 12000; // maybe wrong value
+                    damage = 1200; // maybe wrong value
                     damage /= count;
 
                     SpellEntry const *spellInfo = sSpellStore.LookupEntry(42784);
@@ -1697,22 +1697,6 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
         case SPELLFAMILY_MAGE:
             switch (m_spellInfo->Id)
             {
-                case 11189:                                 // Frost Warding
-                case 28332:
-                {
-                    if (!unitTarget || unitTarget->GetTypeId() != TYPEID_PLAYER)
-                        return;
-
-                    // increase reflaction chanced (effect 1) of Frost Ward, removed in aura boosts
-                    SpellModifier *mod = new SpellModifier;
-                    mod->op = SPELLMOD_EFFECT2;
-                    mod->type = SPELLMOD_FLAT;
-                    mod->spellId = m_spellInfo->Id;
-                    mod->mask = 0x0000000000000100LL;
-
-                    ((Player*)unitTarget)->AddSpellMod(mod, true);
-                    break;
-                }
                 case 11958:                                 // Cold Snap
                 {
                     if (m_caster->GetTypeId() != TYPEID_PLAYER)
@@ -1732,7 +1716,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                             (GetSpellSchoolMask(spellInfo) & SPELL_SCHOOL_MASK_FROST) &&
                             spellInfo->Id != 11958 && GetSpellRecoveryTime(spellInfo) > 0)
                         {
-                            m_caster->ToPlayer()->RemoveSpellCooldown(classspell,true);
+                            m_caster->ToPlayer()->RemoveSpellCooldown(classspell, true);
                         }
                     }
                     return;
