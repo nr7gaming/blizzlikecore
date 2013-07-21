@@ -74,10 +74,10 @@ void PetAI::UpdateAI(const uint32 diff)
     if (me->getVictim())
     {
         // Pet stops attack/casting, if charmer/owner is in combat and target have CrowdConctol aura
-        if (me->getVictim()->HasBreakableByDamageCCAura() && me->GetCharmerOrOwner()->isInCombat())
+        if (me->getVictim()->HasBreakableByDamageCCAura() 
+            && me->GetCharmerOrOwner()->isInCombat()
+            && me->HasReactState(REACT_AGGRESSIVE))
         {
-            // Trying to implement: If player use command attack to pet
-            // pet should to attack target with CC aura (this will be fully blizzlike)
             DEBUG_LOG("Pet AI stopped casting [guid=%u], cuz target have CC aura", me->GetGUIDLow());
             me->InterruptNonMeleeSpells(false);
             me->AttackStop();
@@ -86,14 +86,14 @@ void PetAI::UpdateAI(const uint32 diff)
             
             // Trying to implement: If player use command attack to pet,
             // pet should to attack target with CC aura (this will be fully blizzlike)
-            if (!me->getVictim() 
-                && me->GetCharmInfo()->IsCommandAttack() 
-                && me->GetCharmerOrOwner()->getVictim()->HasBreakableByDamageCCAura())
+            if (!me->getVictim()                            // if pet already return to player (pet haven't target)
+                && me->GetCharmInfo()->IsCommandAttack()    // if player click "Attack" on petbar
+                && me->GetCharmerOrOwner()->getVictim()->HasBreakableByDamageCCAura()) // if player's target has CC auras
             {
                 me->GetCharmInfo()->SetIsCommandAttack(true);
                 return;
             }
-
+            // Else pet stop attack target with CC aura and return to player
             else return;
         }
         
