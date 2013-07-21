@@ -17678,7 +17678,7 @@ int32 Player::GetTotalFlatMods(uint32 spellId, SpellModOp op)
     int32 total = 0;
     for (SpellModList::iterator itr = m_spellMods[op].begin(); itr != m_spellMods[op].end(); ++itr)
     {
-        SpellModifier *mod = *itr;
+        SpellModifier* mod = *itr;
 
         if (!IsAffectedBySpellmod(spellInfo,mod))
             continue;
@@ -17696,7 +17696,7 @@ int32 Player::GetTotalPctMods(uint32 spellId, SpellModOp op)
     int32 total = 0;
     for (SpellModList::iterator itr = m_spellMods[op].begin(); itr != m_spellMods[op].end(); ++itr)
     {
-        SpellModifier *mod = *itr;
+        SpellModifier* mod = *itr;
 
         if (!IsAffectedBySpellmod(spellInfo,mod))
             continue;
@@ -17707,7 +17707,7 @@ int32 Player::GetTotalPctMods(uint32 spellId, SpellModOp op)
     return total;
 }
 
-bool Player::IsAffectedBySpellmod(SpellEntry const* spellInfo, SpellModifier *mod, Spell const* spell)
+bool Player::IsAffectedBySpellmod(SpellEntry const* spellInfo, SpellModifier* mod, Spell const* spell)
 {
     if (!mod || !spellInfo)
         return false;
@@ -17772,7 +17772,7 @@ void Player::RestoreSpellMods(Spell const* spell)
     {
         for (SpellModList::iterator itr = m_spellMods[i].begin(); itr != m_spellMods[i].end();++itr)
         {
-            SpellModifier *mod = *itr;
+            SpellModifier* mod = *itr;
 
             if (mod && mod->charges == -1 && mod->lastAffected == spell)
             {
@@ -17793,7 +17793,7 @@ void Player::RemoveSpellMods(Spell const* spell)
     {
         for (SpellModList::iterator itr = m_spellMods[i].begin(); itr != m_spellMods[i].end();)
         {
-            SpellModifier *mod = *itr;
+            SpellModifier* mod = *itr;
             ++itr;
 
             if (mod && mod->charges == -1 && (mod->lastAffected == spell || mod->lastAffected == NULL))

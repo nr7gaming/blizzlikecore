@@ -5721,7 +5721,7 @@ bool Unit::HandleDummyAuraProc(Unit* pVictim, uint32 damage, Aura* triggeredByAu
                         return false;
                 }
                 // No thread generated mod
-                SpellModifier *mod = new SpellModifier;
+                SpellModifier* mod = new SpellModifier;
                 mod->op = SPELLMOD_THREAT;
                 mod->value = -100;
                 mod->type = SPELLMOD_PCT;
@@ -11588,7 +11588,7 @@ bool Unit::HandleMendingAuraProc(Aura* triggeredByAura)
             if (Player* target = ToPlayer()->GetNextRandomRaidMember(radius))
             {
                 // aura will applied from caster, but spell casted from current aura holder
-                SpellModifier *mod = new SpellModifier;
+                SpellModifier* mod = new SpellModifier;
                 mod->op = SPELLMOD_CHARGES;
                 mod->value = jumps-5;               // negative
                 mod->type = SPELLMOD_FLAT;

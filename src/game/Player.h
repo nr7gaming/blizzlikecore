@@ -1398,7 +1398,7 @@ class Player : public Unit, public GridObject<Player>
         void AddSpellMod(SpellModifier* mod, bool apply);
         int32 GetTotalFlatMods(uint32 spellId, SpellModOp op);
         int32 GetTotalPctMods(uint32 spellId, SpellModOp op);
-        bool IsAffectedBySpellmod(SpellEntry const *spellInfo, SpellModifier *mod, Spell const* spell = NULL);
+        bool IsAffectedBySpellmod(SpellEntry const *spellInfo, SpellModifier* mod, Spell const* spell = NULL);
         template <class T> T ApplySpellMod(uint32 spellId, SpellModOp op, T &basevalue, Spell const* spell = NULL);
         void RemoveSpellMods(Spell const* spell);
         void RestoreSpellMods(Spell const* spell);
@@ -2394,7 +2394,7 @@ template <class T> T Player::ApplySpellMod(uint32 spellId, SpellModOp op, T &bas
     int32 totalflat = 0;
     for (SpellModList::iterator itr = m_spellMods[op].begin(); itr != m_spellMods[op].end(); ++itr)
     {
-        SpellModifier *mod = *itr;
+        SpellModifier* mod = *itr;
 
         if (!IsAffectedBySpellmod(spellInfo,mod,spell))
             continue;

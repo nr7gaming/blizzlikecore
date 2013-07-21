@@ -1202,14 +1202,14 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                         ? 29277                             // Summon Purified Helboar Meat
                         : 29278;                            // Summon Toxic Helboar Meat
 
-                    m_caster->CastSpell(m_caster,spell_id,true,NULL);
+                    m_caster->CastSpell(m_caster, spell_id, true, NULL);
                     return;
                 }
                 case 29858:                                 // Soulshatter
                 {
                     if (unitTarget && unitTarget->CanHaveThreatList()
                         && unitTarget->getThreatManager().getThreat(m_caster) > 0.0f)
-                        m_caster->CastSpell(unitTarget,32835,true);
+                        m_caster->CastSpell(unitTarget, 32835, true);
 
                     return;
                 }
@@ -1985,7 +1985,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                     if (!unitTarget->hasUnitState(UNIT_STAT_STUNNED) && m_caster->GetTypeId() == TYPEID_PLAYER)
                     {
                         // decreased damage (/2) for non-stunned target.
-                        SpellModifier *mod = new SpellModifier;
+                        SpellModifier* mod = new SpellModifier;
                         mod->op = SPELLMOD_DAMAGE;
                         mod->value = -50;
                         mod->type = SPELLMOD_PCT;
