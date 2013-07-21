@@ -20,13 +20,11 @@ enum Say
 
 enum Spells
 {
-    SPELL_BRAINWASHTOTEM            = 24262,
-    SPELL_POWERFULLHEALINGWARD      = 24309, // HACKED Totem summoned by script because the spell totems will not cast.
     SPELL_HEX                       = 24053,
     SPELL_DELUSIONSOFJINDO          = 24306,
-    SPELL_SHADEOFJINDO              = 24308, // HACKED
+    SPELL_SHADEOFJINDO              = 24308,
     //Healing Ward Spell
-    SPELL_HEAL                      = 38588, // HACKED Totems are not working right. Right heal spell ID is 24311 but this spell is not casting...
+    SPELL_HEAL                      = 38588, // Right heal spell ID is 24311 but this spell is not casting...
     //Shade of Jindo Spell
     SPELL_SHADOWSHOCK               = 19460,
     SPELL_INVISIBLE                 = 24699
@@ -62,17 +60,16 @@ struct boss_jindoAI : public ScriptedAI
             return;
 
         //BrainWashTotem_Timer
-/*      if (BrainWashTotem_Timer <= diff)
+        if (BrainWashTotem_Timer <= diff)
         {
-            DoCast(me, SPELL_BRAINWASHTOTEM);
+            me->SummonCreature(15112, me->GetPositionX()+3, me->GetPositionY()-2, me->GetPositionZ(), 0, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN, 20000);
             BrainWashTotem_Timer = urand(18000, 26000);
         } else BrainWashTotem_Timer -= diff;
-*/
+
         //HealingWard_Timer
         if (HealingWard_Timer <= diff)
         {
-            //DoCast(me, SPELL_POWERFULLHEALINGWARD);
-            me->SummonCreature(14987, me->GetPositionX()+3, me->GetPositionY()-2, me->GetPositionZ(), 0, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN,30000);
+            me->SummonCreature(14987, me->GetPositionX()+3, me->GetPositionY()-2, me->GetPositionZ(), 0, TEMPSUMMON_TIMED_OR_DEAD_DESPAWN, 30000);
             HealingWard_Timer = urand(14000, 20000);
         } else HealingWard_Timer -= diff;
 

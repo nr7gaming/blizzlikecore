@@ -1144,7 +1144,7 @@ void Aura::HandleAddModifier(bool apply, bool Real)
                 break;
         }
 
-        SpellModifier *mod = new SpellModifier;
+        SpellModifier* mod = new SpellModifier;
         mod->op = SpellModOp(m_modifier.m_miscvalue);
         mod->value = GetModifierValue();
         mod->type = SpellModType(m_modifier.m_auraname);    // SpellModType value == spell aura types
@@ -1177,7 +1177,7 @@ void Aura::HandleAddModifier(bool apply, bool Real)
         m_target->RemoveAurasDueToSpell(45471);
 
         if (apply)
-            m_target->CastSpell(m_target,45471,true);
+            m_target->CastSpell(m_target, 45471, true);
     }
 
     if (spellInfo->SpellFamilyName == SPELLFAMILY_PALADIN && (spellFamilyMask & 0x0000100000000000LL)) // Spiritual Attunement
@@ -1185,12 +1185,12 @@ void Aura::HandleAddModifier(bool apply, bool Real)
         if (m_target->HasAura(31785,0)) // rank 1
         {
             m_target->RemoveAurasDueToSpell(31785);
-            m_target->CastSpell(m_target,31785,true);
+            m_target->CastSpell(m_target, 31785, true);
         }
         if (m_target->HasAura(33776,0)) // rank 2
         {
             m_target->RemoveAurasDueToSpell(33776);
-            m_target->CastSpell(m_target,33776,true);
+            m_target->CastSpell(m_target, 33776, true);
         }
     }
 }
@@ -1284,7 +1284,7 @@ void Aura::TriggerSpell()
                     // Brood Affliction: Bronze
                     case 23170:
                     {
-                        m_target->CastSpell(m_target, 23171, true, 0, this);
+                        m_target->CastSpell(m_target, 23171, true, NULL, this);
                         return;
                     }
 //                    // Mark of Frost
@@ -1995,7 +1995,7 @@ void Aura::TriggerSpell()
     }
     if (!GetSpellMaxRange(sSpellRangeStore.LookupEntry(triggeredSpellInfo->rangeIndex)))
         target = m_target;    //for druid dispel poison
-    m_target->CastSpell(target, triggeredSpellInfo, true, 0, this, originalCasterGUID);
+    m_target->CastSpell(target, triggeredSpellInfo, true, NULL, this, originalCasterGUID);
 }
 
 Unit* Aura::GetTriggerTarget() const
@@ -2354,7 +2354,7 @@ void Aura::HandleAuraDummy(bool apply, bool Real)
             {
                 if (apply)
                 {
-                    SpellModifier *mod = new SpellModifier;
+                    SpellModifier* mod = new SpellModifier;
                     mod->op = SPELLMOD_DOT;
                     mod->value = m_modifier.m_amount/7;
                     mod->type = SPELLMOD_FLAT;
@@ -2380,7 +2380,7 @@ void Aura::HandleAuraDummy(bool apply, bool Real)
                 if (apply)
                 {
                     // + effect value for Aspect of the Viper
-                    SpellModifier *mod = new SpellModifier;
+                    SpellModifier* mod = new SpellModifier;
                     mod->op = SPELLMOD_EFFECT1;
                     mod->value = m_modifier.m_amount;
                     mod->type = SPELLMOD_FLAT;
@@ -2405,7 +2405,7 @@ void Aura::HandleAuraDummy(bool apply, bool Real)
             {
                 if (apply)
                 {
-                    SpellModifier *mod = new SpellModifier;
+                    SpellModifier* mod = new SpellModifier;
                     mod->op = SPELLMOD_EFFECT1;
                     mod->value = m_modifier.m_amount;
                     mod->type = SPELLMOD_PCT;
@@ -6100,7 +6100,7 @@ void Aura::PeriodicTick()
             // Mark of Kaz'rogal
             if (GetId() == 31447 && m_target->GetPower(power) == 0)
             {
-                m_target->CastSpell(m_target, 31463, true, 0, this);
+                m_target->CastSpell(m_target, 31463, true, NULL, this);
                 // Remove aura
                 SetAuraDuration(0);
             }
@@ -6113,7 +6113,7 @@ void Aura::PeriodicTick()
 
                 if (m_target->GetPower(power) == 0)
                 {
-                    m_target->CastSpell(m_target, 32961, true, 0, this);
+                    m_target->CastSpell(m_target, 32961, true, NULL, this);
                     // Remove aura
                     SetAuraDuration(0);
                 }

@@ -310,7 +310,7 @@ class Aura
         Aura(SpellEntry const* spellproto, uint32 eff, int32 *currentBasePoints, Unit* target, Unit* caster = NULL, Item* castItem = NULL);
 
         Modifier m_modifier;
-        SpellModifier *m_spellmod;
+        SpellModifier* m_spellmod;
         uint32 m_effIndex;
         SpellEntry const *m_spellProto;
         int32 m_currentBasePoints;                          // cache SpellEntry::EffectBasePoints and use for set custom base points
