@@ -76,7 +76,7 @@ void PetAI::UpdateAI(const uint32 diff)
         // Pet stops attack/casting, if charmer/owner is in combat and target have CrowdConctol aura
         if (me->getVictim()->HasBreakableByDamageCCAura() 
             && me->GetCharmerOrOwner()->isInCombat()
-            && me->HasReactState(REACT_AGGRESSIVE))
+            && !me->HasReactState(REACT_AGGRESSIVE))
         {
             DEBUG_LOG("Pet AI stopped casting [guid=%u], cuz target have CC aura", me->GetGUIDLow());
             me->InterruptNonMeleeSpells(false);
