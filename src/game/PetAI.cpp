@@ -14,7 +14,6 @@
 #include "Creature.h"
 #include "World.h"
 #include "Util.h"
-//#include "SpellAuras.h"
 
 int PetAI::Permissible(const Creature* creature)
 {
@@ -39,21 +38,6 @@ bool PetAI::_needToStop() const
     // This is needed for charmed creatures, as once their target was reset other effects can trigger threat
     if (me->isCharmed() && me->getVictim() == me->GetCharmer())
         return true;
-    //Need to complete (works for REACT_PASSIVE, see it Unit* PetAI::SelectNextTarget() ) 
-    //If REACT_AGRESSIVE || REACT_DEFENSIVE  pet try to find new target, 
-    //cuz current target have auras with flag AURA_INTERRUPT_FLAG_DAMAGE
-    /*for (Unit::AuraMap::const_iterator itr = me->getVictim()->GetAuras().begin(); itr != me->getVictim()->GetAuras().end(); ++itr)
-    {
-        Aura* aura = itr->second;
-        if (aura
-            && me->isInCombat()
-            && !aura->IsPositive() 
-            && (aura->GetSpellProto()->AuraInterruptFlags & AURA_INTERRUPT_FLAG_DAMAGE))
-        {
-            return true;        
-            break;         //if pet found required aura finishing cycle
-        }
-    }*/
 
     return !me->canAttack(me->getVictim());
 }
@@ -89,6 +73,30 @@ void PetAI::UpdateAI(const uint32 diff)
     // me->getVictim() can't be used for check in case stop fighting, me->getVictim() clear at Unit death etc.
     if (me->getVictim())
     {
+        // Pet stops attack/casting, if charmer/owner is in combat and target have CrowdConctol aura
+        if (me->getVictim()->HasBreakableByDamageCCAura() && me->GetCharmerOrOwner()->isInCombat())
+        {
+            // Trying to implement: If player use command attack to pet
+            // pet should to attack target with CC aura (this will be fully blizzlike)
+            DEBUG_LOG("Pet AI stopped casting [guid=%u], cuz target have CC aura", me->GetGUIDLow());
+            me->InterruptNonMeleeSpells(false);
+            me->AttackStop();
+            me->GetCharmInfo()->SetIsCommandAttack(false);
+            HandleReturnMovement();
+            
+            // Trying to implement: If player use command attack to pet,
+            // pet should to attack target with CC aura (this will be fully blizzlike)
+            if (!me->getVictim() 
+                && me->GetCharmInfo()->IsCommandAttack() 
+                && me->GetCharmerOrOwner()->getVictim()->HasBreakableByDamageCCAura())
+            {
+                me->GetCharmInfo()->SetIsCommandAttack(true);
+                return;
+            }
+
+            else return;
+        }
+        
         if (_needToStop())
         {
             DEBUG_LOG("Pet AI stopped attacking [guid=%u]", me->GetGUIDLow());
@@ -101,7 +109,9 @@ void PetAI::UpdateAI(const uint32 diff)
     {
         Unit* nextTarget = SelectNextTarget();
 
-        if (nextTarget)
+        if (me->HasReactState(REACT_PASSIVE))
+            _stopAttack();
+        else if (nextTarget)
             AttackStart(nextTarget);
         else
             HandleReturnMovement();
@@ -303,6 +313,8 @@ void PetAI::AttackStart(Unit* target)
             DoAttack(target,true); // STAY or FOLLOW, player clicked "attack" so attack with chase
         else
             DoAttack(target,false); // STAY, target in range, attack not clicked so attack without chase
+
+    DoAttack(target, true);
     }
 }
 
@@ -314,14 +326,18 @@ Unit* PetAI::SelectNextTarget()
     if (me->HasReactState(REACT_PASSIVE))
         return NULL;
 
+    Unit* target = me->getAttackerForHelper();
+
     // Check pet's attackers first to prevent dragging mobs back
     // to owner
-    if (me->getAttackerForHelper())
-        return me->getAttackerForHelper();
+    target = me->GetCharmerOrOwner()->getAttackerForHelper();
+    if (target && !target->HasBreakableByDamageCCAura())
+        return target;
 
     // Check owner's attackers if pet didn't have any
-    if (me->GetCharmerOrOwner()->getAttackerForHelper())
-        return me->GetCharmerOrOwner()->getAttackerForHelper();
+    target = me->GetCharmerOrOwner()->getVictim();
+    if (target && !target->HasBreakableByDamageCCAura())
+        return target;
 
     // Default
     return NULL;

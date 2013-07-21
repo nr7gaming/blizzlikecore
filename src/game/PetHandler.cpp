@@ -93,7 +93,6 @@ void WorldSession::HandlePetActionHelper(Unit* pet, uint64 guid1, uint16 spellid
                     pet->InterruptNonMeleeSpells(false);
                     pet->GetMotionMaster()->MoveFollow(_player, PET_FOLLOW_DIST, pet->GetFollowAngle());
                     charmInfo->SetCommandState(COMMAND_FOLLOW);
-
                     charmInfo->SetIsCommandAttack(false);
                     charmInfo->SetIsAtStay(false);
                     charmInfo->SetIsReturning(true);
