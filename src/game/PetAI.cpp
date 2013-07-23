@@ -73,20 +73,45 @@ void PetAI::UpdateAI(const uint32 diff)
     // me->getVictim() can't be used for check in case stop fighting, me->getVictim() clear at Unit death etc.
     if (me->getVictim())
     {
+        // Pet stops attack/casting, if charmer/owner is in combat and target have CrowdConctol aura
+        if (me->getVictim()->HasBreakableByDamageCCAura()
+            && me->GetCharmerOrOwner()->isInCombat()
+            && !me->HasReactState(REACT_AGGRESSIVE))
+        {
+            DEBUG_LOG("Pet AI stopped casting [guid=%u], cuz target have CC aura", me->GetGUIDLow());
+            me->InterruptNonMeleeSpells(false);
+            me->AttackStop();
+            me->GetCharmInfo()->SetIsCommandAttack(false);
+            HandleReturnMovement();
+
+            // Trying to implement: If player use command attack to pet,
+            // pet should to attack target with CC aura (this will be fully blizzlike)
+            if (!me->getVictim()                            // if pet already return to player (pet haven't target)
+                && me->GetCharmInfo()->IsCommandAttack()    // if player click "Attack" on petbar
+                && me->GetCharmerOrOwner()->getVictim()->HasBreakableByDamageCCAura()) // if player's target has CC auras
+            {
+                me->GetCharmInfo()->SetIsCommandAttack(true);
+                return;
+            }
+            // Else pet stop attack target with CC aura and return to player
+            else return;
+        }
+
         if (_needToStop())
         {
             DEBUG_LOG("Pet AI stopped attacking [guid=%u]", me->GetGUIDLow());
             _stopAttack();
             return;
         }
-
         DoMeleeAttackIfReady();
     }
     else if (owner && me->GetCharmInfo()) //no victim
     {
         Unit* nextTarget = SelectNextTarget();
 
-        if (nextTarget)
+        if (me->HasReactState(REACT_PASSIVE))
+            _stopAttack();
+        else if (nextTarget)
             AttackStart(nextTarget);
         else
             HandleReturnMovement();
@@ -288,6 +313,8 @@ void PetAI::AttackStart(Unit* target)
             DoAttack(target,true); // STAY or FOLLOW, player clicked "attack" so attack with chase
         else
             DoAttack(target,false); // STAY, target in range, attack not clicked so attack without chase
+
+        DoAttack(target, true);
     }
 }
 
@@ -299,14 +326,18 @@ Unit* PetAI::SelectNextTarget()
     if (me->HasReactState(REACT_PASSIVE))
         return NULL;
 
+    Unit* target = me->getAttackerForHelper();
+
     // Check pet's attackers first to prevent dragging mobs back
     // to owner
-    if (me->getAttackerForHelper())
-        return me->getAttackerForHelper();
+    target = me->GetCharmerOrOwner()->getAttackerForHelper();
+    if (target && !target->HasBreakableByDamageCCAura())
+        return target;
 
     // Check owner's attackers if pet didn't have any
-    if (me->GetCharmerOrOwner()->getAttackerForHelper())
-        return me->GetCharmerOrOwner()->getAttackerForHelper();
+    target = me->GetCharmerOrOwner()->getVictim();
+    if (target && !target->HasBreakableByDamageCCAura())
+        return target;
 
     // Default
     return NULL;
