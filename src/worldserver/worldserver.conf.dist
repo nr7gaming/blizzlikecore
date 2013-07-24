@@ -3,7 +3,7 @@
 #################################################
 
 [worldserver]
-ConfVersion=20130716
+ConfVersion=20130724
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -196,7 +196,7 @@ EAIErrorLevel = 2
 #         calculated. Max: melee attack range (5), min: contact range (0.5)
 #         More distance let have better performence, less distance let have
 #         more sensitive reaction at target move.
-#        Default: 0.9
+#        Default: 1.5
 #
 #    mmap.enable
 #        Enable/Disable pathfinding using mmaps
@@ -263,7 +263,7 @@ vmap.petLOS = 1
 vmap.totem = 0
 vmap.enableIndoorCheck = 1
 DetectPosCollision = 1
-TargetPosRecalculateRange = 0.9
+TargetPosRecalculateRange = 1.5
 mmap.enable = 1
 mmap.ignoreMapIds = ""
 UpdateUptimeInterval = 10

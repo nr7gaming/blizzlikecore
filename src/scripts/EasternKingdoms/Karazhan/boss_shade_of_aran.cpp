@@ -15,51 +15,56 @@ EndScriptData */
 #include "karazhan.h"
 #include "GameObject.h"
 
-#define SAY_AGGRO1                  -1532073
-#define SAY_AGGRO2                  -1532074
-#define SAY_AGGRO3                  -1532075
-#define SAY_FLAMEWREATH1            -1532076
-#define SAY_FLAMEWREATH2            -1532077
-#define SAY_BLIZZARD1               -1532078
-#define SAY_BLIZZARD2               -1532079
-#define SAY_EXPLOSION1              -1532080
-#define SAY_EXPLOSION2              -1532081
-#define SAY_DRINK                   -1532082                //Low Mana / AoE Pyroblast
-#define SAY_ELEMENTALS              -1532083
-#define SAY_KILL1                   -1532084
-#define SAY_KILL2                   -1532085
-#define SAY_TIMEOVER                -1532086
-#define SAY_DEATH                   -1532087
-#define SAY_ATIESH                  -1532088                //Atiesh is equipped by a raid member
+#define SPELL_DRINK 30024
 
-//Spells
-#define SPELL_FROSTBOLT     29954
-#define SPELL_FIREBALL      29953
-#define SPELL_ARCMISSLE     29955
-#define SPELL_CHAINSOFICE   29991
-#define SPELL_DRAGONSBREATH 29964
-#define SPELL_MASSSLOW      30035
-#define SPELL_FLAME_WREATH  29946
-#define SPELL_AOE_CS        29961
-#define SPELL_PLAYERPULL    32265
-#define SPELL_AEXPLOSION    29973
-#define SPELL_MASS_POLY     29963
-#define SPELL_BLINK_CENTER  29967
-#define SPELL_ELEMENTALS    29962
-#define SPELL_CONJURE       29975
-#define SPELL_DRINK         30024
-#define SPELL_POTION        32453
-#define SPELL_AOE_PYROBLAST 29978
+enum Say
+{
+    SAY_AGGRO1                  = -1532073,
+    SAY_AGGRO2                  = -1532074,
+    SAY_AGGRO3                  = -1532075,
+    SAY_FLAMEWREATH1            = -1532076,
+    SAY_FLAMEWREATH2            = -1532077,
+    SAY_BLIZZARD1               = -1532078,
+    SAY_BLIZZARD2               = -1532079,
+    SAY_EXPLOSION1              = -1532080,
+    SAY_EXPLOSION2              = -1532081,
+    SAY_DRINK                   = -1532082,
+    SAY_ELEMENTALS              = -1532083,
+    SAY_KILL1                   = -1532084,
+    SAY_KILL2                   = -1532085,
+    SAY_TIMEOVER                = -1532086,
+    SAY_DEATH                   = -1532087,
+    SAY_ATIESH                  = -1532088
+};
 
-//Creature Spells
-#define SPELL_CIRCULAR_BLIZZARD     29951                   //29952 is the REAL circular blizzard that leaves persistant blizzards that last for 10 seconds
-#define SPELL_WATERBOLT             31012
-#define SPELL_SHADOW_PYRO           29978
+enum Spells
+{
+    SPELL_FROSTBOLT             = 29954,
+    SPELL_FIREBALL              = 29953,
+    SPELL_ARCMISSLE             = 29955,
+    SPELL_CHAINSOFICE           = 29991,
+    SPELL_DRAGONSBREATH         = 29964,
+    SPELL_MASSSLOW              = 30035,
+    SPELL_FLAME_WREATH          = 29946,
+    SPELL_AOE_CS                = 29961,
+    SPELL_PLAYERPULL            = 32265,
+    SPELL_AEXPLOSION            = 29973,
+    SPELL_MASS_POLY             = 29963,
+    SPELL_BLINK_CENTER          = 29967,
+    SPELL_ELEMENTALS            = 29962,
+    SPELL_CONJURE               = 29975,
+    SPELL_POTION                = 32453,
+    SPELL_AOE_PYROBLAST         = 29978,
 
-//Creatures
-#define CREATURE_WATER_ELEMENTAL    17167
-#define CREATURE_SHADOW_OF_ARAN     18254
-#define CREATURE_ARAN_BLIZZARD      17161
+    //Creature Spells
+    SPELL_CIRCULAR_BLIZZARD     = 29951,
+    SPELL_WATERBOLT             = 31012,
+
+    //Creatures
+    CREATURE_WATER_ELEMENTAL    = 17167,
+    CREATURE_SHADOW_OF_ARAN     = 18254,
+    CREATURE_ARAN_BLIZZARD      = 17161
+};
 
 enum SuperSpell
 {
@@ -263,7 +268,7 @@ struct boss_aranAI : public ScriptedAI
         }
 
         //Drink Inturrupt Timer
-        if (Drinking && !DrinkInturrupted)
+        if (!Drinking && DrinkInturrupted)
         {
             if (DrinkInturruptTimer >= diff)
                 DrinkInturruptTimer -= diff;
@@ -355,7 +360,7 @@ struct boss_aranAI : public ScriptedAI
                     break;
             }
 
-            LastSuperSpell = Available[urand(0,1)];
+            LastSuperSpell = Available[urand(0, 1)];
 
             switch (LastSuperSpell)
             {
@@ -392,7 +397,7 @@ struct boss_aranAI : public ScriptedAI
                     break;
             }
 
-            SuperCastTimer = urand(35000,40000);
+            SuperCastTimer = urand(35000, 40000);
         } else SuperCastTimer -= diff;
 
         if (!ElementalsSpawned && me->GetHealth()*100 / me->GetMaxHealth() < 40)
@@ -522,34 +527,12 @@ CreatureAI* GetAI_water_elemental(Creature* pCreature)
     return new water_elementalAI (pCreature);
 }
 
-// CONVERT TO ACID
-CreatureAI* GetAI_shadow_of_aran(Creature* pCreature)
-{
-    outstring_log("BSCR: Convert simpleAI script for Creature Entry %u to ACID", pCreature->GetEntry());
-    SimpleAI* ai = new SimpleAI (pCreature);
-
-    ai->Spell[0].Enabled = true;
-    ai->Spell[0].Spell_Id = SPELL_SHADOW_PYRO;
-    ai->Spell[0].Cooldown = 5000;
-    ai->Spell[0].First_Cast = 1000;
-    ai->Spell[0].Cast_Target_Type = CAST_HOSTILE_TARGET;
-
-    ai->EnterEvadeMode();
-
-    return ai;
-}
-
 void AddSC_boss_shade_of_aran()
 {
     Script *newscript;
     newscript = new Script;
     newscript->Name = "boss_shade_of_aran";
     newscript->GetAI = &GetAI_boss_aran;
-    newscript->RegisterSelf();
-
-    newscript = new Script;
-    newscript->Name = "mob_shadow_of_aran";
-    newscript->GetAI = &GetAI_shadow_of_aran;
     newscript->RegisterSelf();
 
     newscript = new Script;

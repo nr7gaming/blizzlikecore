@@ -1925,7 +1925,7 @@ void Aura::TriggerSpell()
         triggeredSpellInfo = sSpellStore.LookupEntry(trigger_spell_id);
         if (triggeredSpellInfo == NULL)
         {
-            sLog.outError("Aura::TriggerSpell: Spell %u has 0 in EffectTriggered[%d], unhandled custom case?",GetId(),GetEffIndex());
+            sLog.outDebug("Aura::TriggerSpell: Spell %u has 0 in EffectTriggered[%d], unhandled custom case?",GetId(),GetEffIndex());
             return;
         }
     }
