@@ -102,7 +102,7 @@ Map* MapInstanced::CreateInstance(const uint32 mapId, Player* player)
     else
     {
         InstancePlayerBind *pBind = player->GetBoundInstance(GetId(), player->GetDifficulty());
-        InstanceSave *pSave = pBind ? pBind->save : NULL;
+        InstanceSave* pSave = pBind ? pBind->save : NULL;
 
         // the player's permanent player bind is taken into consideration first
         // then the player's group bind and finally the solo bind.
@@ -140,7 +140,7 @@ Map* MapInstanced::CreateInstance(const uint32 mapId, Player* player)
     return map;
 }
 
-InstanceMap* MapInstanced::CreateInstance(uint32 InstanceId, InstanceSave *save, uint8 difficulty)
+InstanceMap* MapInstanced::CreateInstance(uint32 InstanceId, InstanceSave* save, uint8 difficulty)
 {
     // load/create a map
     Guard guard(*this);

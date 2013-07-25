@@ -1464,7 +1464,7 @@ void Group::ResetInstances(uint8 method, Player* SendMsgTo)
 
     for (BoundInstancesMap::iterator itr = m_boundInstances[diff].begin(); itr != m_boundInstances[diff].end();)
     {
-        InstanceSave *p = itr->second.save;
+        InstanceSave* p = itr->second.save;
         const MapEntry *entry = sMapStore.LookupEntry(itr->first);
         if (!entry || (!p->CanReset() && method != INSTANCE_RESET_GROUP_DISBAND))
         {
@@ -1547,7 +1547,7 @@ InstanceGroupBind* Group::GetBoundInstance(Map* aMap)
         return NULL;
 }
 
-InstanceGroupBind* Group::BindToInstance(InstanceSave *save, bool permanent, bool load)
+InstanceGroupBind* Group::BindToInstance(InstanceSave* save, bool permanent, bool load)
 {
     if (save && !isBGGroup())
     {
@@ -1594,7 +1594,7 @@ void Group::_homebindIfInstance(Player* player)
     {
         // leaving the group in an instance, the homebind timer is started
         // unless the player is permanently saved to the instance
-        InstanceSave *save = sInstanceSaveManager.GetInstanceSave(player->GetInstanceId());
+        InstanceSave* save = sInstanceSaveManager.GetInstanceSave(player->GetInstanceId());
         InstancePlayerBind *playerBind = save ? player->GetBoundInstance(save->GetMapId(), save->GetDifficulty()) : NULL;
         if (!playerBind || !playerBind->perm)
             player->m_InstanceValid = false;

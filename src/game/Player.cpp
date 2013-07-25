@@ -14911,7 +14911,7 @@ bool Player::LoadFromDB(uint32 guid, SqlQueryHolder *holder)
 
     // fix crash (because of if (Map *map = _FindMap(instanceId)) in MapInstanced::CreateInstance)
     if (instanceId)
-        if (InstanceSave * save = GetInstanceSave(mapId))
+        if (InstanceSave*  save = GetInstanceSave(mapId))
             if (save->GetInstanceId() != instanceId)
                 instanceId = 0;
 
@@ -15996,7 +15996,7 @@ void Player::_LoadBoundInstances(QueryResult_AutoPtr result)
             }
 
             // since non permanent binds are always solo bind, they can always be reset
-            if (InstanceSave *save = sInstanceSaveManager.AddInstanceSave(mapId, instanceId, difficulty, resetTime, !perm, true))
+            if (InstanceSave* save = sInstanceSaveManager.AddInstanceSave(mapId, instanceId, difficulty, resetTime, !perm, true))
                 BindToInstance(save, perm, true);
         } while (result->NextRow());
     }
@@ -16015,10 +16015,10 @@ InstancePlayerBind* Player::GetBoundInstance(uint32 mapid, uint8 difficulty)
         return NULL;
 }
 
-InstanceSave * Player::GetInstanceSave(uint32 mapid)
+InstanceSave*  Player::GetInstanceSave(uint32 mapid)
 {
     InstancePlayerBind *pBind = GetBoundInstance(mapid, GetDifficulty());
-    InstanceSave *pSave = pBind ? pBind->save : NULL;
+    InstanceSave* pSave = pBind ? pBind->save : NULL;
     if (!pBind || !pBind->perm)
         if (Group* group = GetGroup())
             if (InstanceGroupBind *groupBind = group->GetBoundInstance(this))
@@ -16043,7 +16043,7 @@ void Player::UnbindInstance(BoundInstancesMap::iterator &itr, uint8 difficulty, 
     }
 }
 
-InstancePlayerBind* Player::BindToInstance(InstanceSave *save, bool permanent, bool load)
+InstancePlayerBind* Player::BindToInstance(InstanceSave* save, bool permanent, bool load)
 {
     if (save)
     {
@@ -16095,7 +16095,7 @@ void Player::SendRaidInfo()
         {
             if (itr->second.perm)
             {
-                InstanceSave *save = itr->second.save;
+                InstanceSave* save = itr->second.save;
                 data << (save->GetMapId());
                 data << (uint32)(save->GetResetTime() - time(NULL));
                 data << save->GetInstanceId();
@@ -17083,7 +17083,7 @@ void Player::ResetInstances(uint8 method)
 
     for (BoundInstancesMap::iterator itr = m_boundInstances[diff].begin(); itr != m_boundInstances[diff].end();)
     {
-        InstanceSave *p = itr->second.save;
+        InstanceSave* p = itr->second.save;
         const MapEntry *entry = sMapStore.LookupEntry(itr->first);
         if (!entry || !p->CanReset())
         {

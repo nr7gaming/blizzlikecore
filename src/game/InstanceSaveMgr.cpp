@@ -42,7 +42,7 @@ InstanceSaveManager::~InstanceSaveManager()
     lock_instLists = true;
     for (InstanceSaveHashMap::iterator itr = m_instanceSaveById.begin(); itr != m_instanceSaveById.end(); ++itr)
     {
-        InstanceSave *save = itr->second;
+        InstanceSave* save = itr->second;
         for (InstanceSave::PlayerListType::iterator itr2 = save->m_playerList.begin(), next = itr2; itr2 != save->m_playerList.end(); itr2 = next)
         {
             ++next;
@@ -65,7 +65,7 @@ InstanceSaveManager::~InstanceSaveManager()
 */
 InstanceSave* InstanceSaveManager::AddInstanceSave(uint32 mapId, uint32 instanceId, uint8 difficulty, time_t resetTime, bool canReset, bool load)
 {
-    if (InstanceSave *old_save = GetInstanceSave(instanceId))
+    if (InstanceSave* old_save = GetInstanceSave(instanceId))
         return old_save;
 
     const MapEntry* entry = sMapStore.LookupEntry(mapId);
@@ -97,14 +97,14 @@ InstanceSave* InstanceSaveManager::AddInstanceSave(uint32 mapId, uint32 instance
 
     sLog.outDebug("InstanceSaveManager::AddInstanceSave: mapid = %d, instanceid = %d", mapId, instanceId);
 
-    InstanceSave *save = new InstanceSave(mapId, instanceId, difficulty, resetTime, canReset);
+    InstanceSave* save = new InstanceSave(mapId, instanceId, difficulty, resetTime, canReset);
     if (!load) save->SaveToDB();
 
     m_instanceSaveById[instanceId] = save;
     return save;
 }
 
-InstanceSave *InstanceSaveManager::GetInstanceSave(uint32 InstanceId)
+InstanceSave* InstanceSaveManager::GetInstanceSave(uint32 InstanceId)
 {
     InstanceSaveHashMap::iterator itr = m_instanceSaveById.find(InstanceId);
     return itr != m_instanceSaveById.end() ? itr->second : NULL;

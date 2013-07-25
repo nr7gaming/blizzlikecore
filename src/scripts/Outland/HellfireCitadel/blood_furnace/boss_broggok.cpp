@@ -145,7 +145,6 @@ struct mob_nascent_orcAI : public ScriptedAI
 
     void Reset()
     {
-        me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
         me->SetUnitMovementFlags(MOVEFLAG_NONE);
         Blow_Timer = 4000+rand()%4000;
         Stomp_Timer = 5000+rand()%4000;
@@ -180,13 +179,13 @@ struct mob_nascent_orcAI : public ScriptedAI
 
         if (Blow_Timer <= diff)
         {
-            DoCast(me->getVictim(),SPELL_BLOW);
+            DoCast(me->getVictim(), SPELL_BLOW);
             Blow_Timer = 10000+rand()%4000;
         } else Blow_Timer -=diff;
 
         if (Stomp_Timer <= diff)
         {
-            DoCast(me->getVictim(),SPELL_STOMP);
+            DoCast(me->getVictim(), SPELL_STOMP);
             Stomp_Timer = 15000+rand()%4000;
         } else Stomp_Timer -=diff;
 

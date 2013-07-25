@@ -724,7 +724,7 @@ enum PlayerDelayedOperations
 
 struct InstancePlayerBind
 {
-    InstanceSave *save;
+    InstanceSave* save;
     bool perm;
     /* permanent PlayerInstanceBinds are created in Raid/Heroic instances for players
        that aren't already permanently bound when they are inside when a boss is killed
@@ -2060,10 +2060,10 @@ class Player : public Unit, public GridObject<Player>
         BoundInstancesMap m_boundInstances[TOTAL_DIFFICULTIES];
         InstancePlayerBind* GetBoundInstance(uint32 mapid, uint8 difficulty);
         BoundInstancesMap& GetBoundInstances(uint8 difficulty) { return m_boundInstances[difficulty]; }
-        InstanceSave * GetInstanceSave(uint32 mapid);
+        InstanceSave*  GetInstanceSave(uint32 mapid);
         void UnbindInstance(uint32 mapid, uint8 difficulty, bool unload = false);
         void UnbindInstance(BoundInstancesMap::iterator &itr, uint8 difficulty, bool unload = false);
-        InstancePlayerBind* BindToInstance(InstanceSave *save, bool permanent, bool load = false);
+        InstancePlayerBind* BindToInstance(InstanceSave* save, bool permanent, bool load = false);
         void SendRaidInfo();
         void SendSavedInstances();
         static void ConvertInstancesToGroup(Player* player, Group* group = NULL, uint64 player_guid = 0);

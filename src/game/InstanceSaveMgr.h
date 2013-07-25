@@ -134,7 +134,7 @@ class InstanceSaveManager : public BlizzLike::Singleton<InstanceSaveManager, Bli
         void RemoveInstanceSave(uint32 InstanceId);
         static void DeleteInstanceFromDB(uint32 instanceid);
 
-        InstanceSave *GetInstanceSave(uint32 InstanceId);
+        InstanceSave* GetInstanceSave(uint32 InstanceId);
 
         /* statistics */
         uint32 GetNumInstanceSaves() { return m_instanceSaveById.size(); }
