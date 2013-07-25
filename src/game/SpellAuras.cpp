@@ -1245,10 +1245,10 @@ void Aura::TriggerSpell()
                                  return;
                         }
                         // remove old enchanting before applying new
-                        caster->ToPlayer()->ApplyEnchantment(item,TEMP_ENCHANTMENT_SLOT,false);
+                        caster->ToPlayer()->ApplyEnchantment(item, TEMP_ENCHANTMENT_SLOT, false);
                         item->SetEnchantment(TEMP_ENCHANTMENT_SLOT, enchant_id, m_modifier.periodictime+1000, 0);
                         // add new enchanting
-                        caster->ToPlayer()->ApplyEnchantment(item,TEMP_ENCHANTMENT_SLOT,true);
+                        caster->ToPlayer()->ApplyEnchantment(item, TEMP_ENCHANTMENT_SLOT, true);
                         return;
                     }
 //                    // Periodic Mana Burn
@@ -1421,7 +1421,7 @@ void Aura::TriggerSpell()
                     case 29768:
                     {
                         int32 BasePoints = int32(GetModifier()->m_amount);
-                        m_target->CastCustomSpell(m_target,29766,&BasePoints,NULL,NULL,true,NULL,this);
+                        m_target->CastCustomSpell(m_target, 29766, &BasePoints, NULL, NULL, true, NULL, this);
                         return;
                     }
 //                    // Return Fire
@@ -1434,8 +1434,12 @@ void Aura::TriggerSpell()
 //                    case 29897: break;
                     // Feed Captured Animal
                     case 29917: trigger_spell_id = 29916; break;
-//                    // Flame Wreath
-//                    case 29946: break;
+                    // Flame Wreath
+                    case 29946:
+                    {
+                        // need to check 
+                        return;
+                    }
 //                    // Flame Wreath
 //                    case 29947: break;
 //                    // Mind Exhaustion Passive
@@ -1536,9 +1540,9 @@ void Aura::TriggerSpell()
                     {
                         // cast 24 spells 34269-34289, 34314-34316
                         for (uint32 spell_id = 34269; spell_id != 34290; ++spell_id)
-                            caster->CastSpell(m_target,spell_id,true);
+                            caster->CastSpell(m_target, spell_id, true);
                         for (uint32 spell_id = 34314; spell_id != 34317; ++spell_id)
-                            caster->CastSpell(m_target,spell_id,true);
+                            caster->CastSpell(m_target, spell_id, true);
                         return;
                     }
 //                    // Gravity Lapse
@@ -1925,7 +1929,7 @@ void Aura::TriggerSpell()
         triggeredSpellInfo = sSpellStore.LookupEntry(trigger_spell_id);
         if (triggeredSpellInfo == NULL)
         {
-            sLog.outDebug("Aura::TriggerSpell: Spell %u has 0 in EffectTriggered[%d], unhandled custom case?",GetId(),GetEffIndex());
+            sLog.outError("Aura::TriggerSpell: Spell %u has 0 in EffectTriggered[%d], unhandled custom case?",GetId(),GetEffIndex());
             return;
         }
     }

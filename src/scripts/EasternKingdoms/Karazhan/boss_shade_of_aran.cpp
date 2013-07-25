@@ -15,8 +15,6 @@ EndScriptData */
 #include "karazhan.h"
 #include "GameObject.h"
 
-#define SPELL_DRINK 30024
-
 enum Say
 {
     SAY_AGGRO1                  = -1532073,
@@ -55,10 +53,12 @@ enum Spells
     SPELL_CONJURE               = 29975,
     SPELL_POTION                = 32453,
     SPELL_AOE_PYROBLAST         = 29978,
+    SPELL_DRINKE                = 30024,
 
     //Creature Spells
     SPELL_CIRCULAR_BLIZZARD     = 29951,
     SPELL_WATERBOLT             = 31012,
+    SPELL_SHADOW_PYRO           = 29978,
 
     //Creatures
     CREATURE_WATER_ELEMENTAL    = 17167,
@@ -251,7 +251,7 @@ struct boss_aranAI : public ScriptedAI
             {
                 DoCast(me, SPELL_MASS_POLY, true);
                 DoCast(me, SPELL_CONJURE, false);
-                DoCast(me, SPELL_DRINK, false);
+                DoCast(me, SPELL_DRINKE, false);
                 me->SetStandState(UNIT_STAND_STATE_SIT);
                 DrinkInturruptTimer = 10000;
             }
@@ -261,7 +261,7 @@ struct boss_aranAI : public ScriptedAI
         if (Drinking && DrinkInturrupted)
         {
             Drinking = false;
-            me->RemoveAurasDueToSpell(SPELL_DRINK);
+            me->RemoveAurasDueToSpell(SPELL_DRINKE);
             me->SetStandState(UNIT_STAND_STATE_STAND);
             me->SetPower(POWER_MANA, me->GetMaxPower(POWER_MANA)-32000);
             DoCast(me, SPELL_POTION, false);
@@ -319,7 +319,10 @@ struct boss_aranAI : public ScriptedAI
                 if (AvailableSpells)
                 {
                     CurrentNormalSpell = Spells[rand() % AvailableSpells];
-                    DoCast(pTarget, CurrentNormalSpell);
+                    if (CurrentNormalSpell == SPELL_ARCMISSLE)
+                        DoCast(me, CurrentNormalSpell);
+                    else
+                        DoCast(pTarget, CurrentNormalSpell);
                 }
             }
             NormalCastTimer = 1000;
@@ -327,7 +330,7 @@ struct boss_aranAI : public ScriptedAI
 
         if (SecondarySpellTimer <= diff)
         {
-            switch (urand(0,1))
+            switch (urand(0, 1))
             {
                 case 0:
                     DoCast(me, SPELL_AOE_CS);
@@ -337,7 +340,7 @@ struct boss_aranAI : public ScriptedAI
                         DoCast(pTarget, SPELL_CHAINSOFICE);
                     break;
             }
-            SecondarySpellTimer = urand(5000,20000);
+            SecondarySpellTimer = urand(5000, 20000);
         } else SecondarySpellTimer -= diff;
 
         if (SuperCastTimer <= diff)
@@ -512,7 +515,7 @@ struct water_elementalAI : public ScriptedAI
         if (CastTimer <= diff)
         {
             DoCast(me->getVictim(), SPELL_WATERBOLT);
-            CastTimer = urand(2000,5000);
+            CastTimer = urand(2000, 5000);
         } else CastTimer -= diff;
     }
 };
@@ -527,6 +530,23 @@ CreatureAI* GetAI_water_elemental(Creature* pCreature)
     return new water_elementalAI (pCreature);
 }
 
+// CONVERT TO ACID
+CreatureAI* GetAI_aran_blizzard(Creature* pCreature)
+{
+    outstring_log("BSCR: Convert simpleAI script for Creature Entry %u to ACID", pCreature->GetEntry());
+    SimpleAI* ai = new SimpleAI (pCreature);
+
+    ai->Spell[0].Enabled = true;
+    ai->Spell[0].Spell_Id = SPELL_SHADOW_PYRO;
+    ai->Spell[0].Cooldown = 5000;
+    ai->Spell[0].First_Cast = 1000;
+    ai->Spell[0].Cast_Target_Type = CAST_HOSTILE_TARGET;
+
+    ai->EnterEvadeMode();
+
+    return ai;
+}
+
 void AddSC_boss_shade_of_aran()
 {
     Script *newscript;
@@ -538,6 +558,11 @@ void AddSC_boss_shade_of_aran()
     newscript = new Script;
     newscript->Name = "mob_aran_elemental";
     newscript->GetAI = &GetAI_water_elemental;
+    newscript->RegisterSelf();
+
+    newscript = new Script;
+    newscript->Name = "mob_aran_blizzard";
+    newscript->GetAI = &GetAI_aran_blizzard;
     newscript->RegisterSelf();
 }
 

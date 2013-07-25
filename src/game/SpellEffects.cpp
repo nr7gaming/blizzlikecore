@@ -1244,7 +1244,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
 
                     if (roll_chance_i(86))                  // Nigh-Invulnerability   - success
                         m_caster->CastSpell(m_caster, 30456, true, m_CastItem);
-                    else                                    // backfire in 14% casts
+                    else                                    // Complete Vulnerability - backfire in 14% casts
                         m_caster->CastSpell(m_caster, 30457, true, m_CastItem);
 
                     return;
