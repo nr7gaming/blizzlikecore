@@ -1,15 +1,22 @@
-UPDATE `version` SET `db_version` = 'BDB_20130720';
+UPDATE `version` SET `db_version` = 'BDB_20130726';
+
+
+-- Nightbane Fix
+UPDATE `creature_template` SET `inhabitType` = '4' WHERE `entry` = '17225';
+
+
+-- Boss Shade of Aran Fix
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = '18254';
+
 
 -- DB/Waypoints: Add: Missing waypoints for Mmmrrrggglll
 SET @MURLOC         :=  15937; -- Mmmrrrggglll
 SET @GUID           :=  41792;
 SET @PATH           := 417920;
-
 -- Set creature location
 UPDATE `creature` SET `MovementType`=2,`position_x`=8869.872,`position_y`=-5775.960,`position_z`=0.405, `spawnDist`=0, `currentwaypoint`=1 WHERE `guid`=@GUID;
 DELETE FROM `creature_addon` WHERE `guid`=@GUID;
 INSERT INTO `creature_addon` (`guid`, `path_id`, `bytes2`) VALUES (@GUID, @PATH, 1);
-
 -- Waypoint Data
 DELETE FROM `waypoint_data` WHERE `id`=@PATH;
 INSERT INTO `waypoint_data` (`id`,`point`,`position_x`,`position_y`,`position_z`,`delay`,`move_flag`,`action`,`action_chance`,`wpguid`) VALUES
@@ -57,3 +64,73 @@ INSERT INTO `waypoint_data` (`id`,`point`,`position_x`,`position_y`,`position_z`
 (@PATH, 42, 8846.429, -5720.661, 0.49396, 0, 0, 0, 100, 0),
 (@PATH, 43, 8873.341, -5735.012, 0.43308, 0, 0, 0, 100, 0),
 (@PATH, 44, 8880.688, -5754.608, 0.25531, 60000, 0, 0, 100, 0);
+
+
+-- Boss Kil'Jaeden - 1st phase corrections
+-- correct CREATURE_HAND_OF_THE_DECEIVER [25558]
+-- this need correction --------------
+REPLACE INTO `creature_equip_template`
+            (`entry`,
+			 `equipmodel1`,
+--			 `equipmodel2`,
+			 `equipmodel3`,
+			 `equipinfo1`,
+--			 `equipinfo2`,
+			 `equipinfo3`,
+			 `equipslot1`,
+--			 `equipslot2`,
+			 `equipslot3`)
+VALUES ('25588',
+		'47994',
+--		'47994',
+		'47994',
+		'33490690',
+--		'33490690',
+		'33490436',
+		'269',						
+--		'17',						
+		'1038');					
+-- ------------------------------------	
+UPDATE `creature_template`
+SET `equipment_id` = '25588',
+	`minhealth` = '180810',
+	`maxhealth` = '180810',
+	`minmana` = '165450',
+	`maxmana` = '165450',
+	`minlevel` = '72',
+	`maxlevel` = '72'
+where `entry` = '25588';
+-- correct CREATURE_VOLATILE_FELFIRE_FIEND [25598]
+UPDATE `creature_template`
+SET `minhealth` = '1307',
+	`maxhealth` = '1307',
+	`minmana` = '16155',
+	`maxmana` = '16200',
+	`minlevel` = '71',
+	`maxlevel` = '71'
+where `entry` = '25598';
+-- correct CREATURE_FELFIRE_PORTAL [25603]
+UPDATE `creature_template`
+SET `minlevel` = '71',
+	`maxlevel` = '71'
+where `entry` = '25603';
+
+
+-- Set BlizzLikeCore ACID Release Version Information
+UPDATE `version` SET `script_version` = 'ACID 2.0.7 - Full Release 6670b67073 for BizzLikeCore';
+-- ------------------------------------	
+REPLACE INTO `creature_ai_scripts` (`id`,`creature_id`,`event_type`,`event_inverse_phase_mask`,`event_chance`,`event_flags`,`event_param1`,`event_param2`,`event_param3`,`event_param4`,`action1_type`,`action1_param1`,`action1_param2`,`action1_param3`,`action2_type`,`action2_param1`,`action2_param2`,`action2_param3`,`action3_type`,`action3_param1`,`action3_param2`,`action3_param3`,`comment`) VALUES
+-- Demonic Vapor (Trail)
+('2526701','25267','1','0','100','2','10000','10000','0','0','11','45400','0','0','0','0','0','0','0','0','0','0','Demonic Vapor (Trail) - Cast Summon Blazing Dead on OOC Timer'),
+-- Unyielding Dead
+('2526801','25268','11','0','100','2','0','0','0','0','38','0','0','0','11','45415','0','0','0','0','0','0','Unyielding Dead - Set in Combat with Zone and Cast Blazing Dead Passive on Spawned');
+-- ------------------------------------	
+UPDATE `creature_template` SET `AIName` = 'EventAI' WHERE `entry` IN (25267,25268);
+
+
+-- Heroic boss flags_extra fix (TY clarkname)
+UPDATE `creature_template` SET `flags_extra` = '1' WHERE `entry` IN (20568,20183,20184,20169,20168);
+
+
+-- Heroic boss respawn fix (TY clarkname)
+UPDATE `creature` SET `spawntimesecs` = '43200' WHERE `id` = '20923';
