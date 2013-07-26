@@ -16,6 +16,7 @@
 #include "Chat.h"
 #include "BattleGroundMgr.h"
 #include "BattleGroundWS.h"
+#include "BattleGroundEY.h"
 #include "BattleGround.h"
 #include "ArenaTeam.h"
 #include "Language.h"
@@ -71,11 +72,11 @@ void WorldSession::HandleBattleGroundJoinOpcode(WorldPacket& recv_data)
 
     if (bgTypeId >= MAX_BATTLEGROUND_TYPES)
     {
-        sLog.outError("Battleground: invalid bgtype received. possible cheater? player guid %u",_player->GetGUIDLow());
+        sLog.outError("Battleground: invalid bgtype received. possible cheater? player guid %u", _player->GetGUIDLow());
         return;
     }
 
-    sLog.outDebug("WORLD: Recvd CMSG_BATTLEMASTER_JOIN Message from (GUID: %u TypeId:%u)", GUID_LOPART(guid),GuidHigh2TypeId(GUID_HIPART(guid)));
+    sLog.outDebug("WORLD: Recvd CMSG_BATTLEMASTER_JOIN Message from (GUID: %u TypeId:%u)", GUID_LOPART(guid), GuidHigh2TypeId(GUID_HIPART(guid)));
 
     // can do this, since it's battleground, not arena
     uint32 bgQueueTypeId = sBattleGroundMgr.BGQueueTypeId(bgTypeId, 0);
@@ -150,7 +151,7 @@ void WorldSession::HandleBattleGroundJoinOpcode(WorldPacket& recv_data)
 
             // store entry point coords (same as leader entry point)
             if (!sWorld.getConfig(CONFIG_BATTLEGROUND_WRATH_LEAVE_MODE))
-                member->SetBattleGroundEntryPoint(member->GetMapId(), member->GetPositionX(), member->GetPositionY(), member->GetPositionZ(), member->GetOrientation());
+                member->SetBattleGroundEntryPoint(_player->GetMapId(), _player->GetPositionX(), _player->GetPositionY(), _player->GetPositionZ(), _player->GetOrientation());
 
             WorldPacket data;
                                                             // send status packet (in queue)
@@ -180,7 +181,7 @@ void WorldSession::HandleBattleGroundJoinOpcode(WorldPacket& recv_data)
         GroupQueueInfo * ginfo = sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].AddGroup(_player, bgTypeId, 0, false, 0);
         sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].AddPlayer(_player, ginfo);
         sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].Update(bgTypeId, _player->GetBattleGroundQueueIdFromLevel());
-        sLog.outDebug("Battleground: player joined queue for bg queue type %u bg type %u: GUID %u, NAME %s",bgQueueTypeId,bgTypeId,_player->GetGUIDLow(), _player->GetName());
+        sLog.outDebug("Battleground: player joined queue for bg queue type %u bg type %u: GUID %u, NAME %s", bgQueueTypeId,bgTypeId, _player->GetGUIDLow(), _player->GetName());
     }
 }
 
@@ -196,58 +197,71 @@ void WorldSession::HandleBattleGroundPlayerPositionsOpcode(WorldPacket & /*recv_
     switch (bg->GetTypeID())
     {
         case BATTLEGROUND_WS:
+        {
+            uint32 flagPickerCount = 0;
+
+            Player* flagPickerAlliance = ObjectAccessor::FindPlayer(((BattleGroundWS*)bg)->GetAllianceFlagPickerGUID());
+            if (flagPickerAlliance)
+                ++flagPickerCount;
+
+            Player* flagPickerHorde = ObjectAccessor::FindPlayer(((BattleGroundWS*)bg)->GetHordeFlagPickerGUID());
+            if (flagPickerHorde)
+                ++flagPickerCount;
+
+            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, 4 + 4 + 16 * flagPickerCount);
+            data << uint32(0);
+            data << uint32(flagPickerCount);
+
+            if (flagPickerAlliance)
             {
-                uint32 count1 = 0;                                  //always constant zero?
-                uint32 count2 = 0;                                  //count of next fields
-
-                Player* ali_plr = ObjectAccessor::FindPlayer(((BattleGroundWS*)bg)->GetAllianceFlagPickerGUID());
-                if (ali_plr)
-                    ++count2;
-
-                Player* horde_plr = ObjectAccessor::FindPlayer(((BattleGroundWS*)bg)->GetHordeFlagPickerGUID());
-                if (horde_plr)
-                    ++count2;
-
-                WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, (4+4+16*count1+16*count2));
-                data << count1;                                     // alliance flag holders count - obsolete, now always 0
-                /*for (uint8 i = 0; i < count1; ++i)
-                {
-                    data << uint64(0);                              // guid
-                    data << (float)0;                               // x
-                    data << (float)0;                               // y
-                }*/
-                data << count2;                                     // horde flag holders count - obsolete, now count of next fields
-                if (ali_plr)
-                {
-                    data << (uint64)ali_plr->GetGUID();
-                    data << (float)ali_plr->GetPositionX();
-                    data << (float)ali_plr->GetPositionY();
-                }
-                if (horde_plr)
-                {
-                    data << (uint64)horde_plr->GetGUID();
-                    data << (float)horde_plr->GetPositionX();
-                    data << (float)horde_plr->GetPositionY();
-                }
-
-                SendPacket(&data);
+                data << flagPickerAlliance->GetGUID();
+                data << float(flagPickerAlliance->GetPositionX());
+                data << float(flagPickerAlliance->GetPositionY());
             }
+            if (flagPickerHorde)
+            {
+                data << flagPickerHorde->GetGUID();
+                data << float(flagPickerHorde->GetPositionX());
+                data << float(flagPickerHorde->GetPositionY());
+            }
+
+            SendPacket(&data);
             break;
+        }
         case BATTLEGROUND_EY:
-            //TODO : fix me!
+        {
+            uint32 flagPickerCount = 0;
+
+            Player* flagPicker = ObjectAccessor::FindPlayer(((BattleGroundEY*)bg)->GetFlagPickerGUID());
+            if (flagPicker)
+                flagPickerCount = 1;
+
+            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, 4 + 4 + 16 * flagPickerCount);
+            data << uint32(0);
+            data << uint32(flagPickerCount);
+
+            if (flagPicker)
+            {
+                data << flagPicker->GetGUID();
+                data << float(flagPicker->GetPositionX());
+                data << float(flagPicker->GetPositionY());
+            }
+
+            SendPacket(&data);
             break;
+        }
         case BATTLEGROUND_AB:
         case BATTLEGROUND_AV:
-            {
-                //for other BG types - send default
-                WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, (4+4));
-                data << uint32(0);
-                data << uint32(0);
-                SendPacket(&data);
-            }
+        {
+            // for other BG types - send default
+            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, 4 + 4);
+            data << uint32(0);
+            data << uint32(0);
+            SendPacket(&data);
             break;
+        }
         default:
-            //maybe it is sent also in arena - do nothing
+            // maybe it is sent also in arena - do nothing
             break;
     }
 }
@@ -469,7 +483,7 @@ void WorldSession::HandleBattleGroundPlayerPortOpcode(WorldPacket& recv_data)
                 sBattleGroundMgr.SendToBattleGround(_player, instanceId);
                 // add only in HandleMoveWorldPortAck()
                 // bg->AddPlayer(_player,team);
-                sLog.outDebug("Battleground: player %s (%u) joined battle for bg %u, bgtype %u, queue type %u.",_player->GetName(),_player->GetGUIDLow(),bg->GetInstanceID(),bg->GetTypeID(),bgQueueTypeId);
+                sLog.outDebug("Battleground: player %s (%u) joined battle for bg %u, bgtype %u, queue type %u.", _player->GetName(), _player->GetGUIDLow(), bg->GetInstanceID(), bg->GetTypeID(), bgQueueTypeId);
                 break;
             case 0:                                         // leave queue
                 queueSlot = _player->GetBattleGroundQueueIndex(bgQueueTypeId);
@@ -492,7 +506,7 @@ void WorldSession::HandleBattleGroundPlayerPortOpcode(WorldPacket& recv_data)
                 // player left queue, we should update it, maybe now his group fits in
                 sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].Update(bgTypeId,_player->GetBattleGroundQueueIdFromLevel(),arenatype,israted,rating);
                 SendPacket(&data);
-                sLog.outDebug("Battleground: player %s (%u) left queue for bgtype %u, queue type %u.",_player->GetName(),_player->GetGUIDLow(),bg->GetTypeID(),bgQueueTypeId);
+                sLog.outDebug("Battleground: player %s (%u) left queue for bgtype %u, queue type %u.", _player->GetName(), _player->GetGUIDLow(), bg->GetTypeID(), bgQueueTypeId);
                 break;
             default:
                 sLog.outError("Battleground port: unknown action %u", action);
@@ -784,7 +798,7 @@ void WorldSession::HandleBattleGroundArenaJoin(WorldPacket& recv_data)
             sBattleGroundMgr.BuildGroupJoinedBattlegroundPacket(&data, bgTypeId);
             member->GetSession()->SendPacket(&data);
             sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].AddPlayer(member, ginfo);
-            sLog.outDebug("Battleground: player joined queue for arena as group bg queue type %u bg type %u: GUID %u, NAME %s",bgQueueTypeId,bgTypeId,member->GetGUIDLow(), member->GetName());
+            sLog.outDebug("Battleground: player joined queue for arena as group bg queue type %u bg type %u: GUID %u, NAME %s", bgQueueTypeId, bgTypeId, member->GetGUIDLow(), member->GetName());
         }
         sLog.outDebug("Battleground: arena join as group end");
         sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].Update(bgTypeId, _player->GetBattleGroundQueueIdFromLevel(), arenatype, isRated, arenaRating);
@@ -804,7 +818,7 @@ void WorldSession::HandleBattleGroundArenaJoin(WorldPacket& recv_data)
         GroupQueueInfo * ginfo = sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].AddGroup(_player, bgTypeId, arenatype, isRated, arenaRating);
         sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].AddPlayer(_player, ginfo);
         sBattleGroundMgr.m_BattleGroundQueues[bgQueueTypeId].Update(bgTypeId, _player->GetBattleGroundQueueIdFromLevel(), arenatype, isRated, arenaRating);
-        sLog.outDebug("Battleground: player joined queue for arena, skirmish, bg queue type %u bg type %u: GUID %u, NAME %s",bgQueueTypeId,bgTypeId,_player->GetGUIDLow(), _player->GetName());
+        sLog.outDebug("Battleground: player joined queue for arena, skirmish, bg queue type %u bg type %u: GUID %u, NAME %s", bgQueueTypeId, bgTypeId, _player->GetGUIDLow(), _player->GetName());
     }
 }
 

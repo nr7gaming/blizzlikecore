@@ -3460,7 +3460,7 @@ int32 Unit::GetMaxNegativeAuraModifierByMiscValue(AuraType auratype, int32 misc_
 
 bool AuraStacking(uint32 auraID)
 {
-  switch(auraID)
+  switch (auraID)
   {
     case 22959: //scorch
     case 15258: //shadow weaving
@@ -11548,7 +11548,7 @@ bool Unit::IsTriggeredAtSpellProcEvent(Unit* pVictim, Aura* aura, SpellEntry con
         }
     }
 
-    switch(spellProto->Id)
+    switch (spellProto->Id)
     {
         case 30299:            // Nether Protection procs from active / passive spells
         case 30301:

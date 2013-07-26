@@ -935,16 +935,16 @@ void Group::UpdatePlayerOutOfRange(Player* pPlayer)
     if (!pPlayer || !pPlayer->IsInWorld())
         return;
 
-    Player* member;
+    if (pPlayer->GetGroupUpdateFlag() == GROUP_UPDATE_FLAG_NONE)
+        return;
+
     WorldPacket data;
     pPlayer->GetSession()->BuildPartyMemberStatsChangedPacket(pPlayer, &data);
 
     for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
-    {
-        member = itr->getSource();
-        if (member && member != pPlayer && !pPlayer->isVisibleFor(member))
-            member->GetSession()->SendPacket(&data);
-    }
+        if (Player* player = itr->getSource())
+            if (player != pPlayer && !player->HaveAtClient(pPlayer))
+                player->GetSession()->SendPacket(&data);
 }
 
 void Group::BroadcastPacket(WorldPacket* packet, bool ignorePlayersInBGRaid, int group, uint64 ignore)
@@ -1436,6 +1436,9 @@ void Group::SetDifficulty(uint8 difficulty)
             continue;
         player->SetDifficulty(difficulty);
         player->SendDungeonDifficulty(true);
+        //send player to recall position nis a dungeon (to avoid an exploit)
+        if (sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
+            player->TeleportTo(player->m_recallMap, player->m_recallX, player->m_recallY, player->m_recallZ, player->m_recallO);
     }
 }
 
