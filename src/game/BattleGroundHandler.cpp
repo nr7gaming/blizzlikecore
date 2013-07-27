@@ -208,7 +208,7 @@ void WorldSession::HandleBattleGroundPlayerPositionsOpcode(WorldPacket & /*recv_
             if (flagPickerHorde)
                 ++flagPickerCount;
 
-            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, 4 + 4 + 16 * flagPickerCount);
+            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, (4 + 4 + 16 * flagPickerCount));
             data << uint32(0);
             data << uint32(flagPickerCount);
 
@@ -236,7 +236,7 @@ void WorldSession::HandleBattleGroundPlayerPositionsOpcode(WorldPacket & /*recv_
             if (flagPicker)
                 flagPickerCount = 1;
 
-            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, 4 + 4 + 16 * flagPickerCount);
+            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, (4 + 4 + 16 * flagPickerCount));
             data << uint32(0);
             data << uint32(flagPickerCount);
 
@@ -254,7 +254,7 @@ void WorldSession::HandleBattleGroundPlayerPositionsOpcode(WorldPacket & /*recv_
         case BATTLEGROUND_AV:
         {
             // for other BG types - send default
-            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, 4 + 4);
+            WorldPacket data(MSG_BATTLEGROUND_PLAYER_POSITIONS, (4 + 4));
             data << uint32(0);
             data << uint32(0);
             SendPacket(&data);
