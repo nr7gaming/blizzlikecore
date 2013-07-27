@@ -21,7 +21,7 @@ index f56f163..bfb4852 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 9c71841..48bd66c 100644
+index 9c71841..a577468 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -205,10 +205,10 @@ index 9c71841..48bd66c 100644
 +            updateorientationonly = true;
 +        }
 +
-+        // Fall Damage Generation (ignore in flight case that can be triggered also at lags in moment teleportation to another map).
++        // Movement Anticheat
 +        if (opcode == MSG_MOVE_FALL_LAND && !plMover->isInFlight())
 +        {
-+            if (!plMover->m_anti_ontaxipath && !plMover->m_anti_flymounted)
++            if (!plMover->m_anti_ontaxipath && !plMover->m_anti_flymounted) // fall damage generation
 +                plMover->HandleFallDamage(movementInfo);
 +
 +            plMover->m_anti_ontaxipath = false;
@@ -409,7 +409,7 @@ index 9c71841..48bd66c 100644
 +            }
 +
 +            // Anti-Water-Walk-Hack
-+            if (movementInfo.HasMovementFlag(MOVEFLAG_WATERWALKING) 
++            if (movementInfo.HasMovementFlag(MOVEFLAG_WATERWALKING)
 +                && !(plMover->HasAuraType(SPELL_AURA_WATER_WALK) | plMover->HasAuraType(SPELL_AURA_GHOST)))
 +            {
 +                if (World::GetMvAnticheatDebug())
@@ -776,7 +776,7 @@ index 643e306..36d3ade 100644
          Transport * m_transport;
  
 diff --git a/src/game/TaxiHandler.cpp b/src/game/TaxiHandler.cpp
-index c98c503..8700fa5 100644
+index c98c503..2e70de1 100644
 --- a/src/game/TaxiHandler.cpp
 +++ b/src/game/TaxiHandler.cpp
 @@ -105,6 +105,11 @@ void WorldSession::SendDoFlight(uint16 MountId, uint32 path, uint32 pathNode)
@@ -791,7 +791,7 @@ index c98c503..8700fa5 100644
      while (GetPlayer()->GetMotionMaster()->GetCurrentMovementGeneratorType() == FLIGHT_MOTION_TYPE)
          GetPlayer()->GetMotionMaster()->MovementExpired(false);
  
-@@ -193,7 +198,17 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
+@@ -193,7 +198,14 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
  
      uint32 curDest = GetPlayer()->m_taxi.GetTaxiDestination();
      if (!curDest)
@@ -801,15 +801,12 @@ index c98c503..8700fa5 100644
 +        GetPlayer()->m_movementInfo = movementInfo;
 +        GetPlayer()->m_anti_lastmovetime = movementInfo.time;
 +        GetPlayer()->m_anti_plskipanticheat = true;
-+        if (World::GetMvAnticheatDebug())
-+            sLog.outBasic("Movement Anticheat: player %s HandleTaxiNextDestinationOpcode", GetPlayer()->GetName());
-+        // Movement Anticheat
          return;
 +    }
  
      TaxiNodesEntry const* curDestNode = sTaxiNodesStore.LookupEntry(curDest);
  
-@@ -206,6 +221,12 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
+@@ -206,6 +218,15 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
              GetPlayer()->GetMotionMaster()->MovementExpired(false);
      }
  
@@ -817,6 +814,9 @@ index c98c503..8700fa5 100644
 +    GetPlayer()->SetPosition(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation());
 +    GetPlayer()->m_movementInfo = movementInfo;
 +    GetPlayer()->m_anti_lastmovetime = movementInfo.time;
++    GetPlayer()->m_anti_plskipanticheat = true;
++    if (World::GetMvAnticheatDebug())
++        sLog.outBasic("Movement Anticheat: player %s HandleTaxiNextDestinationOpcode", GetPlayer()->GetName());
 +    // Movement Anticheat
 +
      // far teleport case

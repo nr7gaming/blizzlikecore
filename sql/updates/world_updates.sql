@@ -128,9 +128,9 @@ REPLACE INTO `creature_ai_scripts` (`id`,`creature_id`,`event_type`,`event_inver
 UPDATE `creature_template` SET `AIName` = 'EventAI' WHERE `entry` IN (25267,25268);
 
 
--- Heroic boss flags_extra fix (TY clarkname)
+-- Heroic boss flags_extra fix (TY clarkname) (old value: `flags_extra` = '0')
 UPDATE `creature_template` SET `flags_extra` = '1' WHERE `entry` IN (20568,20183,20184,20169,20168);
 
 
--- Heroic boss respawn fix (TY clarkname)
+-- Heroic boss respawn fix (TY clarkname) (old value: `spawntimesecs` = '25')
 UPDATE `creature` SET `spawntimesecs` = '43200' WHERE `id` = '20923';
