@@ -237,10 +237,10 @@ index 0e60bb9..5cd0bdb 100644
          time_t _logoutTime;
          bool m_inQueue;                                     // session wait in auth.queue
 diff --git a/src/game/WorldSocket.cpp b/src/game/WorldSocket.cpp
-index 9b54377..a3af7f6 100644
+index d064049..a0a733e 100644
 --- a/src/game/WorldSocket.cpp
 +++ b/src/game/WorldSocket.cpp
-@@ -686,6 +686,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+@@ -686,6 +686,7 @@ int WorldSocket::HandleAuthSession(WorldPacket& recvPacket)
      //uint8 expansion = 0;
      LocaleConstant locale;
      std::string account;
@@ -248,12 +248,12 @@ index 9b54377..a3af7f6 100644
      Sha1Hash sha1;
      BigNumber v, s, g, N;
      WorldPacket packet, SendAddonPacked;
-@@ -833,6 +834,17 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+@@ -833,6 +834,17 @@ int WorldSocket::HandleAuthSession(WorldPacket& recvPacket)
          return -1;
      }
  
 +    // Check if account premium
-+    QueryResult_AutoPtr premresult = LoginDatabase.PQuery ("SELECT 1 "
++    QueryResult_AutoPtr premresult = LoginDatabase.PQuery("SELECT 1 "
 +                                "FROM account_premium "
 +                                "WHERE id = '%u' "
 +                                "AND active = 1",
@@ -265,13 +265,13 @@ index 9b54377..a3af7f6 100644
 +
      // Check locked state for server
      sWorld.UpdateAllowedSecurity();
-     AccountTypes allowedAccountType = sWorld.GetPlayerSecurityLimit ();
-@@ -889,7 +901,7 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
+     AccountTypes allowedAccountType = sWorld.GetPlayerSecurityLimit();
+@@ -889,7 +901,7 @@ int WorldSocket::HandleAuthSession(WorldPacket& recvPacket)
                              safe_account.c_str());
  
      // NOTE ATM the socket is single-threaded, have this in mind ...
--    ACE_NEW_RETURN (m_Session, WorldSession (id, this, security, expansion, mutetime, locale), -1);
-+    ACE_NEW_RETURN (m_Session, WorldSession (id, this, security, isPremium, expansion, mutetime, locale), -1);
+-    ACE_NEW_RETURN(m_Session, WorldSession (id, this, security, expansion, mutetime, locale), -1);
++    ACE_NEW_RETURN(m_Session, WorldSession (id, this, security, isPremium, expansion, mutetime, locale), -1);
  
      m_Crypt.SetKey(&K);
      m_Crypt.Init();

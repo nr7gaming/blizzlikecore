@@ -13,19 +13,6 @@ EndScriptData */
 #include "ScriptPCH.h"
 #include "karazhan.h"
 
-//phase 1
-#define SPELL_BELLOWING_ROAR        39427
-#define SPELL_CHARRED_EARTH         30129
-#define SPELL_DISTRACTING_ASH       30130
-#define SPELL_SMOLDERING_BREATH     30210
-#define SPELL_TAIL_SWEEP            25653
-//phase 2
-#define SPELL_RAIN_OF_BONES         37098
-#define SPELL_SMOKING_BLAST         37057
-#define SPELL_FIREBALL_BARRAGE      30282
-#define SPELL_SEARING_CINDERS       30127
-#define SPELL_SUMMON_SKELETON       30170
-
 #define EMOTE_SUMMON                "An ancient being awakens in the distance..."
 #define YELL_AGGRO                  "What fools! I shall bring a quick end to your suffering!"
 #define YELL_FLY_PHASE              "Miserable vermin. I shall exterminate you from the air!"
@@ -33,16 +20,32 @@ EndScriptData */
 #define YELL_LAND_PHASE_2           "Insects! Let me show you my strength up close!"
 #define EMOTE_BREATH                "takes a deep breath."
 
+enum Spells
+{
+    // phase 1
+    SPELL_BELLOWING_ROAR        = 39427,
+    SPELL_CHARRED_EARTH         = 30129,
+    SPELL_DISTRACTING_ASH       = 30130,
+    SPELL_SMOLDERING_BREATH     = 30210,
+    SPELL_TAIL_SWEEP            = 25653,
+    // phase 2
+    SPELL_RAIN_OF_BONES         = 37098,
+    SPELL_SMOKING_BLAST         = 37057,
+    SPELL_FIREBALL_BARRAGE      = 30282,
+    SPELL_SEARING_CINDERS       = 30127,
+    SPELL_SUMMON_SKELETON       = 30170
+};
+
 float IntroWay[8][3] =
 {
-    {-11053.37f,-1794.48f,149},
-    {-11141.07f,-1841.40f,125},
-    {-11187.28f,-1890.23f,125},
-    {-11189.20f,-1931.25f,125},
-    {-11153.76f,-1948.93f,125},
-    {-11128.73f,-1929.75f,125},
-    {-11140   , -1915  ,122},
-    {-11163   , -1903  ,91.473f}
+    {-11053.37f, -1794.48f, 149.00f},
+    {-11141.07f, -1841.40f, 125.00f},
+    {-11187.28f, -1890.23f, 125.00f},
+    {-11189.20f, -1931.25f, 125.00f},
+    {-11153.76f, -1948.93f, 125.00f},
+    {-11128.73f, -1929.75f, 125.00f},
+    {-11140.00f, -1915.00f, 122.00f},
+    {-11163.00f, -1903.00f, 91.473f}
 };
 
 struct boss_nightbaneAI : public ScriptedAI
@@ -120,7 +123,8 @@ struct boss_nightbaneAI : public ScriptedAI
                 me->DealDamage(me, me->GetHealth(), NULL, DIRECT_DAMAGE, SPELL_SCHOOL_MASK_NORMAL, NULL, false);
                 me->RemoveCorpse();
                 return;
-            } else
+            }
+            else
             {
 
                 BellowingRoarTimer = 30000;
@@ -282,8 +286,8 @@ struct boss_nightbaneAI : public ScriptedAI
 
     void UpdateAI(const uint32 diff)
     {
-        if (!WaitTimer)
-        return;
+/*      if (!WaitTimer)
+            return;
 
         if (WaitTimer <= diff)
         {
@@ -319,7 +323,7 @@ struct boss_nightbaneAI : public ScriptedAI
 
             WaitTimer = 0;
         } else WaitTimer -= diff;
-
+*/
         if (!UpdateVictim())
             return;
 

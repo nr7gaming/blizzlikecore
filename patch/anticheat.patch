@@ -21,7 +21,7 @@ index f56f163..bfb4852 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 9c71841..a577468 100644
+index 9c71841..5a48529 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -76,20 +76,20 @@ index 9c71841..a577468 100644
      Unit* mover = _player->m_mover;
  
      ASSERT(mover != NULL);                                  // there must always be a mover
-@@ -234,7 +251,12 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -234,6 +251,12 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      // ignore, waiting processing in WorldSession::HandleMoveWorldportAckOpcode and WorldSession::HandleMoveTeleportAck
      if (plMover && plMover->IsBeingTeleported())
      {
++        // Movement Anticheat
 +        GetPlayer()->m_anti_plskipanticheat = true;
-         recv_data.rpos(recv_data.wpos());                   // prevent warnings spam
 +
 +        if (World::GetMvAnticheatDebug())
 +            sLog.outBasic("Movement Anticheat: player %s IsBeingTeleported", GetPlayer()->GetName());
 +
+         recv_data.rpos(recv_data.wpos());                   // prevent warnings spam
          return;
      }
- 
-@@ -264,73 +286,449 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -264,73 +287,449 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      {
          // transports size limited
          // (also received at zeppelin/lift leave by some reason with t_* as absolute in continent coordinates, can be safely skipped)
@@ -578,7 +578,7 @@ index 9c71841..a577468 100644
  }
  
  void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
-@@ -355,6 +753,12 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
+@@ -355,6 +754,12 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
@@ -591,7 +591,7 @@ index 9c71841..a577468 100644
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -405,6 +809,12 @@ void WorldSession::HandleSetActiveMoverOpcode(WorldPacket& recv_data)
+@@ -405,6 +810,12 @@ void WorldSession::HandleSetActiveMoverOpcode(WorldPacket& recv_data)
          sLog.outError("HandleSetActiveMoverOpcode: incorrect mover guid: mover is " UI64FMTD " and should be " UI64FMTD, guid, _player->m_mover->GetGUID());
          GetPlayer()->SetMover(GetPlayer());
      }
@@ -604,7 +604,7 @@ index 9c71841..a577468 100644
  }
  
  void WorldSession::HandleMoveNotActiveMoverOpcode(WorldPacket& recv_data)
-@@ -422,6 +832,12 @@ void WorldSession::HandleMoveNotActiveMoverOpcode(WorldPacket& recv_data)
+@@ -422,6 +833,12 @@ void WorldSession::HandleMoveNotActiveMoverOpcode(WorldPacket& recv_data)
          return;
  
      GetPlayer()->m_movementInfo = mi;
@@ -617,7 +617,7 @@ index 9c71841..a577468 100644
  }
  
  void WorldSession::HandleMountSpecialAnimOpcode(WorldPacket& /*recvdata*/)
-@@ -432,6 +848,12 @@ void WorldSession::HandleMountSpecialAnimOpcode(WorldPacket& /*recvdata*/)
+@@ -432,6 +849,12 @@ void WorldSession::HandleMountSpecialAnimOpcode(WorldPacket& /*recvdata*/)
      data << uint64(GetPlayer()->GetGUID());
  
      GetPlayer()->SendMessageToSet(&data, false);
@@ -630,7 +630,7 @@ index 9c71841..a577468 100644
  }
  
  void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
-@@ -453,6 +875,12 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -453,6 +876,12 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -643,7 +643,7 @@ index 9c71841..a577468 100644
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -469,6 +897,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -469,6 +898,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data.read_skip<uint32>();                          // unk2
  
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -662,7 +662,7 @@ index 9c71841..a577468 100644
  }
  
  void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
-@@ -484,6 +924,12 @@ void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
+@@ -484,6 +925,12 @@ void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
      recv_data >> movementInfo;
  
      recv_data.read_skip<uint32>();                          // unk2
@@ -675,7 +675,7 @@ index 9c71841..a577468 100644
  }
  
  void WorldSession::HandleMoveWaterWalkAck(WorldPacket& recv_data)
-@@ -499,6 +945,12 @@ void WorldSession::HandleMoveWaterWalkAck(WorldPacket& recv_data)
+@@ -499,6 +946,12 @@ void WorldSession::HandleMoveWaterWalkAck(WorldPacket& recv_data)
      recv_data >> movementInfo;
      
      recv_data.read_skip<uint32>();                          // unk2
@@ -688,7 +688,7 @@ index 9c71841..a577468 100644
  }
  
  void WorldSession::HandleSummonResponseOpcode(WorldPacket& recv_data)
-@@ -512,5 +964,11 @@ void WorldSession::HandleSummonResponseOpcode(WorldPacket& recv_data)
+@@ -512,5 +965,11 @@ void WorldSession::HandleSummonResponseOpcode(WorldPacket& recv_data)
      recv_data >> agree;
  
      GetPlayer()->SummonIfPossible(agree);
@@ -701,7 +701,7 @@ index 9c71841..a577468 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index cfc564b..84d755c 100644
+index cfc564b..a4da6c6 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -370,6 +370,24 @@ Player::Player (WorldSession *session): Unit()
@@ -744,7 +744,7 @@ index cfc564b..84d755c 100644
      // calculate total z distance of the fall
      float z_diff = m_lastFallZ - movementInfo.GetPos()->GetPositionZ();
 -    DEBUG_LOG("zDiff = %f", z_diff);
-+    DEBUG_LOG("zDiff=%f, FallTime=%u", z_diff, movementInfo.GetFallTime());
++    DEBUG_LOG("zDiff = %f, FallTime = %u", z_diff, movementInfo.GetFallTime());
  
      //Players with low fall distance, Feather Fall or physical immunity (charges used) are ignored
      // 14.57 can be calculated by resolving damageperc formular below to 0
@@ -776,54 +776,38 @@ index 643e306..36d3ade 100644
          Transport * m_transport;
  
 diff --git a/src/game/TaxiHandler.cpp b/src/game/TaxiHandler.cpp
-index c98c503..2e70de1 100644
+index c98c503..5a9f6f9 100644
 --- a/src/game/TaxiHandler.cpp
 +++ b/src/game/TaxiHandler.cpp
-@@ -105,6 +105,11 @@ void WorldSession::SendDoFlight(uint16 MountId, uint32 path, uint32 pathNode)
+@@ -105,6 +105,13 @@ void WorldSession::SendDoFlight(uint16 MountId, uint32 path, uint32 pathNode)
      if (GetPlayer()->hasUnitState(UNIT_STAT_DIED))
          GetPlayer()->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH);
  
 +    // Movement Anticheat
++    GetPlayer()->m_anti_plskipanticheat = true;
 +    GetPlayer()->m_anti_ontaxipath = true;
++
 +    if (World::GetMvAnticheatDebug())
 +        sLog.outBasic("Movement Anticheat: player %s SendDoFlight", GetPlayer()->GetName());
 +
      while (GetPlayer()->GetMotionMaster()->GetCurrentMovementGeneratorType() == FLIGHT_MOTION_TYPE)
          GetPlayer()->GetMotionMaster()->MovementExpired(false);
  
-@@ -193,7 +198,14 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
- 
-     uint32 curDest = GetPlayer()->m_taxi.GetTaxiDestination();
-     if (!curDest)
-+    {
-+        // Movement Anticheat
-+        GetPlayer()->Relocate(movementInfo.GetPos());
-+        GetPlayer()->m_movementInfo = movementInfo;
-+        GetPlayer()->m_anti_lastmovetime = movementInfo.time;
-+        GetPlayer()->m_anti_plskipanticheat = true;
-         return;
-+    }
- 
-     TaxiNodesEntry const* curDestNode = sTaxiNodesStore.LookupEntry(curDest);
- 
-@@ -206,6 +218,15 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
+@@ -206,6 +213,12 @@ void WorldSession::HandleTaxiNextDestinationOpcode(WorldPacket& recv_data)
              GetPlayer()->GetMotionMaster()->MovementExpired(false);
      }
  
 +    // Movement Anticheat
-+    GetPlayer()->SetPosition(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation());
-+    GetPlayer()->m_movementInfo = movementInfo;
-+    GetPlayer()->m_anti_lastmovetime = movementInfo.time;
 +    GetPlayer()->m_anti_plskipanticheat = true;
++
 +    if (World::GetMvAnticheatDebug())
 +        sLog.outBasic("Movement Anticheat: player %s HandleTaxiNextDestinationOpcode", GetPlayer()->GetName());
-+    // Movement Anticheat
 +
      // far teleport case
      if (curDestNode && curDestNode->map_id != GetPlayer()->GetMapId())
      {
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 69f486e..d332872 100644
+index 0c2c54d..6f09e3b 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -69,6 +69,14 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -891,10 +875,10 @@ index 39ecd07..cbc347e 100644
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 5c74400..fd519ee 100644
+index 9feef36..76541de 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
-@@ -2063,3 +2063,43 @@ Pet.React.Aggressive = 0
+@@ -2063,3 +2063,43 @@ Pet.React.Aggressive = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000
