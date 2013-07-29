@@ -3,7 +3,7 @@ UPDATE `version` SET `db_version` = 'BDB_20130729';
 
 -- Nightbane Fix
 -- old `inhabitType` = '3'
-UPDATE `creature_template` SET `inhabitType` = '4' WHERE `entry` = '17225';
+UPDATE `creature_template` SET `inhabitType` = '4', `unit_flags` = '0' WHERE `entry` = '17225';
 
 
 -- Boss Shade of Aran Fix

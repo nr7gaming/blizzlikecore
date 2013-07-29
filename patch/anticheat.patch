@@ -208,7 +208,7 @@ index 9c71841..5a48529 100644
 +        // Movement Anticheat
 +        if (opcode == MSG_MOVE_FALL_LAND && !plMover->isInFlight())
 +        {
-+            if (!plMover->m_anti_ontaxipath && !plMover->m_anti_flymounted) // fall damage generation
++            if (!plMover->m_anti_ontaxipath && !plMover->m_anti_flymounted && plMover->isAlive()) // fall damage generation
 +                plMover->HandleFallDamage(movementInfo);
 +
 +            plMover->m_anti_ontaxipath = false;
@@ -409,7 +409,7 @@ index 9c71841..5a48529 100644
 +            }
 +
 +            // Anti-Water-Walk-Hack
-+            if (movementInfo.HasMovementFlag(MOVEFLAG_WATERWALKING)
++            if (movementInfo.HasMovementFlag(MOVEFLAG_WATERWALKING) && plMover->isAlive()
 +                && !(plMover->HasAuraType(SPELL_AURA_WATER_WALK) | plMover->HasAuraType(SPELL_AURA_GHOST)))
 +            {
 +                if (World::GetMvAnticheatDebug())

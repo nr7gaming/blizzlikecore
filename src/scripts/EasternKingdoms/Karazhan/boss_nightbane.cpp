@@ -12,23 +12,13 @@ EndScriptData */
 
 #include "ScriptPCH.h"
 #include "karazhan.h"
-/*
-#define EMOTE_SUMMON                "An ancient being awakens in the distance..."
+
+// #define EMOTE_SUMMON                "An ancient being awakens in the distance..." // Not used in script
 #define YELL_AGGRO                  "What fools! I shall bring a quick end to your suffering!"
 #define YELL_FLY_PHASE              "Miserable vermin. I shall exterminate you from the air!"
 #define YELL_LAND_PHASE_1           "Enough! I shall land and crush you myself!"
 #define YELL_LAND_PHASE_2           "Insects! Let me show you my strength up close!"
 #define EMOTE_BREATH                "takes a deep breath."
-*/
-enum Says
-{
-    EMOTE_SUMMON                = -1532125,
-    YELL_AGGRO                  = -1532126,
-    YELL_FLY_PHASE              = -1532127,
-    YELL_LAND_PHASE_1           = -1532128,
-    YELL_LAND_PHASE_2           = -1532129,
-    EMOTE_BREATH                = -1532130
-};
 
 enum Spells
 {
@@ -137,16 +127,16 @@ struct boss_nightbaneAI : public ScriptedAI
             else
             {
 
-                BellowingRoarTimer = 30000;
-                CharredEarthTimer = 15000;
-                DistractingAshTimer = 20000;
-                SmolderingBreathTimer = 10000;
-                TailSweepTimer = 12000;
-                RainofBonesTimer = 10000;
-                SmokingBlastTimer = 20000;
-                FireballBarrageTimer = 13000;
-                SearingCindersTimer = 14000;
-                WaitTimer = 1000;
+                BellowingRoarTimer = urand(20000, 30000);
+                CharredEarthTimer = urand(10000, 15000);
+                DistractingAshTimer = urand(10000, 12000);
+                SmolderingBreathTimer = urand(9000, 13000);
+                TailSweepTimer = urand(12000, 15000);
+                RainofBonesTimer = 3000;
+                SmokingBlastTimer = urand(10000, 12000);
+                FireballBarrageTimer = 10000;
+                SearingCindersTimer = 12000;
+                WaitTimer = urand(3000, 4000);
 
                 Phase =1;
                 FlyCount = 0;
@@ -287,49 +277,52 @@ struct boss_nightbaneAI : public ScriptedAI
 
         Flying = true;
 
-        FlyTimer = urand(45000, 60000); //timer wrong between 45 and 60 seconds
+        FlyTimer = urand(20000, 40000);
         ++FlyCount;
 
-        RainofBonesTimer = 5000; //timer wrong (maybe)
+        RainofBonesTimer = 3000;
         RainBones = false;
     }
 
     void UpdateAI(const uint32 diff)
     {
-        if (WaitTimer <= diff)
+        if (WaitTimer)
         {
-            if (Intro)
+            if (WaitTimer <= diff)
             {
-                if (MovePhase >= 7)
+                if (Intro)
                 {
-                    me->RemoveUnitMovementFlag(MOVEFLAG_ONTRANSPORT | MOVEFLAG_LEVITATING);
-                    me->HandleEmoteCommand(EMOTE_ONESHOT_LAND);
-                    me->GetMotionMaster()->MovePoint(8,IntroWay[7][0],IntroWay[7][1],IntroWay[7][2]);
+                    if (MovePhase >= 7)
+                    {
+                        me->RemoveUnitMovementFlag(MOVEFLAG_ONTRANSPORT | MOVEFLAG_LEVITATING);
+                        me->HandleEmoteCommand(EMOTE_ONESHOT_LAND);
+                        me->GetMotionMaster()->MovePoint(8,IntroWay[7][0],IntroWay[7][1],IntroWay[7][2]);
+                    }
+                    else
+                    {
+                        me->GetMotionMaster()->MovePoint(MovePhase,IntroWay[MovePhase][0],IntroWay[MovePhase][1],IntroWay[MovePhase][2]);
+                        ++MovePhase;
+                    }
                 }
-                else
-                {
-                    me->GetMotionMaster()->MovePoint(MovePhase,IntroWay[MovePhase][0],IntroWay[MovePhase][1],IntroWay[MovePhase][2]);
-                    ++MovePhase;
-                }
-            }
 
-            if (Flying)
-            {
-                if (MovePhase >= 7)
+                if (Flying)
                 {
-                    me->RemoveUnitMovementFlag(MOVEFLAG_ONTRANSPORT | MOVEFLAG_LEVITATING);
-                    me->HandleEmoteCommand(EMOTE_ONESHOT_LAND);
-                    me->GetMotionMaster()->MovePoint(8,IntroWay[7][0],IntroWay[7][1],IntroWay[7][2]);
+                    if (MovePhase >= 7)
+                    {
+                        me->RemoveUnitMovementFlag(MOVEFLAG_ONTRANSPORT | MOVEFLAG_LEVITATING);
+                        me->HandleEmoteCommand(EMOTE_ONESHOT_LAND);
+                        me->GetMotionMaster()->MovePoint(8,IntroWay[7][0],IntroWay[7][1],IntroWay[7][2]);
+                    }
+                    else
+                    {
+                        me->GetMotionMaster()->MovePoint(MovePhase,IntroWay[MovePhase][0],IntroWay[MovePhase][1],IntroWay[MovePhase][2]);
+                        ++MovePhase;
+                    }
                 }
-                else
-                {
-                    me->GetMotionMaster()->MovePoint(MovePhase,IntroWay[MovePhase][0],IntroWay[MovePhase][1],IntroWay[MovePhase][2]);
-                    ++MovePhase;
-                }
-            }
 
-            WaitTimer = 0;
-        } else WaitTimer -= diff;
+                WaitTimer = 0;
+            } else WaitTimer -= diff;
+        }
 
         if (!UpdateVictim())
             return;
@@ -349,20 +342,20 @@ struct boss_nightbaneAI : public ScriptedAI
             if (BellowingRoarTimer <= diff)
             {
                 DoCast(me->getVictim(), SPELL_BELLOWING_ROAR);
-                BellowingRoarTimer = urand(30000, 40000);
+                BellowingRoarTimer = urand(20000, 30000);
             } else BellowingRoarTimer -= diff;
 
             if (SmolderingBreathTimer <= diff)
             {
                 DoCast(me->getVictim(), SPELL_SMOLDERING_BREATH);
-                SmolderingBreathTimer = 20000;
+                SmolderingBreathTimer = urand(14000, 20000);
             } else SmolderingBreathTimer -= diff;
 
             if (CharredEarthTimer <= diff)
             {
                 if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
                     DoCast(pTarget, SPELL_CHARRED_EARTH);
-                CharredEarthTimer = 20000;
+                CharredEarthTimer = urand(25000, 35000);
             } else CharredEarthTimer -= diff;
 
             if (TailSweepTimer <= diff)
@@ -370,14 +363,14 @@ struct boss_nightbaneAI : public ScriptedAI
                 if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
                     if (!me->HasInArc(M_PI, pTarget))
                         DoCast(pTarget, SPELL_TAIL_SWEEP);
-                TailSweepTimer = 15000;
+                TailSweepTimer = urand(14000, 20000);
             } else TailSweepTimer -= diff;
 
             if (SearingCindersTimer <= diff)
             {
                 if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
                     DoCast(pTarget, SPELL_SEARING_CINDERS);
-                SearingCindersTimer = 10000;
+                SearingCindersTimer = urand(6000, 12000);
             } else SearingCindersTimer -= diff;
 
             uint32 Prozent;
@@ -412,14 +405,14 @@ struct boss_nightbaneAI : public ScriptedAI
 
                     DoCast(me->getVictim(), SPELL_RAIN_OF_BONES);
                     RainBones = true;
-                    SmokingBlastTimer = 20000;
+                    SmokingBlastTimer = urand(1000, 3000);
                 } else RainofBonesTimer -= diff;
 
                 if (DistractingAshTimer <= diff)
                 {
                     if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
                         DoCast(pTarget, SPELL_DISTRACTING_ASH);
-                    DistractingAshTimer = 2000; //timer wrong
+                    DistractingAshTimer = urand(7000, 13000);
                 } else DistractingAshTimer -= diff;
             }
 
@@ -428,7 +421,7 @@ struct boss_nightbaneAI : public ScriptedAI
                 if (SmokingBlastTimer <= diff)
                  {
                     DoCast(me->getVictim(), SPELL_SMOKING_BLAST);
-                    SmokingBlastTimer = 1500; //timer wrong
+                    SmokingBlastTimer = urand(1000, 3000);
                  } else SmokingBlastTimer -= diff;
             }
 
@@ -445,7 +438,7 @@ struct boss_nightbaneAI : public ScriptedAI
                             DoCast(i_pl, SPELL_FIREBALL_BARRAGE);
                         }
                 }
-                FireballBarrageTimer = 20000;
+                FireballBarrageTimer = urand(3000, 6000);
             } else FireballBarrageTimer -= diff;
 
             if (FlyTimer <= diff) //landing
