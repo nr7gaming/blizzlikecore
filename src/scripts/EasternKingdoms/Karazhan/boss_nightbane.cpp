@@ -12,13 +12,23 @@ EndScriptData */
 
 #include "ScriptPCH.h"
 #include "karazhan.h"
-
+/*
 #define EMOTE_SUMMON                "An ancient being awakens in the distance..."
 #define YELL_AGGRO                  "What fools! I shall bring a quick end to your suffering!"
 #define YELL_FLY_PHASE              "Miserable vermin. I shall exterminate you from the air!"
 #define YELL_LAND_PHASE_1           "Enough! I shall land and crush you myself!"
 #define YELL_LAND_PHASE_2           "Insects! Let me show you my strength up close!"
 #define EMOTE_BREATH                "takes a deep breath."
+*/
+enum Says
+{
+    EMOTE_SUMMON                = -1532125,
+    YELL_AGGRO                  = -1532126,
+    YELL_FLY_PHASE              = -1532127,
+    YELL_LAND_PHASE_1           = -1532128,
+    YELL_LAND_PHASE_2           = -1532129,
+    EMOTE_BREATH                = -1532130
+};
 
 enum Spells
 {
@@ -97,7 +107,7 @@ struct boss_nightbaneAI : public ScriptedAI
                 NightbaneGUID = pInstance->GetData64(DATA_NIGHTBANE);
 
                 if (NightbaneGUID)
-                    if (Creature* Nightbane = Creature::GetCreature((*me),NightbaneGUID))
+                    if (Creature* Nightbane = Creature::GetCreature((*me), NightbaneGUID))
                         isCorrectSpawned = false;
             }
             else
@@ -112,7 +122,7 @@ struct boss_nightbaneAI : public ScriptedAI
             }
             else
             {
-                pInstance->SetData64(DATA_NIGHTBANE,me->GetGUID());
+                pInstance->SetData64(DATA_NIGHTBANE, me->GetGUID());
             }
 
             if (!Intro)
@@ -277,7 +287,7 @@ struct boss_nightbaneAI : public ScriptedAI
 
         Flying = true;
 
-        FlyTimer = urand(45000,60000); //timer wrong between 45 and 60 seconds
+        FlyTimer = urand(45000, 60000); //timer wrong between 45 and 60 seconds
         ++FlyCount;
 
         RainofBonesTimer = 5000; //timer wrong (maybe)
@@ -286,9 +296,6 @@ struct boss_nightbaneAI : public ScriptedAI
 
     void UpdateAI(const uint32 diff)
     {
-/*      if (!WaitTimer)
-            return;
-
         if (WaitTimer <= diff)
         {
             if (Intro)
@@ -323,7 +330,7 @@ struct boss_nightbaneAI : public ScriptedAI
 
             WaitTimer = 0;
         } else WaitTimer -= diff;
-*/
+
         if (!UpdateVictim())
             return;
 
@@ -342,7 +349,7 @@ struct boss_nightbaneAI : public ScriptedAI
             if (BellowingRoarTimer <= diff)
             {
                 DoCast(me->getVictim(), SPELL_BELLOWING_ROAR);
-                BellowingRoarTimer = urand(30000,40000);
+                BellowingRoarTimer = urand(30000, 40000);
             } else BellowingRoarTimer -= diff;
 
             if (SmolderingBreathTimer <= diff)
