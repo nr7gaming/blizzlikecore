@@ -409,7 +409,7 @@ index 9c71841..5a48529 100644
 +            }
 +
 +            // Anti-Water-Walk-Hack
-+            if (movementInfo.HasMovementFlag(MOVEFLAG_WATERWALKING) && plMover->isAlive()
++            if (movementInfo.HasMovementFlag(MOVEFLAG_WATERWALKING)
 +                && !(plMover->HasAuraType(SPELL_AURA_WATER_WALK) | plMover->HasAuraType(SPELL_AURA_GHOST)))
 +            {
 +                if (World::GetMvAnticheatDebug())

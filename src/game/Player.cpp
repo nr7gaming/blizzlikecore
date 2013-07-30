@@ -1348,7 +1348,7 @@ void Player::setDeathState(DeathState s)
 
         // restore default warrior stance
         if (getClass() == CLASS_WARRIOR)
-            CastSpell(this,SPELL_ID_PASSIVE_BATTLE_STANCE,true);
+            CastSpell(this, SPELL_ID_PASSIVE_BATTLE_STANCE, true);
     }
 }
 
@@ -19977,7 +19977,7 @@ uint32 Player::GetResurrectionSpellId()
                 case 20765: spell_id = 20761; break;        // rank 5
                 case 27239: spell_id = 27240; break;        // rank 6
                 default:
-                    sLog.outError("Unhandled spell %u: S.Resurrection",(*itr)->GetId());
+                    sLog.outError("Unhandled spell %u: S.Resurrection", (*itr)->GetId());
                     continue;
             }
 
