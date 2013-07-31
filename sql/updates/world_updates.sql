@@ -1,4 +1,14 @@
-UPDATE `version` SET `db_version` = 'BDB_20130729';
+UPDATE `version` SET `db_version` = 'BDB_20130731';
+
+
+-- Magtheridon
+UPDATE `creature_template` SET `mingold`=4800000, `maxgold`=5200000 WHERE `entry`=17257;
+-- Gruul the Dragonkiller
+UPDATE `creature_template` SET `mingold`=2300000, `maxgold`=2700000 WHERE `entry`=19044;
+-- Doom Lord Kazzak
+UPDATE `creature_template` SET `mingold`=4800000, `maxgold`=5200000 WHERE `entry`=18728;
+-- Moroes, Maiden of Virtue, The Curator, Nightbane, Netherspite, Shade of Aran, Terestian Illhoof, Prince Malchezaar
+UPDATE `creature_template` SET `mingold`=370000, `maxgold`=410000 WHERE `entry` IN (15687,16457,15691,15688,16524,15689,17225, 15690);
 
 
 -- Nightbane Fix
@@ -134,4 +144,4 @@ UPDATE `creature_template` SET `flags_extra` = '1' WHERE `entry` IN (20568,20183
 
 
 -- Heroic boss respawn fix (TY clarkname) (old value: `spawntimesecs` = '25')
-UPDATE `creature` SET `spawntimesecs` = '43200' WHERE `id` = '20923';
+UPDATE `creature` SET `spawntimesecs` = '300' WHERE `id` = '20923';
