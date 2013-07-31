@@ -136,14 +136,14 @@ struct boss_nightbaneAI : public ScriptedAI
                 SmokingBlastTimer = urand(10000, 12000);
                 FireballBarrageTimer = 10000;
                 SearingCindersTimer = 12000;
-                WaitTimer = urand(1000, 1500);
+                WaitTimer = urand(1000, 1200);
 
                 Phase =1;
                 FlyCount = 0;
                 MovePhase = 0;
 
                 me->SetSpeed(MOVE_RUN, 2.0f);
-                me->AddUnitMovementFlag(MOVEFLAG_LEVITATING);
+                me->AddUnitMovementFlag(MOVEFLAG_FLYING | MOVEFLAG_FLYING2);
                 me->setActive(true);
 
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
@@ -270,7 +270,7 @@ struct boss_nightbaneAI : public ScriptedAI
 
         me->InterruptSpell(CURRENT_GENERIC_SPELL);
         me->HandleEmoteCommand(EMOTE_ONESHOT_LIFTOFF);
-        me->AddUnitMovementFlag(MOVEFLAG_LEVITATING);
+        me->AddUnitMovementFlag(MOVEFLAG_FLYING | MOVEFLAG_FLYING2);
         (*me).GetMotionMaster()->Clear(false);
         (*me).GetMotionMaster()->MovePoint(0,IntroWay[2][0],IntroWay[2][1],IntroWay[2][2]);
 
@@ -293,13 +293,14 @@ struct boss_nightbaneAI : public ScriptedAI
                 {
                     if (MovePhase >= 7)
                     {
-                        me->RemoveUnitMovementFlag(MOVEFLAG_LEVITATING);
                         me->HandleEmoteCommand(EMOTE_ONESHOT_LAND);
                         me->GetMotionMaster()->MovePoint(8,IntroWay[7][0],IntroWay[7][1],IntroWay[7][2]);
+                        me->RemoveUnitMovementFlag(MOVEFLAG_FLYING | MOVEFLAG_FLYING2);
                     }
                     else
                     {
-                        me->HandleEmoteCommand(EMOTE_ONESHOT_LIFTOFF);
+                        if (MovePhase < 6)
+                            me->HandleEmoteCommand(EMOTE_ONESHOT_LIFTOFF);
                         me->GetMotionMaster()->MovePoint(MovePhase,IntroWay[MovePhase][0],IntroWay[MovePhase][1],IntroWay[MovePhase][2]);
                         ++MovePhase;
                     }

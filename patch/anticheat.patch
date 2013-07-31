@@ -208,7 +208,7 @@ index 9c71841..5a48529 100644
 +        // Movement Anticheat
 +        if (opcode == MSG_MOVE_FALL_LAND && !plMover->isInFlight())
 +        {
-+            if (!plMover->m_anti_ontaxipath && !plMover->m_anti_flymounted && plMover->isAlive()) // fall damage generation
++            if (!plMover->m_anti_ontaxipath && !plMover->m_anti_flymounted) // fall damage generation
 +                plMover->HandleFallDamage(movementInfo);
 +
 +            plMover->m_anti_ontaxipath = false;
@@ -735,7 +735,7 @@ index cfc564b..a4da6c6 100644
  {
 -    if (movementInfo.GetFallTime() < 1500)
 +    // Removed for Anticheat Fall DMG
-+    if (!World::GetEnableMvAnticheat() && movementInfo.GetFallTime() < 1500)
++    if (m_anti_plskipanticheat || (!World::GetEnableMvAnticheat() && movementInfo.GetFallTime() < 1500))
          return;
 +    else
 +        if (movementInfo.GetFallTime() > 400 && movementInfo.GetFallTime() < 1500) // lower falltime then 400 = cheat
