@@ -1392,12 +1392,6 @@ struct npc_snake_trap_serpentsAI : public ScriptedAI
         if (!UpdateVictim())
             return;
 
-        if (me->getVictim()->HasBreakableByDamageCCAura())
-        {
-            me->InterruptNonMeleeSpells(false);
-            return;
-        }
-
         if (SpellTimer <= diff)
         {
             if (IsViper) // Viper

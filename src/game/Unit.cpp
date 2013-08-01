@@ -714,26 +714,6 @@ bool Unit::HasAuraTypeWithFamilyFlags(AuraType auraType, uint32 familyName  ,uin
     return false;
 }
 
-// Check is spell breakable by damage or aura interrupted by damage
-bool Unit::HasBreakableByDamageAuraType(AuraType auraType) const
-{
-    AuraList const &auras = GetAurasByType(auraType);
-    for (AuraList::const_iterator itr = auras.begin(); itr != auras.end(); ++itr)
-        if (SpellEntry const *iterSpellProto = (*itr)->GetSpellProto())
-            if (iterSpellProto->Attributes & SPELL_ATTR_BREAKABLE_BY_DAMAGE || iterSpellProto->AuraInterruptFlags & AURA_INTERRUPT_FLAG_DAMAGE)
-                return true;
-    return false;
-}
-
-bool Unit::HasBreakableByDamageCCAura() const
-{
-    return (   HasBreakableByDamageAuraType(SPELL_AURA_MOD_CONFUSE)
-            || HasBreakableByDamageAuraType(SPELL_AURA_MOD_FEAR)
-            || HasBreakableByDamageAuraType(SPELL_AURA_MOD_STUN)
-            || HasBreakableByDamageAuraType(SPELL_AURA_MOD_ROOT)
-            || HasBreakableByDamageAuraType(SPELL_AURA_TRANSFORM));
-}
-
 /* Called by DealDamage for auras that have a chance to be dispelled on damage taken. */
 void Unit::RemoveSpellbyDamageTaken(uint32 damage, uint32 spell)
 {

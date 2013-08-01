@@ -68,12 +68,6 @@ void CombatAI::UpdateAI(const uint32 diff)
 
     events.Update(diff);
 
-    if (me->getVictim()->HasBreakableByDamageCCAura())
-    {
-        me->InterruptNonMeleeSpells(false);
-        return;
-    }
-
     if (me->hasUnitState(UNIT_STAT_CASTING))
         return;
 
