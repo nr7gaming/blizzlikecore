@@ -21,7 +21,7 @@ index f56f163..bfb4852 100644
      // Use for not-in-offcial-sources patches
      //                                    10000-10999
 diff --git a/src/game/MovementHandler.cpp b/src/game/MovementHandler.cpp
-index 9c71841..ea14c8d 100644
+index 9c71841..677f3e4 100644
 --- a/src/game/MovementHandler.cpp
 +++ b/src/game/MovementHandler.cpp
 @@ -8,6 +8,7 @@
@@ -89,7 +89,7 @@ index 9c71841..ea14c8d 100644
          recv_data.rpos(recv_data.wpos());                   // prevent warnings spam
          return;
      }
-@@ -264,73 +287,451 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
+@@ -264,73 +287,447 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recv_data)
      {
          // transports size limited
          // (also received at zeppelin/lift leave by some reason with t_* as absolute in continent coordinates, can be safely skipped)
@@ -187,33 +187,13 @@ index 9c71841..ea14c8d 100644
 -        mover->GetCharmer()->SendMessageToSet(&data, false);
 -    else
 -        mover->SendMessageToSet(&data, false);
-+        if (!plMover->isAlive())
-+            plMover->m_anti_plskipanticheat = 0;
++        if (opcode == MSG_MOVE_FALL_LAND && !plMover->isInFlight())
++        {
++            if (!World::GetEnableMvAnticheat() || (!plMover->m_anti_ontaxipath && !plMover->m_anti_flymounted && !plMover->m_anti_plskipanticheat))
++                plMover->HandleFallDamage(movementInfo); // fall damage generation
  
 -    mover->m_movementInfo = movementInfo;
 -    mover->SetPosition(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation());
-+        if (!World::GetEnableMvAnticheat() || GetPlayer()->GetSession()->GetSecurity() > World::GetMvAnticheatGmLevel())
-+            plMover->m_anti_plskipanticheat = 1;
- 
--    if (plMover)                                            // nothing is charmed, or player charmed
--    {
--        if (opcode == MSG_MOVE_FALL_LAND || plMover->m_lastFallTime > movementInfo.GetFallTime() || plMover->m_lastFallZ < movementInfo.GetPos()->GetPositionZ())
--            plMover->SetFallInformation(movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionZ());
-+        if (!movementInfo.HasMovementFlag(MOVEFLAG_MOVING) && !mover->HasUnitMovementFlag(MOVEFLAG_MOVING) && !(opcode == MSG_MOVE_FALL_LAND))
-+        {
-+            if (World::GetMvAnticheatDebug())
-+                sLog.outDebug("Movement Anticheat: player %s update orientation only", plMover->GetName());
-+
-+            plMover->m_anti_plskipanticheat = 1;
-+            updateorientationonly = true;
-+        }
-+
-+        // Movement Anticheat
-+        if (opcode == MSG_MOVE_FALL_LAND && !plMover->isInFlight())
-+        {
-+            if (!plMover->m_anti_ontaxipath && !plMover->m_anti_flymounted && !plMover->m_anti_plskipanticheat) // fall damage generation
-+                plMover->HandleFallDamage(movementInfo);
-+
 +            plMover->m_anti_ontaxipath = false;
 +            plMover->m_anti_justjumped = 0;
 +            plMover->m_anti_jumpbase = 0;
@@ -223,22 +203,36 @@ index 9c71841..ea14c8d 100644
 +            plMover->m_anti_isjumping = false;
 +        else if (opcode == MSG_MOVE_JUMP)
 +            plMover->m_anti_isjumping = true;
-+
+ 
+-    if (plMover)                                            // nothing is charmed, or player charmed
+-    {
+-        if (opcode == MSG_MOVE_FALL_LAND || plMover->m_lastFallTime > movementInfo.GetFallTime() || plMover->m_lastFallZ < movementInfo.GetPos()->GetPositionZ())
+-            plMover->SetFallInformation(movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionZ());
 +        if (movementInfo.HasMovementFlag(MOVEFLAG_SWIMMING) != plMover->IsInWater())
 +        {
 +            // Now client not include swimming flag in case jumping under water
 +            plMover->SetInWater(!plMover->IsInWater() || plMover->GetBaseMap()->IsUnderWater(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ()));
 +            plMover->m_anti_justjumped = 0;
 +        }
-+        /*----------------------*/
- 
--        // we should add the check only for class hunter
--        if (plMover->isMovingOrTurning())
--            plMover->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH);
++
++        if (!World::GetEnableMvAnticheat() || GetPlayer()->GetSession()->GetSecurity() > World::GetMvAnticheatGmLevel())
++            plMover->m_anti_plskipanticheat = 1;
++        else if (!plMover->isAlive())
++            plMover->m_anti_plskipanticheat = 0;
++
 +        if (World::GetMvAnticheatDebug())
 +        {
 +            sLog.outDebug("Movement Anticheat: player %s newcoord: tm:%d ftm:%d | %f, %f, %fo(%f) [%X][%s]| transport: %f, %f, %fo(%f)", plMover->GetName(), movementInfo.time, movementInfo.GetFallTime(), movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), movementInfo.GetPos()->GetPositionZ(), movementInfo.GetPos()->GetOrientation(), movementInfo.GetMovementFlags(), LookupOpcodeName(opcode), movementInfo.GetTransportPos()->GetPositionX(), movementInfo.GetTransportPos()->GetPositionY(), movementInfo.GetTransportPos()->GetPositionZ(), movementInfo.GetTransportPos()->GetOrientation());
 +            sLog.outDebug("Transport: %d |  tguid: %d - %d", plMover->m_anti_transportGUID, GUID_LOPART(movementInfo.t_guid), GUID_HIPART(movementInfo.t_guid));
++        }
++
++        if (!movementInfo.HasMovementFlag(MOVEFLAG_MOVING) && !mover->HasUnitMovementFlag(MOVEFLAG_MOVING) && !(opcode == MSG_MOVE_FALL_LAND))
++        {
++            if (World::GetMvAnticheatDebug())
++                sLog.outDebug("Movement Anticheat: player %s update orientation only", plMover->GetName());
++
++            plMover->m_anti_plskipanticheat = 1;
++            updateorientationonly = true;
 +        }
 +
 +        // Anti-Passiv-Movement-Hack
@@ -391,7 +385,10 @@ index 9c71841..ea14c8d 100644
 +                plMover->m_anti_lastcheat = "Wall-climbing Hack";
 +                acpassed = false;
 +            }
-+
+ 
+-        // we should add the check only for class hunter
+-        if (plMover->isMovingOrTurning())
+-            plMover->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH);
 +            // Anti-Fly-Hack
 +            if (((movementInfo.GetMovementFlags() & (MOVEFLAG_CAN_FLY | MOVEFLAG_FLYING | MOVEFLAG_FLYING2)) != 0) 
 +                && !(movementInfo.HasMovementFlag(MOVEFLAG_SWIMMING)) && !(plMover->m_anti_flymounted)
@@ -510,8 +507,7 @@ index 9c71841..ea14c8d 100644
 +        // reset plskipanticheat
 +        if (plMover->m_anti_plskipanticheat)
 +            plMover->m_anti_plskipanticheat--;
-+
-+        if (!plMover->isAlive())
++        else if (!plMover->isAlive())
 +            plMover->m_anti_plskipanticheat = World::GetMvAnticheatDelay();
 +
 +        /* process position-change */
@@ -580,7 +576,7 @@ index 9c71841..ea14c8d 100644
  }
  
  void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
-@@ -355,6 +756,12 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
+@@ -355,6 +752,12 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket& recv_data)
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
  
@@ -593,7 +589,7 @@ index 9c71841..ea14c8d 100644
      // client ACK send one packet for mounted/run case and need skip all except last from its
      // in other cases anti-cheat check can be fail in false case
      UnitMoveType move_type;
-@@ -405,6 +812,12 @@ void WorldSession::HandleSetActiveMoverOpcode(WorldPacket& recv_data)
+@@ -405,6 +808,12 @@ void WorldSession::HandleSetActiveMoverOpcode(WorldPacket& recv_data)
          sLog.outError("HandleSetActiveMoverOpcode: incorrect mover guid: mover is " UI64FMTD " and should be " UI64FMTD, guid, _player->m_mover->GetGUID());
          GetPlayer()->SetMover(GetPlayer());
      }
@@ -606,7 +602,7 @@ index 9c71841..ea14c8d 100644
  }
  
  void WorldSession::HandleMoveNotActiveMoverOpcode(WorldPacket& recv_data)
-@@ -422,6 +835,12 @@ void WorldSession::HandleMoveNotActiveMoverOpcode(WorldPacket& recv_data)
+@@ -422,6 +831,12 @@ void WorldSession::HandleMoveNotActiveMoverOpcode(WorldPacket& recv_data)
          return;
  
      GetPlayer()->m_movementInfo = mi;
@@ -619,7 +615,7 @@ index 9c71841..ea14c8d 100644
  }
  
  void WorldSession::HandleMountSpecialAnimOpcode(WorldPacket& /*recvdata*/)
-@@ -432,6 +851,12 @@ void WorldSession::HandleMountSpecialAnimOpcode(WorldPacket& /*recvdata*/)
+@@ -432,6 +847,12 @@ void WorldSession::HandleMountSpecialAnimOpcode(WorldPacket& /*recvdata*/)
      data << uint64(GetPlayer()->GetGUID());
  
      GetPlayer()->SendMessageToSet(&data, false);
@@ -632,7 +628,7 @@ index 9c71841..ea14c8d 100644
  }
  
  void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
-@@ -453,6 +878,12 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
+@@ -453,6 +874,12 @@ void WorldSession::HandleMoveKnockBackAck(WorldPacket& recv_data)
  
      // Save movement flags
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -645,7 +641,7 @@ index 9c71841..ea14c8d 100644
  }
  
  void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
-@@ -469,6 +900,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
+@@ -469,6 +896,18 @@ void WorldSession::HandleMoveSetCanFlyAckOpcode(WorldPacket& recv_data)
      recv_data.read_skip<uint32>();                          // unk2
  
      GetPlayer()->SetUnitMovementFlags(movementInfo.GetMovementFlags());
@@ -664,7 +660,7 @@ index 9c71841..ea14c8d 100644
  }
  
  void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
-@@ -484,6 +927,12 @@ void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
+@@ -484,6 +923,12 @@ void WorldSession::HandleMoveHoverAck(WorldPacket& recv_data)
      recv_data >> movementInfo;
  
      recv_data.read_skip<uint32>();                          // unk2
@@ -677,7 +673,7 @@ index 9c71841..ea14c8d 100644
  }
  
  void WorldSession::HandleMoveWaterWalkAck(WorldPacket& recv_data)
-@@ -499,6 +948,12 @@ void WorldSession::HandleMoveWaterWalkAck(WorldPacket& recv_data)
+@@ -499,6 +944,12 @@ void WorldSession::HandleMoveWaterWalkAck(WorldPacket& recv_data)
      recv_data >> movementInfo;
      
      recv_data.read_skip<uint32>();                          // unk2
@@ -690,7 +686,7 @@ index 9c71841..ea14c8d 100644
  }
  
  void WorldSession::HandleSummonResponseOpcode(WorldPacket& recv_data)
-@@ -512,5 +967,11 @@ void WorldSession::HandleSummonResponseOpcode(WorldPacket& recv_data)
+@@ -512,5 +963,11 @@ void WorldSession::HandleSummonResponseOpcode(WorldPacket& recv_data)
      recv_data >> agree;
  
      GetPlayer()->SummonIfPossible(agree);
@@ -703,7 +699,7 @@ index 9c71841..ea14c8d 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 5731a1c..33a7bda 100644
+index 5731a1c..dbbc2d3 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -370,6 +370,23 @@ Player::Player (WorldSession *session): Unit()
@@ -750,7 +746,7 @@ index 5731a1c..33a7bda 100644
      //Players with low fall distance, Feather Fall or physical immunity (charges used) are ignored
      // 14.57 can be calculated by resolving damageperc formular below to 0
 diff --git a/src/game/Player.h b/src/game/Player.h
-index 643e306..46976bf 100644
+index 643e306..8a53f95 100644
 --- a/src/game/Player.h
 +++ b/src/game/Player.h
 @@ -2296,6 +2296,21 @@ class Player : public Unit, public GridObject<Player>
@@ -764,7 +760,7 @@ index 643e306..46976bf 100644
 +        uint32 m_anti_lastspeed_changetime;  // last speed change time
 +        float  m_anti_last_vspeed;           // vertical speed, default max jump height
 +        uint32 m_anti_beginfalltime;         // alternative falling begin time
-+        uint16 m_anti_plskipanticheat;       // seted when player skipanticheat
++        uint8 m_anti_plskipanticheat;        // seted when player skipanticheat
 +        bool m_anti_flymounted;              // seted when player is mounted on flymount
 +        bool m_anti_ontaxipath;              // seted when player is on a taxi path
 +        bool m_anti_isjumping;               // seted when player is in jump phase
@@ -807,7 +803,7 @@ index c98c503..af6dc63 100644
      if (!curDest)
          return;
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 0c2c54d..4cf58c2 100644
+index 0c2c54d..101e5ad 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -69,6 +69,14 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -819,7 +815,7 @@ index 0c2c54d..4cf58c2 100644
 +bool World::m_MvAnticheatDebug = false;
 +uint8 World::m_MvAnticheatGmLevel = 0;
 +uint8 World::m_MvAnticheatAction = 0;
-+uint16 World::m_MvAnticheatDelay = 3;
++uint8 World::m_MvAnticheatDelay = 3;
 +uint32 World::m_MvAnticheatBanDuration = 86400;
 +
  // World constructor
@@ -841,7 +837,7 @@ index 0c2c54d..4cf58c2 100644
  
      m_configs[CONFIG_COMPRESSION] = sConfig.GetIntDefault("Compression", 1);
 diff --git a/src/game/World.h b/src/game/World.h
-index 39ecd07..ccf9791 100644
+index 39ecd07..6bae8e2 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
 @@ -566,6 +566,14 @@ class World
@@ -853,7 +849,7 @@ index 39ecd07..ccf9791 100644
 +        static bool GetMvAnticheatDebug()               { return m_MvAnticheatDebug ;       }
 +        static uint8 GetMvAnticheatGmLevel()            { return m_MvAnticheatGmLevel;      }
 +        static uint8 GetMvAnticheatAction()             { return m_MvAnticheatAction;       }
-+        static uint16 GetMvAnticheatDelay()             { return m_MvAnticheatDelay;        }
++        static uint8 GetMvAnticheatDelay()              { return m_MvAnticheatDelay;        }
 +        static uint32 GetMvAnticheatBanDuration()       { return m_MvAnticheatBanDuration;  }
 +
          void ProcessCliCommands();
@@ -868,14 +864,14 @@ index 39ecd07..ccf9791 100644
 +        static bool m_MvAnticheatDebug;
 +        static uint8 m_MvAnticheatGmLevel;
 +        static uint8 m_MvAnticheatAction;
-+        static uint16 m_MvAnticheatDelay;
++        static uint8 m_MvAnticheatDelay;
 +        static uint32 m_MvAnticheatBanDuration;
 +
          // CLI command holder to be thread safe
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 9feef36..d646dcb 100644
+index 9feef36..9485b08 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
 @@ -2063,3 +2063,43 @@ Pet.React.Aggressive = 1
