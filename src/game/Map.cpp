@@ -539,6 +539,10 @@ bool Map::loaded(const GridPair &p) const
 
 void Map::VisitNearbyCellsOf(WorldObject* obj, TypeContainerVisitor<BlizzLike::ObjectUpdater, GridTypeMapContainer> &gridVisitor, TypeContainerVisitor<BlizzLike::ObjectUpdater, WorldTypeMapContainer> &worldVisitor)
 {
+    // Check if position is valid
+    if (!obj->IsPositionValid())
+        return;
+
     CellPair standing_cell(BlizzLike::ComputeCellPair(obj->GetPositionX(), obj->GetPositionY()));
 
     // Check for correctness of standing_cell, it also avoids problems with update_cell

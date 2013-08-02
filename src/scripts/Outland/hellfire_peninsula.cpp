@@ -1257,13 +1257,13 @@ struct npc_vindicator_sedaiAI : public ScriptedAI
             case 16:me->CastSpell(pAmb, SPELL_HOLYFIRE , false);return 6000;
             case 17:pAmb->DealDamage(pAmb, pAmb->GetHealth(), 0, DIRECT_DAMAGE);return 1000;
             case 18:me->SetUnitMovementFlags(MOVEFLAG_WALK_MODE);
-            case 19:me->GetMotionMaster()->MovePoint(0, 199.706f, 4134.302f, 75.404f);return 6000;
-            case 20:me->GetMotionMaster()->MovePoint(0, 193.524f, 4147.451f, 73.605f);return 7000;              
-            case 21:me->SetStandState(UNIT_STAND_STATE_KNEEL);
+                    me->GetMotionMaster()->MovePoint(0, 199.706f, 4134.302f, 75.404f);return 6000;
+            case 19:me->GetMotionMaster()->MovePoint(0, 193.524f, 4147.451f, 73.605f);return 7000;
+            case 20:me->SetStandState(UNIT_STAND_STATE_KNEEL);
                     DoScriptText(SAY_SEDAI2, me, 0);return 5000;
-            case 22:DoSpawnKrun();return 1000;
-            case 23:me->CastSpell(pKrun, SPELL_HOLYFIRE, false);return 3000;
-            case 24:me->DealDamage(me, me->GetHealth(), 0, DIRECT_DAMAGE);
+            case 21:DoSpawnKrun();return 1000;
+            case 22:me->CastSpell(pKrun, SPELL_HOLYFIRE, false);return 3000;
+            case 23:me->DealDamage(me, me->GetHealth(), 0, DIRECT_DAMAGE);
         default: return 0;
         }
     }
