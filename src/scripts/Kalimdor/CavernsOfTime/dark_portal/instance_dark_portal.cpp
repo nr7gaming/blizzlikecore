@@ -361,7 +361,7 @@ InstanceData* GetInstanceData_instance_dark_portal(Map* map)
 
 void AddSC_instance_dark_portal()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "instance_dark_portal";

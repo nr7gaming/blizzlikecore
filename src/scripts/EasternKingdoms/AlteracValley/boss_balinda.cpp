@@ -185,7 +185,7 @@ CreatureAI* GetAI_mob_water_elemental(Creature* _Creature)
 
 void AddSC_boss_balinda()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_balinda";
     newscript->GetAI = &GetAI_boss_balinda;

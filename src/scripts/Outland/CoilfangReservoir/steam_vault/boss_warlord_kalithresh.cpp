@@ -205,7 +205,7 @@ CreatureAI* GetAI_boss_warlord_kalithresh(Creature* pCreature)
 
 void AddSC_boss_warlord_kalithresh()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mob_naga_distiller";

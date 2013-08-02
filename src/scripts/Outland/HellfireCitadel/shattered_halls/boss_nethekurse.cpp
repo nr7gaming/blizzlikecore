@@ -480,7 +480,7 @@ CreatureAI* GetAI_mob_lesser_shadow_fissure(Creature* pCreature)
 
 void AddSC_boss_grand_warlock_nethekurse()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_grand_warlock_nethekurse";

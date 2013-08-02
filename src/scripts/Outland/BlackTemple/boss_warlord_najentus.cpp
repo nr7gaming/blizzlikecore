@@ -247,7 +247,7 @@ CreatureAI* GetAI_boss_najentus(Creature* pCreature)
 
 void AddSC_boss_najentus()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_najentus";
     newscript->GetAI = &GetAI_boss_najentus;

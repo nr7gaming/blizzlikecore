@@ -106,7 +106,7 @@ CreatureAI* GetAI_boss_overlordwyrmthalak(Creature* pCreature)
 
 void AddSC_boss_overlordwyrmthalak()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_overlord_wyrmthalak";
     newscript->GetAI = &GetAI_boss_overlordwyrmthalak;

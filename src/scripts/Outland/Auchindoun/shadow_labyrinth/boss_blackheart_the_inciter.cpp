@@ -157,7 +157,7 @@ CreatureAI* GetAI_boss_blackheart_the_inciter(Creature* pCreature)
 
 void AddSC_boss_blackheart_the_inciter()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_blackheart_the_inciter";
     newscript->GetAI = &GetAI_boss_blackheart_the_inciter;

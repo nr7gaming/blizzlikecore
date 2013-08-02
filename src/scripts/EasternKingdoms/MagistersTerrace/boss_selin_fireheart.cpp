@@ -341,7 +341,7 @@ CreatureAI* GetAI_mob_fel_crystal(Creature* pCreature)
 
 void AddSC_boss_selin_fireheart()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_selin_fireheart";

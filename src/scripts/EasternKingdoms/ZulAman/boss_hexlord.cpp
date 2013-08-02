@@ -857,7 +857,7 @@ CreatureAI* GetAI_boss_koragg(Creature* pCreature)
 }
 void AddSC_boss_hex_lord_malacrass()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_hexlord_malacrass";
     newscript->GetAI = &GetAI_boss_hex_lord_malacrass;

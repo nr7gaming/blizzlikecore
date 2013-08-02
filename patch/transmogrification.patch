@@ -147,7 +147,7 @@ index 0000000..173c3d6
 +
 +void AddSC_transmog()
 +{
-+    Script *newscript;
++    Script* newscript;
 +
 +    newscript = new Script;
 +    newscript->Name="transmog";

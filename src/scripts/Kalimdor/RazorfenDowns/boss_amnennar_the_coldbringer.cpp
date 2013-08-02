@@ -110,7 +110,7 @@ CreatureAI* GetAI_boss_amnennar_the_coldbringer(Creature* pCreature)
 
 void AddSC_boss_amnennar_the_coldbringer()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_amnennar_the_coldbringer";
     newscript->GetAI = &GetAI_boss_amnennar_the_coldbringer;

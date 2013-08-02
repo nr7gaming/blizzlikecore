@@ -148,7 +148,7 @@ CreatureAI* GetAI_boss_razuvious(Creature* pCreature)
 
 void AddSC_boss_razuvious()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_razuvious";
     newscript->GetAI = &GetAI_boss_razuvious;

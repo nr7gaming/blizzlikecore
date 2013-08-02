@@ -705,7 +705,7 @@ CreatureAI* GetAI_npc_infused_crystalAI(Creature* pCreature)
 
 void AddSC_eversong_woods()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mobs_mana_tapped";

@@ -653,7 +653,7 @@ CreatureAI* GetAI_mob_eggAI(Creature* pCreature)
 
 void AddSC_boss_janalai()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_janalai";
     newscript->GetAI = &GetAI_boss_janalaiAI;

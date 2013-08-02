@@ -708,7 +708,7 @@ CreatureAI* GetAI_boss_fathomguard_caribdis(Creature* pCreature)
 
 void AddSC_boss_fathomlord_karathress()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_fathomlord_karathress";
     newscript->GetAI = &GetAI_boss_fathomlord_karathress;

@@ -84,7 +84,7 @@ CreatureAI* GetAI_boss_ebonroc(Creature* pCreature)
 
 void AddSC_boss_ebonroc()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_ebonroc";
     newscript->GetAI = &GetAI_boss_ebonroc;

@@ -203,7 +203,7 @@ CreatureAI* GetAI_mob_pure_energy(Creature* pCreature)
 
 void AddSC_boss_vexallus()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_vexallus";

@@ -60,7 +60,7 @@ CreatureAI* GetAI_mob_ancient_core_hound(Creature* pCreature)
 
 void AddSC_molten_core()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mob_ancient_core_hound";

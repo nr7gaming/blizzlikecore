@@ -240,7 +240,7 @@ bool AreaTrigger_at_zumrah(Player* pPlayer, const AreaTriggerEntry* /*at*/)
 
 void AddSC_zulfarrak()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_sergeant_bly";

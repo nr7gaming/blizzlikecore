@@ -370,7 +370,7 @@ bool QuestAccept_npc_anchorite_truuen(Player* pPlayer, Creature* pCreature, cons
 
 void AddSC_western_plaguelands()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npcs_dithers_and_arbington";

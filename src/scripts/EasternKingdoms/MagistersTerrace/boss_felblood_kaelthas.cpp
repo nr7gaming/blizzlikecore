@@ -638,7 +638,7 @@ CreatureAI* GetAI_mob_felkael_flamestrike(Creature* c)
 
 void AddSC_boss_felblood_kaelthas()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_felblood_kaelthas";

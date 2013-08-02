@@ -1430,7 +1430,7 @@ CreatureAI* GetAI_npc_eranikus(Creature* pCreature)
 
 void AddSC_moonglade()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_bunthen_plainswind";

@@ -81,7 +81,7 @@ CreatureAI* GetAI_npc_narm_faulk(Creature* pCreature)
 
 void AddSC_dun_morogh()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_narm_faulk";

@@ -1043,7 +1043,7 @@ CreatureAI* GetAI_mob_shield_generator_channel(Creature* pCreature)
 
 void AddSC_boss_lady_vashj()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_lady_vashj";
     newscript->GetAI = &GetAI_boss_lady_vashj;

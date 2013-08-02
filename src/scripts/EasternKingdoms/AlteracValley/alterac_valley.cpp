@@ -168,7 +168,7 @@ CreatureAI* GetAI_mob_av_marshal_or_warmaster(Creature* pCreature)
 
 void AddSC_alterac_valley()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "mob_av_marshal_or_warmaster";
     newscript->GetAI = &GetAI_mob_av_marshal_or_warmaster;

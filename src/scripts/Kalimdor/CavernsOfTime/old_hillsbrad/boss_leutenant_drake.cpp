@@ -170,7 +170,7 @@ CreatureAI* GetAI_boss_lieutenant_drake(Creature* pCreature)
 
 void AddSC_boss_lieutenant_drake()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "go_barrel_old_hillsbrad";

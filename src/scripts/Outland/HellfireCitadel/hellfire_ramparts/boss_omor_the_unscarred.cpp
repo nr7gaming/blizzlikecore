@@ -205,7 +205,7 @@ CreatureAI* GetAI_boss_omor_the_unscarredAI(Creature* pCreature)
 
 void AddSC_boss_omor_the_unscarred()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_omor_the_unscarred";

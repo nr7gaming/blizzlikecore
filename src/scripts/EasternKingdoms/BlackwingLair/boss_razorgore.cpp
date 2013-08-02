@@ -105,7 +105,7 @@ CreatureAI* GetAI_boss_razorgore(Creature* pCreature)
 
 void AddSC_boss_razorgore()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_razorgore";
     newscript->GetAI = &GetAI_boss_razorgore;

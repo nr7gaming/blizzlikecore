@@ -177,7 +177,7 @@ CreatureAI* GetAI_boss_curator(Creature* pCreature)
 
 void AddSC_boss_curator()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_curator";
     newscript->GetAI = &GetAI_boss_curator;

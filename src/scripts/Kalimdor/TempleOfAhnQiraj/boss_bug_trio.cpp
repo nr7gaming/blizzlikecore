@@ -316,7 +316,7 @@ CreatureAI* GetAI_boss_kri(Creature* pCreature)
 
 void AddSC_bug_trio()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_kri";
     newscript->GetAI = &GetAI_boss_kri;

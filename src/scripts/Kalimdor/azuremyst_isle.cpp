@@ -694,7 +694,7 @@ bool go_bristlelimb_cage(Player* pPlayer, GameObject* pGo)
 
 void AddSC_azuremyst_isle()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_draenei_survivor";

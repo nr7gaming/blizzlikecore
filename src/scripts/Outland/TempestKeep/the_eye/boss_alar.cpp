@@ -492,7 +492,7 @@ CreatureAI* GetAI_mob_flame_patch_alar(Creature* pCreature)
 
 void AddSC_boss_alar()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_alar";

@@ -166,7 +166,7 @@ CreatureAI* GetAI_npc_willix(Creature* pCreature)
 
 void AddSC_razorfen_kraul()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_willix";

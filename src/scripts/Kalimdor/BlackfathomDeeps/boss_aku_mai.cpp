@@ -72,7 +72,7 @@ CreatureAI* GetAI_boss_aku_mai(Creature* pCreature)
 
 void AddSC_boss_aku_mai()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_aku_mai";

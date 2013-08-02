@@ -157,7 +157,7 @@ CreatureAI* GetAI_boss_void_reaver(Creature* pCreature)
 
 void AddSC_boss_void_reaver()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_void_reaver";
     newscript->GetAI = &GetAI_boss_void_reaver;

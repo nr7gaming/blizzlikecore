@@ -410,7 +410,7 @@ CreatureAI* GetAI_mob_syth_shadow(Creature* pCreature)
 
 void AddSC_boss_darkweaver_syth()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_darkweaver_syth";
     newscript->GetAI = &GetAI_boss_darkweaver_syth;

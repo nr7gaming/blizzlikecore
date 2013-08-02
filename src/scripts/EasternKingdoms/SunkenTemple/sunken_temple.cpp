@@ -46,7 +46,7 @@ bool GOHello_go_atalai_statue(Player* pPlayer, GameObject* pGo)
 
 void AddSC_sunken_temple()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "at_malfurion_stormrage";

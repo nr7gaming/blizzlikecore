@@ -313,7 +313,7 @@ index 0000000..7920f26
 +
 +void AddSC_stylist()
 +{
-+    Script *newscript;
++    Script* newscript;
 +
 +    newscript = new Script;
 +    newscript->Name="stylist";

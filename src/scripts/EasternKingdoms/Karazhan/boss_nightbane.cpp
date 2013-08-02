@@ -13,7 +13,6 @@ EndScriptData */
 #include "ScriptPCH.h"
 #include "karazhan.h"
 
-// #define EMOTE_SUMMON                "An ancient being awakens in the distance..." // Not used in script
 #define YELL_AGGRO                  "What fools! I shall bring a quick end to your suffering!"
 #define YELL_FLY_PHASE              "Miserable vermin. I shall exterminate you from the air!"
 #define YELL_LAND_PHASE_1           "Enough! I shall land and crush you myself!"
@@ -429,8 +428,8 @@ struct boss_nightbaneAI : public ScriptedAI
 
             if (FlyTimer <= diff) //landing
             {
-                me->MonsterYell(RAND(*YELL_LAND_PHASE_1,*YELL_LAND_PHASE_2), LANG_UNIVERSAL, 0);
-
+                me->MonsterYell(urand(0, 1) ? YELL_LAND_PHASE_1 : YELL_LAND_PHASE_2, LANG_UNIVERSAL, 0);
+                me->HandleEmoteCommand(EMOTE_ONESHOT_LIFTOFF);
                 me->GetMotionMaster()->Clear(false);
                 me->GetMotionMaster()->MovePoint(3,IntroWay[3][0],IntroWay[3][1],IntroWay[3][2]);
 
@@ -447,7 +446,7 @@ CreatureAI* GetAI_boss_nightbane(Creature* pCreature)
 
 void AddSC_boss_nightbane()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_nightbane";
     newscript->GetAI = &GetAI_boss_nightbane;

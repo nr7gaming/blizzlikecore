@@ -492,7 +492,7 @@ CreatureAI* GetAI_mob_hellfire_sentry(Creature* pCreature)
 
 void AddSC_boss_vazruden_the_herald()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_vazruden_the_herald";
     newscript->GetAI = &GetAI_boss_vazruden_the_herald;

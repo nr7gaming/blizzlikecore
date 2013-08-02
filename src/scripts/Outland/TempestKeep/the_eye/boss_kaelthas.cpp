@@ -1549,7 +1549,7 @@ CreatureAI* GetAI_mob_phoenix_egg_tk(Creature* pCreature)
 }
 void AddSC_boss_kaelthas()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_kaelthas";
     newscript->GetAI = &GetAI_boss_kaelthas;

@@ -294,7 +294,7 @@ CreatureAI* GetAI_boss_warchief_kargath_bladefist(Creature* pCreature)
 
 void AddSC_boss_warchief_kargath_bladefist()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_warchief_kargath_bladefist";
     newscript->GetAI = &GetAI_boss_warchief_kargath_bladefist;

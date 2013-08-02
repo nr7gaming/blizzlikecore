@@ -1547,7 +1547,7 @@ bool GossipSelect_npc_spiritofazuregos(Player* player, Creature* creature, uint3
 
 void AddSC_npcs_special()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_lunaclaw_spirit";

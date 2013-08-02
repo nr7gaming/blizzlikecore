@@ -287,7 +287,7 @@ CreatureAI* GetAI_boss_onyxiaAI(Creature* pCreature)
 
 void AddSC_boss_onyxia()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_onyxia";
     newscript->GetAI = &GetAI_boss_onyxiaAI;

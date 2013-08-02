@@ -164,7 +164,7 @@ bool GossipHello_npc_screecher_spirit(Player* pPlayer, Creature* pCreature)
 
 void AddSC_feralas()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_gregan_brewspewer";

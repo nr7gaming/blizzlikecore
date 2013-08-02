@@ -766,7 +766,7 @@ index 0000000..fdbd561
 +
 +void AddSC_npc_teleport()
 +{
-+    Script *newscript;
++    Script* newscript;
 +
 +    newscript = new Script;
 +    newscript->Name="npc_teleport";

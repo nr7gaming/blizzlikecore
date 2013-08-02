@@ -227,7 +227,7 @@ CreatureAI* GetAI_boss_maexxna(Creature* pCreature)
 
 void AddSC_boss_maexxna()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_maexxna";

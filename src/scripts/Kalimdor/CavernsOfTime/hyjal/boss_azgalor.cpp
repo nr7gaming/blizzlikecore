@@ -279,7 +279,7 @@ CreatureAI* GetAI_mob_lesser_doomguard(Creature* pCreature)
 
 void AddSC_boss_azgalor()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_azgalor";
     newscript->GetAI = &GetAI_boss_azgalor;

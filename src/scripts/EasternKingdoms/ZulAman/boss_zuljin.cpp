@@ -637,7 +637,7 @@ CreatureAI* GetAI_feather_vortexAI(Creature* pCreature)
 
 void AddSC_boss_zuljin()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_zuljin";
     newscript->GetAI = &GetAI_boss_zuljin;

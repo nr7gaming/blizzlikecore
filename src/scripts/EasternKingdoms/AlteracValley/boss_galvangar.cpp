@@ -116,7 +116,7 @@ CreatureAI* GetAI_boss_galvangar(Creature* pCreature)
 
 void AddSC_boss_galvangar()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_galvangar";
     newscript->GetAI = &GetAI_boss_galvangar;

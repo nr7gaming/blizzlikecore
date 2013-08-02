@@ -279,7 +279,7 @@ CreatureAI* GetAI_npc_plains_vision(Creature* pCreature)
 
 void AddSC_mulgore()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_skorn_whitecloud";

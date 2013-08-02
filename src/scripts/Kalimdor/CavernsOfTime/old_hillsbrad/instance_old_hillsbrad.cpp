@@ -224,7 +224,7 @@ InstanceData* GetInstanceData_instance_old_hillsbrad(Map* map)
 
 void AddSC_instance_old_hillsbrad()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_old_hillsbrad";
     newscript->GetInstanceData = &GetInstanceData_instance_old_hillsbrad;

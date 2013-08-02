@@ -126,7 +126,7 @@ InstanceData* GetInstanceData_instance_scholomance(Map* pMap)
 
 void AddSC_instance_scholomance()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_scholomance";
     newscript->GetInstanceData = &GetInstanceData_instance_scholomance;

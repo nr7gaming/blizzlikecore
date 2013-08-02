@@ -211,7 +211,7 @@ CreatureAI* GetAI_boss_nefarian(Creature* pCreature)
 
 void AddSC_boss_nefarian()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_nefarian";
     newscript->GetAI = &GetAI_boss_nefarian;

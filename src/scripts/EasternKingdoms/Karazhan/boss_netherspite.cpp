@@ -13,17 +13,20 @@ EndScriptData */
 #include "ScriptPCH.h"
 #include "karazhan.h"
 
-#define EMOTE_PHASE_PORTAL          -1532089
-#define EMOTE_PHASE_BANISH          -1532090
+enum Netherspite
+{
+    EMOTE_PHASE_PORTAL          = -1532089,
+    EMOTE_PHASE_BANISH          = -1532090,
 
-#define SPELL_NETHERBURN_AURA       30522
-#define SPELL_VOIDZONE              37063
-#define SPELL_NETHER_INFUSION       38688
-#define SPELL_NETHERBREATH          38523
-#define SPELL_BANISH_VISUAL         39833
-#define SPELL_BANISH_ROOT           42716
-#define SPELL_EMPOWERMENT           38549
-#define SPELL_NETHERSPITE_ROAR      38684
+    SPELL_NETHERBURN_AURA       = 30522,
+    SPELL_VOIDZONE              = 37063,
+    SPELL_NETHER_INFUSION       = 38688,
+    SPELL_NETHERBREATH          = 38523,
+    SPELL_BANISH_VISUAL         = 39833,
+    SPELL_BANISH_ROOT           = 42716,
+    SPELL_EMPOWERMENT           = 38549,
+    SPELL_NETHERSPITE_ROAR      = 38684
+};
 
 const float PortalCoord[3][3] =
 {
@@ -38,11 +41,11 @@ enum Netherspite_Portal{
     BLUE_PORTAL = 2 // Dominance
 };
 
-const uint32 PortalID[3] = {17369, 17367, 17368};
+const uint32 PortalID[3]     = {17369, 17367, 17368};
 const uint32 PortalVisual[3] = {30487, 30490, 30491};
-const uint32 PortalBeam[3] = {30465, 30464, 30463};
-const uint32 PlayerBuff[3] = {30421, 30422, 30423};
-const uint32 NetherBuff[3] = {30466, 30467, 30468};
+const uint32 PortalBeam[3]   = {30465, 30464, 30463};
+const uint32 PlayerBuff[3]   = {30421, 30422, 30423};
+const uint32 NetherBuff[3]   = {30466, 30467, 30468};
 const uint32 PlayerDebuff[3] = {38637, 38638, 38639};
 
 struct boss_netherspiteAI : public ScriptedAI
@@ -63,15 +66,15 @@ struct boss_netherspiteAI : public ScriptedAI
 
     bool PortalPhase;
     bool Berserk;
-    uint32 PhaseTimer; // timer for phase switching
+    uint32 PhaseTimer;          // timer for phase switching
     uint32 VoidZoneTimer;
     uint32 NetherInfusionTimer; // berserking timer
     uint32 NetherbreathTimer;
     uint32 EmpowermentTimer;
-    uint32 PortalTimer; // timer for beam checking
-    uint64 PortalGUID[3]; // guid's of portals
-    uint64 BeamerGUID[3]; // guid's of auxiliary beaming portals
-    uint64 BeamTarget[3]; // guid's of portals' current targets
+    uint32 PortalTimer;         // timer for beam checking
+    uint64 PortalGUID[3];       // guid's of portals
+    uint64 BeamerGUID[3];       // guid's of auxiliary beaming portals
+    uint64 BeamTarget[3];       // guid's of portals' current targets
 
     bool IsBetween(WorldObject* u1, WorldObject *pTarget, WorldObject* u2) // the in-line checker
     {
@@ -87,10 +90,10 @@ struct boss_netherspiteAI : public ScriptedAI
         yh = pTarget->GetPositionY();
 
         // check if target is between (not checking distance from the beam yet)
-        if (dist(xn,yn,xh,yh) >= dist(xn,yn,xp,yp) || dist(xp,yp,xh,yh) >= dist(xn,yn,xp,yp))
+        if (dist(xn, yn, xh, yh) >= dist(xn, yn, xp, yp) || dist(xp, yp, xh, yh) >= dist(xn, yn, xp, yp))
             return false;
         // check  distance from the beam
-        return (abs((xn-xp)*yh+(yp-yn)*xh-xn*yp+xp*yn)/dist(xn,yn,xp,yp) < 1.5f);
+        return (abs((xn-xp)*yh+(yp-yn)*xh-xn*yp+xp*yn)/dist(xn, yn, xp, yp) < 1.5f);
     }
 
     float dist(float xa, float ya, float xb, float yb) // auxiliary method for distance
@@ -113,12 +116,12 @@ struct boss_netherspiteAI : public ScriptedAI
     {
         uint8 r = rand()%4;
         uint8 pos[3];
-        pos[RED_PORTAL] = (r%2 ? (r>1 ? 2: 1): 0);
-        pos[GREEN_PORTAL] = (r%2 ? 0: (r>1 ? 2: 1));
-        pos[BLUE_PORTAL] = (r>1 ? 1: 2); // Blue Portal not on the left side (0)
+        pos[RED_PORTAL] = ((r % 2) ? (r > 1 ? 2 : 1) : 0);
+        pos[GREEN_PORTAL] = ((r % 2) ? 0 : (r > 1 ? 2 : 1));
+        pos[BLUE_PORTAL] = (r > 1 ? 1 : 2); // Blue Portal not on the left side (0)
 
         for (int i=0; i<3; ++i)
-            if (Creature* portal = me->SummonCreature(PortalID[i],PortalCoord[pos[i]][0],PortalCoord[pos[i]][1],PortalCoord[pos[i]][2],0,TEMPSUMMON_TIMED_DESPAWN,60000))
+            if (Creature* portal = me->SummonCreature(PortalID[i], PortalCoord[pos[i]][0], PortalCoord[pos[i]][1], PortalCoord[pos[i]][2], 0, TEMPSUMMON_TIMED_DESPAWN, 60000))
             {
                 PortalGUID[i] = portal->GetGUID();
                 portal->AddAura(PortalVisual[i], portal);
@@ -183,7 +186,7 @@ struct boss_netherspiteAI : public ScriptedAI
                         BeamerGUID[j] = 0;
                     }
                     // create new one and start beaming on the target
-                    if (Creature* beamer = portal->SummonCreature(PortalID[j],portal->GetPositionX(),portal->GetPositionY(),portal->GetPositionZ(),portal->GetOrientation(),TEMPSUMMON_TIMED_DESPAWN,60000))
+                    if (Creature* beamer = portal->SummonCreature(PortalID[j], portal->GetPositionX(), portal->GetPositionY(), portal->GetPositionZ(), portal->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN, 60000))
                     {
                         beamer->CastSpell(pTarget, PortalBeam[j], false);
                         BeamerGUID[j] = beamer->GetGUID();
@@ -202,9 +205,9 @@ struct boss_netherspiteAI : public ScriptedAI
         SummonPortals();
         PhaseTimer = 60000;
         PortalPhase = true;
-        PortalTimer = 10000;
+        PortalTimer = 30000;
         EmpowermentTimer = 10000;
-        DoScriptText(EMOTE_PHASE_PORTAL,me);
+        DoScriptText(EMOTE_PHASE_PORTAL, me);
     }
 
     void SwitchToBanishPhase()
@@ -216,7 +219,7 @@ struct boss_netherspiteAI : public ScriptedAI
         DestroyPortals();
         PhaseTimer = 30000;
         PortalPhase = false;
-        DoScriptText(EMOTE_PHASE_BANISH,me);
+        DoScriptText(EMOTE_PHASE_BANISH, me);
 
         for (int i=0; i<3; ++i)
             me->RemoveAurasDueToSpell(NetherBuff[i]);
@@ -248,7 +251,7 @@ struct boss_netherspiteAI : public ScriptedAI
         // Void Zone
         if (VoidZoneTimer <= diff)
         {
-            DoCast(SelectTarget(SELECT_TARGET_RANDOM,1,45,true),SPELL_VOIDZONE,true);
+            DoCast(SelectTarget(SELECT_TARGET_RANDOM, 1, 45, true), SPELL_VOIDZONE, true);
             VoidZoneTimer = 15000;
         } else VoidZoneTimer -= diff;
 
@@ -291,9 +294,9 @@ struct boss_netherspiteAI : public ScriptedAI
             // Netherbreath
             if (NetherbreathTimer <= diff)
             {
-                if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM,0,40,true))
+                if (Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 40, true))
                     DoCast(pTarget, SPELL_NETHERBREATH);
-                NetherbreathTimer = urand(5000,7000);
+                NetherbreathTimer = urand(5000, 7000);
             } else NetherbreathTimer -= diff;
 
             if (PhaseTimer <= diff)
@@ -317,7 +320,7 @@ CreatureAI* GetAI_boss_netherspite(Creature* pCreature)
 
 void AddSC_boss_netherspite()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_netherspite";
     newscript->GetAI = &GetAI_boss_netherspite;

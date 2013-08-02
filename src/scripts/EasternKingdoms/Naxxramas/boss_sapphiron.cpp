@@ -161,7 +161,7 @@ CreatureAI* GetAI_boss_sapphiron(Creature* pCreature)
 
 void AddSC_boss_sapphiron()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_sapphiron";
     newscript->GetAI = &GetAI_boss_sapphiron;

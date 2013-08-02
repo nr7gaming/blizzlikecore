@@ -233,7 +233,7 @@ CreatureAI* GetAI_mob_shade_of_jindo(Creature* pCreature)
 
 void AddSC_boss_jindo()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_jindo";

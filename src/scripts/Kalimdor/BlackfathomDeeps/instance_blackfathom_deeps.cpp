@@ -240,7 +240,7 @@ InstanceData* GetInstanceData_instance_blackfathom_deeps(Map* pMap)
 
 void AddSC_instance_blackfathom_deeps()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_blackfathom_deeps";
     newscript->GetInstanceData = &GetInstanceData_instance_blackfathom_deeps;

@@ -134,7 +134,7 @@ bool GossipSelect_npc_witch_doctor_mauari(Player* pPlayer, Creature* pCreature, 
 
 void AddSC_winterspring()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_lorax";

@@ -340,7 +340,7 @@ InstanceData* GetInstanceData_instance_zulaman(Map* pMap)
 
 void AddSC_instance_zulaman()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_zulaman";
     newscript->GetInstanceData = &GetInstanceData_instance_zulaman;

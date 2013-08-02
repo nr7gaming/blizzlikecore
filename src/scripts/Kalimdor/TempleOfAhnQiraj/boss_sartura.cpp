@@ -257,7 +257,7 @@ CreatureAI* GetAI_mob_sartura_royal_guard(Creature* pCreature)
 
 void AddSC_boss_sartura()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_sartura";
     newscript->GetAI = &GetAI_boss_sartura;

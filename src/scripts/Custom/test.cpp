@@ -198,7 +198,7 @@ bool GossipSelect_npc_test(Player* pPlayer, Creature* pCreature, uint32 /*uiSend
 
 void AddSC_test()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "test";
     newscript->GetAI = &GetAI_test;

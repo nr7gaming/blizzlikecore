@@ -226,7 +226,7 @@ CreatureAI* GetAI_npc_ranger_lilathaAI(Creature* pCreature)
 
 void AddSC_ghostlands()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_blood_knight_dawnstar";

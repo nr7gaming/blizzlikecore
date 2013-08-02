@@ -133,7 +133,7 @@ CreatureAI* GetAI_mob_scarlet_trainee(Creature* pCreature)
 
 void AddSC_boss_herod()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_herod";
     newscript->GetAI = &GetAI_boss_herod;

@@ -128,7 +128,7 @@ CreatureAI* GetAI_boss_aeonus(Creature* pCreature)
 
 void AddSC_boss_aeonus()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_aeonus";
     newscript->GetAI = &GetAI_boss_aeonus;

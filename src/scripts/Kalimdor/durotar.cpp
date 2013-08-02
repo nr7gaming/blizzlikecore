@@ -96,7 +96,7 @@ CreatureAI* GetAI_npc_lazy_peon(Creature* pCreature)
 
 void AddSC_durotar()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_lazy_peon";

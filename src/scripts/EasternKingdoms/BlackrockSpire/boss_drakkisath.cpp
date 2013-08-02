@@ -82,7 +82,7 @@ CreatureAI* GetAI_boss_drakkisath(Creature* pCreature)
 
 void AddSC_boss_drakkisath()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_drakkisath";
     newscript->GetAI = &GetAI_boss_drakkisath;

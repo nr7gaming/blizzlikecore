@@ -479,7 +479,7 @@ bool ItemUse_item_zezzak_shard(Player* player, Item* _Item, SpellCastTargets con
 
 void AddSC_item_scripts()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "item_area_52_special";

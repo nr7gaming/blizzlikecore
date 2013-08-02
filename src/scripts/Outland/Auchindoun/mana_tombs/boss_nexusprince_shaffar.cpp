@@ -369,7 +369,7 @@ CreatureAI* GetAI_mob_ethereal_apprentice(Creature* pCreature)
 
 void AddSC_boss_nexusprince_shaffar()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_nexusprince_shaffar";

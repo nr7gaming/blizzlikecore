@@ -123,7 +123,7 @@ CreatureAI* GetAI_npc_galen_goodward(Creature* pCreature)
 
 void AddSC_swamp_of_sorrows()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_galen_goodward";

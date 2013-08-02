@@ -595,7 +595,7 @@ CreatureAI* GetAI_boss_malchezaar(Creature* pCreature)
 
 void AddSC_boss_malchezaar()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_malchezaar";
     newscript->GetAI = &GetAI_boss_malchezaar;

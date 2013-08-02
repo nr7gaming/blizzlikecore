@@ -486,7 +486,7 @@ CreatureAI* GetAI_boss_teron_gorefiend(Creature* pCreature)
 
 void AddSC_boss_teron_gorefiend()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "mob_doom_blossom";
     newscript->GetAI = &GetAI_mob_doom_blossom;

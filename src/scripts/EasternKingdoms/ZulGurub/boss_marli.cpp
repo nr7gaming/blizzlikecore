@@ -294,7 +294,7 @@ CreatureAI* GetAI_mob_spawn_of_marli(Creature* pCreature)
 
 void AddSC_boss_marli()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_marli";

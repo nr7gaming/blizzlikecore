@@ -59,7 +59,7 @@ bool GossipSelectWithCode_custom_gossip_codebox(Player* player, Creature* pCreat
 
 void AddSC_custom_gossip_codebox()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "custom_gossip_codebox";

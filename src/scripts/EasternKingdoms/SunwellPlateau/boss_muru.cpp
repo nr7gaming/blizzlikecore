@@ -594,7 +594,7 @@ CreatureAI* GetAI_npc_blackhole(Creature* pCreature)
 
 void AddSC_boss_muru()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_muru";
     newscript->GetAI = &GetAI_boss_muru;

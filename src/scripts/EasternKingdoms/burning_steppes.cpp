@@ -131,7 +131,7 @@ bool GossipSelect_npc_ragged_john(Player* pPlayer, Creature* pCreature, uint32 /
 
 void AddSC_burning_steppes()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_ragged_john";

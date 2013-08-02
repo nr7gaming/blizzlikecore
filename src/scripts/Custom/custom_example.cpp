@@ -258,7 +258,7 @@ bool GossipHello_custom_example(Player* pPlayer, Creature* pCreature)
 //newscript->ReciveEmote = My_Emote_Function;
 void AddSC_custom_example()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "custom_example";

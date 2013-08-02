@@ -3890,7 +3890,7 @@ CreatureAI* GetAI_guard_undercity(Creature* pCreature)
 
 void AddSC_guards()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "guard_azuremyst";

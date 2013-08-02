@@ -74,7 +74,7 @@ CreatureAI* GetAI_boss_blood_guard_porungAI(Creature* pCreature)
 
 void AddSC_boss_blood_guard_porung()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_blood_guard_porung";
     newscript->GetAI = &GetAI_boss_blood_guard_porungAI;

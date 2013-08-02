@@ -1392,7 +1392,7 @@ CreatureAI* GetAI_alliance_rifleman(Creature* pCreature)
 
 void AddSC_hyjal_trash()
 {
-    Script *newscript = new Script;
+    Script* newscript = new Script;
     newscript->Name = "mob_giant_infernal";
     newscript->GetAI = &GetAI_mob_giant_infernal;
     newscript->RegisterSelf();

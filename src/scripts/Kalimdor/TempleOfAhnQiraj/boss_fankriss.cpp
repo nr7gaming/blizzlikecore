@@ -186,7 +186,7 @@ CreatureAI* GetAI_boss_fankriss(Creature* pCreature)
 
 void AddSC_boss_fankriss()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_fankriss";
     newscript->GetAI = &GetAI_boss_fankriss;

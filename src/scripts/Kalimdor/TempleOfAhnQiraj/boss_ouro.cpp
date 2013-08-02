@@ -121,7 +121,7 @@ CreatureAI* GetAI_boss_ouro(Creature* pCreature)
 
 void AddSC_boss_ouro()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_ouro";
     newscript->GetAI = &GetAI_boss_ouro;

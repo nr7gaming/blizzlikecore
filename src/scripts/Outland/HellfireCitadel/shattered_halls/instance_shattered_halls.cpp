@@ -389,7 +389,7 @@ bool AreaTrigger_at_shattered_halls(Player* pPlayer, AreaTriggerEntry const* /*p
 
 void AddSC_instance_shattered_halls()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_shattered_halls";
     newscript->GetInstanceData = &GetInstanceData_instance_shattered_halls;

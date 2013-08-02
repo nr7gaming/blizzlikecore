@@ -329,7 +329,7 @@ CreatureAI* GetAI_boss_brutallus(Creature* pCreature)
 
 void AddSC_boss_brutallus()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_brutallus";

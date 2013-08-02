@@ -745,7 +745,7 @@ CreatureAI* GetAI_lord_crispin_ference(Creature* pCreature)
 
 void AddSC_boss_moroes()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_moroes";

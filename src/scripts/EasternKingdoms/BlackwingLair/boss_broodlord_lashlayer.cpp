@@ -92,7 +92,7 @@ CreatureAI* GetAI_boss_broodlord(Creature* pCreature)
 
 void AddSC_boss_broodlord()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_broodlord";
     newscript->GetAI = &GetAI_boss_broodlord;

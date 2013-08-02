@@ -206,7 +206,7 @@ CreatureAI* GetAI_boss_talon_king_ikiss(Creature* pCreature)
 
 void AddSC_boss_talon_king_ikiss()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_talon_king_ikiss";
     newscript->GetAI = &GetAI_boss_talon_king_ikiss;

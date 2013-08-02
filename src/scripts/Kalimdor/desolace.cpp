@@ -343,7 +343,7 @@ bool QuestAccept_npc_melizza_brimbuzzle(Player* pPlayer, Creature* pCreature, Qu
 
 void AddSC_desolace()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_aged_dying_ancient_kodo";

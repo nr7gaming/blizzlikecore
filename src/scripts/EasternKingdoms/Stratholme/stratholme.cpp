@@ -246,7 +246,7 @@ CreatureAI* GetAI_mobs_spectral_ghostly_citizen(Creature* pCreature)
 
 void AddSC_stratholme()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "go_gauntlet_gate";

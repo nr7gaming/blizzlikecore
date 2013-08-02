@@ -38,7 +38,7 @@ bool ItemUse_item_defias_gunpowder(Player* pPlayer, Item* pItem, SpellCastTarget
 
 void AddSC_deadmines()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "item_defias_gunpowder";
     newscript->pItemUse = &ItemUse_item_defias_gunpowder;

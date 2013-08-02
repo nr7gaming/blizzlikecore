@@ -200,7 +200,7 @@ CreatureAI* GetAI_boss_cannon_master_willey(Creature* pCreature)
 
 void AddSC_boss_cannon_master_willey()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_cannon_master_willey";
     newscript->GetAI = &GetAI_boss_cannon_master_willey;

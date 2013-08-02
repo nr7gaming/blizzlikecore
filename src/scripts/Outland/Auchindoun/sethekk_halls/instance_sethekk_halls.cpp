@@ -229,7 +229,7 @@ bool GOHello_go_lakka_cage(Player* pPlayer, GameObject* pGo)
 
 void AddSC_instance_sethekk_halls()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_sethekk_halls";
     newscript->GetInstanceData = &GetInstanceData_instance_sethekk_halls;

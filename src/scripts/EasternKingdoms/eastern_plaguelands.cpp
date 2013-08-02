@@ -146,7 +146,7 @@ bool GossipSelect_npc_tirion_fordring(Player* pPlayer, Creature* pCreature, uint
 
 void AddSC_eastern_plaguelands()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mobs_ghoul_flayer";

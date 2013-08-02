@@ -492,7 +492,7 @@ CreatureAI* GetAI_mob_zerekethvoidzoneAI(Creature* pCreature)
 
 void AddSC_arcatraz()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_millhouse_manastorm";

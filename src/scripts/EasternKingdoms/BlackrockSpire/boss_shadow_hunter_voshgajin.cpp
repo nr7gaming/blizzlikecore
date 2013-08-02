@@ -73,7 +73,7 @@ CreatureAI* GetAI_boss_shadowvosh(Creature* pCreature)
 
 void AddSC_boss_shadowvosh()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_shadow_hunter_voshgajin";
     newscript->GetAI = &GetAI_boss_shadowvosh;

@@ -205,7 +205,7 @@ CreatureAI* GetAI_boss_darkmaster_gandling(Creature* pCreature)
 
 void AddSC_boss_darkmaster_gandling()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_darkmaster_gandling";
     newscript->GetAI = &GetAI_boss_darkmaster_gandling;

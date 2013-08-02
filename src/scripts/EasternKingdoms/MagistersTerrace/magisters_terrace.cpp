@@ -126,7 +126,7 @@ bool GossipSelect_npc_kalecgos(Player* pPlayer, Creature* pCreature, uint32 /*ui
 
 void AddSC_magisters_terrace()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_kalecgos";

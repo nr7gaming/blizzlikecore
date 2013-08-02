@@ -575,7 +575,7 @@ bool GOHello_go_the_ravens_claw(Player* pPlayer, GameObject* /*pGO*/)
 
 void AddSC_go_scripts()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "go_cat_figurine";

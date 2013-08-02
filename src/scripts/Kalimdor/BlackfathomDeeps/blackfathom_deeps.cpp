@@ -216,7 +216,7 @@ bool GossipSelect_npc_morridune(Player* pPlayer, Creature* /*pCreature*/, uint32
 
 void AddSC_blackfathom_deeps()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "go_blackfathom_altar";
     newscript->pGOHello = &GoHello_blackfathom_altar;

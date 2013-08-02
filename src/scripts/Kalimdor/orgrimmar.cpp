@@ -317,7 +317,7 @@ bool GossipSelect_npc_eitrigg(Player* pPlayer, Creature* pCreature, uint32 /*uiS
 
 void AddSC_orgrimmar()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_neeru_fireblade";

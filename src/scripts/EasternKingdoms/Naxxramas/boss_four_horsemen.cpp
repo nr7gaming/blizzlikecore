@@ -366,7 +366,7 @@ CreatureAI* GetAI_boss_sir_zeliek(Creature* pCreature)
 
 void AddSC_boss_four_horsemen()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_lady_blaumeux";

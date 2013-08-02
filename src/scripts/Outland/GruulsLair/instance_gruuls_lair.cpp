@@ -181,7 +181,7 @@ InstanceData* GetInstanceData_instance_gruuls_lair(Map* map)
 
 void AddSC_instance_gruuls_lair()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_gruuls_lair";
     newscript->GetInstanceData = &GetInstanceData_instance_gruuls_lair;

@@ -281,7 +281,7 @@ CreatureAI* GetAI_boss_chromaggus(Creature* pCreature)
 
 void AddSC_boss_chromaggus()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_chromaggus";
     newscript->GetAI = &GetAI_boss_chromaggus;

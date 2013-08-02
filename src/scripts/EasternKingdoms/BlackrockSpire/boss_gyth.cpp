@@ -185,7 +185,7 @@ CreatureAI* GetAI_boss_gyth(Creature* pCreature)
 
 void AddSC_boss_gyth()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_gyth";
     newscript->GetAI = &GetAI_boss_gyth;

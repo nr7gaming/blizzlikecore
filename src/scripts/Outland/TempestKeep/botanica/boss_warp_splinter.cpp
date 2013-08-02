@@ -200,7 +200,7 @@ CreatureAI* GetAI_mob_treant(Creature* pCreature)
 
 void AddSC_boss_warp_splinter()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_warp_splinter";

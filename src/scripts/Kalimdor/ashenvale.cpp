@@ -431,7 +431,7 @@ CreatureAI* GetAI_npc_ruul_snowhoofAI(Creature* pCreature)
 
 void AddSC_ashenvale()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_muglash";

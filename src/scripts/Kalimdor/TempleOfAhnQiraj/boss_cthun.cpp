@@ -1293,7 +1293,7 @@ CreatureAI* GetAI_flesh_tentacle(Creature* pCreature)
 
 void AddSC_boss_cthun()
 {
-    Script *newscript;
+    Script* newscript;
 
     //Eye
     newscript = new Script;

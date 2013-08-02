@@ -149,7 +149,7 @@ CreatureAI* GetAI_npc_miran(Creature* pCreature)
 
 void AddSC_loch_modan()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_mountaineer_pebblebitty";

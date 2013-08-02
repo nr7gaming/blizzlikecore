@@ -86,7 +86,7 @@ CreatureAI* GetAI_boss_kelris(Creature* pCreature)
 
 void AddSC_boss_kelris()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_kelris";

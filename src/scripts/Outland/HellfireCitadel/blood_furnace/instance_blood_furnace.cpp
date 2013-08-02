@@ -448,7 +448,7 @@ bool GOHello_go_prison_cell_lever(Player* /*pPlayer*/, GameObject* pGo)
 
 void AddSC_instance_blood_furnace()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_blood_furnace";
     newscript->GetInstanceData = &GetInstanceData_instance_blood_furnace;

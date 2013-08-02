@@ -184,7 +184,7 @@ InstanceData* GetInstanceData_instance_magisters_terrace(Map* pMap)
 
 void AddSC_instance_magisters_terrace()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "instance_magisters_terrace";

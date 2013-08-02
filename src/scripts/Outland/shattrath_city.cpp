@@ -804,7 +804,7 @@ bool GossipSelect_npc_khadgar(Player* player, Creature* creature, uint32 /*sende
 
 void AddSC_shattrath_city()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_raliq_the_drunk";

@@ -438,7 +438,7 @@ InstanceData* GetInstanceData_instance_stratholme(Map* pMap)
 
 void AddSC_instance_stratholme()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_stratholme";
     newscript->GetInstanceData = &GetInstanceData_instance_stratholme;

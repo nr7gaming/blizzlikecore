@@ -300,7 +300,7 @@ CreatureAI* GetAI_mob_towering_infernal(Creature* pCreature)
 
 void AddSC_boss_anetheron()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_anetheron";
     newscript->GetAI = &GetAI_boss_anetheron;

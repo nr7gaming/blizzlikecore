@@ -450,7 +450,7 @@ bool GOHello_go_altar_of_the_keepers(Player* pPlayer, GameObject* pGo)
 
 void AddSC_boss_archaedas()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_archaedas";
     newscript->GetAI = &GetAI_boss_archaedas;

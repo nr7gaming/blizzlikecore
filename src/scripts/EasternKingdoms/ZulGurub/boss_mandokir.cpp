@@ -334,7 +334,7 @@ CreatureAI* GetAI_mob_ohgan(Creature* pCreature)
 
 void AddSC_boss_mandokir()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_mandokir";

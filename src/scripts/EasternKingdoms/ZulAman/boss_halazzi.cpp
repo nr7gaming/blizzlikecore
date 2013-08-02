@@ -393,7 +393,7 @@ CreatureAI* GetAI_boss_spiritlynxAI(Creature* pCreature)
 
 void AddSC_boss_halazzi()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_halazzi";
     newscript->GetAI = &GetAI_boss_halazziAI;

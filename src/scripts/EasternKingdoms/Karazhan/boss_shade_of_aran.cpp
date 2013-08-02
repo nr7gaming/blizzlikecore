@@ -549,7 +549,7 @@ CreatureAI* GetAI_aran_blizzard(Creature* pCreature)
 
 void AddSC_boss_shade_of_aran()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_shade_of_aran";
     newscript->GetAI = &GetAI_boss_aran;

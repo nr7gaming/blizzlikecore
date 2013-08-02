@@ -358,7 +358,7 @@ bool GossipSelect_npc_timothy_daniels(Player* pPlayer, Creature* pCreature, uint
 
 void AddSC_zangarmarsh()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npcs_ashyen_and_keleth";

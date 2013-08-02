@@ -1262,7 +1262,7 @@ CreatureAI* GetAI_npc_skyguard_prisoner(Creature* pCreature)
 
 void AddSC_terokkar_forest()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mob_unkor_the_ruthless";

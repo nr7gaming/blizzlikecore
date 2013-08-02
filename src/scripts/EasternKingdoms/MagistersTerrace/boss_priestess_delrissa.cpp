@@ -1252,7 +1252,7 @@ CreatureAI* GetAI_zelfan(Creature* pCreature)
 
 void AddSC_boss_priestess_delrissa()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_priestess_delrissa";

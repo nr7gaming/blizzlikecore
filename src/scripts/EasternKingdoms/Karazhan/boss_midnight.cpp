@@ -281,7 +281,7 @@ CreatureAI* GetAI_boss_attumen(Creature* pCreature)
 
 void AddSC_boss_attumen()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_attumen";
     newscript->GetAI = &GetAI_boss_attumen;

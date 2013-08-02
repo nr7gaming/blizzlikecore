@@ -696,7 +696,7 @@ CreatureAI* GetAI_mob_ancient_wisp(Creature* pCreature)
 
 void AddSC_boss_archimonde()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_archimonde";
     newscript->GetAI = &GetAI_boss_archimonde;

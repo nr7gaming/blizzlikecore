@@ -85,7 +85,7 @@ InstanceData* GetInstanceData_instance_razorfen_kraul(Map* pMap)
 
 void AddSC_instance_razorfen_kraul()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_razorfen_kraul";
     newscript->GetInstanceData = &GetInstanceData_instance_razorfen_kraul;

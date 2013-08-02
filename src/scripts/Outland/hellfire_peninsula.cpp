@@ -1242,10 +1242,10 @@ struct npc_vindicator_sedaiAI : public ScriptedAI
             case 1:DoSpawnEscort();
             case 2:me->SetUnitMovementFlags(MOVEFLAG_WALK_MODE);
             case 3:me->GetMotionMaster()->MovePoint(0, 204.877f, 4133.172f, 76.897f);return 2900;
-            case 4:DoScriptText(SAY_MAG_ESSCORT, pEsc,0);return 1000;
+            case 4:DoScriptText(SAY_MAG_ESSCORT, pEsc, 0);return 1000;
             case 5:pEsc->GetMotionMaster()->MovePoint(0, 229.257f, 4125.271f, 83.388f);return 1500;
             case 6:pEsc->GetMotionMaster()->MovePoint(0, 227.188f, 4121.116f, 82.745f);return 1000;
-            case 7:DoScriptText(SAY_SEDAI1, me,0);return 1000;
+            case 7:DoScriptText(SAY_SEDAI1, me, 0);return 1000;
             case 8:DoSpawnAmbusher();return 3000;
             case 9:DoSpawnAmbusher();return 1000;
             case 10:me->AI()->AttackStart(pAmb);return 2000;
@@ -1256,12 +1256,11 @@ struct npc_vindicator_sedaiAI : public ScriptedAI
             case 15:pEsc->AI()->AttackStart(pAmb);return 1000;
             case 16:me->CastSpell(pAmb, SPELL_HOLYFIRE , false);return 6000;
             case 17:pAmb->DealDamage(pAmb, pAmb->GetHealth(), 0, DIRECT_DAMAGE);return 1000;
-            case 18:pEsc->GetMotionMaster()->MovePoint(0, 235.063f, 4117.826f, 84.471f);return 1000;
-            case 19:me->SetUnitMovementFlags(MOVEFLAG_WALK_MODE);
-                    me->GetMotionMaster()->MovePoint(0, 199.706f, 4134.302f, 75.404f);return 6000;       
+            case 18:me->SetUnitMovementFlags(MOVEFLAG_WALK_MODE);
+            case 19:me->GetMotionMaster()->MovePoint(0, 199.706f, 4134.302f, 75.404f);return 6000;
             case 20:me->GetMotionMaster()->MovePoint(0, 193.524f, 4147.451f, 73.605f);return 7000;              
             case 21:me->SetStandState(UNIT_STAND_STATE_KNEEL);
-                    DoScriptText(SAY_SEDAI2, me,0);return 5000;
+                    DoScriptText(SAY_SEDAI2, me, 0);return 5000;
             case 22:DoSpawnKrun();return 1000;
             case 23:me->CastSpell(pKrun, SPELL_HOLYFIRE, false);return 3000;
             case 24:me->DealDamage(me, me->GetHealth(), 0, DIRECT_DAMAGE);
@@ -1750,7 +1749,7 @@ CreatureAI* GetAI_npc_pathaleon_image(Creature* pCreature)
 
 void AddSC_hellfire_peninsula()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
      newscript->Name = "npc_aeranas";

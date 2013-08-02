@@ -797,7 +797,7 @@ bool QuestAccept_npc_tyrion(Player* pPlayer, Creature* pCreature, Quest const *p
 
 void AddSC_stormwind_city()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_archmage_malin";

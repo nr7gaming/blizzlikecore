@@ -407,7 +407,7 @@ CreatureAI* GetAI_npc_enraged_panther(Creature* pCreature)
 
 void AddSC_thousand_needles()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_kanati";

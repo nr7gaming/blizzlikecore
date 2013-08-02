@@ -136,7 +136,7 @@ bool GossipSelect_npc_zamael_lunthistle(Player* pPlayer, Creature* pCreature, ui
 
 void AddSC_searing_gorge()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_kalaran_windblade";

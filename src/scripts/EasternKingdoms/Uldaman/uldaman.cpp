@@ -213,7 +213,7 @@ bool AT_map_chamber(Player* pPlayer, const AreaTriggerEntry*)
 
 void AddSC_uldaman()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mob_jadespine_basilisk";

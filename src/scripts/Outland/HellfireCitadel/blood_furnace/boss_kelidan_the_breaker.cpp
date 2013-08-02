@@ -347,7 +347,7 @@ CreatureAI* GetAI_mob_shadowmoon_channeler(Creature* pCreature)
 
 void AddSC_boss_kelidan_the_breaker()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_kelidan_the_breaker";

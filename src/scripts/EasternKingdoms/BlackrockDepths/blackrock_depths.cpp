@@ -1259,7 +1259,7 @@ bool ChooseReward_npc_rocknot(Player* /*pPlayer*/, Creature* pCreature, const Qu
 
 void AddSC_blackrock_depths()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "go_shadowforge_brazier";

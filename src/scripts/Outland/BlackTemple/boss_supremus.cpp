@@ -289,7 +289,7 @@ CreatureAI* GetAI_npc_volcano(Creature* pCreature)
 
 void AddSC_boss_supremus()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_supremus";
     newscript->GetAI = &GetAI_boss_supremus;

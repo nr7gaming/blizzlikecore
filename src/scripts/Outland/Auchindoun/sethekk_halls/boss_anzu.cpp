@@ -164,7 +164,7 @@ CreatureAI* GetAI_boss_anzu(Creature* pCreature)
 
 void AddSC_boss_anzu()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_anzu";
     newscript->GetAI = &GetAI_boss_anzu;

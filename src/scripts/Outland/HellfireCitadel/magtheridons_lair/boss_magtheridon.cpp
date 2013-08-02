@@ -526,7 +526,7 @@ CreatureAI* GetAI_mob_abyssalAI(Creature* pCreature)
 
 void AddSC_boss_magtheridon()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_magtheridon";
     newscript->GetAI = &GetAI_boss_magtheridon;

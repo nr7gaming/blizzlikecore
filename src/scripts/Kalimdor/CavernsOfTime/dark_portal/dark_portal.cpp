@@ -365,7 +365,7 @@ bool GossipSelect_npc_saat(Player* player, Creature* pCreature, uint32 /*sender*
 
 void AddSC_dark_portal()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_medivh_bm";

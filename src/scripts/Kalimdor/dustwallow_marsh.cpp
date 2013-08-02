@@ -1222,7 +1222,7 @@ bool QuestAccept_npc_stinky(Player* pPlayer, Creature* pCreature, Quest const *q
 
 void AddSC_dustwallow_marsh()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mobs_risen_husk_spirit";

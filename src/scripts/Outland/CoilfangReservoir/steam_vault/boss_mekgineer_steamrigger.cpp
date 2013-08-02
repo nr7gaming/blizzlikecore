@@ -253,7 +253,7 @@ CreatureAI* GetAI_mob_steamrigger_mechanic(Creature* pCreature)
 
 void AddSC_boss_mekgineer_steamrigger()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_mekgineer_steamrigger";

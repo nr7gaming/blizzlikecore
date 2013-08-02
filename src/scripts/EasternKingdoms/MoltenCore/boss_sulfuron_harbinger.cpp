@@ -179,7 +179,7 @@ CreatureAI* GetAI_mob_flamewaker_priest(Creature* pCreature)
 
 void AddSC_boss_sulfuron()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_sulfuron";

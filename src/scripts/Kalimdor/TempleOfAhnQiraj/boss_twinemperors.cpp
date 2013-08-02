@@ -613,7 +613,7 @@ CreatureAI* GetAI_boss_veklor(Creature* pCreature)
 
 void AddSC_boss_twinemperors()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_veknilash";

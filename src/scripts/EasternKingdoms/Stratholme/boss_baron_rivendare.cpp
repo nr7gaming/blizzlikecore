@@ -170,7 +170,7 @@ CreatureAI* GetAI_boss_baron_rivendare(Creature* pCreature)
 
 void AddSC_boss_baron_rivendare()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_baron_rivendare";
     newscript->GetAI = &GetAI_boss_baron_rivendare;

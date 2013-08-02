@@ -287,7 +287,7 @@ CreatureAI* GetAI_boss_harbinger_skyriss_illusion(Creature* pCreature)
 
 void AddSC_boss_harbinger_skyriss()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_harbinger_skyriss";

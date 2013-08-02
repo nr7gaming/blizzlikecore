@@ -73,7 +73,7 @@ CreatureAI* GetAI_boss_gehennas(Creature* pCreature)
 
 void AddSC_boss_gehennas()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_gehennas";
     newscript->GetAI = &GetAI_boss_gehennas;

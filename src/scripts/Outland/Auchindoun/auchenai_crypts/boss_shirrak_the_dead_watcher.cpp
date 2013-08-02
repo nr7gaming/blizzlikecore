@@ -188,7 +188,7 @@ CreatureAI* GetAI_mob_focus_fire(Creature* pCreature)
 
 void AddSC_boss_shirrak_the_dead_watcher()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_shirrak_the_dead_watcher";
     newscript->GetAI = &GetAI_boss_shirrak_the_dead_watcher;

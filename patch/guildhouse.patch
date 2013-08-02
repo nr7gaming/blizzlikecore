@@ -396,7 +396,7 @@ index 0000000..34e3adb
 +
 +void AddSC_npc_guildmaster()
 +{
-+    Script *newscript;
++    Script* newscript;
 +    newscript = new Script;
 +    newscript->Name = "npc_guildmaster";
 +    newscript->pGossipHello = &GossipHello_npc_guildmaster;

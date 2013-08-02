@@ -465,7 +465,7 @@ InstanceData* GetInstanceData_instance_uldaman(Map* pMap)
 
 void AddSC_instance_uldaman()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_uldaman";
     newscript->GetInstanceData = &GetInstanceData_instance_uldaman;

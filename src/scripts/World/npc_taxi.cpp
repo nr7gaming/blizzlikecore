@@ -238,7 +238,7 @@ bool GossipSelect_npc_taxi(Player* pPlayer, Creature* pCreature, uint32 /*uiSend
 
 void AddSC_npc_taxi()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_taxi";

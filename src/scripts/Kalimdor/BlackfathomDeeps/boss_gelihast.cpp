@@ -63,7 +63,7 @@ CreatureAI* GetAI_boss_gelihast(Creature* pCreature)
 
 void AddSC_boss_gelihast()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_gelihast";

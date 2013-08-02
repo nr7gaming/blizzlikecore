@@ -135,7 +135,7 @@ CreatureAI* GetAI_boss_kruul(Creature* pCreature)
 
 void AddSC_boss_kruul()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_kruul";
     newscript->GetAI = &GetAI_boss_kruul;

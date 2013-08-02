@@ -362,7 +362,7 @@ bool GossipSelect_boss_victor_nefarius(Player* pPlayer, Creature* pCreature, uin
 
 void AddSC_boss_victor_nefarius()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_victor_nefarius";

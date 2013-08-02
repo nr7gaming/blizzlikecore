@@ -144,7 +144,7 @@ CreatureAI* GetAI_npc_kaya_flathoofAI(Creature* pCreature)
 
 void AddSC_stonetalon_mountains()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_braug_dimspirit";

@@ -851,7 +851,7 @@ CreatureAI* GetAI_mob_wisp_invis(Creature* pCreature)
 
 void AddSC_boss_headless_horseman()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_headless_horseman";

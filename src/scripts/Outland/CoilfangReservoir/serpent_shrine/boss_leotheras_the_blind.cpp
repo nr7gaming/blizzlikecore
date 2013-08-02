@@ -773,7 +773,7 @@ CreatureAI* GetAI_mob_inner_demon(Creature* pCreature)
 }
 void AddSC_boss_leotheras_the_blind()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_leotheras_the_blind";

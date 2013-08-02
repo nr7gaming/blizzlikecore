@@ -124,7 +124,7 @@ bool GossipSelect_npc_innkeeper(Player* pPlayer, Creature* pCreature, uint32 /*u
 
 void AddSC_npc_innkeeper()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "npc_innkeeper";
     newscript->pGossipHello = &GossipHello_npc_innkeeper;

@@ -162,7 +162,7 @@ CreatureAI* GetAI_boss_doomwalker(Creature* pCreature)
 
 void AddSC_boss_doomwalker()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_doomwalker";
     newscript->GetAI = &GetAI_boss_doomwalker;

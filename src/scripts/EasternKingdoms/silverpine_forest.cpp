@@ -346,7 +346,7 @@ bool QuestAccept_pyrewood_ambush(Player* pPlayer, Creature* pCreature, const Que
 
 void AddSC_silverpine_forest()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_astor_hadren";

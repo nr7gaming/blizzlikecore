@@ -156,7 +156,7 @@ void AddSC_generic_creature()
 {
     /*
     [Disabled to prevent "CRASH ALERT!"]
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "generic_creature";
     newscript->GetAI = &GetAI_generic_creature;

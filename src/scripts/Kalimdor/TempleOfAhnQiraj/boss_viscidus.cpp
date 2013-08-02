@@ -227,7 +227,7 @@ CreatureAI* GetAI_boss_viscidus(Creature* creature)
 
 void AddSC_boss_viscidus()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name="boss_viscidus";
     newscript->GetAI = &GetAI_boss_viscidus;

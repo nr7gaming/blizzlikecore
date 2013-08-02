@@ -166,7 +166,7 @@ CreatureAI* GetAI_boss_doomlordkazzak(Creature* pCreature)
 
 void AddSC_boss_doomlordkazzak()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_doomlord_kazzak";
     newscript->GetAI = &GetAI_boss_doomlordkazzak;

@@ -1828,7 +1828,7 @@ CreatureAI* GetAInpc_shadowmoon_tuber_node(Creature* creature)
 
 void AddSC_shadowmoon_valley()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mob_mature_netherwing_drake";

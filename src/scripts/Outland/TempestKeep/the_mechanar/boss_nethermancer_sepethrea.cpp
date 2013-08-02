@@ -233,7 +233,7 @@ CreatureAI* GetAI_mob_ragin_flames(Creature* pCreature)
 }
 void AddSC_boss_nethermancer_sepethrea()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_nethermancer_sepethrea";
     newscript->GetAI = &GetAI_boss_nethermancer_sepethrea;

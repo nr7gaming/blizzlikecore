@@ -115,7 +115,7 @@ CreatureAI* GetAI_boss_temporus(Creature* pCreature)
 
 void AddSC_boss_temporus()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_temporus";
     newscript->GetAI = &GetAI_boss_temporus;

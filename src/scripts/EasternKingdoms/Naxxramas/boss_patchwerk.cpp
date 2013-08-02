@@ -134,7 +134,7 @@ CreatureAI* GetAI_boss_patchwerk(Creature* pCreature)
 
 void AddSC_boss_patchwerk()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_patchwerk";
     newscript->GetAI = &GetAI_boss_patchwerk;

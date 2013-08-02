@@ -244,7 +244,7 @@ CreatureAI* GetAI_mob_fel_overseer(Creature* pCreature)
 
 void AddSC_instance_shadow_labyrinth()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_shadow_labyrinth";
     newscript->GetInstanceData = &GetInstanceData_instance_shadow_labyrinth;

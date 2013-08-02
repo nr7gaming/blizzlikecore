@@ -617,7 +617,7 @@ CreatureAI* GetAI_npc_enslaved_soul(Creature* pCreature)
 
 void AddSC_boss_reliquary_of_souls()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_reliquary_of_souls";
     newscript->GetAI = &GetAI_boss_reliquary_of_souls;

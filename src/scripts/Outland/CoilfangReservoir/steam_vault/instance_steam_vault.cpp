@@ -237,7 +237,7 @@ InstanceData* GetInstanceData_instance_steam_vault(Map* map)
 
 void AddSC_instance_steam_vault()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "go_main_chambers_access_panel";

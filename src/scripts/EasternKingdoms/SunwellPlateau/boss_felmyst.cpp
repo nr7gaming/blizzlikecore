@@ -550,7 +550,7 @@ CreatureAI* GetAI_mob_felmyst_trail(Creature* pCreature)
 
 void AddSC_boss_felmyst()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_felmyst";
     newscript->GetAI = &GetAI_boss_felmyst;

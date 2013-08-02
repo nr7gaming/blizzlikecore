@@ -188,7 +188,7 @@ CreatureAI* GetAI_boss_rage_winterchill(Creature* pCreature)
 
 void AddSC_boss_rage_winterchill()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_rage_winterchill";
     newscript->GetAI = &GetAI_boss_rage_winterchill;

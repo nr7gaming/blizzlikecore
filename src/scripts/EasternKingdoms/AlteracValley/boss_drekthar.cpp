@@ -125,7 +125,7 @@ CreatureAI* GetAI_boss_drekthar(Creature* pCreature)
 
 void AddSC_boss_drekthar()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_drekthar";
     newscript->GetAI = &GetAI_boss_drekthar;

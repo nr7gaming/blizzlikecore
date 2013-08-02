@@ -438,7 +438,7 @@ CreatureAI* GetAI_boss_high_astromancer_solarian(Creature* pCreature)
 
 void AddSC_boss_high_astromancer_solarian()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_high_astromancer_solarian";
     newscript->GetAI = &GetAI_boss_high_astromancer_solarian;

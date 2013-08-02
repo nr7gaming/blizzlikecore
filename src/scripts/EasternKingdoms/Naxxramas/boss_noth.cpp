@@ -125,7 +125,7 @@ CreatureAI* GetAI_boss_noth(Creature* pCreature)
 
 void AddSC_boss_noth()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_noth";
     newscript->GetAI = &GetAI_boss_noth;

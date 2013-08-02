@@ -190,7 +190,7 @@ CreatureAI* GetAI_boss_ambassador_hellmaw(Creature* pCreature)
 
 void AddSC_boss_ambassador_hellmaw()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_ambassador_hellmaw";
     newscript->GetAI = &GetAI_boss_ambassador_hellmaw;

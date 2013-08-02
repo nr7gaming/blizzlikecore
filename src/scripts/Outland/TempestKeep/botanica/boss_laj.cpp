@@ -184,7 +184,7 @@ CreatureAI* GetAI_boss_laj(Creature* pCreature)
 
 void AddSC_boss_laj()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_laj";

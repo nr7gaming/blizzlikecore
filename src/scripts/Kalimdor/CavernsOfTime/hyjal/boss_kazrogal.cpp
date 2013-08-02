@@ -193,7 +193,7 @@ CreatureAI* GetAI_boss_kazrogal(Creature* pCreature)
 
 void AddSC_boss_kazrogal()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_kazrogal";
     newscript->GetAI = &GetAI_boss_kazrogal;

@@ -26,7 +26,7 @@ void OnPVPKill(Player* /*killer*/, Player* /*killed*/)
 
  void AddSC_onevents()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "scripted_on_events";
     newscript->pOnLogin = &OnLogin;

@@ -171,7 +171,7 @@ CreatureAI* GetAI_mob_coilfang_waterelementalAI(Creature* pCreature)
 
 void AddSC_boss_hydromancer_thespia()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_hydromancer_thespia";

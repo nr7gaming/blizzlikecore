@@ -443,7 +443,7 @@ bool GOUse_go_thunderspike(Player* player, GameObject* /*_GO*/)
 
 void AddSC_blades_edge_mountains()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mobs_nether_drake";

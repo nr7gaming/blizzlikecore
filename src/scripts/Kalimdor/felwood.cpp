@@ -68,7 +68,7 @@ bool GossipSelect_npcs_riverbreeze_and_silversky(Player* pPlayer, Creature* pCre
 
 void AddSC_felwood()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npcs_riverbreeze_and_silversky";

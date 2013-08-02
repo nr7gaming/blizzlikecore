@@ -170,7 +170,7 @@ CreatureAI* GetAI_boss_the_black_stalker(Creature* pCreature)
 
 void AddSC_boss_the_black_stalker()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_the_black_stalker";

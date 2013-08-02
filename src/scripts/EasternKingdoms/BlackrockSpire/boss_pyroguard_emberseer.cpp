@@ -73,7 +73,7 @@ CreatureAI* GetAI_boss_pyroguard_emberseer(Creature* pCreature)
 
 void AddSC_boss_pyroguard_emberseer()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_pyroguard_emberseer";
     newscript->GetAI = &GetAI_boss_pyroguard_emberseer;

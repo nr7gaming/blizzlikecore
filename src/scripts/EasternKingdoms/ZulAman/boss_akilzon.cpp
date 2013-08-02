@@ -443,7 +443,7 @@ CreatureAI* GetAI_boss_akilzon(Creature* pCreature)
 
 void AddSC_boss_akilzon()
 {
-    Script *newscript = NULL;
+    Script* newscript = NULL;
 
     newscript = new Script;
     newscript->Name = "boss_akilzon";

@@ -159,7 +159,7 @@ CreatureAI* GetAI_boss_highlord_mograine(Creature* pCreature)
 
 void AddSC_boss_highlord_mograine()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_highlord_mograine";
     newscript->GetAI = &GetAI_boss_highlord_mograine;

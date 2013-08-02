@@ -163,7 +163,7 @@ CreatureAI* GetAI_boss_murmur(Creature* pCreature)
 
 void AddSC_boss_murmur()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_murmur";
     newscript->GetAI = &GetAI_boss_murmur;

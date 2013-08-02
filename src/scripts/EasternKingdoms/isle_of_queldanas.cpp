@@ -129,7 +129,7 @@ CreatureAI* GetAI_npc_greengill_slaveAI(Creature* pCreature)
 
 void AddSC_isle_of_queldanas()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_converted_sentry";

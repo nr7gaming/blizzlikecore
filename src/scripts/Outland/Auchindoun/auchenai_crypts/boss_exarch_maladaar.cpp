@@ -327,7 +327,7 @@ CreatureAI* GetAI_mob_avatar_of_martyred(Creature* pCreature)
 
 void AddSC_boss_exarch_maladaar()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_exarch_maladaar";

@@ -1466,7 +1466,7 @@ bool QuestAccept_npc_kurenai_captive(Player* pPlayer, Creature* pCreature, const
 
 void AddSC_nagrand()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "mob_shattered_rumbler";

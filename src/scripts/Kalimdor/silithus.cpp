@@ -1128,7 +1128,7 @@ CreatureAI* Getnpc_anachronos_the_ancientAI(Creature* pCreature)
 
 void AddSC_silithus()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_highlord_demitrian";

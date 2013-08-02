@@ -297,7 +297,7 @@ InstanceData* GetInstanceData_instance_mount_hyjal(Map* pMap)
 
 void AddSC_instance_mount_hyjal()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_hyjal";
     newscript->GetInstanceData = &GetInstanceData_instance_mount_hyjal;

@@ -730,7 +730,7 @@ CreatureAI *GetAI_boss_krosh_firehand(Creature* pCreature)
 
 void AddSC_boss_high_king_maulgar()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_high_king_maulgar";

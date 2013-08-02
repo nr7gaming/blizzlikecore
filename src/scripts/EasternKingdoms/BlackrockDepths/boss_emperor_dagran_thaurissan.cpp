@@ -92,7 +92,7 @@ CreatureAI* GetAI_boss_draganthaurissan(Creature* pCreature)
 
 void AddSC_boss_draganthaurissan()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "boss_emperor_dagran_thaurissan";
     newscript->GetAI = &GetAI_boss_draganthaurissan;

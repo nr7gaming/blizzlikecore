@@ -124,7 +124,7 @@ CreatureAI* GetAI_mob_underbog_mushroom(Creature* pCreature)
 
 void AddSC_boss_hungarfen()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "boss_hungarfen";

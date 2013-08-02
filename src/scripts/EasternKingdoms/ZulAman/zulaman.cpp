@@ -164,7 +164,7 @@ CreatureAI* GetAI_npc_zulaman_hostage(Creature* pCreature)
 
 void AddSC_zulaman()
 {
-    Script *newscript;
+    Script* newscript;
 
     newscript = new Script;
     newscript->Name = "npc_forest_frog";

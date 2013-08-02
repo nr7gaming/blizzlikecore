@@ -185,7 +185,7 @@ InstanceData* GetInstanceData_instance_sunken_temple(Map* pMap)
 
 void AddSC_instance_sunken_temple()
 {
-    Script *newscript;
+    Script* newscript;
     newscript = new Script;
     newscript->Name = "instance_sunken_temple";
     newscript->GetInstanceData = &GetInstanceData_instance_sunken_temple;
