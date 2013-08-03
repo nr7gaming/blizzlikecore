@@ -149,11 +149,8 @@ bool TargetedMovementGenerator<T>::_setTargetLocation(T &owner)
     }
     else
     {
-        // to at i_offset distance from target and i_angle from target facing - pets need special handling
-        if (owner.hasUnitState(UNIT_STAT_FOLLOW) && owner.ToCreature()->isPet() && i_target->GetTypeId() == TYPEID_PLAYER)
-            i_target->GetClosePoint(x, y, z, (i_target->GetCombatReach() - i_target->GetObjectSize()), i_offset, i_angle);
-        else
-            i_target->GetClosePoint(x, y, z, owner.GetObjectSize(), i_offset, i_angle);
+        // to at i_offset distance from target and i_angle from target facing
+        i_target->GetClosePoint(x, y, z, owner.GetObjectSize(), i_offset, i_angle);
     }
 
     /*
