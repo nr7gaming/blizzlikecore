@@ -1041,7 +1041,7 @@ bool Group::_addMember(const uint64 &guid, const char* name, bool isAssistant, u
         else
             player->SetGroup(this, group);
         // if the same group invites the player back, cancel the homebind timer
-        InstanceGroupBind *bind = GetBoundInstance(player);
+        InstanceGroupBind* bind = GetBoundInstance(player);
         if (bind && bind->save->GetInstanceId() == player->GetInstanceId())
             player->m_InstanceValid = true;
     }
@@ -1436,8 +1436,8 @@ void Group::SetDifficulty(uint8 difficulty)
             continue;
         player->SetDifficulty(difficulty);
         player->SendDungeonDifficulty(true);
-        //send player to recall position (to avoid an exploit)
-        if (sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
+
+        if (sWorld.getConfig(CONFIG_TELE_CHANGE_DUNGEON) && sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
             player->TeleportTo(player->m_recallMap, player->m_recallX, player->m_recallY, player->m_recallZ, player->m_recallO);
     }
 }

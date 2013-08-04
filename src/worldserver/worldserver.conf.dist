@@ -3,7 +3,7 @@
 #################################################
 
 [worldserver]
-ConfVersion=20130727
+ConfVersion=20130804
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -2009,12 +2009,18 @@ CharDelete.KeepDays = 30
 #                 1 - (Enabled)
 #
 #    Die.Command.Mode
-#        Description: Do not trigger things like loot from .die command.
+#        Do not trigger things like loot from .die command.
 #        Default: 1 - (Enabled)
 #                 0 - (Disabled)
 #
 #    Pet.React.Aggressive
-#        Description: Enable pet react aggressive as default.
+#        Enable pet react aggressive as default.
+#        Default: 1 - (Enabled)
+#                 0 - (Disabled)
+#
+#    Tele.Change.Dungeon
+#        Teleport players to recall position when change dungeon
+#         difficulty to avoid an exploit.
 #        Default: 1 - (Enabled)
 #                 0 - (Disabled)
 #
@@ -2040,6 +2046,7 @@ DuelMod.Enable = 0
 DuelMod.Cooldowns = 0
 Die.Command.Mode = 1
 Pet.React.Aggressive = 1
+Tele.Change.Dungeon = 1
 
 ###############################################################################
 # AUTO BROADCAST
