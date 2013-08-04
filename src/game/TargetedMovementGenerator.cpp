@@ -174,17 +174,18 @@ bool TargetedMovementGenerator<T>::_setTargetLocation(T &owner)
     {
 
         bool forceDest = false;
-        // allow pets to cheat while generating paths as they should ALWAYS be able to reach thier target.
-        if (owner.GetTypeId() == TYPEID_UNIT
-            && owner.hasUnitState(UNIT_STAT_FOLLOW)
-            && owner.ToCreature()->isPet())
+        // generating paths to be able to reach thier target.
+        if (owner.GetTypeId() == TYPEID_UNIT &&
+            (owner.hasUnitState(UNIT_STAT_FOLLOW) ||
+            owner.hasUnitState(UNIT_STAT_ATTACK_PLAYER) ||
+            owner.hasUnitState(UNIT_STAT_MELEE_ATTACKING)))
             forceDest = true;
 
         bool newPathCalculated = true;
         if (!i_path)
             i_path = new PathInfo(&owner, x, y, z, forceDest);
         else
-        newPathCalculated = i_path->Update(x, y, z, forceDest);
+            newPathCalculated = i_path->Update(x, y, z, forceDest);
 
         // nothing we can do here ...
         if (i_path->getPathType() & PATHFIND_NOPATH)
