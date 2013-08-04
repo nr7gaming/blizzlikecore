@@ -699,7 +699,7 @@ index 9c71841..677f3e4 100644
  }
  
 diff --git a/src/game/Player.cpp b/src/game/Player.cpp
-index 5731a1c..dbbc2d3 100644
+index e78a935..ce0fdf6 100644
 --- a/src/game/Player.cpp
 +++ b/src/game/Player.cpp
 @@ -370,6 +370,23 @@ Player::Player (WorldSession *session): Unit()
@@ -803,7 +803,7 @@ index c98c503..af6dc63 100644
      if (!curDest)
          return;
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 0c2c54d..101e5ad 100644
+index 1249139..a70f07b 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -69,6 +69,14 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -837,10 +837,10 @@ index 0c2c54d..101e5ad 100644
  
      m_configs[CONFIG_COMPRESSION] = sConfig.GetIntDefault("Compression", 1);
 diff --git a/src/game/World.h b/src/game/World.h
-index 39ecd07..6bae8e2 100644
+index 03ce175..7f53a36 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -566,6 +566,14 @@ class World
+@@ -567,6 +567,14 @@ class World
          static int32 GetVisibilityNotifyPeriodInInstances() { return m_visibility_notify_periodInInstances;  }
          static int32 GetVisibilityNotifyPeriodInBGArenas()  { return m_visibility_notify_periodInBGArenas;   }
  
@@ -855,7 +855,7 @@ index 39ecd07..6bae8e2 100644
          void ProcessCliCommands();
          void QueueCliCommand(CliCommandHolder* commandHolder) { cliCmdQueue.add(commandHolder); }
  
-@@ -653,6 +661,14 @@ class World
+@@ -654,6 +662,14 @@ class World
          static int32 m_visibility_notify_periodInInstances;
          static int32 m_visibility_notify_periodInBGArenas;
  
@@ -871,10 +871,10 @@ index 39ecd07..6bae8e2 100644
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 9feef36..9485b08 100644
+index 765e10c..7ca02d9 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
-@@ -2063,3 +2063,43 @@ Pet.React.Aggressive = 1
+@@ -2070,3 +2070,43 @@ Tele.Change.Dungeon = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000

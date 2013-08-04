@@ -406,7 +406,7 @@ index 0000000..34e3adb
 +}
 +
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 48bb574..5380e51 100644
+index 765e10c..a6bdceb 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
 @@ -1917,6 +1917,32 @@ CharDelete.KeepDays = 30
@@ -442,7 +442,7 @@ index 48bb574..5380e51 100644
  #    PlayerStart.AllReputation
  #        Players will start with most of the high level reputations that are
  #         needed for items, mounts etc.
-@@ -2015,6 +2041,12 @@ CharDelete.KeepDays = 30
+@@ -2026,6 +2052,12 @@ CharDelete.KeepDays = 30
  #
  ###############################################################################
  
