@@ -935,15 +935,12 @@ void Group::UpdatePlayerOutOfRange(Player* pPlayer)
     if (!pPlayer || !pPlayer->IsInWorld())
         return;
 
-    if (pPlayer->GetGroupUpdateFlag() == GROUP_UPDATE_FLAG_NONE)
-        return;
-
     WorldPacket data;
     pPlayer->GetSession()->BuildPartyMemberStatsChangedPacket(pPlayer, &data);
 
     for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
         if (Player* player = itr->getSource())
-            if (player != pPlayer && !player->HaveAtClient(pPlayer))
+            if (player != pPlayer && !pPlayer->isVisibleFor(player))
                 player->GetSession()->SendPacket(&data);
 }
 
@@ -1434,11 +1431,14 @@ void Group::SetDifficulty(uint8 difficulty)
         Player* player = itr->getSource();
         if (!player->GetSession() || player->getLevel() < LEVELREQUIREMENT_HEROIC)
             continue;
+
+        Player* leader = ObjectAccessor::FindPlayer(m_leaderGuid);
+
+        if (sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
+            player->TeleportTo(leader->GetMapId(), leader->GetPositionX(), leader->GetPositionY(), leader->GetPositionZ(), leader->GetOrientation());
+
         player->SetDifficulty(difficulty);
         player->SendDungeonDifficulty(true);
-
-        if (sWorld.getConfig(CONFIG_TELE_CHANGE_DUNGEON) && sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
-            player->TeleportTo(player->m_recallMap, player->m_recallX, player->m_recallY, player->m_recallZ, player->m_recallO);
     }
 }
 

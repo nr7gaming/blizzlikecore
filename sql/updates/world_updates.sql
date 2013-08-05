@@ -1,4 +1,7 @@
-UPDATE `version` SET `db_version` = 'BDB_20130731';
+UPDATE `version` SET `db_version` = 'BDB_20130805';
+
+-- Update spell_script_target
+REPLACE INTO `spell_script_target` (`entry`, `type`, `targetEntry`) VALUES (36717, 1, 21761);
 
 
 -- Magtheridon
