@@ -766,7 +766,7 @@ index c98c503..af6dc63 100644
      if (!curDest)
          return;
 diff --git a/src/game/World.cpp b/src/game/World.cpp
-index 1249139..a70f07b 100644
+index 15dd86e..e9dae6e 100644
 --- a/src/game/World.cpp
 +++ b/src/game/World.cpp
 @@ -69,6 +69,14 @@ int32 World::m_visibility_notify_periodOnContinents = DEFAULT_VISIBILITY_NOTIFY_
@@ -800,10 +800,10 @@ index 1249139..a70f07b 100644
  
      m_configs[CONFIG_COMPRESSION] = sConfig.GetIntDefault("Compression", 1);
 diff --git a/src/game/World.h b/src/game/World.h
-index 03ce175..7f53a36 100644
+index 39ecd07..f89b91a 100644
 --- a/src/game/World.h
 +++ b/src/game/World.h
-@@ -567,6 +567,14 @@ class World
+@@ -566,6 +566,14 @@ class World
          static int32 GetVisibilityNotifyPeriodInInstances() { return m_visibility_notify_periodInInstances;  }
          static int32 GetVisibilityNotifyPeriodInBGArenas()  { return m_visibility_notify_periodInBGArenas;   }
  
@@ -818,7 +818,7 @@ index 03ce175..7f53a36 100644
          void ProcessCliCommands();
          void QueueCliCommand(CliCommandHolder* commandHolder) { cliCmdQueue.add(commandHolder); }
  
-@@ -654,6 +662,14 @@ class World
+@@ -653,6 +661,14 @@ class World
          static int32 m_visibility_notify_periodInInstances;
          static int32 m_visibility_notify_periodInBGArenas;
  
@@ -834,10 +834,10 @@ index 03ce175..7f53a36 100644
          ACE_Based::LockedQueue<CliCommandHolder*, ACE_Thread_Mutex> cliCmdQueue;
          SqlResultQueue *m_resultQueue;
 diff --git a/src/worldserver/worldserver.conf.dist b/src/worldserver/worldserver.conf.dist
-index 765e10c..7ca02d9 100644
+index 0b50566..7eeacc6 100644
 --- a/src/worldserver/worldserver.conf.dist
 +++ b/src/worldserver/worldserver.conf.dist
-@@ -2070,3 +2070,43 @@ Reserved = 1
+@@ -2063,3 +2063,43 @@ Pet.React.Aggressive = 1
  AutoBroadcast.On = 0
  AutoBroadcast.Center = 0
  AutoBroadcast.Timer = 60000
