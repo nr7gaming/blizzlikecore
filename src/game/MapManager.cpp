@@ -130,7 +130,7 @@ Map* MapManager::CreateMap(uint32 id, const WorldObject* obj, uint32 instanceId)
 
 Map* MapManager::FindMap(uint32 mapid, uint32 instanceId) const
 {
-    Map *map = _findMap(mapid);
+    Map* map = _findMap(mapid);
     if (!map)
         return NULL;
 
@@ -304,7 +304,7 @@ uint32 MapManager::GetNumInstances()
     uint32 ret = 0;
     for (MapMapType::iterator itr = i_maps.begin(); itr != i_maps.end(); ++itr)
     {
-        Map *map = itr->second;
+        Map* map = itr->second;
         if (!map->Instanceable())
             continue;
         MapInstanced::InstancedMaps &maps = ((MapInstanced *)map)->GetInstancedMaps();
@@ -321,7 +321,7 @@ uint32 MapManager::GetNumPlayersInInstances()
     uint32 ret = 0;
     for (MapMapType::iterator itr = i_maps.begin(); itr != i_maps.end(); ++itr)
     {
-        Map *map = itr->second;
+        Map* map = itr->second;
         if (!map->Instanceable())
             continue;
         MapInstanced::InstancedMaps &maps = ((MapInstanced *)map)->GetInstancedMaps();

@@ -59,7 +59,7 @@ static SpawnLocation aSoldiersLocs[]=
 
 struct instance_shattered_halls : public ScriptedInstance
 {
-    instance_shattered_halls(Map *map) : ScriptedInstance(map) {Initialize();};
+    instance_shattered_halls(Map* map) : ScriptedInstance(map) {Initialize();};
 
     uint32 Encounter[ENCOUNTERS];
     std::string str_data;

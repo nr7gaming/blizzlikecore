@@ -6780,7 +6780,7 @@ bool PlayerCondition::Meets(Player const * player) const
             return gameeventmgr.IsActiveEvent(value1);
         case CONDITION_INSTANCE_DATA:
         {
-            Map *map = player->GetMap();
+            Map* map = player->GetMap();
             if (map && map->IsDungeon() && ((InstanceMap*)map)->GetInstanceData())
                 return ((InstanceMap*)map)->GetInstanceData()->GetData(value1) == value2;
         }

@@ -403,7 +403,7 @@ class Creature : public Unit, public GridObject<Creature>
 
         void DisappearAndDie();
 
-        bool Create(uint32 guidlow, Map *map, uint32 Entry, uint32 team, float x, float y, float z, float ang, const CreatureData *data = NULL);
+        bool Create(uint32 guidlow, Map* map, uint32 Entry, uint32 team, float x, float y, float z, float ang, const CreatureData *data = NULL);
         bool LoadCreaturesAddon(bool reload = false);
         void SelectLevel(const CreatureInfo *cinfo);
         void LoadEquipment(uint32 equip_entry, bool force=false);
@@ -527,7 +527,7 @@ class Creature : public Unit, public GridObject<Creature>
         void setDeathState(DeathState s);                   // overwrite virtual Unit::setDeathState
         bool FallGround();
 
-        bool LoadFromDB(uint32 guid, Map *map);
+        bool LoadFromDB(uint32 guid, Map* map);
         void SaveToDB();
                                                             // overwrited in Pet
         virtual void SaveToDB(uint32 mapid, uint8 spawnMask);

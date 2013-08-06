@@ -1429,13 +1429,16 @@ void Group::SetDifficulty(uint8 difficulty)
     for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* player = itr->getSource();
-        if (!player->GetSession() || player->getLevel() < LEVELREQUIREMENT_HEROIC)
+        if (!player->GetSession())
             continue;
 
         Player* leader = ObjectAccessor::FindPlayer(m_leaderGuid);
 
         if (sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
             player->TeleportTo(leader->GetMapId(), leader->GetPositionX(), leader->GetPositionY(), leader->GetPositionZ(), leader->GetOrientation());
+
+        if (player->getLevel() < LEVELREQUIREMENT_HEROIC)
+            continue;
 
         player->SetDifficulty(difficulty);
         player->SendDungeonDifficulty(true);
@@ -1487,7 +1490,7 @@ void Group::ResetInstances(uint8 method, Player* SendMsgTo)
 
         bool isEmpty = true;
         // if the map is loaded, reset it
-        Map *map = MapManager::Instance().FindMap(p->GetMapId(), p->GetInstanceId());
+        Map* map = MapManager::Instance().FindMap(p->GetMapId(), p->GetInstanceId());
         if (map && map->IsDungeon())
         {
             if (p->CanReset())

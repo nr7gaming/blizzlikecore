@@ -17,7 +17,7 @@ EndScriptData */
 
 struct instance_mechanar : public ScriptedInstance
 {
-    instance_mechanar(Map *map) : ScriptedInstance(map) {Initialize();};
+    instance_mechanar(Map* map) : ScriptedInstance(map) {Initialize();};
 
 
     uint32 Encounters[ENCOUNTERS];

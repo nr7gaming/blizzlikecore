@@ -394,7 +394,7 @@ index 9c71841..eed60e6 100644
 +                && ((movementInfo.GetMovementFlags() & (MOVEFLAG_SWIMMING | MOVEFLAG_CAN_FLY | MOVEFLAG_FLYING | MOVEFLAG_FLYING2)) == 0))
 +            {
 +                // Prevent using TeleportToPlane.
-+                Map *map = plMover->GetMap();
++                Map* map = plMover->GetMap();
 +                if (map)
 +                {
 +                    float plane_z = map->GetHeight(movementInfo.GetPos()->GetPositionX(), movementInfo.GetPos()->GetPositionY(), MAX_HEIGHT) - movementInfo.GetPos()->GetPositionZ();

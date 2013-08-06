@@ -19,7 +19,7 @@ CreatureGroupDataType   CreatureGroupDataMap;
 
 void CreatureGroupManager::AddCreatureToGroup(uint32 groupId, Creature* member)
 {
-    Map *map = member->FindMap();
+    Map* map = member->FindMap();
     if (!map)
         return;
 
@@ -48,7 +48,7 @@ void CreatureGroupManager::RemoveCreatureFromGroup(CreatureGroup* group, Creatur
 
     if (group->isEmpty())
     {
-        Map *map = member->FindMap();
+        Map* map = member->FindMap();
         if (!map)
             return;
 

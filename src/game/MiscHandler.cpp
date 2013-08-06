@@ -1380,7 +1380,7 @@ void WorldSession::HandleDungeonDifficultyOpcode(WorldPacket& recv_data)
     }
 
     // cannot reset while in an instance
-    Map *map = _player->GetMap();
+    Map* map = _player->GetMap();
     if (map && map->IsDungeon())
     {
         DEBUG_LOG("WorldSession::HandleDungeonDifficultyOpcode: player %d tried to reset the instance while inside!", _player->GetGUIDLow());
