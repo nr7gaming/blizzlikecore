@@ -38,7 +38,7 @@ EndScriptData */
 
 struct instance_blood_furnace : public ScriptedInstance
 {
-    instance_blood_furnace(Map *map) : ScriptedInstance(map){Initialize();}
+    instance_blood_furnace(Map* map) : ScriptedInstance(map){Initialize();}
 
     struct BroggokEventInfo
     {

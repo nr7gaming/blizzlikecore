@@ -253,7 +253,7 @@ Corpse* ObjectAccessor::ConvertCorpseForPlayer(uint64 player_guid, bool insignia
 
     DEBUG_LOG("Deleting Corpse and spawned bones.");
 
-    Map *map = corpse->FindMap();
+    Map* map = corpse->FindMap();
 
     // remove corpse from player_guid -> corpse map
     RemoveCorpse(corpse);
@@ -261,7 +261,7 @@ Corpse* ObjectAccessor::ConvertCorpseForPlayer(uint64 player_guid, bool insignia
     // done in removecorpse
     // remove resurrectable corpse from grid object registry (loaded state checked into call)
     // do not load the map if it's not loaded
-    //Map *map = MapManager::Instance().FindMap(corpse->GetMapId(), corpse->GetInstanceId());
+    //Map* map = MapManager::Instance().FindMap(corpse->GetMapId(), corpse->GetInstanceId());
     //if (map)
     //    map->Remove(corpse, false);
 

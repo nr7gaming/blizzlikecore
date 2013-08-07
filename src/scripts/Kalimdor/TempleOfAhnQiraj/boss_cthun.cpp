@@ -554,7 +554,7 @@ struct cthunAI : public Scripted_NoMovementAI
             //WisperTimer
             if (WisperTimer <= diff)
             {
-                Map *map = me->GetMap();
+                Map* map = me->GetMap();
                 if (!map->IsDungeon()) return;
 
                 Map::PlayerList const &PlayerList = map->GetPlayers();

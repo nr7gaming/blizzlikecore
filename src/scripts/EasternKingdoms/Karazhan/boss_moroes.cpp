@@ -124,7 +124,7 @@ struct boss_moroesAI : public ScriptedAI
         DeSpawnAdds();
 
         //remove aura from spell Garrote when Moroes dies
-        Map *map = me->GetMap();
+        Map* map = me->GetMap();
         if (map->IsDungeon())
         {
             Map::PlayerList const &PlayerList = map->GetPlayers();

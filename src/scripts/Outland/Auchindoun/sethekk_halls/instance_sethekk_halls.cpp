@@ -37,7 +37,7 @@ static Location SpawnLocation[]=
 
 struct instance_sethekk_halls : public ScriptedInstance
 {
-    instance_sethekk_halls(Map *map) : ScriptedInstance(map) {Initialize();};
+    instance_sethekk_halls(Map* map) : ScriptedInstance(map) {Initialize();};
 
     uint64 IkissDoorGUID;
     uint32 Encounter[ENCOUNTERS];

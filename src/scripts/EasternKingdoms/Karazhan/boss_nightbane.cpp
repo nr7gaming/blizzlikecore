@@ -412,7 +412,7 @@ struct boss_nightbaneAI : public ScriptedAI
 
             if (FireballBarrageTimer <= diff)
             {
-                Map *map = me->GetMap();
+                Map* map = me->GetMap();
                 if (!map->IsDungeon()) return;
                 Map::PlayerList const &PlayerList = map->GetPlayers();
                 for (Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)

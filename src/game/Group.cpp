@@ -935,15 +935,12 @@ void Group::UpdatePlayerOutOfRange(Player* pPlayer)
     if (!pPlayer || !pPlayer->IsInWorld())
         return;
 
-    if (pPlayer->GetGroupUpdateFlag() == GROUP_UPDATE_FLAG_NONE)
-        return;
-
     WorldPacket data;
     pPlayer->GetSession()->BuildPartyMemberStatsChangedPacket(pPlayer, &data);
 
     for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
         if (Player* player = itr->getSource())
-            if (player != pPlayer && !player->HaveAtClient(pPlayer))
+            if (player != pPlayer && !pPlayer->isVisibleFor(player))
                 player->GetSession()->SendPacket(&data);
 }
 
@@ -1041,7 +1038,7 @@ bool Group::_addMember(const uint64 &guid, const char* name, bool isAssistant, u
         else
             player->SetGroup(this, group);
         // if the same group invites the player back, cancel the homebind timer
-        InstanceGroupBind *bind = GetBoundInstance(player);
+        InstanceGroupBind* bind = GetBoundInstance(player);
         if (bind && bind->save->GetInstanceId() == player->GetInstanceId())
             player->m_InstanceValid = true;
     }
@@ -1432,13 +1429,19 @@ void Group::SetDifficulty(uint8 difficulty)
     for (GroupReference* itr = GetFirstMember(); itr != NULL; itr = itr->next())
     {
         Player* player = itr->getSource();
-        if (!player->GetSession() || player->getLevel() < LEVELREQUIREMENT_HEROIC)
+        if (!player->GetSession())
             continue;
+
+        Player* leader = ObjectAccessor::FindPlayer(m_leaderGuid);
+
+        if (sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
+            player->TeleportTo(leader->GetMapId(), leader->GetPositionX(), leader->GetPositionY(), leader->GetPositionZ(), leader->GetOrientation());
+
+        if (player->getLevel() < LEVELREQUIREMENT_HEROIC)
+            continue;
+
         player->SetDifficulty(difficulty);
         player->SendDungeonDifficulty(true);
-        //send player to recall position (to avoid an exploit)
-        if (sMapStore.LookupEntry(player->GetMap()->IsDungeon()))
-            player->TeleportTo(player->m_recallMap, player->m_recallX, player->m_recallY, player->m_recallZ, player->m_recallO);
     }
 }
 
@@ -1487,7 +1490,7 @@ void Group::ResetInstances(uint8 method, Player* SendMsgTo)
 
         bool isEmpty = true;
         // if the map is loaded, reset it
-        Map *map = MapManager::Instance().FindMap(p->GetMapId(), p->GetInstanceId());
+        Map* map = MapManager::Instance().FindMap(p->GetMapId(), p->GetInstanceId());
         if (map && map->IsDungeon())
         {
             if (p->CanReset())

@@ -447,7 +447,7 @@ void ScriptedAI::DoTeleportPlayer(Unit* pUnit, float fX, float fY, float fZ, flo
 
 void ScriptedAI::DoTeleportAll(float fX, float fY, float fZ, float fO)
 {
-    Map *map = me->GetMap();
+    Map* map = me->GetMap();
     if (!map->IsDungeon())
         return;
 

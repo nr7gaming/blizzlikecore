@@ -1447,7 +1447,7 @@ void BattleGround::RemovePlayerFromResurrectQueue(uint64 player_guid)
 
 bool BattleGround::AddObject(uint32 type, uint32 entry, float x, float y, float z, float o, float rotation0, float rotation1, float rotation2, float rotation3, uint32 /*respawnTime*/)
 {
-    Map *map = GetBgMap();
+    Map* map = GetBgMap();
     if (!map)
         return false;
 

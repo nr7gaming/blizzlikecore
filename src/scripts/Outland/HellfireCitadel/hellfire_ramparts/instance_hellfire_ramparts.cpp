@@ -17,7 +17,7 @@ EndScriptData */
 
 struct instance_ramparts : public ScriptedInstance
 {
-    instance_ramparts(Map *map) : ScriptedInstance(map){Initialize();}
+    instance_ramparts(Map* map) : ScriptedInstance(map){Initialize();}
 
     uint32 Encounter[ENCOUNTERS];
     std::string str_data;

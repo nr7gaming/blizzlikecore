@@ -153,7 +153,7 @@ void InstanceSave::SaveToDB()
     // save instance data too
     std::string data;
 
-    Map *map = MapManager::Instance().FindMap(GetMapId(),m_instanceid);
+    Map* map = MapManager::Instance().FindMap(GetMapId(),m_instanceid);
     if (map)
     {
         ASSERT(map->IsDungeon());
@@ -578,7 +578,7 @@ void InstanceSaveManager::_ResetSave(InstanceSaveHashMap::iterator &itr)
 void InstanceSaveManager::_ResetInstance(uint32 mapid, uint32 instanceId)
 {
     sLog.outDebug("InstanceSaveMgr::_ResetInstance %u, %u", mapid, instanceId);
-    Map *map = (MapInstanced*)MapManager::Instance().CreateBaseMap(mapid);
+    Map* map = (MapInstanced*)MapManager::Instance().CreateBaseMap(mapid);
     if (!map->Instanceable())
         return;
 
@@ -643,7 +643,7 @@ void InstanceSaveManager::_ResetOrWarnAll(uint32 mapid, bool warn, uint32 timeLe
     MapInstanced::InstancedMaps::iterator mitr;
     for (mitr = instMaps.begin(); mitr != instMaps.end(); ++mitr)
     {
-        Map *map2 = mitr->second;
+        Map* map2 = mitr->second;
         if (!map2->IsDungeon()) continue;
         if (warn) ((InstanceMap*)map2)->SendResetWarnings(timeLeft);
         else ((InstanceMap*)map2)->Reset(INSTANCE_RESET_GLOBAL);

@@ -73,7 +73,7 @@ struct boss_shirrak_the_dead_watcherAI : public ScriptedAI
         if (Inhibitmagic_Timer <= diff)
         {
             float dist;
-            Map *map = me->GetMap();
+            Map* map = me->GetMap();
             Map::PlayerList const &PlayerList = map->GetPlayers();
             for (Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)
                 if (Player* i_pl = i->getSource())

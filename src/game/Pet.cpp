@@ -161,7 +161,7 @@ bool Pet::LoadPetFromDB(Player* owner, uint32 petentry, uint32 petnumber, bool c
     if (current && is_temporary_summoned)
         return false;
 
-    Map *map = owner->GetMap();
+    Map* map = owner->GetMap();
     uint32 guid = objmgr.GenerateLowGuid(HIGHGUID_PET);
     uint32 pet_number = fields[0].GetUInt32();
     if (!Create(guid, map, petentry, pet_number))
@@ -1713,7 +1713,7 @@ bool Pet::IsPermanentPetFor(Player* owner)
     }
 }
 
-bool Pet::Create(uint32 guidlow, Map *map, uint32 Entry, uint32 pet_number)
+bool Pet::Create(uint32 guidlow, Map* map, uint32 Entry, uint32 pet_number)
 {
     ASSERT(map);
     SetMap(map);

@@ -132,7 +132,7 @@ struct boss_gurtogg_bloodboilAI : public ScriptedAI
     void CastBloodboil()
     {
         std::list<Unit* > targets;
-        Map *map = me->GetMap();
+        Map* map = me->GetMap();
         if (map->IsDungeon())
         {
             InstanceMap::PlayerList const &PlayerList = ((InstanceMap*)map)->GetPlayers();

@@ -3,7 +3,7 @@
 #################################################
 
 [worldserver]
-ConfVersion=20130727
+ConfVersion=20130804
 
 # Note to devs, line breaks should be at column 80
 ###############################################################################
@@ -107,8 +107,8 @@ EAIErrorLevel = 2
 #
 #    MaxOverspeedPings
 #        Maximum overspeed ping count before player kick
-#         (minimum is 2, 0 used for disable check)
-#        Default: 2
+#         (minimum is 10, 0 used for disable check)
+#        Default: 10
 #
 #    GridUnload
 #        Unload grids
@@ -245,7 +245,7 @@ ProcessPriority = 1
 Compression = 1
 PlayerLimit = 100
 SaveRespawnTimeImmediately = 1
-MaxOverspeedPings = 2
+MaxOverspeedPings = 10
 GridUnload = 1
 SocketSelectTime = 10000
 SocketTimeOutTime = 900000
@@ -2009,12 +2009,12 @@ CharDelete.KeepDays = 30
 #                 1 - (Enabled)
 #
 #    Die.Command.Mode
-#        Description: Do not trigger things like loot from .die command.
+#        Do not trigger things like loot from .die command.
 #        Default: 1 - (Enabled)
 #                 0 - (Disabled)
 #
 #    Pet.React.Aggressive
-#        Description: Enable pet react aggressive as default.
+#        Enable pet react aggressive as default.
 #        Default: 1 - (Enabled)
 #                 0 - (Disabled)
 #

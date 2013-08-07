@@ -348,7 +348,7 @@ struct boss_hex_lord_malacrassAI : public ScriptedAI
         if (DrainPower_Timer <= diff)
         {
             DoCast(me, SPELL_DRAIN_POWER, true);
-            Map *map = me->GetMap();
+            Map* map = me->GetMap();
             if (!map->IsDungeon()) return;
             Map::PlayerList const &PlayerList = map->GetPlayers();
             for (Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)

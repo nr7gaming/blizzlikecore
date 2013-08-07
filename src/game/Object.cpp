@@ -1121,7 +1121,7 @@ void WorldObject::setActive(bool on)
     if (!IsInWorld())
         return;
 
-    Map *map = FindMap();
+    Map* map = FindMap();
     if (!map)
         return;
 
@@ -1162,7 +1162,7 @@ uint32 WorldObject::GetAreaId() const
 
 InstanceData* WorldObject::GetInstanceData()
 {
-    Map *map = GetMap();
+    Map* map = GetMap();
     return map->IsDungeon() ? ((InstanceMap*)map)->GetInstanceData() : NULL;
 }
 
@@ -1857,7 +1857,7 @@ TempSummon *Map::SummonCreature(uint32 entry, const Position &pos, SummonPropert
 
 TempSummon* WorldObject::SummonCreature(uint32 entry, const Position &pos, TempSummonType spwtype, uint32 duration)
 {
-    if (Map *map = FindMap())
+    if (Map* map = FindMap())
     {
         if (TempSummon *summon = map->SummonCreature(entry, pos, NULL, duration, isType(TYPEMASK_UNIT) ? (Unit*)this : NULL))
         {
@@ -1871,7 +1871,7 @@ TempSummon* WorldObject::SummonCreature(uint32 entry, const Position &pos, TempS
 
 void WorldObject::SetZoneScript()
 {
-    if (Map *map = FindMap())
+    if (Map* map = FindMap())
     {
         if (map->IsDungeon())
             m_zoneScript = (ZoneScript*)((InstanceMap*)map)->GetInstanceData();
@@ -1912,7 +1912,7 @@ Pet* Player::SummonPet(uint32 entry, float x, float y, float z, float ang, PetTy
         return NULL;
     }
 
-    Map *map = GetMap();
+    Map* map = GetMap();
     uint32 pet_number = objmgr.GeneratePetNumber();
     if (!pet->Create(objmgr.GenerateLowGuid(HIGHGUID_PET), map, entry, pet_number))
     {
@@ -2000,7 +2000,7 @@ GameObject* WorldObject::SummonGameObject(uint32 entry, float x, float y, float 
         sLog.outErrorDb("Gameobject template %u not found in database!", entry);
         return NULL;
     }
-    Map *map = GetMap();
+    Map* map = GetMap();
     GameObject* go = new GameObject();
     if (!go->Create(objmgr.GenerateLowGuid(HIGHGUID_GAMEOBJECT),entry,map,x,y,z,ang,rotation0,rotation1,rotation2,rotation3,100,GO_STATE_READY))
     {

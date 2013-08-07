@@ -1639,7 +1639,7 @@ bool Player::TeleportTo(uint32 mapid, float x, float y, float z, float orientati
 
         // If the map is not created, assume it is possible to enter it.
         // It will be created in the WorldPortAck.
-        Map *map = MapManager::Instance().FindMap(mapid);
+        Map* map = MapManager::Instance().FindMap(mapid);
         if (!map ||  map->CanEnter(this))
         {
             //lets reset near teleport flag if it wasn't reset during chained teleports
@@ -14909,7 +14909,7 @@ bool Player::LoadFromDB(uint32 guid, SqlQueryHolder *holder)
         RelocateToHomebind();
     }
 
-    // fix crash (because of if (Map *map = _FindMap(instanceId)) in MapInstanced::CreateInstance)
+    // fix crash (because of if (Map* map = _FindMap(instanceId)) in MapInstanced::CreateInstance)
     if (instanceId)
         if (InstanceSave*  save = GetInstanceSave(mapId))
             if (save->GetInstanceId() != instanceId)
@@ -14917,7 +14917,7 @@ bool Player::LoadFromDB(uint32 guid, SqlQueryHolder *holder)
 
     // NOW player must have valid map
     // load the player's map here if it's not already loaded
-    Map *map = MapManager::Instance().CreateMap(mapId, this, instanceId);
+    Map* map = MapManager::Instance().CreateMap(mapId, this, instanceId);
 
     if (!map)
     {
@@ -16021,7 +16021,7 @@ InstanceSave*  Player::GetInstanceSave(uint32 mapid)
     InstanceSave* pSave = pBind ? pBind->save : NULL;
     if (!pBind || !pBind->perm)
         if (Group* group = GetGroup())
-            if (InstanceGroupBind *groupBind = group->GetBoundInstance(this))
+            if (InstanceGroupBind* groupBind = group->GetBoundInstance(this))
                 pSave = groupBind->save;
 
     return pSave;
@@ -17102,7 +17102,7 @@ void Player::ResetInstances(uint8 method)
         }
 
         // if the map is loaded, reset it
-        Map *map = MapManager::Instance().FindMap(p->GetMapId(), p->GetInstanceId());
+        Map* map = MapManager::Instance().FindMap(p->GetMapId(), p->GetInstanceId());
         if (map && map->IsDungeon())
             if (!((InstanceMap*)map)->Reset(method))
             {

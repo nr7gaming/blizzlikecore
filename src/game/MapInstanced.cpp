@@ -108,7 +108,7 @@ Map* MapInstanced::CreateInstance(const uint32 mapId, Player* player)
         // then the player's group bind and finally the solo bind.
         if (!pBind || !pBind->perm)
         {
-            InstanceGroupBind *groupBind = NULL;
+            InstanceGroupBind* groupBind = NULL;
             Group* group = player->GetGroup();
             // use the player's difficulty setting (it may not be the same as the group's)
             if (group)
@@ -165,7 +165,7 @@ InstanceMap* MapInstanced::CreateInstance(uint32 InstanceId, InstanceSave* save,
 
     sLog.outDebug("MapInstanced::CreateInstance: %s map instance %d for %d created with difficulty %s", save?"":"new ", InstanceId, GetId(), difficulty?"heroic":"normal");
 
-    InstanceMap *map = new InstanceMap(GetId(), GetGridExpiry(), InstanceId, difficulty, this);
+    InstanceMap* map = new InstanceMap(GetId(), GetGridExpiry(), InstanceId, difficulty, this);
     ASSERT(map->IsDungeon());
 
     bool load_data = save != NULL;
@@ -182,7 +182,7 @@ BattleGroundMap* MapInstanced::CreateBattleGround(uint32 InstanceId, BattleGroun
 
     sLog.outDebug("MapInstanced::CreateBattleGround: map bg %d for %d created.", InstanceId, GetId());
 
-    BattleGroundMap *map = new BattleGroundMap(GetId(), GetGridExpiry(), InstanceId, this);
+    BattleGroundMap* map = new BattleGroundMap(GetId(), GetGridExpiry(), InstanceId, this);
     ASSERT(map->IsBattleGroundOrArena());
     map->SetBG(bg);
     bg->SetBgMap(map);

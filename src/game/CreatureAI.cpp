@@ -30,7 +30,7 @@ void CreatureAI::DoZoneInCombat(Creature* creature)
     if (!creature->CanHaveThreatList())
         return;
 
-    Map *map = creature->GetMap();
+    Map* map = creature->GetMap();
     if (!map->IsDungeon())                                  //use IsDungeon instead of Instanceable, in case battlegrounds will be instantiated
     {
         sLog.outError("DoZoneInCombat call for map that isn't an instance (creature entry = %d)", creature->GetTypeId() == TYPEID_UNIT ? creature->ToCreature()->GetEntry() : 0);

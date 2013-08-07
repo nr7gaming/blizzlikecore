@@ -793,7 +793,7 @@ bool ChatHandler::HandleGameObjectCommand(const char* args)
     float y = float(chr->GetPositionY());
     float z = float(chr->GetPositionZ());
     float o = float(chr->GetOrientation());
-    Map *map = chr->GetMap();
+    Map* map = chr->GetMap();
 
     GameObject* pGameObj = new GameObject;
     uint32 db_lowGUID = objmgr.GenerateLowGuid(HIGHGUID_GAMEOBJECT);
@@ -960,7 +960,7 @@ bool ChatHandler::HandleNpcAddCommand(const char* args)
     float y = chr->GetPositionY();
     float z = chr->GetPositionZ();
     float o = chr->GetOrientation();
-    Map *map = chr->GetMap();
+    Map* map = chr->GetMap();
 
     Creature* pCreature = new Creature;
     if (!pCreature->Create(objmgr.GenerateLowGuid(HIGHGUID_UNIT), map, id, (uint32)teamval, x, y, z, o))
@@ -2626,7 +2626,7 @@ bool ChatHandler::HandleWpModifyCommand(const char* args)
         PSendSysMessage("|cff00ff00DEBUG: wp move, PathID: |r|cff00ffff%u|r", pathid);
 
         Player* chr = m_session->GetPlayer();
-        Map *map = chr->GetMap();
+        Map* map = chr->GetMap();
         {
             // wpCreature
             Creature* wpCreature = NULL;
@@ -2839,7 +2839,7 @@ bool ChatHandler::HandleWpShowCommand(const char* args)
             uint32 id = VISUAL_WAYPOINT;
 
             Player* chr = m_session->GetPlayer();
-            Map *map = chr->GetMap();
+            Map* map = chr->GetMap();
             float o = chr->GetOrientation();
 
             Creature* wpCreature = new Creature;
@@ -2890,7 +2890,7 @@ bool ChatHandler::HandleWpShowCommand(const char* args)
 
         Player* chr = m_session->GetPlayer();
         float o = chr->GetOrientation();
-        Map *map = chr->GetMap();
+        Map* map = chr->GetMap();
 
         Creature* pCreature = new Creature;
         if (!pCreature->Create(objmgr.GenerateLowGuid(HIGHGUID_UNIT),map, id, 0, x, y, z, o))
@@ -2938,7 +2938,7 @@ bool ChatHandler::HandleWpShowCommand(const char* args)
 
         Player* chr = m_session->GetPlayer();
         float o = chr->GetOrientation();
-        Map *map = chr->GetMap();
+        Map* map = chr->GetMap();
 
         Creature* pCreature = new Creature;
         if (!pCreature->Create(objmgr.GenerateLowGuid(HIGHGUID_UNIT), map, id, 0, x, y, z, o))

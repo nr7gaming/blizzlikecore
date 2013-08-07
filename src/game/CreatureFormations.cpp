@@ -17,7 +17,7 @@ CreatureFormationDataType   CreatureFormationDataMap;
 
 void CreatureFormationManager::AddCreatureToFormation(uint32 formationId, Creature* member)
 {
-    Map *map = member->FindMap();
+    Map* map = member->FindMap();
     if (!map)
         return;
 
@@ -46,7 +46,7 @@ void CreatureFormationManager::RemoveCreatureFromFormation(CreatureFormation *fo
 
     if (formation->isEmpty())
     {
-        Map *map = member->FindMap();
+        Map* map = member->FindMap();
         if (!map)
             return;
 

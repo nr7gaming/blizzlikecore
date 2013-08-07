@@ -833,15 +833,15 @@ void World::LoadConfigSettings(bool reload)
         m_configs[CONFIG_SKILL_GAIN_WEAPON] = 1;
     }
 
-    m_configs[CONFIG_MAX_OVERSPEED_PINGS] = sConfig.GetIntDefault("MaxOverspeedPings",2);
-    if (m_configs[CONFIG_MAX_OVERSPEED_PINGS] != 0 && m_configs[CONFIG_MAX_OVERSPEED_PINGS] < 2)
+    m_configs[CONFIG_MAX_OVERSPEED_PINGS] = sConfig.GetIntDefault("MaxOverspeedPings", 10);
+    if (m_configs[CONFIG_MAX_OVERSPEED_PINGS] != 0 && m_configs[CONFIG_MAX_OVERSPEED_PINGS] < 10)
     {
-        sLog.outError("MaxOverspeedPings (%i) must be in range 2..infinity (or 0 to disable check). Set to 2.", m_configs[CONFIG_MAX_OVERSPEED_PINGS]);
-        m_configs[CONFIG_MAX_OVERSPEED_PINGS] = 2;
+        sLog.outError("MaxOverspeedPings (%i) must be in range 10..infinity (or 0 to disable check). Set to 10.", m_configs[CONFIG_MAX_OVERSPEED_PINGS]);
+        m_configs[CONFIG_MAX_OVERSPEED_PINGS] = 10;
     }
 
-    m_configs[CONFIG_SAVE_RESPAWN_TIME_IMMEDIATELY] = sConfig.GetBoolDefault("SaveRespawnTimeImmediately",true);
-    m_configs[CONFIG_WEATHER] = sConfig.GetBoolDefault("ActivateWeather",true);
+    m_configs[CONFIG_SAVE_RESPAWN_TIME_IMMEDIATELY] = sConfig.GetBoolDefault("SaveRespawnTimeImmediately", true);
+    m_configs[CONFIG_WEATHER] = sConfig.GetBoolDefault("ActivateWeather", true);
 
     m_configs[CONFIG_DISABLE_BREATHING] = sConfig.GetIntDefault("DisableWaterBreath", SEC_CONSOLE);
 
